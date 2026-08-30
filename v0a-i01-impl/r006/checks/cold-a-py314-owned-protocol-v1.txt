@@ -1,0 +1,16 @@
+argv=-B | -P | D:\Pontius-handoffs\v0a-i01-impl\r006\checks\cold-a-owned-protocol-v1.py | D:\Pontius\.venv\Scripts\python.exe | 3.14.6
+exit=0
+stdout:
+executable=D:\Pontius\.venv\Scripts\python.exe
+implementation=cpython
+full_version=3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]
+environment={"PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\\harness\\src", "SYSTEMROOT": "C:\\windows", "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp", "TMP": "C:\\Users\\point\\AppData\\Local\\Temp", "WINDIR": "C:\\windows"}
+baseline_blob=runtime:35ea9af52595d49c222ca853fe08dfb70e2136355267e330a19272b044a502db
+baseline_blob=replay:aa525752f712a139691baef76316026b47bef5e8f8cb62a8545d4a1515f74edb
+{"accepted_actions": 4, "candidate": "r005-blob-counterfactual", "escaped_type": null, "evaluations": 2, "hostile_message": false, "journal": ["settlement_mismatch"], "receipt": {"passed": false, "primary": "settlement_mismatch", "secondary": []}, "rendering_attempts": 0, "traceback": []}
+{"accepted_actions": 4, "candidate": "r005-blob-counterfactual", "escaped_type": null, "evaluations": 2, "hostile_message": true, "journal": ["settlement_mismatch"], "receipt": {"passed": false, "primary": "settlement_mismatch", "secondary": []}, "rendering_attempts": 0, "traceback": []}
+{"accepted_actions": 4, "candidate": "r006-candidate", "escaped_type": null, "evaluations": 2, "hostile_message": false, "journal": ["settlement_mismatch"], "receipt": {"passed": false, "primary": "settlement_mismatch", "secondary": []}, "rendering_attempts": 0, "traceback": []}
+{"accepted_actions": 4, "candidate": "r006-candidate", "escaped_type": "RuntimeError", "evaluations": 2, "hostile_message": true, "journal": ["settlement_mismatch"], "receipt": null, "rendering_attempts": 1, "traceback": ["  File \"D:\\Pontius-handoffs\\v0a-i01-impl\\r006\\checks\\cold-a-owned-protocol-v1.py\", line 87, in <module>\n    outcome = host.run()\n", "  File \"D:\\pontius-snapshots\\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\\harness\\src\\pontius\\v0a\\replay.py\", line 498, in run\n    with runtime.owned_bookkeeping(\n         ~~~~~~~~~~~~~~~~~~~~~~~~~^\n        body_failure=FailureCode.SETTLEMENT_MISMATCH\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ):\n    ^\n", "  File \"C:\\Users\\point\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\contextlib.py\", line 162, in __exit__\n    self.gen.throw(value)\n    ~~~~~~~~~~~~~~^^^^^^^\n", "  File \"D:\\pontius-snapshots\\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\\harness\\src\\pontius\\v0a\\runtime.py\", line 416, in owned_bookkeeping\n    raise OperationFailed(str(error)) from error\n                          ~~~^^^^^^^\n", "  File \"D:\\Pontius-handoffs\\v0a-i01-impl\\r006\\checks\\cold-a-owned-protocol-v1.py\", line 69, in __str__\n    raise RuntimeError('secondary exception while rendering original error')\n"]}
+REGRESSION CONFIRMED: r005 contains both body errors; r006 contains ordinary error but leaks the formatting error
+
+stderr:

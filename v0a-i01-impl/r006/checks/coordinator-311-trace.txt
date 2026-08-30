@@ -1,0 +1,32 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "implementation": "cpython", "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+test_authorized_mode_is_refused (__main__.CanonicalFormTests.test_authorized_mode_is_refused) ... ok
+test_canonical_json_refuses_non_finite_numbers (__main__.CanonicalFormTests.test_canonical_json_refuses_non_finite_numbers) ... ok
+test_record_indices_are_contiguous_from_the_header (__main__.CanonicalFormTests.test_record_indices_are_contiguous_from_the_header) ... ok
+test_rows_are_lf_terminated_sorted_and_compact (__main__.CanonicalFormTests.test_rows_are_lf_terminated_sorted_and_compact) ... ok
+test_all_event_kinds_round_trip (__main__.RoundTripTests.test_all_event_kinds_round_trip) ... ok
+test_complete_trace_parses_and_rebinds_its_digests (__main__.RoundTripTests.test_complete_trace_parses_and_rebinds_its_digests) ... ok
+test_decoded_arrays_are_immutable_tuples (__main__.RoundTripTests.test_decoded_arrays_are_immutable_tuples) ... ok
+test_distinct_run_ids_share_identical_semantic_bytes (__main__.RoundTripTests.test_distinct_run_ids_share_identical_semantic_bytes) ... ok
+test_semantic_digest_changes_with_a_different_action (__main__.RoundTripTests.test_semantic_digest_changes_with_a_different_action) ... ok
+test_timing_never_enters_the_semantic_projection (__main__.RoundTripTests.test_timing_never_enters_the_semantic_projection) ... ok
+test_rejects_a_counted_terminal_that_disagrees (__main__.StrictRejectionTests.test_rejects_a_counted_terminal_that_disagrees) ... ok
+test_rejects_a_delivered_action_without_acceptance (__main__.StrictRejectionTests.test_rejects_a_delivered_action_without_acceptance) ... ok
+test_rejects_a_duplicate_json_key (__main__.StrictRejectionTests.test_rejects_a_duplicate_json_key) ... ok
+test_rejects_a_tampered_prefix_or_semantic_digest (__main__.StrictRejectionTests.test_rejects_a_tampered_prefix_or_semantic_digest) ... ok
+test_rejects_bad_digests_and_enums (__main__.StrictRejectionTests.test_rejects_bad_digests_and_enums) ... ok
+test_rejects_discontinuous_or_foreign_rows (__main__.StrictRejectionTests.test_rejects_discontinuous_or_foreign_rows) ... ok
+test_rejects_interrupted_timing_that_claims_a_false_flag (__main__.StrictRejectionTests.test_rejects_interrupted_timing_that_claims_a_false_flag) ... ok
+test_rejects_success_without_complete_accounting (__main__.StrictRejectionTests.test_rejects_success_without_complete_accounting) ... ok
+test_rejects_truncated_missing_and_duplicated_terminals (__main__.StrictRejectionTests.test_rejects_truncated_missing_and_duplicated_terminals) ... ok
+test_rejects_unknown_and_missing_keys (__main__.StrictRejectionTests.test_rejects_unknown_and_missing_keys) ... ok
+test_rejects_wrong_exact_types (__main__.StrictRejectionTests.test_rejects_wrong_exact_types) ... ok
+test_the_mutation_helper_produces_an_otherwise_valid_trace (__main__.StrictRejectionTests.test_the_mutation_helper_produces_an_otherwise_valid_trace)
+The helper itself must not smuggle in a second violation. ... ok
+test_create_new_write_then_refuse_overwrite (__main__.TraceWriteTests.test_create_new_write_then_refuse_overwrite) ... ok
+test_refuses_an_absent_destination_directory (__main__.TraceWriteTests.test_refuses_an_absent_destination_directory) ... ok
+test_refuses_paths_outside_the_run_root (__main__.TraceWriteTests.test_refuses_paths_outside_the_run_root) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.012s
+
+OK

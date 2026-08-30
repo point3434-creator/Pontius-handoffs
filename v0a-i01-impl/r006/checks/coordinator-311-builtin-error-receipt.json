@@ -1,0 +1,30 @@
+{
+  "candidate": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+  "manifest_sha256": "2078d59a4a112bf29a2bd9faca9a2ca070bbd1028a940f2eeb617c9e1c31555f",
+  "slot": "311",
+  "snapshot": "D:\\pontius-snapshots\\v0a-r006-coordinator-b851b96fc6d14541a0f90c5183849161\\harness",
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r006-coordinator-b851b96fc6d14541a0f90c5183849161\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-impl\\r006\\checks\\coordinator-builtin-error-probe.py",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r006\\checks\\coordinator-311-builtin-error-probe.txt",
+      "sha256": "f226e3180d78f0a09bc23642cdd5e2518bb1e99956580612e9c30d8b229a566c"
+    }
+  ],
+  "source_pristine": true
+}

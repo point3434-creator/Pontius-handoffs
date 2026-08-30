@@ -1,15 +1,15 @@
 # Increment one — current state
 
-As of 2026-08-30, after r005 review. Maintainer: Codex coordinator.
+As of 2026-08-30, after r006 review. Maintainer: Codex coordinator.
 Navigation only: this page may change. It is not a handoff, acceptance evidence,
 or a substitute for a frozen commit plus manifest SHA-256.
 
 Latest reviewed implementation pair:
-- v0a-i01-impl/r005
-- Candidate: a8582e6d6b53b55415dab79c4a54e252d00b74ad
-- Manifest: e9b0baf12e258d66a92169d38137cbf2f42317158b6515ac377f745bbc52093a
-- [Disposition](r005/disposition.md): NOT CLEAN; design STRAINED.
-- Scope: R2-03 only. Claude retains implementation finalization.
+- v0a-i01-impl/r006
+- Candidate: c74b80628a89938ca585ef3240b5c267a7174d0f
+- Manifest: 2078d59a4a112bf29a2bd9faca9a2ca070bbd1028a940f2eeb617c9e1c31555f
+- [Disposition](r006/disposition.md): NOT CLEAN; design STRAINED.
+- Scope: R2-03 only. Claude drafted r006; next implementation owner is unassigned.
 
 ## Board
 
@@ -18,11 +18,11 @@ Latest reviewed implementation pair:
 | Outer violation flags R2-02 | Closed by r003 scoped review | Preserve regression coverage |
 | Complete settlement comparison R2-07 | Closed by r003 scoped review | Preserve regression coverage |
 | Known delivery count R2-08 | Closed by r003 scoped review | Preserve regression coverage |
-| Host failure closure R2-03 / R3-02 | Open after r005; third residual, two host-body mechanisms | Complete cause ownership before exceptional unwind; fresh isolated candidate |
+| Host failure closure R2-03 / R3-02 | Open after r006; fourth residual, two required mechanisms | Apply the handoff change-of-implementer condition; bounded error-adapter redesign |
 | Policy authority R2-01 / R3-01 | Open; second residual from r003 | Root-cause note published; await its own frozen implementation candidate |
-| Trace acceptance R2-05 / R2-06 | Deferred; not reviewed by r005 | Independent legal replay and strict schema correction slice |
-| Publication/accounting R2-04 / R2-09 / R2-10 | Deferred; not reviewed by r005 | Measured work, incremental writes and stable writer-root slice |
-| Event/envelope/receipt admission V-01 / V-02 / V-03 | Separate audit, three Important findings | Own bounded admission-validation slice; not an r005 residual |
+| Trace acceptance R2-05 / R2-06 | Deferred; not reviewed by r006 | Independent legal replay and strict schema correction slice |
+| Publication/accounting R2-04 / R2-09 / R2-10 | Deferred; not reviewed by r006 | Measured work, incremental writes and stable writer-root slice |
+| Event/envelope/receipt admission V-01 / V-02 / V-03 | Separate audit, three Important findings | Own bounded admission-validation slice; not an r006 residual |
 | V2 ticket/result wrapper suspicion | No supported incoming wrapper defect established | No sealed-spine rewrite justified by this audit |
 
 Original r002 board: three closed contracts, two open contracts, five deferred.
@@ -30,22 +30,30 @@ The three value-admission findings are additional contracts, not a change to
 those ten dispositions. Closed scoped reviews do not mean the increment or a
 whole candidate has been accepted/integrated.
 
-## What r005 established
+## What r006 established
 
-The append-only cause journal corrects both previous r004 mechanisms: first
-writer failure stays primary, and a rejected-event abort retains its later clock
-cause. All 119 focused tests pass per actual interpreter.
+Both r005 failures are fixed. Ordinary body errors precede cleanup faults and
+fresh body-origin clock failures are retained. All 123 focused tests pass on
+actual CPython3.11.15 and3.14.6.
 
-Two host-body cases remain: an oracle exception is recorded only after cleanup
-and can be overtaken by its clock fault; a real shared-witness fault inside oracle
-work can vanish because the typed catch assumes another seam already retained it.
-Both independent reviewers and the coordinator reproduce these on 3.11.15/3.14.6.
+Two required failures remain: a refused read from an already-failed witness
+is counted as another clock fault, and exception normalization can itself raise,
+leaving no completion receipt after actions were delivered. The effective
+disposition has two findings. Fabricated/foreign OperationFailed markers and
+unsupported nested preparation behavior are advisory, not extra gates; the
+coordinator's append-only addendum records that scope correction.
 
-Keep the journal. The bounded next change is ownership at operation boundaries,
-before exceptional unwind; widen the test model beyond ledger-close calls.
-No whole solver, hand or sealed-spine rewrite is supported by these findings.
-The R2-03 pre-fix root-cause note exists; the new round should explain the newly
-exposed host-body/origin gap without rewriting historical evidence.
+The design verdict is STRAINED at the error adapter. Preserve the journal,
+measurement boundaries, hand loop and sealed spine. The next owner should
+separate cause-origin/retention knowledge from safe failure transport and test
+complete cause sequences, including fresh-fault versus dead-witness refusal
+and fallible error presentation.
+
+The r006 handoff records a controller condition to change implementers if the
+fourth attempt leaves R2-03 open. It remains open. No fifth attempt is assigned,
+no next implementer is appointed here, and no implementation work has begun.
+The next handoff is the frozen pair plus disposition and diagnostics, not this
+mutable summary or a transcript.
 
 ## Workflow refinement
 
@@ -58,13 +66,14 @@ behavioral defects retain RED/GREEN. No new ADR or approval stage.
 These documentation edits remain uncommitted in the source working tree and
 coexist with separate pending design language. The frozen documentation pair
 excludes that unrelated language. The new coverage.md arrangement was not applied
-as a retrospective gate to r005. Review-packet publication is not source
+as a retrospective gate to r005/r006. Review-packet publication is not source
 integration.
 
 ## Useful references
 
 - [Implementation verdict ledger](progress.md)
-- [r005 disposition and next-fix guidance](r005/disposition.md)
+- [r006 disposition and next ownership](r006/disposition.md)
+- [r005 disposition and prior mechanisms](r005/disposition.md)
 - [r004 disposition and residual history](r004/disposition.md)
 - [Host cause root-cause note](R2-03-root-cause.md)
 - [Policy root-cause note](R2-01-root-cause.md)

@@ -1,0 +1,31 @@
+{
+  "candidate": {
+    "base": "b357d333fc2393b7fc7dcf31f30c86616208c817",
+    "commit": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+    "date": "2026-08-30",
+    "manifest_sha256": "2078d59a4a112bf29a2bd9faca9a2ca070bbd1028a940f2eeb617c9e1c31555f",
+    "ref": "refs/heads/review/v0a-i01-impl/r006",
+    "round": "r006",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-impl",
+    "tree": "a22414541973b76ddd1efa1ca8fc41f51b7a4065"
+  },
+  "manifest_verified": true,
+  "manifest_rows": 10,
+  "delta_vs_r005": [
+    "src/pontius/v0a/replay.py",
+    "src/pontius/v0a/runtime.py",
+    "tests/test_v0a_replay.py"
+  ],
+  "snapshots": {
+    "cold-a": "D:\\pontius-snapshots\\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\\harness",
+    "cold-b": "D:\\pontius-snapshots\\v0a-r006-cold-b-9b68bc30697143659ff72e0007e9789e\\harness",
+    "coordinator": "D:\\pontius-snapshots\\v0a-r006-coordinator-b851b96fc6d14541a0f90c5183849161\\harness"
+  },
+  "primary_head": "d1ed3cbda6107d61ea8e77133871720af04970cd",
+  "primary_index": "",
+  "primary_working_hashes": {
+    "CLAUDE.md": "af06aad6ec36b91a4e942d7cfc1d3560555ae60e50b023270a0807f247b32b76",
+    "docs/workflow.md": "d9de38ede87fb619b3045a60ee7fab137ae23ba3b580c0a6d6b3ca14e567a170"
+  }
+}

@@ -1,0 +1,17 @@
+argv=-B | -P | D:\Pontius-handoffs\v0a-i01-impl\r006\checks\cold-a-runner-v1.py | D:\Pontius-tools\py311\Scripts\python.exe | 3.11.15 | manifest
+exit=0
+stdout:
+executable=D:\Pontius-tools\py311\Scripts\python.exe
+implementation=cpython
+full_version=3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]
+cwd=D:\pontius-snapshots\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\harness
+environment={"PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\\harness\\src", "SYSTEMROOT": "C:\\windows", "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp", "TMP": "C:\\Users\\point\\AppData\\Local\\Temp", "WINDIR": "C:\\windows"}
+sys_path=["D:\\pontius-snapshots\\v0a-r006-cold-a-98fee7dce06d4fcca2da4475c550b928\\harness\\src", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\python311.zip", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\DLLs", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none", "D:\\Pontius-tools\\py311", "D:\\Pontius-tools\\py311\\Lib\\site-packages"]
+manifest_sha256=2078d59a4a112bf29a2bd9faca9a2ca070bbd1028a940f2eeb617c9e1c31555f
+rows=10
+delta_r005=M	src/pontius/v0a/replay.py
+M	src/pontius/v0a/runtime.py
+M	tests/test_v0a_replay.py
+VERIFIED: blob identity, parent, tree, clean snapshot, in-memory normalized checkout equality
+
+stderr:
