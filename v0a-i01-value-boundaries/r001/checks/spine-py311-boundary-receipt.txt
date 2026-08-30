@@ -1,0 +1,32 @@
+COMMAND=D:\Pontius-tools\py311\Scripts\python.exe -B -P D:\Pontius-handoffs\v0a-i01-value-boundaries\r001\checks\spine-boundary-probe.py D:\Pontius-tools\py311\Scripts\python.exe 3.11.15
+CWD=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness
+PROBE_SHA256=e5e5865e7b765a32cad2909e9ac65e0bff067169a27988b6be4c4dc41572f5f9
+RUNNER_SHA256=34b1cfbd6010b383636c2faf6b14bec54a879ee2563c4dc8349519f8eedb6989
+STDOUT
+PREIMPORT_EXECUTABLE=D:\Pontius-tools\py311\Scripts\python.exe
+PREIMPORT_IMPLEMENTATION=cpython
+PREIMPORT_VERSION='3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]'
+IDENTITY={"candidate": "47d08d8c1556d776358e15811e3e98b859fd6a8b", "manifest": "cc255e28680f71fe15de78f26bb8f99a337c1c79e12bf3bdf382a8aa74e7844a", "cwd": "D:\\pontius-snapshots\\v0a-values-spine-621bb1725663439baa809b694e3a2f07\\harness", "environment_keys": ["PONTIUS_GIT", "PYTHONDONTWRITEBYTECODE", "PYTHONNOUSERSITE", "PYTHONPATH", "PYTHONUTF8", "SYSTEMROOT", "TEMP", "TMP", "WINDIR"]}
+IMPORT=pontius.action_clock=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness\src\pontius\action_clock.py
+IMPORT=pontius.legal_decision_spine_v2=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness\src\pontius\legal_decision_spine_v2.py
+IMPORT=pontius.immutable_blueprint=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness\src\pontius\immutable_blueprint.py
+IMPORT=pontius.no_limit_betting=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness\src\pontius\no_limit_betting.py
+IMPORT=pontius.v0a.model=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness\src\pontius\v0a\model.py
+IMPORT=pontius.v0a.runtime=D:\pontius-snapshots\v0a-values-spine-621bb1725663439baa809b694e3a2f07\harness\src\pontius\v0a\runtime.py
+PROBE={"emit_signature": "(self, *, candidate: 'BettingAction | None', fallback: 'BettingAction') -> 'EmittedBettingActionV2'", "fabricated_values_rejected": "invalid_event", "name": "spine_outputs_no_skipped_validator_or_runtime_input", "normal_emission": "EmittedBettingActionV2", "normal_ticket": "ControlledDecisionTicketV2", "open_signature": "(self) -> 'ControlledDecisionTicketV2'"}
+PROBE={"base_refusal": "ValueError: event schema version must be exactly 'pontius-v0a-event-v1'", "fields": {"schema_version": "wrong-schema"}, "name": "start_validation_skipped", "runtime_status": "accepted"}
+PROBE={"base_refusal": "ValueError: hand_started must carry event index zero", "fields": {"event_index": 7}, "name": "start_validation_skipped", "runtime_status": "accepted"}
+PROBE={"base_refusal": "TypeError: event index must be an exact integer", "history_action": "fold", "history_seat": 3, "name": "opponent_bool_index_admitted", "runtime_status": "accepted"}
+PROBE={"base_refusal": "ValueError: action kind must be one of ('fold', 'check', 'call', 'raise')", "event_exact": true, "history_action": "raise", "name": "nested_action_invalid_kind_becomes_real_raise", "raise_to": 4, "runtime_status": "accepted"}
+PROBE={"exception": "AttributeError: 'str' object has no attribute 'to_betting_action'", "name": "malformed_event_escapes_typed_refusal"}
+PROBE={"base_refusal": "ValueError: event schema version must be exactly 'pontius-v0a-event-v1'", "delivered_count": 2, "name": "reveal_schema_skipped_and_action_delivered", "runtime_status": "decided"}
+PROBE={"base_refusal": "ValueError: showdown result carries exactly six strength entries", "hand_complete": true, "name": "admitted_mutable_showdown_changes_settlement_without_event", "payouts_after": [0, 4, 0, 0, 0, 0], "payouts_before": [0, 0, 4, 0, 0, 0], "runtime_status": "accepted"}
+PROBE={"hand_complete": true, "name": "empty_showdown_accepted_then_settlement_fails", "runtime_status": "accepted", "settlement_exception": "ValueError: showdown requires one strength entry for every seat"}
+PROBE={"accepted_seat": 99, "base_refusal": "ValueError: acting seat must identify one of six seats", "name": "mailbox_admits_unvalidated_envelope", "receipt_type": "DeliveryReceipt"}
+PROBE={"base_refusal": "TypeError: action index must be an exact integer", "delivery_exception": "TypeError: action index must be an exact integer", "name": "mailbox_invalid_identity_stored_before_receipt_failure", "stored_key_index_type": "bool", "subsequent_valid_delivery_exception": "MailboxRejectionError: action 1 of hand 'alias' was already accepted"}
+PROBE={"accepted_delivery_count": 1, "base_refusal": "TypeError: action index must be an exact integer", "name": "runtime_admits_malformed_receipt_after_genuine_delivery", "real_mailbox_count": 1, "receipt_index_type": "bool", "runtime_status": "decided"}
+RESULT={"diagnostic_assertions": "passed", "probe_count": 12, "source_worktree_clean": true, "product_verdict": "not_clean"}
+
+STDERR
+
+EXIT_CODE=0

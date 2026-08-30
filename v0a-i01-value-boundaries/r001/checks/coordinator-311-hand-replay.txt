@@ -1,0 +1,41 @@
+test_a_late_started_wall_is_detectable (__main__.ActionClockContractTests.test_a_late_started_wall_is_detectable)
+Time spent in validation and transition work is inside the wall. ... ok
+test_cutoff_and_deadline_together_report_deadline_with_both_flags (__main__.ActionClockContractTests.test_cutoff_and_deadline_together_report_deadline_with_both_flags) ... ok
+test_deadline_edges_follow_the_ledger (__main__.ActionClockContractTests.test_deadline_edges_follow_the_ledger) ... ok
+test_recorded_elapsed_matches_ledger_snapshot_exactly (__main__.ActionClockContractTests.test_recorded_elapsed_matches_ledger_snapshot_exactly) ... ok
+test_reserve_between_cutoff_and_deadline_is_lawful_emission_time (__main__.ActionClockContractTests.test_reserve_between_cutoff_and_deadline_is_lawful_emission_time) ... ok
+test_wall_starts_at_the_event_boundary (__main__.ActionClockContractTests.test_wall_starts_at_the_event_boundary) ... ok
+test_work_cutoff_edges_follow_the_ledger (__main__.ActionClockContractTests.test_work_cutoff_edges_follow_the_ledger) ... ok
+test_entry_for_another_state_is_a_miss_not_a_failure (__main__.BlueprintOutcomeTests.test_entry_for_another_state_is_a_miss_not_a_failure) ... ok
+test_illegal_matching_entry_fails_typed_with_no_emission (__main__.BlueprintOutcomeTests.test_illegal_matching_entry_fails_typed_with_no_emission) ... ok
+test_missing_match_selects_check_when_available (__main__.BlueprintOutcomeTests.test_missing_match_selects_check_when_available) ... ok
+test_missing_match_selects_passive_default_call (__main__.BlueprintOutcomeTests.test_missing_match_selects_passive_default_call) ... ok
+test_policy_selection_surface_is_exactly_four_inputs (__main__.BlueprintOutcomeTests.test_policy_selection_surface_is_exactly_four_inputs) ... ok
+test_table_hit_emits_the_entry_action (__main__.BlueprintOutcomeTests.test_table_hit_emits_the_entry_action) ... ok
+test_ambiguous_delivery_is_unknown_and_never_retried (__main__.DeliveryFailureTests.test_ambiguous_delivery_is_unknown_and_never_retried) ... ok
+test_clock_failure_after_acceptance_keeps_the_full_decision (__main__.DeliveryFailureTests.test_clock_failure_after_acceptance_keeps_the_full_decision) ... ok
+test_clock_failure_before_delivery_is_interrupted_without_emission (__main__.DeliveryFailureTests.test_clock_failure_before_delivery_is_interrupted_without_emission) ... ok
+test_rejected_delivery_is_typed_and_never_retried (__main__.DeliveryFailureTests.test_rejected_delivery_is_typed_and_never_retried) ... ok
+test_first_event_must_be_hand_started (__main__.EventOrderContractTests.test_first_event_must_be_hand_started) ... ok
+test_fold_terminal_accepts_no_showdown_and_settles_bare (__main__.EventOrderContractTests.test_fold_terminal_accepts_no_showdown_and_settles_bare) ... ok
+test_illegal_opponent_action_fails_closed (__main__.EventOrderContractTests.test_illegal_opponent_action_fails_closed) ... ok
+test_reveal_overlapping_known_cards_is_rejected (__main__.EventOrderContractTests.test_reveal_overlapping_known_cards_is_rejected) ... ok
+test_second_hand_started_is_rejected (__main__.EventOrderContractTests.test_second_hand_started_is_rejected) ... ok
+test_showdown_before_terminal_is_rejected (__main__.EventOrderContractTests.test_showdown_before_terminal_is_rejected) ... ok
+test_skipped_and_repeated_event_indices_are_rejected (__main__.EventOrderContractTests.test_skipped_and_repeated_event_indices_are_rejected) ... ok
+test_wrong_actor_and_controlled_actor_are_rejected (__main__.EventOrderContractTests.test_wrong_actor_and_controlled_actor_are_rejected) ... ok
+test_wrong_hand_id_is_rejected (__main__.EventOrderContractTests.test_wrong_hand_id_is_rejected) ... ok
+test_wrong_street_and_premature_reveal_are_rejected (__main__.EventOrderContractTests.test_wrong_street_and_premature_reveal_are_rejected) ... ok
+test_envelope_and_mailbox_accept_at_most_once (__main__.EventValueContractTests.test_envelope_and_mailbox_accept_at_most_once) ... ok
+test_events_cannot_carry_a_clock_timestamp (__main__.EventValueContractTests.test_events_cannot_carry_a_clock_timestamp) ... ok
+test_rejects_malformed_event_values (__main__.EventValueContractTests.test_rejects_malformed_event_values) ... ok
+test_decision_record_binds_states_policy_and_preparation (__main__.RepeatedActionAndRecordTests.test_decision_record_binds_states_policy_and_preparation) ... ok
+test_showdown_settlement_matches_the_kernel (__main__.RepeatedActionAndRecordTests.test_showdown_settlement_matches_the_kernel) ... ok
+test_two_controlled_actions_get_fresh_walls_and_indices (__main__.RepeatedActionAndRecordTests.test_two_controlled_actions_get_fresh_walls_and_indices) ... ok
+test_witness_rejects_invalid_values_and_stays_failed (__main__.WitnessContractTests.test_witness_rejects_invalid_values_and_stays_failed) ... ok
+test_witness_retains_last_returned_sample (__main__.WitnessContractTests.test_witness_retains_last_returned_sample) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.012s
+
+OK
