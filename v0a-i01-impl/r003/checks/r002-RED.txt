@@ -1,0 +1,432 @@
+.F.F.FFF.EEEEEEEEEF.FFE
+======================================================================
+ERROR: test_a_fault_after_the_boundary_keeps_the_established_start (__main__.F4ClockContainmentTests.test_a_fault_after_the_boundary_keeps_the_established_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 332, in _dispatch_hand_started
+    spine = LegalDecisionSpineV2.new_hand(
+        button=event.button,
+    ...<4 lines>...
+        clock_ns=self._witness,
+    )
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\legal_decision_spine_v2.py", line 193, in new_hand
+    timing = ActionClockLedger("preflop", clock_ns=clock_ns)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 158, in __init__
+    started = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 397, in test_a_fault_after_the_boundary_keeps_the_established_start
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 348, in _dispatch_hand_started
+    aborted = outer.abort_transition_boundary(boundary)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 495, in abort_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 48, in __call__
+    raise ClockInvalidError("a failed monotonic witness is never retried")
+pontius.v0a.clock.ClockInvalidError: a failed monotonic witness is never retried
+
+======================================================================
+ERROR: test_a_fault_at_ledger_construction_is_typed (__main__.F4ClockContainmentTests.test_a_fault_at_ledger_construction_is_typed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 376, in test_a_fault_at_ledger_construction_is_typed
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 328, in _dispatch_hand_started
+    outer = ActionClockLedger("preflop", clock_ns=self._witness)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 158, in __init__
+    started = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+======================================================================
+ERROR: test_an_os_error_from_the_clock_is_normalized (__main__.F4ClockContainmentTests.test_an_os_error_from_the_clock_is_normalized)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 387, in test_an_os_error_from_the_clock_is_normalized
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 329, in _dispatch_hand_started
+    boundary = outer.start_transition_boundary()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 410, in start_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+OSError: no monotonic source
+
+======================================================================
+ERROR: test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) (read=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 413, in test_no_clock_error_escapes_dispatch
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 328, in _dispatch_hand_started
+    outer = ActionClockLedger("preflop", clock_ns=self._witness)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 158, in __init__
+    started = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+======================================================================
+ERROR: test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) (read=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 413, in test_no_clock_error_escapes_dispatch
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 329, in _dispatch_hand_started
+    boundary = outer.start_transition_boundary()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 410, in start_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+======================================================================
+ERROR: test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) (read=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 332, in _dispatch_hand_started
+    spine = LegalDecisionSpineV2.new_hand(
+        button=event.button,
+    ...<4 lines>...
+        clock_ns=self._witness,
+    )
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\legal_decision_spine_v2.py", line 193, in new_hand
+    timing = ActionClockLedger("preflop", clock_ns=clock_ns)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 158, in __init__
+    started = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 413, in test_no_clock_error_escapes_dispatch
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 348, in _dispatch_hand_started
+    aborted = outer.abort_transition_boundary(boundary)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 495, in abort_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 48, in __call__
+    raise ClockInvalidError("a failed monotonic witness is never retried")
+pontius.v0a.clock.ClockInvalidError: a failed monotonic witness is never retried
+
+======================================================================
+ERROR: test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) (read=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 332, in _dispatch_hand_started
+    spine = LegalDecisionSpineV2.new_hand(
+        button=event.button,
+    ...<4 lines>...
+        clock_ns=self._witness,
+    )
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\legal_decision_spine_v2.py", line 194, in new_hand
+    boundary = timing.start_transition_boundary()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 410, in start_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 413, in test_no_clock_error_escapes_dispatch
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 348, in _dispatch_hand_started
+    aborted = outer.abort_transition_boundary(boundary)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 495, in abort_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 48, in __call__
+    raise ClockInvalidError("a failed monotonic witness is never retried")
+pontius.v0a.clock.ClockInvalidError: a failed monotonic witness is never retried
+
+======================================================================
+ERROR: test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) (read=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 332, in _dispatch_hand_started
+    spine = LegalDecisionSpineV2.new_hand(
+        button=event.button,
+    ...<4 lines>...
+        clock_ns=self._witness,
+    )
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\legal_decision_spine_v2.py", line 206, in new_hand
+    timing.finish_transition_boundary(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        boundary,
+        ^^^^^^^^^
+    ...<3 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 465, in finish_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 413, in test_no_clock_error_escapes_dispatch
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 348, in _dispatch_hand_started
+    aborted = outer.abort_transition_boundary(boundary)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 495, in abort_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 48, in __call__
+    raise ClockInvalidError("a failed monotonic witness is never retried")
+pontius.v0a.clock.ClockInvalidError: a failed monotonic witness is never retried
+
+======================================================================
+ERROR: test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) (read=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 413, in test_no_clock_error_escapes_dispatch
+    outcome = runtime.dispatch(started())
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 308, in dispatch
+    return self._dispatch_hand_started(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 358, in _dispatch_hand_started
+    return self._finish_boundary(boundary, event, wall_start_ns)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 538, in _finish_boundary
+    closed = outer.finish_transition_boundary(
+        boundary,
+    ...<4 lines>...
+        next_street=next_street,
+    )
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 465, in finish_transition_boundary
+    observed = self._observe()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock exploded
+
+======================================================================
+ERROR: test_a_known_cutoff_is_retained_through_interruption (__main__.F7RetainedViolationTests.test_a_known_cutoff_is_retained_through_interruption)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 520, in test_a_known_cutoff_is_retained_through_interruption
+    outcome = runtime.dispatch(opponent(index, 1, "call"))
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 312, in dispatch
+    return self._dispatch_opponent_action(event)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 396, in _dispatch_opponent_action
+    return self._finish_boundary(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        boundary, event, wall_start_ns, terminal_at_entry=terminal_at_entry
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 552, in _finish_boundary
+    return self._decide(event, wall_start_ns)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 564, in _decide
+    record = self._decide_inner(event, wall_start_ns, action_index)
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\runtime.py", line 687, in _decide_inner
+    closing = outer.finish_action()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 546, in finish_action
+    snapshot = self._action_snapshot_at(self._observe())
+                                        ~~~~~~~~~~~~~^^
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 188, in _observe
+    observed = self._read_clock()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\action_clock.py", line 182, in _read_clock
+    value = self._clock_ns()
+  File "D:\Pontius-worktrees\v0a-increment-1\src\pontius\v0a\clock.py", line 50, in __call__
+    observed = self._source()
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 66, in __call__
+    raise self._fault
+ValueError: clock died after acceptance
+
+======================================================================
+FAIL: test_reveal_path_charges_visible_card_construction (__main__.F1IngressWallTests.test_reveal_path_charges_visible_card_construction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 146, in test_reveal_path_charges_visible_card_construction
+    self.assertEqual(outcome.status, "failed", outcome)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+ : DispatchOutcome(status='accepted', decision=None, failure=None)
+
+======================================================================
+FAIL: test_a_second_showdown_vector_is_refused (__main__.F2ShowdownCompletionTests.test_a_second_showdown_vector_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 204, in test_a_second_showdown_vector_is_refused
+    self.assertEqual(runtime.dispatch(first).status, "accepted")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'failed' != 'accepted'
+- failed
++ accepted
+
+
+======================================================================
+FAIL: test_a_fabricated_passive_default_is_refused (__main__.F3BlueprintAuthorityTests.test_a_fabricated_passive_default_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 322, in test_a_fabricated_passive_default_is_refused
+    self.assertEqual(outcome.status, "failed")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_a_foreign_decision_key_is_refused (__main__.F3BlueprintAuthorityTests.test_a_foreign_decision_key_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 356, in test_a_foreign_decision_key_is_refused
+    self.assertEqual(outcome.status, "failed")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_a_source_switching_policies_mid_hand_is_refused (__main__.F3BlueprintAuthorityTests.test_a_source_switching_policies_mid_hand_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 288, in test_a_source_switching_policies_mid_hand_is_refused
+    self.assertEqual(outcome.status, "failed")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted (__main__.F5F6DeliveryTests.test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 447, in test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted
+    self.assertIs(outcome.failure.delivery_status, DeliveryStatus.UNKNOWN)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: <DeliveryStatus.NOT_ATTEMPTED: 'not_attempted'> is not <DeliveryStatus.UNKNOWN: 'unknown'>
+
+======================================================================
+FAIL: test_a_mismatched_acknowledgement_fails_closed (__main__.F5F6DeliveryTests.test_a_mismatched_acknowledgement_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 470, in test_a_mismatched_acknowledgement_fails_closed
+    self.assertEqual(outcome.status, "failed")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_a_missing_acknowledgement_fails_closed (__main__.F5F6DeliveryTests.test_a_missing_acknowledgement_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\v0a-increment-1\tests\test_v0a_contract_faults.py", line 456, in test_a_missing_acknowledgement_fails_closed
+    self.assertEqual(outcome.status, "failed")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.016s
+
+FAILED (failures=8, errors=10)
