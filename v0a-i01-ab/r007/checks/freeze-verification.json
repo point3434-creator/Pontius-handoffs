@@ -1,0 +1,24 @@
+{
+  "candidate": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-ab",
+    "round": "r007",
+    "ref": "refs/heads/review/v0a-i01-ab/r007",
+    "commit": "ddea6efbeb55cb8b71da1ebd5a359a0c2c901cf1",
+    "base": "52bd941e9fa1fb90ff6d2d14df2286e2ee4f4ec8",
+    "tree": "7f8e429d60434ec5979a4ffa0eead94dfb1d9b35",
+    "manifest_sha256": "c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189",
+    "date": "2026-08-30"
+  },
+  "working_sha256": {
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02"
+  },
+  "index_unchanged": true,
+  "worktree_head_unchanged": true,
+  "manifest_from_git_blobs": true,
+  "remote_ref_verified": true
+}
