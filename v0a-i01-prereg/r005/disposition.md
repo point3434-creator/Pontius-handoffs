@@ -74,3 +74,39 @@ If master or any proposed file changes, repeat the integration verification befo
 committing. No integration, ceremonial commit, evidence-repository push, or ref
 retirement has happened yet. Routine packet-repository commits are separately
 authorized by the adopted workflow and do not open the experiment lane themselves.
+
+## Addendum: returned Claude r005 review
+
+Issuer: /root, coordinator assessment. Date: 2026-08-30.
+Binding: candidate 98328440d4425fed1dbc7eb30b26b5f785709f05 /
+manifest d972987187b78a2ac5fdb6dbaa74cd7b23e1ce7fdd3a73fae5ed96a0f532da17.
+
+Claude returned CLEAN in reviews/review-02-claude.md, SHA-256
+f04f444005c9af6c0eca2579e379edf54e938f9b7d66efad8eaf36465e493113,
+and appended its own attributed task-ledger line. Its binding was independently
+verified against the frozen blobs and canonical manifest. This is the third CLEAN
+review for r005; no Critical or Important finding was introduced.
+
+M1 is accepted as a minor historical/current wording ambiguity. The amendment's
+ADR-0478 hash 2ea6b7c849ec4d991ae68fcc9b069b6892b51c5831f5d21a424a709fec05b7bf
+identifies the historically accepted workflow bytes, preserved in Git and unchanged
+by this amendment. It is not the current-master workflow hash. The separately
+adopted handoff-packet changes at 448296aa8410966c253ead6620f42565226eeec8
+produce workflow hash c70581f35cc1b424a1734c9dbbdb17bea530622461225cd54ca23297c1db4e4a,
+identical to this packet's pinned workflow input. Integration preserves that live
+workflow and applies only the three declared changed blobs. This clarification
+changes neither the candidate contract nor review scope; candidate bytes and issued
+reviews remain untouched. Explicitly historical source wording can wait unless
+another candidate round opens for a substantive reason.
+
+The run_id validation note remains assigned to implementation/source seal. The
+controller-ruling provenance note requires no change: the packet records the direct
+controller instructions and grants no additional authority.
+
+A fresh canonical-manifest verification and integration preview still reproduce
+manifest d972987187b78a2ac5fdb6dbaa74cd7b23e1ce7fdd3a73fae5ed96a0f532da17
+and combined tree e8bc0965bcd86e38d060925856b5242e180e36e3. The existing isolated
+3.11.15 and 3.14.6 receipts bind to those exact candidate blobs and that tree.
+Specific ceremonial authorization remains outstanding; no evidence-repository
+integration or experiment has occurred. The review and this addendum are routine
+coordination publication only.
