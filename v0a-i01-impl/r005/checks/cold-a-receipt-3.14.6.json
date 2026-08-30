@@ -1,0 +1,989 @@
+{
+  "identity_before_payload_imports": {
+    "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "full_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "cwd": "D:\\pontius-snapshots\\v0a-r005-cold-a-96aa34d9536845ddaddc4b1dfbb9615e\\harness",
+    "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=1, warn_default_encoding=0, safe_path=True, int_max_str_digits=4300)",
+    "environment": {
+      "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "PYTHONIOENCODING": "utf-8",
+      "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r005-cold-a-96aa34d9536845ddaddc4b1dfbb9615e\\harness\\src",
+      "PYTHONUTF8": "1",
+      "SYSTEMROOT": "C:\\windows",
+      "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "WINDIR": "C:\\windows"
+    }
+  },
+  "identity": {
+    "commit": "a8582e6d6b53b55415dab79c4a54e252d00b74ad",
+    "base": "b357d333fc2393b7fc7dcf31f30c86616208c817",
+    "tree": "5d373871b27bed5ef026150b816d684a588b75c3",
+    "manifest_sha256": "e9b0baf12e258d66a92169d38137cbf2f42317158b6515ac377f745bbc52093a",
+    "changed_blobs": [
+      {
+        "path": "src/pontius/v0a/__init__.py",
+        "status": "A",
+        "sha256": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a"
+      },
+      {
+        "path": "src/pontius/v0a/clock.py",
+        "status": "A",
+        "sha256": "d229ca9a5a3f00ef73401b6aca415922840760dd62873759c50b3bfa95285ea4"
+      },
+      {
+        "path": "src/pontius/v0a/model.py",
+        "status": "A",
+        "sha256": "30aa2b8f7fbe86a7d106a27b3d52362b891a7ed0b222a858911e59e5d93301b0"
+      },
+      {
+        "path": "src/pontius/v0a/replay.py",
+        "status": "A",
+        "sha256": "aa525752f712a139691baef76316026b47bef5e8f8cb62a8545d4a1515f74edb"
+      },
+      {
+        "path": "src/pontius/v0a/runtime.py",
+        "status": "A",
+        "sha256": "35ea9af52595d49c222ca853fe08dfb70e2136355267e330a19272b044a502db"
+      },
+      {
+        "path": "src/pontius/v0a/trace.py",
+        "status": "A",
+        "sha256": "ca994d35be0c2a2c368727cdc11abee7a71ba5e7f7d95e62fc24bc7e89ba03ed"
+      },
+      {
+        "path": "tests/test_v0a_contract_faults.py",
+        "status": "A",
+        "sha256": "85c15ae71e6e5685124c7c9d276a94dd593ef96a0dd7a131e27b3ac8d0fd87e9"
+      },
+      {
+        "path": "tests/test_v0a_hand_replay.py",
+        "status": "A",
+        "sha256": "8603e88be2d874c77a6e9d2b732508f42be68a4fcd45d7921f30725810d8dfc3"
+      },
+      {
+        "path": "tests/test_v0a_replay.py",
+        "status": "A",
+        "sha256": "ebef15af222654bab8cffdf87c1a557210785e6ef54453b3d159af01212c03b0"
+      },
+      {
+        "path": "tests/test_v0a_trace.py",
+        "status": "A",
+        "sha256": "15b7cb1c06cf6468f7ec5dbab3e01366e177c76e806a7a61dfb6ac05387ef498"
+      }
+    ],
+    "snapshot_before": ""
+  },
+  "frozen_governance_verified": true,
+  "payload_origins": [
+    "D:\\pontius-snapshots\\v0a-r005-cold-a-96aa34d9536845ddaddc4b1dfbb9615e\\harness\\src\\pontius\\v0a\\runtime.py",
+    "D:\\pontius-snapshots\\v0a-r005-cold-a-96aa34d9536845ddaddc4b1dfbb9615e\\harness\\src\\pontius\\v0a\\replay.py"
+  ],
+  "probes": [
+    {
+      "observed": [
+        "settlement_mismatch",
+        "clock_invalid"
+      ],
+      "reported": [
+        "clock_invalid",
+        "settlement_mismatch"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-body-before-cleanup-invalid",
+        "hand_id": "control-A",
+        "trace_sha256": "bcce01af471ae7ecbab4bf3990f3daf5f7120edde5936eff1f1dfaa86f3f8ba8",
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": "clock_invalid",
+        "secondary_failures": [
+          "settlement_mismatch"
+        ]
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": false,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": "clock_invalid",
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-body-before-cleanup-invalid",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "d8bd54c7cb99e12ba0475d77bafb5e1ae7a0680176fc7afd3ab5a1676b95704e",
+        "settlement": null,
+        "trace_prefix_sha256": "b7a7504751e658c9f428ba12e310b8ae071fc9e05e22e86cb2321d22cbd42e43"
+      },
+      "name": "oracle_body_before_cleanup_invalid",
+      "source_reads_after_fault": 135,
+      "expected": [
+        "settlement_mismatch",
+        "clock_invalid"
+      ],
+      "contract_pass": false
+    },
+    {
+      "observed": [
+        "settlement_mismatch",
+        "clock_reversed"
+      ],
+      "reported": [
+        "clock_reversed",
+        "settlement_mismatch"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-body-before-cleanup-reversed",
+        "hand_id": "control-A",
+        "trace_sha256": "b3c80b9d91fafa5c26cf16304f119af07ca3db0cd769952c470aa7d570cba2d2",
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": "clock_reversed",
+        "secondary_failures": [
+          "settlement_mismatch"
+        ]
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": false,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": "clock_reversed",
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-body-before-cleanup-reversed",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "d8bd54c7cb99e12ba0475d77bafb5e1ae7a0680176fc7afd3ab5a1676b95704e",
+        "settlement": null,
+        "trace_prefix_sha256": "b155947015211e5a56ff0669899bb95526be2b91369d6c2253a07f0c63791b98"
+      },
+      "name": "oracle_body_before_cleanup_reversed",
+      "source_reads_after_fault": 135,
+      "expected": [
+        "settlement_mismatch",
+        "clock_reversed"
+      ],
+      "contract_pass": false
+    },
+    {
+      "observed": [
+        "clock_invalid"
+      ],
+      "reported": [],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-clock-in-oracle-invalid",
+        "hand_id": "control-A",
+        "trace_sha256": "acdb5047c9b896fea146ae9ef86a90cf6fbeb2b987888f67eab199d1add91505",
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": null,
+        "secondary_failures": []
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": true,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": null,
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-clock-in-oracle-invalid",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "d8bd54c7cb99e12ba0475d77bafb5e1ae7a0680176fc7afd3ab5a1676b95704e",
+        "settlement": null,
+        "trace_prefix_sha256": "4cbefb5eed3ce6a4d2c9aabd30b380f94ad277b18d6de29492fc653a3e5b4a1f"
+      },
+      "name": "shared_public_witness_in_oracle_invalid",
+      "expected": [
+        "clock_invalid"
+      ],
+      "contract_pass": false
+    },
+    {
+      "observed": [
+        "clock_reversed"
+      ],
+      "reported": [],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-clock-in-oracle-reversed",
+        "hand_id": "control-A",
+        "trace_sha256": "84d67737e7a404557605429a886b5fd10fff38ee941665729aed9c6aeafa6720",
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": null,
+        "secondary_failures": []
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": true,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": null,
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-clock-in-oracle-reversed",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "d8bd54c7cb99e12ba0475d77bafb5e1ae7a0680176fc7afd3ab5a1676b95704e",
+        "settlement": null,
+        "trace_prefix_sha256": "dce892ff8d2d20b87fb67eed959e0334e5088f967a44d111cf215ebb9b233120"
+      },
+      "name": "shared_public_witness_in_oracle_reversed",
+      "expected": [
+        "clock_reversed"
+      ],
+      "contract_pass": false
+    },
+    {
+      "observed": [
+        "accepted",
+        "clock_invalid"
+      ],
+      "reported": [
+        "clock_invalid"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-accepted-clock-invalid",
+        "hand_id": "control-A",
+        "trace_sha256": "f98853dfa0dc013ac175385c89812d10c76c29f82e9da77df75966f5a5e026f3",
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": "clock_invalid",
+        "secondary_failures": []
+      },
+      "decisions": 1,
+      "accepted": 1,
+      "failures": [
+        {
+          "hand_id": "control-A",
+          "event_index": 0,
+          "action_index": 1,
+          "code": "clock_invalid",
+          "delivery_status": "accepted",
+          "delivered_action": {
+            "kind": "call",
+            "raise_to": null
+          },
+          "timing": {
+            "status": "interrupted",
+            "interruption_reason": "clock_invalid",
+            "wall_start_ns": 12000,
+            "last_valid_observation_ns": 23000,
+            "emission_observed_ns": null,
+            "elapsed_ns": null,
+            "response_compute_seconds": null,
+            "response_uninstrumented_seconds": null,
+            "work_cutoff_crossed": null,
+            "deadline_crossed": null
+          }
+        }
+      ],
+      "decision_timing": [
+        {
+          "status": "interrupted",
+          "interruption_reason": "clock_invalid",
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 23000,
+          "emission_observed_ns": null,
+          "elapsed_ns": null,
+          "response_compute_seconds": null,
+          "response_uninstrumented_seconds": null,
+          "work_cutoff_crossed": null,
+          "deadline_crossed": null
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": false,
+        "decision_count": 1,
+        "event_count": 0,
+        "failure_reason": "clock_invalid",
+        "hand_id": "control-A",
+        "interrupted_response_count": 1,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 3,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-accepted-clock-invalid",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "a5e405b90cc50ba69d32905aa91a5379c4a3832beeae820d30d82b826f6b9c9a",
+        "settlement": null,
+        "trace_prefix_sha256": "2a85c3826534cbdd2e690034c5f9a821c7ae4e5df7693b474cd81dcedd1d38e7"
+      },
+      "name": "acknowledged_delivery_then_invalid",
+      "expected": [
+        "clock_invalid"
+      ],
+      "contract_pass": true
+    },
+    {
+      "observed": [
+        "accepted",
+        "clock_reversed"
+      ],
+      "reported": [
+        "clock_reversed"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-accepted-clock-reversed",
+        "hand_id": "control-A",
+        "trace_sha256": "992ce47f03f1d98caef155928b63584c07b617c627bdad80538495a1768ab16c",
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": "clock_reversed",
+        "secondary_failures": []
+      },
+      "decisions": 1,
+      "accepted": 1,
+      "failures": [
+        {
+          "hand_id": "control-A",
+          "event_index": 0,
+          "action_index": 1,
+          "code": "clock_reversed",
+          "delivery_status": "accepted",
+          "delivered_action": {
+            "kind": "call",
+            "raise_to": null
+          },
+          "timing": {
+            "status": "interrupted",
+            "interruption_reason": "clock_reversed",
+            "wall_start_ns": 12000,
+            "last_valid_observation_ns": 23000,
+            "emission_observed_ns": null,
+            "elapsed_ns": null,
+            "response_compute_seconds": null,
+            "response_uninstrumented_seconds": null,
+            "work_cutoff_crossed": null,
+            "deadline_crossed": null
+          }
+        }
+      ],
+      "decision_timing": [
+        {
+          "status": "interrupted",
+          "interruption_reason": "clock_reversed",
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 23000,
+          "emission_observed_ns": null,
+          "elapsed_ns": null,
+          "response_compute_seconds": null,
+          "response_uninstrumented_seconds": null,
+          "work_cutoff_crossed": null,
+          "deadline_crossed": null
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": false,
+        "decision_count": 1,
+        "event_count": 0,
+        "failure_reason": "clock_reversed",
+        "hand_id": "control-A",
+        "interrupted_response_count": 1,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 3,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-accepted-clock-reversed",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "a5e405b90cc50ba69d32905aa91a5379c4a3832beeae820d30d82b826f6b9c9a",
+        "settlement": null,
+        "trace_prefix_sha256": "2f7a0169c7417d31eb01c67b08ef3adff610db30bda06d70d0d3f6b7eecc7852"
+      },
+      "name": "acknowledged_delivery_then_reversed",
+      "expected": [
+        "clock_reversed"
+      ],
+      "contract_pass": true
+    },
+    {
+      "observed": null,
+      "reported": [
+        "trace_write_failed"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-real-write-refusal",
+        "hand_id": "control-A",
+        "trace_sha256": null,
+        "terminal_publication_compute_seconds": 1e-06,
+        "accounting_complete": true,
+        "passed": false,
+        "failure_reason": "trace_write_failed",
+        "secondary_failures": []
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": true,
+        "complete": true,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": null,
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": true,
+        "post_terminal_compute_seconds": 2e-06,
+        "preparation_compute_seconds": 6.1e-05,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-real-write-refusal",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "091e5ba2477b444b3ad7c33ef93892f72994b0765fa6e92f78acd0f76a63f8ad",
+        "settlement": {
+          "final_stacks": [
+            198,
+            198,
+            198,
+            210,
+            198,
+            198
+          ],
+          "payouts": [
+            0,
+            0,
+            0,
+            12,
+            0,
+            0
+          ],
+          "pots": [
+            {
+              "amount": 12,
+              "seats": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          ]
+        },
+        "trace_prefix_sha256": "dbd848b7e835bb0ab2d3be76b3293b2db319b7a8b550fbcf8abb5f1a73a44034"
+      },
+      "name": "real_existing_destination_refusal",
+      "expected": [
+        "trace_write_failed"
+      ],
+      "contract_pass": true
+    },
+    {
+      "observed": [
+        "settlement_mismatch",
+        "clock_invalid",
+        "trace_write_failed"
+      ],
+      "reported": [
+        "settlement_mismatch",
+        "clock_invalid",
+        "trace_write_failed"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-mismatch-before-cleanup-invalid",
+        "hand_id": "control-A",
+        "trace_sha256": null,
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": "settlement_mismatch",
+        "secondary_failures": [
+          "clock_invalid",
+          "trace_write_failed"
+        ]
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": false,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": "settlement_mismatch",
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-mismatch-before-cleanup-invalid",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "d8bd54c7cb99e12ba0475d77bafb5e1ae7a0680176fc7afd3ab5a1676b95704e",
+        "settlement": null,
+        "trace_prefix_sha256": "5fcea35b87e95219b7a0105fbec92b85e923551bc51c71c850e5259da99c52c2"
+      },
+      "name": "detected_mismatch_cleanup_write_invalid",
+      "expected": [
+        "settlement_mismatch",
+        "clock_invalid",
+        "trace_write_failed"
+      ],
+      "contract_pass": true
+    },
+    {
+      "observed": [
+        "settlement_mismatch",
+        "clock_reversed",
+        "trace_write_failed"
+      ],
+      "reported": [
+        "settlement_mismatch",
+        "clock_reversed",
+        "trace_write_failed"
+      ],
+      "receipt": {
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-mismatch-before-cleanup-reversed",
+        "hand_id": "control-A",
+        "trace_sha256": null,
+        "terminal_publication_compute_seconds": null,
+        "accounting_complete": false,
+        "passed": false,
+        "failure_reason": "settlement_mismatch",
+        "secondary_failures": [
+          "clock_reversed",
+          "trace_write_failed"
+        ]
+      },
+      "decisions": 4,
+      "accepted": 4,
+      "failures": [],
+      "decision_timing": [
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 12000,
+          "last_valid_observation_ns": 24000,
+          "emission_observed_ns": 24000,
+          "elapsed_ns": 12000,
+          "response_compute_seconds": 4e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 53000,
+          "last_valid_observation_ns": 64000,
+          "emission_observed_ns": 64000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 85000,
+          "last_valid_observation_ns": 96000,
+          "emission_observed_ns": 96000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        },
+        {
+          "status": "completed",
+          "interruption_reason": null,
+          "wall_start_ns": 117000,
+          "last_valid_observation_ns": 128000,
+          "emission_observed_ns": 128000,
+          "elapsed_ns": 11000,
+          "response_compute_seconds": 3e-06,
+          "response_uninstrumented_seconds": 8e-06,
+          "work_cutoff_crossed": false,
+          "deadline_crossed": false
+        }
+      ],
+      "terminal": {
+        "accounting_complete": false,
+        "complete": false,
+        "decision_count": 4,
+        "event_count": 25,
+        "failure_reason": "settlement_mismatch",
+        "hand_id": "control-A",
+        "interrupted_response_count": 0,
+        "passed": false,
+        "post_terminal_compute_seconds": null,
+        "preparation_compute_seconds": null,
+        "record_index": 30,
+        "record_type": "terminal",
+        "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-mismatch-before-cleanup-reversed",
+        "schema_version": "pontius-v0a-trace-v1",
+        "semantic_sha256": "d8bd54c7cb99e12ba0475d77bafb5e1ae7a0680176fc7afd3ab5a1676b95704e",
+        "settlement": null,
+        "trace_prefix_sha256": "2dc83b33080aebcff0f1eeaf8d7cb4da4e39639bfcf14c6726b1c99f02d58ad1"
+      },
+      "name": "detected_mismatch_cleanup_write_reversed",
+      "expected": [
+        "settlement_mismatch",
+        "clock_reversed",
+        "trace_write_failed"
+      ],
+      "contract_pass": true
+    }
+  ],
+  "existing_tests": {
+    "classes": [
+      "R2_03HostClosureTests",
+      "R3_02TypedClosureCauseTests",
+      "R2_03CompoundScheduleTests",
+      "R2_03ConservationTests",
+      "FixtureReplayTests",
+      "TraceAndAccountingTests"
+    ],
+    "tests_run": 30,
+    "failures": 0,
+    "errors": 0,
+    "passed": true,
+    "output": "test_a_failure_at_the_first_observation_does_not_escape (cold_a_frozen_replay_tests.R2_03HostClosureTests.test_a_failure_at_the_first_observation_does_not_escape) ... ok\ntest_a_failure_partway_through_the_hand_does_not_escape (cold_a_frozen_replay_tests.R2_03HostClosureTests.test_a_failure_partway_through_the_hand_does_not_escape) ... ok\ntest_incomplete_accounting_cannot_report_success (cold_a_frozen_replay_tests.R2_03HostClosureTests.test_incomplete_accounting_cannot_report_success) ... ok\ntest_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary (cold_a_frozen_replay_tests.R3_02TypedClosureCauseTests.test_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary) ... ok\ntest_a_dead_clock_is_never_sampled_again (cold_a_frozen_replay_tests.R3_02TypedClosureCauseTests.test_a_dead_clock_is_never_sampled_again) ... ok\ntest_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary (cold_a_frozen_replay_tests.R3_02TypedClosureCauseTests.test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary) ... ok\ntest_accepted_actions_survive_a_closure_fault (cold_a_frozen_replay_tests.R3_02TypedClosureCauseTests.test_accepted_actions_survive_a_closure_fault) ... ok\ntest_each_closure_seam_reports_invalid_and_reversed (cold_a_frozen_replay_tests.R3_02TypedClosureCauseTests.test_each_closure_seam_reports_invalid_and_reversed) ... ok\ntest_every_observation_that_dies_reports_a_typed_cause (cold_a_frozen_replay_tests.R3_02TypedClosureCauseTests.test_every_observation_that_dies_reports_a_typed_cause)\nThe sweep, not the five known positions: any fault must be named. ... ok\ntest_a_host_side_exception_is_contained_not_escaped (cold_a_frozen_replay_tests.R2_03CompoundScheduleTests.test_a_host_side_exception_is_contained_not_escaped)\nG1: any host-side exception yields a receipt instead of propagating. ... ok\ntest_a_pre_boundary_rejection_journals_its_cause (cold_a_frozen_replay_tests.R2_03CompoundScheduleTests.test_a_pre_boundary_rejection_journals_its_cause)\nA reject that never opened a boundary still names why it failed. ... ok\ntest_a_rejected_input_keeps_its_cause_ahead_of_cleanup (cold_a_frozen_replay_tests.R2_03CompoundScheduleTests.test_a_rejected_input_keeps_its_cause_ahead_of_cleanup)\nA1-A3: wherever both causes occur, event_order precedes the cleanup. ... ok\ntest_the_input_failure_is_never_ordered_after_its_own_cleanup (cold_a_frozen_replay_tests.R2_03CompoundScheduleTests.test_the_input_failure_is_never_ordered_after_its_own_cleanup)\nThe R4-02 inversion: cleanup must not become primary. ... ok\ntest_the_journal_never_deduplicates_repeated_codes (cold_a_frozen_replay_tests.R2_03CompoundScheduleTests.test_the_journal_never_deduplicates_repeated_codes) ... ok\ntest_reported_clock_causes_equal_the_genuine_raises (cold_a_frozen_replay_tests.R2_03ConservationTests.test_reported_clock_causes_equal_the_genuine_raises)\nEvery genuine ledger fault reaches the receipt; none is invented. ... ok\ntest_a_disagreeing_oracle_rejects_the_hand (cold_a_frozen_replay_tests.FixtureReplayTests.test_a_disagreeing_oracle_rejects_the_hand)\nThe comparison is real: a wrong judge must fail the hand closed. ... ok\ntest_every_controlled_action_is_delivered_once (cold_a_frozen_replay_tests.FixtureReplayTests.test_every_controlled_action_is_delivered_once) ... ok\ntest_fixture_a_reproduces_its_expected_settlement (cold_a_frozen_replay_tests.FixtureReplayTests.test_fixture_a_reproduces_its_expected_settlement) ... ok\ntest_fixture_b_reproduces_its_side_pot_expectations (cold_a_frozen_replay_tests.FixtureReplayTests.test_fixture_b_reproduces_its_side_pot_expectations) ... ok\ntest_folded_contributors_leave_dead_money_but_win_nothing (cold_a_frozen_replay_tests.FixtureReplayTests.test_folded_contributors_leave_dead_money_but_win_nothing)\nA seat that folds after committing chips is a contributor, not a claimant. ... ok\ntest_odd_chips_follow_clockwise_order_from_the_button (cold_a_frozen_replay_tests.FixtureReplayTests.test_odd_chips_follow_clockwise_order_from_the_button) ... ok\ntest_the_comparison_covers_final_stacks_and_pot_eligibility (cold_a_frozen_replay_tests.FixtureReplayTests.test_the_comparison_covers_final_stacks_and_pot_eligibility)\nOracles that differ only in a previously ignored field must reject. ... ok\ntest_the_independent_oracle_agrees_with_production_settlement (cold_a_frozen_replay_tests.FixtureReplayTests.test_the_independent_oracle_agrees_with_production_settlement) ... ok\ntest_the_oracle_disagrees_when_the_expectation_is_wrong (cold_a_frozen_replay_tests.FixtureReplayTests.test_the_oracle_disagrees_when_the_expectation_is_wrong)\nThe oracle is a real judge, not a restatement of production. ... ok\ntest_a_write_failure_after_delivery_is_the_first_cause (cold_a_frozen_replay_tests.TraceAndAccountingTests.test_a_write_failure_after_delivery_is_the_first_cause) ... ok\ntest_accounting_totals_are_disjoint_and_publication_is_separate (cold_a_frozen_replay_tests.TraceAndAccountingTests.test_accounting_totals_are_disjoint_and_publication_is_separate) ... ok\ntest_distinct_run_ids_produce_identical_semantic_bytes (cold_a_frozen_replay_tests.TraceAndAccountingTests.test_distinct_run_ids_produce_identical_semantic_bytes) ... ok\ntest_the_published_trace_parses_and_rebinds (cold_a_frozen_replay_tests.TraceAndAccountingTests.test_the_published_trace_parses_and_rebinds) ... ok\ntest_the_receipt_lives_outside_the_trace_it_describes (cold_a_frozen_replay_tests.TraceAndAccountingTests.test_the_receipt_lives_outside_the_trace_it_describes) ... ok\ntest_trace_files_are_created_new_under_the_run_root (cold_a_frozen_replay_tests.TraceAndAccountingTests.test_trace_files_are_created_new_under_the_run_root) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 1.100s\n\nOK\n"
+  },
+  "snapshot_after": "",
+  "overall": "FAIL"
+}

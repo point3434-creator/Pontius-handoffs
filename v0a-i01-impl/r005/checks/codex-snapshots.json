@@ -1,0 +1,25 @@
+{
+  "candidate": {
+    "base": "b357d333fc2393b7fc7dcf31f30c86616208c817",
+    "commit": "a8582e6d6b53b55415dab79c4a54e252d00b74ad",
+    "date": "2026-08-30",
+    "manifest_sha256": "e9b0baf12e258d66a92169d38137cbf2f42317158b6515ac377f745bbc52093a",
+    "ref": "refs/heads/review/v0a-i01-impl/r005",
+    "round": "r005",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-impl",
+    "tree": "5d373871b27bed5ef026150b816d684a588b75c3"
+  },
+  "manifest_verified": true,
+  "manifest_rows": 10,
+  "delta_vs_r004": [
+    "src/pontius/v0a/replay.py",
+    "src/pontius/v0a/runtime.py",
+    "tests/test_v0a_replay.py"
+  ],
+  "snapshots": {
+    "cold-a": "D:\\pontius-snapshots\\v0a-r005-cold-a-96aa34d9536845ddaddc4b1dfbb9615e\\harness",
+    "cold-b": "D:\\pontius-snapshots\\v0a-r005-cold-b-e6ac13a682804562a53621e8fab883e1\\harness",
+    "coordinator": "D:\\pontius-snapshots\\v0a-r005-coordinator-5a69c78a69fa45158184c5b12704d70f\\harness"
+  }
+}

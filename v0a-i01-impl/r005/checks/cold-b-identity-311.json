@@ -1,0 +1,20 @@
+{
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "version": "3.11.15",
+  "arguments": "-B -P \"D:\\Pontius-handoffs\\v0a-i01-impl\\r005\\checks\\cold-b-identity.py\" \"D:\\Pontius-tools\\py311\\Scripts\\python.exe\" \"3.11.15\"",
+  "cwd": "D:\\pontius-snapshots\\v0a-r005-cold-b-e6ac13a682804562a53621e8fab883e1\\harness",
+  "environment": {
+    "SystemRoot": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r005-cold-b-e6ac13a682804562a53621e8fab883e1\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONUTF8": "1"
+  },
+  "exit_code": 1,
+  "stdout": "BOOTSTRAP 'D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe' CPython 3.11.15\n",
+  "stderr": "Traceback (most recent call last):\n  File \"D:\\Pontius-handoffs\\v0a-i01-impl\\r005\\checks\\cold-b-identity.py\", line 35, in <module>\n    assert (snapshot/path).read_bytes() == blob, path\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: src/pontius/v0a/__init__.py\n"
+}

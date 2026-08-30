@@ -1,0 +1,20 @@
+{
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "version": "3.11.15",
+  "arguments": "-B -P \"D:\\Pontius-handoffs\\v0a-i01-impl\\r005\\checks\\cold-b-identity-v2.py\" \"D:\\Pontius-tools\\py311\\Scripts\\python.exe\" \"3.11.15\"",
+  "cwd": "D:\\pontius-snapshots\\v0a-r005-cold-b-e6ac13a682804562a53621e8fab883e1\\harness",
+  "environment": {
+    "SystemRoot": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r005-cold-b-e6ac13a682804562a53621e8fab883e1\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONUTF8": "1"
+  },
+  "exit_code": 0,
+  "stdout": "BOOTSTRAP 'D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe' CPython 3.11.15\nFROZEN_PAIR_VERIFIED a8582e6d6b53b55415dab79c4a54e252d00b74ad e9b0baf12e258d66a92169d38137cbf2f42317158b6515ac377f745bbc52093a files 10\nDEPENDENCY_BLOB docs/decisions/ADR-0485-preregister-the-blueprint-only-v0a-hand-contract.md 625b644223a4f29fae9e7a2b48360dfa177e6e18045fb1d951e5e05e9d48bdc3\nDEPENDENCY_BLOB docs/briefs/v0a-increment-1-brief.md 3b1bd5edaf35a320f78b6963812c19263d41208976ea31d3c4ab1602bc256947\nDEPENDENCY_BLOB src/pontius/action_clock.py d1540ec3ce25b8247cf990b8649e3af0ebe9f3d25a98322aaf141afddf9a55bb\nDEPENDENCY_BLOB src/pontius/no_limit_betting.py 9e2c45d575d28c759aea97c4f916a18584241cd84a6731e89bc609f32c2c7396\nDEPENDENCY_BLOB docs/architecture/dependency-baseline.toml b86dd2ba20e4639bc6c0184367a82b01ef3b1960ce863406f30964dd5c8625c6\nR004 0207430a37e1e5b31c8da8da7aa57da1bc5c88ee\nCHECKOUT_TRANSLATION_ONLY CRLF checkout compares equal to stored LF blob after comparison-only CRLF conversion; no files changed\nIDENTITY_PASS\n",
+  "stderr": ""
+}

@@ -1,0 +1,10 @@
+Exit: 1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-impl\r005\checks\cold-a-verify.py", line 54, in <module>
+    assert (SNAPSHOT / rel).read_bytes() == blob
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+

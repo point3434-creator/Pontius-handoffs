@@ -1,0 +1,30 @@
+{
+  "candidate": "a8582e6d6b53b55415dab79c4a54e252d00b74ad",
+  "manifest_sha256": "e9b0baf12e258d66a92169d38137cbf2f42317158b6515ac377f745bbc52093a",
+  "slot": "311",
+  "snapshot": "D:\\pontius-snapshots\\v0a-r005-coordinator-5a69c78a69fa45158184c5b12704d70f\\harness",
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r005-coordinator-5a69c78a69fa45158184c5b12704d70f\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-impl\\r005\\checks\\coordinator-witness-probe.py",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r005\\checks\\coordinator-311-witness-probe.txt",
+      "sha256": "42cbeb18d5502e637fbad99ece39ac7031f5f86e5a2d4bd0d88925131fa78866"
+    }
+  ],
+  "source_pristine": true
+}

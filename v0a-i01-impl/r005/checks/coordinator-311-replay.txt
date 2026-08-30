@@ -1,0 +1,53 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "implementation": "cpython", "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+test_a_disagreeing_oracle_rejects_the_hand (__main__.FixtureReplayTests.test_a_disagreeing_oracle_rejects_the_hand)
+The comparison is real: a wrong judge must fail the hand closed. ... ok
+test_every_controlled_action_is_delivered_once (__main__.FixtureReplayTests.test_every_controlled_action_is_delivered_once) ... ok
+test_fixture_a_reproduces_its_expected_settlement (__main__.FixtureReplayTests.test_fixture_a_reproduces_its_expected_settlement) ... ok
+test_fixture_b_reproduces_its_side_pot_expectations (__main__.FixtureReplayTests.test_fixture_b_reproduces_its_side_pot_expectations) ... ok
+test_folded_contributors_leave_dead_money_but_win_nothing (__main__.FixtureReplayTests.test_folded_contributors_leave_dead_money_but_win_nothing)
+A seat that folds after committing chips is a contributor, not a claimant. ... ok
+test_odd_chips_follow_clockwise_order_from_the_button (__main__.FixtureReplayTests.test_odd_chips_follow_clockwise_order_from_the_button) ... ok
+test_the_comparison_covers_final_stacks_and_pot_eligibility (__main__.FixtureReplayTests.test_the_comparison_covers_final_stacks_and_pot_eligibility)
+Oracles that differ only in a previously ignored field must reject. ... ok
+test_the_independent_oracle_agrees_with_production_settlement (__main__.FixtureReplayTests.test_the_independent_oracle_agrees_with_production_settlement) ... ok
+test_the_oracle_disagrees_when_the_expectation_is_wrong (__main__.FixtureReplayTests.test_the_oracle_disagrees_when_the_expectation_is_wrong)
+The oracle is a real judge, not a restatement of production. ... ok
+test_production_identities_are_refused (__main__.IdentityTests.test_production_identities_are_refused) ... ok
+test_rehearsal_and_correctness_identities_are_disjoint (__main__.IdentityTests.test_rehearsal_and_correctness_identities_are_disjoint) ... ok
+test_the_configuration_digest_binds_the_schedule_not_the_deal (__main__.IdentityTests.test_the_configuration_digest_binds_the_schedule_not_the_deal) ... ok
+test_a_host_side_exception_is_contained_not_escaped (__main__.R2_03CompoundScheduleTests.test_a_host_side_exception_is_contained_not_escaped)
+G1: any host-side exception yields a receipt instead of propagating. ... ok
+test_a_pre_boundary_rejection_journals_its_cause (__main__.R2_03CompoundScheduleTests.test_a_pre_boundary_rejection_journals_its_cause)
+A reject that never opened a boundary still names why it failed. ... ok
+test_a_rejected_input_keeps_its_cause_ahead_of_cleanup (__main__.R2_03CompoundScheduleTests.test_a_rejected_input_keeps_its_cause_ahead_of_cleanup)
+A1-A3: wherever both causes occur, event_order precedes the cleanup. ... ok
+test_the_input_failure_is_never_ordered_after_its_own_cleanup (__main__.R2_03CompoundScheduleTests.test_the_input_failure_is_never_ordered_after_its_own_cleanup)
+The R4-02 inversion: cleanup must not become primary. ... ok
+test_the_journal_never_deduplicates_repeated_codes (__main__.R2_03CompoundScheduleTests.test_the_journal_never_deduplicates_repeated_codes) ... ok
+test_reported_clock_causes_equal_the_genuine_raises (__main__.R2_03ConservationTests.test_reported_clock_causes_equal_the_genuine_raises)
+Every genuine ledger fault reaches the receipt; none is invented. ... ok
+test_a_failure_at_the_first_observation_does_not_escape (__main__.R2_03HostClosureTests.test_a_failure_at_the_first_observation_does_not_escape) ... ok
+test_a_failure_partway_through_the_hand_does_not_escape (__main__.R2_03HostClosureTests.test_a_failure_partway_through_the_hand_does_not_escape) ... ok
+test_incomplete_accounting_cannot_report_success (__main__.R2_03HostClosureTests.test_incomplete_accounting_cannot_report_success) ... ok
+test_a_late_delivery_is_counted_end_to_end (__main__.R2_08HostCountingTests.test_a_late_delivery_is_counted_end_to_end) ... ok
+test_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary (__main__.R3_02TypedClosureCauseTests.test_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary) ... ok
+test_a_dead_clock_is_never_sampled_again (__main__.R3_02TypedClosureCauseTests.test_a_dead_clock_is_never_sampled_again) ... ok
+test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary (__main__.R3_02TypedClosureCauseTests.test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary) ... ok
+test_accepted_actions_survive_a_closure_fault (__main__.R3_02TypedClosureCauseTests.test_accepted_actions_survive_a_closure_fault) ... ok
+test_each_closure_seam_reports_invalid_and_reversed (__main__.R3_02TypedClosureCauseTests.test_each_closure_seam_reports_invalid_and_reversed) ... ok
+test_every_observation_that_dies_reports_a_typed_cause (__main__.R3_02TypedClosureCauseTests.test_every_observation_that_dies_reports_a_typed_cause)
+The sweep, not the five known positions: any fault must be named. ... ok
+test_a_permutation_must_rearrange_the_four_suits (__main__.SeedPermutationTests.test_a_permutation_must_rearrange_the_four_suits) ... ok
+test_permutations_are_deterministic_and_disclosed (__main__.SeedPermutationTests.test_permutations_are_deterministic_and_disclosed) ... ok
+test_renaming_preserves_ranks_and_distinctness (__main__.SeedPermutationTests.test_renaming_preserves_ranks_and_distinctness) ... ok
+test_a_write_failure_after_delivery_is_the_first_cause (__main__.TraceAndAccountingTests.test_a_write_failure_after_delivery_is_the_first_cause) ... ok
+test_accounting_totals_are_disjoint_and_publication_is_separate (__main__.TraceAndAccountingTests.test_accounting_totals_are_disjoint_and_publication_is_separate) ... ok
+test_distinct_run_ids_produce_identical_semantic_bytes (__main__.TraceAndAccountingTests.test_distinct_run_ids_produce_identical_semantic_bytes) ... ok
+test_the_published_trace_parses_and_rebinds (__main__.TraceAndAccountingTests.test_the_published_trace_parses_and_rebinds) ... ok
+test_the_receipt_lives_outside_the_trace_it_describes (__main__.TraceAndAccountingTests.test_the_receipt_lives_outside_the_trace_it_describes) ... ok
+test_trace_files_are_created_new_under_the_run_root (__main__.TraceAndAccountingTests.test_trace_files_are_created_new_under_the_run_root) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 0.982s
+
+OK
