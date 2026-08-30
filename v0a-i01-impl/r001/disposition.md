@@ -180,3 +180,33 @@ make the smallest source correction, then run the complete focused suite on actu
 3.11 and 3.14. Freeze r002 and request fresh reviews. Both required cold passes and
 all applicable gates must clear before Claude finalizes and requests the controller's
 specific commit authorization. R001 was never a source seal or an experiment result.
+
+## Final reviewer reconciliation
+
+Both issued reports are NOT CLEAN, bound to the same candidate/manifest above.
+Review A groups the two delivery issues together; review B separates them. The
+seven-item coordinator list decomposes the same substantive findings; it does
+not represent a disagreement or an additional cold-review verdict.
+
+| Coordinator item | Review A | Review B |
+| --- | --- | --- |
+| F1 ingress wall | A-01 | B1 |
+| F2 terminal showdown | A-03 | B4 |
+| F3 blueprint authority | A-02 | B3 |
+| F4 clock failure/start | A-05 | B2 |
+| F5 delivery ambiguity | A-04 | B5 |
+| F6 delivery acknowledgement | A-04 | B6 |
+| F7 retained timing flags | A-06 | B7 |
+
+Issued report digests:
+- reviews/review-01-codex-a.md:
+  2633f8b64eae391aff0edcdcf7cdc5fb22b3261ca9a34947c85a37b2e9e9c558
+- reviews/review-02-codex-b.md:
+  56064683adc1d7fa3074206b9d70c79c40c57551da806501a5bf9910ab9fa235
+
+The coordinator read both reports, verified their bytes and issuer-written ledger
+entries, and accepted the substantive findings. Review B's schema/spine-label
+observations remain nonblocking follow-up for model/parser coverage. No issued
+findings or frozen input bytes were rewritten. The original implementer receipt
+has CRLF working bytes and LF Git blob bytes; Git reports no content change. It
+was left untouched, and its line-ending conversion is not a candidate finding.
