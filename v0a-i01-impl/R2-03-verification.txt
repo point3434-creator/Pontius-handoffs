@@ -1,0 +1,16 @@
+========================================================================
+CLAIM: the dead-witness echo would create spurious duplicates
+========================================================================
+  fault_at | codes retained today | reads attempted after death
+         5 |                    0 | 0
+        69 |                    0 | 0
+       134 |                    1 | 0
+       138 |                    1 | 0
+  -> each post-death read raises an echo; an unconditional append
+     at every seam would record one code per echo, not one per fault
+
+========================================================================
+CLAIM G1: a raising settlement oracle escapes ReplayHost.run entirely
+========================================================================
+  ESCAPED: ZeroDivisionError: oracle blew up
+  -> confirmed: an oracle exception is not contained by the host
