@@ -1,0 +1,24 @@
+========================================================================
+CLAIM C4: a lying key passes the SEALED PUBLIC CONSTRUCTOR
+========================================================================
+  constructed via the sealed public constructor : True
+  exact-type admission would ACCEPT it          : True
+  sealed action_for returns table_hit           : True
+  action delivered                              : raise-to-6
+  its digest == honest empty table's digest     : False
+  digest-keyed lookup would find it?            : True  <-- the proposed remedy's discriminator
+
+========================================================================
+CLAIM C3: exact type without the constructor ever running
+========================================================================
+  type(bare) is the sealed type                 : True
+  __post_init__ ever ran                        : False (bypassed via __new__)
+  sealed action_for on it -> table_hit          : True, raise-to-6
+  after __class__ swap, type() is sealed type   : True
+
+========================================================================
+CONSEQUENCE for the proposed fix
+========================================================================
+  exact-type admission closes C1/C2 (subclass + duck-type) .. yes
+  exact-type admission closes C4 (lying key inside)        .. NO
+  digest-keyed lookup distinguishes the lying key          .. digests equal - see below
