@@ -1,0 +1,58 @@
+{
+  "preflight": {
+    "cwd": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2",
+    "environment": {
+      "CUDA_PATH": "D:\\Pontius\\.venv\\Lib\\site-packages\\nvidia\\cu13",
+      "PATH": "D:\\Pontius\\.venv\\Lib\\site-packages\\nvidia\\cu13\\bin\\x86_64",
+      "PONTIUS_CUDA_DLL_DIRECTORY": "D:\\Pontius\\.venv\\Lib\\site-packages\\nvidia\\cu13\\bin\\x86_64",
+      "PONTIUS_CUDA_DLL_SOURCE": "active_python_environment",
+      "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPATH": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src",
+      "PYTHONUTF8": "1",
+      "SYSTEMROOT": "C:\\windows",
+      "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "WINDIR": "C:\\windows"
+    },
+    "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "flags": {
+      "dont_write_bytecode": 1,
+      "safe_path": true
+    },
+    "modules": {
+      "pontius.v0a.model": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\model.py",
+      "pontius.v0a.replay": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\replay.py",
+      "pontius.v0a.runtime": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\runtime.py",
+      "pontius.v0a.trace": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\trace.py"
+    },
+    "version": "3.14.6"
+  },
+  "commands": [
+    {
+      "argv": [
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\tests\\test_v0a_trace.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.875,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r005\\checks\\cold-b-314-test_v0a_trace.log",
+      "log_sha256": "4b40ec3e6e312026f9fca0455c17ab60ca6772df1d1645cc558f7bb991b38665"
+    },
+    {
+      "argv": [
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\tests\\test_v0a_replay.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.8910000000032596,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r005\\checks\\cold-b-314-test_v0a_replay.log",
+      "log_sha256": "46d90c625a7b46b976b50ea9738b965571f8268163e9bc12d93dae722dd63fdc"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "preflight": {
+    "cwd": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2",
+    "environment": {
+      "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPATH": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src",
+      "PYTHONUTF8": "1",
+      "SYSTEMROOT": "C:\\windows",
+      "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "WINDIR": "C:\\windows"
+    },
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "flags": {
+      "dont_write_bytecode": 1,
+      "safe_path": true
+    },
+    "modules": {
+      "pontius.v0a.model": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\model.py",
+      "pontius.v0a.replay": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\replay.py",
+      "pontius.v0a.runtime": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\runtime.py",
+      "pontius.v0a.trace": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\src\\pontius\\v0a\\trace.py"
+    },
+    "version": "3.11.15"
+  },
+  "commands": [
+    {
+      "argv": [
+        "D:/Pontius-tools/py311/Scripts/python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\tests\\test_v0a_trace.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9060000000172295,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r005\\checks\\cold-b-311-test_v0a_trace.log",
+      "log_sha256": "d10593898b62a5a558329e4e996fb4a1414912282e7c6e651ccbdf9a63a98e0a"
+    },
+    {
+      "argv": [
+        "D:/Pontius-tools/py311/Scripts/python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-snapshots\\v0a-i01-ab-r005-cold-b-6a4792407cb04db0bb71d7435cc981c2\\tests\\test_v0a_replay.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.922000000020489,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r005\\checks\\cold-b-311-test_v0a_replay.log",
+      "log_sha256": "ca63d95a4d747997f57c6f12e522d8a98db1822f7e9c6e112c14a3e4aa153752"
+    }
+  ]
+}

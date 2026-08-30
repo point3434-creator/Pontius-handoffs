@@ -1,0 +1,25 @@
+[
+  {
+    "command": [
+      "D:/Pontius/.venv/Scripts/python.exe",
+      "-B",
+      "-P",
+      "-c",
+      "import sys,os,json,platform; print(json.dumps(dict(executable=sys.executable,implementation=platform.python_implementation(),version=platform.python_version(),cwd=os.getcwd(),path=sys.path,flags=str(sys.flags),environment=dict(os.environ))),flush=True); assert platform.python_version()=='3.14.6'; assert sys.flags.dont_write_bytecode and sys.flags.safe_path; import pontius.v0a.trace,pontius.v0a.replay; print(json.dumps(dict(trace=pontius.v0a.trace.__file__,replay=pontius.v0a.replay.__file__)),flush=True); import runpy; runpy.run_path('D:/Pontius-handoffs/v0a-i01-ab/r005/checks/cold-a-probe.py',run_name=\"__main__\")"
+    ],
+    "environment": {
+      "SYSTEMROOT": "C:\\windows",
+      "WINDIR": "C:\\windows",
+      "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+      "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "PYTHONPATH": "D:\\Pontius-review-snapshots\\cold-a-v0a-i01-ab-r005-20260830\\src",
+      "PYTHONNOUSERSITE": "1",
+      "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe"
+    },
+    "cwd": "D:\\Pontius-review-snapshots\\cold-a-v0a-i01-ab-r005-20260830",
+    "exit": 0,
+    "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r005\\checks\\cold-a-314-probe.txt",
+    "sha256": "dbb7d61468c5b3eb7adfff6fbc39244f2bd7eff7c587f18b4e9cb2218a6cc18b"
+  }
+]

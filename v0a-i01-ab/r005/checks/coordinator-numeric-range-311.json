@@ -1,0 +1,18 @@
+{
+  "snapshot": "D:\\pontius-snapshots\\ab-trace-green-e4334300708f4164ad9953fa9500f2c4\\harness",
+  "base": "c6adbcaa048988361d2388970eaca772711b797b",
+  "overlay_sha256": {
+    "src/pontius/v0a/trace.py": "ecd519401b8f40cb05778d3d514deb334bd6688024971cae9ad35184d812ddc6",
+    "src/pontius/v0a/replay.py": "f201605780fbe20332d819637cc1413e16ba4114a743b8d42e4af5f5fb8a3fa5",
+    "tests/test_v0a_trace.py": "5ea023f069db3f869c637522dfd30387b09519de1956edd4d7c9d9af0266f94c",
+    "tests/test_v0a_replay.py": "5e3bda27b8291fc3be93fc24bd04d1685ca966980cee2228dff9d23e6109b12a"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\r005\\checks\\coordinator-numeric-range-probe.py"
+  ],
+  "exit": 0,
+  "sha256": "5c860ae0e7530a28a7844186956edc7d7c5183ad484db99be39ae485308c07a8"
+}

@@ -1,0 +1,575 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_accepts_a_nonpassive_table_hit_and_fold_terminal (__main__.AcceptingReplayTests.test_accepts_a_nonpassive_table_hit_and_fold_terminal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1404, in test_accepts_a_nonpassive_table_hit_and_fold_terminal
+    self.assertEqual(self.verify(outcome.trace, fixture, blueprint=policy).payouts,
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_accepts_both_real_controls_without_running_the_host_again (__main__.AcceptingReplayTests.test_accepts_both_real_controls_without_running_the_host_again) (fixture='control-A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1377, in test_accepts_both_real_controls_without_running_the_host_again
+    accepted = self.verify(outcome.trace, fixture)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_accepts_both_real_controls_without_running_the_host_again (__main__.AcceptingReplayTests.test_accepts_both_real_controls_without_running_the_host_again) (fixture='control-B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1377, in test_accepts_both_real_controls_without_running_the_host_again
+    accepted = self.verify(outcome.trace, fixture)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='manifest')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='mode')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='clock-kind')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='decision-policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='decision-trigger')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='street-count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='decision-actor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='decision-street')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='state-before')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='spine-reason')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='opponent-actor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='opponent-action')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='initial-cards')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='reveal-cards')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='showdown-rank')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (label='showdown-mask')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1462, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (kwargs={'source_commit': '2222222222222222222222222222222222222222'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1468, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (kwargs={'source_manifest_sha256': '2222222222222222222222222222222222222222222222222222222222222222'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1468, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (kwargs={'expected_mode': 'rehearsal'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1468, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) (kwargs={'expected_clock_kind': 'monotonic_ns'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1468, in test_all_expected_bindings_and_decision_schedule_fields_are_checked
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_emission_reserve_is_not_a_false_work_failure (__main__.AcceptingReplayTests.test_emission_reserve_is_not_a_false_work_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1434, in test_emission_reserve_is_not_a_false_work_failure
+    self.assertEqual(self.verify(outcome.trace).payouts, FIXTURE_A.expected_payouts)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_expectation_subtypes_cannot_supply_behavior (__main__.AcceptingReplayTests.test_expectation_subtypes_cannot_supply_behavior) (kwargs=('fixture',))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1494, in test_expectation_subtypes_cannot_supply_behavior
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_expectation_subtypes_cannot_supply_behavior (__main__.AcceptingReplayTests.test_expectation_subtypes_cannot_supply_behavior) (kwargs=('blueprint',))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1494, in test_expectation_subtypes_cannot_supply_behavior
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_expectation_subtypes_cannot_supply_behavior (__main__.AcceptingReplayTests.test_expectation_subtypes_cannot_supply_behavior) (kwargs=('source_commit',))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1494, in test_expectation_subtypes_cannot_supply_behavior
+    self.verify(outcome.trace, **kwargs)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_failed_prefix_cannot_obtain_success (__main__.AcceptingReplayTests.test_failed_prefix_cannot_obtain_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1554, in test_failed_prefix_cannot_obtain_success
+    self.verify(outcome.trace)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_folded_only_depths_do_not_split_an_award (__main__.AcceptingReplayTests.test_folded_only_depths_do_not_split_an_award)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1543, in test_folded_only_depths_do_not_split_an_award
+    self.assertEqual(oracle.pots, ((38, (3, 4)),))
+AssertionError: Tuples differ: ((5, (3, 4)), (4, (3, 4)), (9, (3, 4)), (20, (3, 4))) != ((38, (3, 4)),)
+
+First differing element 0:
+(5, (3, 4))
+(38, (3, 4))
+
+First tuple contains 3 additional elements.
+First extra element 1:
+(4, (3, 4))
+
+- ((5, (3, 4)), (4, (3, 4)), (9, (3, 4)), (20, (3, 4)))
++ ((38, (3, 4)),)
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='illegal-check')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='illegal-raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='legal-wrong-policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-state')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-cards')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='false-hit')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-source')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-config')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='payout')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='final-stacks')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='eligibility')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='missing-decision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='reordered-decision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1523, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.038s
+
+FAILED (failures=43)

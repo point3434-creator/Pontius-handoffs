@@ -1,0 +1,229 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_accepts_both_real_controls_without_running_the_host_again (__main__.AcceptingReplayTests.test_accepts_both_real_controls_without_running_the_host_again) (fixture='control-A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1377, in test_accepts_both_real_controls_without_running_the_host_again
+    accepted = self.verify(outcome.trace, fixture)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_accepts_both_real_controls_without_running_the_host_again (__main__.AcceptingReplayTests.test_accepts_both_real_controls_without_running_the_host_again) (fixture='control-B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1377, in test_accepts_both_real_controls_without_running_the_host_again
+    accepted = self.verify(outcome.trace, fixture)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_failed_prefix_cannot_obtain_success (__main__.AcceptingReplayTests.test_failed_prefix_cannot_obtain_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1420, in test_failed_prefix_cannot_obtain_success
+    self.verify(outcome.trace)
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='illegal-check')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='illegal-raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='legal-wrong-policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-state')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-cards')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='false-hit')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-source')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='wrong-config')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='payout')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='final-stacks')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='eligibility')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='missing-decision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+======================================================================
+FAIL: test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) (label='reordered-decision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1410, in test_rebound_invalid_semantics_are_not_legalized_by_hashes
+    self.verify(self.changed(outcome.trace, change))
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1332, in checker
+    self.assertTrue(callable(verify), "a public accepting trace checker is required")
+AssertionError: False is not true : a public accepting trace checker is required
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.017s
+
+FAILED (failures=17)

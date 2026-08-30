@@ -1,0 +1,23 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+E..
+======================================================================
+ERROR: test_accepts_both_real_controls_without_running_the_host_again (__main__.AcceptingReplayTests.test_accepts_both_real_controls_without_running_the_host_again) (fixture='control-A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1377, in test_accepts_both_real_controls_without_running_the_host_again
+    accepted = self.verify(outcome.trace, fixture)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1340, in verify
+    return self.checker()(content, **args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-trace-draft-v1-2a2bc9498b3944468101e4b4a2a0187c\harness\src\pontius\v0a\replay.py", line 698, in verify_successful_trace
+    return _replay_parsed_success(parsed, expected, deal, policy)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-trace-draft-v1-2a2bc9498b3944468101e4b4a2a0187c\harness\src\pontius\v0a\replay.py", line 738, in _replay_parsed_success
+    raise TraceInvalidError("event is outside an active hand")
+pontius.v0a.trace.TraceInvalidError: event is outside an active hand
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.033s
+
+FAILED (errors=1)

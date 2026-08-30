@@ -1,0 +1,129 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFFFFEFFFFF
+======================================================================
+ERROR: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='decision-hand-id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 527, in test_exact_fields_and_nested_event_variants_are_checked
+    parse_trace(self.encode(rows))
+  File "D:\pontius-snapshots\ab-trace-red-v2-b9acec6949744fc9a812a0fca67cba66\harness\src\pontius\v0a\trace.py", line 725, in parse_trace
+    raise TraceInvalidError(f"a trace binds one hand identity, found {sorted(hand_ids)}")
+                                                                      ^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'str' and 'tuple'
+
+======================================================================
+FAIL: test_completed_timing_cannot_hide_deadline_or_impossible_accounting (__main__.TraceSchemaRegressionTests.test_completed_timing_cannot_hide_deadline_or_impossible_accounting) (elapsed=16000000000)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 549, in test_completed_timing_cannot_hide_deadline_or_impossible_accounting
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_completed_timing_cannot_hide_deadline_or_impossible_accounting (__main__.TraceSchemaRegressionTests.test_completed_timing_cannot_hide_deadline_or_impossible_accounting) (elapsed=10000)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 549, in test_completed_timing_cannot_hide_deadline_or_impossible_accounting
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='record-bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='source-list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='event-extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='event-missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='event-index-bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='decision-seat')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='decision-reason')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='decision-null-timing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='decision-nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='terminal-inf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_exact_fields_and_nested_event_variants_are_checked (__main__.TraceSchemaRegressionTests.test_exact_fields_and_nested_event_variants_are_checked) (label='terminal-count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 526, in test_exact_fields_and_nested_event_variants_are_checked
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_semantic_mismatch_and_noncanonical_json_are_refused (__main__.TraceSchemaRegressionTests.test_semantic_mismatch_and_noncanonical_json_are_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 533, in test_semantic_mismatch_and_noncanonical_json_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.043s
+
+FAILED (failures=14, errors=1)

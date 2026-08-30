@@ -1,0 +1,14 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+F....................................................
+======================================================================
+FAIL: test_accepts_a_nonpassive_table_hit_and_fold_terminal (__main__.AcceptingReplayTests.test_accepts_a_nonpassive_table_hit_and_fold_terminal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1400, in test_accepts_a_nonpassive_table_hit_and_fold_terminal
+    self.assertTrue(outcome.receipt.passed)
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 53 tests in 1.409s
+
+FAILED (failures=1)

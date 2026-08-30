@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-ab\r004\checks\cold-a-runner.py", line 86, in <module>
+    assert not any(name.startswith(("cupy", "numpy", "torch")) for name in sys.modules)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

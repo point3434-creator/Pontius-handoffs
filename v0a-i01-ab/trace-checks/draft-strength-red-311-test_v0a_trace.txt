@@ -1,0 +1,21 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+.......E.
+======================================================================
+ERROR: test_structural_integer_strengths_keep_the_models_unbounded_ordering_domain (__main__.TraceSchemaRegressionTests.test_structural_integer_strengths_keep_the_models_unbounded_ordering_domain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 667, in test_structural_integer_strengths_keep_the_models_unbounded_ordering_domain
+    parsed = parse_trace(complete_trace(events=(started(), event)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-trace-draft-strength-red-74c4e2b8d3954ef89c5207f9b86715c7\harness\src\pontius\v0a\trace.py", line 776, in parse_trace
+    _validate_event(event, len(events))
+  File "D:\pontius-snapshots\ab-trace-draft-strength-red-74c4e2b8d3954ef89c5207f9b86715c7\harness\src\pontius\v0a\trace.py", line 683, in _validate_event
+    _require_int(strength, label="strength", minimum=0)
+  File "D:\pontius-snapshots\ab-trace-draft-strength-red-74c4e2b8d3954ef89c5207f9b86715c7\harness\src\pontius\v0a\trace.py", line 449, in _require_int
+    raise TraceInvalidError(f"{label} must be at least {minimum}")
+pontius.v0a.trace.TraceInvalidError: strength must be at least 0
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.457s
+
+FAILED (errors=1)

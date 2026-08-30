@@ -1,0 +1,23 @@
+{
+  "label": "cold-b-identity-py311",
+  "start_utc": "2026-08-30T20:35:42.8996082Z",
+  "end_utc": "2026-08-30T20:35:44.0463083Z",
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "arguments": "-B -P \"D:\\Pontius-handoffs\\v0a-i01-ab\\r004\\checks\\cold-b-identity.py\"",
+  "cwd": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r004-cold-b-8b743e9f",
+  "environment": {
+    "SystemRoot": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "",
+    "PYTHONPATH": "D:\\Pontius-review-snapshots\\v0a-i01-ab-r004-cold-b-8b743e9f\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "COLD_B_EXPECTED_VERSION": "3.11.15"
+  },
+  "script_sha256": "d407fe8e47f1e2f0261a4e39d6ea423dd4f3daccf0be4711795aafe7af9ea5fa",
+  "exit_code": 0,
+  "stdout": "{\r\n  \"implementation\": \"CPython\",\r\n  \"version\": \"3.11.15\",\r\n  \"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\",\r\n  \"cwd\": \"D:\\\\Pontius-review-snapshots\\\\v0a-i01-ab-r004-cold-b-8b743e9f\",\r\n  \"sys_path\": [\r\n    \"D:\\\\Pontius-review-snapshots\\\\v0a-i01-ab-r004-cold-b-8b743e9f\\\\src\",\r\n    \"C:\\\\Users\\\\point\\\\AppData\\\\Roaming\\\\uv\\\\python\\\\cpython-3.11.15-windows-x86_64-none\\\\python311.zip\",\r\n    \"C:\\\\Users\\\\point\\\\AppData\\\\Roaming\\\\uv\\\\python\\\\cpython-3.11.15-windows-x86_64-none\\\\DLLs\",\r\n    \"C:\\\\Users\\\\point\\\\AppData\\\\Roaming\\\\uv\\\\python\\\\cpython-3.11.15-windows-x86_64-none\\\\Lib\",\r\n    \"C:\\\\Users\\\\point\\\\AppData\\\\Roaming\\\\uv\\\\python\\\\cpython-3.11.15-windows-x86_64-none\",\r\n    \"D:\\\\Pontius-tools\\\\py311\",\r\n    \"D:\\\\Pontius-tools\\\\py311\\\\Lib\\\\site-packages\"\r\n  ],\r\n  \"flags\": {\r\n    \"B\": 1,\r\n    \"P\": true\r\n  },\r\n  \"commit\": \"c6adbcaa048988361d2388970eaca772711b797b\",\r\n  \"base\": \"30df7bce8da51715e6f1d7576892dd689421c516\",\r\n  \"manifest\": \"a810c89b7342fb1bcb4f1498fdcf53cd11a589b70424c7da48f6619a45da67cb\",\r\n  \"rows\": [\r\n    \"3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18  src/pontius/v0a/model.py\\n\",\r\n    \"52647a617eb03ce318ab5edee627dddf5562c64a2f5f2f7cb3af64f5a7aa856c  src/pontius/v0a/runtime.py\\n\",\r\n    \"0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0  tests/test_v0a_hand_replay.py\\n\"\r\n  ],\r\n  \"clean\": true\r\n}\r\n",
+  "stderr": ""
+}
