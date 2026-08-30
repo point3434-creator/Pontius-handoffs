@@ -130,3 +130,55 @@ habit. If the next attempt on either one leaves it open, the honest conclusion
 is not a fourth patch but that I am the wrong shape for this work — at which
 point the controller should consider whether these contracts want a different
 implementer or a different decomposition.
+
+---
+
+## Supplement, after r005 (third residual) — appended, nothing above rewritten
+
+r005 closed both r004 mechanisms: a first writer refusal stays primary, and a
+rejected event retains its later abort-cleanup cause. Two new mechanisms of the
+same contract remain, and they are the *same error as R4-02 one level up*.
+
+R4-02 was: cleanup journalled ahead of the initiating cause. I fixed that inside
+`HandRuntime.dispatch`, where the `except _HandFailure` handler now records
+before `_release_boundary` runs. I did not apply it to the host's own
+body-and-cleanup pairs. So when an oracle raises inside
+`with runtime.bookkeeping():`, the context manager's exit seam journals its
+clock fault first and my outer `except` journals the body's cause second —
+the identical inversion, at a site I had just corrected elsewhere (R5-01).
+
+R5-02 is the same omission seen from the other side: my host clock branch
+assumes a typed clock error was "already journalled by the seam that raised
+it". That is true when a *seam* raised it and false when the *body* did. The
+echo rule then correctly suppresses cleanup's synthetic refusal, and the
+genuine cause is never recorded by anyone. Exception type stood in for proof of
+retention, which is the same substitution — a signal treated as evidence — that
+produced the r002 digest check.
+
+So the count is now three, and the shape has not changed: **I apply a correct
+principle at the site the finding named, and not at the other sites where the
+principle holds.** Three rounds, three sites, one principle.
+
+What this says about the fix. Another site correction would be a fourth
+instance of the same move. The principle has to stop depending on my
+remembering where it applies: one owner for "run a body, retain its cause
+before cleanup executes, then run cleanup", used by every operation that has a
+body and cleanup, so that a new operation cannot get the order wrong without
+deliberately bypassing the owner. That is what the coordinator means by
+completing ownership at host operation boundaries, and it is a mechanism rather
+than a reminder.
+
+What this says about my coverage claim. It was attacked and it failed, which is
+the mechanism working — the boundary I drew (ledger closing calls, clock-only
+projections) cannot establish host-body ownership, and the reviewers said so
+after enumerating independently. Under the previous process this would have
+surfaced a round or two later, or not at all. But the boundary was still drawn
+by me and it was still too narrow, which is the third piece of evidence that my
+enumeration is the weak link rather than my care.
+
+What I pre-committed to. This note's closing paragraph said that if the next
+attempt left the contract open, the honest conclusion is not a fourth patch but
+that the work may want a different implementer or a different decomposition,
+and that the controller should decide. R2-03 is open a third time. That
+decision is now live and is recorded here rather than quietly passed over.
+
