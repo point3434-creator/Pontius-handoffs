@@ -13,6 +13,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-prereg | r004 | [Handoff](v0a-i01-prereg/r004/handoff.md) | Rejected: manifest row ordering; source bytes unchanged |
 | v0a-i01-prereg | r005 | [Handoff](v0a-i01-prereg/r005/handoff.md) | Integrated and pushed as 111807b; three CLEAN reviews; scoped checks pass on 3.11/3.14; review refs safely retired |
 | v0a-i01-impl | r001 | [Handoff](v0a-i01-impl/r001/handoff.md) | Slice A NOT CLEAN; seven consolidated findings; reproduced on 3.11/3.14; fix-round brief in disposition.md; Claude finalizes |
+| v0a-i01-impl | r002 | [Handoff](v0a-i01-impl/r002/handoff.md) | Slice A fix round (F1-F7) + slice B frozen 2026-08-30; 99 tests GREEN on 3.11/3.14; twelve fix mutations caught; awaiting cold review |
 
 The existing task verdict ledger remains at
 [its original location](../Pontius-worktrees/v0a-increment-1-preregistration-review/progress.md).
