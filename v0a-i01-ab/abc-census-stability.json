@@ -1,0 +1,58 @@
+{
+  "observations": [
+    "slice-c-combined-census-311-01.json",
+    "slice-c-combined-census-311-02.json"
+  ],
+  "asserted_census_fields_and_three_pinned_location_lists_equal": true,
+  "other_location_changes": [
+    {
+      "reason": "mixed protected receiver is dynamically unresolved",
+      "before": [
+        "tests/test_inventory_and_profiles.py",
+        30179
+      ],
+      "after": [
+        "tests/test_inventory_and_profiles.py",
+        30182
+      ]
+    },
+    {
+      "reason": "mixed protected receiver is dynamically unresolved",
+      "before": [
+        "tests/test_inventory_and_profiles.py",
+        30109
+      ],
+      "after": [
+        "tests/test_inventory_and_profiles.py",
+        30112
+      ]
+    },
+    {
+      "reason": "mixed protected receiver is dynamically unresolved",
+      "before": [
+        "tests/test_inventory_and_profiles.py",
+        30329
+      ],
+      "after": [
+        "tests/test_inventory_and_profiles.py",
+        30332
+      ]
+    },
+    {
+      "reason": "mixed protected receiver is dynamically unresolved",
+      "before": [
+        "tests/test_inventory_and_profiles.py",
+        30386
+      ],
+      "after": [
+        "tests/test_inventory_and_profiles.py",
+        30389
+      ]
+    }
+  ],
+  "location_change_cause": "Three newly inserted expectation lines shift four later unpinned source sites by three; no behavior change.",
+  "final_pair_sha256": {
+    "tests/test-inventory.json": "03b27bfd314d275b8d52e4daa20f655932553f96fa113241278d4a8dc355d879",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  }
+}

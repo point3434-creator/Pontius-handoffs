@@ -1,0 +1,16 @@
+{"cwd": "D:\\Pontius-review-codex-a-r007-20260830", "environment": {"PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\Pontius-review-codex-a-r007-20260830\\src", "SYSTEMROOT": "C:\\WINDOWS", "TEMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "TMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "WINDIR": "C:\\WINDOWS"}, "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "flags": {"B": 1, "P": true}, "implementation": "CPython", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}
+BLOB_MANIFEST_VERIFIED c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189
+ORIGINS {"pontius": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\__init__.py", "pontius.v0a.clock": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\clock.py", "pontius.v0a.replay": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\replay.py", "pontius.v0a.runtime": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\runtime.py", "pontius.v0a.trace": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\trace.py"}
+{"case": "A", "totals_seconds": {"pre": 437, "post": 74, "publication": 164}, "operation_calls": {"configuration_sha256": 1, "_events": 25, "add_event": 25, "add_decision": 4, "append": 26, "chip_depth_settlement": 1, "semantic_sha256": 1, "close": 6, "finish": 1}, "published_boundaries": 24}
+{"case": "B", "totals_seconds": {"pre": 207, "post": 56, "publication": 164}, "operation_calls": {"configuration_sha256": 1, "_events": 10, "add_event": 12, "append": 13, "add_decision": 2, "chip_depth_settlement": 1, "semantic_sha256": 1, "close": 6, "finish": 1}, "published_boundaries": 9}
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-run-v2.py", line 66, in <module>
+    module.main()
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-adversarial.py", line 192, in main
+    measured_native_control(all_in, "automatic-all-in-runout")
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-adversarial.py", line 94, in measured_native_control
+    assert outcome.receipt.passed, causes(outcome)
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ['event_order']
+
+EXIT=1

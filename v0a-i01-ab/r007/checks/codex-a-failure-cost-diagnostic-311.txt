@@ -1,0 +1,15 @@
+{"cwd": "D:\\Pontius-review-codex-a-r007-20260830", "environment": {"PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\Pontius-review-codex-a-r007-20260830\\src", "SYSTEMROOT": "C:\\WINDOWS", "TEMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "TMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "WINDIR": "C:\\WINDOWS"}, "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "flags": {"B": 1, "P": true}, "implementation": "CPython", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}
+BLOB_MANIFEST_VERIFIED c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189
+ORIGINS {"pontius": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\__init__.py", "pontius.v0a.clock": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\clock.py", "pontius.v0a.replay": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\replay.py", "pontius.v0a.runtime": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\runtime.py", "pontius.v0a.trace": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\trace.py"}
+{"expected_costs": {"pre": 57, "post": 0, "publication": 166}, "receipt": {"run_id": "pontius-v0a-hand-replay-v1-correctness-codex-a-diagnostic-failure-cost", "hand_id": "control-A", "trace_sha256": "152db6d11a1001460c842d6bbd3927e0916c038b8726c0d8e3eb52a06b8cdac8", "terminal_publication_compute_seconds": 164.0, "accounting_complete": false, "passed": false, "failure_reason": "event_order", "secondary_failures": []}, "terminal": {"accounting_complete": false, "complete": false, "decision_count": 1, "event_count": 1, "failure_reason": "event_order", "hand_id": "control-A", "interrupted_response_count": 0, "passed": false, "post_terminal_compute_seconds": 0.0, "preparation_compute_seconds": 57.0, "record_index": 4, "record_type": "terminal", "run_id": "pontius-v0a-hand-replay-v1-correctness-codex-a-diagnostic-failure-cost", "schema_version": "pontius-v0a-trace-v1", "semantic_sha256": "0147d8a1bd0487680311bfc483f3847f6092ea9f22852aa5da92fae2c51ab92e", "settlement": null, "trace_prefix_sha256": "75b70d980dc360c0fbf78bae3d4ba57df50303ea47ef9b6c7cf204820d02f862"}, "operation_calls": {"configuration_sha256": 1, "_events": 3, "add_event": 1, "add_decision": 1, "append": 3, "add_failure": 1, "semantic_sha256": 1, "close": 6, "finish": 1}}
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-run-diagnostic.py", line 66, in <module>
+    module.main()
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-failure-cost-diagnostic.py", line 11, in main
+    module.measured_native_control(fixture, "diagnostic-failure-cost", "event_order")
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-adversarial-v5.py", line 102, in measured_native_control
+    assert outcome.receipt.terminal_publication_compute_seconds == totals["publication"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+EXIT=1

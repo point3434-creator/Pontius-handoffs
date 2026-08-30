@@ -1,0 +1,21 @@
+{"cwd": "D:\\Pontius-review-codex-a-r007-20260830", "environment": {"PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\Pontius-review-codex-a-r007-20260830\\src", "SYSTEMROOT": "C:\\WINDOWS", "TEMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "TMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "WINDIR": "C:\\WINDOWS"}, "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "flags": {"B": 1, "P": true}, "implementation": "CPython", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}
+BLOB_MANIFEST_VERIFIED c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189
+ORIGINS {"pontius": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\__init__.py", "pontius.v0a.clock": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\clock.py", "pontius.v0a.replay": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\replay.py", "pontius.v0a.runtime": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\runtime.py", "pontius.v0a.trace": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\trace.py"}
+{"case": "A", "totals_seconds": {"pre": 437, "post": 74, "publication": 164}, "operation_calls": {"configuration_sha256": 1, "_events": 25, "add_event": 25, "add_decision": 4, "append": 26, "chip_depth_settlement": 1, "semantic_sha256": 1, "close": 6, "finish": 1}, "published_boundaries": 24}
+{"case": "B", "totals_seconds": {"pre": 207, "post": 56, "publication": 164}, "operation_calls": {"configuration_sha256": 1, "_events": 10, "add_event": 12, "append": 13, "add_decision": 2, "chip_depth_settlement": 1, "semantic_sha256": 1, "close": 6, "finish": 1}, "published_boundaries": 9}
+{"case": "automatic-all-in-runout", "totals_seconds": {"pre": 146, "post": 56, "publication": 164}, "operation_calls": {"configuration_sha256": 1, "_events": 6, "add_event": 9, "add_decision": 1, "append": 10, "chip_depth_settlement": 1, "semantic_sha256": 1, "close": 6, "finish": 1}, "published_boundaries": 8}
+{"case": "native-close", "protected_handles": 1, "closing_clock_fault": false, "existing_target": false, "native_close_attempts": 5, "actual_native_errors": [{"type": "TraceWriteError", "args": ["native trace close failed", 6]}], "receipt_causes": ["trace_write_failed"], "terminal_cut_passed": true, "host_passed": false}
+{"case": "native-close", "protected_handles": 2, "closing_clock_fault": false, "existing_target": false, "native_close_attempts": 5, "actual_native_errors": [{"type": "TraceWriteError", "args": ["native trace close failed", 6]}, {"type": "TraceWriteError", "args": ["native trace close failed", 6]}], "receipt_causes": ["trace_write_failed", "trace_write_failed"], "terminal_cut_passed": true, "host_passed": false}
+{"case": "native-close", "protected_handles": 2, "closing_clock_fault": true, "existing_target": false, "native_close_attempts": 5, "actual_native_errors": [{"type": "TraceWriteError", "args": ["native trace close failed", 6]}, {"type": "TraceWriteError", "args": ["native trace close failed", 6]}], "receipt_causes": ["trace_write_failed", "trace_write_failed", "clock_invalid"], "terminal_cut_passed": true, "host_passed": false}
+{"case": "native-close", "protected_handles": 2, "closing_clock_fault": true, "existing_target": true, "native_close_attempts": 4, "actual_native_errors": [{"type": "TraceWriteError", "args": ["native trace close failed", 6]}, {"type": "TraceWriteError", "args": ["native trace close failed", 6]}], "receipt_causes": ["trace_write_failed", "trace_write_failed", "trace_write_failed", "clock_invalid"], "terminal_cut_passed": false, "host_passed": false}
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-run-v6.py", line 66, in <module>
+    module.main()
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-adversarial-v5.py", line 212, in main
+    measured_native_control(rejected, "rejected-input-failure-serialization", "event_order")
+  File "D:\Pontius-handoffs\v0a-i01-ab\r007\checks\codex-a-adversarial-v5.py", line 102, in measured_native_control
+    assert outcome.receipt.terminal_publication_compute_seconds == totals["publication"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+EXIT=1

@@ -24,3 +24,4 @@ records round dispositions, not duplicate reviewer verdicts.
 
 - 2026-08-30 | v0a-i01-ab/r005 | 6cdf7b00dac653a9a295bbb86cdc3b5782317491 | 83798245d9feac931479478e81c850ac4de277a2903a7523f5745320738cd21f | Codex coordinator: NOT CLEAN/STRAINED twice; strict failed-terminal and private-pair correction required; independent legal checker/oracle controls pass; bounded parser successor next.
 2026-08-30 | v0a-i01-ab/r006 | 52bd941e9fa1fb90ff6d2d14df2286e2ee4f4ec8 | 7e1575b18c7a9cf0c74bd956a54e899aad670349d198d7863ae1f67463583d7a | T-01/T-02 CLEAN/SOUND twice; scoped parser correction accepted; publication/C follow separately.
+- 2026-08-30 v0a-i01-ab/r007: publication/accounting CLEAN/SOUND twice; candidate ddea6efbeb55cb8b71da1ebd5a359a0c2c901cf1, manifest c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189;115 focused each plus independent real native ownership/cause schedules; C integration follows; no ceremonial commit authority.

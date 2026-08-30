@@ -1,0 +1,106 @@
+{
+  "candidate": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-ab",
+    "round": "r008",
+    "ref": "refs/heads/review/v0a-i01-ab/r008",
+    "commit": "00db06624ab25f10cd181badccf92c87a78f17ee",
+    "base": "d1ed3cbda6107d61ea8e77133871720af04970cd",
+    "tree": "6a0d6b63b42e843cc2044ff6b1be56ebaa2c470f",
+    "manifest_sha256": "1e5814b2c04a0065586d8fa73f89edc1ffb0eae4830bea8c893630172d5798f2",
+    "date": "2026-08-30"
+  },
+  "all_executed_overlay_bytes_equal_frozen_blobs": true,
+  "receipts": [
+    {
+      "receipt": "../abc-checks/focus-boundary-311-receipt.json",
+      "sha256": "52e25c87e383485f09eb8835b16c99a2b539d366b5e5ca3ac0647851e7c04ee9",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-boundary-314-receipt.json",
+      "sha256": "d06576a76af2a8f2ff2a0ea3d8c4df455408c59be8be67b3eabe1ee57f4a934b",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-inventory-311-receipt.json",
+      "sha256": "764868d7151b5c3bd5fb9cf49a7672748a6b9ed1d2e3cc3c77376dbcd08e922f",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-inventory-314-receipt.json",
+      "sha256": "61ec57dcb69422471b82a3d206f73a0cf6a031522352e6f26e3b5b9a61de184d",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-inventory-check-311-receipt.json",
+      "sha256": "8181ef9115bf6bdbb5411e52cbedb6440fe5b2b6766683d4f403d5e14b967b93",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-inventory-check-314-receipt.json",
+      "sha256": "fd09bb56344c116a82fe3f61d6e1606fdace16cbfb25166dd4f103df24395e2c",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_stabilization_boundaries-311-receipt.json",
+      "sha256": "e72109449c63799de67029c9f4edb9ccc38534a0906c5fd2345e6adb468dbabb",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_stabilization_boundaries-314-receipt.json",
+      "sha256": "4320b340489a960cbe2258b39372818ceeccbbf65591c68e38b8ed8e4a10b97e",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_boundaries-311-receipt.json",
+      "sha256": "eca53d560a03f537eb3250d5f0ef3cfaef01fdca6281eeea977bb50e15e41204",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_boundaries-314-receipt.json",
+      "sha256": "3bd2115c4a8464491075ea670e2a72f638c7f05935b9bf7d74371366320cf89e",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_contract_faults-311-receipt.json",
+      "sha256": "c67da66fa4a873ef5237a70d288cd9836c4ae929ed6125d5db2a95a94830ffb8",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_contract_faults-314-receipt.json",
+      "sha256": "fe9a33f86b1fdecbdbdc3dd11061fad01e44560c20f1175a13dfdc56d66ed802",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_hand_replay-311-receipt.json",
+      "sha256": "5f17038c39a18651f4e47d75bb829f11d1352dcf0382f6f2b920a31c0545889d",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_hand_replay-314-receipt.json",
+      "sha256": "8e24eefff38e05e98fad68e78dd3d8160e1ad8d986ea9921d86d2decdd854a94",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_replay-311-receipt.json",
+      "sha256": "a70a5919591730de136e2cfb7e74ac4fa7d98d690deddf5a1f810bd6674f4273",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_replay-314-receipt.json",
+      "sha256": "820222436dc9840cc51b87b5ec60a1d3ac6efe5f846f3602e17a8f164b9c4e39",
+      "slot": "314"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_trace-311-receipt.json",
+      "sha256": "4156a41d9a3bac587425be10b488355224c2da92a1330853fef46fcd63691b5f",
+      "slot": "311"
+    },
+    {
+      "receipt": "../abc-checks/focus-test_v0a_trace-314-receipt.json",
+      "sha256": "f8d72ad8ae73c3feca458002d3b4d600ae352074fdb468fcb71ebb038d854677",
+      "slot": "314"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{"cwd": "D:\\Pontius-review-codex-a-r007-20260830", "environment": {"PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\Pontius-review-codex-a-r007-20260830\\src", "SYSTEMROOT": "C:\\WINDOWS", "TEMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "TMP": "D:\\Pontius-review-codex-a-r007-20260830\\codex-a-temp", "WINDIR": "C:\\WINDOWS"}, "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "flags": {"B": 1, "P": true}, "implementation": "CPython", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}
+BLOB_MANIFEST_VERIFIED c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189
+ORIGINS {"pontius": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\__init__.py", "pontius.v0a.clock": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\clock.py", "pontius.v0a.replay": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\replay.py", "pontius.v0a.runtime": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\runtime.py", "pontius.v0a.trace": "D:\\Pontius-review-codex-a-r007-20260830\\src\\pontius\\v0a\\trace.py"}
+terminal clock sweep {"fault_kinds": ["invalid", "reversed", "exception"], "observed_reads": {"event_order": 31, "success": 244}, "preserved_input_primary_controls": 24}
+{"tests": 115, "failures": 0, "errors": 0, "skipped": []}
+...................................................................................................................
+----------------------------------------------------------------------
+Ran 115 tests in 5.689s
+
+OK
+
+EXIT=0
