@@ -1,0 +1,70 @@
+{
+  "candidate": "47d08d8c1556d776358e15811e3e98b859fd6a8b",
+  "manifest_sha256": "cc255e28680f71fe15de78f26bb8f99a337c1c79e12bf3bdf382a8aa74e7844a",
+  "snapshot": "D:\\pontius-snapshots\\v0a-i01-r003-59e5f7bbb8d7441d9d3f501900991e54\\harness",
+  "identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version": [
+      3,
+      11,
+      15
+    ]
+  },
+  "identity_asserted_before_payload_import": true,
+  "import_provenance": {
+    "runtime_file": "D:\\pontius-snapshots\\v0a-i01-r003-59e5f7bbb8d7441d9d3f501900991e54\\harness\\src\\pontius\\v0a\\runtime.py",
+    "tracked_dependency_imports": [
+      "numpy"
+    ]
+  },
+  "snapshot_pristine": true,
+  "results": [
+    {
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_hand_replay.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r003\\checks\\codex-py311-hand_replay.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_trace.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r003\\checks\\codex-py311-trace.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_replay.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r003\\checks\\codex-py311-replay.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_contract_faults.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r003\\checks\\codex-py311-contract_faults.txt"
+    }
+  ],
+  "scope": "Four r003 focused correctness suites; no broad suite or experiment"
+}

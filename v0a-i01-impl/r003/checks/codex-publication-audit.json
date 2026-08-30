@@ -1,0 +1,82 @@
+{
+  "candidate": "47d08d8c1556d776358e15811e3e98b859fd6a8b",
+  "manifest_sha256": "cc255e28680f71fe15de78f26bb8f99a337c1c79e12bf3bdf382a8aa74e7844a",
+  "packet_base": "e721eaac158081c1d26679be40ff9161fb32a09c",
+  "result": "publication checks pass; review remains NOT CLEAN",
+  "focused_and_fault_checks": [
+    {
+      "slot": "311",
+      "actual_version": [
+        3,
+        11,
+        15
+      ],
+      "focused_tests": 107,
+      "fault_schedules": 628,
+      "missing_cause_cases": 30
+    },
+    {
+      "slot": "314",
+      "actual_version": [
+        3,
+        14,
+        6
+      ],
+      "focused_tests": 107,
+      "fault_schedules": 628,
+      "missing_cause_cases": 30
+    }
+  ],
+  "report_sha256": {
+    "reviews/review-01-codex-a.md": "34ac699e54a5052ea9174d5e1c61a4d6928a519df5a79054b853fb485a93aa4a",
+    "reviews/review-02-codex-b.md": "50064c874625fb2bbbf651c8b00c7fbb96a23d8e485c9651685587703ee3ad7d",
+    "reviews/review-03-codex-coordinator.md": "41a0e02d9757826630150cab5018f3d692706934550f6ca1ec4f5e4648c675a6",
+    "disposition.md": "3e0dbf34c0ff5b6e4ca5361bc8453c0e3808c0b658465b8b1b7a5decbdcde73d"
+  },
+  "tracked_packet_inputs_match_git": {
+    "v0a-i01-impl/r003/candidate.json": {
+      "raw_sha256": "7ea6ed078b5ec639816e2d79f179be50ee7cbf3205eaef258463fd0d7d15c780",
+      "byte_exact_to_blob": true,
+      "filtered_git_blob_matches": true
+    },
+    "v0a-i01-impl/r003/checks/mutation-slice1.txt": {
+      "raw_sha256": "53d2e6a0a7376cbe18e4953d917680c25bc527edd488b86bfa1b0b7651442dc6",
+      "byte_exact_to_blob": true,
+      "filtered_git_blob_matches": true
+    },
+    "v0a-i01-impl/r003/checks/r002-RED.txt": {
+      "raw_sha256": "d3d8448049cffd45ba7d143c7b06bc9a8cb7567302be636498f7e5e4d1a580a6",
+      "byte_exact_to_blob": false,
+      "filtered_git_blob_matches": true
+    },
+    "v0a-i01-impl/r003/checks/r003-receipts.json": {
+      "raw_sha256": "eca2960df6d91b2df2fa6ec9e4a34cd728f5ff6b8fe35518c156f89cae6d76b5",
+      "byte_exact_to_blob": false,
+      "filtered_git_blob_matches": true
+    },
+    "v0a-i01-impl/r003/handoff.md": {
+      "raw_sha256": "0bb98c9e0718adfce4af7dc8d2f512d0ba3331d7e7c9a85ad94f3aef56837a9c",
+      "byte_exact_to_blob": true,
+      "filtered_git_blob_matches": true
+    },
+    "v0a-i01-impl/r003/manifest.sha256": {
+      "raw_sha256": "cc255e28680f71fe15de78f26bb8f99a337c1c79e12bf3bdf382a8aa74e7844a",
+      "byte_exact_to_blob": true,
+      "filtered_git_blob_matches": true
+    }
+  },
+  "source_snapshots_pristine": [
+    "D:\\pontius-snapshots\\r003-coordinator-24345e8a5a4744fe84770515c2fbdb1b\\harness",
+    "D:\\pontius-snapshots\\r003-coordinator-631d80f5f0db433d89b8a07252fb3739\\harness",
+    "D:\\pontius-snapshots\\v0a-i01-r003-59e5f7bbb8d7441d9d3f501900991e54\\harness",
+    "D:\\pontius-snapshots\\v0a-i01-r003-f7c260aed2044b2280e1cedd64516064\\harness"
+  ],
+  "reviewer_ledger_entries": 3,
+  "program_disposition_entries": 1,
+  "primary_status_observed": "M CLAUDE.md\n M docs/workflow.md\n?? .tmp.driveupload/",
+  "process_document_sha256": {
+    "CLAUDE.md": "af06aad6ec36b91a4e942d7cfc1d3560555ae60e50b023270a0807f247b32b76",
+    "docs/workflow.md": "ba38e864ccccc5ba4669544295d30b825b0ceb30678f146bab0e5b30aa6dbd0f"
+  },
+  "scope": "Read-only source audit; no integration, broad suite, GPU, source commit, or ref retirement"
+}

@@ -14,6 +14,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-prereg | r005 | [Handoff](v0a-i01-prereg/r005/handoff.md) | Integrated and pushed as 111807b; three CLEAN reviews; scoped checks pass on 3.11/3.14; review refs safely retired |
 | v0a-i01-impl | r001 | [Handoff](v0a-i01-impl/r001/handoff.md) | Slice A NOT CLEAN; seven consolidated findings; reproduced on 3.11/3.14; fix-round brief in disposition.md; Claude finalizes |
 | v0a-i01-impl | r002 | [Disposition](v0a-i01-impl/r002/disposition.md) | NOT CLEAN; ten consolidated Important findings; 99 focused tests pass on actual 3.11/3.14; F3/F7 remain open; Claude finalizes the next reviewed candidate |
+| v0a-i01-impl | r003 | [Disposition](v0a-i01-impl/r003/disposition.md) | FIX slice 1 NOT CLEAN; two residuals R2-01/03; R2-02/07/08 closed; second policy residual requires its own candidate and root-cause note |
 
 The existing task verdict ledger remains at
 [its original location](../Pontius-worktrees/v0a-increment-1-preregistration-review/progress.md).
