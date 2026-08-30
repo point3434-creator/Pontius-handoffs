@@ -1,0 +1,105 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+..FFFFFFFFF...............................................
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='invalid', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='invalid', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='invalid', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='exception', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='exception', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='exception', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='reversed', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='reversed', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+======================================================================
+FAIL: test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) (kind='reversed', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1226, in test_optional_reporting_still_preserves_source_and_distinct_body_causes
+    self.assertEqual(outcome.status, "accepted")
+AssertionError: 'decided' != 'accepted'
+- decided
++ accepted
+
+
+----------------------------------------------------------------------
+Ran 50 tests in 2.307s
+
+FAILED (failures=9)

@@ -1,0 +1,14 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+F
+======================================================================
+FAIL: test_checked_parent_cannot_be_replaced_before_creation (__main__.StableTraceWriterTests.test_checked_parent_cannot_be_replaced_before_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 513, in test_checked_parent_cannot_be_replaced_before_creation
+    self.assertFalse((outside / "trace.jsonl").exists())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.079s
+
+FAILED (failures=1)

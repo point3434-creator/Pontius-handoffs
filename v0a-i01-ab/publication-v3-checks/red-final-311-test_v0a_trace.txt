@@ -1,0 +1,53 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFF
+======================================================================
+FAIL: test_checked_parent_cannot_be_replaced_before_creation (__main__.StableTraceWriterTests.test_checked_parent_cannot_be_replaced_before_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1267, in test_checked_parent_cannot_be_replaced_before_creation
+    self.assertFalse((outside / "trace.jsonl").exists())
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_failed_acquisition_releases_all_handles_and_latches_no_retry (__main__.StableTraceWriterTests.test_failed_acquisition_releases_all_handles_and_latches_no_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1332, in test_failed_acquisition_releases_all_handles_and_latches_no_retry
+    self.assertIsNotNone(writer_type, "failure needs a retained native owner")
+AssertionError: unexpectedly None : failure needs a retained native owner
+
+======================================================================
+FAIL: test_junction_root_is_refused_without_outside_publication (__main__.StableTraceWriterTests.test_junction_root_is_refused_without_outside_publication) (root=WindowsPath('D:/pontius-snapshots/ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7/temp/tmpgrpc7t5o/alias'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1321, in test_junction_root_is_refused_without_outside_publication
+    with self.assertRaises(TraceWriteError):
+AssertionError: TraceWriteError not raised
+
+======================================================================
+FAIL: test_junction_root_is_refused_without_outside_publication (__main__.StableTraceWriterTests.test_junction_root_is_refused_without_outside_publication) (root=WindowsPath('D:/pontius-snapshots/ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7/temp/tmpgrpc7t5o'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1323, in test_junction_root_is_refused_without_outside_publication
+    self.assertEqual(list(outside.iterdir()), [])
+AssertionError: Lists differ: [WindowsPath('D:/pontius-snapshots/ab-red-[73 chars]nl')] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+WindowsPath('D:/pontius-snapshots/ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7/temp/tmpgrpc7t5o/outside/trace.jsonl')
+
+- [WindowsPath('D:/pontius-snapshots/ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7/temp/tmpgrpc7t5o/outside/trace.jsonl')]
++ []
+
+======================================================================
+FAIL: test_stream_pins_parent_and_file_until_successful_close (__main__.StableTraceWriterTests.test_stream_pins_parent_and_file_until_successful_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1277, in test_stream_pins_parent_and_file_until_successful_close
+    self.assertIsNotNone(writer_type, "publication needs an owned incremental stream")
+AssertionError: unexpectedly None : publication needs an owned incremental stream
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.136s
+
+FAILED (failures=5)

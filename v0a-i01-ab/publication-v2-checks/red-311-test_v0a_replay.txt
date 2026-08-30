@@ -1,0 +1,69 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFF
+======================================================================
+FAIL: test_clock_loss_after_first_append_preserves_incomplete_file_and_closes_owner (__main__.IncrementalPublicationTests.test_clock_loss_after_first_append_preserves_incomplete_file_and_closes_owner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1664, in test_clock_loss_after_first_append_preserves_incomplete_file_and_closes_owner
+    self.assertIsNotNone(writer_type, "incremental publication requires an owned writer")
+AssertionError: unexpectedly None : incremental publication requires an owned writer
+
+======================================================================
+FAIL: test_every_real_serializer_and_semantic_cost_is_measured (__main__.IncrementalPublicationTests.test_every_real_serializer_and_semantic_cost_is_measured)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1715, in test_every_real_serializer_and_semantic_cost_is_measured
+    self.assertEqual(terminal["preparation_compute_seconds"]
+AssertionError: 0.0 != 31.0
+
+======================================================================
+FAIL: test_failed_required_entry_never_advances_the_input_iterator (__main__.IncrementalPublicationTests.test_failed_required_entry_never_advances_the_input_iterator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1606, in test_failed_required_entry_never_advances_the_input_iterator
+    self.assertEqual(advanced, [], "required entry failure must gate next(iterator)")
+AssertionError: Lists differ: [1, 1] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+1
+
+- [1, 1]
++ [] : required entry failure must gate next(iterator)
+
+======================================================================
+FAIL: test_first_required_write_failure_stops_before_second_action (__main__.IncrementalPublicationTests.test_first_required_write_failure_stops_before_second_action)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1767, in test_first_required_write_failure_stops_before_second_action
+    self.assertEqual(len(host.mailbox.accepted), 1)
+AssertionError: 4 != 1
+
+======================================================================
+FAIL: test_iterator_advancement_and_exhaustion_are_measured (__main__.IncrementalPublicationTests.test_iterator_advancement_and_exhaustion_are_measured)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1627, in test_iterator_advancement_and_exhaustion_are_measured
+    self.assertEqual(terminal["preparation_compute_seconds"]
+AssertionError: 0.0 != 25.0
+
+======================================================================
+FAIL: test_post_delivery_entry_failure_retains_decision_without_more_input_or_file (__main__.IncrementalPublicationTests.test_post_delivery_entry_failure_retains_decision_without_more_input_or_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1651, in test_post_delivery_entry_failure_retains_decision_without_more_input_or_file
+    self.assertFalse(target.exists())
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned (__main__.IncrementalPublicationTests.test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1755, in test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned
+    self.assertTrue(all(observations))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.038s
+
+FAILED (failures=7)

@@ -1,0 +1,1862 @@
+{"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "implementation": "CPython", "cwd": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\snapshot-3.11.15", "pythonpath": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\snapshot-3.11.15\\src", "git": "C:\\Program Files\\Git\\cmd\\git.exe", "temp": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\temp", "sys_path": ["D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\snapshot-3.11.15\\src", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\python311.zip", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\DLLs", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib", "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none", "D:\\Pontius-tools\\py311", "D:\\Pontius-tools\\py311\\Lib\\site-packages"]}
+..FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.............FF.
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='import pontius.holdem_cards\nvalue = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='import pontius.holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from pontius import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from .. import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='if True:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/__init__.py', source='def deferred():\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='import pontius.holdem_cards\nvalue = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='import pontius.holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from pontius import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from .. import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='if True:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/model.py', source='def deferred():\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='import pontius.holdem_cards\nvalue = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='import pontius.holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from pontius import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from .. import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='if True:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/clock.py', source='def deferred():\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='import pontius.holdem_cards\nvalue = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='import pontius.holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from pontius import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from .. import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='if True:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/runtime.py', source='def deferred():\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    from pontius.holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    from ..holdem_cards import SixSeatHoldemDeal as Deal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='import pontius.holdem_cards\nvalue = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    import pontius.holdem_cards\n    value = pontius.holdem_cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='import pontius.holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    import pontius.holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from pontius import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    from pontius import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from .. import holdem_cards as cards\nvalue = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    from .. import holdem_cards as cards\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from pontius.holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from ..holdem_cards import *\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    value = SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='if True:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_is_refused_from_every_non_host_origin (__main__.V0aCompleteDealBoundaryTests.test_complete_deal_is_refused_from_every_non_host_origin) (origin='src/pontius/v0a/trace.py', source='def deferred():\n    value = cards.SixSeatHoldemDeal\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 214, in test_complete_deal_is_refused_from_every_non_host_origin
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_import_is_refused_by_the_real_repository_gate (__main__.WholeRepositoryGateTests.test_complete_deal_import_is_refused_by_the_real_repository_gate) (origin='src/pontius/v0a/runtime.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 290, in test_complete_deal_import_is_refused_by_the_real_repository_gate
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+======================================================================
+FAIL: test_complete_deal_import_is_refused_by_the_real_repository_gate (__main__.WholeRepositoryGateTests.test_complete_deal_import_is_refused_by_the_real_repository_gate) (origin='src/pontius/v0a/__init__.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_boundaries.py", line 290, in test_complete_deal_import_is_refused_by_the_real_repository_gate
+    with self.assertRaises(CHECKER.BoundaryError) as caught:
+AssertionError: BoundaryError not raised
+
+----------------------------------------------------------------------
+Ran 18 tests in 33.090s
+
+FAILED (failures=232)

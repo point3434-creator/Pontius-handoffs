@@ -1,0 +1,56 @@
+{
+  "label": "native-green-v1",
+  "slot": "311",
+  "base": "30df7bce8da51715e6f1d7576892dd689421c516",
+  "snapshot": "D:\\pontius-snapshots\\ab-native-green-v1-3279827d0d0e49998e5daeeb1e5b3599\\harness",
+  "overlay_sha256": {
+    "src/pontius/v0a/runtime.py": "bc9e7343d7606d4b26e804a0b8c4b1b099073e682a623176421a7f706da832fe",
+    "src/pontius/v0a/replay.py": "79437f3d5d966c8750c40bdfafc83de8436985f90c1f178d57ea538dd74d7a3e",
+    "src/pontius/v0a/trace.py": "89452cbc13a4713be1889991c08f5abb5ee7d4865e844380ccd10930f643eb7a",
+    "tests/test_v0a_replay.py": "d75112321702c406b173e27124419d8ecccbe2b7e21ebc5a37795cee301a9988",
+    "tests/test_v0a_trace.py": "bc615d851236c06d1ca8207ef949bb025ee2bb3bdb246a9661f1f571419c103e"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-native-green-v1-3279827d0d0e49998e5daeeb1e5b3599\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_replay.py",
+        "IncrementalPublicationTests"
+      ],
+      "exit": 1,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\publication-checks\\native-green-v1-311-test_v0a_replay.txt",
+      "sha256": "b296c9f70302faf739d4ed798599eeadb601d73539b065597774256a3f80e3fa"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_trace.py",
+        "StableTraceWriterTests"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\publication-checks\\native-green-v1-311-test_v0a_trace.txt",
+      "sha256": "a422e5c094783362cc608af72c7ab4df151ef04bf82cf44ddf5da31287e9ca29"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

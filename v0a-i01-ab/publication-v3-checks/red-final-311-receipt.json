@@ -1,0 +1,53 @@
+{
+  "label": "red-final",
+  "slot": "311",
+  "base": "52bd941e9fa1fb90ff6d2d14df2286e2ee4f4ec8",
+  "snapshot": "D:\\pontius-snapshots\\ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7\\harness",
+  "overlay_sha256": {
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "D:\\pontius-snapshots\\ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7\\temp",
+    "TMP": "D:\\pontius-snapshots\\ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-red-final-53e224b4a0d64cf3bb5db4a09e0822b7\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_replay.py",
+        "IncrementalPublicationTests"
+      ],
+      "exit": 1,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\publication-v3-checks\\red-final-311-test_v0a_replay.txt",
+      "sha256": "f7c2eaf0e5f29f1995701b6a5f92cd3242be1141d0b528d2bc07ead0590c7fe4"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_trace.py",
+        "StableTraceWriterTests"
+      ],
+      "exit": 1,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\publication-v3-checks\\red-final-311-test_v0a_trace.txt",
+      "sha256": "c47cfdb0550a9729a74a2af51a9a52747753be9f73fa1d5a5906e17a8cf1af1a"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

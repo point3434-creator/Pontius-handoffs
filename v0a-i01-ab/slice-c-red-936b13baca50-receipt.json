@@ -1,0 +1,41 @@
+[
+  {
+    "phase": "red",
+    "version": [
+      3,
+      11,
+      15
+    ],
+    "snapshot": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\snapshot-3.11.15",
+    "command": [
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "-B",
+      "-P",
+      "-c",
+      "import sys, os, json, platform, runpy; assert sys.version_info[:3] == (3, 11, 15), sys.version; assert platform.python_implementation() == 'CPython'; assert sys.flags.dont_write_bytecode and sys.flags.safe_path; assert os.getcwd() == 'D:\\\\Pontius-worktrees\\\\slice-c-red-936b13baca50\\\\snapshot-3.11.15'; assert os.environ['PYTHONPATH'] == 'D:\\\\Pontius-worktrees\\\\slice-c-red-936b13baca50\\\\snapshot-3.11.15\\\\src'; print(json.dumps({'executable':sys.executable, 'version':sys.version, 'implementation':platform.python_implementation(), 'cwd':os.getcwd(), 'pythonpath':os.environ['PYTHONPATH'], 'git':os.environ['PONTIUS_GIT'], 'temp':os.environ['TEMP'], 'sys_path':sys.path}), flush=True); sys.argv=['tests/test_v0a_boundaries.py']; runpy.run_path('tests/test_v0a_boundaries.py', run_name='__main__')"
+    ],
+    "environment": {
+      "SYSTEMROOT": "C:\\windows",
+      "WINDIR": "C:\\windows",
+      "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+      "PATH": "C:\\windows\\System32",
+      "TEMP": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\temp",
+      "TMP": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\temp",
+      "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "GIT_CONFIG_GLOBAL": "nul",
+      "PYTHONPATH": "D:\\Pontius-worktrees\\slice-c-red-936b13baca50\\snapshot-3.11.15\\src"
+    },
+    "exit": 1,
+    "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\slice-c-red-936b13baca50-311-test_v0a_boundaries.log",
+    "overlay_sha256": {
+      ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+      "tools/check_stabilization_boundaries.py": "c858bde9cc99654cc46f323bfc8c1c5ab4d45ce7ce9c8b0427f46f2a22125940",
+      "tools/generate_test_inventory.py": "c2a9064a15eb30bec7fc3aebb2f929a4df20879fd1165d839a16efa0009178df",
+      "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+      "tests/test_inventory_and_profiles.py": "2b5730b832c2855483f4ad6b8231be001aee28f1da7a843b6945faeef20f05c2",
+      "tests/test-inventory.json": "5109817c613cc7be1b11201889f45b10f595b0b55135c531284189245f6e660d",
+      "tests/test-profiles.toml": "b7d15dabf3dfa8df072fa4c065220356753083cdb9333449cbdd36137fb65023"
+    }
+  }
+]

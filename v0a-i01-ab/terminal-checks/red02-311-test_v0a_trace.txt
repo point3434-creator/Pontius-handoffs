@@ -1,0 +1,594 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "cwd": "D:\\pontius-snapshots\\ab-terminal-red02-5e5d6244a06d467aab76097b7e0fa460\\harness", "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=1, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0, warn_default_encoding=0, safe_path=True, int_max_str_digits=-1)"}}
+{"trace_module": "D:\\pontius-snapshots\\ab-terminal-red02-5e5d6244a06d467aab76097b7e0fa460\\harness\\src\\pontius\\v0a\\trace.py"}
+terminal clock sweep {"fault_kinds": ["invalid", "reversed", "exception"], "observed_reads": {"event_order": 19, "success": 138}, "preserved_input_primary_controls": 12}
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF...FFFFFFFFF..F..
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='late', prep=None, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='late', prep=None, post=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='late', prep=0.0, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='event_order', prep=None, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='event_order', prep=None, post=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='event_order', prep=0.0, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='invalid_event', prep=None, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='invalid_event', prep=None, post=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='invalid_event', prep=0.0, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='settlement', prep=None, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='settlement', prep=None, post=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='settlement', prep=0.0, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='no_start', prep=None, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='no_start', prep=None, post=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_accounting_complete_requires_both_category_totals_on_failed_hands (__main__.TerminalAdmissionTests.test_accounting_complete_requires_both_category_totals_on_failed_hands) (kind='no_start', prep=0.0, post=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 883, in test_accounting_complete_requires_both_category_totals_on_failed_hands
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='success', flags=(False, False, False))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='success', flags=(False, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='success', flags=(True, False, False))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='success', flags=(True, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='interrupted', flags=(False, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='interrupted', flags=(True, False, False))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='interrupted', flags=(True, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='unknown', flags=(False, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='unknown', flags=(True, False, False))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='unknown', flags=(True, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='rejected', flags=(False, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='rejected', flags=(True, False, False))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_all_flag_combinations_for_real_outcome_variants (__main__.TerminalAdmissionTests.test_all_flag_combinations_for_real_outcome_variants) (kind='rejected', flags=(True, False, True))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 849, in test_all_flag_combinations_for_real_outcome_variants
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='invalid', position=16)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='invalid', position=17)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='invalid', position=18)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='invalid', position=19)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='reversed', position=16)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='reversed', position=17)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='reversed', position=18)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='reversed', position=19)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='exception', position=16)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='exception', position=17)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='exception', position=18)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes (__main__.TerminalAdmissionTests.test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes) (kind='event_order', fault='exception', position=19)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1020, in test_every_observed_normal_and_rejected_input_clock_read_preserves_prefixes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='late', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='late', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='late', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='interrupted', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='interrupted', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='interrupted', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='unknown', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='unknown', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='unknown', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='rejected', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='rejected', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='rejected', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='no_start', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='no_start', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='no_start', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='event_order', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='event_order', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='event_order', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='invalid_event', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='invalid_event', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='invalid_event', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='settlement', mutation='settlement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='settlement', mutation='erased')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_source_cause_survives_later_real_adapter_outcomes (__main__.TerminalAdmissionTests.test_source_cause_survives_later_real_adapter_outcomes) (fault='invalid', finish='acknowledge')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 949, in test_source_cause_survives_later_real_adapter_outcomes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_source_cause_survives_later_real_adapter_outcomes (__main__.TerminalAdmissionTests.test_source_cause_survives_later_real_adapter_outcomes) (fault='invalid', finish='raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 949, in test_source_cause_survives_later_real_adapter_outcomes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_source_cause_survives_later_real_adapter_outcomes (__main__.TerminalAdmissionTests.test_source_cause_survives_later_real_adapter_outcomes) (fault='invalid', finish='reject')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 949, in test_source_cause_survives_later_real_adapter_outcomes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_source_cause_survives_later_real_adapter_outcomes (__main__.TerminalAdmissionTests.test_source_cause_survives_later_real_adapter_outcomes) (fault='reversed', finish='acknowledge')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 949, in test_source_cause_survives_later_real_adapter_outcomes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_source_cause_survives_later_real_adapter_outcomes (__main__.TerminalAdmissionTests.test_source_cause_survives_later_real_adapter_outcomes) (fault='reversed', finish='raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 949, in test_source_cause_survives_later_real_adapter_outcomes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_source_cause_survives_later_real_adapter_outcomes (__main__.TerminalAdmissionTests.test_source_cause_survives_later_real_adapter_outcomes) (fault='reversed', finish='reject')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 949, in test_source_cause_survives_later_real_adapter_outcomes
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_unknown_delivery_forces_flags_even_without_a_started_timing_record (__main__.TerminalAdmissionTests.test_unknown_delivery_forces_flags_even_without_a_started_timing_record) (complete=True, accounting=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 901, in test_unknown_delivery_forces_flags_even_without_a_started_timing_record
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_unknown_delivery_forces_flags_even_without_a_started_timing_record (__main__.TerminalAdmissionTests.test_unknown_delivery_forces_flags_even_without_a_started_timing_record) (complete=False, accounting=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 901, in test_unknown_delivery_forces_flags_even_without_a_started_timing_record
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_unknown_delivery_forces_flags_even_without_a_started_timing_record (__main__.TerminalAdmissionTests.test_unknown_delivery_forces_flags_even_without_a_started_timing_record) (complete=True, accounting=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 901, in test_unknown_delivery_forces_flags_even_without_a_started_timing_record
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_private_pair_order_and_all_starting_value_domains (__main__.EventConstructorAdmissionTests.test_private_pair_order_and_all_starting_value_domains) (field='private_cards', value=[45, 32])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1090, in test_private_pair_order_and_all_starting_value_domains
+    self.assert_bad_event("hand_started", **{field: value})
+  File "tests/test_v0a_trace.py", line 1062, in assert_bad_event
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.657s
+
+FAILED (failures=73)

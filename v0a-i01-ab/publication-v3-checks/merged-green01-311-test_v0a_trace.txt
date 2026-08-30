@@ -1,0 +1,54 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+terminal clock sweep {"fault_kinds": ["invalid", "reversed", "exception"], "observed_reads": {"event_order": 31, "success": 244}, "preserved_input_primary_controls": 24}
+..................................FEFE.E............
+======================================================================
+ERROR: test_prefailed_witness_and_opposing_host_only_source_body_causes (__main__.TerminalAdmissionTests.test_prefailed_witness_and_opposing_host_only_source_body_causes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 970, in test_prefailed_witness_and_opposing_host_only_source_body_causes
+    self.assertEqual(parsed.failures[0]["code"], "clock_invalid")
+                     ~~~~~~~~~~~~~~~^^^
+IndexError: tuple index out of range
+
+======================================================================
+ERROR: test_real_outcome_controls_preserve_delivery_timing_and_terminal_fields (__main__.TerminalAdmissionTests.test_real_outcome_controls_preserve_delivery_timing_and_terminal_fields) (kind='no_start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 808, in test_real_outcome_controls_preserve_delivery_timing_and_terminal_fields
+    failure = parsed.failures[0]
+              ~~~~~~~~~~~~~~~^^^
+IndexError: tuple index out of range
+
+======================================================================
+ERROR: test_unknown_delivery_forces_flags_even_without_a_started_timing_record (__main__.TerminalAdmissionTests.test_unknown_delivery_forces_flags_even_without_a_started_timing_record) (complete=False, accounting=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 904, in test_unknown_delivery_forces_flags_even_without_a_started_timing_record
+    parsed = parse_trace(self.encode(rows))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-merged-green01-5bc3f0dcf6d24812a5881537623bbd65\harness\src\pontius\v0a\trace.py", line 1069, in parse_trace
+    _require_keys(row, _TERMINAL_KEYS, label="terminal")
+  File "D:\pontius-snapshots\ab-merged-green01-5bc3f0dcf6d24812a5881537623bbd65\harness\src\pontius\v0a\trace.py", line 656, in _require_keys
+    raise TraceInvalidError(f"{label} row has unknown keys: {sorted(unknown)}")
+pontius.v0a.trace.TraceInvalidError: terminal row has unknown keys: ['code', 'delivery_status']
+
+======================================================================
+FAIL: test_failed_settlement_and_erased_or_replaced_primary_are_refused (__main__.TerminalAdmissionTests.test_failed_settlement_and_erased_or_replaced_primary_are_refused) (kind='no_start', mutation='replaced')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 869, in test_failed_settlement_and_erased_or_replaced_primary_are_refused
+    with self.assertRaises(TraceInvalidError):
+AssertionError: TraceInvalidError not raised
+
+======================================================================
+FAIL: test_real_host_write_failure_keeps_prepublication_trace_inspectable (__main__.TerminalAdmissionTests.test_real_host_write_failure_keeps_prepublication_trace_inspectable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_trace.py", line 1044, in test_real_host_write_failure_keeps_prepublication_trace_inspectable
+    self.assertTrue(parsed.terminal["passed"])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 52 tests in 3.299s
+
+FAILED (failures=2, errors=3)

@@ -1,0 +1,36 @@
+{
+  "schema_version": "slice-c-replay-working-bytes-v1",
+  "source": "D:/Pontius-worktrees/v0a-slice-c",
+  "target": "D:/Pontius-worktrees/codex-v0a-i01-c-integration",
+  "base": "6cdf7b00dac653a9a295bbb86cdc3b5782317491",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386"
+    },
+    {
+      "path": "tools/check_stabilization_boundaries.py",
+      "sha256": "c858bde9cc99654cc46f323bfc8c1c5ab4d45ce7ce9c8b0427f46f2a22125940"
+    },
+    {
+      "path": "tools/generate_test_inventory.py",
+      "sha256": "c2a9064a15eb30bec7fc3aebb2f929a4df20879fd1165d839a16efa0009178df"
+    },
+    {
+      "path": "tests/test_v0a_boundaries.py",
+      "sha256": "2f16104d11bb3a0367c0082c68df6e94b2fbee04b10702357de8760360d19373"
+    },
+    {
+      "path": "tests/test_inventory_and_profiles.py",
+      "sha256": "2b5730b832c2855483f4ad6b8231be001aee28f1da7a843b6945faeef20f05c2"
+    },
+    {
+      "path": "tests/test-inventory.json",
+      "sha256": "5109817c613cc7be1b11201889f45b10f595b0b55135c531284189245f6e660d"
+    },
+    {
+      "path": "tests/test-profiles.toml",
+      "sha256": "b7d15dabf3dfa8df072fa4c065220356753083cdb9333449cbdd36137fb65023"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "label": "green-native-v2",
+  "slot": "311",
+  "base": "30df7bce8da51715e6f1d7576892dd689421c516",
+  "snapshot": "D:\\pontius-snapshots\\ab-green-native-v2-613f708620f044ac906f3260cf83990b\\harness",
+  "overlay_sha256": {
+    "src/pontius/v0a/trace.py": "37ee01be7e1a1db9d5e8405853362a001a962af736403a2392d8008d148f5904",
+    "tests/test_v0a_trace.py": "588c64e659905a2b065cb28bea92fec17ce48d7e669ac4418fa77a44d39941e6"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-green-native-v2-613f708620f044ac906f3260cf83990b\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_trace.py",
+        "StableTraceWriterTests"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\publication-checks\\green-native-v2-311-test_v0a_trace.txt",
+      "sha256": "b6489b35a7ce7c19fd06dc605b1c78bfb0ae9dabb6de798a4cb5d1ef93452d43"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

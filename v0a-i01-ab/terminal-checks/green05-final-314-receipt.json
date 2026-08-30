@@ -1,0 +1,97 @@
+{
+  "label": "green05-final",
+  "slot": "314",
+  "scope": "full",
+  "base": "6cdf7b00dac653a9a295bbb86cdc3b5782317491",
+  "snapshot": "D:\\pontius-snapshots\\ab-terminal-green05-final-c4a5756c013c437193b593857f8bb9fe\\harness",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-terminal",
+  "allowed_paths": [
+    "src/pontius/v0a/trace.py",
+    "tests/test_v0a_trace.py"
+  ],
+  "overlaid_paths": [
+    "src/pontius/v0a/trace.py",
+    "tests/test_v0a_trace.py"
+  ],
+  "executed_file_sha256": {
+    "src/pontius/v0a/trace.py": "df742bcf7d516d31a9e155bdd55d68fa85847d83c2c47c23942f914ad5dc1e9c",
+    "tests/test_v0a_trace.py": "0aadfeb915d530048a4bf8f3b117cc922826d4731f3ebe00dc2a52fc65d7bbc8"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-terminal-green05-final-c4a5756c013c437193b593857f8bb9fe\\harness\\src",
+    "PYTHONNOUSERSITE": "1",
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import json,os,platform,runpy,sys\nfrom pathlib import Path\nexe,version,snapshot,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert platform.python_version()==version and sys.implementation.name=='cpython'\nassert sys.flags.safe_path and sys.flags.dont_write_bytecode and sys.flags.no_user_site\nassert Path.cwd()==Path(snapshot) and os.environ['PYTHONPATH']==str(Path(snapshot)/'src')\nprint(json.dumps({'identity_before_payload_import':dict(executable=sys.executable,\n    version=sys.version,cwd=os.getcwd(),flags=str(sys.flags))}),flush=True)\nimport pontius.v0a.trace as trace\nassert Path(trace.__file__).resolve()==Path(snapshot,'src/pontius/v0a/trace.py').resolve()\nprint(json.dumps({'trace_module':trace.__file__}),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "3.14.6",
+        "D:\\pontius-snapshots\\ab-terminal-green05-final-c4a5756c013c437193b593857f8bb9fe\\harness",
+        "tests/test_v0a_hand_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\green05-final-314-test_v0a_hand_replay.txt",
+      "sha256": "297995b4f927f4dc7333d02f833968cb33be5fad48c1b0fb557c9d5368adc922"
+    },
+    {
+      "command": [
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import json,os,platform,runpy,sys\nfrom pathlib import Path\nexe,version,snapshot,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert platform.python_version()==version and sys.implementation.name=='cpython'\nassert sys.flags.safe_path and sys.flags.dont_write_bytecode and sys.flags.no_user_site\nassert Path.cwd()==Path(snapshot) and os.environ['PYTHONPATH']==str(Path(snapshot)/'src')\nprint(json.dumps({'identity_before_payload_import':dict(executable=sys.executable,\n    version=sys.version,cwd=os.getcwd(),flags=str(sys.flags))}),flush=True)\nimport pontius.v0a.trace as trace\nassert Path(trace.__file__).resolve()==Path(snapshot,'src/pontius/v0a/trace.py').resolve()\nprint(json.dumps({'trace_module':trace.__file__}),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "3.14.6",
+        "D:\\pontius-snapshots\\ab-terminal-green05-final-c4a5756c013c437193b593857f8bb9fe\\harness",
+        "tests/test_v0a_trace.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\green05-final-314-test_v0a_trace.txt",
+      "sha256": "2f3c207d0527115332a8ce76be83208cdee5ceaa925f6010b5d74dee3f32384e"
+    },
+    {
+      "command": [
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import json,os,platform,runpy,sys\nfrom pathlib import Path\nexe,version,snapshot,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert platform.python_version()==version and sys.implementation.name=='cpython'\nassert sys.flags.safe_path and sys.flags.dont_write_bytecode and sys.flags.no_user_site\nassert Path.cwd()==Path(snapshot) and os.environ['PYTHONPATH']==str(Path(snapshot)/'src')\nprint(json.dumps({'identity_before_payload_import':dict(executable=sys.executable,\n    version=sys.version,cwd=os.getcwd(),flags=str(sys.flags))}),flush=True)\nimport pontius.v0a.trace as trace\nassert Path(trace.__file__).resolve()==Path(snapshot,'src/pontius/v0a/trace.py').resolve()\nprint(json.dumps({'trace_module':trace.__file__}),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "3.14.6",
+        "D:\\pontius-snapshots\\ab-terminal-green05-final-c4a5756c013c437193b593857f8bb9fe\\harness",
+        "tests/test_v0a_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\green05-final-314-test_v0a_replay.txt",
+      "sha256": "8d4a8402c69e6dcd3b5634a707b19fcb38a75ad50bf31402dab485f6adc1f03f"
+    },
+    {
+      "command": [
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import json,os,platform,runpy,sys\nfrom pathlib import Path\nexe,version,snapshot,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert platform.python_version()==version and sys.implementation.name=='cpython'\nassert sys.flags.safe_path and sys.flags.dont_write_bytecode and sys.flags.no_user_site\nassert Path.cwd()==Path(snapshot) and os.environ['PYTHONPATH']==str(Path(snapshot)/'src')\nprint(json.dumps({'identity_before_payload_import':dict(executable=sys.executable,\n    version=sys.version,cwd=os.getcwd(),flags=str(sys.flags))}),flush=True)\nimport pontius.v0a.trace as trace\nassert Path(trace.__file__).resolve()==Path(snapshot,'src/pontius/v0a/trace.py').resolve()\nprint(json.dumps({'trace_module':trace.__file__}),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:/Pontius/.venv/Scripts/python.exe",
+        "3.14.6",
+        "D:\\pontius-snapshots\\ab-terminal-green05-final-c4a5756c013c437193b593857f8bb9fe\\harness",
+        "tests/test_v0a_contract_faults.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\green05-final-314-test_v0a_contract_faults.txt",
+      "sha256": "8402ebf9a2145d5dfe882a7b1013cbd13bc21d6c8014ef5543500564f5cf1aa6"
+    }
+  ],
+  "executed_bytes_unchanged": true
+}

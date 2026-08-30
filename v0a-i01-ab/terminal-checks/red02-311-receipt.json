@@ -1,0 +1,50 @@
+{
+  "label": "red02",
+  "slot": "311",
+  "scope": "regressions",
+  "base": "6cdf7b00dac653a9a295bbb86cdc3b5782317491",
+  "snapshot": "D:\\pontius-snapshots\\ab-terminal-red02-5e5d6244a06d467aab76097b7e0fa460\\harness",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-terminal",
+  "allowed_paths": [
+    "src/pontius/v0a/trace.py",
+    "tests/test_v0a_trace.py"
+  ],
+  "overlaid_paths": [
+    "tests/test_v0a_trace.py"
+  ],
+  "executed_file_sha256": {
+    "src/pontius/v0a/trace.py": "ccf1f00187fe00b9d907f002c9231fb72656160b0a7b2ff51a5ee2d137f86698",
+    "tests/test_v0a_trace.py": "15c80f861adb566692145f3ebc94d4eb6c7f4c33c7abab9a7b74c707f01af8e1"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-terminal-red02-5e5d6244a06d467aab76097b7e0fa460\\harness\\src",
+    "PYTHONNOUSERSITE": "1",
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:/Pontius-tools/py311/Scripts/python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import json,os,platform,runpy,sys\nfrom pathlib import Path\nexe,version,snapshot,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert platform.python_version()==version and sys.implementation.name=='cpython'\nassert sys.flags.safe_path and sys.flags.dont_write_bytecode and sys.flags.no_user_site\nassert Path.cwd()==Path(snapshot) and os.environ['PYTHONPATH']==str(Path(snapshot)/'src')\nprint(json.dumps({'identity_before_payload_import':dict(executable=sys.executable,\n    version=sys.version,cwd=os.getcwd(),flags=str(sys.flags))}),flush=True)\nimport pontius.v0a.trace as trace\nassert Path(trace.__file__).resolve()==Path(snapshot,'src/pontius/v0a/trace.py').resolve()\nprint(json.dumps({'trace_module':trace.__file__}),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:/Pontius-tools/py311/Scripts/python.exe",
+        "3.11.15",
+        "D:\\pontius-snapshots\\ab-terminal-red02-5e5d6244a06d467aab76097b7e0fa460\\harness",
+        "tests/test_v0a_trace.py",
+        "TerminalAdmissionTests",
+        "EventConstructorAdmissionTests"
+      ],
+      "exit": 1,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\red02-311-test_v0a_trace.txt",
+      "sha256": "e475ff815dad642a4b422b6d78cbd936a7d5b95380d7b627f74fc5fc6c8033b5"
+    }
+  ],
+  "executed_bytes_unchanged": true
+}

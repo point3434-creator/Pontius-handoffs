@@ -1,0 +1,24 @@
+{
+  "snapshot": "D:\\pontius-snapshots\\ab-c-policy-babd751c90aa4dafab981d3f729c5086",
+  "base": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+  "overlay_sha256": {
+    "tools/check_stabilization_boundaries.py": "c858bde9cc99654cc46f323bfc8c1c5ab4d45ce7ce9c8b0427f46f2a22125940",
+    "tests/test_v0a_boundaries.py": "2f16104d11bb3a0367c0082c68df6e94b2fbee04b10702357de8760360d19373"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\slice-c-checks\\policy-symbol-probe.py"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-c-policy-babd751c90aa4dafab981d3f729c5086\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "exit": 0,
+  "log_sha256": "2d6351fafabb39d39cc247752d1e3f4a0c833cd089436070125e05375de09433"
+}

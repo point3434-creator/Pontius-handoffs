@@ -1,0 +1,30 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFF
+======================================================================
+FAIL: test_every_real_serializer_and_semantic_cost_is_measured (__main__.IncrementalPublicationTests.test_every_real_serializer_and_semantic_cost_is_measured)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1346, in test_every_real_serializer_and_semantic_cost_is_measured
+    self.assertEqual(terminal["preparation_compute_seconds"]
+AssertionError: 0.0 != 31.0
+
+======================================================================
+FAIL: test_first_required_write_failure_stops_before_second_action (__main__.IncrementalPublicationTests.test_first_required_write_failure_stops_before_second_action)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1398, in test_first_required_write_failure_stops_before_second_action
+    self.assertEqual(len(host.mailbox.accepted), 1)
+AssertionError: 4 != 1
+
+======================================================================
+FAIL: test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned (__main__.IncrementalPublicationTests.test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1386, in test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned
+    self.assertTrue(all(observations))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.026s
+
+FAILED (failures=3)

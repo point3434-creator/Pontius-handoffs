@@ -1,0 +1,26 @@
+{
+  "base": "6cdf7b00dac653a9a295bbb86cdc3b5782317491",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-terminal",
+  "files_sha256": {
+    "src/pontius/v0a/trace.py": "df742bcf7d516d31a9e155bdd55d68fa85847d83c2c47c23942f914ad5dc1e9c",
+    "tests/test_v0a_trace.py": "0aadfeb915d530048a4bf8f3b117cc922826d4731f3ebe00dc2a52fc65d7bbc8"
+  },
+  "artifacts_sha256": {
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-implementation.patch": "a637e9ab7feaf3501601229daa2c6111733d017a11fb76060375bf214e3f7e81",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-implementation-report.md": "4138b436ea007fff281aab4b713e73745ed4799531df51f6d3584277d7b649bb",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\run-terminal-focused.py": "e264651499b3b72bf3f1e757e5e26ae65ec1e1969d0179ff5e982f0bbfa6877b",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-plan-execution.md": "13cabe9b4435e6d15ad7b7285c46b49abe4222c6122788820e32aee7a5e32bd6",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\red02-311-receipt.json": "20683d271a412e6bd7445a58d65bd819cbc710634eecf17232c436d19608269f",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\green04-final-311-receipt.json": "4a7bf4d2a5cd0ca4a3bde388b3032fa82a3778f4b0ab507f0d210dad9fec1d57",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\terminal-checks\\green05-final-314-receipt.json": "c41e3b1aa416d5cded5810cac701e35a732f69316970cc4d8019a1001626e267"
+  },
+  "patch_check_base_snapshot": "D:\\pontius-snapshots\\ab-terminal-baseline01-bc5da91cab464e4ba43b19907f2a03a1\\harness",
+  "patch_check_exit": 0,
+  "diff_check_exit": 0,
+  "only_allowed_files_changed": true,
+  "no_untracked": true,
+  "final_test_bytes_match": true,
+  "final_log_hashes_verified": true,
+  "added_lines_at_most100": true,
+  "lf_bom_and_syntax_checks": true
+}

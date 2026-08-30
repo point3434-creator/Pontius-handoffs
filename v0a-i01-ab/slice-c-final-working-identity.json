@@ -1,0 +1,53 @@
+{
+  "base": "6cdf7b00dac653a9a295bbb86cdc3b5782317491",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-c-integration",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "initial_sha256": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+      "final_sha256": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+      "changed_after_replay": false
+    },
+    {
+      "path": "tools/check_stabilization_boundaries.py",
+      "initial_sha256": "c858bde9cc99654cc46f323bfc8c1c5ab4d45ce7ce9c8b0427f46f2a22125940",
+      "final_sha256": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+      "changed_after_replay": true
+    },
+    {
+      "path": "tools/generate_test_inventory.py",
+      "initial_sha256": "c2a9064a15eb30bec7fc3aebb2f929a4df20879fd1165d839a16efa0009178df",
+      "final_sha256": "c2a9064a15eb30bec7fc3aebb2f929a4df20879fd1165d839a16efa0009178df",
+      "changed_after_replay": false
+    },
+    {
+      "path": "tests/test_v0a_boundaries.py",
+      "initial_sha256": "2f16104d11bb3a0367c0082c68df6e94b2fbee04b10702357de8760360d19373",
+      "final_sha256": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+      "changed_after_replay": true
+    },
+    {
+      "path": "tests/test_inventory_and_profiles.py",
+      "initial_sha256": "2b5730b832c2855483f4ad6b8231be001aee28f1da7a843b6945faeef20f05c2",
+      "final_sha256": "2b5730b832c2855483f4ad6b8231be001aee28f1da7a843b6945faeef20f05c2",
+      "changed_after_replay": false
+    },
+    {
+      "path": "tests/test-inventory.json",
+      "initial_sha256": "5109817c613cc7be1b11201889f45b10f595b0b55135c531284189245f6e660d",
+      "final_sha256": "5109817c613cc7be1b11201889f45b10f595b0b55135c531284189245f6e660d",
+      "changed_after_replay": false
+    },
+    {
+      "path": "tests/test-profiles.toml",
+      "initial_sha256": "b7d15dabf3dfa8df072fa4c065220356753083cdb9333449cbdd36137fb65023",
+      "final_sha256": "b7d15dabf3dfa8df072fa4c065220356753083cdb9333449cbdd36137fb65023",
+      "changed_after_replay": false
+    }
+  ],
+  "source_unchanged": true,
+  "working_rows_sha256": "8abf34927f09fb4352fbe5ba1a6afdc966e01d1d1bab3c3c245ad2159fcd2e91",
+  "patch_sha256": "d15a8f53e6e72073f16218fdf20ccf4351d7e686d94098f9a22c1eae9e007040",
+  "patch_bytes": 3315148,
+  "governance_regenerated": false
+}

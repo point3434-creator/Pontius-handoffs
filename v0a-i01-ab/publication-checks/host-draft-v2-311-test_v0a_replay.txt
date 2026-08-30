@@ -1,0 +1,430 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+.FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF...............................F........F.....
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1298, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(len(outcome.decisions), 4 if fixture is FIXTURE_A else 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='invalid', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>,) != (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='invalid', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[36 chars]id'>,) != (<Fai[36 chars]id'>, <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='exception', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>,) != (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='exception', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[36 chars]id'>,) != (<Fai[36 chars]id'>, <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='reversed', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[26 chars]clock_reversed'>,) != (<Fai[26 chars]clock_reversed'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
+?                                                 -
+
++ (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='reversed', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[38 chars]ed'>,) != (<Fai[38 chars]ed'>, <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
+?                                                 -
+
++ (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='invalid', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>,) != (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='invalid', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[36 chars]id'>,) != (<Fai[36 chars]id'>, <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='exception', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>,) != (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='exception', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[36 chars]id'>,) != (<Fai[36 chars]id'>, <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               -
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='reversed', mode='independent_clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[26 chars]clock_reversed'>,) != (<Fai[26 chars]clock_reversed'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
+?                                                 -
+
++ (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='reversed', mode='independent_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[38 chars]ed'>,) != (<Fai[38 chars]ed'>, <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
+?                                                 -
+
++ (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+
+======================================================================
+FAIL: test_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary (__main__.R3_02TypedClosureCauseTests.test_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 599, in test_a_clock_fault_before_a_mismatch_keeps_the_clock_as_primary
+    self.assertIs(receipt.failure_reason, FailureCode.CLOCK_INVALID)
+AssertionError: <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'> is not <FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+======================================================================
+FAIL: test_a_write_failure_after_delivery_is_the_first_cause (__main__.TraceAndAccountingTests.test_a_write_failure_after_delivery_is_the_first_cause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 337, in test_a_write_failure_after_delivery_is_the_first_cause
+    self.assertEqual(
+AssertionError: 1 != 4
+
+----------------------------------------------------------------------
+Ran 49 tests in 2.311s
+
+FAILED (failures=38)

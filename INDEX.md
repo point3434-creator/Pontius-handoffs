@@ -24,6 +24,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-ab | r003 | [Disposition](v0a-i01-ab/r003/disposition.md) | Typed-refusal correction CLEAN/SOUND twice; 132 focused plus independent malformed-context campaigns on both interpreters |
 | v0a-i01-ab | r004 | [Disposition](v0a-i01-ab/r004/disposition.md) | Value admission CLEAN/SOUND twice; 137 focused plus independent ingress probes on both interpreters |
 | v0a-i01-ab | r005 | [Disposition](v0a-i01-ab/r005/disposition.md) | NOT CLEAN/STRAINED: failed-terminal implications and private-pair order; legal checker/oracle controls pass; Codex correcting locally |
+| v0a-i01-ab | r006 | [Handoff](v0a-i01-ab/r006/handoff.md) | Parser follow-up frozen; 168 focused on each interpreter; two independent cold reviews running |
 | coverage-guidance | r001 | [Disposition](coverage-guidance/r001/disposition.md) | NOT CLEAN: coverage-only closure loop; corrected in r002 |
 | coverage-guidance | r002 | [Disposition](coverage-guidance/r002/disposition.md) | CLEAN: category/discovery guidance and templates; independent evidence closure; source uncommitted, pending design edits excluded |
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |

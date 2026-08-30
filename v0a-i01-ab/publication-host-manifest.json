@@ -1,0 +1,17 @@
+{
+  "base": "30df7bce8da51715e6f1d7576892dd689421c516",
+  "worker_paths": {
+    "src/pontius/v0a/runtime.py": "619efc71eae7f1768c8e63922d81f40a6ba2359632401991a91c0ccba4b88e71",
+    "src/pontius/v0a/replay.py": "18aded14503774a89097de6efec847ec16afba908d9def35dbbf9ad84e689f0e",
+    "tests/test_v0a_replay.py": "ebe1673d64867d4ec7fd6a4502dbc7456375660f0d97f6230a675441f53471e6"
+  },
+  "tested_overlay": {
+    "src/pontius/v0a/runtime.py": "619efc71eae7f1768c8e63922d81f40a6ba2359632401991a91c0ccba4b88e71",
+    "src/pontius/v0a/replay.py": "18aded14503774a89097de6efec847ec16afba908d9def35dbbf9ad84e689f0e",
+    "src/pontius/v0a/trace.py": "37ee01be7e1a1db9d5e8405853362a001a962af736403a2392d8008d148f5904",
+    "tests/test_v0a_replay.py": "ebe1673d64867d4ec7fd6a4502dbc7456375660f0d97f6230a675441f53471e6",
+    "tests/test_v0a_trace.py": "588c64e659905a2b065cb28bea92fec17ce48d7e669ac4418fa77a44d39941e6"
+  },
+  "patch_sha256": "ec18632da01b5e2ee1b146bc0bcb2c5db79aab35f50bd59e3a6d3f122437d956",
+  "status": "unfrozen worker draft"
+}

@@ -1,0 +1,26 @@
+{
+  "resolution": "All three conflicts were independent additions with empty ancestor sections; retain both sides.",
+  "preserved": [
+    {
+      "path": "src/pontius/v0a/replay.py",
+      "unchanged_ast": [
+        "chip_depth_settlement",
+        "_owned_expected_fixture",
+        "verify_successful_trace",
+        "_replay_parsed_success"
+      ]
+    },
+    {
+      "path": "tests/test_v0a_replay.py",
+      "unchanged_ast": [
+        "AcceptingReplayTests"
+      ]
+    },
+    {
+      "path": "tests/test_v0a_trace.py",
+      "unchanged_ast": [
+        "TraceSchemaRegressionTests"
+      ]
+    }
+  ]
+}
