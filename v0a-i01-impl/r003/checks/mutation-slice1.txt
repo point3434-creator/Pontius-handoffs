@@ -1,0 +1,21 @@
+[baseline] exit=0 OK
+[CAUGHT] R2-01: admission accepts any object
+[CAUGHT] R2-01: subclass override can intercept the lookup
+[CAUGHT] R2-02: boundary snapshot truths discarded
+[CAUGHT] R2-02: established deadline not latched
+[CAUGHT] R2-08: accepted deliveries not counted
+[SURVIVED] R2-03: dead clock still treated as measurable
+[SURVIVED] R2-03: finalization ignores a dead clock
+[SURVIVED] R2-03: incomplete accounting still reports success
+[CAUGHT] R2-07: final stacks not compared
+[CAUGHT] R2-07: pot eligibility not compared
+[CAUGHT] R2-08: host reverts to counting successes
+[restored] exit=0 OK
+
+Combined-guard probe (run separately, both host accounting guards removed at
+once -- the only mutation that can actually defeat the R2-03 protection):
+[BOTH host accounting guards removed] CAUGHT - FAILED (failures=2)
+
+The three single-guard R2-03 survivors above are therefore confirmed
+redundancy: each survives only because the other guard still enforces the
+outcome. They are not uncovered behaviour.
