@@ -12,7 +12,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-prereg | r003 | [Legacy candidate](../Pontius-worktrees/v0a-increment-1-preregistration-review/r3-candidate.json) | Preserved; a generated-link check failed |
 | v0a-i01-prereg | r004 | [Handoff](v0a-i01-prereg/r004/handoff.md) | Rejected: manifest row ordering; source bytes unchanged |
 | v0a-i01-prereg | r005 | [Handoff](v0a-i01-prereg/r005/handoff.md) | Integrated and pushed as 111807b; three CLEAN reviews; scoped checks pass on 3.11/3.14; review refs safely retired |
-| v0a-i01-impl | r001 | [Handoff](v0a-i01-impl/r001/handoff.md) | Slice A (hand core) frozen 2026-08-30; focused GREEN on 3.11/3.14 from disposable snapshots; awaiting cold review |
+| v0a-i01-impl | r001 | [Handoff](v0a-i01-impl/r001/handoff.md) | Slice A NOT CLEAN; seven consolidated findings; reproduced on 3.11/3.14; fix-round brief in disposition.md; Claude finalizes |
 
 The existing task verdict ledger remains at
 [its original location](../Pontius-worktrees/v0a-increment-1-preregistration-review/progress.md).

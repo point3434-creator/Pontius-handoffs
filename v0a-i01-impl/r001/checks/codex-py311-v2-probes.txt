@@ -1,0 +1,105 @@
+{
+  "invalid_initial_clock": {
+    "escaped_exception": "ClockInvalidError",
+    "message": "monotonic witness returned an invalid value"
+  },
+  "invalid_later_boundary_clock": {
+    "escaped_exception": "ClockInvalidError",
+    "message": "monotonic witness returned an invalid value"
+  },
+  "reveal_work_before_wall": {
+    "status": "decided",
+    "code": null,
+    "delivery": null,
+    "elapsed_ns": 0,
+    "wall_start_ns": 16000001000,
+    "deadline_crossed": false,
+    "event_arrival_ns": 1000,
+    "injected_delay_ns": 16000000000,
+    "real_mailbox_acceptances": 2
+  },
+  "repeated_showdown": {
+    "first": {
+      "status": "accepted",
+      "code": null,
+      "delivery": null,
+      "elapsed_ns": null,
+      "wall_start_ns": null,
+      "deadline_crossed": null
+    },
+    "complete_before_second": true,
+    "second": {
+      "status": "accepted",
+      "code": null,
+      "delivery": null,
+      "elapsed_ns": null,
+      "wall_start_ns": null,
+      "deadline_crossed": null
+    },
+    "first_payouts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      12
+    ],
+    "second_payouts": [
+      12,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "clock_exception_after_acceptance": {
+    "status": "failed",
+    "code": "clock_invalid",
+    "delivery": "not_attempted",
+    "elapsed_ns": null,
+    "wall_start_ns": null,
+    "deadline_crossed": null,
+    "real_mailbox_acceptances": 1,
+    "delivered_action": "None"
+  },
+  "missing_delivery_acknowledgement": {
+    "status": "decided",
+    "code": null,
+    "delivery": null,
+    "elapsed_ns": 0,
+    "wall_start_ns": 1000,
+    "deadline_crossed": false
+  },
+  "blueprint_identity_swap": {
+    "status": "decided",
+    "code": null,
+    "delivery": null,
+    "elapsed_ns": 0,
+    "wall_start_ns": 1000,
+    "deadline_crossed": false,
+    "initial_digest": "b189570fcb7ea6779bc6aaa4b51fb6819d473cc0ecc890a3681ca1ed1b2aa33e",
+    "record_digest": "c7910df470560f8d3b79363107a311708b2d5bbdc6bcf42b73c9aeb10db6d060",
+    "replacement_digest": "c7910df470560f8d3b79363107a311708b2d5bbdc6bcf42b73c9aeb10db6d060"
+  },
+  "third_read_clock_failure": {
+    "status": "failed",
+    "code": "clock_invalid",
+    "delivery": "not_attempted",
+    "elapsed_ns": null,
+    "wall_start_ns": null,
+    "deadline_crossed": null,
+    "timing_present": false
+  },
+  "established_cutoff_lost": {
+    "status": "failed",
+    "code": "clock_invalid",
+    "delivery": "accepted",
+    "elapsed_ns": null,
+    "wall_start_ns": 1000,
+    "deadline_crossed": null,
+    "work_cutoff_crossed": null,
+    "real_mailbox_acceptances": 1,
+    "injected_decision_work_ns": 14000000001
+  }
+}

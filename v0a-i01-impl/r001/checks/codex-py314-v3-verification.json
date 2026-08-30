@@ -1,0 +1,47 @@
+{
+  "candidate": "2d059f90fb6cec27e4090ad0432c68759a760960",
+  "manifest_sha256": "fc090d962a914b41dec932f21a6c8421499191ccac9dca40363a078cbba95b0c",
+  "snapshot": "D:\\pontius-snapshots\\v0a-i01-slice-a-cd6164a4b0664c3baf87a451cfcd2686\\harness",
+  "identity": {
+    "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "full_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "version": [
+      3,
+      14,
+      6
+    ]
+  },
+  "identity_asserted_before_payload_import": true,
+  "import_provenance": {
+    "runtime_file": "D:\\pontius-snapshots\\v0a-i01-slice-a-cd6164a4b0664c3baf87a451cfcd2686\\harness\\src\\pontius\\v0a\\runtime.py",
+    "tracked_dependency_imports": [
+      "numpy"
+    ]
+  },
+  "snapshot_pristine": true,
+  "results": [
+    {
+      "argv": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_hand_replay.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r001\\checks\\codex-py314-v3-suite.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-impl\\r001\\checks\\codex_adversarial_probes_v3.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r001\\checks\\codex-py314-v3-probes.txt"
+    }
+  ],
+  "scope": "Slice A correctness suite and bounded public-boundary diagnostics; no broad suite or experiment"
+}
