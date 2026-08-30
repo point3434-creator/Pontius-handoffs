@@ -1,0 +1,12 @@
+[baseline] exit=0 OK
+[CAUGHT] owner stops journalling its body cause
+[CAUGHT] body-origin clock faults lose their true type
+[CAUGHT] host bypasses the owner for a raw interval
+[CAUGHT] R-A inverted: cleanup before its own cause
+[CAUGHT] journal silently deduplicates
+[CAUGHT] echo rule removed: dead-clock echoes recorded
+[CAUGHT] abort seam never records
+[CAUGHT] boundary-acquisition faults never record
+[CAUGHT] pre-boundary rejects never record
+[CAUGHT] later causes discarded
+[restored] exit=0 OK

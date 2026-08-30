@@ -1,0 +1,4 @@
+R2_03BodyOwnershipTests.test_a_raised_body_error_precedes_its_cleanup_fault RED (as required)  FAILED (failures=2)
+R2_03BodyOwnershipTests.test_a_clock_fault_raised_by_the_body_is_not_lost RED (as required)  FAILED (failures=2)
+R2_03BodyOwnershipTests.test_a_returned_mismatch_still_precedes_a_later_cleanup_fault GREEN (unexpected)  OK
+R2_03BodyOwnershipTests.test_no_host_operation_uses_an_unowned_interval RED (as required)  FAILED (failures=1)
