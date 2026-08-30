@@ -110,3 +110,44 @@ and combined tree e8bc0965bcd86e38d060925856b5242e180e36e3. The existing isolate
 Specific ceremonial authorization remains outstanding; no evidence-repository
 integration or experiment has occurred. The review and this addendum are routine
 coordination publication only.
+
+## Final integration disposition
+
+Issuer: /root. Date: 2026-08-30. Outcome: INTEGRATED AND PUSHED.
+Binding: candidate 98328440d4425fed1dbc7eb30b26b5f785709f05 /
+manifest d972987187b78a2ac5fdb6dbaa74cd7b23e1ce7fdd3a73fae5ed96a0f532da17.
+
+The controller explicitly authorized this specific decision with:
+"commit when you are ready integrate and push". This closes the authorization
+request above; earlier pending-state entries are retained as history.
+
+Ceremonial commit: 111807b02abc45a5e5b447f27353750ecff07cff
+Title: Preregister the blueprint-only v0a hand contract
+First parent: 448296aa8410966c253ead6620f42565226eeec8
+Second parent: 98328440d4425fed1dbc7eb30b26b5f785709f05
+Tree: e8bc0965bcd86e38d060925856b5242e180e36e3
+
+The commit is an actual merge retaining the frozen candidate as its second parent.
+Exactly the three reviewed changed blobs were integrated byte-identically, and the
+already adopted master workflow was preserved. The post-commit hook published the
+decision; an independent ls-remote confirmed origin/master at the full commit above.
+
+Immediately before committing, fresh disposable snapshots of the exact integration
+tree passed STATUS freshness and all 16 scoped documentation checks on each actual
+CPython 3.11.15 and 3.14.6 interpreter. Receipts and complete command logs are under
+checks/r005-authorized-py311-* and checks/r005-authorized-py314-*.
+These remain documentation checks; no broad scientific-suite, runtime, rehearsal,
+source-seal, measured-bound closure, or one-shot experiment result is claimed.
+
+Legacy r1/r2/r3 candidates were preserved at archive/v0a-i01-prereg/r001,
+archive/v0a-i01-prereg/r002, and archive/v0a-i01-prereg/r003, respectively.
+Each archive target was pushed and verified on origin before its legacy review ref
+was deleted. Canonical r004/r005 both name the integrated candidate and were retired
+only after its reachability from master and origin/master publication were verified.
+The rejected r004 packet and every issued review remain unchanged. Frozen review refs
+are now retired by design; the recorded full commit identities remain authoritative.
+checks/integration-retirement.json records the exact commands and target identities.
+
+No worktree or untracked user file was removed. The primary checkout's existing
+.tmp.driveupload/ entry remains untouched. Preregistration is integrated; runtime
+implementation and subsequent lifecycle stages remain future work.

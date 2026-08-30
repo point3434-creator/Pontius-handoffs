@@ -4,3 +4,4 @@ Task-level review verdicts live only in each task's progress.md. This ledger
 records round dispositions, not duplicate reviewer verdicts.
 
 2026-08-30 | v0a-i01-prereg/r004 | /root | REJECTED packet identity: full-row manifest ordering required; source unchanged in r005 | commit 98328440d4425fed1dbc7eb30b26b5f785709f05 | advertised manifest 402514df6aead93fc1495096d6f9647b0021992751b63566f90a695b89d2d8f0 | v0a-i01-prereg/r004/disposition.md
+2026-08-30 | v0a-i01-prereg/r005 | /root | INTEGRATED AND PUSHED; three CLEAN reviews; 16 scoped checks per interpreter (3.11.15, 3.14.6); review refs preserved then retired | candidate 98328440d4425fed1dbc7eb30b26b5f785709f05 | manifest d972987187b78a2ac5fdb6dbaa74cd7b23e1ce7fdd3a73fae5ed96a0f532da17 | decision 111807b02abc45a5e5b447f27353750ecff07cff | v0a-i01-prereg/r005/disposition.md
