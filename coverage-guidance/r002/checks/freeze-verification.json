@@ -1,0 +1,21 @@
+{
+  "candidate": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "coverage-guidance",
+    "round": "r002",
+    "ref": "refs/heads/review/coverage-guidance/r002",
+    "commit": "81fb6cf6491b7ae87ca2a2a3ccd0a7103c4cfed3",
+    "base": "d1ed3cbda6107d61ea8e77133871720af04970cd",
+    "tree": "33dc90fc78bb8ec62f07c7afed82f6b4b2a4851e",
+    "manifest_sha256": "2c9903843b765143f2f2a33c4c3e0233ff0ca9c907faae9462f12b2577e56fdc",
+    "date": "2026-08-30"
+  },
+  "working_before_sha256": "231d99e785d5245647636ad7db15b5b28568590da8d20f06f1135e27592bf92d",
+  "working_after_sha256": "d9de38ede87fb619b3045a60ee7fab137ae23ba3b580c0a6d6b3ca14e567a170",
+  "candidate_file_sha256": "51ca0741ebe4ed0289525642967deabbf4c422ba830c7fd781d3ad2b1119d39b",
+  "claude_md_preserved": true,
+  "primary_index_preserved": true,
+  "primary_head_unchanged": true,
+  "pending_design_blocks_preserved": true,
+  "scope": "Coverage guidance only; pending mandatory-design additions excluded from candidate and unchanged in working file."
+}

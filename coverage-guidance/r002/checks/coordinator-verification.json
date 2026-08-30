@@ -1,0 +1,12 @@
+{
+  "candidate": "81fb6cf6491b7ae87ca2a2a3ccd0a7103c4cfed3",
+  "manifest_sha256": "2c9903843b765143f2f2a33c4c3e0233ff0ca9c907faae9462f12b2577e56fdc",
+  "manifest_verified": true,
+  "source_head_unchanged": true,
+  "real_index_empty": true,
+  "working_diff_check_exit": 0,
+  "claude_md_preserved": true,
+  "pending_design_blocks_preserved_by_freeze_receipt": true,
+  "working_sha256": "d9de38ede87fb619b3045a60ee7fab137ae23ba3b580c0a6d6b3ca14e567a170",
+  "r001_to_r002": "diff --git a/docs/workflow.md b/docs/workflow.md\nindex f1c0638..e66ace2 100644\n--- a/docs/workflow.md\n+++ b/docs/workflow.md\n@@ -58,8 +58,9 @@ Direction errors cost a page here and tens of thousands of lines later.\n \n ### Stage 1 \u2014 Implement\n \n-The implementer works in its worktree. Every binding contract gets a\n-deterministic RED reproduction before the fix and an integrated GREEN after.\n+The implementer works in its worktree. A demonstrated behavioral defect gets\n+a deterministic RED reproduction before the fix and an integrated GREEN after.\n+Coverage-only corrections use the evidence-closure rule in Stage 4.\n The self-report records commands, exits, counts, and hashes \u2014 claims without\n receipts do not count.\n \n@@ -187,8 +188,13 @@ does not change the cold-input rules or the frozen review scope.\n \n ### Stage 4 \u2014 Fix rounds\n \n-Each finding requires a deterministic RED reproduction against the frozen\n-rejected candidate before the production edit, and an integrated GREEN after.\n+A demonstrated behavioral defect requires a deterministic RED reproduction\n+against the frozen rejected candidate before the production edit, and an\n+integrated GREEN after. For a coverage-only finding, establish the missing or\n+unsound evidence, supply the independent behavioral check, and record its result.\n+That check may pass on the rejected implementation; no invented product failure\n+or production edit is required. If it exposes a behavioral defect, use the\n+ordinary RED/GREEN correction path for that defect.\n Fixes freeze as the next round, `review/<task-id>/r<NNN+1>`. The rules below were\n learned at full price in Task 2:\n \n"
+}
