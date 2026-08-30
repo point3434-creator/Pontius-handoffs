@@ -1,0 +1,182 @@
+{
+  "candidate": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "manifest_sha256": "1e5814b2c04a0065586d8fa73f89edc1ffb0eae4830bea8c893630172d5798f2",
+  "snapshot_final_clean": true,
+  "all17_physical_source_hashes_match_manifest": true,
+  "initial_inventory_sha256": "2ba5628dc5f43f221fc6104015a7ff761e452815a10bab8542426e7654dd83a9",
+  "checks": [
+    {
+      "version": "3.11.15",
+      "label": "boundaries",
+      "test_count": 18,
+      "exit": 0,
+      "sha256": "29684aaa8f60e9eb15f07a977bc3dca709f30de03839eee3eda546fb7cd1cfad",
+      "seconds": 41.20299999997951
+    },
+    {
+      "version": "3.11.15",
+      "label": "inventory",
+      "test_count": 92,
+      "exit": 0,
+      "sha256": "0127bc64c78e580b8933cbd0d133436f68d966495848a8243da904a2c934179f",
+      "seconds": 123.61000000004424
+    },
+    {
+      "version": "3.11.15",
+      "label": "legacy-boundaries",
+      "test_count": 48,
+      "exit": 0,
+      "sha256": "7844919f3a9879837af3a38d5d9de4a12f6f5e7109dbb84c01e261578d45b9dc",
+      "seconds": 19.17199999996228
+    },
+    {
+      "version": "3.11.15",
+      "label": "hand",
+      "test_count": 45,
+      "exit": 0,
+      "sha256": "0b97936d1f41236f30a23ce3bb02303958f5103f04250b2b68ee6aa27f8aa5bc",
+      "seconds": 0.45300000003771856
+    },
+    {
+      "version": "3.11.15",
+      "label": "trace",
+      "test_count": 53,
+      "exit": 0,
+      "sha256": "951275c937f4976f53206f3a30c7a011d0e02a42ea75cbbc50ac5be6d94655a1",
+      "seconds": 3.389999999955762
+    },
+    {
+      "version": "3.11.15",
+      "label": "replay",
+      "test_count": 62,
+      "exit": 0,
+      "sha256": "4fdec3f03b7d459aadbe04dd59ffc9dd9c53f71089d166f30773e052f1ad1253",
+      "seconds": 2.9380000000237487
+    },
+    {
+      "version": "3.11.15",
+      "label": "faults",
+      "test_count": 22,
+      "exit": 0,
+      "sha256": "2f43f6a35909e855c6910a8bbcc0910a297788c51ae86c1835d26e2391093c27",
+      "seconds": 0.40600000001722947
+    },
+    {
+      "version": "3.11.15",
+      "label": "generator-check",
+      "test_count": null,
+      "exit": 0,
+      "sha256": "3250bed6e08501ea31c176fdb85368f7e5f747e953ceae26c0fd4677d4ef6a46",
+      "seconds": 52.75
+    },
+    {
+      "version": "3.11.15",
+      "label": "boundary-cli",
+      "test_count": null,
+      "exit": 0,
+      "sha256": "4dc76c16ac44a0d0d24a8317f73b0ee87bc6e299b9a69af7f82b6fb8e68568c3",
+      "seconds": 6.125
+    },
+    {
+      "version": "3.11.15",
+      "label": "11-binding-confirmation",
+      "exit": 0,
+      "sha256": "452e2c01aef730274cb9713474cf2a315452236691ed660bc91985fedfe594ea"
+    },
+    {
+      "version": "3.11.15",
+      "label": "16-integration-probes-v2",
+      "exit": 0,
+      "sha256": "f58d5e157a0e3a5534fdb39028801dc947092650c2c44fd5cef4e37a34a1d2d6"
+    },
+    {
+      "version": "3.14.6",
+      "label": "boundaries",
+      "test_count": 18,
+      "exit": 0,
+      "sha256": "3b181d2b3a945ec7524da9e39011b7789919e2f142c55938bf23bb1bb88f0f8e",
+      "seconds": 43.03099999995902
+    },
+    {
+      "version": "3.14.6",
+      "label": "inventory",
+      "test_count": 92,
+      "exit": 0,
+      "sha256": "04699320951ce818e6911e83dc2ee3e1ba0db9d8c793e42dac2773e75a0dd3b3",
+      "seconds": 150.46900000004098
+    },
+    {
+      "version": "3.14.6",
+      "label": "legacy-boundaries",
+      "test_count": 48,
+      "exit": 0,
+      "sha256": "912603f426de9dc9063e49047597493e403f1fd7604b6e0dde31adfd3f788c78",
+      "seconds": 24.82799999997951
+    },
+    {
+      "version": "3.14.6",
+      "label": "hand",
+      "test_count": 45,
+      "exit": 0,
+      "sha256": "9879d591fd1a60986326fbc5aa853ee484bcaf23c0adafefc1905c2451018f65",
+      "seconds": 0.4369999999762513
+    },
+    {
+      "version": "3.14.6",
+      "label": "trace",
+      "test_count": 53,
+      "exit": 0,
+      "sha256": "85125d5b0ea9ff7467acc8b8fbf8509d65097ea1c3c3d4f559f2d12c20e2e528",
+      "seconds": 3.672000000020489
+    },
+    {
+      "version": "3.14.6",
+      "label": "replay",
+      "test_count": 62,
+      "exit": 0,
+      "sha256": "5ebe72ed324be27c342ceb9ffe214b3d52a767f7f3d111224ff76e31164c7222",
+      "seconds": 3.0320000000065193
+    },
+    {
+      "version": "3.14.6",
+      "label": "faults",
+      "test_count": 22,
+      "exit": 0,
+      "sha256": "1b8ade5759eba7f7132153fe561261625d4ac6785d88b19c84455db7ca43d8e6",
+      "seconds": 0.40600000001722947
+    },
+    {
+      "version": "3.14.6",
+      "label": "generator-check",
+      "test_count": null,
+      "exit": 0,
+      "sha256": "f1076f04d25a6cf70047d4a511b05dac9f7f79e3eedf8edec5160fb552eb7acb",
+      "seconds": 56.10899999999674
+    },
+    {
+      "version": "3.14.6",
+      "label": "boundary-cli",
+      "test_count": null,
+      "exit": 0,
+      "sha256": "f5168377efdccd7f3bb577d23a1414bebd14742ad8eeb8e5b6ebe543315a82de",
+      "seconds": 6.687999999965541
+    },
+    {
+      "version": "3.14.6",
+      "label": "11-binding-confirmation",
+      "exit": 0,
+      "sha256": "09b866f12e1350798a5f5cd395bff6d9d28e1ab2c29555a1b74415f0d57efa23"
+    },
+    {
+      "version": "3.14.6",
+      "label": "16-integration-probes-v2",
+      "exit": 0,
+      "sha256": "ad7cab9a4eb58cc62d8a721e93eede9990af5d967667a026f6055dcf17e606bf"
+    }
+  ],
+  "binding_confirmations_per_slot": {
+    "invalid_approved": 10,
+    "lawful_controls": 2
+  },
+  "reviewer_harness_correction": "First integration-probe receipt failed only at a comparison decoded with the CPython 3.11 Windows default codepage. The append-only v2 uses explicit UTF-8; exact raw CI insertion comparison and all integration controls pass."
+}
