@@ -16,8 +16,10 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-impl | r002 | [Disposition](v0a-i01-impl/r002/disposition.md) | NOT CLEAN; ten consolidated Important findings; 99 focused tests pass on actual 3.11/3.14; F3/F7 remain open; Claude finalizes the next reviewed candidate |
 | v0a-i01-impl | r003 | [Disposition](v0a-i01-impl/r003/disposition.md) | FIX slice 1 NOT CLEAN; two residuals R2-01/03; R2-02/07/08 closed; second policy residual requires its own candidate and root-cause note |
 | v0a-i01-impl | r004 | [Disposition](v0a-i01-impl/r004/disposition.md) | NOT CLEAN: first write cause demoted and abort clock cause lost; second host-cause residual; 113 focused tests pass per interpreter; root-cause note and isolated refactor next |
-| v0a-i01-impl | r005 | [Handoff](v0a-i01-impl/r005/handoff.md) | FIX round, R2-03 third attempt (cause journal); 119 tests GREEN on 3.11/3.14; conservation property test; awaiting cold review |
+| v0a-i01-impl | r005 | [Disposition](v0a-i01-impl/r005/disposition.md) | NOT CLEAN: host exception/cleanup order and missing original clock cause; old r004 mechanisms fixed; 119 focused tests pass per interpreter; bounded ownership correction next |
 | v0a-i01-value-boundaries | r001 | [Disposition](v0a-i01-value-boundaries/r001/disposition.md) | NEW-SURFACE audit: three Important admission contracts; V2 ticket route not established; separate from r003/r004 fix scopes |
+| coverage-guidance | r001 | [Disposition](coverage-guidance/r001/disposition.md) | NOT CLEAN: coverage-only closure loop; corrected in r002 |
+| coverage-guidance | r002 | [Disposition](coverage-guidance/r002/disposition.md) | CLEAN: category/discovery guidance and templates; independent evidence closure; source uncommitted, pending design edits excluded |
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |
 | review-guidance | r002 | [Disposition](review-guidance/r002/disposition.md) | CLEAN; exact reviewed workflow committed and pushed as d1ed3cb; concurrent edits preserved; refs archived |
 
