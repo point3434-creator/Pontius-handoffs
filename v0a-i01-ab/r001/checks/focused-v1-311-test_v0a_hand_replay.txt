@@ -1,0 +1,16 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+.................................E.
+======================================================================
+ERROR: test_witness_rejects_invalid_values_and_stays_failed (__main__.WitnessContractTests.test_witness_rejects_invalid_values_and_stays_failed) [reversed]
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 354, in test_witness_rejects_invalid_values_and_stays_failed
+    witness()
+  File "D:\pontius-snapshots\ab-focused-v1-85999f1637a14525b8baddfb1a94eaf6\harness\src\pontius\v0a\clock.py", line 54, in __call__
+    raise self._failure
+pontius.v0a.clock.ClockReversedError: monotonic witness moved backwards
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.013s
+
+FAILED (errors=1)

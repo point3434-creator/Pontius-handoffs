@@ -1,0 +1,794 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) (fixture='control-A', mode='return')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1236, in test_caught_source_fault_survives_a_return_or_a_different_body_failure
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: () != (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+
+Second tuple contains 1 additional elements.
+First extra element 0:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- ()
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+
+======================================================================
+FAIL: test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) (fixture='control-A', mode='raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1236, in test_caught_source_fault_survives_a_return_or_a_different_body_failure
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,) != (<FailureCode.CLOCK_INVALID: 'clock_invalid'>, <Failure[44 chars]ch'>)
+
+First differing element 0:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
+- (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+? ^                                                        -
+
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+? ^
+
+
+======================================================================
+FAIL: test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) (fixture='control-A', mode='mismatch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1236, in test_caught_source_fault_survives_a_return_or_a_different_body_failure
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,) != (<FailureCode.CLOCK_INVALID: 'clock_invalid'>, <Failure[44 chars]ch'>)
+
+First differing element 0:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
+- (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+? ^                                                        -
+
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+? ^
+
+
+======================================================================
+FAIL: test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) (fixture='control-B', mode='return')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1236, in test_caught_source_fault_survives_a_return_or_a_different_body_failure
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: () != (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+
+Second tuple contains 1 additional elements.
+First extra element 0:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- ()
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+
+======================================================================
+FAIL: test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) (fixture='control-B', mode='raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1236, in test_caught_source_fault_survives_a_return_or_a_different_body_failure
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,) != (<FailureCode.CLOCK_INVALID: 'clock_invalid'>, <Failure[44 chars]ch'>)
+
+First differing element 0:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
+- (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+? ^                                                        -
+
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+? ^
+
+
+======================================================================
+FAIL: test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) (fixture='control-B', mode='mismatch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1236, in test_caught_source_fault_survives_a_return_or_a_different_body_failure
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,) != (<FailureCode.CLOCK_INVALID: 'clock_invalid'>, <Failure[44 chars]ch'>)
+
+First differing element 0:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+Second tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
+- (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+? ^                                                        -
+
++  <FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>)
+? ^
+
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=False, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=False, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,) != (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
++ (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=False, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class__', '__class__'] != []
+
+First list contains 5 additional elements.
+First extra element 0:
+'str'
+
+- ['str', '__class__', '__class__', '__class__', '__class__']
++ []
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=False, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=True, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=True, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>, <Failu[34 chars]id'>) != (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch[44 chars]id'>)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++ (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,
+   <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=True, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class__', '__class__'] != []
+
+First list contains 5 additional elements.
+First extra element 0:
+'str'
+
+- ['str', '__class__', '__class__', '__class__', '__class__']
++ []
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='settlement', cleanup=True, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,) != (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>,)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
++ (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>,)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class[38 chars]s__'] != []
+
+First list contains 7 additional elements.
+First extra element 0:
+'str'
+
++ []
+- ['str',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__']
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=False, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>, <Failu[34 chars]id'>) != (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>[42 chars]id'>)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++ (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>,
+   <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class[38 chars]s__'] != []
+
+First list contains 7 additional elements.
+First extra element 0:
+'str'
+
++ []
+- ['str',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__']
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-A', boundary='publication', cleanup=True, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=False, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=False, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,) != (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
++ (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=False, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class__', '__class__'] != []
+
+First list contains 5 additional elements.
+First extra element 0:
+'str'
+
+- ['str', '__class__', '__class__', '__class__', '__class__']
++ []
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=False, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=True, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=True, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>, <Failu[34 chars]id'>) != (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch[44 chars]id'>)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++ (<FailureCode.SETTLEMENT_MISMATCH: 'settlement_mismatch'>,
+   <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=True, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class__', '__class__'] != []
+
+First list contains 5 additional elements.
+First extra element 0:
+'str'
+
+- ['str', '__class__', '__class__', '__class__', '__class__']
++ []
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='settlement', cleanup=True, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,) != (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>,)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
++ (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>,)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class[38 chars]s__'] != []
+
+First list contains 7 additional elements.
+First extra element 0:
+'str'
+
++ []
+- ['str',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__']
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=False, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='MetadataError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='SpoofedError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1296, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(self.causes(outcome), (first, *source.observed))
+AssertionError: Tuples differ: (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>, <Failu[34 chars]id'>) != (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>[42 chars]id'>)
+
+First differing element 0:
+<FailureCode.CLOCK_REVERSED: 'clock_reversed'>
+<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++ (<FailureCode.TRACE_WRITE_FAILED: 'trace_write_failed'>,
+   <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='TracebackError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1297, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    self.assertEqual(inspected, [])
+AssertionError: Lists differ: ['str', '__class__', '__class__', '__class[38 chars]s__'] != []
+
+First list contains 7 additional elements.
+First extra element 0:
+'str'
+
++ []
+- ['str',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__',
+-  '__class__']
+
+======================================================================
+FAIL: test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) (fixture='control-B', boundary='publication', cleanup=True, error='StopIteration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1293, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: StopIteration
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='invalid', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>) != (<Fai[24 chars]'clock_invalid'>,)
+
+First tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               +
+
+-  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='exception', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>) != (<Fai[24 chars]'clock_invalid'>,)
+
+First tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               +
+
+-  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-A', kind='reversed', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[26 chars]clock_reversed'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>) != (<Fai[26 chars]clock_reversed'>,)
+
+First tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++ (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
+?                                                 +
+
+-  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='invalid', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>) != (<Fai[24 chars]'clock_invalid'>,)
+
+First tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               +
+
+-  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='exception', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[24 chars]'clock_invalid'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>) != (<Fai[24 chars]'clock_invalid'>,)
+
+First tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,
++ (<FailureCode.CLOCK_INVALID: 'clock_invalid'>,)
+?                                               +
+
+-  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness (__main__.FailureAdapterRegressionTests.test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness) (fixture='control-B', kind='reversed', mode='echo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1207, in test_one_source_fault_is_not_counted_again_when_the_body_reads_the_dead_witness
+    self.assertEqual(self.causes(outcome), wanted)
+AssertionError: Tuples differ: (<Fai[26 chars]clock_reversed'>, <FailureCode.CLOCK_INVALID: 'clock_invalid'>) != (<Fai[26 chars]clock_reversed'>,)
+
+First tuple contains 1 additional elements.
+First extra element 1:
+<FailureCode.CLOCK_INVALID: 'clock_invalid'>
+
+- (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,
++ (<FailureCode.CLOCK_REVERSED: 'clock_reversed'>,)
+?                                                 +
+
+-  <FailureCode.CLOCK_INVALID: 'clock_invalid'>)
+
+======================================================================
+FAIL: test_raw_source_exception_metadata_never_reaches_host_adapters (__main__.FailureAdapterRegressionTests.test_raw_source_exception_metadata_never_reaches_host_adapters) (fixture='control-A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1319, in test_raw_source_exception_metadata_never_reaches_host_adapters
+    outcome = self.completed(self.host(fixture, source))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+======================================================================
+FAIL: test_raw_source_exception_metadata_never_reaches_host_adapters (__main__.FailureAdapterRegressionTests.test_raw_source_exception_metadata_never_reaches_host_adapters) (fixture='control-B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1319, in test_raw_source_exception_metadata_never_reaches_host_adapters
+    outcome = self.completed(self.host(fixture, source))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1165, in completed
+    self.fail("host escaped instead of returning a receipt: " + escaped_type)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.168s
+
+FAILED (failures=54)

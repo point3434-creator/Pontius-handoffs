@@ -1,0 +1,145 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFFFTraceback (most recent call last):
+  File "D:\pontius-snapshots\ab-red-v1-a046f11771bf45ff95b6c18a8bf13eea\harness\src\pontius\v0a\runtime.py", line 411, in owned_bookkeeping
+    yield
+  File "D:\pontius-snapshots\ab-red-v1-a046f11771bf45ff95b6c18a8bf13eea\harness\src\pontius\v0a\replay.py", line 509, in run
+    oracle = self._oracle(
+             ^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1279, in oracle
+    fail()
+  File "tests/test_v0a_replay.py", line 1277, in fail
+    raise error
+FailureAdapterRegressionTests.errors.<locals>.MetadataError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\pontius-snapshots\ab-red-v1-a046f11771bf45ff95b6c18a8bf13eea\harness\src\pontius\v0a\runtime.py", line 415, in owned_bookkeeping
+    self.record(self.classify(error, otherwise=body_failure))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v1-a046f11771bf45ff95b6c18a8bf13eea\harness\src\pontius\v0a\runtime.py", line 392, in classify
+    if isinstance(error, ClockReversedError):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1247, in __class__
+    raise RuntimeError("metadata inspection is not safe")
+RuntimeError: metadata inspection is not safe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1160, in completed
+    return host.run(**kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v1-a046f11771bf45ff95b6c18a8bf13eea\harness\src\pontius\v0a\replay.py", line 498, in run
+    with runtime.owned_bookkeeping(
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\contextlib.py", line 176, in __exit__
+    isinstance(value, StopIteration)
+  File "tests/test_v0a_replay.py", line 1247, in __class__
+    raise RuntimeError("metadata inspection is not safe")
+RuntimeError: metadata inspection is not safe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_replay.py", line 1290, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    outcome = self.completed(host, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1162, in completed
+    self.fail("host escaped instead of returning a receipt: " + type(error).__name__)
+AssertionError: host escaped instead of returning a receipt: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 57, in testPartExecutor
+    yield
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1271, in test_error_handling_does_not_execute_caller_presentation_or_metadata
+    with self.subTest(fixture=fixture.name, boundary=boundary,
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 537, in subTest
+    with self._outcome.testPartExecutor(self._subtest, subTest=True):
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 72, in testPartExecutor
+    self.result.addSubTest(test_case.test_case, test_case, exc_info)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\runner.py", line 87, in addSubTest
+    super(TextTestResult, self).addSubTest(test, subtest, err)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\result.py", line 139, in addSubTest
+    errors.append((subtest, self._exc_info_to_string(err, test)))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\result.py", line 177, in _exc_info_to_string
+    tb_e = traceback.TracebackException(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\traceback.py", line 800, in __init__
+    if e and isinstance(e, BaseExceptionGroup):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1247, in __class__
+    raise RuntimeError("metadata inspection is not safe")
+RuntimeError: metadata inspection is not safe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 10, in <module>
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "tests/test_v0a_replay.py", line 1329, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "tests/test_v0a_replay.py", line 1324, in main
+    result = unittest.main(module=__name__, exit=False, verbosity=1).result
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\main.py", line 102, in __init__
+    self.runTests()
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\main.py", line 274, in runTests
+    self.result = testRunner.run(self.test)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\runner.py", line 217, in run
+    test(result)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\suite.py", line 122, in run
+    test(result)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 622, in run
+    with outcome.testPartExecutor(self):
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 74, in testPartExecutor
+    _addError(self.result, test_case, exc_info)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\case.py", line 99, in _addError
+    result.addError(test, exc_info)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\runner.py", line 98, in addError
+    super(TextTestResult, self).addError(test, err)
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\result.py", line 17, in inner
+    return method(self, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\result.py", line 115, in addError
+    self.errors.append((test, self._exc_info_to_string(err, test)))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\unittest\result.py", line 177, in _exc_info_to_string
+    tb_e = traceback.TracebackException(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\traceback.py", line 800, in __init__
+    if e and isinstance(e, BaseExceptionGroup):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_replay.py", line 1247, in __class__
+    raise RuntimeError("metadata inspection is not safe")
+RuntimeError: metadata inspection is not safe

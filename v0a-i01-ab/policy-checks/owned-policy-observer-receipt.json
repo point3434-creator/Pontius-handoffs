@@ -1,0 +1,42 @@
+[
+  {
+    "command": [
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-checks\\owned-policy-observer.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15"
+    ],
+    "exit": 0,
+    "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-checks\\owned-policy-observer-311.txt",
+    "sha256": "189f73011068a933ae2beafc506689364b1912525d202c5e69092e4da1b21f42",
+    "snapshot": "D:\\pontius-snapshots\\ab-green-v2-635091aa816b4f12b3997e2c195641f3\\harness",
+    "overlay_sha256": {
+      "src/pontius/v0a/runtime.py": "46670e4dde6269ef78009e29763e3ef89f810cfa18f25e3a283b4a32714a02b0",
+      "src/pontius/v0a/replay.py": "25846f5d18a66ce4e8340611cb01ff9f4e920a07a9f0d577444acf5eccd7dc30",
+      "tests/test_v0a_hand_replay.py": "1c9db987f41442201cbe2392a84cf7c9c99e9fbcd20ed18039ede4fa51cced2c",
+      "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8"
+    }
+  },
+  {
+    "command": [
+      "D:\\Pontius\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-checks\\owned-policy-observer.py",
+      "D:\\Pontius\\.venv\\Scripts\\python.exe",
+      "3.14.6"
+    ],
+    "exit": 0,
+    "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-checks\\owned-policy-observer-314.txt",
+    "sha256": "09522e7dcf6d637815c12ffa9b1626777abe9b7bb600a65fcc92a6bca86c3a68",
+    "snapshot": "D:\\pontius-snapshots\\ab-green-v2-6943f90c40154c37b30c2092cea3e140\\harness",
+    "overlay_sha256": {
+      "src/pontius/v0a/runtime.py": "46670e4dde6269ef78009e29763e3ef89f810cfa18f25e3a283b4a32714a02b0",
+      "src/pontius/v0a/replay.py": "25846f5d18a66ce4e8340611cb01ff9f4e920a07a9f0d577444acf5eccd7dc30",
+      "tests/test_v0a_hand_replay.py": "1c9db987f41442201cbe2392a84cf7c9c99e9fbcd20ed18039ede4fa51cced2c",
+      "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8"
+    }
+  }
+]

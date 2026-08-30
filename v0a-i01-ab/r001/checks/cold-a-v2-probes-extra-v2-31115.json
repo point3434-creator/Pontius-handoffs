@@ -1,0 +1,138 @@
+{
+  "expected_version": "3.11.15",
+  "actual_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "implementation": "CPython",
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "cwd": "D:\\pontius-snapshots\\v0a-i01-ab-r001-cold-a-20260830",
+  "sys_flags": {
+    "safe_path": true,
+    "dont_write_bytecode": 1
+  },
+  "env": {
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-i01-ab-r001-cold-a-20260830\\src",
+    "PYTHONSAFEPATH": "1",
+    "SYSTEMROOT": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "WINDIR": "C:\\windows"
+  },
+  "manifest": {
+    "commit": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+    "manifest_sha256": "7a4cbf46c9eb34693d605ae43a0b9048b709d65f9c3fed40610c5c1b5ae3b384",
+    "tree": "9ddf33f3c1ccb7735a25a3eb3502ee50644c9bb1",
+    "base": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+    "paths": [
+      {
+        "status": "M",
+        "path": "src/pontius/v0a/clock.py",
+        "blob_sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+        "blob_bytes": 3401,
+        "checkout_sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+        "blob_crlf": 0
+      },
+      {
+        "status": "M",
+        "path": "src/pontius/v0a/replay.py",
+        "blob_sha256": "feeaa4d9742b9ff6d84a00dff79ffcd3c90a295635241af5736b7df5bdab881d",
+        "blob_bytes": 21640,
+        "checkout_sha256": "feeaa4d9742b9ff6d84a00dff79ffcd3c90a295635241af5736b7df5bdab881d",
+        "blob_crlf": 0
+      },
+      {
+        "status": "M",
+        "path": "src/pontius/v0a/runtime.py",
+        "blob_sha256": "1a389e97e462712cd476613fbe8098de502fe6ee746f7d57776ec8da828499f5",
+        "blob_bytes": 44879,
+        "checkout_sha256": "1a389e97e462712cd476613fbe8098de502fe6ee746f7d57776ec8da828499f5",
+        "blob_crlf": 0
+      },
+      {
+        "status": "M",
+        "path": "tests/test_v0a_replay.py",
+        "blob_sha256": "3b81d658311c33ef82c6ed237dfec9206a2f68be7de532e40d2e87af9f4c6fe6",
+        "blob_bytes": 55291,
+        "checkout_sha256": "3b81d658311c33ef82c6ed237dfec9206a2f68be7de532e40d2e87af9f4c6fe6",
+        "blob_crlf": 0
+      }
+    ],
+    "status": "clean"
+  },
+  "phase": "probes-extra-v2",
+  "commands": [
+    {
+      "label": "payload_identity",
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,platform,os,json; assert platform.python_version()=='3.11.15'; import pontius.v0a.clock as c,pontius.v0a.runtime as r,pontius.v0a.replay as p; print(json.dumps({'version':sys.version,'executable':sys.executable,'cwd':os.getcwd(),'files':[c.__file__,r.__file__,p.__file__]}))"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.32800000003771856,
+      "stdout": "{\"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r001-cold-a-20260830\", \"files\": [\"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r001-cold-a-20260830\\\\src\\\\pontius\\\\v0a\\\\clock.py\", \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r001-cold-a-20260830\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r001-cold-a-20260830\\\\src\\\\pontius\\\\v0a\\\\replay.py\"]}\n",
+      "stderr": ""
+    },
+    {
+      "label": "probes-extra-v2",
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\cold-a-probes-extra-v2.py",
+        "3.11.15"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.4059999999590218,
+      "stdout": "{\"counts\": {\"real_rejected_event_abort\": 12, \"three_equal_codes\": 8}, \"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"failed\": 0, \"total\": 20, \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\"}\ndata_sha256 b3209dc2b4232938f9e69b127ed4661d045ee5319f98f4971d826f7a213e0e85\n",
+      "stderr": ""
+    }
+  ],
+  "post_manifest": {
+    "commit": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+    "manifest_sha256": "7a4cbf46c9eb34693d605ae43a0b9048b709d65f9c3fed40610c5c1b5ae3b384",
+    "tree": "9ddf33f3c1ccb7735a25a3eb3502ee50644c9bb1",
+    "base": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+    "paths": [
+      {
+        "status": "M",
+        "path": "src/pontius/v0a/clock.py",
+        "blob_sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+        "blob_bytes": 3401,
+        "checkout_sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+        "blob_crlf": 0
+      },
+      {
+        "status": "M",
+        "path": "src/pontius/v0a/replay.py",
+        "blob_sha256": "feeaa4d9742b9ff6d84a00dff79ffcd3c90a295635241af5736b7df5bdab881d",
+        "blob_bytes": 21640,
+        "checkout_sha256": "feeaa4d9742b9ff6d84a00dff79ffcd3c90a295635241af5736b7df5bdab881d",
+        "blob_crlf": 0
+      },
+      {
+        "status": "M",
+        "path": "src/pontius/v0a/runtime.py",
+        "blob_sha256": "1a389e97e462712cd476613fbe8098de502fe6ee746f7d57776ec8da828499f5",
+        "blob_bytes": 44879,
+        "checkout_sha256": "1a389e97e462712cd476613fbe8098de502fe6ee746f7d57776ec8da828499f5",
+        "blob_crlf": 0
+      },
+      {
+        "status": "M",
+        "path": "tests/test_v0a_replay.py",
+        "blob_sha256": "3b81d658311c33ef82c6ed237dfec9206a2f68be7de532e40d2e87af9f4c6fe6",
+        "blob_bytes": 55291,
+        "checkout_sha256": "3b81d658311c33ef82c6ed237dfec9206a2f68be7de532e40d2e87af9f4c6fe6",
+        "blob_crlf": 0
+      }
+    ],
+    "status": "clean"
+  }
+}

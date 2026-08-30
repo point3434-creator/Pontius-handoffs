@@ -1,0 +1,262 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_complete_legal_context_rejects_equal_but_wrongly_typed_fields (__main__.PolicyAdmissionRegressionTests.test_complete_legal_context_rejects_equal_but_wrongly_typed_fields) (alias=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1041, in test_complete_legal_context_rejects_equal_but_wrongly_typed_fields
+    with self.assertRaises(InvalidDecisionContextError):
+AssertionError: InvalidDecisionContextError not raised
+
+======================================================================
+FAIL: test_complete_legal_context_rejects_equal_but_wrongly_typed_fields (__main__.PolicyAdmissionRegressionTests.test_complete_legal_context_rejects_equal_but_wrongly_typed_fields) (alias=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1041, in test_complete_legal_context_rejects_equal_but_wrongly_typed_fields
+    with self.assertRaises(InvalidDecisionContextError):
+AssertionError: InvalidDecisionContextError not raised
+
+======================================================================
+FAIL: test_complete_legal_context_rejects_equal_but_wrongly_typed_fields (__main__.PolicyAdmissionRegressionTests.test_complete_legal_context_rejects_equal_but_wrongly_typed_fields) (alias=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1041, in test_complete_legal_context_rejects_equal_but_wrongly_typed_fields
+    with self.assertRaises(InvalidDecisionContextError):
+AssertionError: InvalidDecisionContextError not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='runtime', graph=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_every_nested_policy_value_is_exact_before_hashing_or_matching (__main__.PolicyAdmissionRegressionTests.test_every_nested_policy_value_is_exact_before_hashing_or_matching) (boundary='public-selector', graph=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (boundary='runtime', policy_history=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (boundary='public-selector', policy_history=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (boundary='runtime', policy_history=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (boundary='public-selector', policy_history=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (context_history=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1025, in test_nonempty_history_values_obey_the_same_admission_boundary
+    with self.assertRaises(InvalidDecisionContextError):
+AssertionError: InvalidDecisionContextError not raised
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (context_history=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1025, in test_nonempty_history_values_obey_the_same_admission_boundary
+    with self.assertRaises(InvalidDecisionContextError):
+AssertionError: InvalidDecisionContextError not raised
+
+======================================================================
+FAIL: test_nonempty_history_values_obey_the_same_admission_boundary (__main__.PolicyAdmissionRegressionTests.test_nonempty_history_values_obey_the_same_admission_boundary) (context_history=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1025, in test_nonempty_history_values_obey_the_same_admission_boundary
+    with self.assertRaises(InvalidDecisionContextError):
+AssertionError: InvalidDecisionContextError not raised
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='runtime', kind='DigestPolicy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='public-selector', kind='DigestPolicy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='runtime', kind='BytesPolicy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='public-selector', kind='BytesPolicy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='runtime', kind='LookupPolicy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='public-selector', kind='LookupPolicy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: None is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='runtime', kind='class-property')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 912, in reject_at_both_boundaries
+    with self.assertRaises((TypeError, ValueError)):
+AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority (__main__.PolicyAdmissionRegressionTests.test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority) (boundary='public-selector', kind='class-property')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 922, in reject_at_both_boundaries
+    self.assertIs(caught, InvalidDecisionContextError)
+AssertionError: <class 'AttributeError'> is not <class 'pontius.v0a.runtime.InvalidDecisionContextError'>
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.005s
+
+FAILED (failures=32)

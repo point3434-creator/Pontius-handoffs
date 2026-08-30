@@ -1,0 +1,18 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+.F....................
+======================================================================
+FAIL: test_reveal_path_charges_visible_card_construction (__main__.F1IngressWallTests.test_reveal_path_charges_visible_card_construction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_contract_faults.py", line 178, in test_reveal_path_charges_visible_card_construction
+    index = drive_to_flop(runtime)
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_contract_faults.py", line 134, in drive_to_flop
+    assert outcome.status == "decided", outcome
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: DispatchOutcome(status='failed', decision=None, failure=FailureRecord(hand_id='fault-hand', event_index=4, action_index=1, code=<FailureCode.INVALID_DECISION_CONTEXT: 'invalid_decision_context'>, delivery_status=<DeliveryStatus.NOT_ATTEMPTED: 'not_attempted'>, delivered_action=None, timing=TimingRecord(status=<TimingStatus.INTERRUPTED: 'interrupted'>, interruption_reason=<FailureCode.INVALID_DECISION_CONTEXT: 'invalid_decision_context'>, wall_start_ns=19000, last_valid_observation_ns=24000, emission_observed_ns=None, elapsed_ns=None, response_compute_seconds=None, response_uninstrumented_seconds=None, work_cutoff_crossed=None, deadline_crossed=None)))
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.010s
+
+FAILED (failures=1)

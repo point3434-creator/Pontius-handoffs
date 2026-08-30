@@ -1,0 +1,594 @@
+{
+  "summary": {
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "counts": {
+      "real_rejected_event_abort": 12,
+      "three_equal_codes": 8
+    },
+    "total": 20,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 0
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 16
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 16,
+      "problems": [],
+      "accepted": 1
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 0
+        },
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 16
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "source_calls": 16,
+      "problems": [],
+      "accepted": 1
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 0
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 16
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 16,
+      "problems": [],
+      "accepted": 1
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 19
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 128
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 128,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 19
+        },
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 128
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "source_calls": 128,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 19
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 128
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 128,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 0
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 8
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 8,
+      "problems": [],
+      "accepted": 0
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 0
+        },
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 8
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "source_calls": 8,
+      "problems": [],
+      "accepted": 0
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 0
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 8
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 8,
+      "problems": [],
+      "accepted": 0
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 6
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 44
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 44,
+      "problems": [],
+      "accepted": 1
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 6
+        },
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 44
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_reversed"
+      ],
+      "source_calls": 44,
+      "problems": [],
+      "accepted": 1
+    },
+    {
+      "category": "real_rejected_event_abort",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "known_invalid_event",
+          "code": "event_order",
+          "script_position": 6
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 44
+        }
+      ],
+      "actual": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "event_order",
+        "clock_invalid"
+      ],
+      "source_calls": 44,
+      "problems": [],
+      "accepted": 1
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 134
+        },
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_invalid"
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_invalid"
+        }
+      ],
+      "actual": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "source_calls": 134,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_invalid"
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 135
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_invalid"
+        }
+      ],
+      "actual": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "source_calls": 135,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 134
+        },
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_reversed"
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_reversed"
+        }
+      ],
+      "actual": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "source_calls": 134,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-A",
+      "events": [
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_reversed"
+        },
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 135
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_reversed"
+        }
+      ],
+      "actual": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "source_calls": 135,
+      "problems": [],
+      "accepted": 4
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 68
+        },
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_invalid"
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_invalid"
+        }
+      ],
+      "actual": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "source_calls": 68,
+      "problems": [],
+      "accepted": 2
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_invalid"
+        },
+        {
+          "origin": "source",
+          "code": "clock_invalid",
+          "call": 69
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_invalid"
+        }
+      ],
+      "actual": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "wanted": [
+        "clock_invalid",
+        "clock_invalid",
+        "clock_invalid"
+      ],
+      "source_calls": 69,
+      "problems": [],
+      "accepted": 2
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 68
+        },
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_reversed"
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_reversed"
+        }
+      ],
+      "actual": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "source_calls": 68,
+      "problems": [],
+      "accepted": 2
+    },
+    {
+      "category": "three_equal_codes",
+      "fixture": "control-B",
+      "events": [
+        {
+          "origin": "independent_oracle_error",
+          "code": "clock_reversed"
+        },
+        {
+          "origin": "source",
+          "code": "clock_reversed",
+          "call": 69
+        },
+        {
+          "origin": "independent_writer_path_error",
+          "code": "clock_reversed"
+        }
+      ],
+      "actual": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "wanted": [
+        "clock_reversed",
+        "clock_reversed",
+        "clock_reversed"
+      ],
+      "source_calls": 69,
+      "problems": [],
+      "accepted": 2
+    }
+  ]
+}

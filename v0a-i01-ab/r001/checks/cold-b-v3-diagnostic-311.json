@@ -1,0 +1,32 @@
+{
+  "utc": "2026-08-30T19:44:38.296913+00:00",
+  "results": [
+    {
+      "name": "diagnostic",
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\cold-b-payload.py",
+        "3.11.15",
+        "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\cold-b-independent-v2.py"
+      ],
+      "cwd": "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1",
+      "env": {
+        "SYSTEMROOT": "C:\\windows",
+        "WINDIR": "C:\\windows",
+        "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+        "TEMP": "D:\\Pontius-snapshots\\cold-b-tmp-311",
+        "TMP": "D:\\Pontius-snapshots\\cold-b-tmp-311",
+        "PYTHONPATH": "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1\\src",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+      },
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\cold-b-v3-diagnostic-311.log",
+      "sha256": "5db04ab07db44d32b72ffe30961966c43658dcac35bc5fb6bde666787320541b"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+.F...
+======================================================================
+FAIL: test_a_subclass_cannot_intercept_the_sealed_lookup (__main__.R2_01PolicyAuthorityTests.test_a_subclass_cannot_intercept_the_sealed_lookup)
+Subclass behavior is rejected before the sealed lookup or delivery.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_contract_faults.py", line 520, in test_a_subclass_cannot_intercept_the_sealed_lookup
+    with self.assertRaises(TypeError):
+AssertionError: TypeError not raised
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=1)

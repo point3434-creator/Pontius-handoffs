@@ -1,0 +1,39 @@
+{
+  "label": "green-v1",
+  "slot": "311",
+  "base": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+  "snapshot": "D:\\pontius-snapshots\\ab-green-v1-f61ecd35a189485b90a8b94a20e65acf\\harness",
+  "overlay_sha256": {
+    "src/pontius/v0a/clock.py": "fe5354bf13de97d81c4d818fc5c74b3abd75d3846ef525f7c1682655c308c2a9",
+    "src/pontius/v0a/runtime.py": "0cfd7ef13fc7e933613a902bb4e8b44e54cd0f4788dfe9a0331e042939109f74",
+    "src/pontius/v0a/replay.py": "286198f40bdb0077c25a09363cda25878c1d91cd82fb15fa0baaac52589e3287",
+    "tests/test_v0a_replay.py": "3b81d658311c33ef82c6ed237dfec9206a2f68be7de532e40d2e87af9f4c6fe6"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-green-v1-f61ecd35a189485b90a8b94a20e65acf\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_replay.py",
+        "FailureAdapterRegressionTests"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\green-v1-311-test_v0a_replay.txt",
+      "sha256": "fd0dd1b7c17fc6c2646349cbc8ce5f1f893631bbd45c4a4dde6eb9a5172fb63a"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

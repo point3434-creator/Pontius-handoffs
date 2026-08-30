@@ -1,0 +1,8 @@
+STDOUT
+
+STDERR
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-ab\r001\checks\cold-b-payload.py", line 10, in <module>
+    assert os.environ['PYTHONPATH'] == str(root / 'src')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

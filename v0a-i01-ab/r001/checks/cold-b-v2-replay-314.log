@@ -1,0 +1,10 @@
+STDOUT
+{"identity_before_payload": true, "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1", "argv": ["D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\cold-b-payload.py", "3.14.6", "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1", "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1\\tests\\test_v0a_replay.py"], "env": {"COMSPEC": "C:\\windows\\system32\\cmd.exe", "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1\\src", "SYSTEMROOT": "C:\\windows", "TEMP": "D:\\Pontius-snapshots\\cold-b-tmp-314", "TMP": "D:\\Pontius-snapshots\\cold-b-tmp-314", "WINDIR": "C:\\windows"}}
+{"resolved_payloads": ["D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1\\src\\pontius\\v0a\\clock.py", "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1\\src\\pontius\\v0a\\runtime.py", "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1\\src\\pontius\\v0a\\replay.py"]}
+
+STDERR
+.............................................
+----------------------------------------------------------------------
+Ran 45 tests in 1.163s
+
+OK

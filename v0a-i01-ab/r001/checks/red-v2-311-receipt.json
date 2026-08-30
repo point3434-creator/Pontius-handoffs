@@ -1,0 +1,39 @@
+{
+  "label": "red-v2",
+  "slot": "311",
+  "base": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+  "snapshot": "D:\\pontius-snapshots\\ab-red-v2-14143bfc13d44b91a29145009302f341\\harness",
+  "overlay_sha256": {
+    "src/pontius/v0a/clock.py": "ec562d9c73a969400c47f07d16fcb7188ec2e75a7a020a041fd768a6b508b034",
+    "src/pontius/v0a/runtime.py": "d01ef96e63e9b244a6a1a6f964173233d4be974b889a688e43b273d3cc768956",
+    "src/pontius/v0a/replay.py": "057fd4348c4d5c6e6b22f282c0d19bc2a5e2d3eee14aa8b6d8b5cf5d85bc0436",
+    "tests/test_v0a_replay.py": "3b81d658311c33ef82c6ed237dfec9206a2f68be7de532e40d2e87af9f4c6fe6"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-red-v2-14143bfc13d44b91a29145009302f341\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_replay.py",
+        "FailureAdapterRegressionTests"
+      ],
+      "exit": 1,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r001\\checks\\red-v2-311-test_v0a_replay.txt",
+      "sha256": "e290f3829fbb425450fd3eb9b8ea722701442aee5ee0c5b85a6ac22fb603e3a1"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

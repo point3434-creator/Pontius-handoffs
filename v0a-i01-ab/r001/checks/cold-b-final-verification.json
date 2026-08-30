@@ -1,0 +1,78 @@
+{
+  "candidate": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-ab",
+    "round": "r001",
+    "ref": "refs/heads/review/v0a-i01-ab/r001",
+    "commit": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+    "base": "c74b80628a89938ca585ef3240b5c267a7174d0f",
+    "tree": "9ddf33f3c1ccb7735a25a3eb3502ee50644c9bb1",
+    "manifest_sha256": "7a4cbf46c9eb34693d605ae43a0b9048b709d65f9c3fed40610c5c1b5ae3b384",
+    "date": "2026-08-30"
+  },
+  "snapshot": "D:\\pontius-snapshots\\cold-b-ab-r001-d28f9c462053443a8b096f18b50addc1",
+  "status": "clean",
+  "source_blob_equality": true,
+  "coverage_sha256": "e74a65f6ad1d33816b36bc69d7ba6936d61a078b3b6dc429e81ae901ec633b9f",
+  "summary": {
+    "311": {
+      "focused_exit": 0,
+      "focused_suites": 4,
+      "independent_cases": 1964,
+      "categories": {
+        "baseline": 2,
+        "sweep": 1676,
+        "body": 160,
+        "hostile": 96,
+        "compound": 30
+      }
+    },
+    "314": {
+      "focused_exit": 0,
+      "focused_suites": 4,
+      "independent_cases": 1964,
+      "categories": {
+        "baseline": 2,
+        "sweep": 1676,
+        "body": 160,
+        "hostile": 96,
+        "compound": 30
+      }
+    }
+  },
+  "sha256": {
+    "cold-b-contract_faults-311.log": "e9ffe6ac7f0c21af48cc14461ee2793b5f34205a925140f2153273230dc78dee",
+    "cold-b-final-verification.py": "a4389765e2b3a22be7ff0020c60438c47a5360a79ad28e24ce5a84147734a3fc",
+    "cold-b-focused-311.json": "684a2bef4972cdb383c921207aaf6b8db721edf9ac0123a37cc52ada5bdcb953",
+    "cold-b-hand_replay-311.log": "e9ffe6ac7f0c21af48cc14461ee2793b5f34205a925140f2153273230dc78dee",
+    "cold-b-identity.json": "c1eb0b6ecb437e69c37a36afe8342bbf2a53145ec8ce4a6da4964e515b1644ee",
+    "cold-b-independent-v2-311.json": "edbfd191c0c341de142878ec24044a12935f127a3ec1358945c932c48531b153",
+    "cold-b-independent-v2-314.json": "a5597b8938d80abd9c8ed16c0f78d467bbc5b81f7f4978d0d82ec1993841315d",
+    "cold-b-independent-v2.py": "d8a8ef5fcf554c5385f54141c4f753d4d3723f7f561685712a55208f32370d1a",
+    "cold-b-independent.py": "fbde2d74473f55d520f42c0996bb781c74005b41d42c85648f00aaa4781d149b",
+    "cold-b-initial-inventory.md": "090b6e023571cfc949da09720a2a7c08acfd75472c182ddce7a2d163a0bf6ae8",
+    "cold-b-payload.py": "be9e2c161a667166400bd4a8ae5738186dd7d9c62519da83826c0596a80126ad",
+    "cold-b-prepare.py": "c018f81f71a227dd7e9c5a99ffade5d315d48194ef6b01e370445703d4474143",
+    "cold-b-replay-311.log": "e9ffe6ac7f0c21af48cc14461ee2793b5f34205a925140f2153273230dc78dee",
+    "cold-b-runner-v2.py": "58d0ab37b3d394a4bf198adc4f0b7df1f7b3cd54d8a400b9db5bc61b75972ba4",
+    "cold-b-runner-v3.py": "fb4393803b68794c92f4e02f6d654d331647fe5bb161de9283b1d60a59ddcc07",
+    "cold-b-runner.py": "60615711db4d5b898349daee994d4d1e65783d8d045451c818bf92afc330d825",
+    "cold-b-trace-311.log": "e9ffe6ac7f0c21af48cc14461ee2793b5f34205a925140f2153273230dc78dee",
+    "cold-b-v2-contract_faults-311.log": "35e0187843e54bfca6a56948a06a5aba89801a32b7564db0ed62dc93037e3715",
+    "cold-b-v2-contract_faults-314.log": "7d3ed2fba29b78c2e4b7337b7be4b8d05b135ef37296a8a32032241ad7c22e42",
+    "cold-b-v2-diagnostic-311.json": "d3d9695d31a7b76d133fa1d495bb8613a54c5259f5a5cd1546e392b01d8599a8",
+    "cold-b-v2-diagnostic-311.log": "f11b0e99d2ed7e113b1f9016ffa0ef8704e0620fd9803ad669d256d987e02686",
+    "cold-b-v2-focused-311.json": "b96f91e41b4aa0b5c758e4613799a76cef931fc060543ff2c1481948486ae907",
+    "cold-b-v2-focused-314.json": "1272383bab23c4ffa914dca7470bf3869f91c40f815b14ffce6eb5e62eff64fe",
+    "cold-b-v2-hand_replay-311.log": "3e665b2a0f03d6f8a10b4e7919001defd62f8b17346594bdc66ca9fdc9ede50b",
+    "cold-b-v2-hand_replay-314.log": "b599b5f9408f2943a1148587caef9d0dff89adfb01ecfdca4022ece19e3d0ac7",
+    "cold-b-v2-replay-311.log": "7e6a1bf47d1a13ade8ba0d6c523b23c9be449d3d89336502585335b92b5ab95b",
+    "cold-b-v2-replay-314.log": "1d9bde537afaf0c7b272a4e6e26814bedb117ccb23f80d31c16049d27aba3fec",
+    "cold-b-v2-trace-311.log": "ca63bff7065f3ea53e73cc00bf67b10bd74f6ca16b66520962938ec4e9a57988",
+    "cold-b-v2-trace-314.log": "a1d5b53ec3125483c031d2ef9b99b09868dddd8c3137783672b6b87704fbaf62",
+    "cold-b-v3-diagnostic-311.json": "0e290a4325a62f4726f85b346807f8dcf4943d5cc71f74ae5f2c9e9a465483e9",
+    "cold-b-v3-diagnostic-311.log": "5db04ab07db44d32b72ffe30961966c43658dcac35bc5fb6bde666787320541b",
+    "cold-b-v3-diagnostic-314.json": "da994064495a3a5d7312c832333ab81b039541c3870d6290b1471321c744d92e",
+    "cold-b-v3-diagnostic-314.log": "1966614ce60cdcf28e5dd2d07f3b69817c59859f786d9b7117527b5aea0c0b5c"
+  }
+}
