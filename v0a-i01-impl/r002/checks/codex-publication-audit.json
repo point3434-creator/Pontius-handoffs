@@ -1,0 +1,38 @@
+{
+  "candidate": "18c965d1f3445c253a6333c4d10899c1dcac0cc6",
+  "manifest_sha256": "4cfd14ac7bfdb22e052bb9f625610657c01aafa07182acf58d19367a8816cb18",
+  "changed_paths": 10,
+  "report_sha256": {
+    "review-01-codex-a.md": "7d5351f1e6d84d556200099b346cfb4e00d5bc93e7f2a7d64cc1b256f986204b",
+    "review-02-codex-b.md": "5a6f6fe73aaf3c9cddca718658d21fb40e78fa1c37d4edcfd9a9bbf22fb1b6d0",
+    "review-03-codex-coordinator.md": "45fcc771458728e5f0851a572d511b1e9b1f7cc2ee4ef96d56d96fba103a0c1e"
+  },
+  "slots": [
+    {
+      "version": [
+        3,
+        11,
+        15
+      ],
+      "tests": 99,
+      "snapshot_source_pristine": true
+    },
+    {
+      "version": [
+        3,
+        14,
+        6
+      ],
+      "tests": 99,
+      "snapshot_source_pristine": true
+    }
+  ],
+  "task_verdicts_once_per_issuer": true,
+  "program_dispositions": 1,
+  "primary_head": "b357d333fc2393b7fc7dcf31f30c86616208c817",
+  "primary_status": [
+    " M CLAUDE.md",
+    "?? .tmp.driveupload/"
+  ],
+  "scope": "Review publication only; no implementation integration"
+}

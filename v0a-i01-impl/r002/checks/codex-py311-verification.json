@@ -1,0 +1,70 @@
+{
+  "candidate": "18c965d1f3445c253a6333c4d10899c1dcac0cc6",
+  "manifest_sha256": "4cfd14ac7bfdb22e052bb9f625610657c01aafa07182acf58d19367a8816cb18",
+  "snapshot": "D:\\pontius-snapshots\\v0a-i01-r002-c988362507a842839a2e58c1d6907e19\\harness",
+  "identity": {
+    "executable": "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version": [
+      3,
+      11,
+      15
+    ]
+  },
+  "identity_asserted_before_payload_import": true,
+  "import_provenance": {
+    "runtime_file": "D:\\pontius-snapshots\\v0a-i01-r002-c988362507a842839a2e58c1d6907e19\\harness\\src\\pontius\\v0a\\runtime.py",
+    "tracked_dependency_imports": [
+      "numpy"
+    ]
+  },
+  "snapshot_pristine": true,
+  "results": [
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_hand_replay.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r002\\checks\\codex-py311-hand_replay.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_trace.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r002\\checks\\codex-py311-trace.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_replay.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r002\\checks\\codex-py311-replay.txt"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_v0a_contract_faults.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r002\\checks\\codex-py311-contract_faults.txt"
+    }
+  ],
+  "scope": "Four r002 focused correctness suites; no broad suite or experiment"
+}

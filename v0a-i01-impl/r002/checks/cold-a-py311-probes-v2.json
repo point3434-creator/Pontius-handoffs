@@ -1,0 +1,199 @@
+{
+  "identity": {
+    "executable": "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "cwd": "D:\\Pontius-review-cold-a-r002",
+    "PYTHONPATH": "D:\\Pontius-review-cold-a-r002\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "safe_path": true,
+    "dont_write_bytecode": true
+  },
+  "candidate": "18c965d1f3445c253a6333c4d10899c1dcac0cc6",
+  "modules": {
+    "pontius.v0a.replay": "D:\\Pontius-review-cold-a-r002\\src\\pontius\\v0a\\replay.py",
+    "pontius.v0a.trace": "D:\\Pontius-review-cold-a-r002\\src\\pontius\\v0a\\trace.py",
+    "pontius.v0a.runtime": "D:\\Pontius-review-cold-a-r002\\src\\pontius\\v0a\\runtime.py",
+    "pontius.v0a.model": "D:\\Pontius-review-cold-a-r002\\src\\pontius\\v0a\\model.py",
+    "pontius.v0a.clock": "D:\\Pontius-review-cold-a-r002\\src\\pontius\\v0a\\clock.py"
+  },
+  "baseline_source_clock_calls": 138,
+  "results": [
+    {
+      "probe": "foreign_semantic_digest",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": false
+    },
+    {
+      "probe": "illegal_first_check_rebound",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "foreign_header_policy",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "zero_delivered_count",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "late_action_with_false_deadline",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "null_decision_timing",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "bool_record_index",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "unknown_event_timestamp",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "missing_hand_start_button",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "invalid_spine_enum",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "invalid_source_commit",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "out_of_range_seat",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "nan_response_seconds",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "infinite_terminal_total",
+      "parser": "accepted",
+      "passed": true,
+      "semantic_digest_matches": true
+    },
+    {
+      "probe": "first_clock",
+      "returned_receipt": false,
+      "fail_at": 1,
+      "source_calls": 1,
+      "exception": "RuntimeError",
+      "message": "publication measurement requires a started hand",
+      "accepted_actions": 0
+    },
+    {
+      "probe": "publication_close_clock",
+      "returned_receipt": false,
+      "fail_at": 137,
+      "source_calls": 137,
+      "exception": "ClockInvalidError",
+      "message": "monotonic witness source failed",
+      "accepted_actions": 4
+    },
+    {
+      "probe": "finalization_clock",
+      "returned_receipt": true,
+      "fail_at": 138,
+      "source_calls": 138,
+      "receipt_passed": true,
+      "receipt_accounting_complete": true,
+      "runtime_accounting_complete": false,
+      "failure_reason": null,
+      "secondary_failures": [],
+      "accepted_actions": 4
+    },
+    {
+      "probe": "real_serialization_one_second_each",
+      "passed": true,
+      "serialization_calls": [
+        "event",
+        "decision",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "decision",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "decision",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "event",
+        "decision",
+        "event",
+        "event",
+        "event",
+        "event",
+        "semantic",
+        "terminal"
+      ],
+      "delay_seconds": 31,
+      "base_preparation": 6.1e-05,
+      "slow_preparation": 6.1e-05,
+      "base_post_terminal": 2e-06,
+      "slow_post_terminal": 2e-06,
+      "publication_seconds": 1.000001,
+      "base_response_ns": [
+        12000,
+        11000,
+        11000,
+        11000
+      ],
+      "slow_response_ns": [
+        12000,
+        11000,
+        11000,
+        11000
+      ]
+    },
+    {
+      "probe": "correctness_run_id_rehearsal_mode",
+      "passed": true,
+      "mode": "rehearsal",
+      "run_id": "pontius-v0a-hand-replay-v1-correctness-cold-a-mode"
+    }
+  ],
+  "optional_imports": []
+}

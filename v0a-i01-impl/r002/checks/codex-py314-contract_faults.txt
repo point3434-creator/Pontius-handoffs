@@ -1,0 +1,23 @@
+test_opponent_path_charges_validation_and_transition (__main__.F1IngressWallTests.test_opponent_path_charges_validation_and_transition) ... ok
+test_reveal_path_charges_visible_card_construction (__main__.F1IngressWallTests.test_reveal_path_charges_visible_card_construction) ... ok
+test_wall_starts_at_the_event_not_after_validation (__main__.F1IngressWallTests.test_wall_starts_at_the_event_not_after_validation) ... ok
+test_a_second_showdown_vector_is_refused (__main__.F2ShowdownCompletionTests.test_a_second_showdown_vector_is_refused) ... ok
+test_no_event_is_accepted_after_completion (__main__.F2ShowdownCompletionTests.test_no_event_is_accepted_after_completion) ... ok
+test_a_fabricated_passive_default_is_refused (__main__.F3BlueprintAuthorityTests.test_a_fabricated_passive_default_is_refused) ... ok
+test_a_foreign_decision_key_is_refused (__main__.F3BlueprintAuthorityTests.test_a_foreign_decision_key_is_refused) ... ok
+test_a_source_switching_policies_mid_hand_is_refused (__main__.F3BlueprintAuthorityTests.test_a_source_switching_policies_mid_hand_is_refused) ... ok
+test_the_real_source_still_answers_normally (__main__.F3BlueprintAuthorityTests.test_the_real_source_still_answers_normally) ... ok
+test_a_fault_after_the_boundary_keeps_the_established_start (__main__.F4ClockContainmentTests.test_a_fault_after_the_boundary_keeps_the_established_start) ... ok
+test_a_fault_at_ledger_construction_is_typed (__main__.F4ClockContainmentTests.test_a_fault_at_ledger_construction_is_typed) ... ok
+test_an_os_error_from_the_clock_is_normalized (__main__.F4ClockContainmentTests.test_an_os_error_from_the_clock_is_normalized) ... ok
+test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) ... ok
+test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted (__main__.F5F6DeliveryTests.test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted) ... ok
+test_a_matching_acknowledgement_succeeds (__main__.F5F6DeliveryTests.test_a_matching_acknowledgement_succeeds) ... ok
+test_a_mismatched_acknowledgement_fails_closed (__main__.F5F6DeliveryTests.test_a_mismatched_acknowledgement_fails_closed) ... ok
+test_a_missing_acknowledgement_fails_closed (__main__.F5F6DeliveryTests.test_a_missing_acknowledgement_fails_closed) ... ok
+test_a_known_cutoff_is_retained_through_interruption (__main__.F7RetainedViolationTests.test_a_known_cutoff_is_retained_through_interruption) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.009s
+
+OK
