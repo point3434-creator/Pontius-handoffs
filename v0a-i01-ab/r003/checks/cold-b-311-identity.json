@@ -1,0 +1,71 @@
+{
+  "changed_blobs": {
+    "src/pontius/v0a/runtime.py": {
+      "BOM": false,
+      "CR": false,
+      "bytes": 47750,
+      "long_lines": [],
+      "sha256": "1cd9218d06be0b57cbf321b0846528bf1c8d3163dd5c958fab4c8f6a972df5b9",
+      "status": "M",
+      "trailing_whitespace": []
+    },
+    "tests/test_v0a_hand_replay.py": {
+      "BOM": false,
+      "CR": false,
+      "bytes": 46060,
+      "long_lines": [],
+      "sha256": "fa65a3bbe47d8359e6b30c6c8c4167e93609f536dc084fa7a7aed9b9cb17f7f0",
+      "status": "M",
+      "trailing_whitespace": []
+    }
+  },
+  "command": [
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-b-probe.py",
+    "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830",
+    "3.11.15",
+    "30df7bce8da51715e6f1d7576892dd689421c516",
+    "identity",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-b-311-identity.json"
+  ],
+  "cwd": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830",
+  "environment": {
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830\\src",
+    "SYSTEMROOT": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "WINDIR": "C:\\windows"
+  },
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "exit": 1,
+  "expected_commit": "30df7bce8da51715e6f1d7576892dd689421c516",
+  "failure": "Traceback (most recent call last):\n  File \"D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-b-probe.py\", line 80, in <module>\n    assert git(\"rev-parse\", \"refs/heads/review/v0a-i01-ab/r003\").decode().strip() == commit\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-b-probe.py\", line 30, in git\n    result = subprocess.run([os.environ[\"PONTIUS_GIT\"], \"-C\", str(snapshot), *args],\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib\\subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe', '-C', 'D:\\\\pontius-snapshots\\\\v0a-i01-ab-r003-cold-b-20260830', 'rev-parse', 'refs/heads/review/v0a-i01-ab/r003']' returned non-zero exit status 128.\n",
+  "flags": {
+    "dont_write_bytecode": true,
+    "safe_path": true
+  },
+  "manifest_sha256": "21d9686c9918d9d0648fd98edf35219dfb5e0b4dc1dcfe5e4f28171b7d94e513",
+  "mode": "identity",
+  "module_origin": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830\\src\\pontius\\v0a\\runtime.py",
+  "parent": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+  "signature": [
+    "source",
+    "cards",
+    "betting",
+    "decision"
+  ],
+  "sys_path": [
+    "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830\\src",
+    "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\python311.zip",
+    "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\DLLs",
+    "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib",
+    "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none",
+    "D:\\Pontius-tools\\py311",
+    "D:\\Pontius-tools\\py311\\Lib\\site-packages"
+  ],
+  "tree": "fbf234bfffcdb51113b3b137a36afa3460bc94b5",
+  "version": "3.11.15"
+}

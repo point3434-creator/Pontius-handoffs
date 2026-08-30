@@ -1,0 +1,55 @@
+{
+  "commit": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+  "base": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+  "tree": "7d1383a1a7b2cf05442e4ef4fe8a9189708b2263",
+  "manifest_sha256": "55f7ebf8827c79a6d6c70b1bf26508d87527b8c7113d2458fb4c3dfb5fed0957",
+  "files": [
+    {
+      "path": "src/pontius/v0a/replay.py",
+      "sha256": "25846f5d18a66ce4e8340611cb01ff9f4e920a07a9f0d577444acf5eccd7dc30",
+      "checkout_equals_blob": true,
+      "lf_only": true,
+      "no_bom": true,
+      "long_lines": [],
+      "trailing_whitespace": []
+    },
+    {
+      "path": "src/pontius/v0a/runtime.py",
+      "sha256": "46670e4dde6269ef78009e29763e3ef89f810cfa18f25e3a283b4a32714a02b0",
+      "checkout_equals_blob": true,
+      "lf_only": true,
+      "no_bom": true,
+      "long_lines": [],
+      "trailing_whitespace": []
+    },
+    {
+      "path": "tests/test_v0a_contract_faults.py",
+      "sha256": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+      "checkout_equals_blob": true,
+      "lf_only": true,
+      "no_bom": true,
+      "long_lines": [],
+      "trailing_whitespace": []
+    },
+    {
+      "path": "tests/test_v0a_hand_replay.py",
+      "sha256": "073d8ce3c585efface162c9ec35b01bf4022eac008a3adf73e2e0c17258bebad",
+      "checkout_equals_blob": true,
+      "lf_only": true,
+      "no_bom": true,
+      "long_lines": [
+        971,
+        978
+      ],
+      "trailing_whitespace": []
+    }
+  ],
+  "sealed_unchanged": {
+    "src/pontius/immutable_blueprint.py": true,
+    "src/pontius/no_limit_betting.py": true,
+    "src/pontius/holdem_cards.py": true,
+    "src/pontius/legal_decision_spine_v2.py": true,
+    "src/pontius/action_clock.py": true,
+    "src/pontius/preparation_bank.py": true
+  }
+}

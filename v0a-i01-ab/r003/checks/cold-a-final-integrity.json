@@ -1,0 +1,91 @@
+{
+  "receipt_checks": [
+    {
+      "file": "cold-a-31115-focused.json",
+      "all_exits_zero": true,
+      "tests": 132
+    },
+    {
+      "all_before_lookup": true,
+      "file": "cold-a-31115-probe.json",
+      "refusals": 441,
+      "all_exits_zero": true,
+      "caller_hooks": 0
+    },
+    {
+      "file": "cold-a-3146-focused.json",
+      "all_exits_zero": true,
+      "tests": 132
+    },
+    {
+      "all_before_lookup": true,
+      "file": "cold-a-3146-probe.json",
+      "refusals": 441,
+      "all_exits_zero": true,
+      "caller_hooks": 0
+    }
+  ],
+  "snapshots": [
+    {
+      "clean": true,
+      "head": "30df7bce8da51715e6f1d7576892dd689421c516",
+      "snapshot": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-a-20260830"
+    },
+    {
+      "clean": true,
+      "head": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+      "snapshot": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-a-base-20260830"
+    }
+  ],
+  "incidental_status_retry": "Default sandbox identity could not read Git status on snapshots created by the authorized user account (dubious ownership). Rechecked successfully with creator account; no safe.directory/global config change.",
+  "artifacts": [
+    {
+      "file": "cold-a-31115-focused.json",
+      "sha256": "f85e834eb1207c84ab507d828bc2926471a9db70b87ecf1e491743ea86e007d1"
+    },
+    {
+      "file": "cold-a-31115-probe.json",
+      "sha256": "95e286ed15c9c2414c1d1db77d358b8fee8d76941c8faa04f497d76c13eaa98c"
+    },
+    {
+      "file": "cold-a-3146-focused.json",
+      "sha256": "bbc98aa3135ac897f34392cb7e069223190eb27604d33648e436aae369ac8556"
+    },
+    {
+      "file": "cold-a-3146-probe.json",
+      "sha256": "4080db4309cb8af56e58b8f49e9dacb8f8b093bcc974f40b865a16f1b98512a8"
+    },
+    {
+      "file": "cold-a-baseline-31115.json",
+      "sha256": "ea40f86168ec50eb29f3898b0bd01fa8022340ffacc4ee4a393c48982165a60a"
+    },
+    {
+      "file": "cold-a-baseline-probe.py",
+      "sha256": "9e8042b85495d2f7733100a76fb68e8c0f5c855babab62f114dd0a8f3d134179"
+    },
+    {
+      "file": "cold-a-context-probe.py",
+      "sha256": "a280eaa07e09822724a04b9c5062daf958a04a80b602af7e38a51c12023f7f60"
+    },
+    {
+      "file": "cold-a-identity.json",
+      "sha256": "5339272f3a769f5e0165cbb153dc57bac082c8dec8b8f02bdf1e1c01861da2fd"
+    },
+    {
+      "file": "cold-a-initial-inventory.md",
+      "sha256": "c7502d1e6d39f0368793a5824331a2a69f68c00f4b45d44e3915603420c2d23b"
+    },
+    {
+      "file": "cold-a-runner-v1-failure.json",
+      "sha256": "c53ef72243ca1b1ababb670f3ad750b730305ee628f3334d336e4b7a2d84dd10"
+    },
+    {
+      "file": "cold-a-runner-v2.py",
+      "sha256": "2794bebe76534e4686ece163582d853caab68ad7b72e622f4905e87b310a624b"
+    },
+    {
+      "file": "cold-a-runner.py",
+      "sha256": "eeef4fded04dc9a14473f69d95f54c4d9a6b6e4507bdf8f2be20903171932600"
+    }
+  ]
+}

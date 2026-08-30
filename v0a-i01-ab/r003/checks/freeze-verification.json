@@ -1,0 +1,20 @@
+{
+  "candidate": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-ab",
+    "round": "r003",
+    "ref": "refs/heads/review/v0a-i01-ab/r003",
+    "commit": "30df7bce8da51715e6f1d7576892dd689421c516",
+    "base": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+    "tree": "fbf234bfffcdb51113b3b137a36afa3460bc94b5",
+    "manifest_sha256": "21d9686c9918d9d0648fd98edf35219dfb5e0b4dc1dcfe5e4f28171b7d94e513",
+    "date": "2026-08-30"
+  },
+  "executed_final_overlays_match_frozen_blobs": true,
+  "receipts": [
+    "../../policy-refusal-checks/freeze-check-311-receipt.json",
+    "../../policy-refusal-checks/freeze-check-314-receipt.json"
+  ],
+  "real_index_empty": true,
+  "HEAD": "2f4287f68a83fac4225a05a91daffdb3f2977a43"
+}

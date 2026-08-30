@@ -1,31 +1,28 @@
 # Increment one — current state
 
 2026-08-30. Navigation only; frozen commit/manifest pairs bind every review.
-The controller assigned Codex the A/B repairs while Claude engineers slice C.
-Claude remains the ceremonial finalizer; no source integration is authorized.
+Codex owns A/B corrections and the controller-authorized isolated A/B/C replay.
+Claude's Slice C draft is available as implementation input, not frozen evidence.
+Claude remains the checkpoint finalizer; the final source commit still requires
+candidate-specific authorization under the workflow.
 
 | Contract | Current standing | Next |
 | --- | --- | --- |
-| R2-03 failure ownership | [v0a-i01-ab/r001](../v0a-i01-ab/r001/disposition.md) CLEAN/SOUND, two independent passes | Preserve full cause-order regressions |
-| R2-01/R3-01 policy authority | [v0a-i01-ab/r002](../v0a-i01-ab/r002/handoff.md) frozen; two cold reviews running | Disposition after both |
-| V-01/02/03 value admission | Separate bounded repair; focused dual-interpreter verification | Freeze after policy disposition |
-| R2-05/06 trace/schema/legal acceptance | Separate implementation track within A/B | Independent legal checker + strict parser |
-| R2-04/09/10 publication/accounting | Open, separate subsequent correction | Measured incremental stable-root writer |
-| R2-02/07/08 flags, settlement comparison, known deliveries | Closed by r003 scoped reviews | Preserve regression coverage |
-| C origins/imports/inventory/profile/CI | Claude-owned worktree | Generate final inventory from combined accepted tree |
+| R2-03 failure ownership | [A/B r001](../v0a-i01-ab/r001/disposition.md) CLEAN/SOUND twice | Preserve cause-order regressions |
+| R2-01/R3-01 policy authority and typed refusal | [A/B r003](../v0a-i01-ab/r003/disposition.md) CLEAN/SOUND twice after recorded r002 shape gap | Preserve authority and malformed-shape campaigns |
+| V-01/02/03 value admission | [A/B r004](../v0a-i01-ab/r004/handoff.md) frozen, two cold reviews active | Disposition after both |
+| R2-05/06 trace/schema/legal acceptance | Draft independently checks legal replay and strict schema | Layer on accepted values, verify and freeze |
+| R2-04/09/10 publication/accounting | Separate measured host and native incremental writer draft | Focused verification, freeze and reviews |
+| R2-02/07/08 flags, settlement comparison, known deliveries | Prior scoped closure preserved | Regression coverage stays active; new oracle defect separately recorded |
+| C origins/imports/inventory/profile/CI | [Claude status](slice-c-status.md), mutable implementation input ready | Replay final edits, regenerate inventory/census on finished combined tree |
 
-r001 identity: commit256bcf5b1e721c70216f4d8937166cbb9c25a7ce,
-manifest7a4cbf46c9eb34693d605ae43a0b9048b709d65f9c3fed40610c5c1b5ae3b384.
-r002 identity: commit2f4287f68a83fac4225a05a91daffdb3f2977a43,
-manifest55f7ebf8827c79a6d6c70b1bf26508d87527b8c7113d2458fb4c3dfb5fed0957.
-
-The earlier r006 rejection and residual history stay preserved in its packet.
-The owner transfer did not reset that history or expand r001's correction scope.
-A/B work uses the existing six modules/four focused test files; no sealed edit,
-broad/GPU run, source seal, research owner or performance claim is authorized.
-Actual CPython3.11.15 runs first, then3.14.6, in disposable D-local snapshots.
-Two CLEAN cold reviews precede permitted broad gates; explicit candidate-specific
-controller authorization precedes the finalizer's ceremonial commit and push.
+Latest frozen candidate: c6adbcaa048988361d2388970eaca772711b797b,
+manifest a810c89b7342fb1bcb4f1498fdcf53cd11a589b70424c7da48f6619a45da67cb.
+The earlier r006 rejection and all later residual history remain preserved.
+No sealed edit, guarded broad/GPU run, source seal, research owner or performance
+claim is authorized. Actual CPython3.11.15 runs first, then3.14.6 in disposable
+D-local snapshots. Two CLEAN cold reviews precede permitted broader gates;
+candidate-specific authorization precedes the finalizer's commit and push.
 
 [New A/B ledger](../v0a-i01-ab/progress.md) · [Original implementation ledger](progress.md)
 · [Program dispositions](../progress.md) · [Workflow](../../Pontius/docs/workflow.md)

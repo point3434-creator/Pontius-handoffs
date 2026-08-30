@@ -1,0 +1,50 @@
+{
+  "command": [
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-b-probe-v2.py",
+    "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830",
+    "3.14.6",
+    "30df7bce8da51715e6f1d7576892dd689421c516",
+    "suite:test_v0a_replay.py",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-b-314-suite-test_v0a_replay.json"
+  ],
+  "cwd": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830",
+  "environment": {
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830\\src",
+    "SYSTEMROOT": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "WINDIR": "C:\\windows"
+  },
+  "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+  "exit": 0,
+  "expected_commit": "30df7bce8da51715e6f1d7576892dd689421c516",
+  "flags": {
+    "dont_write_bytecode": true,
+    "safe_path": true
+  },
+  "mode": "suite:test_v0a_replay.py",
+  "module_origin": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830\\src\\pontius\\v0a\\runtime.py",
+  "optional_imports": [],
+  "signature": [
+    "source",
+    "cards",
+    "betting",
+    "decision"
+  ],
+  "suite_exit": 0,
+  "suite_output": ".............................................\n----------------------------------------------------------------------\nRan 45 tests in 1.311s\n\nOK\n",
+  "sys_path": [
+    "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-b-20260830\\src",
+    "C:\\Users\\point\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip",
+    "C:\\Users\\point\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs",
+    "C:\\Users\\point\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib",
+    "C:\\Users\\point\\AppData\\Local\\Python\\pythoncore-3.14-64",
+    "D:\\Pontius\\.venv",
+    "D:\\Pontius\\.venv\\Lib\\site-packages"
+  ],
+  "version": "3.14.6"
+}

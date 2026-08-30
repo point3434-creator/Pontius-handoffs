@@ -1,0 +1,36 @@
+{
+  "label": "red-v2",
+  "slot": "311",
+  "base": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+  "snapshot": "D:\\pontius-snapshots\\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\\harness",
+  "overlay_sha256": {
+    "tests/test_v0a_hand_replay.py": "6049b2ded3e87efbad35122aef36e01da289fe25b0c44fea4c6e861a9bcf82da"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_hand_replay.py",
+        "ValueAdmissionRegressionTests"
+      ],
+      "exit": 1,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\value-checks\\red-v2-311-test_v0a_hand_replay.txt",
+      "sha256": "2d6e10eb1eaa9fc90bd55a5dac74744a489817ee626057fdfd94e8e70bca70ed"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

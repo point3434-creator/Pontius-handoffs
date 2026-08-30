@@ -1,0 +1,693 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+FFEEEFFFEFFFEEFFFEEFFFEEFFEFFFFFFFFFFFFF
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='start', changes={'event_index': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 565, in _process
+    return self._process_hand_started(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 624, in _process_hand_started
+    return self._finish_boundary(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 798, in _finish_boundary
+    return self._decide(event, wall_start_ns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 803, in _decide
+    record = self._decide_inner(event, wall_start_ns, self._action_index)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 955, in _decide_inner
+    record = self._decision_record(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1062, in _decision_record
+    return DecisionRecord(
+           ^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 427, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='start', changes={'event_index': 0.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 565, in _process
+    return self._process_hand_started(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 624, in _process_hand_started
+    return self._finish_boundary(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 798, in _finish_boundary
+    return self._decide(event, wall_start_ns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 803, in _decide
+    record = self._decide_inner(event, wall_start_ns, self._action_index)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 955, in _decide_inner
+    record = self._decision_record(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1062, in _decision_record
+    return DecisionRecord(
+           ^^^^^^^^^^^^^^^
+  File "<string>", line 19, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 427, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='start', changes={'hand_id': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 565, in _process
+    return self._process_hand_started(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 624, in _process_hand_started
+    return self._finish_boundary(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 798, in _finish_boundary
+    return self._decide(event, wall_start_ns)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 803, in _decide
+    record = self._decide_inner(event, wall_start_ns, self._action_index)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 862, in _decide_inner
+    envelope = ActionEnvelope(
+               ^^^^^^^^^^^^^^^
+  File "<string>", line 8, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 282, in __post_init__
+    _require_ascii_id(self.hand_id, name="hand id")
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 91, in _require_ascii_id
+    raise TypeError(f"{name} must be a nonempty ASCII string")
+TypeError: hand id must be a nonempty ASCII string
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='opponent', changes={'event_index': 0.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 571, in _process
+    return self._process_opponent_action(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 635, in _process_opponent_action
+    self._check_common(event)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 754, in _check_common
+    raise _HandFailure(FailureCode.EVENT_ORDER)
+pontius.v0a.runtime._HandFailure: event_order
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 537, in dispatch
+    return self._from_failure(failure, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1129, in _from_failure
+    failure=FailureRecord(
+            ^^^^^^^^^^^^^^
+  File "<string>", line 10, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 467, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='reveal', changes={'event_index': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 575, in _process
+    return self._process_street_revealed(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 665, in _process_street_revealed
+    self._check_common(event)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 754, in _check_common
+    raise _HandFailure(FailureCode.EVENT_ORDER)
+pontius.v0a.runtime._HandFailure: event_order
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 537, in dispatch
+    return self._from_failure(failure, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1129, in _from_failure
+    failure=FailureRecord(
+            ^^^^^^^^^^^^^^
+  File "<string>", line 10, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 467, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='reveal', changes={'event_index': 0.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 575, in _process
+    return self._process_street_revealed(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 665, in _process_street_revealed
+    self._check_common(event)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 754, in _check_common
+    raise _HandFailure(FailureCode.EVENT_ORDER)
+pontius.v0a.runtime._HandFailure: event_order
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 537, in dispatch
+    return self._from_failure(failure, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1129, in _from_failure
+    failure=FailureRecord(
+            ^^^^^^^^^^^^^^
+  File "<string>", line 10, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 467, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='showdown', changes={'event_index': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 578, in _process
+    return self._process_showdown_result(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 707, in _process_showdown_result
+    self._check_common(event)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 754, in _check_common
+    raise _HandFailure(FailureCode.EVENT_ORDER)
+pontius.v0a.runtime._HandFailure: event_order
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 537, in dispatch
+    return self._from_failure(failure, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1129, in _from_failure
+    failure=FailureRecord(
+            ^^^^^^^^^^^^^^
+  File "<string>", line 10, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 467, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='showdown', changes={'event_index': 0.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 528, in dispatch
+    return self._process(event, boundary, wall_start_ns, terminal_at_entry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 578, in _process
+    return self._process_showdown_result(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 707, in _process_showdown_result
+    self._check_common(event)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 754, in _check_common
+    raise _HandFailure(FailureCode.EVENT_ORDER)
+pontius.v0a.runtime._HandFailure: event_order
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1094, in assert_no_effect
+    outcome = runtime.dispatch(bad)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 537, in dispatch
+    return self._from_failure(failure, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1129, in _from_failure
+    failure=FailureRecord(
+            ^^^^^^^^^^^^^^
+  File "<string>", line 10, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 467, in __post_init__
+    _require_exact_int(self.event_index, name="event index", minimum=0)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: event index must be an exact integer
+
+======================================================================
+ERROR: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={'action_index': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1173, in test_invalid_envelopes_cannot_poison_later_valid_key
+    mailbox.deliver(self.loose(good, **change))
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 319, in deliver
+    return DeliveryReceipt(hand_id=envelope.hand_id, action_index=envelope.action_index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 5, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 297, in __post_init__
+    _require_exact_int(self.action_index, name="action index", minimum=1)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: action index must be an exact integer
+
+======================================================================
+ERROR: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={'action_index': 1.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1173, in test_invalid_envelopes_cannot_poison_later_valid_key
+    mailbox.deliver(self.loose(good, **change))
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 319, in deliver
+    return DeliveryReceipt(hand_id=envelope.hand_id, action_index=envelope.action_index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 5, in __init__
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 297, in __post_init__
+    _require_exact_int(self.action_index, name="action index", minimum=1)
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 76, in _require_exact_int
+    raise TypeError(f"{name} must be an exact integer")
+TypeError: action index must be an exact integer
+
+======================================================================
+ERROR: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={'hand_id': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1173, in test_invalid_envelopes_cannot_poison_later_valid_key
+    mailbox.deliver(self.loose(good, **change))
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\model.py", line 314, in deliver
+    if key in self._accepted:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='start', changes={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='start', changes={'schema_version': 'wrong'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='opponent', changes={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='opponent', changes={'schema_version': 'wrong'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='opponent', changes={'event_index': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='opponent', changes={'hand_id': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1096, in assert_no_effect
+    self.assertIs(outcome.failure.code, FailureCode.INVALID_EVENT)
+AssertionError: <FailureCode.EVENT_ORDER: 'event_order'> is not <FailureCode.INVALID_EVENT: 'invalid_event'>
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='reveal', changes={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='reveal', changes={'schema_version': 'wrong'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='reveal', changes={'hand_id': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1096, in assert_no_effect
+    self.assertIs(outcome.failure.code, FailureCode.INVALID_EVENT)
+AssertionError: <FailureCode.EVENT_ORDER: 'event_order'> is not <FailureCode.INVALID_EVENT: 'invalid_event'>
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='showdown', changes={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='showdown', changes={'schema_version': 'wrong'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect) (kind='showdown', changes={'hand_id': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1108, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, self.loose(good, **changes))
+  File "tests/test_v0a_hand_replay.py", line 1096, in assert_no_effect
+    self.assertIs(outcome.failure.code, FailureCode.INVALID_EVENT)
+AssertionError: <FailureCode.EVENT_ORDER: 'event_order'> is not <FailureCode.INVALID_EVENT: 'invalid_event'>
+
+======================================================================
+FAIL: test_all_event_variants_revalidate_before_any_effect (__main__.ValueAdmissionRegressionTests.test_all_event_variants_revalidate_before_any_effect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1112, in test_all_event_variants_revalidate_before_any_effect
+    self.assert_no_effect(runtime, mailbox, OpponentActionEvent(
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1172, in test_invalid_envelopes_cannot_poison_later_valid_key
+    with self.assertRaises(MailboxRejectionError):
+AssertionError: MailboxRejectionError not raised
+
+======================================================================
+FAIL: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={'seat': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1172, in test_invalid_envelopes_cannot_poison_later_valid_key
+    with self.assertRaises(MailboxRejectionError):
+AssertionError: MailboxRejectionError not raised
+
+======================================================================
+FAIL: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={'street': 'wrong'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1172, in test_invalid_envelopes_cannot_poison_later_valid_key
+    with self.assertRaises(MailboxRejectionError):
+AssertionError: MailboxRejectionError not raised
+
+======================================================================
+FAIL: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key) (change={'action': UncheckedHandAction(kind='bad', raise_to=None)})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1172, in test_invalid_envelopes_cannot_poison_later_valid_key
+    with self.assertRaises(MailboxRejectionError):
+AssertionError: MailboxRejectionError not raised
+
+======================================================================
+FAIL: test_invalid_envelopes_cannot_poison_later_valid_key (__main__.ValueAdmissionRegressionTests.test_invalid_envelopes_cannot_poison_later_valid_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1182, in test_invalid_envelopes_cannot_poison_later_valid_key
+    with self.assertRaises(MailboxRejectionError):
+AssertionError: MailboxRejectionError not raised
+
+======================================================================
+FAIL: test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry (__main__.ValueAdmissionRegressionTests.test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry) (change={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1200, in test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry (__main__.ValueAdmissionRegressionTests.test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry) (change={'action_index': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1200, in test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry (__main__.ValueAdmissionRegressionTests.test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry) (change={'action_index': 1.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1200, in test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'decided' != 'failed'
+- decided
++ failed
+
+
+======================================================================
+FAIL: test_rejected_metadata_never_reads_unadmitted_objects (__main__.ValueAdmissionRegressionTests.test_rejected_metadata_never_reads_unadmitted_objects) (mode='fresh')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1158, in test_rejected_metadata_never_reads_unadmitted_objects
+    outcome = runtime.dispatch(Hostile())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 502, in dispatch
+    return self._reject(FailureCode.INVALID_EVENT, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1162, in _reject
+    event_index=getattr(event, "event_index", None),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_hand_replay.py", line 1144, in event_index
+    raise AssertionError("unadmitted metadata consulted")
+AssertionError: unadmitted metadata consulted
+
+======================================================================
+FAIL: test_rejected_metadata_never_reads_unadmitted_objects (__main__.ValueAdmissionRegressionTests.test_rejected_metadata_never_reads_unadmitted_objects) (mode='dead')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1158, in test_rejected_metadata_never_reads_unadmitted_objects
+    outcome = runtime.dispatch(Hostile())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 497, in dispatch
+    return self._reject(FailureCode.EVENT_ORDER, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1162, in _reject
+    event_index=getattr(event, "event_index", None),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_hand_replay.py", line 1144, in event_index
+    raise AssertionError("unadmitted metadata consulted")
+AssertionError: unadmitted metadata consulted
+
+======================================================================
+FAIL: test_rejected_metadata_never_reads_unadmitted_objects (__main__.ValueAdmissionRegressionTests.test_rejected_metadata_never_reads_unadmitted_objects) (mode='clock')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1158, in test_rejected_metadata_never_reads_unadmitted_objects
+    outcome = runtime.dispatch(Hostile())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 502, in dispatch
+    return self._reject(FailureCode.INVALID_EVENT, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1162, in _reject
+    event_index=getattr(event, "event_index", None),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_hand_replay.py", line 1144, in event_index
+    raise AssertionError("unadmitted metadata consulted")
+AssertionError: unadmitted metadata consulted
+
+======================================================================
+FAIL: test_rejected_metadata_never_reads_unadmitted_objects (__main__.ValueAdmissionRegressionTests.test_rejected_metadata_never_reads_unadmitted_objects) (mode='complete')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1158, in test_rejected_metadata_never_reads_unadmitted_objects
+    outcome = runtime.dispatch(Hostile())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 497, in dispatch
+    return self._reject(FailureCode.EVENT_ORDER, event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\ab-red-v2-cef1c4b2c9f24dc4b37722b621acb4fe\harness\src\pontius\v0a\runtime.py", line 1162, in _reject
+    event_index=getattr(event, "event_index", None),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_v0a_hand_replay.py", line 1144, in event_index
+    raise AssertionError("unadmitted metadata consulted")
+AssertionError: unadmitted metadata consulted
+
+======================================================================
+FAIL: test_showdown_strengths_are_immutable_and_comparable_before_completion (__main__.ValueAdmissionRegressionTests.test_showdown_strengths_are_immutable_and_comparable_before_completion) (strengths=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1121, in test_showdown_strengths_are_immutable_and_comparable_before_completion
+    self.assert_no_effect(runtime, mailbox, self.loose(good, strengths=strengths))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_showdown_strengths_are_immutable_and_comparable_before_completion (__main__.ValueAdmissionRegressionTests.test_showdown_strengths_are_immutable_and_comparable_before_completion) (strengths=[None, 5, 9, None, None, None])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1121, in test_showdown_strengths_are_immutable_and_comparable_before_completion
+    self.assert_no_effect(runtime, mailbox, self.loose(good, strengths=strengths))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_showdown_strengths_are_immutable_and_comparable_before_completion (__main__.ValueAdmissionRegressionTests.test_showdown_strengths_are_immutable_and_comparable_before_completion) (strengths=(None, (), (9,), None, None, None))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1121, in test_showdown_strengths_are_immutable_and_comparable_before_completion
+    self.assert_no_effect(runtime, mailbox, self.loose(good, strengths=strengths))
+  File "tests/test_v0a_hand_replay.py", line 1095, in assert_no_effect
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+======================================================================
+FAIL: test_showdown_strengths_are_immutable_and_comparable_before_completion (__main__.ValueAdmissionRegressionTests.test_showdown_strengths_are_immutable_and_comparable_before_completion) (context_strengths=(None, 5, (9,), None, None, None))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_v0a_hand_replay.py", line 1128, in test_showdown_strengths_are_immutable_and_comparable_before_completion
+    self.assertEqual(outcome.status, "failed")
+AssertionError: 'accepted' != 'failed'
+- accepted
++ failed
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.039s
+
+FAILED (failures=29, errors=11)

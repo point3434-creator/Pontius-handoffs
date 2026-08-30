@@ -1,0 +1,10 @@
+{
+  "interpreter": "CPython 3.11.15",
+  "reason": "Diagnostic setup error: clone stores non-default candidate branch under refs/remotes/origin, not refs/heads. v2 resolves clone remote ref. Source repository ref was independently verified in read-only preflight.",
+  "exit": 1,
+  "failed_command": "C:\\Program Files\\Git\\cmd\\git.exe -C D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-a-20260830 rev-parse refs/heads/review/v0a-i01-ab/r003",
+  "phase": "identity",
+  "command": "D:\\Pontius-tools\\py311\\Scripts\\python.exe -B -P D:\\Pontius-handoffs\\v0a-i01-ab\\r003\\checks\\cold-a-runner.py identity 3.11.15",
+  "correction": "cold-a-runner-v2.py; predecessor script is retained unchanged",
+  "product_payload_executed": false
+}

@@ -1,0 +1,135 @@
+{
+  "identity": {
+    "commit": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+    "base": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+    "tree": "7d1383a1a7b2cf05442e4ef4fe8a9189708b2263",
+    "manifest_sha256": "55f7ebf8827c79a6d6c70b1bf26508d87527b8c7113d2458fb4c3dfb5fed0957",
+    "files": [
+      {
+        "path": "src/pontius/v0a/replay.py",
+        "sha256": "25846f5d18a66ce4e8340611cb01ff9f4e920a07a9f0d577444acf5eccd7dc30",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [],
+        "trailing_whitespace": []
+      },
+      {
+        "path": "src/pontius/v0a/runtime.py",
+        "sha256": "46670e4dde6269ef78009e29763e3ef89f810cfa18f25e3a283b4a32714a02b0",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [],
+        "trailing_whitespace": []
+      },
+      {
+        "path": "tests/test_v0a_contract_faults.py",
+        "sha256": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [],
+        "trailing_whitespace": []
+      },
+      {
+        "path": "tests/test_v0a_hand_replay.py",
+        "sha256": "073d8ce3c585efface162c9ec35b01bf4022eac008a3adf73e2e0c17258bebad",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [
+          971,
+          978
+        ],
+        "trailing_whitespace": []
+      }
+    ],
+    "sealed_unchanged": {
+      "src/pontius/immutable_blueprint.py": true,
+      "src/pontius/no_limit_betting.py": true,
+      "src/pontius/holdem_cards.py": true,
+      "src/pontius/legal_decision_spine_v2.py": true,
+      "src/pontius/action_clock.py": true,
+      "src/pontius/preparation_bank.py": true
+    }
+  },
+  "slot": "311",
+  "expected_version": [
+    3,
+    11,
+    15
+  ],
+  "environment": {
+    "SystemRoot": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PYTHONPATH": "D:\\Pontius-review-ab-r002-cold-a-20260830\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONSAFEPATH": "1"
+  },
+  "cwd": "D:\\Pontius-review-ab-r002-cold-a-20260830",
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import os,sys,json,pathlib\nexpected=[3, 11, 15]; root='D:\\\\Pontius-review-ab-r002-cold-a-20260830'; git='C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe'\nassert list(sys.version_info[:3]) == expected\nassert sys.flags.dont_write_bytecode and sys.flags.safe_path\nassert pathlib.Path.cwd() == pathlib.Path(root)\nassert os.environ['PYTHONPATH'] == str(pathlib.Path(root) / 'src')\nassert os.environ['PONTIUS_GIT'] == git\nimport pontius.v0a.runtime as runtime\nassert pathlib.Path(runtime.__file__) == pathlib.Path(root) / 'src/pontius/v0a/runtime.py'\nprint(json.dumps({'version': sys.version, 'executable': sys.executable, 'cwd': os.getcwd(),\n                  'environment': dict(os.environ), 'runtime': runtime.__file__,\n                  'safe_path': sys.flags.safe_path, 'dont_write_bytecode': sys.flags.dont_write_bytecode}))\n"
+      ],
+      "exit": 0,
+      "stdout": "{\"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"cwd\": \"D:\\\\Pontius-review-ab-r002-cold-a-20260830\", \"environment\": {\"COMSPEC\": \"C:\\\\windows\\\\system32\\\\cmd.exe\", \"PONTIUS_GIT\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"PYTHONDONTWRITEBYTECODE\": \"1\", \"PYTHONNOUSERSITE\": \"1\", \"PYTHONPATH\": \"D:\\\\Pontius-review-ab-r002-cold-a-20260830\\\\src\", \"PYTHONSAFEPATH\": \"1\", \"SYSTEMROOT\": \"C:\\\\windows\", \"TEMP\": \"C:\\\\Users\\\\point\\\\AppData\\\\Local\\\\Temp\", \"TMP\": \"C:\\\\Users\\\\point\\\\AppData\\\\Local\\\\Temp\", \"WINDIR\": \"C:\\\\windows\"}, \"runtime\": \"D:\\\\Pontius-review-ab-r002-cold-a-20260830\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"safe_path\": true, \"dont_write_bytecode\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_hand_replay.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ".......................................\n----------------------------------------------------------------------\nRan 39 tests in 0.016s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_contract_faults.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "......................\n----------------------------------------------------------------------\nRan 22 tests in 0.011s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_replay_host.py"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\python.exe: can't open file 'D:\\\\Pontius-review-ab-r002-cold-a-20260830\\\\tests\\\\test_v0a_replay_host.py': [Errno 2] No such file or directory\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_trace.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ".........................\n----------------------------------------------------------------------\nRan 25 tests in 0.013s\n\nOK\n"
+    }
+  ],
+  "final_status": ""
+}

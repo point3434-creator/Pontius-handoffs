@@ -1,0 +1,81 @@
+{
+  "label": "freeze-check",
+  "slot": "314",
+  "base": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+  "snapshot": "D:\\pontius-snapshots\\ab-freeze-check-c161f8ac6ab04b0ca2c1040564df8585\\harness",
+  "overlay_sha256": {
+    "src/pontius/v0a/runtime.py": "1cd9218d06be0b57cbf321b0846528bf1c8d3163dd5c958fab4c8f6a972df5b9",
+    "tests/test_v0a_hand_replay.py": "fa65a3bbe47d8359e6b30c6c8c4167e93609f536dc084fa7a7aed9b9cb17f7f0"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-freeze-check-c161f8ac6ab04b0ca2c1040564df8585\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "3.14.6",
+        "tests/test_v0a_hand_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\freeze-check-314-test_v0a_hand_replay.txt",
+      "sha256": "2faa927fd88a0b425249b380ecbfbc6f421e4607e1518a7780583953aeb2e47e"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "3.14.6",
+        "tests/test_v0a_trace.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\freeze-check-314-test_v0a_trace.txt",
+      "sha256": "12c3fd3eda0a8ef0fae6db5c7c97cf76d292d4bd80a785d5bfa14323ce81e248"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "3.14.6",
+        "tests/test_v0a_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\freeze-check-314-test_v0a_replay.txt",
+      "sha256": "e466aba3eea7b9835955eb78cc376cc347fe2b24bf181cf1bca98db670d326a5"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "3.14.6",
+        "tests/test_v0a_contract_faults.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\freeze-check-314-test_v0a_contract_faults.txt",
+      "sha256": "876505a77454480e13e70fed3e28285edaa85fabedd90cd2e138f1fc2c696cc8"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

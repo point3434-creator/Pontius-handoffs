@@ -1,0 +1,81 @@
+{
+  "label": "green-v1",
+  "slot": "311",
+  "base": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+  "snapshot": "D:\\pontius-snapshots\\ab-green-v1-e6a64700e3e544dc98d012bac5512b88\\harness",
+  "overlay_sha256": {
+    "src/pontius/v0a/runtime.py": "1cd9218d06be0b57cbf321b0846528bf1c8d3163dd5c958fab4c8f6a972df5b9",
+    "tests/test_v0a_hand_replay.py": "d47b7989aa5254d272e2e3c628850ef788ec3b08e7378e535ae3c13f44d8e238"
+  },
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\ab-green-v1-e6a64700e3e544dc98d012bac5512b88\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_hand_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\green-v1-311-test_v0a_hand_replay.txt",
+      "sha256": "0d7770dc26e8b9164cbe52e62dca8f7594cf0e371c8b64d04b7da1f756e44664"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_trace.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\green-v1-311-test_v0a_trace.txt",
+      "sha256": "2fcc0767a01ecf2c350ff1bf8f2560a3789c8fa4fe05b6c4f3590d6046cc83ff"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\green-v1-311-test_v0a_replay.txt",
+      "sha256": "0894bcec8fda9000de9673bc29e89c571295a7460daeba6365ce0a82df2420ef"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,runpy,json\nfrom pathlib import Path\nexe,version,target,*tests=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.implementation.name=='cpython'\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version))),flush=True)\nsys.argv=[target,*tests]\nrunpy.run_path(target,run_name='__main__')\n",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_contract_faults.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\policy-refusal-checks\\green-v1-311-test_v0a_contract_faults.txt",
+      "sha256": "f6a278fc87061a3837e7dad552e673adb7e5b364fec6b7b1e4e9c976937b8d10"
+    }
+  ],
+  "overlay_unchanged_after_execution": true
+}

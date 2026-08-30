@@ -1,0 +1,55 @@
+{
+  "blobs": [
+    {
+      "bom_free": true,
+      "checkout_equals_blob": true,
+      "lf_only": true,
+      "overlong_lines": [],
+      "path": "src/pontius/v0a/runtime.py",
+      "sha256": "1cd9218d06be0b57cbf321b0846528bf1c8d3163dd5c958fab4c8f6a972df5b9",
+      "status": "M"
+    },
+    {
+      "bom_free": true,
+      "checkout_equals_blob": true,
+      "lf_only": true,
+      "overlong_lines": [],
+      "path": "tests/test_v0a_hand_replay.py",
+      "sha256": "fa65a3bbe47d8359e6b30c6c8c4167e93609f536dc084fa7a7aed9b9cb17f7f0",
+      "status": "M"
+    }
+  ],
+  "candidate": {
+    "base": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+    "commit": "30df7bce8da51715e6f1d7576892dd689421c516",
+    "date": "2026-08-30",
+    "manifest_sha256": "21d9686c9918d9d0648fd98edf35219dfb5e0b4dc1dcfe5e4f28171b7d94e513",
+    "ref": "refs/heads/review/v0a-i01-ab/r003",
+    "round": "r003",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-ab",
+    "tree": "fbf234bfffcdb51113b3b137a36afa3460bc94b5"
+  },
+  "diff_check": "",
+  "manifest_verified": true,
+  "metadata": {
+    "cwd": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-a-20260830",
+    "dont_write_bytecode": true,
+    "environment": {
+      "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+      "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPATH": "D:\\pontius-snapshots\\v0a-i01-ab-r003-cold-a-20260830\\src",
+      "SYSTEMROOT": "C:\\windows",
+      "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+      "WINDIR": "C:\\windows"
+    },
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "CPython",
+    "safe_path": true,
+    "snapshot_commit": "30df7bce8da51715e6f1d7576892dd689421c516",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"
+  }
+}

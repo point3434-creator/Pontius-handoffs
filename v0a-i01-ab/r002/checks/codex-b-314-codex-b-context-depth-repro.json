@@ -1,0 +1,34 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+  "environment": {
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\point",
+    "NUMBER_OF_PROCESSORS": "24",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-i01-ab-r002-cold-b-20260830\\src",
+    "SYSTEMROOT": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "USERPROFILE": "C:\\Users\\point",
+    "WINDIR": "C:\\windows"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\r002\\checks\\codex-b-payload.py",
+        "314",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\r002\\checks\\codex-b-context-depth-repro.py"
+      ],
+      "cwd": "D:\\pontius-snapshots\\v0a-i01-ab-r002-cold-b-20260830",
+      "exit": 0,
+      "stdout": "{\"python\": \"3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]\", \"executable\": \"D:\\\\Pontius\\\\.venv\\\\Scripts\\\\python.exe\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r002-cold-b-20260830\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"modules\": {\"pontius.v0a.runtime\": \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r002-cold-b-20260830\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"pontius.v0a.replay\": \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r002-cold-b-20260830\\\\src\\\\pontius\\\\v0a\\\\replay.py\", \"pontius.immutable_blueprint\": \"D:\\\\pontius-snapshots\\\\v0a-i01-ab-r002-cold-b-20260830\\\\src\\\\pontius\\\\immutable_blueprint.py\"}}\n{\n  \"observations\": [\n    {\n      \"field\": \"stack\",\n      \"depth\": 1,\n      \"observed\": \"InvalidDecisionContextError\",\n      \"contract_result\": \"pass\"\n    },\n    {\n      \"field\": \"stack\",\n      \"depth\": 600,\n      \"observed\": \"RecursionError\",\n      \"contract_result\": \"fail\"\n    },\n    {\n      \"field\": \"action_kinds\",\n      \"depth\": 1,\n      \"observed\": \"InvalidDecisionContextError\",\n      \"contract_result\": \"pass\"\n    },\n    {\n      \"field\": \"action_kinds\",\n      \"depth\": 600,\n      \"observed\": \"RecursionError\",\n      \"contract_result\": \"fail\"\n    },\n    {\n      \"field\": \"raise_bounds\",\n      \"depth\": 1,\n      \"observed\": \"InvalidDecisionContextError\",\n      \"contract_result\": \"pass\"\n    },\n    {\n      \"field\": \"raise_bounds\",\n      \"depth\": 600,\n      \"observed\": \"RecursionError\",\n      \"contract_result\": \"fail\"\n    }\n  ],\n  \"note\": \"zero exit confirms the documented defect; it is not a passing candidate verdict\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

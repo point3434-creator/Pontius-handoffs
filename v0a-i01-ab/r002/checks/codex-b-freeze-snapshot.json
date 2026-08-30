@@ -1,0 +1,42 @@
+{
+  "reviewer": "Codex /root/ab_r002_cold_b",
+  "commit": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+  "base": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+  "tree": "7d1383a1a7b2cf05442e4ef4fe8a9189708b2263",
+  "manifest_sha256": "55f7ebf8827c79a6d6c70b1bf26508d87527b8c7113d2458fb4c3dfb5fed0957",
+  "snapshot": "D:\\pontius-snapshots\\v0a-i01-ab-r002-cold-b-20260830",
+  "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "git": "C:\\Program Files\\Git\\cmd\\git.exe",
+  "blobs": {
+    "src/pontius/v0a/replay.py": {
+      "status": "M",
+      "sha256": "25846f5d18a66ce4e8340611cb01ff9f4e920a07a9f0d577444acf5eccd7dc30",
+      "bytes": 21654,
+      "cr": 0,
+      "bom": false
+    },
+    "src/pontius/v0a/runtime.py": {
+      "status": "M",
+      "sha256": "46670e4dde6269ef78009e29763e3ef89f810cfa18f25e3a283b4a32714a02b0",
+      "bytes": 47570,
+      "cr": 0,
+      "bom": false
+    },
+    "tests/test_v0a_contract_faults.py": {
+      "status": "M",
+      "sha256": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+      "bytes": 23767,
+      "cr": 0,
+      "bom": false
+    },
+    "tests/test_v0a_hand_replay.py": {
+      "status": "M",
+      "sha256": "073d8ce3c585efface162c9ec35b01bf4022eac008a3adf73e2e0c17258bebad",
+      "bytes": 44415,
+      "cr": 0,
+      "bom": false
+    }
+  },
+  "status": "verified"
+}

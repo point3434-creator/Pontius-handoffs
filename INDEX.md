@@ -20,7 +20,9 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-impl | r006 | [Disposition](v0a-i01-impl/r006/disposition.md) | NOT CLEAN: dead-witness echo and unsafe exception normalization; old r005 mechanisms fixed; 123 focused tests pass per interpreter; change-of-implementer condition applies |
 | v0a-i01-value-boundaries | r001 | [Disposition](v0a-i01-value-boundaries/r001/disposition.md) | NEW-SURFACE audit: three Important admission contracts; V2 ticket route not established; separate from r003/r004 fix scopes |
 | v0a-i01-ab | r001 | [Disposition](v0a-i01-ab/r001/disposition.md) | R2-03 CLEAN/SOUND in two independent reviews; 127 focused per interpreter; scoped acceptance only |
-| v0a-i01-ab | r002 | [Handoff](v0a-i01-ab/r002/handoff.md) | Policy-only FIX in two independent cold reviews; 131 focused per interpreter; Codex owns A/B, Claude C/finalization |
+| v0a-i01-ab | r002 | [Disposition](v0a-i01-ab/r002/disposition.md) | Policy identity corrected; NOT CLEAN for typed-refusal shape gap, preserved with reviewer severity dissent |
+| v0a-i01-ab | r003 | [Disposition](v0a-i01-ab/r003/disposition.md) | Typed-refusal correction CLEAN/SOUND twice; 132 focused plus independent malformed-context campaigns on both interpreters |
+| v0a-i01-ab | r004 | [Handoff](v0a-i01-ab/r004/handoff.md) | Value-admission FIX frozen; two independent cold reviews running; 137 focused per interpreter |
 | coverage-guidance | r001 | [Disposition](coverage-guidance/r001/disposition.md) | NOT CLEAN: coverage-only closure loop; corrected in r002 |
 | coverage-guidance | r002 | [Disposition](coverage-guidance/r002/disposition.md) | CLEAN: category/discovery guidance and templates; independent evidence closure; source uncommitted, pending design edits excluded |
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |

@@ -1,0 +1,146 @@
+{
+  "identity": {
+    "commit": "2f4287f68a83fac4225a05a91daffdb3f2977a43",
+    "base": "256bcf5b1e721c70216f4d8937166cbb9c25a7ce",
+    "tree": "7d1383a1a7b2cf05442e4ef4fe8a9189708b2263",
+    "manifest_sha256": "55f7ebf8827c79a6d6c70b1bf26508d87527b8c7113d2458fb4c3dfb5fed0957",
+    "files": [
+      {
+        "path": "src/pontius/v0a/replay.py",
+        "sha256": "25846f5d18a66ce4e8340611cb01ff9f4e920a07a9f0d577444acf5eccd7dc30",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [],
+        "trailing_whitespace": []
+      },
+      {
+        "path": "src/pontius/v0a/runtime.py",
+        "sha256": "46670e4dde6269ef78009e29763e3ef89f810cfa18f25e3a283b4a32714a02b0",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [],
+        "trailing_whitespace": []
+      },
+      {
+        "path": "tests/test_v0a_contract_faults.py",
+        "sha256": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [],
+        "trailing_whitespace": []
+      },
+      {
+        "path": "tests/test_v0a_hand_replay.py",
+        "sha256": "073d8ce3c585efface162c9ec35b01bf4022eac008a3adf73e2e0c17258bebad",
+        "checkout_equals_blob": true,
+        "lf_only": true,
+        "no_bom": true,
+        "long_lines": [
+          971,
+          978
+        ],
+        "trailing_whitespace": []
+      }
+    ],
+    "sealed_unchanged": {
+      "src/pontius/immutable_blueprint.py": true,
+      "src/pontius/no_limit_betting.py": true,
+      "src/pontius/holdem_cards.py": true,
+      "src/pontius/legal_decision_spine_v2.py": true,
+      "src/pontius/action_clock.py": true,
+      "src/pontius/preparation_bank.py": true
+    }
+  },
+  "slot": "314",
+  "expected_version": [
+    3,
+    14,
+    6
+  ],
+  "environment": {
+    "SystemRoot": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PYTHONPATH": "D:\\Pontius-review-ab-r002-cold-a-20260830\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONSAFEPATH": "1"
+  },
+  "cwd": "D:\\Pontius-review-ab-r002-cold-a-20260830",
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import os,sys,json,pathlib\nexpected=[3, 14, 6]; root='D:\\\\Pontius-review-ab-r002-cold-a-20260830'; git='C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe'\nassert list(sys.version_info[:3]) == expected\nassert sys.flags.dont_write_bytecode and sys.flags.safe_path\nassert pathlib.Path.cwd() == pathlib.Path(root)\nassert os.environ['PYTHONPATH'] == str(pathlib.Path(root) / 'src')\nassert os.environ['PONTIUS_GIT'] == git\nimport pontius.v0a.runtime as runtime\nassert pathlib.Path(runtime.__file__) == pathlib.Path(root) / 'src/pontius/v0a/runtime.py'\nprint(json.dumps({'version': sys.version, 'executable': sys.executable, 'cwd': os.getcwd(),\n                  'environment': dict(os.environ), 'runtime': runtime.__file__,\n                  'safe_path': sys.flags.safe_path, 'dont_write_bytecode': sys.flags.dont_write_bytecode}))\n"
+      ],
+      "exit": 0,
+      "stdout": "{\"version\": \"3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]\", \"executable\": \"D:\\\\Pontius\\\\.venv\\\\Scripts\\\\python.exe\", \"cwd\": \"D:\\\\Pontius-review-ab-r002-cold-a-20260830\", \"environment\": {\"COMSPEC\": \"C:\\\\windows\\\\system32\\\\cmd.exe\", \"PONTIUS_GIT\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"PYTHONDONTWRITEBYTECODE\": \"1\", \"PYTHONNOUSERSITE\": \"1\", \"PYTHONPATH\": \"D:\\\\Pontius-review-ab-r002-cold-a-20260830\\\\src\", \"PYTHONSAFEPATH\": \"1\", \"SYSTEMROOT\": \"C:\\\\windows\", \"TEMP\": \"C:\\\\Users\\\\point\\\\AppData\\\\Local\\\\Temp\", \"TMP\": \"C:\\\\Users\\\\point\\\\AppData\\\\Local\\\\Temp\", \"WINDIR\": \"C:\\\\windows\", \"PONTIUS_CUDA_DLL_DIRECTORY\": \"D:\\\\Pontius\\\\.venv\\\\Lib\\\\site-packages\\\\nvidia\\\\cu13\\\\bin\\\\x86_64\", \"PONTIUS_CUDA_DLL_SOURCE\": \"active_python_environment\", \"CUDA_PATH\": \"D:\\\\Pontius\\\\.venv\\\\Lib\\\\site-packages\\\\nvidia\\\\cu13\", \"PATH\": \"D:\\\\Pontius\\\\.venv\\\\Lib\\\\site-packages\\\\nvidia\\\\cu13\\\\bin\\\\x86_64\"}, \"runtime\": \"D:\\\\Pontius-review-ab-r002-cold-a-20260830\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"safe_path\": true, \"dont_write_bytecode\": 1}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_hand_replay.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ".......................................\n----------------------------------------------------------------------\nRan 39 tests in 0.016s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_contract_faults.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "......................\n----------------------------------------------------------------------\nRan 22 tests in 0.012s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_replay.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ".............................................\n----------------------------------------------------------------------\nRan 45 tests in 1.329s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-review-ab-r002-cold-a-20260830\\tests\\test_v0a_trace.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ".........................\n----------------------------------------------------------------------\nRan 25 tests in 0.014s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\r002\\checks\\codex-a-policy-probe.py"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"version\": \"3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]\",\n  \"rows\": [\n    {\n      \"case\": \"source-digest\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-digest\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-canonical\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-canonical\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-lookup\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-lookup\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"class-pretender\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"class-pretender\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"delegate\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"delegate\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-key\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-key\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-entry\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-entry\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-action\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-action\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-text\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"source-text\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"entries-tuple\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"entries-tuple\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-integer\",\n      \"boundary\": \"runtime\",\n      \"exception\": \"TypeError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"nested-integer\",\n      \"boundary\": \"helper\",\n      \"exception\": \"InvalidDecisionContextError\",\n      \"deliveries\": 0\n    },\n    {\n      \"case\": \"decision-alias-acting_seat\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"decision-alias-stack\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"decision-alias-street_contribution\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"decision-alias-current_bet\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"decision-alias-to_call\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"decision-alias-call_amount\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"bounds-alias-minimum_raise_to\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"bounds-alias-maximum_raise_to\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"bounds-alias-minimum_full_raise_to\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"bounds-alias-maximum_contestable_raise_to\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"bounds-alias-all_in_only\",\n      \"exception\": \"InvalidDecisionContextError\"\n    },\n    {\n      \"case\": \"hit\",\n      \"status\": \"decided\",\n      \"deliveries\": 1\n    },\n    {\n      \"case\": \"miss\",\n      \"status\": \"decided\",\n      \"deliveries\": 1\n    },\n    {\n      \"case\": \"different-state\",\n      \"status\": \"decided\",\n      \"deliveries\": 1\n    },\n    {\n      \"case\": \"illegal\",\n      \"status\": \"failed\",\n      \"deliveries\": 0\n    }\n  ],\n  \"real_host_profile\": [\n    {\n      \"fixture\": \"control-A\",\n      \"passed\": true,\n      \"admissions\": 1,\n      \"actions\": 4,\n      \"sealed_digest_calls\": 6,\n      \"same_owned_source\": true\n    },\n    {\n      \"fixture\": \"control-B\",\n      \"passed\": true,\n      \"admissions\": 1,\n      \"actions\": 2,\n      \"sealed_digest_calls\": 4,\n      \"same_owned_source\": true\n    }\n  ],\n  \"measured_initial_binding\": {\n    \"failure\": \"action_deadline_exceeded\",\n    \"elapsed_ns\": 16000012000,\n    \"digest_calls\": 2\n  },\n  \"invalid_exact_depth\": [\n    {\n      \"case\": \"action-kinds-depth-2000\",\n      \"expected\": \"InvalidDecisionContextError\",\n      \"observed\": \"RecursionError\"\n    },\n    {\n      \"case\": \"raise-bound-depth-2000\",\n      \"expected\": \"InvalidDecisionContextError\",\n      \"observed\": \"RecursionError\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "final_status": ""
+}
