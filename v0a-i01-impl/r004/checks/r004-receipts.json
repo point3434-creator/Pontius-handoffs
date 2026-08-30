@@ -1,0 +1,77 @@
+{
+  "base_commit": "b357d333fc2393b7fc7dcf31f30c86616208c817",
+  "overlay_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "d229ca9a5a3f00ef73401b6aca415922840760dd62873759c50b3bfa95285ea4",
+    "src/pontius/v0a/model.py": "30aa2b8f7fbe86a7d106a27b3d52362b891a7ed0b222a858911e59e5d93301b0",
+    "src/pontius/v0a/replay.py": "3b966ce18b7d5d6324d478246682300c762ebc95646d8a045ac2d231cd958f9d",
+    "src/pontius/v0a/runtime.py": "2921ea887e001cb7d3e9a6b077c0aa2c0b72a116c6259b5c2e1194d470555132",
+    "src/pontius/v0a/trace.py": "ca994d35be0c2a2c368727cdc11abee7a71ba5e7f7d95e62fc24bc7e89ba03ed",
+    "tests/test_v0a_contract_faults.py": "85c15ae71e6e5685124c7c9d276a94dd593ef96a0dd7a131e27b3ac8d0fd87e9",
+    "tests/test_v0a_hand_replay.py": "8603e88be2d874c77a6e9d2b732508f42be68a4fcd45d7921f30725810d8dfc3",
+    "tests/test_v0a_replay.py": "389bedde5ba50c0bbb16735d1d20e3a966a3c64ddd32b5c49bccf7aa4d7ae9a8",
+    "tests/test_v0a_trace.py": "15b7cb1c06cf6468f7ec5dbab3e01366e177c76e806a7a61dfb6ac05387ef498"
+  },
+  "runs": {
+    "3.11": {
+      "identity": {
+        "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "implementation": "CPython",
+        "version": "3.11.15"
+      },
+      "status": "ran",
+      "suites": {
+        "tests/test_v0a_contract_faults.py": {
+          "exit": 0,
+          "summary": "Ran 22 tests in 0.009s",
+          "tail": "OK"
+        },
+        "tests/test_v0a_hand_replay.py": {
+          "exit": 0,
+          "summary": "Ran 35 tests in 0.012s",
+          "tail": "OK"
+        },
+        "tests/test_v0a_replay.py": {
+          "exit": 0,
+          "summary": "Ran 31 tests in 0.587s",
+          "tail": "OK"
+        },
+        "tests/test_v0a_trace.py": {
+          "exit": 0,
+          "summary": "Ran 25 tests in 0.013s",
+          "tail": "OK"
+        }
+      }
+    },
+    "3.14": {
+      "identity": {
+        "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "implementation": "CPython",
+        "version": "3.14.6"
+      },
+      "status": "ran",
+      "suites": {
+        "tests/test_v0a_contract_faults.py": {
+          "exit": 0,
+          "summary": "Ran 22 tests in 0.009s",
+          "tail": "OK"
+        },
+        "tests/test_v0a_hand_replay.py": {
+          "exit": 0,
+          "summary": "Ran 35 tests in 0.012s",
+          "tail": "OK"
+        },
+        "tests/test_v0a_replay.py": {
+          "exit": 0,
+          "summary": "Ran 31 tests in 0.589s",
+          "tail": "OK"
+        },
+        "tests/test_v0a_trace.py": {
+          "exit": 0,
+          "summary": "Ran 25 tests in 0.010s",
+          "tail": "OK"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,341 @@
+[
+  {
+    "path": "src/pontius/v0a/model.py",
+    "sha256": "30aa2b8f7fbe86a7d106a27b3d52362b891a7ed0b222a858911e59e5d93301b0",
+    "dataclasses": [
+      {
+        "name": "HandAction",
+        "line": 135,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 141,
+        "methods": {
+          "__post_init__": 141,
+          "to_betting_action": 149,
+          "from_betting_action": 160
+        }
+      },
+      {
+        "name": "HandStartedEvent",
+        "line": 167,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 179,
+        "methods": {
+          "__post_init__": 179
+        }
+      },
+      {
+        "name": "OpponentActionEvent",
+        "line": 204,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 213,
+        "methods": {
+          "__post_init__": 213
+        }
+      },
+      {
+        "name": "StreetRevealedEvent",
+        "line": 224,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 232,
+        "methods": {
+          "__post_init__": 232
+        }
+      },
+      {
+        "name": "ShowdownResultEvent",
+        "line": 250,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 257,
+        "methods": {
+          "__post_init__": 257
+        }
+      },
+      {
+        "name": "ActionEnvelope",
+        "line": 272,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 281,
+        "methods": {
+          "__post_init__": 281
+        }
+      },
+      {
+        "name": "DeliveryReceipt",
+        "line": 291,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 295,
+        "methods": {
+          "__post_init__": 295
+        }
+      },
+      {
+        "name": "PreparationUseRecord",
+        "line": 323,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 330,
+        "methods": {
+          "__post_init__": 330
+        }
+      },
+      {
+        "name": "TimingRecord",
+        "line": 348,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 360,
+        "methods": {
+          "__post_init__": 360
+        }
+      },
+      {
+        "name": "DecisionRecord",
+        "line": 407,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 425,
+        "methods": {
+          "__post_init__": 425
+        }
+      },
+      {
+        "name": "FailureRecord",
+        "line": 454,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 463,
+        "methods": {
+          "__post_init__": 463
+        }
+      },
+      {
+        "name": "PotRecord",
+        "line": 484,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 488,
+        "methods": {
+          "__post_init__": 488
+        }
+      },
+      {
+        "name": "SettlementRecord",
+        "line": 501,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 506,
+        "methods": {
+          "__post_init__": 506
+        }
+      }
+    ]
+  },
+  {
+    "path": "src/pontius/v0a/runtime.py",
+    "sha256": "767f6ae77d4e4ca55012b54ea072e8ae71ddafa4091e3e2e1d8196d9ff91398a",
+    "dataclasses": [
+      {
+        "name": "AccountingTotals",
+        "line": 134,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      },
+      {
+        "name": "DispatchOutcome",
+        "line": 148,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      }
+    ]
+  },
+  {
+    "path": "src/pontius/v0a/replay.py",
+    "sha256": "f67b2f2d5f76455110cbb1b676d97a41d20b8d770698782428f4e87c7bcdc545",
+    "dataclasses": [
+      {
+        "name": "ScriptedAction",
+        "line": 76,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {
+          "action": 84
+        }
+      },
+      {
+        "name": "Fixture",
+        "line": 89,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {
+          "permutation": 108,
+          "deal": 111,
+          "configuration_sha256": 120
+        }
+      },
+      {
+        "name": "OracleSettlement",
+        "line": 216,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      },
+      {
+        "name": "HostCompletionReceipt",
+        "line": 295,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      },
+      {
+        "name": "ReplayOutcome",
+        "line": 309,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      }
+    ]
+  },
+  {
+    "path": "src/pontius/v0a/clock.py",
+    "sha256": "d229ca9a5a3f00ef73401b6aca415922840760dd62873759c50b3bfa95285ea4",
+    "dataclasses": []
+  },
+  {
+    "path": "src/pontius/legal_decision_spine_v2.py",
+    "sha256": "a480918d5c6e5d06e2076ef64f7cccf14b63f61162b7b9d24dd7cae35825fca9",
+    "dataclasses": [
+      {
+        "name": "ControlledDecisionTicketV2",
+        "line": 82,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      },
+      {
+        "name": "EmittedBettingActionV2",
+        "line": 88,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      }
+    ]
+  },
+  {
+    "path": "src/pontius/legal_decision_spine.py",
+    "sha256": "3ba182108c83977684f294f5495ec06f2b64706f4d562a02d2c60fde9c785a55",
+    "dataclasses": [
+      {
+        "name": "ControlledDecisionTicket",
+        "line": 33,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      },
+      {
+        "name": "EmittedBettingAction",
+        "line": 39,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      }
+    ]
+  },
+  {
+    "path": "src/pontius/immutable_blueprint.py",
+    "sha256": "300a5caa70febc954a9e47aa31b88aec345fe9ee6410b78b4d40b4d34fa1aaf8",
+    "dataclasses": [
+      {
+        "name": "BlueprintDecisionKey",
+        "line": 27,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 104,
+        "methods": {
+          "from_state": 48,
+          "__post_init__": 104,
+          "canonical_bytes": 222,
+          "digest": 250
+        }
+      },
+      {
+        "name": "BlueprintActionEntry",
+        "line": 255,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 259,
+        "methods": {
+          "__post_init__": 259
+        }
+      },
+      {
+        "name": "BlueprintSelection",
+        "line": 267,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": null,
+        "methods": {}
+      },
+      {
+        "name": "ImmutableBlueprintActionSource",
+        "line": 306,
+        "decorators": [
+          "dataclass(frozen=True, slots=True)"
+        ],
+        "post_init": 312,
+        "methods": {
+          "__post_init__": 312,
+          "canonical_bytes": 323,
+          "digest": 345,
+          "action_for": 348
+        }
+      }
+    ]
+  }
+]

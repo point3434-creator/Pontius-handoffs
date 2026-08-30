@@ -1,0 +1,8 @@
+[baseline] exit=0 OK
+[CAUGHT] no closure cause is ever retained
+[CAUGHT] reversed clocks lose their distinct code
+[CAUGHT] the host never drains retained causes
+[CAUGHT] finalization faults dropped
+[CAUGHT] host causes appended without flushing earlier runtime causes
+[CAUGHT] a reporting failure is promoted to primary
+[restored] exit=0 OK

@@ -15,6 +15,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-impl | r001 | [Handoff](v0a-i01-impl/r001/handoff.md) | Slice A NOT CLEAN; seven consolidated findings; reproduced on 3.11/3.14; fix-round brief in disposition.md; Claude finalizes |
 | v0a-i01-impl | r002 | [Disposition](v0a-i01-impl/r002/disposition.md) | NOT CLEAN; ten consolidated Important findings; 99 focused tests pass on actual 3.11/3.14; F3/F7 remain open; Claude finalizes the next reviewed candidate |
 | v0a-i01-impl | r003 | [Disposition](v0a-i01-impl/r003/disposition.md) | FIX slice 1 NOT CLEAN; two residuals R2-01/03; R2-02/07/08 closed; second policy residual requires its own candidate and root-cause note |
+| v0a-i01-impl | r004 | [Handoff](v0a-i01-impl/r004/handoff.md) | FIX round, R3-02 only (typed closure causes); 113 tests GREEN on 3.11/3.14; 414-position fault sweep; awaiting cold review |
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |
 | review-guidance | r002 | [Disposition](review-guidance/r002/disposition.md) | CLEAN; exact reviewed workflow committed and pushed as d1ed3cb; concurrent edits preserved; refs archived |
 
