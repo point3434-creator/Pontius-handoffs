@@ -1,0 +1,199 @@
+{
+  "census_sha256": "49b037b30ebcca230e68f82fbdc56fb274fbacda41411dc99ecc0eeaad2d2bde",
+  "before_test_sha256": "3be7e898d97fb27ae06c2a603495ede1a2da9b5b651dd4beb1157c31f74ea2f5",
+  "after_test_sha256": "5bb47dda9ba6ad3b5d0c0b61165fbb111d49f643702091332a326d35aa49afd9",
+  "changes": [
+    {
+      "field": "analysis_census.subprocess_direct_site_count",
+      "old": 44,
+      "new": 45
+    },
+    {
+      "field": "analysis_census.string_sink_decoy_count",
+      "old": 587,
+      "new": 592
+    },
+    {
+      "field": "analysis_census.string_sink_decoy_sha256",
+      "old": "cd0402bd336cc503a1fbb9752707723ad0b6deb31bfd752af060278e0976d3bc",
+      "new": "cf3edbe709d07a230974c762e29400ed6e2c6c5bc9730eed472f03933041ee47"
+    },
+    {
+      "field": "analysis_census.string_sink_decoy_partitions.task2_synthetic",
+      "old": 530,
+      "new": 535
+    },
+    {
+      "field": "analysis_census.analyzed_sites_sha256",
+      "old": "1a05210222958e0e56e31f41fe4cc818b190a262f1c91ae32467d50282b7e0fe",
+      "new": "6beec1b64eed80b39fe32bba100c618de8608e43663d480fcdec4db1c8b9adb2"
+    },
+    {
+      "field": "blocker_count",
+      "old": 358,
+      "new": 388
+    },
+    {
+      "field": "blocker_reason_counts.unsupported subprocess keyword: capture_output",
+      "old": 47,
+      "new": 48
+    },
+    {
+      "field": "blocker_reason_counts.dynamic helper arguments prevent exact sink derivation",
+      "old": 15,
+      "new": 26
+    },
+    {
+      "field": "blocker_reason_counts.mixed protected receiver is dynamically unresolved",
+      "old": 61,
+      "new": 67
+    },
+    {
+      "field": "blocker_reason_counts.dynamic sensitive call result is unresolved",
+      "old": 15,
+      "new": 16
+    },
+    {
+      "field": "blocker_reason_counts.callback closure",
+      "old": null,
+      "new": 1
+    },
+    {
+      "field": "blocker_reason_counts.unittest instance or class binding is dynamically unresolved",
+      "old": null,
+      "new": 10
+    },
+    {
+      "field": "blocker_locations.dynamic sensitive call result is unresolved",
+      "old": [
+        [
+          "tests/test_dependency_tape.py",
+          650
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          652
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          654
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          656
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          479
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          488
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          106
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          108
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          111
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          119
+        ],
+        [
+          "tests/test_exact_collision_oracle.py",
+          98
+        ],
+        [
+          "tests/test_multi_size_affine_cross_payoff.py",
+          134
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          411
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          66
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          81
+        ]
+      ],
+      "new": [
+        [
+          "tests/test_dependency_tape.py",
+          650
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          652
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          654
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          656
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          479
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          488
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          106
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          108
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          111
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          119
+        ],
+        [
+          "tests/test_exact_collision_oracle.py",
+          98
+        ],
+        [
+          "tests/test_multi_size_affine_cross_payoff.py",
+          134
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          411
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          66
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          81
+        ],
+        [
+          "tests/test_v0a_replay.py",
+          600
+        ]
+      ]
+    }
+  ],
+  "capability_spec_unchanged": true
+}

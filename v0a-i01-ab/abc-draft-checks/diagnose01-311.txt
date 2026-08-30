@@ -1,0 +1,27 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "trace_origin": "D:\\pontius-snapshots\\abc-draft-38f32e69685e4f6693baf96c13dba02e\\harness\\src\\pontius\\v0a\\trace.py"}}
+Traceback (most recent call last):
+  File "<string>", line 11, in <module>
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\Pontius-handoffs\v0a-i01-ab\abc-diagnose-generation.py", line 8, in <module>
+    module._derive_inventory_publication(request)
+  File "D:\pontius-snapshots\abc-draft-38f32e69685e4f6693baf96c13dba02e\harness\tools\generate_test_inventory.py", line 25281, in _derive_inventory_publication
+    review = derive_design_review(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-draft-38f32e69685e4f6693baf96c13dba02e\harness\tools\generate_test_inventory.py", line 24511, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-draft-38f32e69685e4f6693baf96c13dba02e\harness\tools\generate_test_inventory.py", line 24285, in _process_review_rows
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-draft-38f32e69685e4f6693baf96c13dba02e\harness\tools\generate_test_inventory.py", line 23053, in _review_body
+    supplied_arguments = _bind_helper_arguments(
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-draft-38f32e69685e4f6693baf96c13dba02e\harness\tools\generate_test_inventory.py", line 21683, in _bind_helper_arguments
+    positional_defaults = {
+                          ^
+  File "D:\pontius-snapshots\abc-draft-38f32e69685e4f6693baf96c13dba02e\harness\tools\generate_test_inventory.py", line 21683, in <dictcomp>
+    positional_defaults = {
+                          ^
+ValueError: zip() argument 2 is longer than argument 1

@@ -1,0 +1,22 @@
+{"cwd": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot", "environment": {"COMSPEC": "C:\\windows\\system32\\cmd.exe", "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot\\src", "SYSTEMROOT": "C:\\windows", "TEMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp", "TMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp", "WINDIR": "C:\\windows"}, "flags": {"B": 1, "P": true}, "implementation": "CPython", "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}
+ORIGIN pontius.v0a.runtime D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\runtime.py
+ORIGIN pontius.v0a.replay D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\replay.py
+ORIGIN pontius.v0a.trace D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\trace.py
+ORIGIN pontius.v0a.clock D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\clock.py
+ORIGIN pontius.v0a.model D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\model.py
+ORIGIN pontius.action_clock D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\action_clock.py
+ORIGIN pontius.preparation_bank D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\preparation_bank.py
+ORIGIN pontius.legal_decision_spine_v2 D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\legal_decision_spine_v2.py
+ORIGIN pontius.no_limit_betting D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\no_limit_betting.py
+ORIGIN pontius.holdem_cards D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\holdem_cards.py
+ORIGIN pontius.immutable_blueprint D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\immutable_blueprint.py
+ORIGIN pontius.river D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\river.py
+{"case": "measured_native_control-A", "categories": {"preparation": 7.25, "post_terminal": 0.625, "publication": 1.125}, "incremental_observations": 24, "decisions": 4, "foreign": ["foreign writes denied"], "released": true}
+{"case": "measured_native_control-B", "categories": {"preparation": 4.0, "post_terminal": 0.375, "publication": 1.125}, "incremental_observations": 9, "decisions": 2, "foreign": ["foreign writes denied"], "released": true}
+PASS native_create_refusal retained=1 original_unchanged released=true
+{"case": "publication_close", "terminal_passed": true, "receipt_passed": false, "primary": "clock_invalid", "source_raises": 1, "publication_seconds": null, "retained": 4, "released": true}
+{"case": "finalization", "terminal_passed": true, "receipt_passed": false, "primary": "clock_invalid", "source_raises": 1, "publication_seconds": 0.0, "retained": 4, "released": true}
+PASS all_20_nonterminal_prefixes typed=event_order retained_deliveries=true
+PASS preserved_AST src/pontius/v0a/trace.py 19
+PASS preserved_AST src/pontius/v0a/replay.py 3
+ALL INDEPENDENT BOUNDARY CHECKS PASSED

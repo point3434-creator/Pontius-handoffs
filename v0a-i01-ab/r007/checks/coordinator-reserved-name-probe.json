@@ -1,0 +1,22 @@
+{
+  "candidate": "ddea6efbeb55cb8b71da1ebd5a359a0c2c901cf1",
+  "snapshot": "D:\\pontius-snapshots\\publication-name-probe-0f35c63c2b5646f58625f9b3509b7e92\\harness",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys,json,os,hashlib\nfrom pathlib import Path\nassert sys.version_info[:3]==(3,11,15) and sys.flags.safe_path and sys.dont_write_bytecode\nfrom pontius.v0a.trace import write_trace\nroot=Path(os.environ['TEMP'])/'reserved-leaf';root.mkdir()\np=root/'NUL';native=Path('\\\\\\\\?\\\\'+str(p))\nresult=dict(version=sys.version,destination=str(p))\ntry:\n result['returned_digest']=write_trace(b'known payload',p,run_root=root)\n result['ordinary_read_hex']=p.read_bytes().hex()\n result['native_read_hex']=native.read_bytes().hex()\n result['directory_entries']=[x.name for x in root.iterdir()]\nexcept Exception as error:result['error']=repr(error)\nfinally:\n if native.exists():native.unlink()\n root.rmdir()\nprint(json.dumps(result))\n"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "D:\\pontius-snapshots\\publication-name-probe-0f35c63c2b5646f58625f9b3509b7e92\\temp",
+    "TMP": "D:\\pontius-snapshots\\publication-name-probe-0f35c63c2b5646f58625f9b3509b7e92\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\publication-name-probe-0f35c63c2b5646f58625f9b3509b7e92\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "exit": 0,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\r007\\checks\\coordinator-reserved-name-probe.txt",
+  "sha256": "c469c02960bc1af21e1ef41491e95ea6049ce139edc3ca7b922ed594aae013a5"
+}

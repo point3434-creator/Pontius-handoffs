@@ -1,0 +1,40 @@
+{
+  "base": "52bd941e9fa1fb90ff6d2d14df2286e2ee4f4ec8",
+  "overlay_sha256": {
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "tests/test-inventory.json": "5109817c613cc7be1b11201889f45b10f595b0b55135c531284189245f6e660d",
+    "tests/test_inventory_and_profiles.py": "1d587eb4952d4bf7fc39ea98c9ab8997aff2e06a30398115c5673d6daf13a09a",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tests/test-profiles.toml": "b7d15dabf3dfa8df072fa4c065220356753083cdb9333449cbdd36137fb65023",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/generate_test_inventory.py": "1f080d1e1e2ed910d2d62c1adbfb8dfa9c263217acde1dfbddb4fd6eb376b9af",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53"
+  },
+  "environment": {
+    "PATH": "C:\\windows\\System32",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "WINDIR": "C:\\windows",
+    "TEMP": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\harness\\src",
+    "SYSTEMROOT": "C:\\windows",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "temporary": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\temp",
+  "snapshot": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\harness",
+  "targets": [
+    "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+    "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+    "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+    "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+    "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+    "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+    "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent"
+  ]
+}

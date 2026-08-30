@@ -1,0 +1,54 @@
+{
+  "candidate": "ddea6efbeb55cb8b71da1ebd5a359a0c2c901cf1",
+  "manifest_sha256": "c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189",
+  "checks": [
+    {
+      "target": "test_v0a_replay",
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys, os, platform, pathlib, json\nexpected_version, expected_python, expected_root = '3.11.15', 'D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe', 'D:\\\\Pontius-tmp\\\\codex-b-r007-01a05090\\\\snapshot'\nassert platform.python_implementation() == 'CPython'\nassert platform.python_version() == expected_version, sys.version\nassert os.path.normcase(sys.executable) == os.path.normcase(expected_python), sys.executable\nassert pathlib.Path.cwd() == pathlib.Path(expected_root)\nassert sys.flags.dont_write_bytecode and sys.flags.safe_path\nassert os.environ['PYTHONPATH'] == str(pathlib.Path(expected_root) / 'src')\nprint(json.dumps({'python': sys.executable, 'version': sys.version, 'implementation': platform.python_implementation(), 'cwd': str(pathlib.Path.cwd()), 'flags': {'B': sys.flags.dont_write_bytecode, 'P': sys.flags.safe_path}, 'environment': dict(os.environ)}, sort_keys=True), flush=True)\nimport importlib\nfor module_name in ('pontius.v0a.runtime', 'pontius.v0a.replay', 'pontius.v0a.trace', 'pontius.v0a.clock', 'pontius.v0a.model', 'pontius.action_clock', 'pontius.preparation_bank', 'pontius.legal_decision_spine_v2', 'pontius.no_limit_betting', 'pontius.holdem_cards', 'pontius.immutable_blueprint', 'pontius.river'):\n    module = importlib.import_module(module_name)\n    expected = pathlib.Path(expected_root) / 'src' / (module_name.replace('.', '/') + '.py')\n    assert pathlib.Path(module.__file__) == expected, (module_name, module.__file__, expected)\n    print('ORIGIN', module_name, module.__file__, flush=True)\nimport runpy\nsys.argv = ['tests/test_v0a_replay.py', '-v']\nrunpy.run_path('D:\\\\Pontius-tmp\\\\codex-b-r007-01a05090\\\\snapshot\\\\tests\\\\test_v0a_replay.py', run_name='__main__')\n"
+      ],
+      "cwd": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot",
+      "environment": {
+        "SystemRoot": "C:\\windows",
+        "WINDIR": "C:\\windows",
+        "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+        "TEMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp",
+        "TMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp",
+        "PYTHONPATH": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot\\src",
+        "PYTHONNOUSERSITE": "1",
+        "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+      },
+      "exit": 0,
+      "output": "D:\\Pontius-handoffs\\v0a-i01-ab\\r007\\checks\\codex-b-focused-31115-test_v0a_replay.txt",
+      "output_sha256": "f4137504dfd8dbf3cd1964199587523c4d61c6efafc09f240cee6f176b44eec2"
+    },
+    {
+      "target": "test_v0a_trace",
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys, os, platform, pathlib, json\nexpected_version, expected_python, expected_root = '3.11.15', 'D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe', 'D:\\\\Pontius-tmp\\\\codex-b-r007-01a05090\\\\snapshot'\nassert platform.python_implementation() == 'CPython'\nassert platform.python_version() == expected_version, sys.version\nassert os.path.normcase(sys.executable) == os.path.normcase(expected_python), sys.executable\nassert pathlib.Path.cwd() == pathlib.Path(expected_root)\nassert sys.flags.dont_write_bytecode and sys.flags.safe_path\nassert os.environ['PYTHONPATH'] == str(pathlib.Path(expected_root) / 'src')\nprint(json.dumps({'python': sys.executable, 'version': sys.version, 'implementation': platform.python_implementation(), 'cwd': str(pathlib.Path.cwd()), 'flags': {'B': sys.flags.dont_write_bytecode, 'P': sys.flags.safe_path}, 'environment': dict(os.environ)}, sort_keys=True), flush=True)\nimport importlib\nfor module_name in ('pontius.v0a.runtime', 'pontius.v0a.replay', 'pontius.v0a.trace', 'pontius.v0a.clock', 'pontius.v0a.model', 'pontius.action_clock', 'pontius.preparation_bank', 'pontius.legal_decision_spine_v2', 'pontius.no_limit_betting', 'pontius.holdem_cards', 'pontius.immutable_blueprint', 'pontius.river'):\n    module = importlib.import_module(module_name)\n    expected = pathlib.Path(expected_root) / 'src' / (module_name.replace('.', '/') + '.py')\n    assert pathlib.Path(module.__file__) == expected, (module_name, module.__file__, expected)\n    print('ORIGIN', module_name, module.__file__, flush=True)\nimport runpy\nsys.argv = ['tests/test_v0a_trace.py', '-v']\nrunpy.run_path('D:\\\\Pontius-tmp\\\\codex-b-r007-01a05090\\\\snapshot\\\\tests\\\\test_v0a_trace.py', run_name='__main__')\n"
+      ],
+      "cwd": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot",
+      "environment": {
+        "SystemRoot": "C:\\windows",
+        "WINDIR": "C:\\windows",
+        "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+        "TEMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp",
+        "TMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp",
+        "PYTHONPATH": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot\\src",
+        "PYTHONNOUSERSITE": "1",
+        "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+      },
+      "exit": 0,
+      "output": "D:\\Pontius-handoffs\\v0a-i01-ab\\r007\\checks\\codex-b-focused-31115-test_v0a_trace.txt",
+      "output_sha256": "f21d611d0a60f03bcdb6b8d8c34de0bc75da359a532f866040297bf891369f74"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "candidate": "ddea6efbeb55cb8b71da1ebd5a359a0c2c901cf1",
+  "manifest_sha256": "c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189",
+  "checks": [
+    {
+      "target": "manifest",
+      "argv": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys, os, platform, pathlib, json\nexpected_version, expected_python, expected_root = '3.11.15', 'D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe', 'D:\\\\Pontius-tmp\\\\codex-b-r007-01a05090\\\\snapshot'\nassert platform.python_implementation() == 'CPython'\nassert platform.python_version() == expected_version, sys.version\nassert os.path.normcase(sys.executable) == os.path.normcase(expected_python), sys.executable\nassert pathlib.Path.cwd() == pathlib.Path(expected_root)\nassert sys.flags.dont_write_bytecode and sys.flags.safe_path\nassert os.environ['PYTHONPATH'] == str(pathlib.Path(expected_root) / 'src')\nprint(json.dumps({'python': sys.executable, 'version': sys.version, 'implementation': platform.python_implementation(), 'cwd': str(pathlib.Path.cwd()), 'flags': {'B': sys.flags.dont_write_bytecode, 'P': sys.flags.safe_path}, 'environment': dict(os.environ)}, sort_keys=True), flush=True)\nimport hashlib, subprocess\nGIT, COMMIT, BASE, MANIFEST, CHECKS = 'C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe', 'ddea6efbeb55cb8b71da1ebd5a359a0c2c901cf1', '52bd941e9fa1fb90ff6d2d14df2286e2ee4f4ec8', 'c234b4271bd665e869689fb5d976e629703b678faeb3f55532a3615edc98b189', 'D:\\\\Pontius-handoffs\\\\v0a-i01-ab\\\\r007\\\\checks'\ndef git(*args):\n    return subprocess.run([GIT, '-C', expected_root, *args], capture_output=True, check=True).stdout\nassert git('rev-parse', 'HEAD').decode().strip() == COMMIT\nassert git('rev-parse', COMMIT + '^').decode().strip() == BASE\nassert git('rev-parse', COMMIT + '^{tree}').decode().strip() == '7f8e429d60434ec5979a4ffa0eead94dfb1d9b35'\nfields = git('diff-tree', '-r', '-z', '--no-renames', '--no-commit-id', '--name-status', BASE, COMMIT).split(b'\\0')\nrows = []\nfor i in range(0, len(fields)-1, 2):\n    status, path = fields[i], fields[i+1]\n    digest = '0' * 64 if status == b'D' else hashlib.sha256(git('cat-file', 'blob', COMMIT + ':' + path.decode())).hexdigest()\n    rows.append(digest.encode() + b'  ' + path + b'\\n')\nmanifest_bytes = b''.join(sorted(rows))\nactual = hashlib.sha256(manifest_bytes).hexdigest()\nassert actual == MANIFEST, actual\npacket = pathlib.Path(CHECKS).parent / 'manifest.sha256'\nassert packet.read_bytes() == manifest_bytes\nprint(manifest_bytes.decode(), end='')\nprint('MANIFEST', actual)\n"
+      ],
+      "cwd": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot",
+      "environment": {
+        "SystemRoot": "C:\\windows",
+        "WINDIR": "C:\\windows",
+        "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+        "TEMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp",
+        "TMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp",
+        "PYTHONPATH": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot\\src",
+        "PYTHONNOUSERSITE": "1",
+        "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+      },
+      "exit": 0,
+      "output": "D:\\Pontius-handoffs\\v0a-i01-ab\\r007\\checks\\codex-b-identity-31115-manifest.txt",
+      "output_sha256": "b7c2ec16a08df7f153b9586b97930ad26a58a7efbd5a7c239e941ec773acc891"
+    }
+  ]
+}

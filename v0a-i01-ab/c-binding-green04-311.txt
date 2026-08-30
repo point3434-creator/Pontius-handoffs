@@ -1,0 +1,16 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-binding-green04-514f218c62d34146a3eb29db0b70eef1\\harness", "test_origin": "D:\\pontius-snapshots\\c-binding-green04-514f218c62d34146a3eb29db0b70eef1\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-binding-green04-514f218c62d34146a3eb29db0b70eef1\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 8, "failures": 0, "errors": 0, "skipped": 0}
+
+test_descriptor_defaults_preserve_real_python_argument_binding (binding_inventory_tests.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) ... ok
+test_invalid_static_helper_arguments_remain_blocked (binding_inventory_tests.DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked) ... ok
+test_unproven_helper_descriptor_provenance_remains_blocked (binding_inventory_tests.DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked) ... ok
+test_helper_registry_and_argument_binding_fail_closed (binding_inventory_tests.DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed) ... ok
+test_registered_probe_and_cross_file_helpers_are_exactly_resolved (binding_inventory_tests.DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved) ... ok
+test_source_order_bounds_exception_environments_and_decorators_are_exact (binding_inventory_tests.DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact) ... ok
+test_round4_decorator_definition_point_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.072s
+
+OK

@@ -1,0 +1,112 @@
+{"identity_before_test_payload": {"version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-binding-red05-18b9d88d37a74162a4f87c847325890b\\harness", "test_origin": "D:\\pontius-snapshots\\c-binding-red05-18b9d88d37a74162a4f87c847325890b\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-binding-red05-18b9d88d37a74162a4f87c847325890b\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 8, "failures": 6, "errors": 0, "skipped": 0}
+
+test_descriptor_defaults_preserve_real_python_argument_binding (binding_inventory_tests.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) ... 
+  test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='ordinary-entry-cls') ... FAIL
+  test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='ordinary-helper-cls') ... FAIL
+  test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='class-helper-self') ... FAIL
+  test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='class-helper-self-default') ... FAIL
+  test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='invalid-ordinary-cls') ... FAIL
+  test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='invalid-class-self') ... FAIL
+test_invalid_static_helper_arguments_remain_blocked (binding_inventory_tests.DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked) ... ok
+test_unproven_helper_descriptor_provenance_remains_blocked (binding_inventory_tests.DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked) ... ok
+test_helper_registry_and_argument_binding_fail_closed (binding_inventory_tests.DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed) ... ok
+test_registered_probe_and_cross_file_helpers_are_exactly_resolved (binding_inventory_tests.DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved) ... ok
+test_source_order_bounds_exception_environments_and_decorators_are_exact (binding_inventory_tests.DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact) ... ok
+test_round4_decorator_definition_point_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent) ... ok
+
+======================================================================
+FAIL: test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='ordinary-entry-cls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-binding-red05-18b9d88d37a74162a4f87c847325890b\harness\tests\test_inventory_and_profiles.py", line 20886, in test_receiver_descriptor_not_parameter_spelling_controls_binding
+    self.assertEqual([row['argv'] for row in rows], [['-m', actual]])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [['-m', 'default']] != [['-m', 'explicit']]
+
+First differing element 0:
+['-m', 'default']
+['-m', 'explicit']
+
+- [['-m', 'default']]
+?          - ^^^
+
++ [['-m', 'explicit']]
+?           ^^ +++
+
+
+======================================================================
+FAIL: test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='ordinary-helper-cls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-binding-red05-18b9d88d37a74162a4f87c847325890b\harness\tests\test_inventory_and_profiles.py", line 20886, in test_receiver_descriptor_not_parameter_spelling_controls_binding
+    self.assertEqual([row['argv'] for row in rows], [['-m', actual]])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [['-m', 'default']] != [['-m', 'explicit']]
+
+First differing element 0:
+['-m', 'default']
+['-m', 'explicit']
+
+- [['-m', 'default']]
+?          - ^^^
+
++ [['-m', 'explicit']]
+?           ^^ +++
+
+
+======================================================================
+FAIL: test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='class-helper-self')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-binding-red05-18b9d88d37a74162a4f87c847325890b\harness\tests\test_inventory_and_profiles.py", line 20886, in test_receiver_descriptor_not_parameter_spelling_controls_binding
+    self.assertEqual([row['argv'] for row in rows], [['-m', actual]])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [['-m', 'explicit']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'explicit']
+
+- []
++ [['-m', 'explicit']]
+
+======================================================================
+FAIL: test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='class-helper-self-default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-binding-red05-18b9d88d37a74162a4f87c847325890b\harness\tests\test_inventory_and_profiles.py", line 20886, in test_receiver_descriptor_not_parameter_spelling_controls_binding
+    self.assertEqual([row['argv'] for row in rows], [['-m', actual]])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [['-m', 'receiver']] != [['-m', 'default']]
+
+First differing element 0:
+['-m', 'receiver']
+['-m', 'default']
+
+- [['-m', 'receiver']]
++ [['-m', 'default']]
+
+======================================================================
+FAIL: test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='invalid-ordinary-cls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-binding-red05-18b9d88d37a74162a4f87c847325890b\harness\tests\test_inventory_and_profiles.py", line 20877, in test_receiver_descriptor_not_parameter_spelling_controls_binding
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) (receiver='invalid-class-self')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-binding-red05-18b9d88d37a74162a4f87c847325890b\harness\tests\test_inventory_and_profiles.py", line 20877, in test_receiver_descriptor_not_parameter_spelling_controls_binding
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.623s
+
+FAILED (failures=6)

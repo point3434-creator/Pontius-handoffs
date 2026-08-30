@@ -1,0 +1,585 @@
+diff --git a/tools/generate_test_inventory.py b/tools/generate_test_inventory.py
+index 572b5f6..7052781 100644
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -7846,6 +7846,7 @@ class _ReviewFunction:
+     class_name: str | None
+     module_bound_names: frozenset[str] = frozenset()
+     enclosing_exception_names: frozenset[str] = frozenset()
++    descriptor_kind: str | None = "ordinary"
+ 
+ 
+ def _metered_ast_walk(
+@@ -21464,6 +21465,42 @@ def _source_ordered_review_flow(
+     return resolver.resolve(node.body)
+ 
+ 
++def _helper_descriptor_kind(
++    node: ast.FunctionDef | ast.AsyncFunctionDef,
++    unavailable_names: frozenset[str],
++) -> str | None:
++    """Accept only a single builtin descriptor whose spelling is unshadowed."""
++
++    if not node.decorator_list:
++        return "ordinary"
++    if len(node.decorator_list) != 1:
++        return None
++    decorator = node.decorator_list[0]
++    if (
++        isinstance(decorator, ast.Name)
++        and decorator.id in {"staticmethod", "classmethod"}
++        and decorator.id not in unavailable_names
++    ):
++        return decorator.id
++    return None
++
++
++def _descriptor_unavailable_names(nodes: Sequence[ast.stmt]) -> frozenset[str]:
++    visitor = _ExceptionBindingVisitor()
++    try:
++        for node in nodes:
++            visitor.visit(node)
++            if any(
++                isinstance(child, ast.ImportFrom)
++                and any(alias.name == "*" for alias in child.names)
++                for child in ast.walk(node)
++            ):
++                visitor.bound_names.update({"staticmethod", "classmethod"})
++    except RecursionError:
++        visitor.bound_names.update({"staticmethod", "classmethod"})
++    return frozenset(visitor.bound_names)
++
++
+ def _review_function_registry(
+     parsed: Mapping[str, ast.Module],
+     exception_provenance: Mapping[str, _ModuleExceptionProvenance] | None = None,
+@@ -21499,6 +21536,7 @@ def _review_function_registry(
+             )
+         })
+         assignments = _static_assignments(tree.body)
++        descriptor_names = _descriptor_unavailable_names(tree.body)
+         source_path = PurePosixPath(relative_path)
+         module_name = ".".join(source_path.with_suffix("").parts)
+         shorthand = source_path.stem
+@@ -21520,6 +21558,9 @@ def _review_function_registry(
+                 ):
+                     register(key, definition)
+             elif isinstance(node, ast.ClassDef):
++                unavailable_descriptors = (
++                    descriptor_names | _descriptor_unavailable_names(node.body)
++                )
+                 constructor = next(
+                     (
+                         method
+@@ -21547,6 +21588,7 @@ def _review_function_registry(
+                         id(constructor),
+                         frozenset(),
+                     ),
++                    _helper_descriptor_kind(constructor, unavailable_descriptors),
+                 )
+                 for key in (
+                     f"{relative_path}::{node.name}",
+@@ -21571,6 +21613,7 @@ def _review_function_registry(
+                             id(method),
+                             frozenset(),
+                         ),
++                        _helper_descriptor_kind(method, unavailable_descriptors),
+                     )
+                     register(
+                         f"{relative_path}::{node.name}::{method.name}",
+@@ -21608,20 +21651,45 @@ def _review_function_registry(
+     return registry
+ 
+ 
++def _helper_receiver_kinds(definition: _ReviewFunction | None) -> dict[str, str]:
++    if definition is None or definition.descriptor_kind not in {
++        "ordinary", "classmethod"
++    }:
++        return {}
++    positional = [*definition.node.args.posonlyargs, *definition.node.args.args]
++    if not positional:
++        return {}
++    return {
++        positional[0].arg: (
++            "class" if definition.descriptor_kind == "classmethod" else "instance"
++        )
++    }
++
++
+ def _helper_is_bound(
+     call: ast.Call,
+     definition: _ReviewFunction,
+     aliases: Mapping[str, str],
+-) -> bool:
++    *,
++    receiver_kinds: Mapping[str, str],
++) -> bool | None:
+     if definition.class_name is None:
+         return False
++    if definition.descriptor_kind is None:
++        return None
+     raw = _qualified_name(call.func)
+     if raw is not None and raw.startswith(("self.", "cls.")):
+-        return True
++        receiver_kind = receiver_kinds.get(raw.split(".", 1)[0])
++        if receiver_kind is None:
++            return None
++        return definition.descriptor_kind == "classmethod" or (
++            definition.descriptor_kind == "ordinary" and receiver_kind == "instance"
++        )
++    if definition.descriptor_kind == "staticmethod":
++        return False
+     resolved = _resolved_qualified_name(call.func, aliases)
+     if (
+         definition.node.name == "__init__"
+-        and definition.class_name is not None
+         and resolved is not None
+         and (
+             resolved == definition.class_name
+@@ -21629,13 +21697,8 @@ def _helper_is_bound(
+         )
+     ):
+         return True
+-    decorators = {
+-        _resolved_qualified_name(decorator, definition.aliases)
+-        for decorator in definition.node.decorator_list
+-    }
+-    if "classmethod" not in decorators:
++    if definition.descriptor_kind != "classmethod":
+         return False
+-    resolved = _resolved_qualified_name(call.func, aliases)
+     local_name = f"{definition.class_name}.{definition.node.name}"
+     return resolved is not None and (
+         resolved == local_name or resolved.endswith(f".{local_name}")
+@@ -21646,6 +21709,8 @@ def _bind_helper_arguments(
+     call: ast.Call,
+     definition: _ReviewFunction,
+     aliases: Mapping[str, str],
++    *,
++    receiver_kinds: Mapping[str, str],
+ ) -> dict[str, tuple[ast.expr, bool]] | None:
+     arguments = definition.node.args
+     if (
+@@ -21656,7 +21721,20 @@ def _bind_helper_arguments(
+     ):
+         return None
+     positional = [*arguments.posonlyargs, *arguments.args]
+-    if _helper_is_bound(call, definition, aliases):
++    positional_defaults = {
++        parameter.arg: value
++        for parameter, value in zip(
++            positional[-len(arguments.defaults) :] if arguments.defaults else (),
++            arguments.defaults,
++            strict=True,
++        )
++    }
++    bound = _helper_is_bound(
++        call, definition, aliases, receiver_kinds=receiver_kinds
++    )
++    if bound is None:
++        return None
++    if bound:
+         if not positional:
+             return None
+         positional = positional[1:]
+@@ -21667,27 +21745,17 @@ def _bind_helper_arguments(
+         supplied[parameter.arg] = (value, False)
+     positional_only = {parameter.arg for parameter in arguments.posonlyargs}
+     allowed_keywords = {
+-        parameter.arg for parameter in (*arguments.args, *arguments.kwonlyargs)
++        parameter.arg for parameter in (*positional, *arguments.kwonlyargs)
++        if parameter.arg not in positional_only
+     }
+-    if _helper_is_bound(call, definition, aliases) and arguments.args:
+-        allowed_keywords.discard(arguments.args[0].arg)
+     for keyword in call.keywords:
+         if (
+             keyword.arg is None
+-            or keyword.arg in positional_only
+             or keyword.arg not in allowed_keywords
+             or keyword.arg in supplied
+         ):
+             return None
+         supplied[keyword.arg] = (keyword.value, False)
+-    positional_defaults = {
+-        parameter.arg: value
+-        for parameter, value in zip(
+-            positional[-len(arguments.defaults) :] if arguments.defaults else (),
+-            arguments.defaults,
+-            strict=True,
+-        )
+-    }
+     for parameter in positional:
+         if parameter.arg in supplied:
+             continue
+@@ -22550,6 +22618,7 @@ def _review_body(
+     closure_helper_key: str | None = None,
+     analysis_budget: _AnalysisBudget | None = None,
+     entry_values: Mapping[str, _FlowValue] | None = None,
++    receiver_kinds: Mapping[str, str] | None = None,
+ ) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+     if closure_depth > MAXIMUM_ANALYSIS_HELPER_DEPTH:
+         raise InventoryError("analysis helper depth exceeds 64")
+@@ -22560,6 +22629,17 @@ def _review_body(
+         analyzed_sites = []
+     if helper_edges is None:
+         helper_edges = []
++    if receiver_kinds is None:
++        caller = helper_registry.get(f"{relative_path}::{class_name}::{node.name}")
++        receiver_kinds = _helper_receiver_kinds(
++            caller if caller is not None and caller.node is node else None
++        )
++    body_receiver_kinds = dict(receiver_kinds)
++    receiver_bindings = _ExceptionBindingVisitor()
++    for statement in node.body:
++        receiver_bindings.visit(statement)
++    for name in receiver_bindings.bound_names:
++        body_receiver_kinds.pop(name, None)
+     execution = _execution_scope(node, analysis_budget)
+     body_aliases = _function_aliases(
+         aliases,
+@@ -22958,6 +23038,7 @@ def _review_body(
+                 call,
+                 local_definition,
+                 call_aliases,
++                receiver_kinds=body_receiver_kinds,
+             )
+             local_assignments = dict(call_assignments)
+             argument_failure = supplied is None
+@@ -23006,6 +23087,10 @@ def _review_body(
+                 closure_depth=closure_depth + 1,
+                 closure_helper_key=local_key,
+                 analysis_budget=analysis_budget,
++                receiver_kinds={
++                    name: kind for name, kind in body_receiver_kinds.items()
++                    if name not in _lexical_binding_scope(local_node).parameter_names
++                },
+             )
+             site_key = site_keys[id(call)]
+             scaled, scale_blockers = _scale_nested_review_rows(
+@@ -23054,6 +23139,7 @@ def _review_body(
+                 call,
+                 definition,
+                 call_aliases,
++                receiver_kinds=body_receiver_kinds,
+             )
+             argument_failure = supplied_arguments is None
+             if supplied_arguments is None:
+@@ -23116,8 +23202,15 @@ def _review_body(
+                 closure_depth=closure_depth + 1,
+                 closure_helper_key=helper_key,
+                 analysis_budget=analysis_budget,
++                receiver_kinds={
++                    name: kind
++                    for name, kind in _helper_receiver_kinds(definition).items()
++                    if supplied_arguments is not None and name not in supplied_arguments
++                },
+             )
+-            if argument_failure and (refused or not added):
++            if argument_failure and (
++                supplied_arguments is None or refused or not added
++            ):
+                 blockers.append(
+                     _review_blocker(
+                         item_id,
+diff --git a/tests/test_inventory_and_profiles.py b/tests/test_inventory_and_profiles.py
+index 0f75fa1..cdb52b7 100644
+--- a/tests/test_inventory_and_profiles.py
++++ b/tests/test_inventory_and_profiles.py
+@@ -20754,52 +20754,64 @@ class DesignReviewTests(unittest.TestCase):
+     def test_descriptor_defaults_preserve_real_python_argument_binding(self) -> None:
+         cases = (
+             ("static-self-default", "@staticmethod", 'module="default"',
+-             'self._launch()', "default"),
++             'self._launch()', "default", ""),
+             ("static-self-positional", "@staticmethod", 'module="default"',
+-             'self._launch("explicit")', "explicit"),
++             'self._launch("explicit")', "explicit", ""),
+             ("static-self-keyword", "@staticmethod", 'module="default"',
+-             'self._launch(module="explicit")', "explicit"),
++             'self._launch(module="explicit")', "explicit", ""),
+             ("static-class-default", "@staticmethod", 'module="default"',
+-             'ReviewTests._launch()', "default"),
+-            ("qualified-static", "@builtins.staticmethod", 'module="default"',
+-             'self._launch()', "default"),
+-            ("aliased-static", "@static", 'module="default"',
+-             'self._launch()', "default"),
++             'ReviewTests._launch()', "default", ""),
++            ("static-cls-keyword", "@staticmethod", 'module="default"',
++             'cls._launch(module="explicit")', "explicit", "@classmethod"),
+             ("ordinary-default-receiver", "", 'self=None, module="default"',
+-             'self._launch()', "default"),
++             'self._launch()', "default", ""),
+             ("ordinary-explicit", "", 'self=None, module="default"',
+-             'self._launch("explicit")', "explicit"),
++             'self._launch("explicit")', "explicit", ""),
++            ("ordinary-required-receiver", "", 'self, module="default"',
++             'self._launch()', "default", ""),
++            ("ordinary-unbound-class", "", 'self, module="default"',
++             'ReviewTests._launch(None, module="explicit")', "explicit", ""),
++            ("ordinary-unbound-cls", "", 'self, module="default"',
++             'cls._launch(None, module="explicit")', "explicit", "@classmethod"),
+             ("posonly-receiver-keyword", "", 'self, /, module="default"',
+-             'self._launch(module="explicit")', "explicit"),
++             'self._launch(module="explicit")', "explicit", ""),
++            ("posonly-defaulted-receiver", "", 'self=None, /, module="default"',
++             'self._launch(module="explicit")', "explicit", ""),
+             ("class-default-receiver", "@classmethod", 'cls=None, module="default"',
+-             'self._launch()', "default"),
++             'self._launch()', "default", ""),
+             ("class-qualified-call", "@classmethod", 'cls=None, module="default"',
+-             'ReviewTests._launch(module="explicit")', "explicit"),
++             'ReviewTests._launch(module="explicit")', "explicit", ""),
++            ("class-cls-call", "@classmethod", 'cls=None, module="default"',
++             'cls._launch(module="explicit")', "explicit", "@classmethod"),
+             ("class-posonly-receiver", "@classmethod", 'cls, /, module="default"',
+-             'self._launch(module="explicit")', "explicit"),
+-            ("ordinary-required-receiver", "", 'self, module="default"',
+-             'self._launch()', "default"),
++             'self._launch(module="explicit")', "explicit", ""),
++            ("class-posonly-defaulted", "@classmethod", 'cls=None, /, module="default"',
++             'self._launch()', "default", ""),
+         )
+         process = (
+             'subprocess.run([sys.executable, "-m", module], cwd=".", '
+             'env={**__import__("os").environ, "SAFE": "1"}, '
+             'timeout=timeout, check=False)'
+         )
+-        for label, decorator, parameters, invocation, expected_module in cases:
++        for label, decorator, parameters, invocation, expected_module, caller in cases:
+             with self.subTest(binding=label):
++                entry = 'self._caller()' if caller else invocation
+                 source = (
+-                    'import builtins, subprocess, sys, unittest\n'
+-                    'from builtins import staticmethod as static\n'
++                    'import subprocess, sys, unittest\n'
+                     'class ReviewTests(unittest.TestCase):\n'
+                     + (f'    {decorator}\n' if decorator else '')
+                     + f'    def _launch({parameters}, *, timeout=5):\n'
+                     + f'        {process}\n'
++                    + (
++                        f'    {caller}\n    def _caller(cls):\n'
++                        f'        return {invocation}\n'
++                        if caller else ''
++                    )
+                     + '    def test_static(self):\n'
+-                    + f'        return {invocation}\n'
++                    + f'        return {entry}\n'
+                     + '    def test_denied(self): pass\n'
+                 )
+-                # Execute only the pure return projection for independent Python
+-                # descriptor/default expectations; no subprocess is launched.
++                # Only this pure projection executes; sensitive source is inspected.
+                 namespace = {}
+                 exec(source.replace(process, 'return (module, timeout)'), namespace)
+                 actual = namespace['ReviewTests']('test_static').test_static()
+@@ -20811,25 +20823,200 @@ class DesignReviewTests(unittest.TestCase):
+                 self.assertEqual([row['timeout_ns'] for row in rows], [actual[1] * 10**9])
+                 self.assertFalse(review['unresolved_dynamic_blockers'])
+ 
++    def test_receiver_descriptor_not_parameter_spelling_controls_binding(self) -> None:
++        cases = (
++            ("ordinary-entry-cls", "", "cls", 'self=None, module="default"',
++             'cls._launch("explicit")', "explicit"),
++            ("ordinary-helper-cls", "ordinary", "cls", 'self=None, module="default"',
++             'cls._launch("explicit")', "explicit"),
++            ("class-helper-self", "@classmethod", "self", 'self=None, module="default"',
++             'self._launch("receiver", "explicit")', "explicit"),
++            ("class-helper-self-default", "@classmethod", "self",
++             'self=None, module="default"', 'self._launch("receiver")', "default"),
++            ("invalid-ordinary-cls", "", "cls", 'self=None, module="default"',
++             'cls._launch("receiver", "explicit")', None),
++            ("invalid-class-self", "@classmethod", "self", 'self, module="default"',
++             'self._launch(module="explicit")', None),
++        )
++        process = (
++            'subprocess.run([sys.executable, "-m", module], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, '
++            'timeout=5, check=False)'
++        )
++        for label, caller, receiver, parameters, invocation, expected in cases:
++            with self.subTest(receiver=label):
++                forwarding = (
++                    (f'    {caller}\n' if caller.startswith('@') else '')
++                    + f'    def _caller({receiver}):\n'
++                    + f'        return {invocation}\n'
++                    if caller else ''
++                )
++                entry_receiver = 'self' if caller else receiver
++                entry = 'self._caller()' if caller else invocation
++                source = (
++                    'import subprocess, sys, unittest\n'
++                    'class ReviewTests(unittest.TestCase):\n'
++                    + f'    def _launch({parameters}):\n'
++                    + f'        {process}\n'
++                    + forwarding
++                    + f'    def test_static({entry_receiver}):\n'
++                    + f'        return {entry}\n'
++                    + '    def test_denied(self): pass\n'
++                )
++                namespace = {}
++                exec(source.replace(process, 'return module'), namespace)
++                if expected is None:
++                    with self.assertRaises(TypeError):
++                        namespace['ReviewTests']('test_static').test_static()
++                    for inspected in (
++                        source, source.replace('"-m", module', '"-m", "fixed"')
++                    ):
++                        review = self._review(
++                            sources={'tests/test_review.py': inspected.encode('utf-8')}
++                        )
++                        self.assertTrue(review['unresolved_dynamic_blockers'])
++                else:
++                    actual = namespace['ReviewTests']('test_static').test_static()
++                    self.assertEqual(actual, expected)
++                    review = self._review(
++                        sources={'tests/test_review.py': source.encode('utf-8')}
++                    )
++                    rows = [row for row in review['receipt']['expanded_rows']
++                            if row['capability_kind'] == 'subprocess']
++                    self.assertEqual([row['argv'] for row in rows], [['-m', actual]])
++                    self.assertFalse(review['unresolved_dynamic_blockers'])
++
++    def test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved(self) -> None:
++        cases = (
++            ("static-unknown", "self",
++             '    @staticmethod\n    def _caller(self=None):\n'
++             '        return self._launch()\n',
++             'return self._caller()', AttributeError),
++            ("explicit-unbound", "self",
++             '    def _caller(self):\n        return self._launch()\n',
++             'return ReviewTests._caller(None)', AttributeError),
++            ("reassigned", "self", '',
++             'self = None\nreturn self._launch()', AttributeError),
++            ("nested-shadow", "self", '',
++             'def nested(self=None):\n    return self._launch()\nreturn nested()',
++             AttributeError),
++            ("nested-instance-cls", "cls", '',
++             'def nested():\n    return cls._launch()\nreturn nested()', None),
++        )
++        process = (
++            'subprocess.run([sys.executable, "-m", "fixed"], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, '
++            'timeout=5, check=False)'
++        )
++        for label, receiver, helper, entry, expected_error in cases:
++            with self.subTest(context=label):
++                source = (
++                    'import subprocess, sys, unittest\n'
++                    'class ReviewTests(unittest.TestCase):\n'
++                    '    def _launch(self):\n'
++                    + f'        {process}\n'
++                    + helper
++                    + f'    def test_static({receiver}):\n'
++                    + textwrap.indent(entry, '        ') + '\n'
++                    + '    def test_denied(self): pass\n'
++                )
++                namespace = {}
++                exec(source.replace(process, 'return "fixed"'), namespace)
++                if expected_error is not None:
++                    with self.assertRaises(expected_error):
++                        namespace['ReviewTests']('test_static').test_static()
++                else:
++                    self.assertEqual(
++                        namespace['ReviewTests']('test_static').test_static(), 'fixed'
++                    )
++                review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
++                if expected_error is not None:
++                    self.assertTrue(review['unresolved_dynamic_blockers'])
++                else:
++                    rows = [row for row in review['receipt']['expanded_rows']
++                            if row['capability_kind'] == 'subprocess']
++                    self.assertEqual([row['argv'] for row in rows], [['-m', 'fixed']])
++                    self.assertFalse(review['unresolved_dynamic_blockers'])
++
+     def test_invalid_static_helper_arguments_remain_blocked(self) -> None:
+-        for invocation in ('self._launch("a", "b")',
+-                           'self._launch("a", module="b")',
+-                           'self._launch(unknown="a")'):
+-            with self.subTest(invocation=invocation):
++        cases = (
++            ('module="default"', 'self._launch("a", "b")'),
++            ('module="default"', 'self._launch("a", module="b")'),
++            ('module="default"', 'self._launch(unknown="a")'),
++            ('module', 'self._launch()'),
++            ('module="default", /', 'self._launch(module="a")'),
++        )
++        process = (
++            'subprocess.run([sys.executable, "-m", module], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, '
++            'timeout=5, check=False)'
++        )
++        for parameters, invocation in cases:
++            with self.subTest(parameters=parameters, invocation=invocation):
+                 source = (
+                     'import subprocess, sys, unittest\n'
+                     'class ReviewTests(unittest.TestCase):\n'
+                     '    @staticmethod\n'
+-                    '    def _launch(module="default"):\n'
+-                    '        subprocess.run([sys.executable, "-m", module], cwd=".", '
+-                    'env={**__import__("os").environ, "SAFE": "1"}, '
+-                    'timeout=5, check=False)\n'
+-                    '    def test_static(self):\n'
++                    + f'    def _launch({parameters}):\n'
++                    + f'        {process}\n'
++                    + '    def test_static(self):\n'
+                     + f'        {invocation}\n'
+                     + '    def test_denied(self): pass\n'
+                 )
++                namespace = {}
++                exec(source.replace(process, 'return module'), namespace)
++                with self.assertRaises(TypeError):
++                    namespace['ReviewTests']('test_static').test_static()
++                review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++                fixed_source = source.replace('"-m", module', '"-m", "fixed"')
++                fixed_review = self._review(
++                    sources={'tests/test_review.py': fixed_source.encode('utf-8')}
++                )
++                self.assertTrue(fixed_review['unresolved_dynamic_blockers'])
++
++    def test_unproven_helper_descriptor_provenance_remains_blocked(self) -> None:
++        cases = (
++            ("qualified", 'import builtins\n', '', '@builtins.staticmethod'),
++            ("alias", 'from builtins import staticmethod as static\n', '', '@static'),
++            ("module-shadow", 'staticmethod = lambda function: function\n', '',
++             '@staticmethod'),
++            ("class-shadow", '', '    staticmethod = lambda function: function\n',
++             '@staticmethod'),
++            ("shadowed-alias", 'from builtins import staticmethod as static\n'
++             'static = lambda function: function\n', '', '@static'),
++            ("class-shadowed-alias", 'from builtins import staticmethod as static\n',
++             '    static = lambda function: function\n', '@static'),
++            ("dynamic", 'def choose(): return staticmethod\n', '', '@choose()'),
++            ("stacked", '', '', '@staticmethod\n    @staticmethod'),
++            ("module-wildcard", 'from builtins import *\n', '', '@staticmethod'),
++            ("class-wildcard", '', '    from builtins import *\n', '@staticmethod'),
++            ("class-method-shadow", 'classmethod = lambda function: function\n', '',
++             '@classmethod'),
++        )
++        for label, module_prefix, class_prefix, decorator in cases:
++            with self.subTest(provenance=label):
++                source = (
++                    'import subprocess, sys, unittest\n'
++                    + module_prefix
++                    + 'class ReviewTests(unittest.TestCase):\n'
++                    + class_prefix
++                    + f'    {decorator}\n'
++                    + '    def _launch(self, module="default"):\n'
++                    + '        subprocess.run([sys.executable, "-m", module], cwd=".", '
++                    + 'env={**__import__("os").environ, "SAFE": "1"}, '
++                    + 'timeout=5, check=False)\n'
++                    + '    def test_static(self):\n'
++                    + '        self._launch(module="explicit")\n'
++                    + '    def test_denied(self): pass\n'
++                )
+                 review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
+                 self.assertTrue(review['unresolved_dynamic_blockers'])
++                fixed_source = source.replace('"-m", module', '"-m", "fixed"')
++                fixed_review = self._review(
++                    sources={'tests/test_review.py': fixed_source.encode('utf-8')}
++                )
++                self.assertTrue(fixed_review['unresolved_dynamic_blockers'])
+ 
+     def test_helper_registry_and_argument_binding_fail_closed(self) -> None:
+         ambiguous = {

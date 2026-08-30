@@ -1,0 +1,45 @@
+{
+  "label": "diagnose01",
+  "slot": "311",
+  "snapshot": "D:\\pontius-snapshots\\abc-draft-38f32e69685e4f6693baf96c13dba02e\\harness",
+  "base": "52bd941e9fa1fb90ff6d2d14df2286e2ee4f4ec8",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys,runpy,json,importlib.util\nfrom pathlib import Path\nexe,version,target,*args=sys.argv[1:]\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode\norigin=Path(importlib.util.find_spec('pontius.v0a.trace').origin)\nassert origin.resolve()==(Path.cwd()/'src/pontius/v0a/trace.py').resolve()\nprint(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,version=sys.version,trace_origin=str(origin)))),flush=True)\nsys.argv=[target,*args]\nrunpy.run_path(target,run_name='__main__')\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-diagnose-generation.py"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\abc-draft-38f32e69685e4f6693baf96c13dba02e\\temp",
+    "TMP": "D:\\pontius-snapshots\\abc-draft-38f32e69685e4f6693baf96c13dba02e\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\abc-draft-38f32e69685e4f6693baf96c13dba02e\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-draft-checks\\diagnose01-311.txt",
+  "sha256": "a279e9fc8e0c92ca9e8b60e7fc1b1c2de8db820c6b06e03824f5d225a9da3a88",
+  "after_sha256": {
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "c2a9064a15eb30bec7fc3aebb2f929a4df20879fd1165d839a16efa0009178df",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "2b5730b832c2855483f4ad6b8231be001aee28f1da7a843b6945faeef20f05c2",
+    "tests/test-inventory.json": "5109817c613cc7be1b11201889f45b10f595b0b55135c531284189245f6e660d",
+    "tests/test-profiles.toml": "b7d15dabf3dfa8df072fa4c065220356753083cdb9333449cbdd36137fb65023"
+  }
+}

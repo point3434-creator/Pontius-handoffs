@@ -1,0 +1,94 @@
+{"cwd": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot", "environment": {"COMSPEC": "C:\\windows\\system32\\cmd.exe", "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\snapshot\\src", "SYSTEMROOT": "C:\\windows", "TEMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp", "TMP": "D:\\Pontius-tmp\\codex-b-r007-01a05090\\temp", "WINDIR": "C:\\windows"}, "flags": {"B": 1, "P": true}, "implementation": "CPython", "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}
+ORIGIN pontius.v0a.runtime D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\runtime.py
+ORIGIN pontius.v0a.replay D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\replay.py
+ORIGIN pontius.v0a.trace D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\trace.py
+ORIGIN pontius.v0a.clock D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\clock.py
+ORIGIN pontius.v0a.model D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\v0a\model.py
+ORIGIN pontius.action_clock D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\action_clock.py
+ORIGIN pontius.preparation_bank D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\preparation_bank.py
+ORIGIN pontius.legal_decision_spine_v2 D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\legal_decision_spine_v2.py
+ORIGIN pontius.no_limit_betting D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\no_limit_betting.py
+ORIGIN pontius.holdem_cards D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\holdem_cards.py
+ORIGIN pontius.immutable_blueprint D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\immutable_blueprint.py
+ORIGIN pontius.river D:\Pontius-tmp\codex-b-r007-01a05090\snapshot\src\pontius\river.py
+test_accepts_a_nonpassive_table_hit_and_fold_terminal (__main__.AcceptingReplayTests.test_accepts_a_nonpassive_table_hit_and_fold_terminal) ... ok
+test_accepts_both_real_controls_without_running_the_host_again (__main__.AcceptingReplayTests.test_accepts_both_real_controls_without_running_the_host_again) ... ok
+test_all_expected_bindings_and_decision_schedule_fields_are_checked (__main__.AcceptingReplayTests.test_all_expected_bindings_and_decision_schedule_fields_are_checked) ... ok
+test_emission_reserve_is_not_a_false_work_failure (__main__.AcceptingReplayTests.test_emission_reserve_is_not_a_false_work_failure) ... ok
+test_expectation_subtypes_cannot_supply_behavior (__main__.AcceptingReplayTests.test_expectation_subtypes_cannot_supply_behavior) ... ok
+test_failed_prefix_cannot_obtain_success (__main__.AcceptingReplayTests.test_failed_prefix_cannot_obtain_success) ... ok
+test_folded_only_depths_do_not_split_an_award (__main__.AcceptingReplayTests.test_folded_only_depths_do_not_split_an_award) ... ok
+test_rebound_invalid_semantics_are_not_legalized_by_hashes (__main__.AcceptingReplayTests.test_rebound_invalid_semantics_are_not_legalized_by_hashes) ... ok
+test_caught_source_fault_survives_a_return_or_a_different_body_failure (__main__.FailureAdapterRegressionTests.test_caught_source_fault_survives_a_return_or_a_different_body_failure) ... ok
+test_error_handling_does_not_execute_caller_presentation_or_metadata (__main__.FailureAdapterRegressionTests.test_error_handling_does_not_execute_caller_presentation_or_metadata) ... ok
+test_optional_reporting_still_preserves_source_and_distinct_body_causes (__main__.FailureAdapterRegressionTests.test_optional_reporting_still_preserves_source_and_distinct_body_causes) ... ok
+test_raw_source_exception_metadata_never_reaches_host_adapters (__main__.FailureAdapterRegressionTests.test_raw_source_exception_metadata_never_reaches_host_adapters) ... ok
+test_required_settlement_entry_prevents_any_dead_witness_body (__main__.FailureAdapterRegressionTests.test_required_settlement_entry_prevents_any_dead_witness_body) ... ok
+test_a_disagreeing_oracle_rejects_the_hand (__main__.FixtureReplayTests.test_a_disagreeing_oracle_rejects_the_hand)
+The comparison is real: a wrong judge must fail the hand closed. ... ok
+test_every_controlled_action_is_delivered_once (__main__.FixtureReplayTests.test_every_controlled_action_is_delivered_once) ... ok
+test_fixture_a_reproduces_its_expected_settlement (__main__.FixtureReplayTests.test_fixture_a_reproduces_its_expected_settlement) ... ok
+test_fixture_b_reproduces_its_side_pot_expectations (__main__.FixtureReplayTests.test_fixture_b_reproduces_its_side_pot_expectations) ... ok
+test_folded_contributors_leave_dead_money_but_win_nothing (__main__.FixtureReplayTests.test_folded_contributors_leave_dead_money_but_win_nothing)
+A seat that folds after committing chips is a contributor, not a claimant. ... ok
+test_odd_chips_follow_clockwise_order_from_the_button (__main__.FixtureReplayTests.test_odd_chips_follow_clockwise_order_from_the_button) ... ok
+test_the_comparison_covers_final_stacks_and_pot_eligibility (__main__.FixtureReplayTests.test_the_comparison_covers_final_stacks_and_pot_eligibility)
+Oracles that differ only in a previously ignored field must reject. ... ok
+test_the_independent_oracle_agrees_with_production_settlement (__main__.FixtureReplayTests.test_the_independent_oracle_agrees_with_production_settlement) ... ok
+test_the_oracle_disagrees_when_the_expectation_is_wrong (__main__.FixtureReplayTests.test_the_oracle_disagrees_when_the_expectation_is_wrong)
+The oracle is a real judge, not a restatement of production. ... ok
+test_production_identities_are_refused (__main__.IdentityTests.test_production_identities_are_refused) ... ok
+test_rehearsal_and_correctness_identities_are_disjoint (__main__.IdentityTests.test_rehearsal_and_correctness_identities_are_disjoint) ... ok
+test_the_configuration_digest_binds_the_schedule_not_the_deal (__main__.IdentityTests.test_the_configuration_digest_binds_the_schedule_not_the_deal) ... ok
+test_clock_loss_after_first_append_preserves_incomplete_file_and_closes_owner (__main__.IncrementalPublicationTests.test_clock_loss_after_first_append_preserves_incomplete_file_and_closes_owner) ... ok
+test_every_real_serializer_and_semantic_cost_is_measured (__main__.IncrementalPublicationTests.test_every_real_serializer_and_semantic_cost_is_measured) ... ok
+test_failed_required_entry_never_advances_the_input_iterator (__main__.IncrementalPublicationTests.test_failed_required_entry_never_advances_the_input_iterator) ... ok
+test_first_required_write_failure_stops_before_second_action (__main__.IncrementalPublicationTests.test_first_required_write_failure_stops_before_second_action) ... ok
+test_incomplete_schedule_keeps_deliveries_and_reports_a_typed_failure (__main__.IncrementalPublicationTests.test_incomplete_schedule_keeps_deliveries_and_reports_a_typed_failure) ... ok
+test_iterator_advancement_and_exhaustion_are_measured (__main__.IncrementalPublicationTests.test_iterator_advancement_and_exhaustion_are_measured) ... ok
+test_post_delivery_entry_failure_retains_decision_without_more_input_or_file (__main__.IncrementalPublicationTests.test_post_delivery_entry_failure_retains_decision_without_more_input_or_file) ... ok
+test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned (__main__.IncrementalPublicationTests.test_required_rows_exist_before_next_dispatch_and_parent_stays_pinned) ... ok
+test_a_clock_fault_raised_by_the_body_is_not_lost (__main__.R2_03BodyOwnershipTests.test_a_clock_fault_raised_by_the_body_is_not_lost)
+R5-02: a body-origin clock fault is owned, not assumed recorded. ... ok
+test_a_raised_body_error_precedes_its_cleanup_fault (__main__.R2_03BodyOwnershipTests.test_a_raised_body_error_precedes_its_cleanup_fault)
+R5-01: body cause first, exit-seam cleanup cause second. ... ok
+test_a_returned_mismatch_still_precedes_a_later_cleanup_fault (__main__.R2_03BodyOwnershipTests.test_a_returned_mismatch_still_precedes_a_later_cleanup_fault)
+The returned-error half of the matrix, against the raised half. ... ok
+test_no_host_operation_uses_an_unowned_interval (__main__.R2_03BodyOwnershipTests.test_no_host_operation_uses_an_unowned_interval)
+Structural: the ordering rule cannot be bypassed by forgetting it. ... ok
+test_a_host_side_exception_is_contained_not_escaped (__main__.R2_03CompoundScheduleTests.test_a_host_side_exception_is_contained_not_escaped)
+G1: any host-side exception yields a receipt instead of propagating. ... ok
+test_a_pre_boundary_rejection_journals_its_cause (__main__.R2_03CompoundScheduleTests.test_a_pre_boundary_rejection_journals_its_cause)
+A reject that never opened a boundary still names why it failed. ... ok
+test_a_rejected_input_keeps_its_cause_ahead_of_cleanup (__main__.R2_03CompoundScheduleTests.test_a_rejected_input_keeps_its_cause_ahead_of_cleanup)
+A1-A3: wherever both causes occur, event_order precedes the cleanup. ... ok
+test_the_input_failure_is_never_ordered_after_its_own_cleanup (__main__.R2_03CompoundScheduleTests.test_the_input_failure_is_never_ordered_after_its_own_cleanup)
+The R4-02 inversion: cleanup must not become primary. ... ok
+test_the_journal_never_deduplicates_repeated_codes (__main__.R2_03CompoundScheduleTests.test_the_journal_never_deduplicates_repeated_codes) ... ok
+test_reported_clock_causes_equal_the_genuine_raises (__main__.R2_03ConservationTests.test_reported_clock_causes_equal_the_genuine_raises)
+Every genuine ledger fault reaches the receipt; none is invented. ... ok
+test_a_failure_at_the_first_observation_does_not_escape (__main__.R2_03HostClosureTests.test_a_failure_at_the_first_observation_does_not_escape) ... ok
+test_a_failure_partway_through_the_hand_does_not_escape (__main__.R2_03HostClosureTests.test_a_failure_partway_through_the_hand_does_not_escape) ... ok
+test_incomplete_accounting_cannot_report_success (__main__.R2_03HostClosureTests.test_incomplete_accounting_cannot_report_success) ... ok
+test_a_late_delivery_is_counted_end_to_end (__main__.R2_08HostCountingTests.test_a_late_delivery_is_counted_end_to_end) ... ok
+test_a_clock_fault_before_a_mismatch_gates_the_required_body (__main__.R3_02TypedClosureCauseTests.test_a_clock_fault_before_a_mismatch_gates_the_required_body) ... ok
+test_a_dead_clock_is_never_sampled_again (__main__.R3_02TypedClosureCauseTests.test_a_dead_clock_is_never_sampled_again) ... ok
+test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary (__main__.R3_02TypedClosureCauseTests.test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary) ... ok
+test_accepted_actions_survive_a_closure_fault (__main__.R3_02TypedClosureCauseTests.test_accepted_actions_survive_a_closure_fault) ... ok
+test_each_closure_seam_reports_invalid_and_reversed (__main__.R3_02TypedClosureCauseTests.test_each_closure_seam_reports_invalid_and_reversed) ... ok
+test_every_observation_that_dies_reports_a_typed_cause (__main__.R3_02TypedClosureCauseTests.test_every_observation_that_dies_reports_a_typed_cause)
+The sweep, not the five known positions: any fault must be named. ... ok
+test_a_permutation_must_rearrange_the_four_suits (__main__.SeedPermutationTests.test_a_permutation_must_rearrange_the_four_suits) ... ok
+test_permutations_are_deterministic_and_disclosed (__main__.SeedPermutationTests.test_permutations_are_deterministic_and_disclosed) ... ok
+test_renaming_preserves_ranks_and_distinctness (__main__.SeedPermutationTests.test_renaming_preserves_ranks_and_distinctness) ... ok
+test_a_write_failure_after_delivery_is_the_first_cause (__main__.TraceAndAccountingTests.test_a_write_failure_after_delivery_is_the_first_cause) ... ok
+test_accounting_totals_are_disjoint_and_publication_is_separate (__main__.TraceAndAccountingTests.test_accounting_totals_are_disjoint_and_publication_is_separate) ... ok
+test_distinct_run_ids_produce_identical_semantic_bytes (__main__.TraceAndAccountingTests.test_distinct_run_ids_produce_identical_semantic_bytes) ... ok
+test_the_published_trace_parses_and_rebinds (__main__.TraceAndAccountingTests.test_the_published_trace_parses_and_rebinds) ... ok
+test_the_receipt_lives_outside_the_trace_it_describes (__main__.TraceAndAccountingTests.test_the_receipt_lives_outside_the_trace_it_describes) ... ok
+test_trace_files_are_created_new_under_the_run_root (__main__.TraceAndAccountingTests.test_trace_files_are_created_new_under_the_run_root) ... ok
+
+----------------------------------------------------------------------
+Ran 62 tests in 2.541s
+
+OK

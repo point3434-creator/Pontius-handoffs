@@ -1,0 +1,15 @@
+{"identity_before_test_payload": {"version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\harness", "test_origin": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-binding-green03-e8be4c2facf8491aa46d9335896047f3\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 7, "failures": 0, "errors": 0, "skipped": 0}
+
+test_descriptor_defaults_preserve_real_python_argument_binding (binding_inventory_tests.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_invalid_static_helper_arguments_remain_blocked (binding_inventory_tests.DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked) ... ok
+test_unproven_helper_descriptor_provenance_remains_blocked (binding_inventory_tests.DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked) ... ok
+test_helper_registry_and_argument_binding_fail_closed (binding_inventory_tests.DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed) ... ok
+test_registered_probe_and_cross_file_helpers_are_exactly_resolved (binding_inventory_tests.DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved) ... ok
+test_source_order_bounds_exception_environments_and_decorators_are_exact (binding_inventory_tests.DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact) ... ok
+test_round4_decorator_definition_point_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.291s
+
+OK
