@@ -1,0 +1,14 @@
+[baseline] exit=0 OK
+[CAUGHT] F1: wall restarted after event work
+[CAUGHT] F2: showdown does not close the hand
+[CAUGHT] F2: completed hand still accepts input
+[CAUGHT] F3: policy substitution unchecked
+[CAUGHT] F3: foreign decision key accepted
+[CAUGHT] F3: fabricated passive default accepted
+[CAUGHT] F4: source faults escape unnormalized
+[CAUGHT] F4: boundary clock fault escapes dispatch
+[CAUGHT] F5: delivery exception claims no attempt
+[CAUGHT] F6: acknowledgement unvalidated
+[CAUGHT] F7: established cutoff not retained
+[CAUGHT] F7: interrupted record discards known flags
+[restored] exit=0 OK
