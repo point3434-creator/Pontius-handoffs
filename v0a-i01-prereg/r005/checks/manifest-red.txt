@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\Pontius-handoffs\v0a-i01-prereg\r005\checks\verify_manifest.py", line 16, in <module>
+    assert lines == sorted(lines), 'manifest complete rows are not lexicographically sorted'
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: manifest complete rows are not lexicographically sorted

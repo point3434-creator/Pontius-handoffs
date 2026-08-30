@@ -1,0 +1,66 @@
+{
+  "candidate": "98328440d4425fed1dbc7eb30b26b5f785709f05",
+  "integration_base": "448296aa8410966c253ead6620f42565226eeec8",
+  "integration_tree": "e8bc0965bcd86e38d060925856b5242e180e36e3",
+  "overlay_sha256": {
+    "STATUS.md": "dcdb2bba691f0c5032f59e883cc8eed70bb6a0b852ecb99eb1f6ba3af7f84ada",
+    "docs/decisions/ADR-0485-preregister-the-blueprint-only-v0a-hand-contract.md": "625b644223a4f29fae9e7a2b48360dfa177e6e18045fb1d951e5e05e9d48bdc3",
+    "docs/workflow-amendment-2026-08-30.md": "c0fcc666ae44113e05e2aee410cdaf0ad1136bfc2101a07be7f96dc2b34ac63c"
+  },
+  "snapshot": "D:\\pontius-snapshots\\v0a-prereg-r005-integration-py311-cc03e838edd640ca9c77dfe7c1952162\\harness",
+  "interpreter": {
+    "executable": "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": [
+      3,
+      11,
+      15
+    ],
+    "numpy": "2.4.6"
+  },
+  "git_executable_sha256": "7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364",
+  "results": [
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "src/pontius/status_generation.py",
+        "--check"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-prereg\\r005\\checks\\r005-integration-py311-0.txt",
+      "output": "STATUS.md is current\n"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_status_generation.py",
+        "-v"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-prereg\\r005\\checks\\r005-integration-py311-1.txt",
+      "output": "umbers_are_unique_and_latest_decision_is_visible) ... ok\ntest_every_historical_front_door_snapshot_is_validated (__main__.StatusGenerationTests.test_every_historical_front_door_snapshot_is_validated) ... ok\ntest_front_door_heads_do_not_depend_on_title_or_status_keywords (__main__.StatusGenerationTests.test_front_door_heads_do_not_depend_on_title_or_status_keywords) ... ok\ntest_header_metadata_is_scanned_until_the_first_section (__main__.StatusGenerationTests.test_header_metadata_is_scanned_until_the_first_section) ... ok\ntest_incomplete_front_door_snapshot_fails_closed (__main__.StatusGenerationTests.test_incomplete_front_door_snapshot_fails_closed) ... ok\ntest_later_snapshot_cannot_forget_a_revocation (__main__.StatusGenerationTests.test_later_snapshot_cannot_forget_a_revocation) ... ok\ntest_latest_adr_cannot_silently_reuse_an_older_snapshot (__main__.StatusGenerationTests.test_latest_adr_cannot_silently_reuse_an_older_snapshot) ... ok\ntest_recent_count_must_be_a_positive_integer (__main__.StatusGenerationTests.test_recent_count_must_be_a_positive_integer) ... ok\ntest_runtime_contract_remains_visible_outside_the_recent_ledger (__main__.StatusGenerationTests.test_runtime_contract_remains_visible_outside_the_recent_ledger) ... ok\ntest_status_is_exact_generated_output_from_current_adrs (__main__.StatusGenerationTests.test_status_is_exact_generated_output_from_current_adrs) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.203s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "D:\\Pontius-worktrees\\v0a-increment-1-preregistration-review\\venv311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "tests/test_documentation_integrity.py",
+        "-v",
+        "DocumentationIntegrityTests.test_maintained_local_markdown_links_resolve",
+        "DocumentationIntegrityTests.test_current_contract_is_visible_in_every_front_door",
+        "DocumentationIntegrityTests.test_fifteen_second_wall_is_the_authoritative_action_contract",
+        "DocumentationIntegrityTests.test_action_clock_and_preparation_successor_is_visible"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-prereg\\r005\\checks\\r005-integration-py311-2.txt",
+      "output": "test_maintained_local_markdown_links_resolve (__main__.DocumentationIntegrityTests.test_maintained_local_markdown_links_resolve) ... ok\ntest_current_contract_is_visible_in_every_front_door (__main__.DocumentationIntegrityTests.test_current_contract_is_visible_in_every_front_door) ... ok\ntest_fifteen_second_wall_is_the_authoritative_action_contract (__main__.DocumentationIntegrityTests.test_fifteen_second_wall_is_the_authoritative_action_contract) ... ok\ntest_action_clock_and_preparation_successor_is_visible (__main__.DocumentationIntegrityTests.test_action_clock_and_preparation_successor_is_visible) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.101s\n\nOK\n"
+    }
+  ],
+  "snapshot_changes_match_bound_overlay": true,
+  "scope": "complete status-generation suite plus four clone-safe documentation selectors; no broad scientific suites"
+}
