@@ -1,0 +1,31 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "implementation": "cpython", "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+test_opponent_path_charges_validation_and_transition (__main__.F1IngressWallTests.test_opponent_path_charges_validation_and_transition) ... ok
+test_reveal_path_charges_visible_card_construction (__main__.F1IngressWallTests.test_reveal_path_charges_visible_card_construction) ... ok
+test_wall_starts_at_the_event_not_after_validation (__main__.F1IngressWallTests.test_wall_starts_at_the_event_not_after_validation) ... ok
+test_a_second_showdown_vector_is_refused (__main__.F2ShowdownCompletionTests.test_a_second_showdown_vector_is_refused) ... ok
+test_no_event_is_accepted_after_completion (__main__.F2ShowdownCompletionTests.test_no_event_is_accepted_after_completion) ... ok
+test_the_real_source_still_answers_normally (__main__.F3BlueprintAuthorityTests.test_the_real_source_still_answers_normally) ... ok
+test_a_fault_after_the_boundary_keeps_the_established_start (__main__.F4ClockContainmentTests.test_a_fault_after_the_boundary_keeps_the_established_start) ... ok
+test_a_fault_at_ledger_construction_is_typed (__main__.F4ClockContainmentTests.test_a_fault_at_ledger_construction_is_typed) ... ok
+test_an_os_error_from_the_clock_is_normalized (__main__.F4ClockContainmentTests.test_an_os_error_from_the_clock_is_normalized) ... ok
+test_no_clock_error_escapes_dispatch (__main__.F4ClockContainmentTests.test_no_clock_error_escapes_dispatch) ... ok
+test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted (__main__.F5F6DeliveryTests.test_a_clock_fault_after_real_acceptance_is_unknown_not_unattempted) ... ok
+test_a_matching_acknowledgement_succeeds (__main__.F5F6DeliveryTests.test_a_matching_acknowledgement_succeeds) ... ok
+test_a_mismatched_acknowledgement_fails_closed (__main__.F5F6DeliveryTests.test_a_mismatched_acknowledgement_fails_closed) ... ok
+test_a_missing_acknowledgement_fails_closed (__main__.F5F6DeliveryTests.test_a_missing_acknowledgement_fails_closed) ... ok
+test_a_known_cutoff_is_retained_through_interruption (__main__.F7RetainedViolationTests.test_a_known_cutoff_is_retained_through_interruption) ... ok
+test_a_delegate_with_the_real_digest_is_refused (__main__.R2_01PolicyAuthorityTests.test_a_delegate_with_the_real_digest_is_refused)
+The r002 false-hit delegate: real digest, real key, fabricated hit. ... ok
+test_a_subclass_cannot_intercept_the_sealed_lookup (__main__.R2_01PolicyAuthorityTests.test_a_subclass_cannot_intercept_the_sealed_lookup)
+A sealed subclass passes admission; the sealed lookup still runs. ... ok
+test_an_inconsistent_context_is_classified_not_guessed (__main__.R2_01PolicyAuthorityTests.test_an_inconsistent_context_is_classified_not_guessed)
+A genuinely mismatched context, not an injected exception. ... ok
+test_the_real_sealed_source_still_hits_and_misses (__main__.R2_01PolicyAuthorityTests.test_the_real_sealed_source_still_hits_and_misses) ... ok
+test_the_runtime_refuses_a_non_sealed_policy_object (__main__.R2_01PolicyAuthorityTests.test_the_runtime_refuses_a_non_sealed_policy_object) ... ok
+test_a_deadline_established_at_the_boundary_is_retained (__main__.R2_02EstablishedFlagTests.test_a_deadline_established_at_the_boundary_is_retained) ... ok
+test_a_late_but_accepted_action_is_still_a_delivery (__main__.R2_08DeliveryCountingTests.test_a_late_but_accepted_action_is_still_a_delivery) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.009s
+
+OK

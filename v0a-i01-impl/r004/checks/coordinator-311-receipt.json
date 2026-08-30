@@ -1,0 +1,90 @@
+{
+  "candidate": "0207430a37e1e5b31c8da8da7aa57da1bc5c88ee",
+  "manifest_sha256": "ab28f8dfbe412849c2db2a015b7c40f0549d733a61f6e19295de02dccede06ef",
+  "slot": "311",
+  "snapshot": "D:\\pontius-snapshots\\v0a-r004-coordinator-d566b71fc28d46d99b7885eb12433efa\\harness",
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "TEMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\point\\AppData\\Local\\Temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\v0a-r004-coordinator-d566b71fc28d46d99b7885eb12433efa\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe"
+  },
+  "results": [
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\coordinator-probe.py",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\coordinator-311-probe.txt",
+      "sha256": "dfd4f876175eda3ff5485bfb9585232204351e6500c61fa4acb8e67d9a8ec8a5"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,json,runpy; from pathlib import Path; expected,version,target=sys.argv[1:4]; assert Path(sys.executable).resolve()==Path(expected).resolve(); assert sys.implementation.name=='cpython'; assert '.'.join(map(str,sys.version_info[:3]))==version; assert sys.flags.safe_path and sys.dont_write_bytecode; print(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,implementation=sys.implementation.name,full_version=sys.version))),flush=True); sys.argv=[target,'-v']; runpy.run_path(target,run_name='__main__')",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_hand_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\coordinator-311-hand_replay.txt",
+      "sha256": "03869c58213b114d425cbd4e6653c2995d08102aa802e7c000cf9c3f175121b9"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,json,runpy; from pathlib import Path; expected,version,target=sys.argv[1:4]; assert Path(sys.executable).resolve()==Path(expected).resolve(); assert sys.implementation.name=='cpython'; assert '.'.join(map(str,sys.version_info[:3]))==version; assert sys.flags.safe_path and sys.dont_write_bytecode; print(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,implementation=sys.implementation.name,full_version=sys.version))),flush=True); sys.argv=[target,'-v']; runpy.run_path(target,run_name='__main__')",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_trace.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\coordinator-311-trace.txt",
+      "sha256": "4146b3b4eed68a3889125b44824d5817c1ba14f4821afd52ca1ac1987a735cf9"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,json,runpy; from pathlib import Path; expected,version,target=sys.argv[1:4]; assert Path(sys.executable).resolve()==Path(expected).resolve(); assert sys.implementation.name=='cpython'; assert '.'.join(map(str,sys.version_info[:3]))==version; assert sys.flags.safe_path and sys.dont_write_bytecode; print(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,implementation=sys.implementation.name,full_version=sys.version))),flush=True); sys.argv=[target,'-v']; runpy.run_path(target,run_name='__main__')",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_replay.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\coordinator-311-replay.txt",
+      "sha256": "93c5402a557d83d1f7be949c8f5c967e67b42bc84bd728f50097f992ade2ed9c"
+    },
+    {
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "-c",
+        "import sys,json,runpy; from pathlib import Path; expected,version,target=sys.argv[1:4]; assert Path(sys.executable).resolve()==Path(expected).resolve(); assert sys.implementation.name=='cpython'; assert '.'.join(map(str,sys.version_info[:3]))==version; assert sys.flags.safe_path and sys.dont_write_bytecode; print(json.dumps(dict(identity_before_payload_import=dict(executable=sys.executable,implementation=sys.implementation.name,full_version=sys.version))),flush=True); sys.argv=[target,'-v']; runpy.run_path(target,run_name='__main__')",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "3.11.15",
+        "tests/test_v0a_contract_faults.py"
+      ],
+      "exit": 0,
+      "log": "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\coordinator-311-contract_faults.txt",
+      "sha256": "399016e3db64336f88a80539d0731a6795c490c2f687f277369ee503fdfb59a5"
+    }
+  ],
+  "source_pristine": true
+}

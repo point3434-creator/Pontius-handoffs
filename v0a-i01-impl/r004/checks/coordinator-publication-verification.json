@@ -1,0 +1,28 @@
+{
+  "candidate": "0207430a37e1e5b31c8da8da7aa57da1bc5c88ee",
+  "manifest_sha256": "ab28f8dfbe412849c2db2a015b7c40f0549d733a61f6e19295de02dccede06ef",
+  "governance_whitespace": "PASS",
+  "physical_capture_preservation": "Exact issued CRLF retained under narrow -text rules; CR is not edited out of hashed evidence.",
+  "raw_full_whitespace": "Default Git whitespace treats preserved capture CR as trailing whitespace; no global whitespace PASS claimed.",
+  "cr_aware_whitespace_exit": 2,
+  "cr_aware_remaining_warnings": [
+    "v0a-i01-impl/r004/checks/cold-b-probe-run.ps1:47: new blank line at EOF.",
+    "v0a-i01-impl/r004/checks/cold-b-red-run.ps1:47: new blank line at EOF.",
+    "v0a-i01-impl/r004/checks/coordinator-publication-check.py:56: new blank line at EOF."
+  ],
+  "warning_disposition": "Two extra diagnostic-script EOF blank lines are retained in immutable issued inputs. They do not affect execution or frozen candidate correctness; governance files pass.",
+  "verification": {
+    "candidate": "0207430a37e1e5b31c8da8da7aa57da1bc5c88ee",
+    "manifest": "ab28f8dfbe412849c2db2a015b7c40f0549d733a61f6e19295de02dccede06ef",
+    "manifest_rows": 10,
+    "snapshots_clean": 3,
+    "focused_per_slot": 113,
+    "clock_schedules_per_slot": 628,
+    "abort_fault_schedules_per_slot": 56,
+    "writer_schedules_per_slot": 6,
+    "observations_match_across_slots": true,
+    "source_changes_preserved": true,
+    "staged_paths": 61,
+    "all_new_r004_blobs_byte_exact": true
+  }
+}

@@ -1,0 +1,6 @@
+# Preserve byte-exact issued Windows console captures and execution receipts.
+# Governance markdown and manifest.sha256 retain the repository LF policy.
+coordinator-*.txt -text
+cold-b-*-receipts.json -text
+cold-a-ledger-append.json -text
+cold-b-ledger-append-receipt.json -text

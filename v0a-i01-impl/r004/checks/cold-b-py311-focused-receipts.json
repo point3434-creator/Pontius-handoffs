@@ -1,0 +1,97 @@
+[
+  {
+    "target": "identity",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "identity"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 0,
+    "seconds": 1.8744848,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"frozen_pair\": {\"ref\": \"refs/heads/review/v0a-i01-impl/r004\", \"commit\": \"0207430a37e1e5b31c8da8da7aa57da1bc5c88ee\", \"manifest_sha256\": \"ab28f8dfbe412849c2db2a015b7c40f0549d733a61f6e19295de02dccede06ef\", \"rows\": 10, \"clean\": true}}\r\n",
+    "stderr": ""
+  },
+  {
+    "target": "tests/test_v0a_hand_replay.py",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 0,
+    "seconds": 0.5436848,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"payload\": \"tests/test_v0a_hand_replay.py\", \"runtime\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"replay\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\replay.py\"}\r\n",
+    "stderr": "...................................\r\n----------------------------------------------------------------------\r\nRan 35 tests in 0.012s\r\n\r\nOK\r\n"
+  },
+  {
+    "target": "tests/test_v0a_trace.py",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "tests/test_v0a_trace.py"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 0,
+    "seconds": 0.4336128,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"payload\": \"tests/test_v0a_trace.py\", \"runtime\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"replay\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\replay.py\"}\r\n",
+    "stderr": ".........................\r\n----------------------------------------------------------------------\r\nRan 25 tests in 0.011s\r\n\r\nOK\r\n"
+  },
+  {
+    "target": "tests/test_v0a_replay.py",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "tests/test_v0a_replay.py"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 0,
+    "seconds": 1.0037888,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"payload\": \"tests/test_v0a_replay.py\", \"runtime\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"replay\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\replay.py\"}\r\n",
+    "stderr": "...............................\r\n----------------------------------------------------------------------\r\nRan 31 tests in 0.583s\r\n\r\nOK\r\n"
+  },
+  {
+    "target": "tests/test_v0a_contract_faults.py",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 0,
+    "seconds": 0.4498134,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"payload\": \"tests/test_v0a_contract_faults.py\", \"runtime\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"replay\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\replay.py\"}\r\n",
+    "stderr": "......................\r\n----------------------------------------------------------------------\r\nRan 22 tests in 0.009s\r\n\r\nOK\r\n"
+  }
+]

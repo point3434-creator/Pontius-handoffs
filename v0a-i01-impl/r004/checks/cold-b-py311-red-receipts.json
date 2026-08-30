@@ -1,0 +1,40 @@
+[
+  {
+    "target": "identity",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "identity"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 0,
+    "seconds": 1.8773298,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"frozen_pair\": {\"ref\": \"refs/heads/review/v0a-i01-impl/r004\", \"commit\": \"0207430a37e1e5b31c8da8da7aa57da1bc5c88ee\", \"manifest_sha256\": \"ab28f8dfbe412849c2db2a015b7c40f0549d733a61f6e19295de02dccede06ef\", \"rows\": 10, \"clean\": true}}\r\n",
+    "stderr": ""
+  },
+  {
+    "target": "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-order-red.py",
+    "exe": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_version": "3.11.15",
+    "arguments": [
+      "-B",
+      "-P",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py",
+      "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+      "3.11.15",
+      "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+      "D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-order-red.py"
+    ],
+    "cwd": "D:\\pontius-snapshots\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\harness",
+    "exit_code": 1,
+    "seconds": 0.4195751,
+    "stdout": "{\"identity\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"implementation\": \"CPython\", \"cwd\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\", \"pythonpath\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\", \"git\": \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\", \"safe_path\": true, \"dont_write_bytecode\": 1, \"environment_keys\": [\"COMSPEC\", \"PONTIUS_GIT\", \"PYTHONDONTWRITEBYTECODE\", \"PYTHONHASHSEED\", \"PYTHONPATH\", \"PYTHONSAFEPATH\", \"SYSTEMDRIVE\", \"SYSTEMROOT\", \"TEMP\", \"TMP\", \"WINDIR\"]}}\r\n{\"payload\": \"D:\\\\Pontius-handoffs\\\\v0a-i01-impl\\\\r004\\\\checks\\\\cold-b-order-red.py\", \"runtime\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\runtime.py\", \"replay\": \"D:\\\\pontius-snapshots\\\\v0a-r004-cold-b-b7262e41033a459ea8aa6bfd0ecdd54f\\\\harness\\\\src\\\\pontius\\\\v0a\\\\replay.py\"}\r\n{\"closure_witness_cases\": 10, \"queries_after_death\": 0}\r\n{\"red_case\": \"trace write fails before publication-stop clock sample 137\", \"actual_primary\": \"clock_invalid\", \"actual_secondary\": [\"trace_write_failed\"], \"expected_primary\": \"trace_write_failed\", \"expected_secondary\": [\"clock_invalid\"], \"accepted\": 4, \"decisions\": 4, \"source_calls\": 137, \"queries_after_death\": 0, \"destination_unchanged\": true}\r\n",
+    "stderr": "Traceback (most recent call last):\r\n  File \"D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-bootstrap.py\", line 51, in <module>\r\n    runpy.run_path(target, run_name='__main__')\r\n  File \"<frozen runpy>\", line 291, in run_path\r\n  File \"<frozen runpy>\", line 98, in _run_module_code\r\n  File \"<frozen runpy>\", line 88, in _run_code\r\n  File \"D:\\Pontius-handoffs\\v0a-i01-impl\\r004\\checks\\cold-b-order-red.py\", line 56, in <module>\r\n    assert receipt.failure_reason is FailureCode.TRACE_WRITE_FAILED, 'ADR-0485 first cause must remain primary'\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ADR-0485 first cause must remain primary\r\n"
+  }
+]
