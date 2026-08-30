@@ -1,0 +1,35 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-red06-311-6e929bfc18e540eeb19da2dd2bfaa80d\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-red06-311-6e929bfc18e540eeb19da2dd2bfaa80d\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-red06-311-6e929bfc18e540eeb19da2dd2bfaa80d\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 1, "failures": 3, "errors": 0, "skipped": 0}
+test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) ... 
+  test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) (effect='self._mutate()\nreturn ReviewTests._launch()') ... FAIL
+  test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) (effect='def mutate():\n    nonlocal self\n    self = None\nmutate()\nreturn self._launch()') ... FAIL
+  test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) (effect='self.__class__ = Other\nreturn self._launch()') ... FAIL
+
+======================================================================
+FAIL: test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) (effect='self._mutate()\nreturn ReviewTests._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red06-311-6e929bfc18e540eeb19da2dd2bfaa80d\harness\tests\test_inventory_and_profiles.py", line 20998, in test_helper_provenance_unsupported_effects_and_escapes_refuse
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) (effect='def mutate():\n    nonlocal self\n    self = None\nmutate()\nreturn self._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red06-311-6e929bfc18e540eeb19da2dd2bfaa80d\harness\tests\test_inventory_and_profiles.py", line 20998, in test_helper_provenance_unsupported_effects_and_escapes_refuse
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) (effect='self.__class__ = Other\nreturn self._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red06-311-6e929bfc18e540eeb19da2dd2bfaa80d\harness\tests\test_inventory_and_profiles.py", line 20998, in test_helper_provenance_unsupported_effects_and_escapes_refuse
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.146s
+
+FAILED (failures=3)

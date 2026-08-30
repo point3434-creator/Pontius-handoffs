@@ -1,0 +1,480 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 4, "failures": 49, "errors": 0, "skipped": 0}
+test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) ... 
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='assignment') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='chained') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='unpacked') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='starred') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='annotated') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='annotation-only') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='future-local') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='augmented') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='deleted') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='for') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='with') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='except') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='except-cleanup') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='match') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='walrus') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='captured') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='late-class-cell') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='nested-parameter') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='nested-posonly') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='nested-kwonly') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='import') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='new-definition') ... FAIL
+  test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='new-class') ... FAIL
+test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) ... 
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[self._launch() for self in [None]]') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='{self._launch() for self in [None]}') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='{0: self._launch() for self in [None]}') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='list(self._launch() for self in [None])') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[ReviewTests._launch() for ReviewTests in [None]]') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[0 for self in [None] if self._launch()]') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[value for self in [None] for value in [self._launch()]]') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[[self._launch() for self in [None]] for unused in [0]]') ... FAIL
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[self._launch() for self, unused in [(None, 0)]]') ... FAIL
+test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) ... 
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='instance-store') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='class-store') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='class-delete') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='alias-store') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='setattr') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='delattr') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='instance-dict') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='globals') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='class-body') ... FAIL
+  test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='module-binding') ... FAIL
+test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) ... FAIL
+test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) ... 
+  test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='launch = self._launch\nself = None\nreturn launch()') ... FAIL
+  test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='global ReviewTests\nlaunch = ReviewTests._launch\nReviewTests = None\nreturn launch()') ... FAIL
+  test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='return self._launch(ignored=(self := None))') ... FAIL
+  test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='alias = ReviewTests\nreturn alias._launch()') ... FAIL
+  test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (local_admission='def nested():\n    return self._launch()\nnested = None\nreturn nested()') ... FAIL
+  test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (local_admission='def nested():\n    return self._launch()\nfor nested in [None]:\n    return nested()') ... FAIL
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='assignment')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : assignment
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='chained')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : chained
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='unpacked')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : unpacked
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='starred')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : starred
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='annotated')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : annotated
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='annotation-only')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : annotation-only
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='future-local')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : future-local
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='augmented')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : augmented
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='deleted')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : deleted
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='for')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : for
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='with')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : with
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='except')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : except
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='except-cleanup')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : except-cleanup
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='match')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : match
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='walrus')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : walrus
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='captured')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : captured
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='late-class-cell')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : late-class-cell
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='nested-parameter')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : nested-parameter
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='nested-posonly')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : nested-posonly
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='nested-kwonly')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : nested-kwonly
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='import')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : import
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='new-definition')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : new-definition
+
+======================================================================
+FAIL: test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) (binding='new-class')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20822, in test_helper_provenance_scoped_binding_losses_remain_blocked
+    self.assertTrue(review['unresolved_dynamic_blockers'], label)
+AssertionError: [] is not true : new-class
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[self._launch() for self in [None]]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='{self._launch() for self in [None]}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='{0: self._launch() for self in [None]}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='list(self._launch() for self in [None])')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[ReviewTests._launch() for ReviewTests in [None]]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[0 for self in [None] if self._launch()]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[value for self in [None] for value in [self._launch()]]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[[self._launch() for self in [None]] for unused in [0]]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='[self._launch() for self, unused in [(None, 0)]]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='instance-store')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='class-store')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='class-delete')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='alias-store')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='setattr')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='delattr')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='instance-dict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='globals')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='class-body')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) (member='module-binding')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20874, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20881, in test_helper_provenance_original_members_require_stability
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='launch = self._launch\nself = None\nreturn launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20899, in test_helper_provenance_callee_capture_and_local_admission
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='global ReviewTests\nlaunch = ReviewTests._launch\nReviewTests = None\nreturn launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20899, in test_helper_provenance_callee_capture_and_local_admission
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='return self._launch(ignored=(self := None))')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20899, in test_helper_provenance_callee_capture_and_local_admission
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (capture='alias = ReviewTests\nreturn alias._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20899, in test_helper_provenance_callee_capture_and_local_admission
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (local_admission='def nested():\n    return self._launch()\nnested = None\nreturn nested()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20908, in test_helper_provenance_callee_capture_and_local_admission
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) (local_admission='def nested():\n    return self._launch()\nfor nested in [None]:\n    return nested()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red02-311-be8d579a2eb042c8af9d564f7c50347f\harness\tests\test_inventory_and_profiles.py", line 20908, in test_helper_provenance_callee_capture_and_local_admission
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.588s
+
+FAILED (failures=49)

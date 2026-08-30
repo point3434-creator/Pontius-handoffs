@@ -1,0 +1,42 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-red03-311-05ca94bc4bff4d04a5c6964ef2b0c9c4\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-red03-311-05ca94bc4bff4d04a5c6964ef2b0c9c4\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-red03-311-05ca94bc4bff4d04a5c6964ef2b0c9c4\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 1, "failures": 3, "errors": 0, "skipped": 0}
+test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) ... 
+  test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) (value_capture='module = "first"\ndef nested(module=module):\n    return self._launch(module=module)\nmodule = "second"\nreturn nested()') ... FAIL
+  test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) (callable_mutation='self._launch.__defaults__ = (None, "changed")\nreturn self._launch()') ... FAIL
+  test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) (callable_mutation='alias = self._launch\nalias.__defaults__ = (None, "changed")\nreturn self._launch()') ... FAIL
+
+======================================================================
+FAIL: test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) (value_capture='module = "first"\ndef nested(module=module):\n    return self._launch(module=module)\nmodule = "second"\nreturn nested()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red03-311-05ca94bc4bff4d04a5c6964ef2b0c9c4\harness\tests\test_inventory_and_profiles.py", line 20922, in test_helper_provenance_values_defaults_and_callable_mutation
+    self.assertEqual([r['argv'] for r in rows],
+AssertionError: Lists differ: [['-m', 'second']] != [['-m', 'first']]
+
+First differing element 0:
+['-m', 'second']
+['-m', 'first']
+
+- [['-m', 'second']]
++ [['-m', 'first']]
+
+======================================================================
+FAIL: test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) (callable_mutation='self._launch.__defaults__ = (None, "changed")\nreturn self._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red03-311-05ca94bc4bff4d04a5c6964ef2b0c9c4\harness\tests\test_inventory_and_profiles.py", line 20933, in test_helper_provenance_values_defaults_and_callable_mutation
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) (callable_mutation='alias = self._launch\nalias.__defaults__ = (None, "changed")\nreturn self._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red03-311-05ca94bc4bff4d04a5c6964ef2b0c9c4\harness\tests\test_inventory_and_profiles.py", line 20933, in test_helper_provenance_values_defaults_and_callable_mutation
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.139s
+
+FAILED (failures=3)

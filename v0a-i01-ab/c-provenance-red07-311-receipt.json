@@ -1,0 +1,36 @@
+{
+  "label": "red07",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-red07-311-d0b24692c43b4e4a8669d27f0a4d393b\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-red07-311-d0b24692c43b4e4a8669d27f0a4d393b\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "6067ff0667b1ab2714e388989caf9d8fa79accbd0f3ed699b0c5fdd3b01694b4",
+    "tests/test_inventory_and_profiles.py": "4ee87074428c61b1b5d20998526c504806ea1f19c6c829e20471322a005220df"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-red07-311-d0b24692c43b4e4a8669d27f0a4d393b\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-red07-311-d0b24692c43b4e4a8669d27f0a4d393b\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-red07-311-d0b24692c43b4e4a8669d27f0a4d393b\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-red07-311.txt",
+  "sha256": "1a9806adf6be5cf8ede70d6a616ca74317b53f729d75cfbd5fda0eb02d49dbba",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

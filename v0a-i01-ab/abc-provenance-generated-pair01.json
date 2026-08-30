@@ -1,0 +1,11 @@
+{
+  "generation_receipt_sha256": "743ebc19097534b5006bd44c332b63b25f7725beeaf652a4e34bec4c5b5563e4",
+  "changed_paths": [
+    "tests/test-inventory.json"
+  ],
+  "copied_sha256": {
+    "tests/test-inventory.json": "fd26cde73de133b707e9bdfc076b7975fcdcfdebda0682c32d9545d5ad755c8a",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "note": "Earlier root copy attempt stopped before writes because it incorrectly expected both pair members to change; profiles is correctly byte-identical."
+}

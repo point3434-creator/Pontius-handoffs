@@ -1,0 +1,41 @@
+{
+  "label": "probe01",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "53b4a0026aa27341bf79e54e05df139c88d1cab4ebb83bd523c0f79891fec637",
+    "tests/test_inventory_and_profiles.py": "64bddc4533f12471a13ffd08220cc82ea5750ae8cd5e3c8a18d1cbb3eeb4e5a6"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+    "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+    "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+    "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+    "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+    "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-probe01-311.txt",
+  "sha256": "2b2257e38ebcfc8eddfd95b2aa36ff7245fccab83dcd620d007534e869440d14",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

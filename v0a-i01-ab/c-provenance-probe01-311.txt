@@ -1,0 +1,22 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 6, "failures": 1, "errors": 0, "skipped": 0}
+test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) ... ok
+test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) ... 
+  test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='list(self._launch() for self in [None])') ... FAIL
+test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) ... ok
+test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) ... ok
+test_descriptor_defaults_preserve_real_python_argument_binding (binding_inventory_tests.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved (binding_inventory_tests.DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved) ... ok
+
+======================================================================
+FAIL: test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) (comprehension='list(self._launch() for self in [None])')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-probe01-311-0770d51fbb5e419ba27c0279b7dc59c1\harness\tests\test_inventory_and_profiles.py", line 20840, in test_helper_provenance_comprehension_scope_is_source_ordered
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.847s
+
+FAILED (failures=1)

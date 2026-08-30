@@ -1,0 +1,122 @@
+{
+  "standing": "engineering regression checkpoint; not a cold verdict or acceptance",
+  "source_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "d94a8e8c420c2ffccab6b2572e55e365cf0c0cba138027edbd9bdb3fb8ed7185",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "4ee87074428c61b1b5d20998526c504806ea1f19c6c829e20471322a005220df",
+    "tests/test-inventory.json": "fd26cde73de133b707e9bdfc076b7975fcdcfdebda0682c32d9545d5ad755c8a",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "census_input_sha256": {
+    "slice-c-combined-census-311-02.json": "348224cde14a7747c81acd551380929985da5604e2241741062a50557a2bcaf7",
+    "slice-c-provenance-census-311-01.json": "6ef585110e281e1c7371619718b99a9633b495aa45800678583367c16823ef0a"
+  },
+  "census_delta": {
+    "expanded_row_count": {
+      "before": 141,
+      "after": 137
+    },
+    "blocker_count": {
+      "before": 388,
+      "after": 835
+    },
+    "analysis_census": {
+      "before": {
+        "analyzed_sites_sha256": "6beec1b64eed80b39fe32bba100c618de8608e43663d480fcdec4db1c8b9adb2",
+        "cross_file_helper_edge_count": 27,
+        "cupy_call_node_count": 30,
+        "string_sink_decoy_count": 592,
+        "string_sink_decoy_partitions": {
+          "design_production": 17,
+          "historical_production": 6,
+          "prior_stabilization_synthetic": 34,
+          "task2_synthetic": 535
+        },
+        "string_sink_decoy_sha256": "cf3edbe709d07a230974c762e29400ed6e2c6c5bc9730eed472f03933041ee47",
+        "subprocess_direct_site_count": 45,
+        "subprocess_helper_site_count": 5
+      },
+      "after": {
+        "analyzed_sites_sha256": "f86f26f2fa4126e4aef4d624d7473b71b00f9ef5de2510409c2c0f53e55cd194",
+        "cross_file_helper_edge_count": 0,
+        "cupy_call_node_count": 30,
+        "string_sink_decoy_count": 596,
+        "string_sink_decoy_partitions": {
+          "design_production": 17,
+          "historical_production": 6,
+          "prior_stabilization_synthetic": 34,
+          "task2_synthetic": 539
+        },
+        "string_sink_decoy_sha256": "0642d04f7d4c4af063f2b7be134362fe15893aa33bc4cad1bbd27dcc73a37831",
+        "subprocess_direct_site_count": 45,
+        "subprocess_helper_site_count": 5
+      }
+    },
+    "blocker_reason_counts": {
+      "before": {
+        "CuPy action or view is outside the approved call scope": 11,
+        "callback closure": 1,
+        "deferred generator consumption is dynamically unresolved": 50,
+        "dynamic helper arguments prevent exact sink derivation": 26,
+        "dynamic repetition prevents a finite call bound": 2,
+        "dynamic repetition prevents a finite helper call bound": 1,
+        "dynamic sensitive call result is unresolved": 16,
+        "local class decorator runtime target is dynamically unresolved": 4,
+        "max/min comparison dispatch is dynamically unresolved": 36,
+        "max/min iterable contents are dynamically unresolved": 102,
+        "mixed protected receiver is dynamically unresolved": 67,
+        "protected value store target is dynamically unresolved": 6,
+        "registered probe implementation is absent": 1,
+        "unittest instance or class binding is dynamically unresolved": 10,
+        "unregistered CuPy call is unresolved": 2,
+        "unsupported subprocess keyword: capture_output": 48,
+        "unsupported subprocess keyword: stdin": 5
+      },
+      "after": {
+        "CuPy action or view is outside the approved call scope": 11,
+        "callback closure": 1,
+        "deferred generator consumption is dynamically unresolved": 33,
+        "dynamic helper arguments prevent exact sink derivation": 26,
+        "dynamic repetition prevents a finite call bound": 2,
+        "dynamic repetition prevents a finite helper call bound": 1,
+        "dynamic sensitive call result is unresolved": 9,
+        "helper callable provenance is unresolved": 27,
+        "helper descriptor member identity is unresolved": 413,
+        "helper namespace escape is dynamically unresolved": 61,
+        "helper namespace store is dynamically unresolved": 2,
+        "local class decorator runtime target is dynamically unresolved": 4,
+        "max/min comparison dispatch is dynamically unresolved": 36,
+        "max/min iterable contents are dynamically unresolved": 103,
+        "mixed protected receiver is dynamically unresolved": 37,
+        "protected value store target is dynamically unresolved": 3,
+        "registered probe implementation is absent": 1,
+        "unittest instance or class binding is dynamically unresolved": 10,
+        "unregistered CuPy call is unresolved": 2,
+        "unsupported subprocess keyword: capture_output": 48,
+        "unsupported subprocess keyword: stdin": 5
+      }
+    }
+  },
+  "full_inventory_precheck": {
+    "slot": "3.11.15",
+    "tests": 99,
+    "failures": 39,
+    "errors": 5,
+    "seconds": 106.4,
+    "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\provenance-inventory-precheck01-311-receipt.json",
+    "receipt_sha256": "0dd55226602fff3a97f882477462971f101cbd7638043e8e99108a7489d28bc0"
+  },
+  "decision": "Do not refresh expectations or freeze. Correct accidental precision and existing-flow regressions; retain all previous contract assertions."
+}

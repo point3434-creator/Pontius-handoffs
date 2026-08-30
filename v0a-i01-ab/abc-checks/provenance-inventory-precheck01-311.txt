@@ -1,0 +1,899 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "implementation": "cpython", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "version_info": [3, 11, 15]}}
+...........................................test inventory generation failed: design review destination must be an absolute OS-temp child
+test inventory generation failed: design write requires both approval tokens
+.......F............E............F.....EEE...FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE...F.......
+======================================================================
+ERROR: test_each_referenced_process_semantic_changes_the_design_row_digest (__main__.DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 3062, in test_each_referenced_process_semantic_changes_the_design_row_digest
+    bounded_rows[(self.static_id, "cupy.asnumpy")],
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: ('tests/test_review.py::ReviewTests::test_static', 'cupy.asnumpy')
+
+======================================================================
+ERROR: test_round4_child_and_helper_provenance_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) (exact='helper-returned-subprocess')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 5510, in test_round4_child_and_helper_provenance_red_contracts_are_independent
+    helper = self._review(
+             ^^^^^^^^^^^^^
+  File "tests/test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 25002, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 24776, in _process_review_rows
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 23825, in _review_body
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: sensitive census site lacks a review row, blocker, or proved unreachable record: tests/test_review.py:8
+
+======================================================================
+ERROR: test_round4_child_and_helper_provenance_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) (round5_helper='local-alias-return')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 5540, in test_round4_child_and_helper_provenance_red_contracts_are_independent
+    helper = self._review(
+             ^^^^^^^^^^^^^
+  File "tests/test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 25002, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 24776, in _process_review_rows
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 23825, in _review_body
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: sensitive census site lacks a review row, blocker, or proved unreachable record: tests/test_review.py:10
+
+======================================================================
+ERROR: test_round4_child_and_helper_provenance_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) (round5_helper='divergent-protected-return')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 5575, in test_round4_child_and_helper_provenance_red_contracts_are_independent
+    divergent = self._review(
+                ^^^^^^^^^^^^^
+  File "tests/test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 25002, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 24776, in _process_review_rows
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 23825, in _review_body
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: sensitive census site lacks a review row, blocker, or proved unreachable record: tests/test_review.py:11
+
+======================================================================
+ERROR: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 19426, in test_round4_source_order_and_branch_bounds_red_contracts_are_independent
+    self._fix15_frozen_review_boundary_contracts()
+  File "tests/test_inventory_and_profiles.py", line 13899, in _fix15_frozen_review_boundary_contracts
+    exact_full_rows, exact_full_blockers = review_evidence(exact_full_body)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_inventory_and_profiles.py", line 13630, in review_evidence
+    review = self._review(
+             ^^^^^^^^^^^^^
+  File "tests/test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 25002, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 24776, in _process_review_rows
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 23452, in _review_body
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\abc-provenance-precheck01-cd54d45d1e354cf48231ff9adcb61120\harness\tools\generate_test_inventory.py", line 23808, in _review_body
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: resolved sensitive site is absent from the independent census: tests/test_review.py:7
+
+======================================================================
+FAIL: test_working_discovery_binds_every_entry_and_introduced_id (__main__.CheckedInInventoryTests.test_working_discovery_binds_every_entry_and_introduced_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 30127, in test_working_discovery_binds_every_entry_and_introduced_id
+    self.assertEqual(len(review["receipt"]["expanded_rows"]), 141)
+AssertionError: 137 != 141
+
+======================================================================
+FAIL: test_protected_results_match_captures_and_child_provenance_are_complete (__main__.DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 4258, in test_protected_results_match_captures_and_child_provenance_are_complete
+    self.assertFalse(attribute_store["unresolved_dynamic_blockers"])
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 10, 'reason': 'protected value store target is dynamically unresolved'}] is not false
+
+======================================================================
+FAIL: test_round4_sensitive_provenance_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent) (exact='attribute-store')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 5092, in test_round4_sensitive_provenance_red_contracts_are_independent
+    self.assertFalse(review["unresolved_dynamic_blockers"])
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 7, 'reason': 'protected value store target is dynamically unresolved'}] is not false
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-invalid-positional-only-keyword-has-no-body-tag')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-invalid-positional-only-keyword-has-no-body-tag must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-invalid-missing-required-positional-has-no-body-tag')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-invalid-missing-required-positional-has-no-body-tag must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-invalid-missing-required-keyword-only-has-no-body-tag')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-invalid-missing-required-keyword-only-has-no-body-tag must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-invalid-duplicate-value-has-no-body-tag')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-invalid-duplicate-value-has-no-body-tag must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-invalid-unexpected-keyword-has-no-body-tag')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-invalid-unexpected-keyword-has-no-body-tag must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-invalid-excess-positional-has-no-body-tag')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-invalid-excess-positional-has-no-body-tag must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-valid-ordinary-positional-has-no-type-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-valid-ordinary-positional-has-no-type-error must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-valid-ordinary-keyword-has-no-type-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-valid-ordinary-keyword-has-no-type-error must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-valid-defaulted-argument-has-no-type-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-valid-defaulted-argument-has-no-type-error must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-static-valid-required-keyword-only-has-no-type-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]10')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:10')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:10')) : helper-summary-static-valid-required-keyword-only-has-no-type-error must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='helper-summary-same-tag-every-exit-has-no-normal-successor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]11')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:11')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:11')) : helper-summary-same-tag-every-exit-has-no-normal-successor must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-assignment-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-assignment-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-annotation-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-annotation-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-delete-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-delete-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-import-alias-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-import-alias-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-loop-target-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-loop-target-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-with-target-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-with-target-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-handler-alias-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-handler-alias-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-match-capture-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-match-capture-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-local-definition-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-local-definition-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-local-class-definition-masks-module-helper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[19 chars]ive', (1, ('helper callable provenance is unresolved',), None)) != (1, '[19 chars]ive', (1, (), None))
+
+First differing element 3:
+(1, ('helper callable provenance is unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (1, ('helper callable provenance is unresolved',), None)) : lexical-local-class-definition-masks-module-helper must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='decorator-application-exception-prevents-definition-binding')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, 'sensitive', 'sensitive', (0, (), None)) != (1, 'sensitive', 'sensitive', (1, (), None))
+
+First differing element 3:
+(0, (), None)
+(1, (), None)
+
+- (1, 'sensitive', 'sensitive', (0, (), None))
+?                                ^
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+?                                ^
+ : decorator-application-exception-prevents-definition-binding must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='decorator-expression-order-never-reaches-inner-failure')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]15')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:15')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:15')) : decorator-expression-order-never-reaches-inner-failure must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='decorator-application-order-never-reaches-outer-failure')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]19')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:19')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:19')) : decorator-application-order-never-reaches-outer-failure must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='decorator-application-failure-leaves-definition-name-unbound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, 'sensitive', 'sensitive', (0, (), None)) != (1, 'sensitive', 'sensitive', (1, (), None))
+
+First differing element 3:
+(0, (), None)
+(1, (), None)
+
+- (1, 'sensitive', 'sensitive', (0, (), None))
+?                                ^
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+?                                ^
+ : decorator-application-failure-leaves-definition-name-unbound must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='decorator-application-failure-has-no-bound-name-successor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]18')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:18')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:18')) : decorator-application-failure-has-no-bound-name-successor must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='next-body-exception-closes-generator-without-replay')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[58 chars]:7')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[57 chars]y:7')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:7')) : next-body-exception-closes-generator-without-replay must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='next-filter-exception-closes-generator-without-replay')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[15 chars](0, ('deferred generator consumption is dynami[81 chars]one)) != (0, '[15 chars](0, (), None))
+
+First differing element 3:
+(0, ('deferred generator consumption is dynami[80 chars]None)
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   ('deferred generator consumption is dynamically unresolved',
+-    'deferred generator consumption is dynamically unresolved'),
+-   None)) : next-filter-exception-closes-generator-without-replay must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='next-filter-failure-second-call-does-not-replay-handler')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]15')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:15')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:15')) : next-filter-failure-second-call-does-not-replay-handler must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='while-second-test-must-raise-has-no-normal-successor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11686, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]11')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:11')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:11')) : while-second-test-must-raise-has-no-normal-successor must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-nonlocal-binding-is-entry-bound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11697, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[21 chars]e', (0, ('helper global or nonlocal effects ar[30 chars]one)) != (1, '[21 chars]e', (1, (), None))
+
+First differing element 3:
+(0, ('helper global or nonlocal effects are dynamically unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (0, ('helper global or nonlocal effects are dynamically unresolved',), None)) : lexical-nonlocal-binding-is-entry-bound must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='nonlocal-helper-present-uses-enclosing-identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11720, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[21 chars]e', (0, ('helper global or nonlocal effects ar[30 chars]one)) != (1, '[21 chars]e', (1, (), None))
+
+First differing element 3:
+(0, ('helper global or nonlocal effects are dynamically unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (0, ('helper global or nonlocal effects are dynamically unresolved',), None)) : nonlocal-helper-present-uses-enclosing-identity must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='nonlocal-helper-absent-keeps-name-error-successor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 11738, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[21 chars]e', (0, ('helper global or nonlocal effects ar[30 chars]one)) != (1, '[21 chars]e', (1, (), None))
+
+First differing element 3:
+(0, ('helper global or nonlocal effects are dynamically unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (0, ('helper global or nonlocal effects are dynamically unresolved',), None)) : nonlocal-helper-absent-keeps-name-error-successor must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_post_green_contract='same-named-nested-decorator-never-routes-outer-key-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 12299, in _fix13_post_green_identity_and_receiver_regressions
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]19')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:19')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:19')) : same-named-nested-decorator-never-routes-outer-key-error must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (__main__.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_post_green_contract='reversed-definition-order-never-routes-outer-key-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 12342, in _fix13_post_green_identity_and_receiver_regressions
+    self._fix13_assert_analyzer_case(
+  File "tests/test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (0, '[18 chars] (), 'InventoryError:resolved sensitive site i[59 chars]19')) != (0, '[18 chars] (), None))
+
+First differing element 3:
+(0, (), 'InventoryError:resolved sensitive site i[58 chars]:19')
+(0, (), None)
+
++ (0, 'none', 'none', (0, (), None))
+- (0,
+-  'none',
+-  'none',
+-  (0,
+-   (),
+-   'InventoryError:resolved sensitive site is absent from the independent '
+-   'census: tests/test_review.py:19')) : reversed-definition-order-never-routes-outer-key-error must catch its named production mutation
+
+======================================================================
+FAIL: test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization (__main__.DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 3638, in test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization
+    self.assertTrue(
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 99 tests in 106.400s
+
+FAILED (failures=39, errors=5)

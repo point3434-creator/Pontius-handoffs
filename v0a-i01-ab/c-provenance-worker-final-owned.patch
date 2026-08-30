@@ -1,0 +1,1003 @@
+diff --git a/tests/test_inventory_and_profiles.py b/tests/test_inventory_and_profiles.py
+index 6ecea1a..670839b 100644
+--- a/tests/test_inventory_and_profiles.py
++++ b/tests/test_inventory_and_profiles.py
+@@ -20751,6 +20751,281 @@ class DesignReviewTests(unittest.TestCase):
+             )
+         )
+ 
++    def _provenance_case(self, body, *, helper="", class_tail="", module_tail=""):
++        process = (
++            'subprocess.run([sys.executable, "-m", module], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, '
++            'timeout=5, check=False)'
++        )
++        source = (
++            'import subprocess, sys, unittest\n'
++            'from contextlib import nullcontext\n'
++            'class ReviewTests(unittest.TestCase):\n'
++            '    @staticmethod\n'
++            '    def _launch(ignored=None, module="fixed"):\n'
++            + f'        {process}\n'
++            + helper + class_tail
++            + '    def test_static(self):\n'
++            + textwrap.indent(body, '        ') + '\n'
++            + '    def test_denied(self): pass\n'
++            + module_tail
++        )
++        # Execute only the return projection; never execute the subprocess fixture.
++        namespace = {}
++        projection = source.replace(process, 'return module')
++        if module_tail:
++            projection = projection.removesuffix(module_tail) + (
++                'SavedReviewTests = ReviewTests\n' + module_tail
++            )
++        exec(projection, namespace)
++        projected = namespace.get('SavedReviewTests', namespace['ReviewTests'])
++        try:
++            result = projected('test_static').test_static()
++        except (AttributeError, TypeError, NameError, UnboundLocalError) as error:
++            result = type(error)
++        review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
++        return result, review
++
++    def test_helper_provenance_scoped_binding_losses_remain_blocked(self) -> None:
++        cases = (
++            ('assignment', 'ReviewTests = None\nreturn ReviewTests._launch()'),
++            ('chained', 'other = ReviewTests = None\nreturn ReviewTests._launch()'),
++            ('unpacked', 'ReviewTests, other = (None, 1)\nreturn ReviewTests._launch()'),
++            ('starred', '*ReviewTests, = [None]\nreturn ReviewTests._launch()'),
++            ('annotated', 'ReviewTests: object = None\nreturn ReviewTests._launch()'),
++            ('annotation-only', 'ReviewTests: object\nreturn ReviewTests._launch()'),
++            ('future-local', 'ReviewTests._launch()\nReviewTests = None'),
++            ('augmented', 'ReviewTests = 1\nReviewTests += 1\nreturn ReviewTests._launch()'),
++            ('deleted', 'ReviewTests = None\ndel ReviewTests\nreturn ReviewTests._launch()'),
++            ('for', 'for ReviewTests in [None]:\n    return ReviewTests._launch()'),
++            ('with', 'with nullcontext(None) as ReviewTests:\n    return ReviewTests._launch()'),
++            ('except', 'try:\n    raise ValueError()\nexcept ValueError as ReviewTests:\n    return ReviewTests._launch()'),
++            ('except-cleanup', 'try:\n    raise ValueError()\nexcept ValueError as ReviewTests:\n    pass\nreturn ReviewTests._launch()'),
++            ('match', 'match None:\n    case ReviewTests:\n        return ReviewTests._launch()'),
++            ('walrus', 'if (ReviewTests := None) is None:\n    return ReviewTests._launch()'),
++            ('captured', 'ReviewTests = None\ndef nested():\n    return ReviewTests._launch()\nreturn nested()'),
++            ('late-class-cell', 'ReviewTests = type(self)\ndef nested():\n    return ReviewTests._launch()\nReviewTests = None\nreturn nested()'),
++            ('late-receiver-cell', 'def nested():\n    return self._launch()\nself = None\nreturn nested()'),
++            ('nested-parameter', 'def nested(ReviewTests=None):\n    return ReviewTests._launch()\nreturn nested()'),
++            ('nested-posonly', 'def nested(ReviewTests=None, /):\n    return ReviewTests._launch()\nreturn nested()'),
++            ('nested-kwonly', 'def nested(*, ReviewTests=None):\n    return ReviewTests._launch()\nreturn nested()'),
++            ('nested-varargs', 'def nested(*ReviewTests):\n    return ReviewTests._launch()\nreturn nested()'),
++            ('nested-varkw', 'def nested(**ReviewTests):\n    return ReviewTests._launch()\nreturn nested()'),
++            ('import', 'import math as ReviewTests\nreturn ReviewTests._launch()'),
++            ('new-definition', 'def ReviewTests(): pass\nreturn ReviewTests._launch()'),
++            ('new-class', 'class ReviewTests: pass\nreturn ReviewTests._launch()'),
++        )
++        for label, body in cases:
++            with self.subTest(binding=label):
++                actual, review = self._provenance_case(body)
++                self.assertIn(actual, (AttributeError, NameError, UnboundLocalError))
++                self.assertTrue(review['unresolved_dynamic_blockers'], label)
++
++    def test_helper_provenance_comprehension_scope_is_source_ordered(self) -> None:
++        negatives = (
++            '[self._launch() for self in [None]]',
++            '{self._launch() for self in [None]}',
++            '{0: self._launch() for self in [None]}',
++            'list(self._launch() for self in [None])',
++            '[ReviewTests._launch() for ReviewTests in [None]]',
++            '[0 for self in [None] if self._launch()]',
++            '[value for self in [None] for value in [self._launch()]]',
++            '[[self._launch() for self in [None]] for unused in [0]]',
++            '[self._launch() for self, unused in [(None, 0)]]',
++        )
++        for expression in negatives:
++            with self.subTest(comprehension=expression):
++                actual, review = self._provenance_case('return ' + expression)
++                self.assertIs(actual, AttributeError)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++        for body, expected in (
++            ('return [value for self in [self._launch()] for value in [self]]', ['fixed']),
++            ('unused = [self for self in [None]]\nreturn self._launch()', 'fixed'),
++            ('unused = (self._launch() for self in [None])\nreturn self._launch()', 'fixed'),
++        ):
++            with self.subTest(outer_scope=body):
++                actual, review = self._provenance_case(body)
++                self.assertEqual(actual, expected)
++                rows = [r for r in review['receipt']['expanded_rows']
++                        if r['capability_kind'] == 'subprocess']
++                self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
++                self.assertFalse(review['unresolved_dynamic_blockers'])
++
++    def test_helper_provenance_original_members_require_stability(self) -> None:
++        cases = (
++            ('instance-store', 'self._launch = None\nreturn self._launch()', '', ''),
++            ('class-store', 'ReviewTests._launch = None\nreturn ReviewTests._launch()', '', ''),
++            ('class-delete', 'del ReviewTests._launch\nreturn ReviewTests._launch()', '', ''),
++            ('alias-store', 'alias = ReviewTests\nalias._launch = None\nreturn ReviewTests._launch()', '', ''),
++            ('setattr', 'setattr(ReviewTests, "_launch", None)\nreturn ReviewTests._launch()', '', ''),
++            ('delattr', 'delattr(ReviewTests, "_launch")\nreturn ReviewTests._launch()', '', ''),
++            ('instance-dict', 'vars(self)["_launch"] = None\nreturn self._launch()', '', ''),
++            ('globals', 'globals()["ReviewTests"] = None\nreturn ReviewTests._launch()', '', ''),
++            ('class-body', 'return self._launch()', '    _launch = None\n', ''),
++            ('module-binding', 'return ReviewTests._launch()', '',
++             'ReviewTests = None\n'),
++        )
++        for label, body, class_tail, module_tail in cases:
++            with self.subTest(member=label):
++                actual, review = self._provenance_case(
++                    body, class_tail=class_tail, module_tail=module_tail
++                )
++                self.assertIn(actual, (AttributeError, TypeError))
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++        actual, review = self._provenance_case(
++            'return self._outer(ignored=setattr(self, "_launch", None))',
++            helper='    def _outer(self, ignored=None):\n'
++                   '        return self._launch()\n',
++        )
++        self.assertIs(actual, TypeError)
++        self.assertTrue(review['unresolved_dynamic_blockers'])
++
++    def test_helper_provenance_callee_capture_and_local_admission(self) -> None:
++        for body in (
++            'launch = self._launch\nself = None\nreturn launch()',
++            'launch = ReviewTests._launch\nReviewTests = None\nreturn launch()',
++            'return self._launch(ignored=(self := None))',
++            'alias = ReviewTests\nreturn alias._launch()',
++            'def nested():\n    return self._launch()\nreturn nested()',
++        ):
++            # Assignment makes ReviewTests lexical: use a separate saved alias.
++            if body.startswith('launch = ReviewTests'):
++                body = 'global ReviewTests\n' + body
++            with self.subTest(capture=body):
++                actual, review = self._provenance_case(body)
++                self.assertEqual(actual, 'fixed')
++                rows = [r for r in review['receipt']['expanded_rows']
++                        if r['capability_kind'] == 'subprocess']
++                self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
++                self.assertFalse(review['unresolved_dynamic_blockers'])
++        for body in (
++            'def nested():\n    return self._launch()\nnested = None\nreturn nested()',
++            'def nested():\n    return self._launch()\nfor nested in [None]:\n    return nested()',
++        ):
++            with self.subTest(local_admission=body):
++                actual, review = self._provenance_case(body)
++                self.assertIs(actual, TypeError)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++
++    def test_helper_provenance_values_defaults_and_callable_mutation(self) -> None:
++        for body, expected in (
++            ('module = "first"\nreturn self._launch(module=module, ignored=(module := "second"))', 'first'),
++            ('module = "first"\ndef nested(module=module):\n    return self._launch(module=module)\nmodule = "second"\nreturn nested()', 'first'),
++            ('def nested():\n    return self._launch(module="first")\nsaved = nested\ndef nested():\n    return self._launch(module="second")\nreturn saved()', 'first'),
++            ('if False:\n    self._launch()\nreturn "dead"', 'dead'),
++        ):
++            with self.subTest(value_capture=body):
++                actual, review = self._provenance_case(body)
++                self.assertEqual(actual, expected)
++                rows = [r for r in review['receipt']['expanded_rows']
++                        if r['capability_kind'] == 'subprocess']
++                self.assertEqual([r['argv'] for r in rows],
++                                 [] if expected == 'dead' else [['-m', expected]])
++                self.assertFalse(review['unresolved_dynamic_blockers'])
++        for body in (
++            'self._launch.__defaults__ = (None, "changed")\nreturn self._launch()',
++            'alias = self._launch\nalias.__defaults__ = (None, "changed")\nreturn self._launch()',
++            'def nested():\n    return self._launch()\ndel nested\nreturn nested()',
++        ):
++            with self.subTest(callable_mutation=body):
++                actual, review = self._provenance_case(body)
++                self.assertIn(actual, ('changed', UnboundLocalError))
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++
++    def test_helper_provenance_alias_loss_and_cross_file_mutation_refuse(self) -> None:
++        with self.subTest(renamed_alias=True):
++            actual, review = self._provenance_case(
++                'launch = self._launch\nlaunch = None\nreturn launch()'
++            )
++            self.assertIs(actual, TypeError)
++            self.assertTrue(review['unresolved_dynamic_blockers'])
++        process = (
++            'subprocess.run([sys.executable, "-m", "fixed"], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, '
++            'timeout=5, check=False)'
++        )
++        support = (
++            'import subprocess, sys\n'
++            'def launch():\n    ' + process + '\n'
++            'class Support:\n'
++            '    @staticmethod\n'
++            '    def _launch():\n        ' + process + '\n'
++            'def mutate(owner):\n    owner._launch = None\n'
++        )
++        for prefix, body in (
++            ('from tests.review_support import launch\nlaunch = None\n', 'return launch()'),
++            ('from tests.review_support import Support\n',
++             'alias = Support\nalias._launch = None\nreturn Support._launch()'),
++            ('from tests.review_support import mutate\n',
++             'mutate(self)\nreturn self._launch()'),
++        ):
++            with self.subTest(imported_alias=(prefix, body)):
++                source = (
++                    'import subprocess, sys, unittest\n' + prefix
++                    + 'class ReviewTests(unittest.TestCase):\n'
++                    + '    @staticmethod\n    def _launch():\n        ' + process + '\n'
++                    + '    def test_static(self):\n' + textwrap.indent(body, '        ') + '\n'
++                    + '    def test_denied(self): pass\n'
++                )
++                namespace = {}
++                exec(support.replace(process, 'return "fixed"'), namespace)
++                projection = '\n'.join(
++                    line for line in source.replace(process, 'return "fixed"').splitlines()
++                    if not line.startswith('from tests.review_support import ')
++                )
++                exec(projection, namespace)
++                with self.assertRaises(TypeError):
++                    namespace['ReviewTests']('test_static').test_static()
++                review = self._review(sources={
++                    'tests/test_review.py': source.encode('utf-8'),
++                    'tests/review_support.py': support.encode('utf-8'),
++                })
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++
++    def test_helper_provenance_unsupported_effects_and_escapes_refuse(self) -> None:
++        for body, helper, tail, expected in (
++            ('self._mutate()\nreturn ReviewTests._launch()',
++             '    @staticmethod\n    def _mutate():\n'
++             '        global ReviewTests\n        ReviewTests = None\n', '', AttributeError),
++            ('def mutate():\n    nonlocal self\n    self = None\nmutate()\nreturn self._launch()',
++             '', '', AttributeError),
++            ('self.__class__ = Other\nreturn self._launch()', '',
++             'class Other:\n    @staticmethod\n    def _launch(): return "changed"\n', 'changed'),
++        ):
++            with self.subTest(effect=body):
++                actual, review = self._provenance_case(body, helper=helper, module_tail=tail)
++                self.assertEqual(actual, expected)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++        # The mutator is intentionally absent from the inspected source corpus.
++        source = (
++            'import subprocess, sys, unittest\n'
++            'from external_runtime import mutate\n'
++            'class ReviewTests(unittest.TestCase):\n'
++            '    @staticmethod\n    def _launch():\n'
++            '        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)\n'
++            '    def test_static(self):\n        mutate(self)\n        return self._launch()\n'
++            '    def test_denied(self): pass\n'
++        )
++        for expression, mutator in (
++            ('mutate(self)', lambda owner: setattr(owner, '_launch', None)),
++            ('mutate((self,))', lambda owners: setattr(owners[0], '_launch', None)),
++        ):
++            with self.subTest(opaque_escape=expression):
++                inspected = source.replace('mutate(self)', expression)
++                namespace = {'mutate': mutator}
++                projection = inspected.replace('from external_runtime import mutate\n', '')
++                process = inspected.splitlines()[5].strip()
++                self.assertTrue(process.startswith('subprocess.run('))
++                projection = projection.replace(process, 'return "fixed"')
++                exec(projection, namespace)
++                with self.assertRaises(TypeError):
++                    namespace['ReviewTests']('test_static').test_static()
++                review = self._review(sources={
++                    'tests/test_review.py': inspected.encode('utf-8'),
++                })
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++
+     def test_descriptor_defaults_preserve_real_python_argument_binding(self) -> None:
+         cases = (
+             ("static-self-default", "@staticmethod", 'module="default"',
+diff --git a/tools/generate_test_inventory.py b/tools/generate_test_inventory.py
+index 7052781..57de1c8 100644
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -7847,6 +7847,10 @@ class _ReviewFunction:
+     module_bound_names: frozenset[str] = frozenset()
+     enclosing_exception_names: frozenset[str] = frozenset()
+     descriptor_kind: str | None = "ordinary"
++    binding_stable: bool = True
++    member_stable: bool = True
++    stable_imports: frozenset[str] = frozenset()
++    namespace_effects: bool = False
+ 
+ 
+ def _metered_ast_walk(
+@@ -9002,6 +9006,15 @@ class _ImplicitClassDescriptor:
+     proven_non_not_implemented_methods: frozenset[str] = frozenset()
+ 
+ 
++@dataclass(frozen=True, slots=True)
++class _HelperProvenance:
++    """Exact source definition identity; never inferred from a qname spelling."""
++
++    kind: str
++    key: str
++    bound: bool = False
++
++
+ @dataclass(frozen=True, slots=True)
+ class _FlowValue:
+     kind: str
+@@ -9011,6 +9024,9 @@ class _FlowValue:
+     mutable_collection: bool = False
+     mutable_collection_identity: int | None = None
+     container_kind: str | None = None
++    helper_provenance: _HelperProvenance | None = None
++    callable_defaults: tuple[tuple[str, _FlowValue], ...] = ()
++    namespace_effects: bool = False
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+@@ -12287,6 +12303,10 @@ class _ReviewFlow:
+     callables_by_call: dict[int, str]
+     standalone_blockers: list[tuple[ast.AST, str]]
+     receiver_attributes: dict[int, ast.Attribute] = field(default_factory=dict)
++    helper_calls: dict[int, _HelperProvenance] = field(default_factory=dict)
++    defaults_by_call: dict[int, dict[str, _FlowValue]] = field(default_factory=dict)
++    values_by_call: dict[int, dict[str, _FlowValue]] = field(default_factory=dict)
++    arguments_by_call: dict[int, dict[int, _FlowValue]] = field(default_factory=dict)
+     consumed_local_generator_calls: set[int] = field(default_factory=set)
+     local_generator_consumption_modes: dict[int, set[str]] = field(
+         default_factory=dict
+@@ -12398,6 +12418,28 @@ def _flow_is_sensitive(value: _FlowValue) -> bool:
+     return False
+ 
+ 
++def _flow_contains_helper_identity(value: _FlowValue, budget: _AnalysisBudget) -> bool:
++    pending = [value]
++    seen: set[int] = set()
++    while pending:
++        budget.consume()
++        current = pending.pop()
++        if id(current) in seen:
++            continue
++        seen.add(id(current))
++        if current.helper_provenance is not None:
++            return True
++        if current.kind in {"sequence", "slice", "maybe_unbound"}:
++            pending.extend(item for item in current.value if isinstance(item, _FlowValue))
++        elif current.kind == "mapping":
++            pending.extend(item for _, item in current.value)
++        elif current.kind == "mapping_keys":
++            pending.extend(item for pair in current.value for item in pair)
++        elif current.kind == "starred_argument" and isinstance(current.value, _FlowValue):
++            pending.append(current.value)
++    return False
++
++
+ def _flow_may_be_unittest_receiver(value: _FlowValue) -> bool:
+     if value.kind in {"unittest_receiver", "maybe_unittest_receiver"}:
+         return True
+@@ -13732,8 +13774,16 @@ class _SourceOrderedResolver:
+         enclosing_bound_names: Iterable[str] = (),
+         sensitive_definition_markers: Iterable[str] = (),
+         entry_values: Mapping[str, _FlowValue] | None = None,
++        helper_registry: Mapping[str, _ReviewFunction] | None = None,
++        helper_seeds: Mapping[str, _FlowValue] | None = None,
+     ) -> None:
+         self.budget = budget or _AnalysisBudget()
++        self.helper_registry = helper_registry or {}
++        self._sensitive_helper_candidates: dict[str, bool] = {}
++        self._helper_alias_candidates: set[str] = {
++            name for name, value in (helper_seeds or {}).items()
++            if value.helper_provenance is not None and value.helper_provenance.kind == "callable"
++        }
+         self.module_assignments = dict(module_assignments)
+         self.values = {
+             name: (
+@@ -13824,12 +13874,15 @@ class _SourceOrderedResolver:
+                 sensitive=True,
+                 reason="callable helper closure",
+             )
++        self.values.update(helper_seeds or {})
+         self.values.update(entry_values or {})
+         for name in self.lexical_scope.local_names:
+             if name in self.lexical_scope.parameter_names:
+-                self.values.setdefault(
++                self.values[name] = (entry_values or {}).get(
+                     name,
+-                    _flow_unknown("function parameter is dynamically unresolved"),
++                    self._evaluate(module_assignments[name], self.values, False)
++                    if name in module_assignments and helper_registry is not None
++                    else _flow_unknown("function parameter is dynamically unresolved"),
+                 )
+             else:
+                 self.values[name] = _FlowValue(
+@@ -15522,13 +15575,50 @@ class _SourceOrderedResolver:
+             sensitive=True,
+         )
+ 
++    def _sensitive_helper_candidate(self, node: ast.Call) -> bool:
++        raw = _qualified_name(node.func)
++        if raw is None:
++            return False
++        if raw in self._helper_alias_candidates:
++            return True
++        member = raw.rsplit(".", 1)[-1]
++        if member not in self._sensitive_helper_candidates:
++            sensitive = False
++            seen: set[int] = set()
++            candidates = (
++                self.helper_registry.by_name.get(member, ())
++                if isinstance(self.helper_registry, _ReviewRegistry)
++                else self.helper_registry.values()
++            )
++            for definition in candidates:
++                self.budget.consume()
++                if id(definition) in seen:
++                    continue
++                seen.add(id(definition))
++                if definition.node.name == member and _helper_has_sensitive_closure(
++                    definition, self.helper_registry, budget=self.budget,
++                ):
++                    sensitive = True
++                    break
++            self._sensitive_helper_candidates[member] = sensitive
++        return self._sensitive_helper_candidates[member]
++
+     def _snapshot_call(
+         self,
+         node: ast.Call,
+         values: Mapping[str, _FlowValue],
+         callable_value: _FlowValue,
++        arguments: Mapping[int, _FlowValue] | None = None,
+     ) -> None:
+         key = id(node)
++        if callable_value.namespace_effects:
++            callable_value = _flow_unknown(
++                "helper global or nonlocal effects are dynamically unresolved", sensitive=True,
++            )
++        if callable_value.helper_provenance is None and self._sensitive_helper_candidate(node):
++            callable_value = _flow_unknown(
++                "helper callable provenance is unresolved", sensitive=True,
++            )
+         self._call_states.setdefault(key, []).append(dict(values))
+         self._call_values.setdefault(key, []).append(callable_value)
+         merged_values = self._merge_states(self._call_states[key])
+@@ -15536,6 +15626,18 @@ class _SourceOrderedResolver:
+             "call target",
+             self._call_values[key],
+         )
++        self.flow.values_by_call[key] = merged_values
++        self.flow.defaults_by_call[key] = dict(merged_callable.callable_defaults)
++        previous_arguments = self.flow.arguments_by_call.get(key, {})
++        self.flow.arguments_by_call[key] = {
++            expression: _merge_flow_values(
++                "helper argument", (previous_arguments[expression], value)
++            ) if expression in previous_arguments else value
++            for expression, value in (arguments or {}).items()
++        }
++        self.flow.helper_calls.pop(key, None)
++        if merged_callable.helper_provenance is not None:
++            self.flow.helper_calls[key] = merged_callable.helper_provenance
+         self.flow.aliases_by_call[key] = _flow_aliases(merged_values)
+         self.flow.assignments_by_call[key] = _flow_assignments(merged_values)
+         self.flow.blockers_by_call.pop(key, None)
+@@ -16991,6 +17093,28 @@ class _SourceOrderedResolver:
+             if qualified is not None and qualified in values:
+                 return values[qualified]
+             base = self._evaluate(node.value, values, record)
++            provenance = base.helper_provenance
++            if provenance is not None and provenance.kind == "callable":
++                return _flow_unknown(
++                    "helper callable attribute access is dynamically unresolved", sensitive=True,
++                )
++            if provenance is not None and provenance.kind in {"class", "instance"}:
++                key = f"{provenance.key}::{node.attr}"
++                definition = self.helper_registry.get(key)
++                if definition is not None:
++                    if not definition.member_stable or definition.descriptor_kind is None:
++                        return _flow_unknown(
++                            "helper descriptor member identity is unresolved", sensitive=True
++                        )
++                    bound = definition.descriptor_kind == "classmethod" or (
++                        definition.descriptor_kind == "ordinary"
++                        and provenance.kind == "instance"
++                    )
++                    return _FlowValue(
++                        "qname", key, helper_provenance=_HelperProvenance(
++                            "callable", key, bound
++                        ), namespace_effects=definition.namespace_effects,
++                    )
+             if record:
+                 self._record_implicit_protocol_blocker(
+                     node,
+@@ -17539,7 +17663,14 @@ class _SourceOrderedResolver:
+                 "callback closure",
+             )
+         if isinstance(node, ast.Call):
+-            callable_value = self._evaluate(node.func, values, record)
++            try:
++                callable_value = self._evaluate(node.func, values, record)
++            except _ExpressionDoesNotComplete:
++                if record:
++                    self._snapshot_call(
++                        node, values, _flow_unknown("callee lookup does not complete")
++                    )
++                raise
+             argument_values: list[_FlowValue] = []
+             starred_consumption_blocked = False
+             for argument in node.args:
+@@ -17557,13 +17688,24 @@ class _SourceOrderedResolver:
+             for keyword in node.keywords:
+                 keyword_values.append(self._evaluate(keyword.value, values, record))
+             if record:
++                if any(_flow_contains_helper_identity(value, self.budget)
++                       for value in (*argument_values, *keyword_values)):
++                    self.flow.standalone_blockers.append((
++                        node, "helper namespace escape is dynamically unresolved",
++                    ))
+                 self._record_implicit_protocol_blocker(
+                     node,
+                     callable_value,
+                     _IMPLICIT_PROTOCOL_METHODS["call"],
+                     "implicit callable protocol execution is dynamically unresolved",
+                 )
+-                self._snapshot_call(node, values, callable_value)
++                self._snapshot_call(
++                    node, values, callable_value,
++                    {id(expression): value for expression, value in zip(
++                        (*node.args, *(keyword.value for keyword in node.keywords)),
++                        (*argument_values, *keyword_values), strict=True,
++                    )},
++                )
+                 if any(
+                     value.kind == "callback" and value.sensitive
+                     for value in (*argument_values, *keyword_values)
+@@ -19082,6 +19224,8 @@ class _SourceOrderedResolver:
+         values: dict[str, _FlowValue],
+     ) -> None:
+         if isinstance(target, ast.Name):
++            if value.helper_provenance is not None and value.helper_provenance.kind == "callable":
++                self._helper_alias_candidates.add(target.id)
+             if value.kind == "environment":
+                 environment = value.value
+                 if (
+@@ -19100,6 +19244,12 @@ class _SourceOrderedResolver:
+                     )
+             values[target.id] = value
+             return
++        if isinstance(target, (ast.Attribute, ast.Subscript)) and (
++            _flow_contains_helper_identity(value, self.budget)
++        ):
++            self.flow.standalone_blockers.append((
++                target, "helper namespace store is dynamically unresolved",
++            ))
+         subscript_owner: _FlowValue | None = None
+         subscript_index: _FlowValue | None = None
+         if isinstance(target, ast.Subscript):
+@@ -21117,6 +21267,13 @@ class _SourceOrderedResolver:
+                         )
+                     else:
+                         installed = returned
++                if not statement.decorator_list:
++                    installed = replace(
++                        installed, callable_defaults=tuple(captured_defaults),
++                        namespace_effects=_helper_local_namespace_effects(
++                            statement, self.budget,
++                        ),
++                    )
+                 values[statement.name] = installed
+                 continue
+             if isinstance(statement, ast.ClassDef):
+@@ -21395,6 +21552,8 @@ def _source_ordered_review_flow(
+     enclosing_names: Iterable[str] = (),
+     sensitive_definition_markers: Iterable[str] = (),
+     entry_values: Mapping[str, _FlowValue] | None = None,
++    helper_registry: Mapping[str, _ReviewFunction] | None = None,
++    helper_seeds: Mapping[str, _FlowValue] | None = None,
+ ) -> _ReviewFlow:
+     enclosing_names = frozenset(
+         set(enclosing_names)
+@@ -21456,6 +21615,8 @@ def _source_ordered_review_flow(
+         enclosing_names,
+         sensitive_definition_markers,
+         entry_values,
++        helper_registry,
++        helper_seeds,
+     )
+     for name in resolver.exception_scope.entry_bound_names:
+         resolver.values.setdefault(
+@@ -21501,6 +21662,156 @@ def _descriptor_unavailable_names(nodes: Sequence[ast.stmt]) -> frozenset[str]:
+     return frozenset(visitor.bound_names)
+ 
+ 
++class _MeteredHelperBindings(_ExceptionBindingVisitor):
++    """Reuse lexical binding semantics while charging every visited AST node."""
++
++    def __init__(self, budget: _AnalysisBudget) -> None:
++        super().__init__()
++        self.budget = budget
++
++    def visit(self, node: ast.AST) -> None:
++        self.budget.consume()
++        super().visit(node)
++
++
++def _helper_local_namespace_effects(
++    node: ast.FunctionDef | ast.AsyncFunctionDef, budget: _AnalysisBudget,
++) -> bool:
++    visitor = _MeteredHelperBindings(budget)
++    for statement in node.body:
++        visitor.visit(statement)
++    return bool(visitor.global_names or visitor.nonlocal_names)
++
++
++def _helper_binding_counts(
++    statements: Sequence[ast.stmt], budget: _AnalysisBudget,
++) -> dict[str, int]:
++    counts: dict[str, int] = {}
++    for statement in statements:
++        visitor = _MeteredHelperBindings(budget)
++        visitor.visit(statement)
++        for name in visitor.bound_names:
++            budget.consume()
++            counts[name] = counts.get(name, 0) + 1
++    return counts
++
++
++def _helper_namespace_certificates(
++    tree: ast.Module,
++    mutations: frozenset[str],
++    budget: _AnalysisBudget,
++) -> tuple[dict[int, bool], dict[int, bool], frozenset[str]]:
++    """Linear, conservative certificate; aliases share member mutation refusal."""
++
++    dynamic_namespace = False
++    for candidate in _metered_ast_walk(tree, budget):
++        if isinstance(candidate, ast.ImportFrom) and any(
++            alias.name == "*" for alias in candidate.names
++        ):
++            dynamic_namespace = True
++        if isinstance(candidate, ast.Attribute) and candidate.attr in {
++            "__dict__", "__globals__", "__code__", "__defaults__", "__kwdefaults__",
++        }:
++            dynamic_namespace = True
++        if isinstance(candidate, ast.Call):
++            raw = _qualified_name(candidate.func)
++            if raw is not None and raw.rsplit(".", 1)[-1] in {
++                "setattr", "delattr", "vars", "globals", "locals", "exec", "eval",
++            }:
++                dynamic_namespace = True
++    counts = _helper_binding_counts(tree.body, budget)
++    stable_imports: set[str] = set()
++    for statement in tree.body:
++        budget.consume()
++        if isinstance(statement, (ast.Import, ast.ImportFrom)):
++            visitor = _MeteredHelperBindings(budget)
++            visitor.visit(statement)
++            stable_imports.update(name for name in visitor.bound_names if counts[name] == 1)
++    if dynamic_namespace:
++        stable_imports.clear()
++    binding: dict[int, bool] = {}
++    members: dict[int, bool] = {}
++    for definition in tree.body:
++        budget.consume()
++        if not isinstance(definition, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
++            continue
++        binding[id(definition)] = counts.get(definition.name) == 1 and not dynamic_namespace
++        if not isinstance(definition, ast.ClassDef):
++            continue
++        member_counts = _helper_binding_counts(definition.body, budget)
++        class_supported = (
++            not definition.decorator_list and not definition.keywords
++            and all(_qualified_name(base) in {"object", "unittest.TestCase"}
++                    for base in definition.bases)
++            and not ({"__getattribute__", "__getattr__"} & member_counts.keys())
++            and not (mutations & {
++                "__class__", "__bases__", "__mro__", "__getattribute__", "__getattr__",
++            })
++        )
++        for method in definition.body:
++            budget.consume()
++            if isinstance(method, (ast.FunctionDef, ast.AsyncFunctionDef)):
++                members[id(method)] = (
++                    class_supported and not dynamic_namespace
++                    and method.name not in mutations and member_counts.get(method.name) == 1
++                )
++    return binding, members, frozenset(stable_imports)
++
++
++def _helper_provenance_seeds(
++    relative_path: str,
++    aliases: Mapping[str, str],
++    registry: Mapping[str, _ReviewFunction],
++    referenced_names: Iterable[str],
++    stable_imports: frozenset[str],
++    budget: _AnalysisBudget,
++) -> dict[str, _FlowValue]:
++    seeds: dict[str, _FlowValue] = {}
++    for name in referenced_names:
++        budget.consume()
++        key = f"{relative_path}::{name}"
++        definition = registry.get(key)
++        if definition is None or not definition.binding_stable:
++            continue
++        kind = "class" if definition.class_name is not None else "callable"
++        seeds[name] = _FlowValue(
++            "qname", key, helper_provenance=_HelperProvenance(kind, key),
++            namespace_effects=definition.namespace_effects,
++        )
++    for name in stable_imports:
++        budget.consume()
++        definition = registry.get(aliases.get(name, ""))
++        if definition is None or not definition.binding_stable:
++            continue
++        canonical = f"{definition.relative_path}::"
++        if definition.class_name is not None:
++            canonical += definition.class_name
++            if definition.node.name != "__init__":
++                continue
++            kind = "class"
++        else:
++            canonical += definition.node.name
++            kind = "callable"
++        seeds[name] = _FlowValue(
++            "qname", canonical, helper_provenance=_HelperProvenance(kind, canonical),
++            namespace_effects=definition.namespace_effects,
++        )
++    return seeds
++
++
++class _ReviewRegistry(dict[str, _ReviewFunction]):
++    def __init__(self) -> None:
++        super().__init__()
++        self.by_name: dict[str, list[_ReviewFunction]] = {}
++        self._definitions: set[int] = set()
++
++    def __setitem__(self, key: str, definition: _ReviewFunction) -> None:
++        super().__setitem__(key, definition)
++        if id(definition) not in self._definitions:
++            self._definitions.add(id(definition))
++            self.by_name.setdefault(definition.node.name, []).append(definition)
++
++
+ def _review_function_registry(
+     parsed: Mapping[str, ast.Module],
+     exception_provenance: Mapping[str, _ModuleExceptionProvenance] | None = None,
+@@ -21509,7 +21820,34 @@ def _review_function_registry(
+         frozenset[str],
+     ] | None = None,
+ ) -> dict[str, _ReviewFunction]:
+-    registry: dict[str, _ReviewFunction] = {}
++    registry = _ReviewRegistry()
++    certificate_budgets = {path: _AnalysisBudget() for path in parsed}
++    mutated_members: set[str] = set()
++    effectful_functions: set[int] = set()
++    for path, tree in parsed.items():
++        pending: list[tuple[ast.AST, ast.AST | None]] = [(tree, None)]
++        while pending:
++            certificate_budgets[path].consume()
++            candidate, owner = pending.pop()
++            if isinstance(candidate, (ast.FunctionDef, ast.AsyncFunctionDef)):
++                owner = candidate
++            if isinstance(candidate, (ast.Global, ast.Nonlocal)) and owner is not None:
++                effectful_functions.add(id(owner))
++            if isinstance(candidate, ast.Attribute) and isinstance(
++                candidate.ctx, (ast.Store, ast.Del)
++            ):
++                mutated_members.add(candidate.attr)
++                if candidate.attr in {"__code__", "__defaults__", "__kwdefaults__"} and (
++                    isinstance(candidate.value, ast.Attribute)
++                ):
++                    mutated_members.add(candidate.value.attr)
++            if isinstance(candidate, ast.Call) and _qualified_name(candidate.func) in {
++                "setattr", "delattr",
++            }:
++                if len(candidate.args) >= 2 and isinstance(candidate.args[1], ast.Constant):
++                    if type(candidate.args[1].value) is str:
++                        mutated_members.add(candidate.args[1].value)
++            pending.extend((child, owner) for child in ast.iter_child_nodes(candidate))
+ 
+     def register(key: str, definition: _ReviewFunction) -> None:
+         previous = registry.get(key)
+@@ -21536,6 +21874,9 @@ def _review_function_registry(
+             )
+         })
+         assignments = _static_assignments(tree.body)
++        stable_bindings, stable_members, stable_imports = _helper_namespace_certificates(
++            tree, frozenset(mutated_members), certificate_budgets[relative_path],
++        )
+         descriptor_names = _descriptor_unavailable_names(tree.body)
+         source_path = PurePosixPath(relative_path)
+         module_name = ".".join(source_path.with_suffix("").parts)
+@@ -21550,6 +21891,9 @@ def _review_function_registry(
+                     None,
+                     provenance.module_bound_names,
+                     provenance.enclosing_names_by_node.get(id(node), frozenset()),
++                    binding_stable=stable_bindings.get(id(node), False),
++                    stable_imports=stable_imports,
++                    namespace_effects=id(node) in effectful_functions,
+                 )
+                 for key in (
+                     f"{relative_path}::{node.name}",
+@@ -21589,6 +21933,10 @@ def _review_function_registry(
+                         frozenset(),
+                     ),
+                     _helper_descriptor_kind(constructor, unavailable_descriptors),
++                    stable_bindings.get(id(node), False),
++                    stable_members.get(id(constructor), not node.keywords),
++                    stable_imports,
++                    id(constructor) in effectful_functions,
+                 )
+                 for key in (
+                     f"{relative_path}::{node.name}",
+@@ -21614,6 +21962,10 @@ def _review_function_registry(
+                             frozenset(),
+                         ),
+                         _helper_descriptor_kind(method, unavailable_descriptors),
++                        stable_bindings.get(id(node), False),
++                        stable_members.get(id(method), False),
++                        stable_imports,
++                        id(method) in effectful_functions,
+                     )
+                     register(
+                         f"{relative_path}::{node.name}::{method.name}",
+@@ -21711,6 +22063,7 @@ def _bind_helper_arguments(
+     aliases: Mapping[str, str],
+     *,
+     receiver_kinds: Mapping[str, str],
++    proven_bound: bool | None = None,
+ ) -> dict[str, tuple[ast.expr, bool]] | None:
+     arguments = definition.node.args
+     if (
+@@ -21729,7 +22082,7 @@ def _bind_helper_arguments(
+             strict=True,
+         )
+     }
+-    bound = _helper_is_bound(
++    bound = proven_bound if proven_bound is not None else _helper_is_bound(
+         call, definition, aliases, receiver_kinds=receiver_kinds
+     )
+     if bound is None:
+@@ -22635,11 +22988,20 @@ def _review_body(
+             caller if caller is not None and caller.node is node else None
+         )
+     body_receiver_kinds = dict(receiver_kinds)
+-    receiver_bindings = _ExceptionBindingVisitor()
+-    for statement in node.body:
+-        receiver_bindings.visit(statement)
+-    for name in receiver_bindings.bound_names:
+-        body_receiver_kinds.pop(name, None)
++    provenance_entries = dict(entry_values or {})
++    if class_name is not None:
++        for name, kind in receiver_kinds.items():
++            # A recursive caller supplies source-point values, including lost proof.
++            if entry_values is not None and name in entry_values and (
++                entry_values[name].helper_provenance is not None
++                or entry_values[name].reason != "unittest entry parameter is dynamically unresolved"
++            ):
++                continue
++            provenance_entries[name] = _FlowValue(
++                "qname", name, helper_provenance=_HelperProvenance(
++                    kind, f"{relative_path}::{class_name}"
++                )
++            )
+     execution = _execution_scope(node, analysis_budget)
+     body_aliases = _function_aliases(
+         aliases,
+@@ -22806,7 +23168,14 @@ def _review_body(
+         module_bound_names=module_bound_names,
+         enclosing_names=enclosing_exception_names,
+         sensitive_definition_markers=sensitive_definition_markers,
+-        entry_values=entry_values,
++        entry_values=provenance_entries,
++        helper_registry=helper_registry,
++        helper_seeds=_helper_provenance_seeds(
++            relative_path, aliases, helper_registry, referenced_names,
++            (helper_registry.get(f"{relative_path}::{class_name or node.name}") or
++             _ReviewFunction(relative_path, node, aliases, {}, None)).stable_imports,
++            analysis_budget,
++        ),
+     )
+     _append_implicit_protocol_analyzed_sites(
+         source_flow.implicit_protocol_events,
+@@ -23024,6 +23393,12 @@ def _review_body(
+                 active=active_helpers | {local_key},
+             ):
+                 continue
++            if exact_local_node is None:
++                blockers.append(_review_blocker(
++                    item_id, relative_path, call,
++                    "local helper callable provenance is unresolved",
++                ))
++                continue
+             if local_key in active_helpers:
+                 blockers.append(
+                     _review_blocker(
+@@ -23038,17 +23413,22 @@ def _review_body(
+                 call,
+                 local_definition,
+                 call_aliases,
+-                receiver_kinds=body_receiver_kinds,
++                receiver_kinds={},
++                proven_bound=False,
+             )
+             local_assignments = dict(call_assignments)
+             argument_failure = supplied is None
+             if supplied is not None:
+                 for parameter, (expression, is_default) in supplied.items():
+-                    value = _static_value(
+-                        expression,
+-                        local_definition.module_assignments
+-                        if is_default
+-                        else call_assignments,
++                    evaluated = (
++                        source_flow.defaults_by_call.get(id(call), {}).get(parameter)
++                        if is_default else
++                        source_flow.arguments_by_call.get(id(call), {}).get(id(expression))
++                    )
++                    literal = _flow_literal_expression(evaluated) if evaluated is not None else None
++                    value = (
++                        _static_value(literal, {}) if literal is not None
++                        else _STATIC_UNRESOLVED
+                     )
+                     if value is _STATIC_UNRESOLVED:
+                         argument_failure = True
+@@ -23087,9 +23467,10 @@ def _review_body(
+                 closure_depth=closure_depth + 1,
+                 closure_helper_key=local_key,
+                 analysis_budget=analysis_budget,
+-                receiver_kinds={
+-                    name: kind for name, kind in body_receiver_kinds.items()
+-                    if name not in _lexical_binding_scope(local_node).parameter_names
++                receiver_kinds={},
++                entry_values={
++                    name: value for name, value in source_flow.values_by_call[id(call)].items()
++                    if name not in _lexical_binding_scope(local_node).local_names
+                 },
+             )
+             site_key = site_keys[id(call)]
+@@ -23112,8 +23493,22 @@ def _review_body(
+             aliases=call_aliases,
+             registry=helper_registry,
+         )
++        proof = source_flow.helper_calls.get(id(call))
++        if proof is not None and proof.kind == "callable":
++            proved_definition = helper_registry.get(proof.key)
++            if proved_definition is not None:
++                helper = (proof.key, proved_definition)
+         if helper is not None:
+             helper_key, definition = helper
++            if proof is None or proof.kind != "callable" or proof.key != helper_key:
++                if _helper_has_sensitive_closure(
++                    definition, helper_registry, budget=analysis_budget,
++                ):
++                    blockers.append(_review_blocker(
++                        item_id, relative_path, call,
++                        "helper callable provenance is unresolved",
++                    ))
++                continue
+             helper_edges.append(
+                 {
+                     "item_id": item_id,
+@@ -23139,7 +23534,8 @@ def _review_body(
+                 call,
+                 definition,
+                 call_aliases,
+-                receiver_kinds=body_receiver_kinds,
++                receiver_kinds={},
++                proven_bound=proof.bound,
+             )
+             argument_failure = supplied_arguments is None
+             if supplied_arguments is None:
+@@ -23158,13 +23554,15 @@ def _review_body(
+                 for parameter, (expression, is_default) in (
+                     supplied_arguments.items()
+                 ):
+-                    value = _static_value(
+-                        expression,
+-                        (
+-                            definition.module_assignments
+-                            if is_default
+-                            else call_assignments
+-                        ),
++                    evaluated = source_flow.arguments_by_call.get(id(call), {}).get(
++                        id(expression)
++                    ) if not is_default else None
++                    literal = _flow_literal_expression(evaluated) if evaluated is not None else None
++                    value = (
++                        _static_value(expression, definition.module_assignments)
++                        if is_default else
++                        _static_value(literal, {}) if literal is not None
++                        else _STATIC_UNRESOLVED
+                     )
+                     if value is _STATIC_UNRESOLVED:
+                         argument_failure = True

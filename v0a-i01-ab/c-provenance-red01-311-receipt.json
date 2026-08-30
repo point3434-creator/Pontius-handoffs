@@ -1,0 +1,39 @@
+{
+  "label": "red01",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-red01-311-928eb653223741228498d7adac1e4840\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-red01-311-928eb653223741228498d7adac1e4840\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "bf0e05d666e8c9e8b58813e78cbfeff10d61bf9dc947a060390e95f940d289d6",
+    "tests/test_inventory_and_profiles.py": "d825ec8460c24678f1d7591e41e703ec674e5d407c901df084ec8e8f86980b6b"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+    "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+    "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+    "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-red01-311-928eb653223741228498d7adac1e4840\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-red01-311-928eb653223741228498d7adac1e4840\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-red01-311-928eb653223741228498d7adac1e4840\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-red01-311.txt",
+  "sha256": "0403c2851432fa730e306f0d74c0ff72ee941703929abb3587e0550cc1ea155b",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

@@ -1,0 +1,51 @@
+{
+  "label": "probe04",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-probe04-311-7e21b7c8c2ee4ce58b536fdc249ac516\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-probe04-311-7e21b7c8c2ee4ce58b536fdc249ac516\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "6067ff0667b1ab2714e388989caf9d8fa79accbd0f3ed699b0c5fdd3b01694b4",
+    "tests/test_inventory_and_profiles.py": "0951843d7aef8e6680a04bc369d49c97b5934d1933c35243a41d7c120656ddac"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+    "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+    "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+    "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+    "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+    "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+    "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+    "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+    "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+    "DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding",
+    "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+    "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+    "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+    "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+    "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+    "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-probe04-311-7e21b7c8c2ee4ce58b536fdc249ac516\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-probe04-311-7e21b7c8c2ee4ce58b536fdc249ac516\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-probe04-311-7e21b7c8c2ee4ce58b536fdc249ac516\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 0,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-probe04-311.txt",
+  "sha256": "e57253d9b0f48b90555f48163d648001136ce4f45c8ad93cbf933b72d9fd5dd3",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

@@ -1,0 +1,35 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-red05-311-ab8366ab4c4d4e30948e16dd7c299667\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-red05-311-ab8366ab4c4d4e30948e16dd7c299667\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-red05-311-ab8366ab4c4d4e30948e16dd7c299667\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 1, "failures": 3, "errors": 0, "skipped": 0}
+test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) ... 
+  test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) (renamed_alias=True) ... FAIL
+  test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) (imported_alias=('from tests.review_support import launch\nlaunch = None\n', 'return launch()')) ... FAIL
+  test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) (imported_alias=('from tests.review_support import mutate\n', 'mutate(self)\nreturn self._launch()')) ... FAIL
+
+======================================================================
+FAIL: test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) (renamed_alias=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red05-311-ab8366ab4c4d4e30948e16dd7c299667\harness\tests\test_inventory_and_profiles.py", line 20941, in test_helper_provenance_alias_loss_and_cross_file_mutation_refuse
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) (imported_alias=('from tests.review_support import launch\nlaunch = None\n', 'return launch()'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red05-311-ab8366ab4c4d4e30948e16dd7c299667\harness\tests\test_inventory_and_profiles.py", line 20983, in test_helper_provenance_alias_loss_and_cross_file_mutation_refuse
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) (imported_alias=('from tests.review_support import mutate\n', 'mutate(self)\nreturn self._launch()'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-red05-311-ab8366ab4c4d4e30948e16dd7c299667\harness\tests\test_inventory_and_profiles.py", line 20983, in test_helper_provenance_alias_loss_and_cross_file_mutation_refuse
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.130s
+
+FAILED (failures=3)
