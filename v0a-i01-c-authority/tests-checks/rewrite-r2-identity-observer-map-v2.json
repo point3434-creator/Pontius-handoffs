@@ -1,0 +1,86 @@
+{
+  "absent_R2_mechanisms": "unavailable, never zero or baseline infrastructure failure",
+  "adapter": "r1-baseline-only",
+  "authorization_sha256": "34cb19a6ec98ea5b92219a50f9622f7aec2ed3c84139b4e78f7e7e9f02aed5ab",
+  "baseline_hook_compatibility_sha256": "314c49262b68d6aaf34da6b5184804b8267beaeda5d5266c074e2576b90b85a3",
+  "budget_consume_source_sha256": "d910a8af42711e5130b93af9e55b8917dbd8b48433e29e1ab3cd51df63b7af5c",
+  "budget_reconciliation_unchanged": true,
+  "caps_unchanged": true,
+  "continuation_maximum": 196608,
+  "failure_scope": "acquisition failure preserves primary exception; cleanup diagnostics prevent admission; incomplete rollback stops next case",
+  "fork_replay": "completed writes copied at fork ordinal before subsequent parent writes",
+  "hash_convention": "UTF-8 ast.get_source_segment, without appended LF; canonical AST excludes attributes",
+  "inclusive_mechanism_units_must_not_be_summed": true,
+  "lifecycle_review_sha256": "9c09835e025bf33bcc7c526a0f3229844128fbf6b3fc07e1dc207c7c7e83a129",
+  "lifecycle_source_segment_sha256": "acfbd37cc25080d655fd00a9e1e0044024657d832c929bf9d1e0afe4b27c36d3",
+  "lifecycle_validator_source_segment_sha256": "9e301d11ca7770004c916452af1ffb6c52867dc3b3634e850da2b6dcf2e2dbe6",
+  "mechanism_observer_source_sha256": "49bc3ee62c736cec13ee879a11292ba136c09a6ccec96cd7f8a52b6174214206",
+  "mechanism_validator_source_sha256": "1cdf8f0bd3188abf4eca21495eba61cdd1804bb340bcb31941b4278d4cd636db",
+  "observer_cost_is_not_original_work": true,
+  "original_BudgetObserver_and_MechanismObserver_raw_unchanged": true,
+  "original_budget_observer_unchanged": true,
+  "population_sha256": "8ab800c1361ca53f4f294bd32e308ecb7061e031b60d32dc74d7fdf52cc5ce3b",
+  "predecessor_sha256": "a685562866deec86553d8ca06b458269f06e3f015418401325e7c4d43c1a232b",
+  "prior_observer_map_sha256": "1dfd899dc7c7a1c9bbf1ff0ee17bc8b4fd4be1eadf3c81f759eb1b0176630228",
+  "raw_object_ids": "case-local lookup keys only; emitted state births are monotonically assigned",
+  "reserve_basis": "requested_units_per_original_epoch",
+  "restoration_control_retention": "module/class/original callable/code objects and observers; no new analysis budget/state/frame retention",
+  "retained_evidence": "scalars/lists/dicts only; originals/code identities are restoration controls",
+  "schema": "pontius-r2-identity-observer-map-v2",
+  "source_sha256": "c8fc013d2be7599aa41b873552dd2a11191f2be1342d1a8f2bd04a39dc1dbd5f",
+  "spec_sha256": "4d4ed42a3fb132eb79c3a40bcb943268cbb2883a28152176c52d05c845791b52",
+  "unchanged_source_segments": {
+    "BudgetObserver": {
+      "canonical_ast_sha256": "e5752a40d3a19703c1434b78020efd26ad1dd1c5f2d9a35be30fdba3391c9adc",
+      "source_segment_sha256": "f6e4ab5020bef027e7358ca196171569f9ac06e3f503e5a1e9836bf662be64b5"
+    },
+    "budget_context": {
+      "canonical_ast_sha256": "4829232a6841f47baed8352d7acfab9693f28d8f6eabb577071a5de4344d8207",
+      "source_segment_sha256": "dabfe2bc7500b549b72edef098ca005d33c107597348cccc09af856ca9a7bae1"
+    },
+    "budget_origin": {
+      "canonical_ast_sha256": "b2c31993f38d2f87df09feeee6b652f302ad504b4694fa44b535387b88ac1b46",
+      "source_segment_sha256": "355fa9c8a307c2bae823a2cebbd107598540c9ac109002f6244e22f687ebdb24"
+    },
+    "budget_phase": {
+      "canonical_ast_sha256": "b7e02453db63a087bdc3ef6a8411026221963afc00c457c5d3eedf52c2927dc6",
+      "source_segment_sha256": "10bdba59bcb2fb012688c0a1372b303a3870f7cd7d040733a708769537aa2da4"
+    },
+    "generator70_source": {
+      "canonical_ast_sha256": "655e34130d9445bebc00d1be6ccb15d050183a56240fb832d46db85633c4febb",
+      "source_segment_sha256": "ae7d8135e16d1d6b74542fee207cba7c7351ecbf1f65be2a5bec56c9bd797fdd"
+    },
+    "helper65_source": {
+      "canonical_ast_sha256": "b4cbee4eb2d4de25f25fcc75acc72e46dc6c6c587a7a8ed9dc17624e52136e61",
+      "source_segment_sha256": "d840e72d25c0d465733aa3608fd590fe799d77ece3a722beb7a947de8316d1fe"
+    },
+    "prepare_depth_case": {
+      "canonical_ast_sha256": "9612d5fbc11ab58595067591096e49693e1e4cc22ddba6de444fd8cdb9b67635",
+      "source_segment_sha256": "24c78427dcabacad39fea88425220f921c82a5f8bf787e8ee14a855634c8a3ec"
+    },
+    "project_oracles": {
+      "canonical_ast_sha256": "e3bbbaa33e65b2d03ceb6ad2430efd8aa908999ec2fab5c01308af96fc67e0e9",
+      "source_segment_sha256": "46a7af27792d534bb64144e2320ae236b3cb4c22dc616b5c8575e9d1b25bbddd"
+    },
+    "public_review": {
+      "canonical_ast_sha256": "bccb4b0d8d5d3f734a40b9290298747a08976ad93d792f851c77e9fa23a0334f",
+      "source_segment_sha256": "25f31a6576e1879f3001ae898d1d9fad058cef647d5df3ce7af140d749c3efc6"
+    },
+    "public_verdict": {
+      "canonical_ast_sha256": "64a91634cd98b1f7006d5ce84d7194024c1a0f11f9eba1cd048f2308e0f89bba",
+      "source_segment_sha256": "62955df202e51e95c851749e44b0afe521b65e550b9fe67ebc0767b465a5e004"
+    },
+    "storage_oracle": {
+      "canonical_ast_sha256": "52af6d5fe6adca98d67ee94a93f233b6a682f226e229632a29b2659833259501",
+      "source_segment_sha256": "a746371c82ec8b8fd52e69e766a94c1d0f68432ac00fcc56d8990a5d1ea0e41c"
+    },
+    "storage_public_review": {
+      "canonical_ast_sha256": "2829418f2395a19054de665aea02a5c334f25824fb7b36bb43899e7a5a0f9a10",
+      "source_segment_sha256": "6b21ae7540cbe6b2aa36f431bc7d5aa4b04583566605d298e0eeed737a154874"
+    },
+    "validate_budget_metrics": {
+      "canonical_ast_sha256": "89b451d6bcbc54cdb898595fa6182fd6253d40eda5b514f77eabbdc10a3e6651",
+      "source_segment_sha256": "254ea600a109ad254f8522f5f2948aed8fa367ab9d6a437131886b3353747f01"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+--- rewrite-r2-identity-probe-v1.py
++++ rewrite-r2-identity-probe-v2.py
+@@ -60,11 +60,11 @@
+ DEPTH_CASES = {'helper65': {'method': 'test_round4_analysis_budget_red_contracts_are_independent', 'fixture_sha256': '94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6', 'regex': '^analysis helper depth exceeds 64$'}, 'generator70': {'method': 'test_round4_source_order_and_branch_bounds_red_contracts_are_independent', 'fixture_sha256': '635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3', 'regex': '^analysis deferred generator depth exceeds 64$'}}
+ POPULATION_SHA = "8ab800c1361ca53f4f294bd32e308ecb7061e031b60d32dc74d7fdf52cc5ce3b"
+ 
+-PLAN_SHA = 'd4e3b07268e291863d90b35711485d1679f6ce826d01e3429604fdc375ae0182'
+-OBSERVER_MAP_SHA = 'a685562866deec86553d8ca06b458269f06e3f015418401325e7c4d43c1a232b'
++PLAN_SHA = '4351e0f61ff81f6fbb1800df669a642501f10c40e72de80430d4d396b0b6e1db'
++OBSERVER_MAP_SHA = '5463f81a8c3714e0970585c6b4b2eb9dd2bd547105c4ae6a8f9f53f0a08d699c'
+ CONSUME_SEGMENT_SHA = 'd910a8af42711e5130b93af9e55b8917dbd8b48433e29e1ab3cd51df63b7af5c'
+-PAYLOAD = ".rewrite-r2-identity"
+-SCHEMA = "pontius-rewrite-r2-identity-v1"
++PAYLOAD = ".rewrite-r2-identity-v2"
++SCHEMA = "pontius-rewrite-r2-identity-v2"
+ SLOTS = {
+     "311": (r"D:\Pontius-tools\py311\Scripts\python.exe", (3, 11, 15)),
+     "314": (r"D:\Pontius\.venv\Scripts\python.exe", (3, 14, 6)),
+@@ -902,6 +902,174 @@
+                 "counters": self.counters, "copy_counts": list(self.copy_counts.values()),
+                 "events": self.events, "inclusive_spans_are_not_disjoint_totals": True,
+                 "legacy_tags_are_not_known_raises": True}
++
++
++class ObserverLifecycle:
++    """Own all observer acquisition and teardown; never replace a body exception."""
++    def __init__(self, module, identifier, source_sha):
++        self.module, self.identifier, self.source_sha = module, identifier, source_sha
++        # Capture rollback identities before any observer can mutate the module.
++        self.budget_class = module._AnalysisBudget
++        self.budget_originals = {name: getattr(self.budget_class, name)
++                                 for name in ("__init__", "consume")}
++        self.hook_originals = {name: vars(module)[name] for name in MechanismObserver.HOOKS}
++        self.original_codes = {name: value.__code__ for name, value in
++                               (*self.budget_originals.items(), *self.hook_originals.items())}
++        self.budget, self.mechanism = None, None
++        self.metrics, self.mechanism_metrics = None, None
++        self.events, self.errors = [], []
++        self.acquired, self.closed = False, False
++        self.acquisition_stage = "not-started"
++        self.budget_restored, self.mechanism_restored = False, False
++
++    def record_error(self, stage, error):
++        try:
++            message = str(error)
++        except BaseException:
++            message = "<diagnostic string unavailable>"
++        self.errors.append({"stage": stage, "type": type(error).__name__, "message": message})
++
++    def attempt(self, stage, action):
++        try:
++            result = action()
++        except BaseException as error:
++            self.record_error(stage, error)
++            self.events.append({"stage": stage, "completed": False})
++            return None
++        self.events.append({"stage": stage, "completed": True})
++        return result
++
++    def __enter__(self):
++        try:
++            self.acquisition_stage = "budget.construct"
++            self.budget = BudgetObserver(self.module)
++            self.events.append({"stage": "budget.construct", "completed": True})
++            self.acquisition_stage = "budget.install"
++            self.budget.install()
++            self.events.append({"stage": "budget.install", "completed": True})
++            self.acquisition_stage = "budget.begin"
++            self.budget.begin(self.identifier)
++            self.events.append({"stage": "budget.begin", "completed": True})
++            self.acquisition_stage = "mechanism.construct"
++            self.mechanism = MechanismObserver(self.module, self.budget, self.source_sha)
++            self.events.append({"stage": "mechanism.construct", "completed": True})
++            self.acquisition_stage = "mechanism.install"
++            self.mechanism.install()
++            self.events.append({"stage": "mechanism.install", "completed": True})
++            self.acquired = True
++            self.acquisition_stage = "complete"
++            return self
++        except BaseException as primary:
++            # Partial installation, begin and constructor failures all enter rollback.
++            try:
++                self.close()
++            except BaseException:
++                # close has independent finalizers; preserve the acquisition exception.
++                pass
++            try:
++                primary.add_note("observer acquisition failed; cleanup: "
++                                 + json.dumps(self.report(), allow_nan=False))
++            except BaseException:
++                pass
++            raise
++
++    def close(self):
++        if self.closed:
++            return
++        self.closed = True
++        try:
++            if self.mechanism is not None:
++                restored = self.attempt("mechanism.restore", self.mechanism.restore)
++                if restored is not True:
++                    self.record_error("mechanism.restore-result",
++                                      RuntimeError("mechanism restoration not reported intact"))
++                self.mechanism_metrics = self.attempt("mechanism.result", self.mechanism.result)
++            if self.budget is not None:
++                if self.budget.current is not None:
++                    self.metrics = self.attempt("budget.end", self.budget.end)
++                restored = self.attempt("budget.restore", self.budget.restore)
++                if restored is not True:
++                    self.record_error("budget.restore-result",
++                                      RuntimeError("budget restoration not reported intact"))
++        finally:
++            # These writes do not depend on either observer's end/result/restore succeeding.
++            # Each restoration is independently attempted, including a partial install.
++            try:
++                for name, original in self.hook_originals.items():
++                    self.attempt("force-hook:" + name,
++                                 lambda name=name, original=original:
++                                 setattr(self.module, name, original))
++            finally:
++                for name, original in self.budget_originals.items():
++                    self.attempt("force-budget:" + name,
++                                 lambda name=name, original=original:
++                                 setattr(self.budget_class, name, original))
++                self.mechanism_restored = self.attempt("verify-mechanism", lambda: all(
++                    vars(self.module).get(name) is original
++                    and original.__code__ is self.original_codes[name]
++                    for name, original in self.hook_originals.items())) is True
++                self.budget_restored = self.attempt("verify-budget", lambda: all(
++                    getattr(self.budget_class, name) is original
++                    and original.__code__ is self.original_codes[name]
++                    for name, original in self.budget_originals.items())) is True
++
++    def __exit__(self, kind, primary, traceback):
++        try:
++            self.close()
++        except BaseException as cleanup_error:
++            # No cleanup/projection diagnostic may replace a propagated body exception.
++            try:
++                self.record_error("lifecycle.close", cleanup_error)
++            except BaseException:
++                pass
++        if primary is not None and self.errors:
++            try:
++                primary.add_note("observer teardown diagnostics: "
++                                 + json.dumps(self.report(), allow_nan=False))
++            except BaseException:
++                pass
++        return False
++
++    def report(self):
++        return {"schema": "pontius-r2-observer-lifecycle-v1",
++                "acquired": self.acquired, "closed": self.closed,
++                "acquisition_stage": self.acquisition_stage,
++                "budget_methods_restored": self.budget_restored,
++                "mechanism_methods_restored": self.mechanism_restored,
++                "events": self.events, "errors": self.errors,
++                "complete": self.acquired and self.closed and self.budget_restored
++                            and self.mechanism_restored and not self.errors
++                            and self.metrics is not None and self.mechanism_metrics is not None}
++
++
++def validate_lifecycle(record):
++    require(type(record) is dict and record["schema"] == "pontius-r2-observer-lifecycle-v1",
++            "observer lifecycle schema")
++    for key in ("acquired", "closed", "budget_methods_restored",
++                "mechanism_methods_restored", "complete"):
++        require(type(record[key]) is bool, "lifecycle exact Boolean: " + key)
++    require(type(record["events"]) is list and type(record["errors"]) is list
++            and type(record["acquisition_stage"]) is str, "lifecycle scalar containers")
++    for event in record["events"]:
++        require(type(event) is dict and set(event) == {"stage", "completed"}
++                and type(event["stage"]) is str and type(event["completed"]) is bool,
++                "lifecycle event")
++    for error in record["errors"]:
++        require(type(error) is dict and set(error) == {"stage", "type", "message"}
++                and all(type(value) is str for value in error.values()), "lifecycle error")
++    normal_stages = ["budget.construct", "budget.install", "budget.begin",
++                     "mechanism.construct", "mechanism.install", "mechanism.restore",
++                     "mechanism.result", "budget.end", "budget.restore"]
++    normal_stages.extend("force-hook:" + name for name in BASELINE_HOOKS)
++    normal_stages.extend(("force-budget:__init__", "force-budget:consume",
++                          "verify-mechanism", "verify-budget"))
++    structurally_complete = (
++        record["acquired"] and record["closed"] and record["acquisition_stage"] == "complete"
++        and record["budget_methods_restored"] and record["mechanism_methods_restored"]
++        and not record["errors"] and record["events"] ==
++        [{"stage": stage, "completed": True} for stage in normal_stages])
++    require(record["complete"] is structurally_complete, "lifecycle completion replay")
++    return structurally_complete
+ 
+ 
+ def validate_mechanism(metrics, identifier, coverage, budget_metrics):
+@@ -1119,6 +1287,7 @@
+             and all(type(getattr(generator, name)) is int for name in CAPS), "caps changed")
+     semantic_failures, oracle_errors, analyzer_errors, accounting_errors = [], [], [], []
+     continuation_failures, mechanism_failures, mechanism_errors = [], [], []
++    lifecycle_failures, lifecycle_errors = [], []
+     mechanism_restorations = []
+     attempted, returned_receipts, expected_depth_errors, projections = 0, 0, 0, 0
+     for scope, case in cases:
+@@ -1145,15 +1314,12 @@
+         review, analyzer_error, metrics, accounting_error = None, None, None, None
+         public_exception, depth_match, methods_restored = None, False, True
+         violations, mechanism, mechanism_verdict, mechanism_error = [], None, None, None
++        observer_lifecycle, lifecycle_verdict, lifecycle_error = None, None, None
+         if not oracle_passed:
+             oracle_errors.append(identifier)
+         else:
+-            observer = BudgetObserver(active_generator)
+-            observer.install()
+-            observer.begin(identifier)
+-            mechanism_observer = MechanismObserver(active_generator, observer, source_sha)
+-            mechanism_observer.install()
+-            try:
++            lifecycle = ObserverLifecycle(active_generator, identifier, source_sha)
++            with lifecycle:
+                 attempted += 1
+                 try:
+                     if is_depth:
+@@ -1171,16 +1337,18 @@
+                     else:
+                         analyzer_error = public_exception
+                         analyzer_errors.append(identifier)
+-                finally:
+-                    mechanism_observer.restore()
+-                    mechanism = mechanism_observer.result()
+-                    mechanism_restorations.append(mechanism["original_methods_restored"])
+-                    metrics = observer.end()
+-            finally:
+-                if observer.current is not None:
+-                    metrics = observer.end()
+-                methods_restored = observer.restore()
+-            require(methods_restored, "original budget methods not restored")
++            metrics = lifecycle.metrics
++            mechanism = lifecycle.mechanism_metrics
++            methods_restored = lifecycle.budget_restored
++            observer_lifecycle = lifecycle.report()
++            mechanism_restorations.append(lifecycle.mechanism_restored)
++            try:
++                lifecycle_verdict = validate_lifecycle(observer_lifecycle)
++                if not lifecycle_verdict:
++                    lifecycle_failures.append(identifier)
++            except Exception as error:
++                lifecycle_error = {"type": type(error).__name__, "message": str(error)}
++                lifecycle_errors.append(identifier)
+             require({name: getattr(active_generator, name) for name in CAPS} == CAPS
+                     and all(type(getattr(active_generator, name)) is int for name in CAPS),
+                     "active candidate caps changed")
+@@ -1225,8 +1393,12 @@
+             "budget_metrics": metrics, "accounting_error": accounting_error,
+             "original_methods_restored": methods_restored, "reserve_violations": violations,
+             "mechanism": mechanism, "mechanism_verdict": mechanism_verdict,
+-            "mechanism_error": mechanism_error,
++            "mechanism_error": mechanism_error, "observer_lifecycle": observer_lifecycle,
++            "lifecycle_verdict": lifecycle_verdict, "lifecycle_error": lifecycle_error,
+         }, allow_nan=False), flush=True)
++        if oracle_passed:
++            require(methods_restored and lifecycle.mechanism_restored,
++                    "observer rollback incomplete; case retained, no further analysis")
+     require({name: getattr(generator, name) for name in CAPS} == CAPS
+             and all(type(getattr(generator, name)) is int for name in CAPS), "caps changed during run")
+     hashes(snapshot, manifest)
+@@ -1240,6 +1412,8 @@
+                "extra_input_sha256": EXTRA_HASHES, "reserve_basis": RESERVE_BASIS,
+                "mechanism_failures": mechanism_failures, "mechanism_errors": mechanism_errors,
+                "mechanism_ok": not mechanism_failures and not mechanism_errors,
++               "lifecycle_failures": lifecycle_failures, "lifecycle_errors": lifecycle_errors,
++               "lifecycle_ok": not lifecycle_failures and not lifecycle_errors and attempted == 12,
+                "mechanism_methods_restored": len(mechanism_restorations) == 12 and all(mechanism_restorations),
+                "observation_complete": attempted == 12 and projections == 24 and not oracle_errors,
+                "planned_cases": 12, "case_count": 12, "projections": projections,
+@@ -1260,7 +1434,8 @@
+                "reserve_is_postexecution_only": True, "no_wider_population_run": True}
+     print(json.dumps(summary, allow_nan=False), flush=True)
+     return int(bool(semantic_failures or oracle_errors or analyzer_errors
+-                    or accounting_errors or continuation_failures or mechanism_failures or mechanism_errors))
++                    or accounting_errors or continuation_failures or mechanism_failures or mechanism_errors
++                    or lifecycle_failures or lifecycle_errors))
+ 
+ 
+ if __name__ == "__main__":

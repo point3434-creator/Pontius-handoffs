@@ -1,0 +1,44 @@
+{
+  "case_pack_sha256": "4834971b9d63aa182c1207959721b6bb65f742a106541d96975945060134d9ea",
+  "execution": false,
+  "fresh_namespace_per_projection": true,
+  "model_constructor": "Model(region)",
+  "models": [
+    {
+      "case": "identity-scale-n8-s4-d0-normal",
+      "model_sha256": "188295670ffc374851e3c21426acbe61d66c4239b1832c49175d6e9b7b3639d2",
+      "projections": 4,
+      "source_sha256": "4de9d83394368d269d925206a0ff2d133a132ce0a4a2b1134f63db0dff67985f"
+    },
+    {
+      "case": "identity-scale-n64-s4-d0-normal",
+      "model_sha256": "55fbdef330c8dcc3524c326b3be6ad90e83f7bf9c7c000d6df6a7b62fd5790ad",
+      "projections": 4,
+      "source_sha256": "8ad412a275b4e16986b8e5ed66bcc3f21ffdfe02a53ece3baf6e4767935b9281"
+    },
+    {
+      "case": "identity-scale-n8-s4-d2-exceptional",
+      "model_sha256": "0221d47929a3dbb117919ee0e9c0a00112459a56fc5416243b5d396ec18ba834",
+      "projections": 4,
+      "source_sha256": "9cb2f14f8cc4c1f099f6c99eddbb0e7348b2013871404bb78b2db366d432d439"
+    },
+    {
+      "case": "identity-scale-n64-s4-d2-exceptional",
+      "model_sha256": "cba19a234b42c6a488ba14ab009cf739eb43f41425110b42e0180762cd916ce2",
+      "projections": 4,
+      "source_sha256": "14a973fb586ed3529fffe37fa1fd513084dd6bf2d7b6d87881388984225cb135"
+    }
+  ],
+  "predecessor_sha256": "53e3a8bc69caed43acd0034dd9a40923d0547d942323a471efa537a9e7bb0e80",
+  "projector_and_all_Models_byte_unchanged": true,
+  "projector_source_segment_sha256": "f3299d47ef623a54e1cedee1b6ce810a74f32f7a3deb3d07fa8daf531a29ddfd",
+  "public_analyzer_is_not_concretely_seeded": true,
+  "public_envelopes_unchanged": true,
+  "regions": [
+    "true",
+    "false",
+    "none",
+    "other"
+  ],
+  "schema": "pontius-r2-identity-projector-static-v2"
+}

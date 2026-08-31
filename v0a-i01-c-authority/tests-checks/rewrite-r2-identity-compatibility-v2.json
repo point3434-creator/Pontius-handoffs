@@ -1,0 +1,332 @@
+{
+  "adapter": "r1-baseline-only",
+  "exact_once_original_call_sites": 1,
+  "execution": false,
+  "existing_hook_record_factory_inventory_unchanged": true,
+  "future_adapter_not_authorized_by_this_inventory": true,
+  "helper_depth_observes_first_exact_error_with_incoming_gt64": true,
+  "hooks": {
+    "_c_call": {
+      "keyword_only": [
+        "entry_call"
+      ],
+      "line": 10579,
+      "positional_arguments": [
+        "ctx",
+        "state",
+        "frame",
+        "call",
+        "selected",
+        "arguments",
+        "keywords"
+      ],
+      "source_segment_sha256": "4638876c00c60d7008d9d172f391e95cf3e939e49604106526bd8bec6ebf4e7f"
+    },
+    "_c_cell_write": {
+      "keyword_only": [],
+      "line": 9392,
+      "positional_arguments": [
+        "ctx",
+        "state",
+        "cell",
+        "value"
+      ],
+      "source_segment_sha256": "f4124276e26d58064aa0e3412f238afb59427ce0ed51bee8354a167cef012767"
+    },
+    "_c_copy_dict": {
+      "keyword_only": [],
+      "line": 9306,
+      "positional_arguments": [
+        "ctx",
+        "source"
+      ],
+      "source_segment_sha256": "16cade4a35c79a04a3a540c6b3198232d66a3ece25b2db098c15542529a8f7a6"
+    },
+    "_c_eval": {
+      "keyword_only": [],
+      "line": 10180,
+      "positional_arguments": [
+        "ctx",
+        "state",
+        "frame",
+        "node"
+      ],
+      "source_segment_sha256": "363c39f95498c5dc2ec047a50a972c87025acfd60cafa63df18f6ce81aa323ec"
+    },
+    "_c_fork": {
+      "keyword_only": [],
+      "line": 9331,
+      "positional_arguments": [
+        "ctx",
+        "state"
+      ],
+      "source_segment_sha256": "6b452c3f53bef3498163c342dfa8a9dcc7b12fc4528b1883cf0b73bba63920bf"
+    },
+    "_c_invoke": {
+      "keyword_only": [],
+      "line": 10623,
+      "positional_arguments": [
+        "ctx",
+        "state",
+        "frame",
+        "call",
+        "selected",
+        "arguments",
+        "keywords"
+      ],
+      "source_segment_sha256": "17aa3daff0d9df1f75cac2b41b9f5baf91d9ceb54c5c2ad9838084f3f33157f8"
+    },
+    "_c_join": {
+      "keyword_only": [],
+      "line": 9511,
+      "positional_arguments": [
+        "ctx",
+        "alternatives"
+      ],
+      "source_segment_sha256": "aa70b7d4b2284b35e69bd71dbe5a56b2919651b88cf3d22de115ef4befa6edde"
+    },
+    "_c_review_outcomes": {
+      "keyword_only": [
+        "owned"
+      ],
+      "line": 10812,
+      "positional_arguments": [
+        "ctx",
+        "outcomes"
+      ],
+      "source_segment_sha256": "6c7683bddaa46659e3e2faf90d220d67c0196d3c89915bf1deb3d8ec349e0c48"
+    },
+    "_c_sink": {
+      "keyword_only": [],
+      "line": 10723,
+      "positional_arguments": [
+        "ctx",
+        "state",
+        "call",
+        "function",
+        "arguments",
+        "keywords"
+      ],
+      "source_segment_sha256": "4cc70ec15d83c8ee88a798badba9e58157883ea4b706989706a32f1614c05bd3"
+    },
+    "_c_snapshot": {
+      "keyword_only": [],
+      "line": 9324,
+      "positional_arguments": [
+        "ctx",
+        "state"
+      ],
+      "source_segment_sha256": "00e9ea895b40c4f3bdf41c3731c838172e5352ead300cfd1e559fbee32a29d34"
+    },
+    "_c_state": {
+      "keyword_only": [],
+      "line": 9317,
+      "positional_arguments": [
+        "ctx"
+      ],
+      "source_segment_sha256": "b9236b1ce6209d1d7a7ef2fe7aba67cdb6ff47f35df5f2eb0985d82fc80aa0f4"
+    },
+    "_c_statement": {
+      "keyword_only": [],
+      "line": 10344,
+      "positional_arguments": [
+        "ctx",
+        "state",
+        "frame",
+        "node"
+      ],
+      "source_segment_sha256": "1de1ee07278e5bd6a58cc37b78d415a61bec4ed474d3123f13ec67047f9aa8f6"
+    }
+  },
+  "lifecycle_category_inventory": [
+    {
+      "boundary": "capture before construction",
+      "owner": "ObserverLifecycle.__init__",
+      "proof": "original class methods, hooks and code identities captured before any hook setter"
+    },
+    {
+      "boundary": "budget construction/install/begin",
+      "owner": "ObserverLifecycle.__enter__",
+      "proof": "single protected try; partial failure closes then bare re-raises"
+    },
+    {
+      "boundary": "mechanism construction/partial install",
+      "owner": "ObserverLifecycle.__enter__",
+      "proof": "same try covers earlier budget ownership"
+    },
+    {
+      "boundary": "normal result and original body exception",
+      "owner": "ObserverLifecycle.__exit__",
+      "proof": "close runs both ways; returns False; original public body/handler AST preserved"
+    },
+    {
+      "boundary": "mechanism restore/result projection",
+      "owner": "ObserverLifecycle.close",
+      "proof": "independent attempt records; budget cleanup still follows"
+    },
+    {
+      "boundary": "budget end/restore",
+      "owner": "ObserverLifecycle.close",
+      "proof": "independent attempts; outer finally restores captured identities even if current scope remains"
+    },
+    {
+      "boundary": "direct restoration and code checks",
+      "owner": "ObserverLifecycle.close",
+      "proof": "nested finalizers force twelve hooks and two class methods; final identities separately verified"
+    },
+    {
+      "boundary": "failed observer admission",
+      "owner": "validate_lifecycle and raw receipt replay",
+      "proof": "acquisition,25 completed lifecycle stages, no diagnostics and both restoration classes required"
+    }
+  ],
+  "lifecycle_runtime_verified": false,
+  "lifecycle_source_segment_sha256": "acfbd37cc25080d655fd00a9e1e0044024657d832c929bf9d1e0afe4b27c36d3",
+  "module_classes_are_per_active_case_generator": true,
+  "observer_attribute_inventory": [
+    "FUTURE",
+    "HOOKS",
+    "InventoryError",
+    "_CAtom",
+    "_CCellRef",
+    "_CChoice",
+    "_COutcome",
+    "_CRef",
+    "_CState",
+    "_CView",
+    "__code__",
+    "__func__",
+    "__getattribute__",
+    "__module__",
+    "__name__",
+    "_getframe",
+    "append",
+    "birth_serial",
+    "budgets",
+    "by_id",
+    "by_state_id",
+    "co_name",
+    "codes",
+    "copy_counts",
+    "counters",
+    "depth_origin",
+    "emit",
+    "error",
+    "errors",
+    "events",
+    "f_code",
+    "finish",
+    "get",
+    "install",
+    "items",
+    "module",
+    "originals",
+    "outcomes",
+    "pop",
+    "restored",
+    "setdefault",
+    "span_serial",
+    "stack",
+    "start",
+    "state_birth",
+    "update",
+    "value",
+    "values",
+    "wrap",
+    "wrappers"
+  ],
+  "predecessor_sha256": "6469769a98217daee063ff977f5d04ca4a3b5b426f5175bd75ab68aaccc466fb",
+  "projection_fields": [
+    "activation_id",
+    "alternatives",
+    "budget",
+    "control",
+    "data",
+    "exception_tag",
+    "helper_path",
+    "kind",
+    "name",
+    "object_id",
+    "path",
+    "result",
+    "state"
+  ],
+  "records": {
+    "_CAtom": {
+      "fields": [
+        "kind",
+        "data",
+        "reason"
+      ],
+      "line": 9079,
+      "source_segment_sha256": "dcfed79d88e6766ae268a83bb4b40cec44e52640e0906182a9fe4d7b8bedf62d"
+    },
+    "_CCellRef": {
+      "fields": [
+        "activation_id",
+        "name"
+      ],
+      "line": 9099,
+      "source_segment_sha256": "bfa1faf7744071d235bbeebe6d2ef643ed281ceafc7ac937cc6eca275de511bb"
+    },
+    "_CChoice": {
+      "fields": [
+        "alternatives"
+      ],
+      "line": 9091,
+      "source_segment_sha256": "ad53ec29acb676841d35a8f3357d964922fcdfe6176f83cf39af9108565b13b1"
+    },
+    "_CContext": {
+      "fields": [
+        "program",
+        "arena",
+        "budget",
+        "item_id",
+        "path",
+        "helper_path"
+      ],
+      "line": 9290,
+      "source_segment_sha256": "aaa6f28a2ee7cc6367f16e7da966e782d3b4139c8cdcdefe6a39e5a3b8a84f2a"
+    },
+    "_COutcome": {
+      "fields": [
+        "state",
+        "result",
+        "control",
+        "exception_tag",
+        "explicit",
+        "excluded_handlers",
+        "issues",
+        "trace"
+      ],
+      "line": 9241,
+      "source_segment_sha256": "ed95d4c08db8d18f8647fb0f9520ccc0954eb67b7fb87410ecc983b65818be17"
+    },
+    "_CRef": {
+      "fields": [
+        "object_id"
+      ],
+      "line": 9086,
+      "source_segment_sha256": "1c1d606587eac55342659c6c0e2493c6106ce290de4757a52e08095dcf370549"
+    }
+  },
+  "review_outcomes_observes_supplied_tuple_not_four_list_return": true,
+  "schema": "pontius-r2-identity-baseline-adapter-static-v2",
+  "source_sha256": "c8fc013d2be7599aa41b873552dd2a11191f2be1342d1a8f2bd04a39dc1dbd5f",
+  "state_factories": [
+    {
+      "line": 9321,
+      "owner": "_c_state"
+    },
+    {
+      "line": 9335,
+      "owner": "_c_fork"
+    }
+  ],
+  "unavailable_hooks": [
+    "_c_identity_compare",
+    "_c_raise_known",
+    "_c_handle_known_exception",
+    "_c_resume_generator"
+  ]
+}
