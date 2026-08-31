@@ -1,0 +1,890 @@
+--- /dev/null
++++ indexed-storage-extension-oracle-v2.py
+@@ -0,0 +1,887 @@
++"""Independent indexed-storage schedules; public APIs and builtin oracles only."""
++from __future__ import annotations
++
++from contextlib import contextmanager
++import gc
++import hashlib
++import json
++import os
++from pathlib import Path
++import sys
++import traceback
++import weakref
++
++MAXIMUM = 262144
++CASE_SHA256 = "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a"
++SPEC_SHA256 = "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9"
++CASE_PATH = Path(__file__).with_name("indexed-storage-extension-cases-v1.json")
++SPEC_PATH = Path(__file__).with_name("indexed-storage-extension-spec-v1.md")
++ABSENT = object()
++KEY_VIEW_TYPE = type({}.keys())
++
++
++class AccountingError(AssertionError):
++    pass
++
++
++class UnmetStructuralPrecondition(AssertionError):
++    pass
++
++
++class KeyObserver:
++    active = False
++    hashes = 0
++    equalities = 0
++
++
++class CollidingName(str):
++    def __hash__(self):
++        if KeyObserver.active:
++            KeyObserver.hashes += 1
++        return 0
++
++    def __eq__(self, other):
++        if KeyObserver.active:
++            KeyObserver.equalities += 1
++        return str.__eq__(self, other)
++
++
++@contextmanager
++def oracle_keys():
++    previous = KeyObserver.active
++    KeyObserver.active = False
++    try:
++        yield
++    finally:
++        KeyObserver.active = previous
++
++
++class Value:
++    __slots__ = ("term", "__weakref__")
++
++    def __init__(self, term):
++        self.term = term
++
++
++class Values:
++    def __init__(self):
++        self.known = {}
++
++    def atom(self, label):
++        term = ("atom", label)
++        if term not in self.known:
++            self.known[term] = Value(term)
++        return self.known[term]
++
++    def merge(self, name, supplied):
++        first = supplied[0]
++        if first is not ABSENT and all(item is first for item in supplied):
++            return first, True
++        term = ("join", str(name), tuple(
++            ("absent",) if item is ABSENT else item.term for item in supplied))
++        if term not in self.known:
++            self.known[term] = Value(term)
++        return self.known[term], False
++
++
++class Reference:
++    def __init__(self, values=None, no_work=None):
++        self.values = dict(values or {})
++        self.no_work = dict(no_work or {})
++
++    def fork(self):
++        return Reference(self.values, self.no_work)
++
++    def set(self, key, value, no_work):
++        self.values[key] = value
++        self.no_work[key] = no_work
++
++    def delete(self, key):
++        del self.values[key]
++        del self.no_work[key]
++
++
++def legacy_join(states, tokens):
++    if not states:
++        return Reference(), {}, set()
++    if len(states) == 1:
++        return states[0].fork(), {}, set()
++    result, arguments, required = Reference(), {}, set()
++    # Literal legacy algorithm, independently evaluated in this child.
++    for name in set().union(*(state.values.keys() for state in states)):
++        supplied = tuple(state.values.get(name, ABSENT) for state in states)
++        arguments[name] = supplied
++        first = supplied[0]
++        if (first is ABSENT or any(value is not first for value in supplied)
++                or any(not state.no_work.get(name, False) for state in states)):
++            required.add(name)
++        value, proof = tokens.merge(name, supplied)
++        result.set(name, value, proof)
++    return result, arguments, required
++
++
++def delta(after, before):
++    return {key: after.get(key, 0) - before.get(key, 0)
++            for key in sorted(set(after) | set(before))
++            if after.get(key, 0) != before.get(key, 0)}
++
++
++def encoded(reference):
++    return [(str(name), value.term, reference.no_work[name])
++            for name, value in reference.values.items()]
++
++
++def checked_keys(actual, reference):
++    assert type(actual) is KEY_VIEW_TYPE, "keys must be a genuine dict_keys snapshot"
++    assert tuple(actual) == tuple(reference.values), "builtin key order differs"
++
++
++def checked_items(actual, reference):
++    assert isinstance(actual, tuple), "ordered_items must be an immutable tuple"
++    assert len(actual) == len(reference.values), "item count differs"
++    for got, expected in zip(actual, reference.values.items(), strict=True):
++        assert isinstance(got, tuple) and len(got) == 2
++        assert got[0] == expected[0] and got[1] is expected[1], "order/value identity differs"
++
++
++def ordinary_names(n):
++    return tuple("u" + str(i).zfill(4) for i in range(n))
++
++
++def collision_names(n):
++    return tuple(CollidingName("c" + str(i).zfill(4)) for i in range(n))
++
++
++def check_closed_domain(keys):
++    assert not KeyObserver.active
++    collision_texts = {str(key) for key in keys if type(key) is CollidingName}
++    assert all(type(key) is CollidingName or str(key) not in collision_texts for key in keys)
++    for left in keys:
++        for right in keys:
++            if left == right:
++                assert hash(left) == hash(right), "closed key domain violates equality/hash law"
++
++
++class CountedEntries:
++    """Pure replayable input contents; only independent iteration counters change."""
++    def __init__(self, entries):
++        self.entries = tuple(entries)
++        self.iterations = 0
++        self.visits = 0
++
++    def __iter__(self):
++        self.iterations += 1
++        for entry in self.entries:
++            self.visits += 1
++            yield entry
++
++
++class Ledger:
++    def __init__(self, api, accounting, report):
++        self.api, self.accounting, self.report = api, accounting, report
++        self.events = report["cost_events"] = []
++        self.meter = api.Meter(limit=MAXIMUM)
++        self.events.append({
++            "phase": "meter_init", "operation": "Meter",
++            "units": self.meter.used, "counts": dict(self.meter.counts),
++            "key_protocol": {"hash_calls": 0, "equality_calls": 0}})
++        self._classify(self.events[-1])
++
++    def _classify(self, event):
++        counts = event["counts"]
++        unknown = sorted(set(counts) - set(self.accounting["categories"]))
++        problems = []
++        if unknown:
++            problems.append("unmapped charged categories: " + repr(unknown))
++        if any(type(value) is not int or value < 0 for value in counts.values()):
++            problems.append("invalid or refunded category units")
++        if event["units"] < 0 or sum(counts.values()) != event["units"]:
++            problems.append("category totals do not equal full charged units")
++        event["physical_events"] = sum(value for key, value in counts.items()
++            if key in self.accounting["categories"]
++            and self.accounting["categories"][key]["metric"] == "P")
++        if problems:
++            self.report.setdefault("accounting_errors", []).extend(problems)
++        return problems
++
++    def call(self, phase, operation, function):
++        assert not KeyObserver.active, "nested measured oracle call"
++        before, counts = self.meter.used, dict(self.meter.counts)
++        hashes, equalities = KeyObserver.hashes, KeyObserver.equalities
++        event = {"phase": phase, "operation": operation}
++        KeyObserver.active = True
++        failed = False
++        try:
++            result = function()
++        except BaseException as error:
++            failed = True
++            event["raised"] = type(error).__name__
++            raise
++        finally:
++            KeyObserver.active = False
++            event["units"] = self.meter.used - before
++            event["counts"] = delta(self.meter.counts, counts)
++            event["key_protocol"] = {
++                "hash_calls": KeyObserver.hashes - hashes,
++                "equality_calls": KeyObserver.equalities - equalities}
++            problems = self._classify(event)
++            self.events.append(event)
++        if problems and not failed:
++            raise AccountingError("; ".join(problems))
++        return result
++
++    def finish(self, complete=True):
++        self.report["meter_used"] = self.meter.used
++        self.report["meter_counts"] = dict(self.meter.counts)
++        self.report["ending_meter_limit"] = self.meter.limit
++        phases = {}
++        for event in self.events:
++            phase = phases.setdefault(event["phase"], {"units": 0, "physical_events": 0})
++            phase["units"] += event["units"]
++            phase["physical_events"] += event["physical_events"]
++        self.report["phase_costs"] = phases
++        self.report["accounting_complete"] = not self.report.get("accounting_errors")
++        self.report["maximum_meter_limit"] = MAXIMUM
++        assert sum(event["units"] for event in self.events) == self.meter.used
++        if complete:
++            assert self.meter.limit == MAXIMUM and 0 <= self.meter.used <= MAXIMUM
++            assert self.report["accounting_complete"], "accounting incomplete"
++
++
++class Harness:
++    def __init__(self, api, accounting, report):
++        self.api, self.accounting, self.report = api, accounting, report
++        self.ledger = Ledger(api, accounting, report)
++        self.tokens = Values()
++        report["observations"], report["callbacks"], report["bulk_calls"] = [], [], []
++
++    def empty(self):
++        version = self.ledger.call("construction", "empty",
++            lambda: self.api.NameVersion.empty(self.ledger.meter))
++        cursor = self.ledger.call("construction", "NameCursor",
++            lambda: self.api.NameCursor(version))
++        assert isinstance(cursor, self.api.NameCursor)
++        return cursor, Reference()
++
++    def cursor(self, version, reference, phase="construction"):
++        cursor = self.ledger.call(phase, "NameCursor", lambda: self.api.NameCursor(version))
++        assert isinstance(cursor, self.api.NameCursor)
++        return cursor, reference.fork()
++
++    def set(self, cursor, reference, name, value, proof, phase="mutation"):
++        result = self.ledger.call(phase, "set",
++            lambda: cursor.set(name, value, no_work=proof))
++        assert result is None
++        reference.set(name, value, proof)
++
++    def delete(self, cursor, reference, name, phase="mutation"):
++        result = self.ledger.call(phase, "delete", lambda: cursor.delete(name))
++        assert result is None
++        reference.delete(name)
++
++    def fork(self, cursor, reference, phase="publication"):
++        child = self.ledger.call(phase, "fork", cursor.fork)
++        assert isinstance(child, self.api.NameCursor) and child is not cursor
++        return child, reference.fork()
++
++    def snapshot(self, cursor, reference, phase="publication"):
++        version = self.ledger.call(phase, "snapshot", cursor.snapshot)
++        assert isinstance(version, self.api.NameVersion)
++        return version, reference.fork()
++
++    def get(self, state, reference, name, phase="lookup_validation"):
++        actual = self.ledger.call(phase, "get", lambda: state.get(name, ABSENT))
++        assert actual is reference.values.get(name, ABSENT)
++
++    def ordered(self, state, reference, prefix="terminal", repeats=2):
++        for repetition in range(repeats):
++            for operation in ("keys", "ordered_items"):
++                suffix = "keys" if operation == "keys" else "items"
++                phase = prefix + "_" + suffix if repetition == 0 else "repeated_" + suffix
++                got = self.ledger.call(phase, operation, getattr(state, operation))
++                (checked_keys if operation == "keys" else checked_items)(got, reference)
++                self.report["observations"].append({
++                    "phase": phase, "operation": operation,
++                    "values": encoded(reference)})
++        got = self.ledger.call("validation", "len", lambda: len(state))
++        assert got == len(reference.values)
++
++    def bulk(self, reference, phase="bulk_build"):
++        entries = tuple((key, self.api.Entry(value, no_work=reference.no_work[key]))
++                        for key, value in reference.values.items())
++        sequence = CountedEntries(entries)
++        version = self.bulk_call(sequence, phase)
++        return version, reference.fork()
++
++    def bulk_call(self, sequence, phase):
++        iterations, visits = sequence.iterations, sequence.visits
++        version = self.ledger.call(phase, "from_unique_entries",
++            lambda: self.api.NameVersion.from_unique_entries(self.ledger.meter, sequence))
++        assert isinstance(version, self.api.NameVersion)
++        n = len(sequence.entries)
++        assert sequence.iterations - iterations == 1 and sequence.visits - visits == n
++        event = self.ledger.events[-1]
++        for key in ("input_visits", "uniqueness_attempts", "order_writes"):
++            category = self.accounting["bulk_counters"][key]
++            assert event["counts"].get(category, 0) == n, "bulk counter differs: " + key
++        self.report["bulk_calls"].append({"n": n, "phase": phase,
++            "input_iterations": 1, "input_visits": n, "units": event["units"]})
++        return version
++
++    def join(self, versions, references, phase="join"):
++        expected, arguments, required = legacy_join(references, self.tokens)
++        called = []
++        def merge(name, supplied):
++            # Callback validation/reference work is not prototype key-protocol work.
++            with oracle_keys():
++                assert name in arguments
++                converted = tuple(ABSENT if value is self.api.MISSING else value
++                                  for value in supplied)
++                wanted = arguments[name]
++                assert len(converted) == len(wanted)
++                assert all(a is b for a, b in zip(converted, wanted, strict=True))
++                called.append(name)
++                value, proof = self.tokens.merge(name, converted)
++                return self.api.Entry(value, no_work=proof)
++        result = self.ledger.call(phase, "join",
++            lambda: self.api.join(self.ledger.meter, versions, merge))
++        assert isinstance(result, self.api.NameVersion)
++        assert required <= set(called), "changed/pending callback omitted"
++        self.report["callbacks"].append({
++            "required_names": sorted(str(key) for key in required),
++            "actual_names": [str(key) for key in called],
++            "legacy_order": [str(key) for key in expected.values],
++            "inter_name_order_asserted": False})
++        self.ordered(result, expected, prefix="joined", repeats=2)
++        return result, expected
++
++    def collision_evidence(self, *, require_terminal=False):
++        events = self.ledger.events
++        attempts = sum(event["counts"].get(category, 0)
++            for event in events for category in self.accounting["collision_attempt_categories"])
++        terminal = sum(event["counts"].get(category, 0)
++            for event in events for category in self.accounting["terminal_collision_categories"])
++        hashes = sum(event["key_protocol"]["hash_calls"] for event in events)
++        equalities = sum(event["key_protocol"]["equality_calls"] for event in events)
++        evidence = {"hash_calls": hashes, "equality_calls": equalities,
++            "declared_dictionary_attempt_units": attempts,
++            "terminal_collision_units": terminal,
++            "terminal_collision_exercised": terminal > 0,
++            "terminal_collision_required": require_terminal,
++            "key_protocol_comparisons_are_meter_units": False,
++            "closed_domain_only": True}
++        self.report["collision_evidence"] = evidence
++        if not (hashes > 0 and equalities > 0 and attempts > 0):
++            raise UnmetStructuralPrecondition("actual closed-domain collision work not observed")
++        if require_terminal and terminal <= 0:
++            raise UnmetStructuralPrecondition("intended hash-width terminal collision path not observed")
++
++
++def growing_case(h, case):
++    cursor, reference = h.empty()
++    parents = []
++    names = ordinary_names(case["n"])
++    for i, name in enumerate(names):
++        value = h.tokens.atom("grow-" + str(i))
++        h.set(cursor, reference, name, value, i % 4 != 0)
++        if parents:
++            h.get(parents[-1][0], parents[-1][1], name, "fork_isolation")
++        parent = (cursor, reference.fork())
++        cursor, reference = h.fork(cursor, reference)
++        parents.append(parent)
++    assert len(parents) == case["n"]
++    h.report["real_cursor_forks"] = len(parents)
++    h.ordered(cursor, reference)
++    for length in (case["n"] // 4, case["n"] // 2, case["n"]):
++        state, expected = parents[length - 1]
++        h.ordered(state, expected, prefix="historical", repeats=1)
++
++
++def ambient(h, n):
++    reference = Reference()
++    for i, name in enumerate(ordinary_names(n)):
++        reference.set(name, h.tokens.atom("ambient-" + str(i)), True)
++    version, reference = h.bulk(reference, "construction")
++    return h.cursor(version, reference)
++
++
++def hot_case(h, case):
++    cursor, reference = ambient(h, case["n"])
++    original, original_ref = h.snapshot(cursor, reference, "retained_setup")
++    midpoint = None
++    names = ordinary_names(2)
++    forks = 0
++    previous_parent = None
++    for cycle in range(case["cycles"]):
++        value = h.tokens.atom("hot-overwrite-" + str(cycle))
++        h.set(cursor, reference, names[0], value, cycle % 2 == 0)
++        if cycle == case["cycles"] - 1:
++            h.set(cursor, reference, names[0], value, False)
++        if previous_parent is not None:
++            h.get(previous_parent[0], previous_parent[1], names[0], "fork_isolation")
++        previous_parent = (cursor, reference.fork())
++        cursor, reference = h.fork(cursor, reference)
++        forks += 1
++        h.delete(cursor, reference, names[1])
++        h.get(cursor, reference, names[1])
++        h.get(previous_parent[0], previous_parent[1], names[1], "fork_isolation")
++        previous_parent = (cursor, reference.fork())
++        cursor, reference = h.fork(cursor, reference)
++        forks += 1
++        h.set(cursor, reference, names[1], h.tokens.atom("hot-reinsert-" + str(cycle)), True)
++        h.get(previous_parent[0], previous_parent[1], names[1], "fork_isolation")
++        previous_parent = (cursor, reference.fork())
++        cursor, reference = h.fork(cursor, reference)
++        forks += 1
++        if cycle + 1 == case["cycles"] // 2:
++            midpoint = h.snapshot(cursor, reference, "retained_setup")
++    assert forks == 3 * case["cycles"]
++    h.report["real_cursor_forks"] = forks
++    h.ordered(cursor, reference)
++    h.ordered(original, original_ref, prefix="historical", repeats=1)
++    h.ordered(midpoint[0], midpoint[1], prefix="historical", repeats=1)
++    final, final_ref = h.snapshot(cursor, reference, "join_setup")
++    h.join([midpoint[0], final], [midpoint[1], final_ref])
++
++
++def collision_case(h, case):
++    names = collision_names(case["n"])
++    fresh = tuple(CollidingName(str(names[i])) for i in (0, case["n"] // 2, case["n"] - 1))
++    missing = CollidingName("c-missing")
++    check_closed_domain((*names, *fresh, missing))
++    cursor, reference = h.empty()
++    parents = []
++    for i, name in enumerate(names):
++        h.set(cursor, reference, name, h.tokens.atom("collision-" + str(i)), i % 4 != 0)
++        if parents:
++            h.get(parents[-1][0], parents[-1][1], name, "fork_isolation")
++        parents.append((cursor, reference.fork()))
++        cursor, reference = h.fork(cursor, reference)
++    for name in (*fresh, missing):
++        h.get(cursor, reference, name, "collision_lookup")
++    for cycle in range(case["hot_cycles"]):
++        h.set(cursor, reference, CollidingName(str(names[0])),
++              h.tokens.atom("collision-hot-" + str(cycle)), False)
++        cursor, reference = h.fork(cursor, reference)
++        h.delete(cursor, reference, CollidingName(str(names[1])))
++        cursor, reference = h.fork(cursor, reference)
++        h.set(cursor, reference, CollidingName(str(names[1])),
++              h.tokens.atom("collision-reinsert-" + str(cycle)), True)
++        cursor, reference = h.fork(cursor, reference)
++    h.ordered(cursor, reference)
++    reversed_ref = Reference()
++    for name in reversed(names):
++        reversed_ref.set(name, reference.values[name], False)
++    bulk, bulk_ref = h.bulk(reversed_ref, "collision_bulk")
++    h.ordered(bulk, bulk_ref, prefix="collision_bulk_first", repeats=2)
++    snapshot, snapshot_ref = h.snapshot(cursor, reference, "join_setup")
++    h.join([snapshot, bulk], [snapshot_ref, bulk_ref])
++    for index in (0, case["n"] // 2 - 1, case["n"] - 1):
++        h.ordered(parents[index][0], parents[index][1], prefix="historical", repeats=1)
++    h.collision_evidence(require_terminal=case["id"] == "I07-collisions-64")
++
++
++def bulk_reference(h, n, round_number):
++    names = ordinary_names(n)
++    rotation = round_number % n
++    rotated = names[rotation:] + names[:rotation]
++    left = dict.fromkeys(rotated)
++    right = dict.fromkeys(tuple(reversed(rotated)))
++    expected = Reference()
++    for name in set().union(left.keys(), right.keys()):
++        index = int(name[1:])
++        value = h.tokens.atom("bulk-" + str(round_number // 2) + "-" + str(index))
++        expected.set(name, value, round_number % 2 == 0 and index % 3 != 0)
++    return expected
++
++
++def invalid_bulk_controls(h):
++    name = "u0000"
++    entry = h.api.Entry(h.tokens.atom("invalid-boundary-control"), no_work=True)
++    controls = (
++        (CountedEntries(((name, entry), (name, entry))), ValueError, "duplicate"),
++        (CountedEntries(((name, entry, "extra"),)), TypeError, "malformed-pair"),
++    )
++    for sequence, error_type, label in controls:
++        before = sequence.entries
++        try:
++            h.ledger.call("invalid_boundary", label, lambda: h.api.NameVersion.from_unique_entries(
++                h.ledger.meter, sequence))
++        except h.api.BudgetExceeded:
++            raise AssertionError("budget exhaustion is not malformed-input rejection")
++        except error_type:
++            pass
++        else:
++            raise AssertionError("invalid bulk input accepted: " + label)
++        assert sequence.entries is before
++        h.report.setdefault("invalid_bulk", []).append({
++            "kind": label, "input_iterations": sequence.iterations,
++            "input_visits": sequence.visits, "error": error_type.__name__})
++    control = Reference({name: entry.value}, {name: True})
++    version, expected = h.bulk(control, "invalid_boundary_continuation")
++    h.ordered(version, expected, prefix="invalid_boundary_audit", repeats=1)
++
++
++def bulk_case(h, case):
++    versions, references = [], []
++    for round_number in range(case["rebuilds"]):
++        expected = bulk_reference(h, case["n"], round_number)
++        version, expected = h.bulk(expected)
++        versions.append(version)
++        references.append(expected)
++        h.ordered(version, expected, prefix="bulk_first", repeats=1)
++    h.ordered(versions[-1], references[-1], prefix="bulk_final", repeats=2)
++    for version, expected in zip(versions[:-1], references[:-1], strict=True):
++        h.ordered(version, expected, prefix="historical", repeats=1)
++    h.join(versions[2:4], references[2:4])
++    assert set(h.report["callbacks"][-1]["required_names"]) == set(ordinary_names(case["n"]))
++    if case["n"] == 32:
++        invalid_bulk_controls(h)
++        for version, expected in zip(versions, references, strict=True):
++            h.ordered(version, expected, prefix="invalid_boundary_old_audit", repeats=1)
++
++
++def retention_case(h, case):
++    cursor, reference = ambient(h, case["ambient"])
++    overwrite, deleted = "victim-overwrite", "victim-delete"
++    weak = {}
++    for name in (overwrite, deleted):
++        sentinel = Value(("weak-sentinel", name))
++        weak[name] = weakref.ref(sentinel)
++        h.set(cursor, reference, name, sentinel, True, "retention_setup")
++    del sentinel
++    old = h.ledger.call("retention_setup", "snapshot-positive-owner", cursor.snapshot)
++    assert isinstance(old, h.api.NameVersion)
++    current = Value(("replacement-current",))
++    h.set(cursor, reference, overwrite, current, True, "retention_mutation")
++    h.delete(cursor, reference, deleted, "retention_mutation")
++    newest = h.ledger.call("retention_publication", "snapshot-changed", cursor.snapshot)
++    assert isinstance(newest, h.api.NameVersion)
++    h.report["successful_changed_publications"] = 1
++    h.get(cursor, reference, overwrite, "retention_current")
++    h.get(newest, reference, overwrite, "retention_current")
++    h.get(cursor, reference, deleted, "retention_current")
++    h.get(newest, reference, deleted, "retention_current")
++    gc.collect()
++    for name in (overwrite, deleted):
++        assert weak[name]() is not None, "retained old snapshot lost its value"
++        assert h.ledger.call("retention_positive_owner", "get",
++                            lambda: old.get(name)) is weak[name]()
++    h.report["positive_old_owner"] = True
++    del old
++    gc.collect()
++    released = {name: weak[name]() is None for name in (overwrite, deleted)}
++    h.report["obsolete_values_released"] = released
++    assert all(released.values()), "current root/path/history retains an obsolete value"
++    h.ordered(newest, reference, prefix="retention_newest", repeats=2)
++    h.set(cursor, reference, "after-retention", h.tokens.atom("after-retention"), False,
++          "continuation_mutation")
++    child, child_ref = h.fork(cursor, reference, "continuation_publication")
++    h.ordered(child, child_ref, prefix="continuation", repeats=2)
++    h.ordered(newest, Reference(
++        {key: value for key, value in reference.values.items() if key != "after-retention"},
++        {key: proof for key, proof in reference.no_work.items() if key != "after-retention"}),
++        prefix="historical", repeats=1)
++
++
++def atomic_prepare(h, case):
++    ordinary = ordinary_names(case["ordinary_names"])
++    colliding = collision_names(case["collision_names"] + 1)
++    check_closed_domain((*ordinary, *colliding, CollidingName("c-missing")))
++    reference = Reference()
++    for i, name in enumerate((*ordinary, *colliding[:-1])):
++        reference.set(name, h.tokens.atom("atomic-original-" + str(i)), True)
++    version, reference = h.bulk(reference, "atomic_setup")
++    cursor, reference = h.cursor(version, reference, "atomic_setup")
++    old, old_ref = h.snapshot(cursor, reference, "atomic_setup")
++    old_keys = h.ledger.call("atomic_setup", "keys", cursor.keys)
++    old_items = h.ledger.call("atomic_setup", "ordered_items", cursor.ordered_items)
++    checked_keys(old_keys, old_ref)
++    checked_items(old_items, old_ref)
++    h.set(cursor, reference, ordinary[0], h.tokens.atom("atomic-tail-u0"), False, "atomic_setup")
++    h.delete(cursor, reference, ordinary[1], "atomic_setup")
++    h.set(cursor, reference, ordinary[1], h.tokens.atom("atomic-tail-u1"), True, "atomic_setup")
++    h.set(cursor, reference, colliding[0], h.tokens.atom("atomic-tail-c0"), False, "atomic_setup")
++    h.set(cursor, reference, colliding[-1], h.tokens.atom("atomic-new-c16"), True, "atomic_setup")
++    return cursor, reference, (old, old_ref, old_keys, old_items)
++
++
++def event_signature(events):
++    return [{key: event[key] for key in ("phase", "operation", "units", "counts")}
++            for event in events]
++
++
++def atomic_case(h, case, offset, baseline):
++    cursor, reference, witnesses = atomic_prepare(h, case)
++    target = case["target"]
++    sequence = CountedEntries(tuple(
++        (name, h.api.Entry(value, no_work=reference.no_work[name]))
++        for name, value in reference.values.items()))
++    original_entries = sequence.entries
++    def perform(phase):
++        if target == "from_unique_entries":
++            return h.bulk_call(sequence, phase)
++        return h.ledger.call(phase, target, getattr(cursor, target))
++    if offset is not None:
++        assert baseline is not None, "fault replay requires completed pristine baseline"
++        calibration = baseline["calibration"]
++        cost = calibration["units"]
++        allowance = {"first": 0, "middle": cost // 2, "last": cost - 1}[offset]
++        before = h.ledger.meter.used
++        configured = before + allowance
++        assert cost > 0 and 0 <= allowance < cost and configured <= MAXIMUM
++        h.ledger.meter.limit = configured
++        try:
++            try:
++                perform("failed_operation")
++            except h.api.BudgetExceeded:
++                spent = h.ledger.meter.used
++                assert spent > configured and spent >= before
++            else:
++                raise AssertionError("configured target did not raise BudgetExceeded")
++        finally:
++            h.ledger.meter.limit = MAXIMUM
++        failed_event = dict(h.ledger.events[-1])
++        got = perform("retry_operation")
++        measured = h.ledger.events[-1]
++        assert measured["units"] == calibration["units"], "retry charged delta differs"
++        assert measured["counts"] == calibration["counts"], "retry category delta differs"
++        h.report["fault"] = {
++            "offset": offset, "allowance": allowance, "used_before": before,
++            "configured_limit": configured, "used_after_failure": spent,
++            "failed_event": failed_event, "retry_units": measured["units"],
++            "retry_counts": measured["counts"], "restored_limit": MAXIMUM,
++            "validation_reads_excluded": True}
++    else:
++        got = perform("target_operation")
++        measured = h.ledger.events[-1]
++    assert sequence.entries is original_entries, "bulk supplier contents were replaced"
++    assert measured["units"] > 0
++    h.report["calibration"] = {"units": measured["units"], "counts": measured["counts"]}
++    continuation_start = len(h.ledger.events)
++    operation_view = None
++    operation_parent = None
++    if target in {"snapshot", "from_unique_entries"}:
++        assert isinstance(got, h.api.NameVersion)
++        h.ordered(got, reference, prefix="result_validation", repeats=1)
++        cursor, reference = h.cursor(got, reference, "continuation_setup")
++        immutable_result = (got, reference.fork())
++    elif target == "fork":
++        assert isinstance(got, h.api.NameCursor) and got is not cursor
++        h.ordered(got, reference, prefix="result_validation", repeats=1)
++        operation_parent = (cursor, reference.fork())
++        cursor = got
++        immutable_result = None
++    elif target == "keys":
++        checked_keys(got, reference)
++        operation_view = ("keys", got, reference.fork())
++        immutable_result = None
++    else:
++        checked_items(got, reference)
++        operation_view = ("ordered_items", got, reference.fork())
++        immutable_result = None
++    child, child_ref = h.fork(cursor, reference, "continuation_publication")
++    same = reference.values["u0000"]
++    h.set(cursor, reference, "u0000", same, False, "continuation_mutation")
++    h.delete(child, child_ref, "u0001", "continuation_mutation")
++    h.set(child, child_ref, "u0001", h.tokens.atom("atomic-after-child"), False,
++          "continuation_mutation")
++    parent_final, parent_ref = h.snapshot(cursor, reference, "continuation_publication")
++    child_final, child_final_ref = h.snapshot(child, child_ref, "continuation_publication")
++    h.join([parent_final, child_final], [parent_ref, child_final_ref], "continuation_join")
++    for state, expected in ((parent_final, parent_ref), (child_final, child_final_ref)):
++        h.ordered(state, expected, prefix="continuation", repeats=2)
++    old, old_ref, old_keys, old_items = witnesses
++    checked_keys(old_keys, old_ref)
++    checked_items(old_items, old_ref)
++    h.ordered(old, old_ref, prefix="historical", repeats=1)
++    if immutable_result is not None:
++        h.ordered(*immutable_result, prefix="result_retained", repeats=1)
++    if operation_parent is not None:
++        h.ordered(*operation_parent, prefix="fork_parent_retained", repeats=1)
++    if operation_view is not None:
++        kind, view, expected = operation_view
++        (checked_keys if kind == "keys" else checked_items)(view, expected)
++    h.report["continuation_costs"] = event_signature(h.ledger.events[continuation_start:])
++    h.report["continuation_observations"] = list(h.report["observations"])
++    h.collision_evidence()
++    if offset is not None:
++        assert h.report["continuation_costs"] == baseline["continuation_costs"], (
++            "post-retry continuation costs differ from pristine")
++        assert h.report["continuation_observations"] == baseline["continuation_observations"], (
++            "post-retry continuation outputs differ from pristine")
++
++
++def load_accounting(api, path, expected_sha):
++    if path is None or expected_sha is None:
++        raise AccountingError("root-pinned accounting path and hash are required")
++    raw = Path(path).read_bytes()
++    actual_sha = hashlib.sha256(raw).hexdigest()
++    if actual_sha != expected_sha:
++        raise AccountingError("accounting hash mismatch")
++    mapping = json.loads(raw)
++    if mapping.get("schema") != "pontius-indexed-storage-accounting-v1":
++        raise AccountingError("accounting schema mismatch")
++    prototype_sha = hashlib.sha256(Path(api.__file__).read_bytes()).hexdigest()
++    if mapping.get("prototype_sha256") != prototype_sha:
++        raise AccountingError("accounting/source binding mismatch")
++    categories = mapping.get("categories")
++    if not isinstance(categories, dict) or not categories:
++        raise AccountingError("accounting categories absent")
++    for name, item in categories.items():
++        if (not isinstance(name, str) or not isinstance(item, dict)
++                or item.get("metric") not in {"P", "non-P"}
++                or not isinstance(item.get("operation"), str) or not item["operation"]):
++            raise AccountingError("invalid physical operation category")
++    required_bulk = {"input_visits": "bulk_input_visits",
++                     "uniqueness_attempts": "bulk_uniqueness_attempts",
++                     "order_writes": "bulk_order_writes"}
++    if mapping.get("bulk_counters") != required_bulk:
++        raise AccountingError("fixed bulk counter contract differs")
++    for key in ("collision_attempt_categories", "terminal_collision_categories"):
++        if (not isinstance(mapping.get(key), list) or not mapping[key]
++                or len(set(mapping[key])) != len(mapping[key])
++                or not set(mapping[key]) <= set(categories)):
++            raise AccountingError("collision operation map incomplete")
++    if (not set(required_bulk.values()) <= set(categories)
++            or mapping.get("publication_attempt_category") not in categories):
++        raise AccountingError("bulk/publication category map incomplete")
++    return mapping, actual_sha, prototype_sha
++
++
++def phase_metric(report, phases, key):
++    return sum(report["phase_costs"].get(phase, {}).get(key, 0) for phase in phases)
++
++
++def growth_comparisons(reports):
++    by_case = {report["case"]: report for report in reports if report["phase"] == "baseline"}
++    comparisons = []
++    growing = ("I01-grow-fork-32", "I02-grow-fork-128", "I03-grow-fork-512")
++    bulk = ("I08-bulk-32", "I09-bulk-128", "I10-bulk-512")
++    pairs = []
++    for small, large, n in ((growing[0], growing[1], 32), (growing[1], growing[2], 128)):
++        pairs.append((small, large, n, 8, ("mutation", "publication"), "grow-mutation-publication"))
++        pairs.append((small, large, n, 8, ("terminal_keys", "terminal_items"), "grow-first-order"))
++    pairs.append(("I04-hot-ambient-32", "I05-hot-ambient-512", 32, 8,
++                  ("mutation", "publication"), "hot-fixed-cycles"))
++    for small, large, n in ((bulk[0], bulk[1], 32), (bulk[1], bulk[2], 128)):
++        pairs.append((small, large, n, 6,
++                      ("bulk_build", "bulk_first_keys", "bulk_first_items"), "bulk-build-plus-order"))
++    for small, large, n, factor, phases, family in pairs:
++        for metric in ("physical_events", "units"):
++            row = {"family": family, "smaller_case": small, "larger_case": large,
++                   "metric": metric, "phases": list(phases), "maximum_factor": factor}
++            if small not in by_case or large not in by_case:
++                row.update(complete=False, passed=False,
++                           reason="one or both complete case totals unavailable")
++            else:
++                lower = phase_metric(by_case[small], phases, metric)
++                upper = phase_metric(by_case[large], phases, metric)
++                denominator = max(lower, n if metric == "physical_events" else 1)
++                row.update(complete=True, smaller=lower, larger=upper,
++                           comparison_denominator=denominator,
++                           maximum_larger=factor * denominator,
++                           passed=upper <= factor * denominator)
++            comparisons.append(row)
++    return comparisons
++
++
++def verify_indexed(api, case_path=CASE_PATH, accounting_path=None, accounting_sha256=None):
++    """Root-owned child entrypoint. Import never runs any schedule."""
++    completed, failures = [], []
++    mapping = None
++    actual_accounting_sha, prototype_sha = None, None
++    seed = os.environ.get("PYTHONHASHSEED")
++    try:
++        raw = Path(case_path).read_bytes()
++        assert hashlib.sha256(raw).hexdigest() == CASE_SHA256, "case pack custody mismatch"
++        assert hashlib.sha256(SPEC_PATH.read_bytes()).hexdigest() == SPEC_SHA256, "spec custody mismatch"
++        pack = json.loads(raw)
++        assert pack["planned_cases"] == 16 and pack["planned_runs"] == 31
++        assert len(pack["cases"]) == 16 and len({case["id"] for case in pack["cases"]}) == 16
++        assert sum(case["runs"] for case in pack["cases"]) == 31
++        assert sum(case["family"] == "atomic" for case in pack["cases"]) == 5
++        assert pack["maximum_meter_limit"] == MAXIMUM
++        assert seed in {"0", "1", "17"}
++        assert sys.version_info[:3] in {(3, 11, 15), (3, 14, 6)}
++        assert sys.dont_write_bytecode and sys.flags.safe_path and sys.flags.optimize == 0
++        mapping, actual_accounting_sha, prototype_sha = load_accounting(
++            api, accounting_path, accounting_sha256)
++    except Exception as error:
++        failures.append({"category": "input-custody-or-accounting",
++            "type": type(error).__name__, "message": str(error),
++            "traceback": traceback.format_exc()})
++        print(json.dumps({"indexed_storage_failure": failures[-1]}), flush=True)
++    if not failures:
++        functions = {"growing_unique_forks": growing_case, "hot_updates": hot_case,
++                     "closed_collision_domain": collision_case,
++                     "unique_bulk_rebuilds": bulk_case, "direct_retention": retention_case}
++        for case in pack["cases"]:
++            baseline = None
++            offsets = [None] + (pack["fault_offsets"] if case["family"] == "atomic" else [])
++            assert len(offsets) == case["runs"]
++            for offset in offsets:
++                report = {"case": case["id"], "phase": offset or "baseline",
++                          "family": case["family"], "spec_sha256": SPEC_SHA256}
++                harness = None
++                try:
++                    harness = Harness(api, mapping, report)
++                    if case["family"] == "atomic":
++                        atomic_case(harness, case, offset, baseline)
++                    else:
++                        functions[case["family"]](harness, case)
++                    harness.ledger.finish()
++                    completed.append(report)
++                    print(json.dumps({"indexed_storage_case": report}), flush=True)
++                    if offset is None:
++                        baseline = report
++                except Exception as error:
++                    KeyObserver.active = False
++                    if harness is not None:
++                        try:
++                            harness.ledger.finish(complete=False)
++                        except Exception as finish_error:
++                            report["partial_accounting_error"] = str(finish_error)
++                    category = ("accounting-incomplete" if isinstance(error, AccountingError)
++                                else "structural-precondition" if isinstance(error, UnmetStructuralPrecondition)
++                                else "original-budget-exhaustion" if isinstance(error, api.BudgetExceeded)
++                                else "semantic-or-oracle-check")
++                    failures.append({"case": case["id"], "phase": offset or "baseline",
++                        "category": category, "type": type(error).__name__,
++                        "message": str(error), "traceback": traceback.format_exc(),
++                        "partial_report": report})
++                    print(json.dumps({"indexed_storage_failure": failures[-1]}), flush=True)
++                    break
++            if failures:
++                break
++    comparisons = growth_comparisons(completed)
++    fitness_failures = [row for row in comparisons if not row["complete"] or not row["passed"]]
++    accounting_complete = (mapping is not None
++        and all(report.get("accounting_complete") for report in completed)
++        and not any(failure["category"] in {"input-custody-or-accounting", "accounting-incomplete"}
++                    or failure.get("partial_report", {}).get("accounting_errors")
++                    or failure.get("partial_report", {}).get("partial_accounting_error")
++                    for failure in failures))
++    semantic_completed = len(completed) == 31 and not failures
++    fitness_passed = semantic_completed and accounting_complete and not fitness_failures
++    if semantic_completed and fitness_failures:
++        failures.append({"category": "finite-fitness-comparison",
++                         "message": "one or more preregistered growth inequalities failed"})
++    summary = {
++        "indexed_storage_summary": "stdlib-dict-legacy-order-indexed-extension-v2",
++        "all_completed": semantic_completed and fitness_passed,
++        "failures": failures, "planned_cases": 16, "planned_runs": 31,
++        "completed_runs": len(completed), "case_pack_sha256": CASE_SHA256,
++        "spec_sha256": SPEC_SHA256, "runtime": list(sys.version_info[:3]),
++        "hash_seed": seed, "maximum_meter_limit": MAXIMUM,
++        "accounting_sha256": actual_accounting_sha, "prototype_sha256": prototype_sha,
++        "accounting_complete": accounting_complete, "fitness_passed": fitness_passed,
++        "semantic_runs_completed": semantic_completed,
++        "growth_comparisons": comparisons, "fitness_failures": fitness_failures,
++        "prototype_internals_inspected": False, "expected_order_computed_in_this_child": True,
++        "key_protocol_comparisons_are_meter_units": False,
++        "pure_callback_inter_name_order_asserted": False,
++    }
++    print(json.dumps(summary), flush=True)
++    assert summary["all_completed"], "indexed oracle did not satisfy every frozen obligation"
++    return summary

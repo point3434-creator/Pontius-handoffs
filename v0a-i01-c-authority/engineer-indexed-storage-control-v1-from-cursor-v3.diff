@@ -1,0 +1,294 @@
+--- cursor-control-v3
++++ indexed-control-v1
+@@ -1,4 +1,4 @@
+-"""Root-inspected finite cursor control; authoring does not authorize execution.
++"""Three-phase pure indexed-storage control; authoring does not authorize execution.
+ 
+ Run using the exact floor interpreter with -I -S -B -P.
+ Arguments: LABEL SLOT SEED CONFIG_RELATIVE CONFIG_SHA256
+@@ -26,8 +26,8 @@
+ SOURCE = P(r"D:\Pontius-worktrees\codex-v0a-i01-c-authority-v1"
+            r"\tools\generate_test_inventory.py")
+ SOURCE_SHA = "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+-DISPOSITION = ROOT / "coordinator-name-cursor-prototype-disposition-v1.md"
+-DISPOSITION_SHA = "973191b8b26c71132185d42203a720bdc5b28d4fd23fc1bc4b9c9ec4da46a7b7"
++DISPOSITION = ROOT / "coordinator-radix-prototype-disposition-v1.md"
++DISPOSITION_SHA = "e8f75e760d0bb2a4b1c37c8b7cfb571624f60321b804080445c1f2b4d8e1eafa"
+ OLD_ORACLE = {"path": "tests-checks/storage-oracle-v2.py",
+               "sha256": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba"}
+ OLD_CASES = {"path": "tests-checks/storage-oracle-cases-v2.json",
+@@ -36,9 +36,15 @@
+     "311": (P(r"D:\Pontius-tools\py311\Scripts\python.exe"), "3.11.15"),
+     "314": (P(r"D:\Pontius\.venv\Scripts\python.exe"), "3.14.6"),
+ }
+-SCHEMA = "owned-name-cursor-control-v3"
++INDEXED_SPEC = {"path": "tests-checks/indexed-storage-extension-spec-v1.md",
++                "sha256": "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9"}
++INDEXED_CASES = {"path": "tests-checks/indexed-storage-extension-cases-v1.json",
++                 "sha256": "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a"}
++CURSOR_CASES = {"path": "tests-checks/cursor-oracle-cases-v1.json",
++                "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61"}
++SCHEMA = "indexed-name-storage-control-v1"
+ TIMEOUT = 60
+-PAYLOAD = ".storage-cursor-prototype"
++PAYLOAD = ".storage-indexed-prototype"
+ 
+ 
+ def req(value, message):
+@@ -194,7 +200,7 @@
+     return path
+ 
+ def emit(record):
+-    print(json.dumps({"cursor_control": record}, sort_keys=True), flush=True)
++    print(json.dumps({"indexed_control": record}, sort_keys=True), flush=True)
+ 
+ def no_pontius():
+     req(not any(name == "pontius" or name.startswith("pontius.")
+@@ -248,12 +254,12 @@
+     req(P(pontius_spec.origin).resolve() == (snapshot / "src/pontius/__init__.py").resolve(),
+         "Pontius origin outside snapshot")
+     no_pontius()
+-    req(payload_name == ".storage-cursor-prototype", "payload directory")
++    req(payload_name == ".storage-indexed-prototype", "payload directory")
+     payload = snapshot / payload_name
+     manifest_raw = checked(payload / "manifest.json").read_bytes()
+     req(h(manifest_raw) == manifest_sha, "manifest SHA mismatch")
+     manifest = json.loads(manifest_raw)
+-    wanted_files = 1771 if version == "3.14.6" else 1770
++    wanted_files = 1779 if version == "3.14.6" else 1774
+     req(type(manifest) is dict and len(manifest) == wanted_files, "manifest file count")
+     for name, wanted in manifest.items():
+         relative = P(name)
+@@ -268,22 +274,45 @@
+           "flags": str(sys.flags), "hash_seed": seed,
+           "hash_probe": hash("pontius-storage-order-probe"),
+           "environment": actual_environment, "manifest_sha256": manifest_sha,
+-          "verified_files": len(manifest), "pontius_imported": False})
+-    prototype = load("cursor_prototype_under_test", payload / "prototype.py")
++          "verified_files": len(manifest), "pontius_imported": False,
++          "prototype_sha256": config["prototype"]["sha256"],
++          "accounting_sha256": config["accounting"]["sha256"]})
++    req(h(checked(payload / "prototype.py").read_bytes()) == config["prototype"]["sha256"],
++        "prototype content pin")
++    accounting_raw = checked(payload / "accounting.json").read_bytes()
++    req(h(accounting_raw) == config["accounting"]["sha256"], "accounting content pin")
++    accounting = json.loads(accounting_raw)
++    req(accounting["schema"] == "pontius-indexed-storage-accounting-v1"
++        and accounting["prototype_sha256"] == config["prototype"]["sha256"],
++        "accounting source identity")
++    prototype = load("indexed_prototype_under_test", payload / "prototype.py")
+     passed = True
+     definitions = (
+         ("storage", "old_oracle.py", "verify_storage", "old_cases.json",
+          {"planned_cases": 28, "planned_runs": 34}, config["old_cases"]["sha256"]),
+         ("cursor", "cursor_oracle.py", "verify_cursor", "cursor_cases.json",
+          config["cursor_expected"], config["cursor_cases"]["sha256"]),
++        ("indexed", "indexed_oracle.py", "verify_indexed", "indexed_cases.json",
++         config["indexed_expected"], config["indexed_cases"]["sha256"]),
+     )
+     for phase, oracle_name, function_name, case_name, expected, case_sha in definitions:
+         summary = None
+         try:
+             oracle = load("independent_" + phase + "_oracle", payload / oracle_name)
+-            summary = getattr(oracle, function_name)(prototype, case_path=payload / case_name)
++            kwargs = {"case_path": payload / case_name}
++            if phase == "indexed":
++                kwargs.update(accounting_path=payload / "accounting.json",
++                              accounting_sha256=config["accounting"]["sha256"])
++            summary = getattr(oracle, function_name)(prototype, **kwargs)
+             no_pontius()
+             check(summary, expected, case_sha, version, seed)
++            if phase == "indexed":
++                req(summary.get("accounting_sha256") == config["accounting"]["sha256"]
++                    and summary.get("prototype_sha256") == config["prototype"]["sha256"],
++                    "indexed summary input pins")
++                req(summary.get("accounting_complete") is True
++                    and summary.get("fitness_passed") is True,
++                    "indexed accounting or finite fitness incomplete/failed")
+         except BaseException as error:
+             passed = False
+             emit({"kind": "phase_result", "phase": phase, "ok": False,
+@@ -316,7 +345,7 @@
+         or (slot == "314" and len(sys.argv) == 8), "floor receipt arguments")
+     validate(ROOT)
+     checks = validate(ROOT / "engineer-checks")
+-    prefix = "cursor-" + label + "-" + slot + "-seed" + seed
++    prefix = "indexed-" + label + "-" + slot + "-seed" + seed
+     paths = {key: checks / (prefix + suffix) for key, suffix in (
+         ("setup", "-setup.json"), ("receipt", "-receipt.json"),
+         ("stdout", ".stdout.txt"), ("stderr", ".stderr.txt"), ("log", ".txt"),
+@@ -342,12 +371,18 @@
+         req(digest(config_raw) == config_sha, "root-pinned config changed")
+         config = json.loads(config_raw)
+         fields = {"schema", "control_sha256", "disposition_sha256", "prototype",
+-                  "old_oracle", "old_cases", "cursor_oracle", "cursor_cases", "cursor_expected"}
++                  "old_oracle", "old_cases", "cursor_oracle", "cursor_cases", "cursor_expected",
++                  "indexed_oracle", "indexed_cases", "indexed_expected", "accounting", "indexed_spec"}
+         req(type(config) is dict and set(config) == fields
+             and config["schema"] == SCHEMA, "config schema")
+         req(config["disposition_sha256"] == DISPOSITION_SHA, "config disposition")
+         req(config["old_oracle"] == OLD_ORACLE and config["old_cases"] == OLD_CASES,
+             "old oracle/cases are frozen")
++        req(config["indexed_cases"] == INDEXED_CASES and config["indexed_spec"] == INDEXED_SPEC
++            and config["cursor_cases"] == CURSOR_CASES, "frozen successor/extension inputs")
++        req(config["cursor_expected"] == {"planned_cases": 16, "planned_runs": 28}
++            and config["indexed_expected"] == {"planned_cases": 16, "planned_runs": 31},
++            "fixed finite populations")
+         expected = config["cursor_expected"]
+         req(type(expected) is dict and set(expected) == {"planned_cases", "planned_runs"},
+             "cursor expected schema")
+@@ -366,22 +401,30 @@
+         inputs = {}
+         for key, suffix in (("prototype", ".py"), ("old_oracle", ".py"),
+                             ("old_cases", ".json"), ("cursor_oracle", ".py"),
+-                            ("cursor_cases", ".json")):
++                            ("cursor_cases", ".json"), ("indexed_oracle", ".py"),
++                            ("indexed_cases", ".json"), ("accounting", ".json"),
++                            ("indexed_spec", ".md")):
+             path, raw = read_input(config[key], suffix)
+             input_paths[key] = path
+             inputs[key] = raw
+-        req(len(set(input_paths.values())) == 5, "input paths must be distinct")
++        req(len(set(input_paths.values())) == 9, "input paths must be distinct")
++        accounting = json.loads(inputs["accounting"])
++        req(accounting.get("schema") == "pontius-indexed-storage-accounting-v1"
++            and accounting.get("prototype_sha256") == config["prototype"]["sha256"],
++            "accounting map must bind this prototype")
+         input_paths.update({"control": control_path, "config": config_path,
+                             "disposition": DISPOSITION, "production_watch": SOURCE})
+         input_hashes = {key: digest(validate(path, regular=True).read_bytes())
+                         for key, path in input_paths.items()}
+         wanted_hashes = {key: config[key]["sha256"] for key in (
+-            "prototype", "old_oracle", "old_cases", "cursor_oracle", "cursor_cases")}
++            "prototype", "old_oracle", "old_cases", "cursor_oracle", "cursor_cases",
++            "indexed_oracle", "indexed_cases", "accounting", "indexed_spec") }
+         wanted_hashes.update({"control": digest(control_raw), "config": config_sha,
+                               "disposition": DISPOSITION_SHA, "production_watch": SOURCE_SHA})
+         req(input_hashes == wanted_hashes, "input changed during preflight")
+         exe, version = SLOTS[slot]
+         validate(exe, regular=True)
++        floor_files = {}
+         if slot == "314":
+             floor_relative, floor_sha = sys.argv[6:8]
+             req(is_digest(floor_sha), "root-pinned floor receipt SHA256")
+@@ -397,13 +440,49 @@
+                 and floor.get("exit") == 0, "floor did not succeed")
+             req(floor.get("input_hashes_before") == input_hashes
+                 and floor.get("input_hashes_after") == input_hashes, "floor source input hashes")
++            req(floor["before"] == floor["after"]
++                and floor["manifest_after_sha256"] == floor["manifest_sha256"],
++                "floor manifest receipt differs")
++            floor_snapshot = validate(P(floor["snapshot"]))
++            req(floor_snapshot.is_relative_to(SNAPSHOTS), "floor snapshot root")
++            req(hashes(floor_snapshot, floor["before"]) == floor["before"], "floor files changed")
++            req(digest(validate(floor_snapshot / PAYLOAD / "manifest.json", regular=True).read_bytes())
++                == floor["manifest_sha256"], "floor manifest changed")
++            floor_files["floor-receipt.json"] = floor_raw
++            for key in ("setup", "stdout", "stderr", "log"):
++                item = floor["outputs"][key]
++                path = validate(P(item["path"]), regular=True)
++                req(path.is_relative_to(ROOT), "floor output root")
++                raw = path.read_bytes()
++                req(digest(raw) == item["sha256"], "floor output changed: " + key)
++                floor_files["floor-" + key + (".json" if key == "setup" else ".txt")] = raw
++                input_paths["floor_" + key] = path
++                input_hashes["floor_" + key] = item["sha256"]
++            floor_records = []
++            for line in floor_files["floor-stdout.txt"].splitlines():
++                obj = json.loads(line)
++                if isinstance(obj, dict) and isinstance(obj.get("indexed_control"), dict):
++                    floor_records.append(obj["indexed_control"])
++            floor_identities = [x for x in floor_records if x.get("kind") == "identity_before_payload_imports"]
++            floor_results = [x for x in floor_records if x.get("kind") == "phase_result"]
++            req(len(floor_identities) == 1
++                and floor_identities[0]["version_info"] == [3, 11, 15]
++                and P(floor_identities[0]["executable"]).resolve() == SLOTS["311"][0].resolve()
++                and floor_identities[0]["hash_seed"] == seed, "actual floor identity")
++            req(floor_results == floor["phase_results"] and len(floor_results) == 3,
++                "floor result streams differ")
++            for result, want, case_key in zip(floor_results,
++                    ({"planned_cases": 28, "planned_runs": 34}, expected, config["indexed_expected"]),
++                    ("old_cases", "cursor_cases", "indexed_cases"), strict=True):
++                req(result.get("ok") is True, "floor phase failed")
++                check_summary(result["summary"], want, config[case_key]["sha256"], "3.11.15", seed)
+             setup["floor_receipt"] = {"path": str(floor_path), "sha256": floor_sha}
+             input_paths["floor_receipt"] = floor_path
+             input_hashes["floor_receipt"] = floor_sha
+         phase = "clone"
+         validate(SNAPSHOTS)
+         validate(WORKSPACE)
+-        folder = SNAPSHOTS / ("cursor-prototype-" + uuid.uuid4().hex)
++        folder = SNAPSHOTS / ("indexed-prototype-" + uuid.uuid4().hex)
+         req(folder.is_relative_to(SNAPSHOTS), "snapshot outside D-local root")
+         folder.mkdir()
+         validate(folder)
+@@ -431,9 +510,11 @@
+             "cursor_cases.json": inputs["cursor_cases"], "control.py": control_raw,
+             "config.json": config_raw, "disposition.md": disposition_raw,
+             "wrapper.py": WRAPPER.encode("utf-8"),
++            "indexed_oracle.py": inputs["indexed_oracle"],
++            "indexed_cases.json": inputs["indexed_cases"],
++            "accounting.json": inputs["accounting"], "indexed_spec.md": inputs["indexed_spec"],
++            **floor_files,
+         }
+-        if slot == "314":
+-            files["floor_receipt.json"] = floor_raw
+         for name, raw in files.items():
+             create(payload / name, raw)
+             before[PAYLOAD + "/" + name] = digest(raw)
+@@ -468,7 +549,7 @@
+             process.wait(timeout=TIMEOUT)
+             exit_code = 124
+             receipt["timeout"] = True
+-            raise RuntimeError("finite cursor oracle timed out after 60 seconds")
++            raise RuntimeError("finite indexed-storage oracle timed out after 60 seconds")
+         phase = "result_validation"
+         streams["stdout"].flush()
+         stdout = paths["stdout"].read_bytes()
+@@ -478,8 +559,8 @@
+                 value = json.loads(line)
+             except (ValueError, UnicodeError):
+                 continue
+-            if isinstance(value, dict) and isinstance(value.get("cursor_control"), dict):
+-                records.append(value["cursor_control"])
++            if isinstance(value, dict) and isinstance(value.get("indexed_control"), dict):
++                records.append(value["indexed_control"])
+         identities = [item for item in records
+                       if item.get("kind") == "identity_before_payload_imports"]
+         results = [item for item in records if item.get("kind") == "phase_result"]
+@@ -489,14 +570,21 @@
+         receipt["completed_records"] = completed
+         req(len(identities) == 1 and identities[0].get("verified_files") == len(before),
+             "missing/duplicate pre-import identity")
+-        req(len(results) == 2 and [item.get("phase") for item in results] == ["storage", "cursor"],
++        req(len(results) == 3 and [item.get("phase") for item in results] == ["storage", "cursor", "indexed"],
+             "missing or unordered oracle results")
+         for item, want, case_key in zip(
+-            results, ({"planned_cases": 28, "planned_runs": 34}, expected),
+-            ("old_cases", "cursor_cases"), strict=True,
++            results, ({"planned_cases": 28, "planned_runs": 34}, expected, config["indexed_expected"]),
++            ("old_cases", "cursor_cases", "indexed_cases"), strict=True,
+         ):
+             req(item.get("ok") is True, "oracle phase failed: " + str(item.get("phase")))
+             check_summary(item.get("summary"), want, config[case_key]["sha256"], version, seed)
++            if case_key == "indexed_cases":
++                summary = item["summary"]
++                req(summary.get("accounting_sha256") == config["accounting"]["sha256"]
++                    and summary.get("prototype_sha256") == config["prototype"]["sha256"],
++                    "indexed summary inputs")
++                req(summary.get("accounting_complete") is True
++                    and summary.get("fitness_passed") is True, "indexed fitness/accounting failed")
+         req(len(completed) == 1 and completed[0].get("ok") is True,
+             "child completion missing or false")
+         req(exit_code == 0, "payload returned nonzero")
+@@ -577,8 +665,8 @@
+                 value = json.loads(line)
+             except (ValueError, UnicodeError):
+                 continue
+-            if isinstance(value, dict) and isinstance(value.get("cursor_control"), dict):
+-                partial_records.append(value["cursor_control"])
++            if isinstance(value, dict) and isinstance(value.get("indexed_control"), dict):
++                partial_records.append(value["indexed_control"])
+         receipt["retained_control_records"] = partial_records
+         log = stdout + b"\nCONTROL STDERR\n" + stderr
+         if "error" in receipt:

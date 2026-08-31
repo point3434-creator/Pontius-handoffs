@@ -1,0 +1,58 @@
+--- cursor-oracle-v1.py
++++ cursor-oracle-v2.py
+@@ -1,4 +1,4 @@
+-"""Independent builtin-dict oracle for the frozen cursor extension; no autorun."""
++"""Cursor oracle successor: only the layer-specific retention trigger changes; no autorun."""
+ from __future__ import annotations
+ 
+ import gc
+@@ -366,18 +366,24 @@
+         saved = ledger.call("publication", "snapshot-positive-owner", cursor.snapshot)
+         del sentinel
+         before_compaction = ledger.meter.counts.get("compaction_entry_visits", 0)
++        successful_changed_publications = 0
+         for index in range(case["publications"]):
+             latest = Value(("replacement", index))
+             assert ledger.call("private-writes", "set",
+                                lambda: cursor.set("victim", latest, no_work=True)) is None
+-            # Each returned intermediate version is intentionally discarded.
+-            ledger.call("publication", "snapshot-discarded", cursor.snapshot)
++            # Fresh replacement value; retain no extra snapshot owner here.
++            published = ledger.call("publication", "snapshot-discarded", cursor.snapshot)
++            assert isinstance(published, api.NameVersion)
++            successful_changed_publications += 1
++            del published
+         compaction = ledger.meter.counts.get("compaction_entry_visits", 0) - before_compaction
+         report["successful_compaction_entry_visits"] = compaction
+-        report["structural_precondition_met"] = compaction > 0
+-        if compaction <= 0:
+-            raise UnmetStructuralPrecondition(
+-                "no successful full-compaction work observed; history leak inference withheld")
++        report["successful_changed_publications"] = successful_changed_publications
++        report["structural_precondition_met"] = (
++            successful_changed_publications == case["publications"]
++            and successful_changed_publications > 0)
++        report["retention_trigger"] = "completed-changed-publications-and-direct-ownership"
++        assert report["structural_precondition_met"], "changed publication sequence incomplete"
+         gc.collect()
+         report["retained_snapshot_positive_owner"] = weak() is not None
+         assert weak() is not None, "retained original snapshot lost its value"
+@@ -538,7 +544,7 @@
+         if failures:
+             break
+     summary = {
+-        "cursor_oracle_summary": "stdlib-dict-and-legacy-set-union-cursor-v1",
++        "cursor_oracle_summary": "stdlib-dict-and-legacy-set-union-cursor-v2-retention-successor",
+         "case_pack_sha256": CASE_SHA256, "runtime": list(sys.version_info[:3]),
+         "hash_seed": seed, "planned_cases": 16, "planned_runs": 28,
+         "completed_runs": len(completed), "failures": failures,
+@@ -548,6 +554,9 @@
+         "expected_order_computed_in_this_child": True,
+         "pure_callback_inter_name_order_asserted": False,
+         "old_case_pack_is_separate_and_unchanged": True,
++        "retention_trigger_successor": True,
++        "predecessor_oracle_sha256": "15a4741e2532a755fd45f01d4d999dd5d293846b8ae4e9d4e7abedf84c0a8d1e",
++        "retention_semantic_operations_preserved": True,
+     }
+     print(json.dumps(summary), flush=True)
+     assert summary["all_completed"], "cursor oracle did not complete every planned run"

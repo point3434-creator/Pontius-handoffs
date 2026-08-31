@@ -1,0 +1,37 @@
+ds")
+                token = token.parent
+        for name in _pending_names(meter, state):
+            remember(name)
+    cursor = NameCursor(states[0])
+    for name in candidates:
+        meter.charge("candidate_iteration")
+        meter.charge("merge_argument_tuple_allocation")
+        meter.charge("merge_argument_generator_allocation")
+        def arguments():
+            for state in states:
+                meter.charge("merge_input_visits")
+                entry = state._entry(name)
+                meter.charge("merge_argument_reference_copies")
+                yield MISSING if entry is MISSING else entry.value
+        supplied = tuple(arguments())
+        all_missing = True
+        for value in supplied:
+            meter.charge("merge_missing_visits")
+            if value is not MISSING:
+                all_missing = False
+                break
+        if all_missing:
+            if cursor._entry(name) is not MISSING:
+                cursor.delete(name)
+            continue
+        meter.charge("merge_callback_invocation")
+        entry = merge(name, supplied)
+        if not isinstance(entry, Entry) or type(entry.no_work) is not bool:
+            raise TypeError("merge must return Entry(value, bool)")
+        cursor._replace_entry(name, entry)
+    meter.charge("order_parent_visits", len(states))
+    order = _order(meter, "union", tuple(state._order for state in states))
+    meter.charge("join_order_override_reference")
+    cursor._order = order
+    cursor._items_cache = None
+    return cursor.snapshot()

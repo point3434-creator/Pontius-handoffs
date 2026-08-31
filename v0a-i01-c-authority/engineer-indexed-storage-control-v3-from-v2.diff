@@ -1,0 +1,53 @@
+--- indexed-control-v2
++++ indexed-control-v3
+@@ -465,6 +465,36 @@
+                     floor_records.append(obj["indexed_control"])
+             floor_identities = [x for x in floor_records if x.get("kind") == "identity_before_payload_imports"]
+             floor_results = [x for x in floor_records if x.get("kind") == "phase_result"]
++            floor_completed = [x for x in floor_records if x.get("kind") == "completed"]
++            floor_setup = json.loads(floor_files["floor-setup.json"])
++            req(type(floor_setup) is dict
++                and all(key in floor and floor[key] == value
++                        for key, value in floor_setup.items()), "floor setup/receipt differ")
++            req(floor_records == floor.get("retained_control_records")
++                and floor_identities == floor.get("identity_records")
++                and floor_completed == floor.get("completed_records"),
++                "floor raw identity/completion streams differ")
++            req([x.get("kind") for x in floor_records] == [
++                    "identity_before_payload_imports", "phase_result", "phase_result",
++                    "phase_result", "completed"]
++                and [x.get("phase") for x in floor_results] == ["storage", "cursor", "indexed"]
++                and floor_completed == [{"kind": "completed", "ok": True}],
++                "floor record order/completion")
++            floor_identity = floor_identities[0]
++            req(floor_identity.get("implementation") == "cpython"
++                and floor_identity.get("cwd") == str(floor_snapshot)
++                and floor_identity.get("environment") == floor_setup["environment"]
++                and floor_identity.get("manifest_sha256") == floor_setup["manifest_sha256"]
++                and floor_identity.get("verified_files") == len(floor["before"]) == 1774
++                and floor_identity.get("prototype_sha256") == config["prototype"]["sha256"]
++                and floor_identity.get("accounting_sha256") == config["accounting"]["sha256"]
++                and floor_identity.get("pontius_imported") is False,
++                "floor raw identity context")
++            req(floor_setup["config"] == config
++                and floor_setup["snapshot"] == str(floor_snapshot)
++                and floor_setup["before"] == floor["before"]
++                and floor_setup["input_hashes_before"] == wanted_hashes,
++                "floor setup input context")
+             req(len(floor_identities) == 1
+                 and floor_identities[0]["version_info"] == [3, 11, 15]
+                 and P(floor_identities[0]["executable"]).resolve() == SLOTS["311"][0].resolve()
+@@ -600,8 +630,11 @@
+                     "indexed summary inputs")
+                 req(summary.get("accounting_complete") is True
+                     and summary.get("fitness_passed") is True, "indexed fitness/accounting failed")
+-        req(len(completed) == 1 and completed[0].get("ok") is True,
+-            "child completion missing or false")
++        req([item.get("kind") for item in records] == [
++                "identity_before_payload_imports", "phase_result", "phase_result",
++                "phase_result", "completed"]
++            and completed == [{"kind": "completed", "ok": True}],
++            "child record order/completion")
+         req(exit_code == 0, "payload returned nonzero")
+         receipt["result_ok"] = True
+     except BaseException as error:

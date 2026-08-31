@@ -1,0 +1,49 @@
+{
+  "accounting": {
+    "path": "engineer-name-radix-accounting-v1.json",
+    "sha256": "79f64e5e7bbb429bedd108654b69c8ab5893973ee742517b543129f762f68f2b"
+  },
+  "control_sha256": "7192e46cd855d767c96a06ba81ffaa97c97604e12042fad5e06e299f10a5e44c",
+  "cursor_cases": {
+    "path": "tests-checks/cursor-oracle-cases-v1.json",
+    "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61"
+  },
+  "cursor_expected": {
+    "planned_cases": 16,
+    "planned_runs": 28
+  },
+  "cursor_oracle": {
+    "path": "tests-checks/cursor-oracle-v2.py",
+    "sha256": "145fe1d59c48e23cdb426bcbe35edbecc3f941a81dc9780e8eeed849be5bc143"
+  },
+  "disposition_sha256": "e8f75e760d0bb2a4b1c37c8b7cfb571624f60321b804080445c1f2b4d8e1eafa",
+  "indexed_cases": {
+    "path": "tests-checks/indexed-storage-extension-cases-v1.json",
+    "sha256": "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a"
+  },
+  "indexed_expected": {
+    "planned_cases": 16,
+    "planned_runs": 31
+  },
+  "indexed_oracle": {
+    "path": "tests-checks/indexed-storage-extension-oracle-v2.py",
+    "sha256": "95ee5d3dd2e31ffd7ea6ecdd2f5e2b05dddb15e5a5ef1aa70ba8820bd82d2381"
+  },
+  "indexed_spec": {
+    "path": "tests-checks/indexed-storage-extension-spec-v1.md",
+    "sha256": "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9"
+  },
+  "old_cases": {
+    "path": "tests-checks/storage-oracle-cases-v2.json",
+    "sha256": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f"
+  },
+  "old_oracle": {
+    "path": "tests-checks/storage-oracle-v2.py",
+    "sha256": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba"
+  },
+  "prototype": {
+    "path": "engineer-name-radix-prototype-v1.py",
+    "sha256": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71"
+  },
+  "schema": "indexed-name-storage-control-v1"
+}

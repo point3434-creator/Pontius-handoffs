@@ -1,0 +1,176 @@
+ root, history, cursor._order,
+                          cursor._size, cursor._items_cache)
+    meter.charge("publication_fresh_tail_allocation")
+    empty_tail = {}
+    meter.charge("publication_plan_allocation")
+    meter.charge("publication_plan_reference_copies", 3)
+    return _Publication(version, empty_tail, True)
+
+
+def _charge_publication_commit(meter, plan):
+    if plan.changed:
+        meter.charge("snapshot_publications")
+        meter.charge("cursor_publication_reference_copies", 2)
+
+
+def _commit_publication(cursor, plan):
+    if plan.changed:
+        cursor._base = plan.version
+        cursor._tail = plan.empty_tail
+
+
+class NameCursor:
+    __slots__ = ("_meter", "_base", "_tail", "_order", "_size", "_items_cache")
+
+    def __init__(self, version):
+        if not isinstance(version, NameVersion):
+            raise TypeError("NameCursor requires an immutable NameVersion")
+        meter = version._meter
+        meter.charge("cursor_allocation")
+        meter.charge("cursor_reference_copies", 6)
+        meter.charge("cursor_tail_dictionary_allocation")
+        self._meter, self._base, self._tail = meter, version, {}
+        self._order, self._size = version._order, version._size
+        self._items_cache = version._items_cache
+
+    def __len__(self):
+        self._meter.charge("size_read")
+        return self._size
+
+    def _entry(self, name):
+        meter = self._meter
+        meter.charge("lookup_private_tail_attempts")
+        entry = self._tail.get(name, MISSING)
+        if entry is _DELETED:
+            return MISSING
+        if entry is not MISSING:
+            return entry
+        return _radix_lookup(meter, self._base._root, name)
+
+    def get(self, name, default=None):
+        _check_name(name)
+        entry = self._entry(name)
+        return default if entry is MISSING else entry.value
+
+    def _replace_entry(self, name, replacement):
+        """Private write. Compute/charge all new metadata before mutation."""
+        meter = self._meter
+        meter.charge("write_private_tail_attempts")
+        tail_entry = self._tail.get(name, MISSING)
+        if tail_entry is MISSING:
+            old = _radix_lookup(meter, self._base._root, name)
+        else:
+            old = MISSING if tail_entry is _DELETED else tail_entry
+        if replacement is _DELETED and old is MISSING:
+            raise KeyError(name)
+        inserted = old is MISSING
+        deleted = replacement is _DELETED
+        order = self._order
+        if inserted:
+            order = _order(meter, "insert", (order,), name)
+        elif deleted:
+            order = _order(meter, "delete", (order,), name)
+        meter.charge("write_size_read")
+        size = self._size + int(inserted) - int(deleted)
+        meter.charge("private_dictionary_writes")
+        meter.charge("private_dictionary_reference_copies", 1 + int(tail_entry is MISSING))
+        meter.charge("cursor_write_field_copies", 3)
+        self._tail[name] = replacement
+        self._order, self._size, self._items_cache = order, size, None
+
+    def set(self, name, value, *, no_work=False):
+        _check_name(name)
+        if type(no_work) is not bool:
+            raise TypeError("no_work must be bool")
+        self._meter.charge("entry_allocation")
+        self._meter.charge("entry_reference_copies", 2)
+        self._replace_entry(name, Entry(value, no_work))
+
+    def delete(self, name):
+        _check_name(name)
+        self._replace_entry(name, _DELETED)
+
+    def snapshot(self):
+        meter = self._meter
+        meter.charge("snapshot_requests")
+        plan = _prepare_publication(self)
+        meter.charge("snapshot_return_reference")
+        _charge_publication_commit(meter, plan)
+        _commit_publication(self, plan)
+        return plan.version
+
+    def fork(self):
+        meter = self._meter
+        meter.charge("cursor_fork_requests")
+        plan = _prepare_publication(self)
+        result = NameCursor(plan.version)
+        meter.charge("cursor_fork_return_reference")
+        _charge_publication_commit(meter, plan)
+        _commit_publication(self, plan)
+        return result
+
+    def keys(self):
+        return _keys(self)
+
+    def ordered_items(self):
+        return _ordered_items(self)
+
+
+def _common_history(meter, states):
+    base = states[0]._history
+    for index in range(1, len(states)):
+        meter.charge("history_input_visits")
+        other = states[index]._history
+        while base is not other:
+            meter.charge("history_identity_comparisons")
+            if base is None or other is None:
+                return None
+            meter.charge("history_depth_reads", 2)
+            if base.depth >= other.depth:
+                meter.charge("history_parent_reads")
+                base = base.parent
+            else:
+                meter.charge("history_parent_reads")
+                other = other.parent
+    return base
+
+
+def _pending_names(meter, state):
+    """Only effective pending entries exist in the current immutable root."""
+    yield from _radix_names(meter, state._root, pending_only=True)
+
+
+def join(meter, states, merge):
+    meter.charge("join_input_tuple_allocation")
+    states = tuple(state for state in states)
+    meter.charge("join_input_reference_copies", len(states))
+    for state in states:
+        meter.charge("join_input_validation")
+        if not isinstance(state, NameVersion) or state._meter is not meter:
+            raise ValueError("all inputs must be immutable versions on the supplied meter")
+    if not states:
+        return NameVersion.empty(meter)
+    if len(states) == 1:
+        return states[0].fork()
+    base = _common_history(meter, states)
+    meter.charge("join_candidate_dictionary_allocation")
+    candidates = {}
+    def remember(name):
+        meter.charge("candidate_dictionary_attempts")
+        if name not in candidates:
+            meter.charge("candidate_dictionary_writes")
+            meter.charge("candidate_reference_copies", 2)
+            candidates[name] = None
+    for state in states:
+        meter.charge("join_state_visits")
+        if base is None:
+            for name in _radix_names(meter, state._root):
+                remember(name)
+        else:
+            token = state._history
+            while token is not base:
+                meter.charge("history_change_token_visits")
+                for name in token.changes:
+                    meter.charge("history_changed_name_visits")
+                    remember(name)
+                meter.charge("history_parent_rea

@@ -1,0 +1,1702 @@
+{
+  "schema": "coordinator-indexed-verification-v1",
+  "config_sha256": "60485a4ea41ab146e89c4da4fb0bfd8cfad98c0908322025e62512dfd1ce97aa",
+  "runs": [
+    {
+      "slot": "311",
+      "seed": "0",
+      "receipt_sha256": "adb85019461361a35ab724587c9bc63a19b1a27ffe77e0d3cf0a719f87c822fc",
+      "snapshot": "D:\\pontius-snapshots\\indexed-prototype-48aca80bf7ba4931ac0978ccb90992d7\\snapshot",
+      "manifest_sha256": "76bebe2f5abbc806a4d6b970b26c1da13ee595fe297a5b3bb452195315dfa13f",
+      "rehashed_files": 1775,
+      "runs": 93,
+      "same_seed_cross_slot_records_equal": null,
+      "indexed_case_units": {
+        "I01-grow-fork-32": 8338,
+        "I02-grow-fork-128": 40193,
+        "I03-grow-fork-512": 216825,
+        "I04-hot-ambient-32": 28079,
+        "I05-hot-ambient-512": 112225,
+        "I06-collisions-16": 6921,
+        "I07-collisions-64": 157839,
+        "I08-bulk-32": 10406,
+        "I09-bulk-128": 36282,
+        "I10-bulk-512": 193744,
+        "I11-published-owner-release": 5633,
+        "I12-atomic-snapshot": 22429,
+        "I13-atomic-fork": 25193,
+        "I14-atomic-keys": 19803,
+        "I15-atomic-items": 21228,
+        "I16-atomic-bulk": 23605
+      },
+      "growth_comparisons": [
+        {
+          "comparison_denominator": 1850,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 9629,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 14800,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 1850,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 6053,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 30864,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 48424,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 6053,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 406,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 1558,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 3248,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 406,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 882,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 3378,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 7056,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 882,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 9629,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 55699,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 77032,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 9629,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 30864,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 172878,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 246912,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 30864,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 1558,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 6678,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 12464,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 1558,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 3378,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 15922,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 27024,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 3378,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 5729,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 11553,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 45832,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 5729,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 21514,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 37418,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 172112,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 21514,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 2688,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 10160,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 16128,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 2688,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 6412,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 22476,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 38472,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 6412,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 10160,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 49616,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 60960,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 10160,
+          "smaller_case": "I09-bulk-128"
+        },
+        {
+          "comparison_denominator": 22476,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 120844,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 134856,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 22476,
+          "smaller_case": "I09-bulk-128"
+        }
+      ],
+      "collision": {
+        "hash_calls": 5727,
+        "equality_calls": 121228,
+        "declared_dictionary_attempt_units": 821,
+        "terminal_collision_units": 709,
+        "terminal_collision_exercised": true,
+        "terminal_collision_required": true,
+        "key_protocol_comparisons_are_meter_units": false,
+        "closed_domain_only": true
+      }
+    },
+    {
+      "slot": "311",
+      "seed": "1",
+      "receipt_sha256": "5d241a6c5844b89a618b81888a7f67ed26c62d691b4868fe7b92f9723ebcff9b",
+      "snapshot": "D:\\pontius-snapshots\\indexed-prototype-4a40050478c947b78183d12ce494b9f8\\snapshot",
+      "manifest_sha256": "76bebe2f5abbc806a4d6b970b26c1da13ee595fe297a5b3bb452195315dfa13f",
+      "rehashed_files": 1775,
+      "runs": 93,
+      "same_seed_cross_slot_records_equal": null,
+      "indexed_case_units": {
+        "I01-grow-fork-32": 8317,
+        "I02-grow-fork-128": 41137,
+        "I03-grow-fork-512": 217378,
+        "I04-hot-ambient-32": 27497,
+        "I05-hot-ambient-512": 109567,
+        "I06-collisions-16": 6921,
+        "I07-collisions-64": 157839,
+        "I08-bulk-32": 10406,
+        "I09-bulk-128": 38401,
+        "I10-bulk-512": 193744,
+        "I11-published-owner-release": 5640,
+        "I12-atomic-snapshot": 22447,
+        "I13-atomic-fork": 25216,
+        "I14-atomic-keys": 19816,
+        "I15-atomic-items": 21246,
+        "I16-atomic-bulk": 23679
+      },
+      "growth_comparisons": [
+        {
+          "comparison_denominator": 1845,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 10021,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 14760,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 1845,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 6036,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 31642,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 48288,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 6036,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 406,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 1575,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 3248,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 406,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 882,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 3463,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 7056,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 882,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 10021,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 55985,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 80168,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 10021,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 31642,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 173430,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 253136,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 31642,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 1575,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 6678,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 12600,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 1575,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 3463,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 15922,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 27704,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 3463,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 5345,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 10145,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 42760,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 5345,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 20938,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 34922,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 167504,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 20938,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 2688,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 10524,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 16128,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 2688,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 6412,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 23852,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 38472,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 6412,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 10524,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 49616,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 63144,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 10524,
+          "smaller_case": "I09-bulk-128"
+        },
+        {
+          "comparison_denominator": 23852,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 120844,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 143112,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 23852,
+          "smaller_case": "I09-bulk-128"
+        }
+      ],
+      "collision": {
+        "hash_calls": 5727,
+        "equality_calls": 121228,
+        "declared_dictionary_attempt_units": 821,
+        "terminal_collision_units": 709,
+        "terminal_collision_exercised": true,
+        "terminal_collision_required": true,
+        "key_protocol_comparisons_are_meter_units": false,
+        "closed_domain_only": true
+      }
+    },
+    {
+      "slot": "311",
+      "seed": "17",
+      "receipt_sha256": "de00f5298fb29e660b2be2437811c3415fc4ab9b0f45917ecb095b1ca3236a23",
+      "snapshot": "D:\\pontius-snapshots\\indexed-prototype-e7e31b85ce5c4a378e06d03f51e2526d\\snapshot",
+      "manifest_sha256": "76bebe2f5abbc806a4d6b970b26c1da13ee595fe297a5b3bb452195315dfa13f",
+      "rehashed_files": 1775,
+      "runs": 93,
+      "same_seed_cross_slot_records_equal": null,
+      "indexed_case_units": {
+        "I01-grow-fork-32": 8425,
+        "I02-grow-fork-128": 39998,
+        "I03-grow-fork-512": 217351,
+        "I04-hot-ambient-32": 27689,
+        "I05-hot-ambient-512": 110334,
+        "I06-collisions-16": 6921,
+        "I07-collisions-64": 157839,
+        "I08-bulk-32": 10406,
+        "I09-bulk-128": 36282,
+        "I10-bulk-512": 193471,
+        "I11-published-owner-release": 5592,
+        "I12-atomic-snapshot": 22579,
+        "I13-atomic-fork": 25358,
+        "I14-atomic-keys": 19938,
+        "I15-atomic-items": 21378,
+        "I16-atomic-bulk": 23841
+      },
+      "growth_comparisons": [
+        {
+          "comparison_denominator": 1889,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 9460,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 15112,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 1889,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 6136,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 30665,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 49088,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 6136,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 406,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 1558,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 3248,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 406,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 882,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 3378,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 7056,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 882,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 9460,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 56051,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 75680,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 9460,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 30665,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 173444,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 245320,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 30665,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 1558,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 6678,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 12464,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 1558,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 3378,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 15922,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 27024,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 3378,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 5473,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 10401,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 43784,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 5473,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 21130,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 35626,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 169040,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 21130,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 2688,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 10160,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 16128,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 2688,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 6412,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 22476,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 38472,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 6412,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 10160,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 49568,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 60960,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 10160,
+          "smaller_case": "I09-bulk-128"
+        },
+        {
+          "comparison_denominator": 22476,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 120652,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 134856,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 22476,
+          "smaller_case": "I09-bulk-128"
+        }
+      ],
+      "collision": {
+        "hash_calls": 5727,
+        "equality_calls": 121228,
+        "declared_dictionary_attempt_units": 821,
+        "terminal_collision_units": 709,
+        "terminal_collision_exercised": true,
+        "terminal_collision_required": true,
+        "key_protocol_comparisons_are_meter_units": false,
+        "closed_domain_only": true
+      }
+    },
+    {
+      "slot": "314",
+      "seed": "0",
+      "receipt_sha256": "c35143c7c68e72600c5f7cfe47a057ae11ea0c3b1b8cc81b3d0b2bbb78b5c948",
+      "snapshot": "D:\\pontius-snapshots\\indexed-prototype-2139a8f4a5a342228ced54d2c8db9717\\snapshot",
+      "manifest_sha256": "659552659d685255112e7871beece1d72a1ee5e5d1984faa2ca5dc65558f35bc",
+      "rehashed_files": 1780,
+      "runs": 93,
+      "same_seed_cross_slot_records_equal": true,
+      "indexed_case_units": {
+        "I01-grow-fork-32": 8338,
+        "I02-grow-fork-128": 40193,
+        "I03-grow-fork-512": 216825,
+        "I04-hot-ambient-32": 28079,
+        "I05-hot-ambient-512": 112225,
+        "I06-collisions-16": 6921,
+        "I07-collisions-64": 157839,
+        "I08-bulk-32": 10406,
+        "I09-bulk-128": 36282,
+        "I10-bulk-512": 193744,
+        "I11-published-owner-release": 5633,
+        "I12-atomic-snapshot": 22429,
+        "I13-atomic-fork": 25193,
+        "I14-atomic-keys": 19803,
+        "I15-atomic-items": 21228,
+        "I16-atomic-bulk": 23605
+      },
+      "growth_comparisons": [
+        {
+          "comparison_denominator": 1850,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 9629,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 14800,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 1850,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 6053,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 30864,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 48424,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 6053,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 406,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 1558,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 3248,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 406,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 882,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 3378,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 7056,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 882,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 9629,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 55699,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 77032,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 9629,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 30864,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 172878,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 246912,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 30864,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 1558,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 6678,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 12464,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 1558,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 3378,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 15922,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 27024,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 3378,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 5729,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 11553,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 45832,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 5729,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 21514,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 37418,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 172112,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 21514,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 2688,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 10160,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 16128,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 2688,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 6412,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 22476,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 38472,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 6412,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 10160,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 49616,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 60960,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 10160,
+          "smaller_case": "I09-bulk-128"
+        },
+        {
+          "comparison_denominator": 22476,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 120844,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 134856,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 22476,
+          "smaller_case": "I09-bulk-128"
+        }
+      ],
+      "collision": {
+        "hash_calls": 5727,
+        "equality_calls": 121228,
+        "declared_dictionary_attempt_units": 821,
+        "terminal_collision_units": 709,
+        "terminal_collision_exercised": true,
+        "terminal_collision_required": true,
+        "key_protocol_comparisons_are_meter_units": false,
+        "closed_domain_only": true
+      }
+    },
+    {
+      "slot": "314",
+      "seed": "1",
+      "receipt_sha256": "ab0b93a8e1d7961613eceb6ce98ee03fe795c92e90f174007b174fbe9a763f63",
+      "snapshot": "D:\\pontius-snapshots\\indexed-prototype-a007a648e46e452cbf5a84d73bbb0906\\snapshot",
+      "manifest_sha256": "dfe76fedea8b619a84e6178444849a8327ddf76e97c024f3035d8af481dc2b3b",
+      "rehashed_files": 1780,
+      "runs": 93,
+      "same_seed_cross_slot_records_equal": true,
+      "indexed_case_units": {
+        "I01-grow-fork-32": 8317,
+        "I02-grow-fork-128": 41137,
+        "I03-grow-fork-512": 217378,
+        "I04-hot-ambient-32": 27497,
+        "I05-hot-ambient-512": 109567,
+        "I06-collisions-16": 6921,
+        "I07-collisions-64": 157839,
+        "I08-bulk-32": 10406,
+        "I09-bulk-128": 38401,
+        "I10-bulk-512": 193744,
+        "I11-published-owner-release": 5640,
+        "I12-atomic-snapshot": 22447,
+        "I13-atomic-fork": 25216,
+        "I14-atomic-keys": 19816,
+        "I15-atomic-items": 21246,
+        "I16-atomic-bulk": 23679
+      },
+      "growth_comparisons": [
+        {
+          "comparison_denominator": 1845,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 10021,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 14760,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 1845,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 6036,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 31642,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 48288,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 6036,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 406,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 1575,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 3248,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 406,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 882,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 3463,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 7056,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 882,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 10021,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 55985,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 80168,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 10021,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 31642,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 173430,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 253136,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 31642,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 1575,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 6678,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 12600,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 1575,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 3463,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 15922,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 27704,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 3463,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 5345,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 10145,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 42760,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 5345,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 20938,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 34922,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 167504,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 20938,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 2688,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 10524,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 16128,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 2688,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 6412,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 23852,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 38472,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 6412,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 10524,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 49616,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 63144,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 10524,
+          "smaller_case": "I09-bulk-128"
+        },
+        {
+          "comparison_denominator": 23852,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 120844,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 143112,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 23852,
+          "smaller_case": "I09-bulk-128"
+        }
+      ],
+      "collision": {
+        "hash_calls": 5727,
+        "equality_calls": 121228,
+        "declared_dictionary_attempt_units": 821,
+        "terminal_collision_units": 709,
+        "terminal_collision_exercised": true,
+        "terminal_collision_required": true,
+        "key_protocol_comparisons_are_meter_units": false,
+        "closed_domain_only": true
+      }
+    },
+    {
+      "slot": "314",
+      "seed": "17",
+      "receipt_sha256": "cbc8b500b621f30316c64eee25fdefabee554ba2359b6f70f25af63c48c0f25a",
+      "snapshot": "D:\\pontius-snapshots\\indexed-prototype-8210da8ab5334b8b9a1d0a6732111d3e\\snapshot",
+      "manifest_sha256": "287c25f0d844f87815087265276892d5737c9de57c8218260d786b73e25606ca",
+      "rehashed_files": 1780,
+      "runs": 93,
+      "same_seed_cross_slot_records_equal": true,
+      "indexed_case_units": {
+        "I01-grow-fork-32": 8425,
+        "I02-grow-fork-128": 39998,
+        "I03-grow-fork-512": 217351,
+        "I04-hot-ambient-32": 27689,
+        "I05-hot-ambient-512": 110334,
+        "I06-collisions-16": 6921,
+        "I07-collisions-64": 157839,
+        "I08-bulk-32": 10406,
+        "I09-bulk-128": 36282,
+        "I10-bulk-512": 193471,
+        "I11-published-owner-release": 5592,
+        "I12-atomic-snapshot": 22579,
+        "I13-atomic-fork": 25358,
+        "I14-atomic-keys": 19938,
+        "I15-atomic-items": 21378,
+        "I16-atomic-bulk": 23841
+      },
+      "growth_comparisons": [
+        {
+          "comparison_denominator": 1889,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 9460,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 15112,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 1889,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 6136,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 30665,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 49088,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 6136,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 406,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 1558,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 3248,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 406,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 882,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 3378,
+          "larger_case": "I02-grow-fork-128",
+          "maximum_factor": 8,
+          "maximum_larger": 7056,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 882,
+          "smaller_case": "I01-grow-fork-32"
+        },
+        {
+          "comparison_denominator": 9460,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 56051,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 75680,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 9460,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 30665,
+          "complete": true,
+          "family": "grow-mutation-publication",
+          "larger": 173444,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 245320,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 30665,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 1558,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 6678,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 12464,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 1558,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 3378,
+          "complete": true,
+          "family": "grow-first-order",
+          "larger": 15922,
+          "larger_case": "I03-grow-fork-512",
+          "maximum_factor": 8,
+          "maximum_larger": 27024,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "terminal_keys",
+            "terminal_items"
+          ],
+          "smaller": 3378,
+          "smaller_case": "I02-grow-fork-128"
+        },
+        {
+          "comparison_denominator": 5473,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 10401,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 43784,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 5473,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 21130,
+          "complete": true,
+          "family": "hot-fixed-cycles",
+          "larger": 35626,
+          "larger_case": "I05-hot-ambient-512",
+          "maximum_factor": 8,
+          "maximum_larger": 169040,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "mutation",
+            "publication"
+          ],
+          "smaller": 21130,
+          "smaller_case": "I04-hot-ambient-32"
+        },
+        {
+          "comparison_denominator": 2688,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 10160,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 16128,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 2688,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 6412,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 22476,
+          "larger_case": "I09-bulk-128",
+          "maximum_factor": 6,
+          "maximum_larger": 38472,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 6412,
+          "smaller_case": "I08-bulk-32"
+        },
+        {
+          "comparison_denominator": 10160,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 49568,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 60960,
+          "metric": "physical_events",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 10160,
+          "smaller_case": "I09-bulk-128"
+        },
+        {
+          "comparison_denominator": 22476,
+          "complete": true,
+          "family": "bulk-build-plus-order",
+          "larger": 120652,
+          "larger_case": "I10-bulk-512",
+          "maximum_factor": 6,
+          "maximum_larger": 134856,
+          "metric": "units",
+          "passed": true,
+          "phases": [
+            "bulk_build",
+            "bulk_first_keys",
+            "bulk_first_items"
+          ],
+          "smaller": 22476,
+          "smaller_case": "I09-bulk-128"
+        }
+      ],
+      "collision": {
+        "hash_calls": 5727,
+        "equality_calls": 121228,
+        "declared_dictionary_attempt_units": 821,
+        "terminal_collision_units": 709,
+        "terminal_collision_exercised": true,
+        "terminal_collision_required": true,
+        "key_protocol_comparisons_are_meter_units": false,
+        "closed_domain_only": true
+      }
+    }
+  ],
+  "completed_runs": 558,
+  "preserved_15_paths": true,
+  "payload_executed_by_verifier": false,
+  "limits": "Pure-store finite tests, not production fitness, wall-time speed or final acceptance."
+}

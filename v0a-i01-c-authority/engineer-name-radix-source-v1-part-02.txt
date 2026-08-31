@@ -1,0 +1,153 @@
+oup_list_allocation")
+            group = []
+            meter.charge("radix_group_dictionary_writes")
+            meter.charge("radix_group_reference_copies", 2)
+            groups[slot] = group
+        meter.charge("radix_group_list_reference_copies")
+        group.append(record)
+    return groups
+
+
+def _radix_edit_records(meter, records, shift):
+    """Build private paths for a split; no immutable root is yet published."""
+    meter.charge("radix_record_size_reads")
+    if len(records) <= _LEAF_SIZE or shift >= _HASH_WIDTH:
+        if shift >= _HASH_WIDTH:
+            meter.charge("radix_terminal_collision_edit_operations")
+        meter.charge("radix_new_leaf_dictionary_allocation")
+        data = {}
+        for name, entry, _hashed in records:
+            meter.charge("radix_split_leaf_entry_visits")
+            meter.charge("radix_split_leaf_dictionary_writes")
+            meter.charge("radix_split_leaf_reference_copies", 2)
+            data[name] = entry
+        return _LeafEdit(meter, data)
+    groups = _radix_group(meter, records, shift)
+    result = _BranchEdit(meter, None)
+    for slot, group in groups.items():
+        meter.charge("radix_group_child_visits")
+        child = _radix_edit_records(meter, group, shift + _RADIX_BITS)
+        meter.charge("radix_editor_dictionary_writes")
+        meter.charge("radix_editor_child_reference_copies", 2)
+        result.changes[slot] = child
+    return result
+
+
+def _radix_edit(meter, node, name, replacement, hashed, shift=0):
+    """All mutations belong to an unpublished editor, never to the base root."""
+    meter.charge("radix_edit_node_visits")
+    if node is None:
+        if replacement is _DELETED:
+            return None
+        meter.charge("radix_new_leaf_dictionary_allocation")
+        node = _LeafEdit(meter, {})
+    elif isinstance(node, _RadixLeaf):
+        node = _radix_copy_leaf(meter, node)
+    if isinstance(node, _LeafEdit):
+        if shift >= _HASH_WIDTH:
+            meter.charge("radix_terminal_collision_edit_operations")
+        meter.charge("radix_leaf_edit_dictionary_attempts")
+        present = name in node.data
+        if replacement is _DELETED:
+            if present:
+                meter.charge("radix_leaf_edit_dictionary_deletes")
+                del node.data[name]
+        else:
+            meter.charge("radix_leaf_edit_dictionary_writes")
+            meter.charge("radix_leaf_edit_reference_copies", 1 + int(not present))
+            node.data[name] = replacement
+        meter.charge("radix_leaf_size_reads")
+        if not node.data:
+            return None
+        if len(node.data) > _LEAF_SIZE and shift < _HASH_WIDTH:
+            return _radix_edit_records(meter, _radix_records(meter, node.data), shift)
+        return node
+    if isinstance(node, _RadixBranch):
+        node = _BranchEdit(meter, node)
+    slot = _radix_slot(meter, hashed, shift)
+    meter.charge("radix_editor_dictionary_attempts")
+    old = node.changes.get(slot, MISSING)
+    if old is MISSING:
+        old = _radix_child(meter, node.base, slot)
+        fresh_slot = True
+    else:
+        fresh_slot = False
+    child = _radix_edit(meter, old, name, replacement, hashed, shift + _RADIX_BITS)
+    meter.charge("radix_editor_dictionary_writes")
+    meter.charge("radix_editor_child_reference_copies", 1 + int(fresh_slot))
+    node.changes[slot] = child
+    return node
+
+
+def _radix_freeze(meter, node):
+    """Freeze owned paths only; unchanged immutable siblings remain shared."""
+    meter.charge("radix_freeze_node_visits")
+    if node is None or isinstance(node, (_RadixLeaf, _RadixBranch)):
+        return node
+    if isinstance(node, _LeafEdit):
+        return _radix_seal_leaf(meter, node.data)
+    meter.charge("radix_child_list_allocation")
+    children, bitmap, pending_count = [], 0, 0
+    for slot in range(16):
+        meter.charge("radix_freeze_slot_visits")
+        meter.charge("radix_editor_dictionary_attempts")
+        child = node.changes.get(slot, MISSING)
+        if child is MISSING:
+            child = _radix_child(meter, node.base, slot)
+        else:
+            child = _radix_freeze(meter, child)
+        if child is not None:
+            bitmap |= 1 << slot
+            pending_count += _radix_pending_count(meter, child)
+            meter.charge("radix_child_list_reference_copies")
+            children.append(child)
+    if not children:
+        return None
+    meter.charge("radix_child_tuple_allocation")
+    meter.charge("radix_child_tuple_reference_copies", len(children))
+    frozen = tuple(children)
+    meter.charge("radix_branch_allocation")
+    meter.charge("radix_branch_field_reference_copies", 3)
+    return _RadixBranch(bitmap, frozen, pending_count)
+
+
+def _radix_bulk(meter, records, shift=0):
+    """Complete unique inputs build once; no predecessor lookup or immutable set."""
+    meter.charge("bulk_record_size_reads")
+    if not records:
+        return None
+    if len(records) <= _LEAF_SIZE or shift >= _HASH_WIDTH:
+        if shift >= _HASH_WIDTH:
+            meter.charge("radix_terminal_collision_bulk_operations")
+        meter.charge("bulk_leaf_dictionary_allocation")
+        meter.charge("radix_pending_list_allocation")
+        data, pending = {}, []
+        for name, entry, _hashed in records:
+            meter.charge("bulk_leaf_entry_visits")
+            meter.charge("bulk_leaf_dictionary_writes")
+            meter.charge("bulk_leaf_reference_copies", 2)
+            data[name] = entry
+            meter.charge("radix_pending_certificate_reads")
+            if not entry.no_work:
+                meter.charge("radix_pending_list_reference_copies")
+                pending.append(name)
+        return _radix_leaf(meter, data, pending)
+    groups = _radix_group(meter, records, shift)
+    meter.charge("radix_child_list_allocation")
+    children, bitmap, pending_count = [], 0, 0
+    for slot in range(16):
+        meter.charge("bulk_slot_visits")
+        meter.charge("bulk_group_dictionary_attempts")
+        group = groups.get(slot)
+        if group is None:
+            continue
+        child = _radix_bulk(meter, group, shift + _RADIX_BITS)
+        bitmap |= 1 << slot
+        pending_count += _radix_pending_count(meter, child)
+        meter.charge("radix_child_list_reference_copies")
+        children.append(child)
+    meter.charge("radix_child_tuple_allocation")
+    meter.charge("radix_child_tuple_reference_copies", len(children))
+    frozen = tuple(children)
+    meter.charge("radix_branch_allocation")
+    meter.charge("radix_

@@ -1,0 +1,44 @@
+--- indexed-storage-extension-oracle-v1.py
++++ indexed-storage-extension-oracle-v2.py
+@@ -355,7 +355,7 @@
+         self.ordered(result, expected, prefix="joined", repeats=2)
+         return result, expected
+ 
+-    def collision_evidence(self):
++    def collision_evidence(self, *, require_terminal=False):
+         events = self.ledger.events
+         attempts = sum(event["counts"].get(category, 0)
+             for event in events for category in self.accounting["collision_attempt_categories"])
+@@ -367,11 +367,14 @@
+             "declared_dictionary_attempt_units": attempts,
+             "terminal_collision_units": terminal,
+             "terminal_collision_exercised": terminal > 0,
++            "terminal_collision_required": require_terminal,
+             "key_protocol_comparisons_are_meter_units": False,
+             "closed_domain_only": True}
+         self.report["collision_evidence"] = evidence
+         if not (hashes > 0 and equalities > 0 and attempts > 0):
+             raise UnmetStructuralPrecondition("actual closed-domain collision work not observed")
++        if require_terminal and terminal <= 0:
++            raise UnmetStructuralPrecondition("intended hash-width terminal collision path not observed")
+ 
+ 
+ def growing_case(h, case):
+@@ -475,7 +478,7 @@
+     h.join([snapshot, bulk], [snapshot_ref, bulk_ref])
+     for index in (0, case["n"] // 2 - 1, case["n"] - 1):
+         h.ordered(parents[index][0], parents[index][1], prefix="historical", repeats=1)
+-    h.collision_evidence()
++    h.collision_evidence(require_terminal=case["id"] == "I07-collisions-64")
+ 
+ 
+ def bulk_reference(h, n, round_number):
+@@ -865,7 +868,7 @@
+         failures.append({"category": "finite-fitness-comparison",
+                          "message": "one or more preregistered growth inequalities failed"})
+     summary = {
+-        "indexed_storage_summary": "stdlib-dict-legacy-order-indexed-extension-v1",
++        "indexed_storage_summary": "stdlib-dict-legacy-order-indexed-extension-v2",
+         "all_completed": semantic_completed and fitness_passed,
+         "failures": failures, "planned_cases": 16, "planned_runs": 31,
+         "completed_runs": len(completed), "case_pack_sha256": CASE_SHA256,

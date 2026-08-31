@@ -6,30 +6,31 @@ and its manifest SHA-256; no successor pair has been frozen yet.
 
 ## Latest checkpoint: two separate repairs, no integration
 
-The replacement owned-cursor prototype passed all 372 checks: 204 unchanged
-immutable-storage runs and 168 new cursor runs, across actual Python 3.11.15
-and 3.14.6 with seeds 0, 1 and 17. [Coordinator verification](coordinator-cursor-verification-v1.json)
-rehashes all six snapshots, the input artifacts and same-seed public records.
-This verifies storage semantics, retention and whole-operation retry staging;
-it does not establish production fit. The retained v22 adapter passed static
-inspection and then ran the original design53 on actual Python 3.11.15 in a
-fresh snapshot: **51 passed, two failed, zero errors**. Its bounded chain32
-case passes; helper1050 and generator70 reject at the unchanged work cap.
-[Verified result](coordinator-v22-focused-red-verification-v1.json) binds all
-1766 snapshot/payload files and the raw streams. [Assertion-scope correction](coordinator-v22-first-floor-disposition-v2.md)
-distinguishes the helper test's depth-or-budget text requirement from the
-generator test's exact depth64 requirement. Both exact-case diagnostics are
-now complete and [independently verified](coordinator-v22-depth-budget-verification-v1.json):
-helper1050 exhausts its budget while registering helper_540; generator70
-exhausts it while creating g48 during receiver preflight. No deep helper or
-deferred execution is active. The first cost is repeated growing-prefix
-publication/compaction; the second is full name-table rebuilding and ordering.
-[Disposition](coordinator-v22-depth-budget-disposition-v1.md) preserves the
-failed v1 probe and successful v2 diagnostic evidence without issuing a
-product pass. An indexed-store/bulk-builder experiment is being specified;
-no replacement source is authorized yet. Matrix, dev, public24 and corpus
-expansion remain held. W remains v20; v22 exists only as retained T bytes and
-isolated snapshots. All five caps and original assertions are unchanged.
+The isolated radix-store/bulk-builder replacement passed **558 checks**:
+34 unchanged storage runs, 28 cursor-successor runs and 31 indexed-extension
+runs per child, on actual Python3.11.15 and3.14.6 with seeds0/1/17. The
+[coordinator verification](coordinator-indexed-verification-allsix01.json)
+rehashed10665 files including manifests; same-seed complete records match
+across interpreters. All14 preregistered P/C growth comparisons pass per child,
+as do collision activation, direct obsolete-value release and15 injected
+indexed-operation retries per child. The old cursor retention trigger was
+explicitly made representation-neutral before results; do not call all62
+predecessor executable checks byte-identical.
+
+[Source/accounting inspection](coordinator-radix-prototype-inspection-v1.json)
+and [independent oracle inspection](coordinator-indexed-oracle-inspection-v1.json)
+preceded dispatch. This establishes finite pure-store behavior, **not production
+fitness or wall-time speed**. The adapter must preserve full authority transfer,
+cell writes and real input-preparation costs, then pass the original analyzer
+gates. No radix implementation is installed in W or main.
+
+The previous v22 cursor adapter remains RED:51/53 original design tests pass,
+with helper1050 and generator70 exhausting the unchanged work budget. Both
+[exact-case diagnostics](coordinator-v22-depth-budget-verification-v1.json)
+locate failure in preparation, not deep execution. This is why the replacement
+uses touched indexed paths and a direct unique-entry bulk builder. The original
+caps and assertions remain unchanged; ordinary generation is still unverified
+on the replacement. W remains rejected v20.
 
 The added composition checks found an independent semantic defect on retained
 v19. Both original class cases fail on both interpreters: an unsafe case is
@@ -63,14 +64,27 @@ C11 enters recursive review with the stale captured value and emits no row.
 [Independent verification](coordinator-class-extension-red-verification-v1.json)
 rehashes both full snapshots and compares all complete case records.
 
-The [lexical ownership API](engineer-lexical-cell-ownership-api-v1.md) and
-[class-frame plan](engineer-class-frame-api-plan-v1.md) are engineering inputs,
-not source approval. They separate capture ownership from current cell contents,
-route class exits through the existing successor model, and pair recursive
-review with the recorded callable/call-state snapshot. The uncovered class
-fallback/shadow and direct-declaration boundaries are being classified before
-implementation; no new clean-support promise or weakened expectation is made.
-No semantic source candidate has been written yet.
+The [eight Name-boundary cases](tests-checks/class-name-boundary-cases-v1.json)
+also completed on retained v19 under both actual interpreters. All harmless
+Models pass; four semantic requirements fail identically: two safe cases are
+refused, an unsafe direct class nonlocal write is incorrectly approved, and
+the safe module-write case misses its required conservative refusal.
+[Independent verification](coordinator-class-name-boundary-red-verification-v1.json)
+retains the exact per-case results and3541 rehashed files.
+
+A semantic-only v23 candidate is being authored under the
+[coordinator disposition](coordinator-class-semantic-v23-disposition-v1.md).
+It addresses lexical ownership/current-cell separation, normal and exceptional
+class exits, Name routing, and historical callable/call-state pairing. The
+class-only eager comprehension boundary is within that scope; unproved deferred
+class-generator consumption must explicitly refuse. Six additional independent
+[comprehension witnesses](tests-checks/class-comprehension-boundary-spec-v1.md)
+are preregistered but unexecuted. No semantic candidate payload has run.
+
+The storage and semantic edits remain separate until independently inspected
+and checked. Original10 composition, class12, Name8 and comprehension6 checks
+will precede focused analyzer/corpus gates. Only a coherent verified candidate
+can be frozen for two new mutually blind cold reviewers and later integration.
 
 The candidate is still not acceptable. Accepted A/B and other C paths remain
 preserved; the class defect and ordinary-generation budget failure are both

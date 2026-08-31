@@ -1,0 +1,175 @@
+{
+  "schema": "pontius-class-comprehension-static-proof-v1",
+  "case_pack_sha256": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+  "spec_sha256": "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+  "planned_cases": 6,
+  "planned_projections": 6,
+  "classifications": {
+    "clean": 2,
+    "refuse": 3,
+    "permitted-refusal": 1
+  },
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "flags": [
+    "-I",
+    "-S",
+    "-B",
+    "-P"
+  ],
+  "static_only": true,
+  "candidate_inspected": false,
+  "payload_executed": false,
+  "source_or_model_imported": false,
+  "models_derived_by_sink_replacement": false,
+  "cases": [
+    {
+      "id": "Q01-eager-cell-unsafe",
+      "classification": "refuse",
+      "source_sha256": "79d0d4685adbd7adad12a681c00cacc66aaadcfde3f2f8f288009d41ab99fdc9",
+      "oracle_sha256": "f042d09b1884d64e70fcb786fcf6abbed4ea8aba17ac718c6ee008dcee12b4df",
+      "test_body_ast_correspondence": true,
+      "harmless_sink_ast_checked": true,
+      "scope_and_operation_order_ast_checked": true,
+      "declared_trace_and_unreachable_match_static_case_logic": true,
+      "expected_trace": [
+        "shadow",
+        "change",
+        "eager-start",
+        "read",
+        "write",
+        "eager-end"
+      ],
+      "runtime_observed": false
+    },
+    {
+      "id": "Q02-eager-cell-safe",
+      "classification": "clean",
+      "source_sha256": "c4cc819e38ea88ab82f04542f30211851f4be239e30c85877ea74878c8813ed9",
+      "oracle_sha256": "ae5cbee99ee00f449d279b34cf3d1d67dfc9551c5e5b5ca0b3742d0509f6ba44",
+      "test_body_ast_correspondence": true,
+      "harmless_sink_ast_checked": true,
+      "scope_and_operation_order_ast_checked": true,
+      "declared_trace_and_unreachable_match_static_case_logic": true,
+      "expected_trace": [
+        "shadow",
+        "change",
+        "eager-start",
+        "read",
+        "eager-end",
+        "sink"
+      ],
+      "runtime_observed": false
+    },
+    {
+      "id": "Q03-class-first-iterable-unsafe",
+      "classification": "refuse",
+      "source_sha256": "fe02b21c9c7c9c9c834c7403f0b5641023423d5943a5198362ea6b038e1355fb",
+      "oracle_sha256": "f29f25f308429f80799ab98220537885ee213f0aaa7c3388abde8865dcfa8f4f",
+      "test_body_ast_correspondence": true,
+      "harmless_sink_ast_checked": true,
+      "scope_and_operation_order_ast_checked": true,
+      "declared_trace_and_unreachable_match_static_case_logic": true,
+      "expected_trace": [
+        "shadow",
+        "eager-start",
+        "read",
+        "write",
+        "eager-end"
+      ],
+      "runtime_observed": false
+    },
+    {
+      "id": "Q04-class-first-iterable-safe",
+      "classification": "clean",
+      "source_sha256": "c1c47d78d4bbc79716f100ddbc1bbfc5c2b1af44e31307f448fab7ca58621177",
+      "oracle_sha256": "d32c55265fc152ecd355cc14f43bb50c83863dd7536450adbf103e97e99b56e2",
+      "test_body_ast_correspondence": true,
+      "harmless_sink_ast_checked": true,
+      "scope_and_operation_order_ast_checked": true,
+      "declared_trace_and_unreachable_match_static_case_logic": true,
+      "expected_trace": [
+        "shadow",
+        "eager-start",
+        "eager-end",
+        "sink"
+      ],
+      "runtime_observed": false
+    },
+    {
+      "id": "Q05-deferred-cell-unsafe",
+      "classification": "refuse",
+      "source_sha256": "6dea9ab8e1ec786bd1599cd27e22e99fa9a338138df1bcb8172fe4b0eecaab5a",
+      "oracle_sha256": "1e6aad36112495440583065c0e707b0592c6521fb4dd013f76c7fa2c56543ade",
+      "test_body_ast_correspondence": true,
+      "harmless_sink_ast_checked": true,
+      "scope_and_operation_order_ast_checked": true,
+      "declared_trace_and_unreachable_match_static_case_logic": true,
+      "expected_trace": [
+        "shadow",
+        "header",
+        "generator-created",
+        "change",
+        "consume",
+        "read",
+        "write",
+        "consume-end"
+      ],
+      "runtime_observed": false
+    },
+    {
+      "id": "Q06-deferred-cell-safe",
+      "classification": "permitted-refusal",
+      "source_sha256": "8724f032b984882b04c593d295a1c00cc72e11f64be2923e0b5dbbaf0fcce38f",
+      "oracle_sha256": "d5320fe378acd67222ae43189fffeed828b8d3eb88800651fbcf6c9e94924b02",
+      "test_body_ast_correspondence": true,
+      "harmless_sink_ast_checked": true,
+      "scope_and_operation_order_ast_checked": true,
+      "declared_trace_and_unreachable_match_static_case_logic": true,
+      "expected_trace": [
+        "shadow",
+        "header",
+        "generator-created",
+        "change",
+        "consume",
+        "read",
+        "consume-end",
+        "sink"
+      ],
+      "runtime_observed": false
+    }
+  ],
+  "pairs": [
+    {
+      "case_ids": [
+        "Q01-eager-cell-unsafe",
+        "Q02-eager-cell-safe"
+      ],
+      "only_boolean_literals_differ": true,
+      "changed_boolean_literals": 3
+    },
+    {
+      "case_ids": [
+        "Q03-class-first-iterable-unsafe",
+        "Q04-class-first-iterable-safe"
+      ],
+      "only_boolean_literals_differ": true,
+      "changed_boolean_literals": 2
+    },
+    {
+      "case_ids": [
+        "Q05-deferred-cell-unsafe",
+        "Q06-deferred-cell-safe"
+      ],
+      "only_boolean_literals_differ": true,
+      "changed_boolean_literals": 4
+    }
+  ],
+  "limit": "AST correspondence and declared event-order checks only; actual Model/analyzer outcomes remain unexecuted",
+  "recipe_sha256": "1c74c94a79b93bd0def0e9ecef15a880031d04af3716b709c17d528edd2de446"
+}

@@ -1,0 +1,154 @@
+branch_field_reference_copies", 3)
+    return _RadixBranch(bitmap, frozen, pending_count)
+
+
+def _radix_names(meter, root, pending_only=False):
+    """Enumerate effective names; history contains no value-bearing roots."""
+    meter.charge("radix_walk_node_visits")
+    if root is None:
+        return
+    if pending_only and not _radix_pending_count(meter, root):
+        return
+    if isinstance(root, _RadixLeaf):
+        names = root.pending if pending_only else root.data
+        for name in names:
+            meter.charge("radix_walk_name_visits")
+            yield name
+    else:
+        for child in root.children:
+            meter.charge("radix_walk_child_reference_visits")
+            yield from _radix_names(meter, child, pending_only)
+
+
+class _Order:
+    __slots__ = ("kind", "parents", "name", "cache")
+
+    def __init__(self, kind, parents=(), name=None, cache=None):
+        self.kind, self.parents, self.name, self.cache = kind, parents, name, cache
+
+
+def _order(meter, kind, parents=(), name=None, cache=None):
+    meter.charge("order_allocation")
+    meter.charge("order_field_reference_copies", 4)
+    if parents:
+        meter.charge("order_parent_tuple_allocation")
+        meter.charge("order_parent_reference_copies", len(parents))
+    return _Order(kind, parents, name, cache)
+
+
+def _known_order(meter, order, staged):
+    meter.charge("order_cache_reads")
+    if order.cache is not None:
+        return order.cache
+    meter.charge("order_staging_lookup")
+    return staged[order]
+
+
+def _seal_order_table(meter, table):
+    meter.charge("order_proxy_allocation")
+    meter.charge("order_proxy_reference_copies")
+    return MappingProxyType(table)
+
+
+def _realize_order(meter, root):
+    """Build name-only order memos; publish none inside this preparation."""
+    meter.charge("order_cache_reads")
+    if root.cache is not None:
+        return root.cache, ()
+    meter.charge("order_temporary_allocations", 2)
+    staged = {}
+    stack = [("visit", root, None)]
+    meter.charge("order_stack_record_allocations")
+    meter.charge("order_stack_reference_copies", 4)
+    while stack:
+        meter.charge("order_stack_pops")
+        action, order, detail = stack.pop()
+        meter.charge("order_recipe_visits")
+        if action == "visit":
+            meter.charge("order_cache_reads")
+            if order.cache is not None:
+                continue
+            meter.charge("order_staging_lookup")
+            if order in staged:
+                continue
+            if order.kind in {"insert", "delete"}:
+                meter.charge("order_edit_list_allocation")
+                edits = []
+                base = order
+                while base.kind in {"insert", "delete"}:
+                    meter.charge("order_cache_reads")
+                    if base.cache is not None:
+                        break
+                    meter.charge("order_staging_lookup")
+                    if base in staged:
+                        break
+                    meter.charge("order_edit_visits")
+                    meter.charge("order_edit_reference_copies")
+                    edits.append(base)
+                    meter.charge("order_parent_reads")
+                    base = base.parents[0]
+                meter.charge("order_stack_record_allocations", 3)
+                meter.charge("order_stack_reference_copies", 10)
+                stack.append(("edit", order, (base, edits)))
+                stack.append(("visit", base, None))
+            elif order.kind == "union":
+                meter.charge("order_stack_record_allocations")
+                meter.charge("order_stack_reference_copies", 4)
+                stack.append(("union", order, None))
+                for parent in reversed(order.parents):
+                    meter.charge("order_parent_visits")
+                    meter.charge("order_stack_record_allocations")
+                    meter.charge("order_stack_reference_copies", 4)
+                    stack.append(("visit", parent, None))
+            elif order.kind == "empty":
+                meter.charge("order_dictionary_allocation")
+                table = {}
+                memo = _seal_order_table(meter, table)
+                meter.charge("order_staging_write")
+                meter.charge("order_staging_reference_copies", 2)
+                staged[order] = memo
+            else:
+                raise AssertionError("unknown order recipe")
+            continue
+        meter.charge("order_dictionary_allocation")
+        table = {}
+        if action == "edit":
+            base, edits = detail
+            for name in _known_order(meter, base, staged):
+                meter.charge("order_dictionary_key_visits")
+                meter.charge("order_dictionary_writes")
+                meter.charge("order_dictionary_reference_copies", 2)
+                table[name] = None
+            for edit in reversed(edits):
+                meter.charge("order_edit_application_visits")
+                if edit.kind == "insert":
+                    meter.charge("order_dictionary_writes")
+                    meter.charge("order_dictionary_reference_copies", 2)
+                    table[edit.name] = None
+                else:
+                    meter.charge("order_dictionary_deletes")
+                    del table[edit.name]
+        else:
+            meter.charge("order_union_view_list_allocation")
+            views = []
+            input_size = 0
+            for parent in order.parents:
+                meter.charge("order_parent_visits")
+                supplied = _known_order(meter, parent, staged)
+                meter.charge("order_union_input_size_reads")
+                input_size += len(supplied)
+                meter.charge("order_keys_view_allocation")
+                view = supplied.keys()
+                meter.charge("order_union_view_reference_copies")
+                views.append(view)
+            meter.charge("order_union_argument_tuple_allocation")
+            meter.charge("order_union_argument_reference_copies", len(views))
+            meter.charge("order_union_set_allocations", 2)
+            meter.charge("order_union_input_visits", input_size)
+            meter.charge("order_union_input_attempts", input_size)
+            union = set().union(*views)
+            meter.charge("order_union_unique_references", len(union))
+            for name in union:
+                meter.charge("order_union_output_visits")
+                meter.charge("order_dictionary_writes")
+                meter.charge("order_dictiona

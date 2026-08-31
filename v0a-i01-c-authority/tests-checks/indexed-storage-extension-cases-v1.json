@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "scope": "Independent indexed-name storage extension; specification/data only, no payload authorization",
+  "decision_sha256": "8ac28ed870ecd2fcf5c516aa034357f7d634b14181501960fc6bc44f76b384b6",
+  "api_plan_sha256": "6e37ce7ce7d768c157bd00490f4d0bc8f92753385bfa375b73bab610d2e87150",
+  "source_basis_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+  "planned_cases": 16,
+  "planned_runs": 31,
+  "maximum_meter_limit": 262144,
+  "runtimes": [
+    "3.11.15",
+    "3.14.6"
+  ],
+  "hash_seeds": [
+    0,
+    1,
+    17
+  ],
+  "fault_offsets": [
+    "first",
+    "middle",
+    "last"
+  ],
+  "ordinary_name_format": "u + four-digit zero-padded decimal index",
+  "collision_name_format": "c + four-digit zero-padded decimal index; every equal-text comparand uses CollidingName",
+  "collision_contract": "Closed ordinary-comparison str-subclass key domain, hash0, no equal-text plain-str comparands; finite pool equality/hash consistency checked outside measurements; no hasher hook",
+  "growth_criteria": {
+    "ordinary_adjacent_n_factor": 4,
+    "grow_mutation_publication_copy_mass_max_factor": 8,
+    "grow_mutation_publication_charged_max_factor": 8,
+    "grow_first_terminal_copy_mass_max_factor": 8,
+    "grow_first_terminal_charged_max_factor": 8,
+    "hot_fixed_cycle_ambient_factor": 16,
+    "hot_copy_mass_and_charged_max_factor": 8,
+    "bulk_adjacent_n_factor": 4,
+    "bulk_build_plus_first_order_copy_mass_and_charged_max_factor": 6,
+    "comparison": "Larger metric <= factor * max(smaller metric, smaller N for copy mass; 1 for charged units)",
+    "collision_growth": "No favorable growth threshold; record actual costs and original-budget completion honestly"
+  },
+  "neutral_cursor_successor": {
+    "preserved_casepack_sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61",
+    "old_oracle_sha256": "15a4741e2532a755fd45f01d4d999dd5d293846b8ae4e9d4e7abedf84c0a8d1e",
+    "case_id": "cursor-history-retention-after-compaction",
+    "old_trigger": "compaction_entry_visits > 0",
+    "replacement_trigger": "24 successful changed publications, latest value identity and retained-old positive owner; release old owner and require obsolete weakref gone",
+    "semantic_operations": "Preserve original24overwrite/publication schedule and weakref assertions; old artifacts/results immutable"
+  },
+  "cases": [
+    {
+      "id": "I01-grow-fork-32",
+      "family": "growing_unique_forks",
+      "n": 32,
+      "runs": 1
+    },
+    {
+      "id": "I02-grow-fork-128",
+      "family": "growing_unique_forks",
+      "n": 128,
+      "runs": 1
+    },
+    {
+      "id": "I03-grow-fork-512",
+      "family": "growing_unique_forks",
+      "n": 512,
+      "runs": 1
+    },
+    {
+      "id": "I04-hot-ambient-32",
+      "family": "hot_updates",
+      "n": 32,
+      "cycles": 32,
+      "runs": 1
+    },
+    {
+      "id": "I05-hot-ambient-512",
+      "family": "hot_updates",
+      "n": 512,
+      "cycles": 32,
+      "runs": 1
+    },
+    {
+      "id": "I06-collisions-16",
+      "family": "closed_collision_domain",
+      "n": 16,
+      "hot_cycles": 3,
+      "runs": 1
+    },
+    {
+      "id": "I07-collisions-64",
+      "family": "closed_collision_domain",
+      "n": 64,
+      "hot_cycles": 3,
+      "runs": 1
+    },
+    {
+      "id": "I08-bulk-32",
+      "family": "unique_bulk_rebuilds",
+      "n": 32,
+      "rebuilds": 4,
+      "runs": 1
+    },
+    {
+      "id": "I09-bulk-128",
+      "family": "unique_bulk_rebuilds",
+      "n": 128,
+      "rebuilds": 4,
+      "runs": 1
+    },
+    {
+      "id": "I10-bulk-512",
+      "family": "unique_bulk_rebuilds",
+      "n": 512,
+      "rebuilds": 4,
+      "runs": 1
+    },
+    {
+      "id": "I11-published-owner-release",
+      "family": "direct_retention",
+      "ambient": 64,
+      "weak_victims": 2,
+      "changed_publications_after_victims": 1,
+      "runs": 1
+    },
+    {
+      "id": "I12-atomic-snapshot",
+      "family": "atomic",
+      "target": "snapshot",
+      "ordinary_names": 64,
+      "collision_names": 16,
+      "runs": 4
+    },
+    {
+      "id": "I13-atomic-fork",
+      "family": "atomic",
+      "target": "fork",
+      "ordinary_names": 64,
+      "collision_names": 16,
+      "runs": 4
+    },
+    {
+      "id": "I14-atomic-keys",
+      "family": "atomic",
+      "target": "keys",
+      "ordinary_names": 64,
+      "collision_names": 16,
+      "runs": 4
+    },
+    {
+      "id": "I15-atomic-items",
+      "family": "atomic",
+      "target": "ordered_items",
+      "ordinary_names": 64,
+      "collision_names": 16,
+      "runs": 4
+    },
+    {
+      "id": "I16-atomic-bulk",
+      "family": "atomic",
+      "target": "from_unique_entries",
+      "ordinary_names": 64,
+      "collision_names": 16,
+      "runs": 4
+    }
+  ]
+}

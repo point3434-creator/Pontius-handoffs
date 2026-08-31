@@ -1,0 +1,218 @@
+{
+  "schema": "pontius-storage-composition-cases-v1",
+  "pack_name": "class-comprehension-boundary-v1",
+  "authoring_status": "Preregistered before any candidate/Model payload; sources and Models are static data. Runtime execution remains root-owned.",
+  "planned_cases": 6,
+  "planned_projections": 6,
+  "classifications": {
+    "clean": 2,
+    "refuse": 3,
+    "permitted-refusal": 1
+  },
+  "classification_rules": {
+    "clean": "No public unresolved blockers and exact required_argv.",
+    "refuse": "At least one explicit public unresolved blocker; absence of rows alone is insufficient.",
+    "permitted-refusal": "An explicit public blocker is permitted; otherwise exact required_argv is required."
+  },
+  "requirements": {
+    "class_name_addendum_path": "engineer-class-name-boundary-addendum-v2.md",
+    "class_name_addendum_sha256": "de7b5417b2cc899710af0a32332360f31546b6264d1cb58896104a362568e93f",
+    "class_frame_plan_sha256": "3d57a76a1224db8312fcb614b218c58084753172f1f75aeb10df722033d56536",
+    "ownership_api_sha256": "bf5cf20ac2174707e70eb73d73126a489d68b4c316467517aaf8b071a81b383b",
+    "frozen_source_basis": "engineer-generator-v22.py",
+    "frozen_source_basis_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+    "candidate_v23_inspected": false
+  },
+  "oracle_execution_contract": {
+    "namespace": "Fresh independent namespace/class for every Model projection.",
+    "entrypoint": "Model().test_static()",
+    "observation": "Observe _events and return value; catch final TypeError outside test_static. Never execute sensitive source or derive Model by replacing its sink.",
+    "allowed_expected_exception": "TypeError",
+    "runtimes": [
+      "3.11.15",
+      "3.14.6"
+    ],
+    "source_handling": "AST-only sensitive source; real derive_design_review input after root dispatch."
+  },
+  "cases": [
+    {
+      "id": "Q01-eager-cell-unsafe",
+      "schedule_id": "Q01",
+      "family": "eager-current-cell",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = False\n        def change(value):\n            nonlocal armed\n            armed = value\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        class Local:\n            armed = False\n            change(True)\n            observed = [read(armed) for unused in (0,)]\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = False\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        class Local:\n            armed = False\n            _events.append(\"shadow\")\n            change(True)\n            _events.append(\"eager-start\")\n            observed = [read(armed) for unused in (0,)]\n            _events.append(\"eager-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "shadow",
+          "change",
+          "eager-start",
+          "read",
+          "write",
+          "eager-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "Reached protected write after current enclosing-cell read requires an explicit blocker.",
+      "source_sha256": "79d0d4685adbd7adad12a681c00cacc66aaadcfde3f2f8f288009d41ab99fdc9",
+      "oracle_sha256": "f042d09b1884d64e70fcb786fcf6abbed4ea8aba17ac718c6ee008dcee12b4df"
+    },
+    {
+      "id": "Q02-eager-cell-safe",
+      "schedule_id": "Q02",
+      "family": "eager-current-cell",
+      "polarity": "safe",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        def change(value):\n            nonlocal armed\n            armed = value\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        class Local:\n            armed = True\n            change(False)\n            observed = [read(armed) for unused in (0,)]\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        class Local:\n            armed = True\n            _events.append(\"shadow\")\n            change(False)\n            _events.append(\"eager-start\")\n            observed = [read(armed) for unused in (0,)]\n            _events.append(\"eager-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "shadow",
+          "change",
+          "eager-start",
+          "read",
+          "eager-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "Finite eager comprehension and literal local-helper call; result is not consumed. The false effect branch stays dormant and the fixed sink remains lawful.",
+      "source_sha256": "c4cc819e38ea88ab82f04542f30211851f4be239e30c85877ea74878c8813ed9",
+      "oracle_sha256": "ae5cbee99ee00f449d279b34cf3d1d67dfc9551c5e5b5ca0b3742d0509f6ba44"
+    },
+    {
+      "id": "Q03-class-first-iterable-unsafe",
+      "schedule_id": "Q03",
+      "family": "class-first-iterable",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        gates = (False,)\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        class Local:\n            armed = False\n            gates = (True,)\n            observed = [read(armed) for gate in gates if gate]\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        gates = (False,)\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        class Local:\n            armed = False\n            gates = (True,)\n            _events.append(\"shadow\")\n            _events.append(\"eager-start\")\n            observed = [read(armed) for gate in gates if gate]\n            _events.append(\"eager-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "shadow",
+          "eager-start",
+          "read",
+          "write",
+          "eager-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "Class-local first iterable reaches the implicit body, whose armed read resolves to the enclosing function and reaches a protected write.",
+      "source_sha256": "fe02b21c9c7c9c9c834c7403f0b5641023423d5943a5198362ea6b038e1355fb",
+      "oracle_sha256": "f29f25f308429f80799ab98220537885ee213f0aaa7c3388abde8865dcfa8f4f"
+    },
+    {
+      "id": "Q04-class-first-iterable-safe",
+      "schedule_id": "Q04",
+      "family": "class-first-iterable",
+      "polarity": "safe",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        gates = (True,)\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        class Local:\n            armed = False\n            gates = (False,)\n            observed = [read(armed) for gate in gates if gate]\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        gates = (True,)\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        class Local:\n            armed = False\n            gates = (False,)\n            _events.append(\"shadow\")\n            _events.append(\"eager-start\")\n            observed = [read(armed) for gate in gates if gate]\n            _events.append(\"eager-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "shadow",
+          "eager-start",
+          "eager-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "read",
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "The actual class-local first iterable has only False; the implicit read/body is dormant. Preserve ordinary finite comprehension nonexecution and exact fixed sink.",
+      "source_sha256": "c1c47d78d4bbc79716f100ddbc1bbfc5c2b1af44e31307f448fab7ca58621177",
+      "oracle_sha256": "d32c55265fc152ecd355cc14f43bb50c83863dd7536450adbf103e97e99b56e2"
+    },
+    {
+      "id": "Q05-deferred-cell-unsafe",
+      "schedule_id": "Q05",
+      "family": "deferred-created-in-class",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = False\n        source = ()\n        def change(value):\n            nonlocal armed\n            armed = value\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        def header(items):\n            return items\n        def consume(work):\n            armed = False\n            tuple(work)\n        class Local:\n            armed = False\n            source = (0,)\n            pending = (read(armed) for unused in header(source))\n        change(True)\n        consume(Local.pending)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = False\n        source = ()\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        def header(items):\n            _events.append(\"header\")\n            return items\n        def consume(work):\n            armed = False\n            _events.append(\"consume\")\n            tuple(work)\n            _events.append(\"consume-end\")\n        class Local:\n            armed = False\n            source = (0,)\n            _events.append(\"shadow\")\n            pending = (read(armed) for unused in header(source))\n            _events.append(\"generator-created\")\n        change(True)\n        consume(Local.pending)\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "shadow",
+          "header",
+          "generator-created",
+          "change",
+          "consume",
+          "read",
+          "write",
+          "consume-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "Generator first iterable is obtained in class context at creation; later consumption must retain current enclosing-cell authority, or explicitly refuse the unsupported deferred route.",
+      "source_sha256": "6dea9ab8e1ec786bd1599cd27e22e99fa9a338138df1bcb8172fe4b0eecaab5a",
+      "oracle_sha256": "1e6aad36112495440583065c0e707b0592c6521fb4dd013f76c7fa2c56543ade"
+    },
+    {
+      "id": "Q06-deferred-cell-safe",
+      "schedule_id": "Q06",
+      "family": "deferred-created-in-class",
+      "polarity": "safe",
+      "classification": "permitted-refusal",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        source = ()\n        def change(value):\n            nonlocal armed\n            armed = value\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        def header(items):\n            return items\n        def consume(work):\n            armed = True\n            tuple(work)\n        class Local:\n            armed = True\n            source = (0,)\n            pending = (read(armed) for unused in header(source))\n        change(False)\n        consume(Local.pending)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        source = ()\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        def header(items):\n            _events.append(\"header\")\n            return items\n        def consume(work):\n            armed = True\n            _events.append(\"consume\")\n            tuple(work)\n            _events.append(\"consume-end\")\n        class Local:\n            armed = True\n            source = (0,)\n            _events.append(\"shadow\")\n            pending = (read(armed) for unused in header(source))\n            _events.append(\"generator-created\")\n        change(False)\n        consume(Local.pending)\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "shadow",
+          "header",
+          "generator-created",
+          "change",
+          "consume",
+          "read",
+          "consume-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "No broader class-result/deferred precision promise: an explicit blocker is permitted. If unblocked, the current enclosing cell is False despite class and consuming-helper shadows, so exact fixed argv is required.",
+      "source_sha256": "8724f032b984882b04c593d295a1c00cc72e11f64be2923e0b5dbbaf0fcce38f",
+      "oracle_sha256": "d5320fe378acd67222ae43189fffeed828b8d3eb88800651fbcf6c9e94924b02"
+    }
+  ]
+}

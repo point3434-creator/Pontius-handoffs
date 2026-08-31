@@ -1,0 +1,213 @@
+"""Isolated persistent radix name-store experiment; no production imports or payload."""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from types import MappingProxyType
+import sys
+
+MAXIMUM_WORK = 262144
+_RADIX_BITS = 4
+_LEAF_SIZE = 16  # Fixed structural split threshold, never an admission limit.
+_HASH_WIDTH = sys.hash_info.width
+_HASH_MASK = (1 << _HASH_WIDTH) - 1
+MISSING = object()
+_DELETED = object()
+
+
+class BudgetExceeded(RuntimeError):
+    pass
+
+
+class Meter:
+    """Storage work only; caller callback work is outside this primitive meter."""
+    def __init__(self, limit=MAXIMUM_WORK):
+        self.used = 0
+        self.counts = {}
+        self.limit = limit
+
+    @property
+    def limit(self):
+        return self._limit
+
+    @limit.setter
+    def limit(self, value):
+        if type(value) is not int or not 0 <= value <= MAXIMUM_WORK:
+            raise ValueError("prototype limit must stay within 0..262144")
+        self._limit = value
+
+    def charge(self, kind, units=1):
+        if type(units) is not int or units < 0:
+            raise ValueError("invalid work charge")
+        self.used += units
+        self.counts[kind] = self.counts.get(kind, 0) + units
+        if self.used > self.limit:
+            raise BudgetExceeded(f"storage work {self.used} exceeds {self.limit}")
+
+
+@dataclass(frozen=True, slots=True)
+class Entry:
+    value: object
+    no_work: bool = False
+
+
+def _check_name(name):
+    if not isinstance(name, str):
+        raise TypeError("name must be str with ordinary string equality/ordering")
+
+
+@dataclass(frozen=True, slots=True)
+class _History:
+    parent: _History | None
+    changes: tuple
+    depth: int
+
+
+def _history(meter, parent, changes):
+    meter.charge("history_allocation")
+    meter.charge("history_reference_copies", 3)
+    meter.charge("history_parent_depth_read", int(parent is not None))
+    return _History(parent, changes, 0 if parent is None else parent.depth + 1)
+
+
+@dataclass(frozen=True, slots=True)
+class _RadixLeaf:
+    data: object
+    pending: tuple
+
+
+@dataclass(frozen=True, slots=True)
+class _RadixBranch:
+    bitmap: int
+    children: tuple
+    pending_count: int
+
+
+class _LeafEdit:
+    __slots__ = ("data",)
+
+    def __init__(self, meter, data):
+        meter.charge("radix_leaf_editor_allocation")
+        meter.charge("radix_editor_field_reference_copies")
+        self.data = data
+
+
+class _BranchEdit:
+    __slots__ = ("base", "changes")
+
+    def __init__(self, meter, base):
+        meter.charge("radix_branch_editor_allocation")
+        meter.charge("radix_editor_change_dictionary_allocation")
+        meter.charge("radix_editor_field_reference_copies", 2)
+        self.base, self.changes = base, {}
+
+
+def _radix_hash(meter, name):
+    meter.charge("radix_hash_requests")
+    meter.charge("radix_hash_normalizations")
+    return hash(name) & _HASH_MASK
+
+
+def _radix_slot(meter, hashed, shift):
+    meter.charge("radix_route_steps")
+    return (hashed >> shift) & 15
+
+
+def _radix_child(meter, branch, slot):
+    if branch is None:
+        return None
+    meter.charge("radix_bitmap_reads")
+    bit = 1 << slot
+    if not branch.bitmap & bit:
+        return None
+    meter.charge("radix_child_index_operations")
+    index = (branch.bitmap & (bit - 1)).bit_count()
+    meter.charge("radix_child_reference_visits")
+    return branch.children[index]
+
+
+def _radix_lookup(meter, root, name):
+    meter.charge("radix_root_reads")
+    if root is None:
+        return MISSING
+    hashed = _radix_hash(meter, name)
+    node, shift = root, 0
+    while isinstance(node, _RadixBranch):
+        meter.charge("radix_lookup_node_visits")
+        node = _radix_child(meter, node, _radix_slot(meter, hashed, shift))
+        if node is None:
+            return MISSING
+        shift += _RADIX_BITS
+    meter.charge("radix_lookup_node_visits")
+    if shift >= _HASH_WIDTH:
+        meter.charge("radix_terminal_collision_lookup_operations")
+    meter.charge("radix_leaf_dictionary_attempts")
+    return node.data.get(name, MISSING)
+
+
+def _radix_pending_count(meter, node):
+    if node is None:
+        return 0
+    meter.charge("radix_pending_count_reads")
+    return len(node.pending) if isinstance(node, _RadixLeaf) else node.pending_count
+
+
+def _radix_leaf(meter, data, pending):
+    """Own data/pending: no caller may mutate them after successful publication."""
+    meter.charge("radix_pending_tuple_allocation")
+    meter.charge("radix_pending_tuple_reference_copies", len(pending))
+    names = tuple(pending)
+    meter.charge("radix_leaf_proxy_allocation")
+    meter.charge("radix_leaf_proxy_reference_copies")
+    proxy = MappingProxyType(data)
+    meter.charge("radix_leaf_allocation")
+    meter.charge("radix_leaf_field_reference_copies", 2)
+    return _RadixLeaf(proxy, names)
+
+
+def _radix_seal_leaf(meter, data):
+    meter.charge("radix_pending_list_allocation")
+    pending = []
+    for name, entry in data.items():
+        meter.charge("radix_pending_entry_visits")
+        meter.charge("radix_pending_certificate_reads")
+        if not entry.no_work:
+            meter.charge("radix_pending_list_reference_copies")
+            pending.append(name)
+    return _radix_leaf(meter, data, pending)
+
+
+def _radix_copy_leaf(meter, leaf):
+    meter.charge("radix_leaf_copy_dictionary_allocation")
+    data = {}
+    for name, entry in leaf.data.items():
+        meter.charge("radix_leaf_copy_entry_visits")
+        meter.charge("radix_leaf_copy_dictionary_writes")
+        meter.charge("radix_leaf_copy_reference_copies", 2)
+        data[name] = entry
+    return _LeafEdit(meter, data)
+
+
+def _radix_records(meter, data):
+    meter.charge("radix_record_list_allocation")
+    records = []
+    for name, entry in data.items():
+        meter.charge("radix_split_input_visits")
+        hashed = _radix_hash(meter, name)
+        meter.charge("radix_record_allocation")
+        meter.charge("radix_record_reference_copies", 3)
+        meter.charge("radix_record_list_reference_copies")
+        records.append((name, entry, hashed))
+    return records
+
+
+def _radix_group(meter, records, shift):
+    """One owned bucket list per occupied nibble; explicit record routing."""
+    meter.charge("radix_group_dictionary_allocation")
+    groups = {}
+    for record in records:
+        meter.charge("radix_group_record_visits")
+        slot = _radix_slot(meter, record[2], shift)
+        meter.charge("radix_group_dictionary_attempts")
+        group = groups.get(slot)
+        if group is None:
+            meter.charge("radix_gr

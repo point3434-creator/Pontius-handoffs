@@ -1,0 +1,23 @@
+{
+  "schema": "coordinator-indexed-oracle-inspection-v1",
+  "payload_executed": false,
+  "config_sha256": "60485a4ea41ab146e89c4da4fb0bfd8cfad98c0908322025e62512dfd1ce97aa",
+  "review_pins": {
+    "engineer-indexed-storage-control-v4.py": "7192e46cd855d767c96a06ba81ffaa97c97604e12042fad5e06e299f10a5e44c",
+    "coordinator-radix-prototype-disposition-v1.md": "e8f75e760d0bb2a4b1c37c8b7cfb571624f60321b804080445c1f2b4d8e1eafa",
+    "coordinator-radix-prototype-inspection-v1.json": "1bee12ba553d3b4a42155a2c67a19471601ef0dee159093312d8951394d97bd7",
+    "engineer-indexed-storage-control-v4-review-codex-v1.md": "20cfa26f732abdf31effe4e9ceeb24cb8b9cae88690ccb861ea9e1310368078c",
+    "tests-checks/indexed-storage-oracles-static-proof-v2.json": "8fddb6ca3fcaf432175aace69d1f7a3b7d8e4e1c7949ec3994ba53662ebed939",
+    "tests-checks/indexed-storage-p-boundary-clarification-v1.md": "cdc1f9aa5f66114d744e2bc66728f4a64f85032a7b25399a9c0a4c728cb28cb8"
+  },
+  "manual_inspection": [
+    "Read complete independent indexed oracle; public value identity/order and builtin reference laws retained.",
+    "Read cursor-v2 diff: same 24-publication ownership schedule, neutral successful-publication trigger.",
+    "Check fixed 16/31 schedules, full phase costs, 14 P/C growth inequalities and exact retry/continuation.",
+    "Check weakref positive owner then release with no sentinel token registry retention.",
+    "Close missing I07 terminal-collision precondition before execution; no expectation tuning.",
+    "Controller v4 aligns spec basename and independently checked exact identity/completion types."
+  ],
+  "retained_scope": "34 unchanged storage runs + 28 cursor-successor runs + 31 indexed runs = 93 per child",
+  "limitations": "No execution yet; favorable pure-store results cannot establish production cost/semantic fitness."
+}

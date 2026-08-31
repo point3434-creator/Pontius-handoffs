@@ -1,0 +1,91 @@
+{
+  "schema": "pontius-indexed-oracle-static-proof-v1",
+  "static_only": true,
+  "oracle_or_prototype_imported": false,
+  "payload_executed": false,
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "full_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "flags": {
+    "isolated": true,
+    "no_site": true,
+    "safe_path": true,
+    "dont_write_bytecode": true,
+    "optimize": 0
+  },
+  "inputs": {
+    "cursor-oracle-v1.py": {
+      "sha256": "15a4741e2532a755fd45f01d4d999dd5d293846b8ae4e9d4e7abedf84c0a8d1e",
+      "bytes": 26351
+    },
+    "cursor-oracle-v2.py": {
+      "sha256": "145fe1d59c48e23cdb426bcbe35edbecc3f941a81dc9780e8eeed849be5bc143",
+      "bytes": 26986
+    },
+    "cursor-oracle-cases-v1.json": {
+      "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61",
+      "bytes": 18959
+    },
+    "storage-oracle-v2.py": {
+      "sha256": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba",
+      "bytes": 16157
+    },
+    "storage-oracle-cases-v2.json": {
+      "sha256": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f",
+      "bytes": 34304
+    },
+    "indexed-storage-extension-oracle-v1.py": {
+      "sha256": "135983d43d271add4875cda4ab5144f6aaaadff21928637985740229f3a3f006",
+      "bytes": 42075
+    },
+    "indexed-storage-extension-cases-v1.json": {
+      "sha256": "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a",
+      "bytes": 4766
+    },
+    "indexed-storage-extension-spec-v1.md": {
+      "sha256": "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9",
+      "bytes": 25449
+    },
+    "indexed-storage-p-boundary-clarification-v1.md": {
+      "sha256": "cdc1f9aa5f66114d744e2bc66728f4a64f85032a7b25399a9c0a4c728cb28cb8",
+      "bytes": 2134
+    }
+  },
+  "parsed_sources": [
+    "cursor-oracle-v1.py",
+    "cursor-oracle-v2.py",
+    "indexed-storage-extension-oracle-v1.py"
+  ],
+  "cursor_changed_definitions": [
+    "retention_case",
+    "verify_cursor"
+  ],
+  "cursor_unchanged_definition_count": 16,
+  "cursor_retention_ledger_calls_multiset_unchanged": true,
+  "cursor_original_retention_assertions_preserved": true,
+  "cursor_original_retention_publications": 24,
+  "cursor_case_pack_unchanged": true,
+  "old_storage_inputs_unchanged": true,
+  "indexed_cases": 16,
+  "indexed_runs": 31,
+  "atomic_schedules": 5,
+  "indexed_entrypoint": "verify_indexed(api, case_path, accounting_path, accounting_sha256)",
+  "prohibited_dynamic_execution_or_process_imports": [],
+  "source_parts_exact_concatenation": true,
+  "diffs": {
+    "cursor-oracle-v2-from-v1.diff": {
+      "bytes": 3306,
+      "sha256": "f8cc79715d3c1a1edfe60891bb2432aedbfac33e64c9705a76649a0583d8635e"
+    },
+    "indexed-storage-extension-oracle-v1-from-empty.diff": {
+      "bytes": 43034,
+      "sha256": "0af6eb870af000ec3fcd00b7342fe9cb5289798a0d5925b9d71712cccf178ca4"
+    }
+  },
+  "scope_limit": "AST/data/hash inspection only; no runtime oracle or prototype behavior is established",
+  "static_control_sha256": "6ea9174752b5c088cb08e7ce04c7471d1ac05175e9a0e098f9f36b430ea9dcf8"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "class-extension-v2-authoring-only",
+  "payload_executed": false,
+  "probe_sha256": "40240ceb30d676a71182c68d03a09970296b604d6d3d136b4b2b9952aec25084",
+  "control_sha256": "d76b3d07b1b5f855a58050c876ddce57b60929302745fd8116eca109a77b2149",
+  "preserved_oracle_and_public_boundary_functions": [
+    "require",
+    "digest",
+    "canonical",
+    "checked",
+    "hashes",
+    "load_pack",
+    "oracle",
+    "public_review",
+    "route_result"
+  ],
+  "pack_unchanged": true,
+  "scope": "Same twelve cases and C11 actual-entry-plus-row requirement",
+  "observer_change": "Drop dict-only private projection diagnostics; no state reads added"
+}

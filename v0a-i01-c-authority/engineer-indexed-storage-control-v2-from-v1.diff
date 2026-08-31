@@ -1,0 +1,42 @@
+--- indexed-control-v1
++++ indexed-control-v2
+@@ -476,6 +476,12 @@
+                     ("old_cases", "cursor_cases", "indexed_cases"), strict=True):
+                 req(result.get("ok") is True, "floor phase failed")
+                 check_summary(result["summary"], want, config[case_key]["sha256"], "3.11.15", seed)
++            indexed_summary = floor_results[-1]["summary"]
++            req(indexed_summary.get("accounting_complete") is True
++                and indexed_summary.get("fitness_passed") is True
++                and indexed_summary.get("accounting_sha256") == config["accounting"]["sha256"]
++                and indexed_summary.get("prototype_sha256") == config["prototype"]["sha256"],
++                "floor indexed fitness/accounting")
+             setup["floor_receipt"] = {"path": str(floor_path), "sha256": floor_sha}
+             input_paths["floor_receipt"] = floor_path
+             input_hashes["floor_receipt"] = floor_sha
+@@ -570,6 +576,15 @@
+         receipt["completed_records"] = completed
+         req(len(identities) == 1 and identities[0].get("verified_files") == len(before),
+             "missing/duplicate pre-import identity")
++        identity = identities[0]
++        req(identity.get("implementation") == "cpython"
++            and identity.get("version_info") == [int(p) for p in version.split(".")]
++            and P(identity["executable"]).resolve() == exe.resolve(), "actual payload runtime")
++        req(identity.get("cwd") == str(snapshot) and identity.get("environment") == env
++            and identity.get("hash_seed") == seed and identity.get("manifest_sha256") == manifest_sha
++            and identity.get("prototype_sha256") == config["prototype"]["sha256"]
++            and identity.get("accounting_sha256") == config["accounting"]["sha256"]
++            and identity.get("pontius_imported") is False, "payload identity context")
+         req(len(results) == 3 and [item.get("phase") for item in results] == ["storage", "cursor", "indexed"],
+             "missing or unordered oracle results")
+         for item, want, case_key in zip(
+@@ -677,6 +692,10 @@
+         receipt.update({"stdout": str(paths["stdout"]), "stdout_sha256": digest(stdout),
+                         "stderr": str(paths["stderr"]), "stderr_sha256": digest(stderr),
+                         "log": str(paths["log"]), "log_sha256": digest(log)})
++        receipt["outputs"] = {
++            key: {"path": str(paths[key]), "sha256": digest(paths[key].read_bytes())}
++            for key in ("setup", "stdout", "stderr", "log")
++        }
+         receipt["success"] = (
+             receipt.get("result_ok") is True and receipt["integrity_ok"]
+             and "error" not in receipt and "cleanup_error" not in receipt and exit_code == 0

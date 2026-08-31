@@ -1,0 +1,43 @@
+--- indexed-control-v3
++++ indexed-control-v4
+@@ -437,7 +437,9 @@
+             req(floor.get("config_sha256") == config_sha
+                 and floor.get("control_sha256") == digest(control_raw), "floor input pins")
+             req(floor.get("success") is True and floor.get("integrity_ok") is True
+-                and floor.get("exit") == 0, "floor did not succeed")
++                and type(floor.get("exit")) is int and floor["exit"] == 0
++                and floor.get("payload_started") is True
++                and floor.get("result_ok") is True, "floor did not succeed")
+             req(floor.get("input_hashes_before") == input_hashes
+                 and floor.get("input_hashes_after") == input_hashes, "floor source input hashes")
+             req(floor["before"] == floor["after"]
+@@ -478,7 +480,8 @@
+                     "identity_before_payload_imports", "phase_result", "phase_result",
+                     "phase_result", "completed"]
+                 and [x.get("phase") for x in floor_results] == ["storage", "cursor", "indexed"]
+-                and floor_completed == [{"kind": "completed", "ok": True}],
++                and floor_completed == [{"kind": "completed", "ok": True}]
++                and floor_completed[0].get("ok") is True,
+                 "floor record order/completion")
+             floor_identity = floor_identities[0]
+             req(floor_identity.get("implementation") == "cpython"
+@@ -548,7 +551,8 @@
+             "wrapper.py": WRAPPER.encode("utf-8"),
+             "indexed_oracle.py": inputs["indexed_oracle"],
+             "indexed_cases.json": inputs["indexed_cases"],
+-            "accounting.json": inputs["accounting"], "indexed_spec.md": inputs["indexed_spec"],
++            "accounting.json": inputs["accounting"],
++            "indexed-storage-extension-spec-v1.md": inputs["indexed_spec"],
+             **floor_files,
+         }
+         for name, raw in files.items():
+@@ -633,7 +637,8 @@
+         req([item.get("kind") for item in records] == [
+                 "identity_before_payload_imports", "phase_result", "phase_result",
+                 "phase_result", "completed"]
+-            and completed == [{"kind": "completed", "ok": True}],
++            and completed == [{"kind": "completed", "ok": True}]
++            and completed[0].get("ok") is True,
+             "child record order/completion")
+         req(exit_code == 0, "payload returned nonzero")
+         receipt["result_ok"] = True

@@ -1,0 +1,74 @@
+{
+  "assertions": {
+    "direct_wait_timeout_TIMEOUT_60": true,
+    "exact_caps": true,
+    "exact_case_ids": true,
+    "exact_watch_and_base": true,
+    "fresh_oracle_namespace_function_unchanged": true,
+    "no_fixture_run_at_authoring": true,
+    "no_generator_monkeypatch_or_route_observer": true,
+    "one_direct_Popen": true,
+    "only_exec_is_in_unchanged_harmless_oracle": true,
+    "pack_schedule_probe_crosspins": true,
+    "runtime_identity_before_candidate_import": true,
+    "same_schema_and_payload": true,
+    "source_hash_is_not_computed_as_authority": true,
+    "stdlib_ast_parse_only": true
+  },
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "basis": {
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-semantic-extension-control-v2.py": "d76b3d07b1b5f855a58050c876ddce57b60929302745fd8116eca109a77b2149",
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-semantic-extension-probe-v2.py": "40240ceb30d676a71182c68d03a09970296b604d6d3d136b4b2b9952aec25084"
+  },
+  "case_count": 8,
+  "classifications": {
+    "clean": 2,
+    "permitted-refusal": 1,
+    "refuse": 5
+  },
+  "limitations": [
+    "Static structural proof, not a successful harness run or acceptance result.",
+    "Does not independently prove a future candidate is correct.",
+    "The original inspected controller custody/clone/runtime logic is retained; root must inspect exact diffs before dispatch."
+  ],
+  "outputs": {
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-name-boundary-control-v1-from-class12-v2.diff": "3b63e7a27ddaed657104c147fab2f61f05118cae31eb184ae747f1cbe6eee818",
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-name-boundary-control-v1.py": "ad5b6d28dd1beeb222544a47960ef962013a0aec03c91cd9147f150c283c9106",
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-name-boundary-probe-v1-from-class12-v2.diff": "86c7c87ec6ce74b6a755b8991746a86861e1f2ba098617a3f7050af21dfd3392",
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-name-boundary-probe-v1.py": "ee50ef24fc0acde4f0c2da3e190e2c786ccb9bfb351788e75b574f6d7ad80fb5"
+  },
+  "pack_sha256": "31c50af8fda3cebc65e44d655db600dd1029a3e110b711a82d475750ece05a1c",
+  "removed_control_functions": [
+    "route_check"
+  ],
+  "removed_probe_functions": [
+    "install_route_observer",
+    "route_result"
+  ],
+  "schedule_sha256": "2550b4d2681e0ff5884220154b63c4c15e6f2971208fb804cdf52d956e6adbb0",
+  "schema": "pontius-class-name-boundary-authoring-static-proof-v1",
+  "source_parameter": "explicit absolute retained T engineer-generator-*.py path plus exact caller/root-supplied SHA",
+  "status": "engineering-only; no payload/fixture/analyzer execution",
+  "unchanged_controller_function_asts": [
+    "require",
+    "sha",
+    "canonical",
+    "valid_digest",
+    "checked",
+    "create",
+    "write_json",
+    "environment",
+    "git",
+    "file_hashes"
+  ],
+  "unchanged_probe_function_asts": [
+    "require",
+    "digest",
+    "canonical",
+    "checked",
+    "hashes",
+    "oracle",
+    "public_review"
+  ],
+  "watch_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+}

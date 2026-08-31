@@ -1,0 +1,173 @@
+def load_accounting(api, path, expected_sha):
+    if path is None or expected_sha is None:
+        raise AccountingError("root-pinned accounting path and hash are required")
+    raw = Path(path).read_bytes()
+    actual_sha = hashlib.sha256(raw).hexdigest()
+    if actual_sha != expected_sha:
+        raise AccountingError("accounting hash mismatch")
+    mapping = json.loads(raw)
+    if mapping.get("schema") != "pontius-indexed-storage-accounting-v1":
+        raise AccountingError("accounting schema mismatch")
+    prototype_sha = hashlib.sha256(Path(api.__file__).read_bytes()).hexdigest()
+    if mapping.get("prototype_sha256") != prototype_sha:
+        raise AccountingError("accounting/source binding mismatch")
+    categories = mapping.get("categories")
+    if not isinstance(categories, dict) or not categories:
+        raise AccountingError("accounting categories absent")
+    for name, item in categories.items():
+        if (not isinstance(name, str) or not isinstance(item, dict)
+                or item.get("metric") not in {"P", "non-P"}
+                or not isinstance(item.get("operation"), str) or not item["operation"]):
+            raise AccountingError("invalid physical operation category")
+    required_bulk = {"input_visits": "bulk_input_visits",
+                     "uniqueness_attempts": "bulk_uniqueness_attempts",
+                     "order_writes": "bulk_order_writes"}
+    if mapping.get("bulk_counters") != required_bulk:
+        raise AccountingError("fixed bulk counter contract differs")
+    for key in ("collision_attempt_categories", "terminal_collision_categories"):
+        if (not isinstance(mapping.get(key), list) or not mapping[key]
+                or len(set(mapping[key])) != len(mapping[key])
+                or not set(mapping[key]) <= set(categories)):
+            raise AccountingError("collision operation map incomplete")
+    if (not set(required_bulk.values()) <= set(categories)
+            or mapping.get("publication_attempt_category") not in categories):
+        raise AccountingError("bulk/publication category map incomplete")
+    return mapping, actual_sha, prototype_sha
+
+
+def phase_metric(report, phases, key):
+    return sum(report["phase_costs"].get(phase, {}).get(key, 0) for phase in phases)
+
+
+def growth_comparisons(reports):
+    by_case = {report["case"]: report for report in reports if report["phase"] == "baseline"}
+    comparisons = []
+    growing = ("I01-grow-fork-32", "I02-grow-fork-128", "I03-grow-fork-512")
+    bulk = ("I08-bulk-32", "I09-bulk-128", "I10-bulk-512")
+    pairs = []
+    for small, large, n in ((growing[0], growing[1], 32), (growing[1], growing[2], 128)):
+        pairs.append((small, large, n, 8, ("mutation", "publication"), "grow-mutation-publication"))
+        pairs.append((small, large, n, 8, ("terminal_keys", "terminal_items"), "grow-first-order"))
+    pairs.append(("I04-hot-ambient-32", "I05-hot-ambient-512", 32, 8,
+                  ("mutation", "publication"), "hot-fixed-cycles"))
+    for small, large, n in ((bulk[0], bulk[1], 32), (bulk[1], bulk[2], 128)):
+        pairs.append((small, large, n, 6,
+                      ("bulk_build", "bulk_first_keys", "bulk_first_items"), "bulk-build-plus-order"))
+    for small, large, n, factor, phases, family in pairs:
+        for metric in ("physical_events", "units"):
+            row = {"family": family, "smaller_case": small, "larger_case": large,
+                   "metric": metric, "phases": list(phases), "maximum_factor": factor}
+            if small not in by_case or large not in by_case:
+                row.update(complete=False, passed=False,
+                           reason="one or both complete case totals unavailable")
+            else:
+                lower = phase_metric(by_case[small], phases, metric)
+                upper = phase_metric(by_case[large], phases, metric)
+                denominator = max(lower, n if metric == "physical_events" else 1)
+                row.update(complete=True, smaller=lower, larger=upper,
+                           comparison_denominator=denominator,
+                           maximum_larger=factor * denominator,
+                           passed=upper <= factor * denominator)
+            comparisons.append(row)
+    return comparisons
+
+
+def verify_indexed(api, case_path=CASE_PATH, accounting_path=None, accounting_sha256=None):
+    """Root-owned child entrypoint. Import never runs any schedule."""
+    completed, failures = [], []
+    mapping = None
+    actual_accounting_sha, prototype_sha = None, None
+    seed = os.environ.get("PYTHONHASHSEED")
+    try:
+        raw = Path(case_path).read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == CASE_SHA256, "case pack custody mismatch"
+        assert hashlib.sha256(SPEC_PATH.read_bytes()).hexdigest() == SPEC_SHA256, "spec custody mismatch"
+        pack = json.loads(raw)
+        assert pack["planned_cases"] == 16 and pack["planned_runs"] == 31
+        assert len(pack["cases"]) == 16 and len({case["id"] for case in pack["cases"]}) == 16
+        assert sum(case["runs"] for case in pack["cases"]) == 31
+        assert sum(case["family"] == "atomic" for case in pack["cases"]) == 5
+        assert pack["maximum_meter_limit"] == MAXIMUM
+        assert seed in {"0", "1", "17"}
+        assert sys.version_info[:3] in {(3, 11, 15), (3, 14, 6)}
+        assert sys.dont_write_bytecode and sys.flags.safe_path and sys.flags.optimize == 0
+        mapping, actual_accounting_sha, prototype_sha = load_accounting(
+            api, accounting_path, accounting_sha256)
+    except Exception as error:
+        failures.append({"category": "input-custody-or-accounting",
+            "type": type(error).__name__, "message": str(error),
+            "traceback": traceback.format_exc()})
+        print(json.dumps({"indexed_storage_failure": failures[-1]}), flush=True)
+    if not failures:
+        functions = {"growing_unique_forks": growing_case, "hot_updates": hot_case,
+                     "closed_collision_domain": collision_case,
+                     "unique_bulk_rebuilds": bulk_case, "direct_retention": retention_case}
+        for case in pack["cases"]:
+            baseline = None
+            offsets = [None] + (pack["fault_offsets"] if case["family"] == "atomic" else [])
+            assert len(offsets) == case["runs"]
+            for offset in offsets:
+                report = {"case": case["id"], "phase": offset or "baseline",
+                          "family": case["family"], "spec_sha256": SPEC_SHA256}
+                harness = None
+                try:
+                    harness = Harness(api, mapping, report)
+                    if case["family"] == "atomic":
+                        atomic_case(harness, case, offset, baseline)
+                    else:
+                        functions[case["family"]](harness, case)
+                    harness.ledger.finish()
+                    completed.append(report)
+                    print(json.dumps({"indexed_storage_case": report}), flush=True)
+                    if offset is None:
+                        baseline = report
+                except Exception as error:
+                    KeyObserver.active = False
+                    if harness is not None:
+                        try:
+                            harness.ledger.finish(complete=False)
+                        except Exception as finish_error:
+                            report["partial_accounting_error"] = str(finish_error)
+                    category = ("accounting-incomplete" if isinstance(error, AccountingError)
+                                else "structural-precondition" if isinstance(error, UnmetStructuralPrecondition)
+                                else "original-budget-exhaustion" if isinstance(error, api.BudgetExceeded)
+                                else "semantic-or-oracle-check")
+                    failures.append({"case": case["id"], "phase": offset or "baseline",
+                        "category": category, "type": type(error).__name__,
+                        "message": str(error), "traceback": traceback.format_exc(),
+                        "partial_report": report})
+                    print(json.dumps({"indexed_storage_failure": failures[-1]}), flush=True)
+                    break
+            if failures:
+                break
+    comparisons = growth_comparisons(completed)
+    fitness_failures = [row for row in comparisons if not row["complete"] or not row["passed"]]
+    accounting_complete = (mapping is not None
+        and all(report.get("accounting_complete") for report in completed)
+        and not any(failure["category"] in {"input-custody-or-accounting", "accounting-incomplete"}
+                    or failure.get("partial_report", {}).get("accounting_errors")
+                    or failure.get("partial_report", {}).get("partial_accounting_error")
+                    for failure in failures))
+    semantic_completed = len(completed) == 31 and not failures
+    fitness_passed = semantic_completed and accounting_complete and not fitness_failures
+    if semantic_completed and fitness_failures:
+        failures.append({"category": "finite-fitness-comparison",
+                         "message": "one or more preregistered growth inequalities failed"})
+    summary = {
+        "indexed_storage_summary": "stdlib-dict-legacy-order-indexed-extension-v1",
+        "all_completed": semantic_completed and fitness_passed,
+        "failures": failures, "planned_cases": 16, "planned_runs": 31,
+        "completed_runs": len(completed), "case_pack_sha256": CASE_SHA256,
+        "spec_sha256": SPEC_SHA256, "runtime": list(sys.version_info[:3]),
+        "hash_seed": seed, "maximum_meter_limit": MAXIMUM,
+        "accounting_sha256": actual_accounting_sha, "prototype_sha256": prototype_sha,
+        "accounting_complete": accounting_complete, "fitness_passed": fitness_passed,
+        "semantic_runs_completed": semantic_completed,
+        "growth_comparisons": comparisons, "fitness_failures": fitness_failures,
+        "prototype_internals_inspected": False, "expected_order_computed_in_this_child": True,
+        "key_protocol_comparisons_are_meter_units": False,
+        "pure_callback_inter_name_order_asserted": False,
+    }
+    print(json.dumps(summary), flush=True)
+    assert summary["all_completed"], "indexed oracle did not satisfy every frozen obligation"
+    return summary

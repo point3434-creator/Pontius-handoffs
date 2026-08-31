@@ -1,0 +1,240 @@
+import sys
+assert sys.version_info[:3] == (3, 11, 15), sys.version
+assert sys.executable.replace("\\", "/").lower() == "d:/pontius-tools/py311/scripts/python.exe"
+assert sys.flags.isolated and sys.flags.no_site and sys.flags.safe_path
+assert sys.dont_write_bytecode and sys.flags.optimize == 0
+import ast
+import copy
+import hashlib
+import json
+from pathlib import Path
+
+BASE = Path("D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks")
+CASE_SHA = "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71"
+SPEC_SHA = "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82"
+def read_pin(name, expected):
+    raw = (BASE / name).read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == expected, name
+    assert b"\r" not in raw and not raw.startswith(b"\xef\xbb\xbf") and raw.endswith(b"\n")
+    return raw
+raw = read_pin("class-comprehension-boundary-cases-v1.json", CASE_SHA)
+read_pin("class-comprehension-boundary-spec-v1.md", SPEC_SHA)
+pack = json.loads(raw)
+assert pack["planned_cases"] == pack["planned_projections"] == len(pack["cases"]) == 6
+assert pack["classifications"] == {"clean": 2, "refuse": 3, "permitted-refusal": 1}
+assert pack["requirements"]["candidate_v23_inspected"] is False
+def dump(node):
+    return ast.dump(node, include_attributes=False)
+def event(node):
+    return (isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+            and isinstance(node.value.func, ast.Attribute)
+            and isinstance(node.value.func.value, ast.Name)
+            and node.value.func.value.id == "_events" and node.value.func.attr == "append")
+def event_label(node):
+    assert event(node)
+    call = node.value
+    assert not call.keywords and len(call.args) == 1
+    assert isinstance(call.args[0], ast.Constant) and type(call.args[0].value) is str
+    return call.args[0].value
+class ObserveOnly(ast.NodeTransformer):
+    def visit_Expr(self, node):
+        if event(node):
+            event_label(node)
+            return None
+        return self.generic_visit(node)
+    def visit_Name(self, node):
+        if node.id == "Model":
+            node.id = "ReviewTests"
+        return node
+class BoolShape(ast.NodeTransformer):
+    def visit_Constant(self, node):
+        if type(node.value) is bool:
+            node.value = "POLARITY_BOOL"
+        return node
+def named(items, kind, name):
+    found = [node for node in items if isinstance(node, kind) and node.name == name]
+    assert len(found) == 1, name
+    return found[0]
+def assigned(items, name):
+    found = [node.value for node in items if isinstance(node, ast.Assign)
+             and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name)
+             and node.targets[0].id == name]
+    assert len(found) == 1, name
+    return found[0]
+def expect_expr(node, text):
+    assert dump(node) == dump(ast.parse(text, mode="eval").body), text
+def direct_events(items):
+    return [event_label(node) for node in items if event(node)]
+def call_position(items, name):
+    positions = [index for index, node in enumerate(items)
+                 if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+                 and isinstance(node.value.func, ast.Name) and node.value.func.id == name]
+    assert len(positions) == 1, name
+    return positions[0]
+def protected_write(node):
+    expected = ast.parse("ReviewTests._launch = None").body[0]
+    assert dump(node) == dump(expected)
+results, sensitive_tests = [], []
+classifications = []
+for index, case in enumerate(pack["cases"]):
+    unsafe = index % 2 == 0
+    opposite = not unsafe
+    assert case["schedule_id"] == "Q0" + str(index + 1)
+    assert case["polarity"] == ("unsafe" if unsafe else "safe")
+    classification = "refuse" if unsafe else ("permitted-refusal" if index == 5 else "clean")
+    assert case["classification"] == classification
+    classifications.append(classification)
+    source_raw, model_raw = case["source"].encode(), case["oracle_source"].encode()
+    assert hashlib.sha256(source_raw).hexdigest() == case["source_sha256"]
+    assert hashlib.sha256(model_raw).hexdigest() == case["oracle_sha256"]
+    assert b"\r" not in source_raw + model_raw
+    source = ast.parse(case["source"], filename=case["id"] + "-SENSITIVE-AST-ONLY")
+    model = ast.parse(case["oracle_source"], filename=case["id"] + "-harmless-Model")
+    source_class = named(source.body, ast.ClassDef, "ReviewTests")
+    model_class = named(model.body, ast.ClassDef, "Model")
+    sensitive = named(source_class.body, ast.FunctionDef, "test_static")
+    projection = named(model_class.body, ast.FunctionDef, "test_static")
+    sensitive_tests.append(sensitive)
+    assert dump(sensitive) == dump(ObserveOnly().visit(copy.deepcopy(projection)))
+    assert len(model.body) == 2 and isinstance(model.body[0], ast.Assign)
+    assert dump(model.body[0]) == dump(ast.parse("_events = []").body[0])
+    assert not model_class.bases and not model_class.keywords and not model_class.decorator_list
+    assert len(model_class.body) == 2
+    assert not any(isinstance(node, (ast.Import, ast.ImportFrom, ast.AsyncFunctionDef,
+                                    ast.Await, ast.With, ast.Try, ast.TryStar))
+                   for node in ast.walk(model))
+    sink = named(model_class.body, ast.FunctionDef, "_launch")
+    wanted_sink = ast.parse('''@staticmethod
+def _launch(module="fixed"):
+    _events.append("sink")
+    return module
+''').body[0]
+    assert dump(sink) == dump(wanted_sink)
+    assert not any(isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+                   and node.func.id in {"exec", "eval", "compile", "__import__", "open"}
+                   for node in ast.walk(model))
+    local = named(sensitive.body, ast.ClassDef, "Local")
+    model_local = named(projection.body, ast.ClassDef, "Local")
+    reader = named(sensitive.body, ast.FunctionDef, "read")
+    assert len(reader.body) == 1 and isinstance(reader.body[0], ast.If)
+    expect_expr(reader.body[0].test, "value")
+    assert len(reader.body[0].body) == 1 and not reader.body[0].orelse
+    protected_write(reader.body[0].body[0])
+    model_reader = named(projection.body, ast.FunctionDef, "read")
+    assert direct_events(model_reader.body) == ["read"]
+    assert direct_events(model_reader.body[-1].body) == ["write"]
+    assert dump(sensitive.body[-1]) == dump(ast.parse("return self._launch()").body[0])
+    comprehensions = [node for node in ast.walk(sensitive)
+                      if isinstance(node, (ast.ListComp, ast.GeneratorExp, ast.SetComp, ast.DictComp))]
+    assert len(comprehensions) == 1
+    comp = comprehensions[0]
+    assert len(comp.generators) == 1 and comp.generators[0].is_async == 0
+    expect_expr(comp.elt, "read(armed)")
+    if index < 2:
+        assert case["family"] == "eager-current-cell" and isinstance(comp, ast.ListComp)
+        assert ast.literal_eval(assigned(sensitive.body, "armed")) is opposite
+        assert ast.literal_eval(assigned(local.body, "armed")) is opposite
+        expect_expr(comp.generators[0].iter, "(0,)")
+        assert isinstance(comp.generators[0].target, ast.Name) and comp.generators[0].target.id == "unused"
+        assert not comp.generators[0].ifs
+        position = call_position(local.body, "change")
+        assert local.body[position].value.args[0].value is unsafe
+        assert local.body.index(next(node for node in local.body
+            if isinstance(node, ast.Assign) and node.value is comp)) > position
+        assert direct_events(model_local.body) == ["shadow", "eager-start", "eager-end"]
+        assert [event_label(node) if event(node) else type(node).__name__
+                for node in model_local.body] == ["Assign", "shadow", "Expr", "eager-start", "Assign", "eager-end"]
+        expected = ["shadow", "change", "eager-start", "read"]
+        if unsafe:
+            expected.append("write")
+        expected.append("eager-end")
+    elif index < 4:
+        assert case["family"] == "class-first-iterable" and isinstance(comp, ast.ListComp)
+        assert ast.literal_eval(assigned(sensitive.body, "armed")) is True
+        assert ast.literal_eval(assigned(local.body, "armed")) is False
+        assert ast.literal_eval(assigned(sensitive.body, "gates")) == (opposite,)
+        assert ast.literal_eval(assigned(local.body, "gates")) == (unsafe,)
+        expect_expr(comp.generators[0].iter, "gates")
+        assert isinstance(comp.generators[0].target, ast.Name) and comp.generators[0].target.id == "gate"
+        assert len(comp.generators[0].ifs) == 1
+        expect_expr(comp.generators[0].ifs[0], "gate")
+        assert [event_label(node) if event(node) else type(node).__name__
+                for node in model_local.body] == ["Assign", "Assign", "shadow", "eager-start", "Assign", "eager-end"]
+        expected = ["shadow", "eager-start"] + (["read", "write"] if unsafe else []) + ["eager-end"]
+    else:
+        assert case["family"] == "deferred-created-in-class" and isinstance(comp, ast.GeneratorExp)
+        assert ast.literal_eval(assigned(sensitive.body, "armed")) is opposite
+        assert ast.literal_eval(assigned(local.body, "armed")) is opposite
+        assert ast.literal_eval(assigned(sensitive.body, "source")) == ()
+        assert ast.literal_eval(assigned(local.body, "source")) == (0,)
+        assert assigned(local.body, "pending") is comp
+        expect_expr(comp.generators[0].iter, "header(source)")
+        assert isinstance(comp.generators[0].target, ast.Name) and comp.generators[0].target.id == "unused"
+        assert not comp.generators[0].ifs
+        header = named(sensitive.body, ast.FunctionDef, "header")
+        assert [arg.arg for arg in header.args.args] == ["items"]
+        assert len(header.body) == 1 and isinstance(header.body[0], ast.Return)
+        expect_expr(header.body[0].value, "items")
+        consumer = named(sensitive.body, ast.FunctionDef, "consume")
+        assert ast.literal_eval(assigned(consumer.body, "armed")) is opposite
+        assert len(consumer.body) == 2
+        expect_expr(consumer.body[-1].value, "tuple(work)")
+        model_consumer = named(projection.body, ast.FunctionDef, "consume")
+        assert [event_label(node) if event(node) else type(node).__name__
+                for node in model_consumer.body] == ["Assign", "consume", "Expr", "consume-end"]
+        assert direct_events(named(projection.body, ast.FunctionDef, "header").body) == ["header"]
+        assert [event_label(node) if event(node) else type(node).__name__
+                for node in model_local.body] == ["Assign", "Assign", "shadow", "Assign", "generator-created"]
+        change_at, consume_at = call_position(sensitive.body, "change"), call_position(sensitive.body, "consume")
+        assert sensitive.body.index(local) < change_at < consume_at < len(sensitive.body) - 1
+        assert sensitive.body[change_at].value.args[0].value is unsafe
+        expect_expr(sensitive.body[consume_at].value, "consume(Local.pending)")
+        expected = ["shadow", "header", "generator-created", "change", "consume", "read"]
+        if unsafe:
+            expected.append("write")
+        expected.append("consume-end")
+    if index < 2 or index > 3:
+        change = named(sensitive.body, ast.FunctionDef, "change")
+        wanted = ast.parse("def change(value):\n    nonlocal armed\n    armed = value").body[0]
+        assert dump(change) == dump(wanted)
+        assert direct_events(named(projection.body, ast.FunctionDef, "change").body) == ["change"]
+    if not unsafe:
+        expected.append("sink")
+    assert case["expected"] == {"trace": expected, "result": "TypeError" if unsafe else "fixed"}
+    unreachable = ["sink"] if unsafe else (["read", "write"] if index == 3 else ["write"])
+    assert case["unreachable_events"] == unreachable
+    assert not set(unreachable) & set(expected)
+    assert case["required_argv"] == (None if unsafe else [["-m", "fixed"]])
+    results.append({"id": case["id"], "classification": classification,
+        "source_sha256": case["source_sha256"], "oracle_sha256": case["oracle_sha256"],
+        "test_body_ast_correspondence": True, "harmless_sink_ast_checked": True,
+        "scope_and_operation_order_ast_checked": True,
+        "declared_trace_and_unreachable_match_static_case_logic": True,
+        "expected_trace": expected, "runtime_observed": False})
+pairs = []
+for pair, expected_changes in enumerate((3, 2, 4)):
+    a, b = sensitive_tests[2 * pair:2 * pair + 2]
+    assert dump(BoolShape().visit(copy.deepcopy(a))) == dump(BoolShape().visit(copy.deepcopy(b)))
+    av = [node.value for node in ast.walk(a) if isinstance(node, ast.Constant) and type(node.value) is bool]
+    bv = [node.value for node in ast.walk(b) if isinstance(node, ast.Constant) and type(node.value) is bool]
+    assert len(av) == len(bv)
+    changes = sum(x != y for x, y in zip(av, bv))
+    assert changes == expected_changes
+    pairs.append({"case_ids": [pack["cases"][2 * pair]["id"], pack["cases"][2 * pair + 1]["id"]],
+                  "only_boolean_literals_differ": True, "changed_boolean_literals": changes})
+proof = {"schema": "pontius-class-comprehension-static-proof-v1",
+    "case_pack_sha256": CASE_SHA, "spec_sha256": SPEC_SHA, "planned_cases": 6,
+    "planned_projections": 6, "classifications": pack["classifications"],
+    "runtime": list(sys.version_info[:3]), "full_version": sys.version,
+    "executable": sys.executable, "flags": ["-I", "-S", "-B", "-P"],
+    "static_only": True, "candidate_inspected": False, "payload_executed": False,
+    "source_or_model_imported": False, "models_derived_by_sink_replacement": False,
+    "cases": results, "pairs": pairs,
+    "limit": "AST correspondence and declared event-order checks only; actual Model/analyzer outcomes remain unexecuted",
+    "recipe_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+out = BASE / "class-comprehension-boundary-static-proof-v1.json"
+data = (json.dumps(proof, indent=2) + "\n").encode()
+with out.open("xb") as stream:
+    stream.write(data)
+print(json.dumps({"static_complete": True, "proof_sha256": hashlib.sha256(data).hexdigest(),
+                  "cases": 6, "projections": 6, "payload_executed": False}), flush=True)

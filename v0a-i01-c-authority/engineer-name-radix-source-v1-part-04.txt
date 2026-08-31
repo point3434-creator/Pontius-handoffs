@@ -1,0 +1,176 @@
+ry_reference_copies", 2)
+                table[name] = None
+        memo = _seal_order_table(meter, table)
+        meter.charge("order_staging_write")
+        meter.charge("order_staging_reference_copies", 2)
+        staged[order] = memo
+    return _known_order(meter, root, staged), staged
+
+
+def _charge_cache_commit(meter, staged, extra_writes=0):
+    meter.charge("cache_publication_visits", len(staged))
+    meter.charge("cache_publication_writes", len(staged) + extra_writes)
+
+
+def _commit_order(staged):
+    if staged:
+        for order, memo in staged.items():
+            order.cache = memo
+
+
+def _keys(owner):
+    meter = owner._meter
+    table, staged = _realize_order(meter, owner._order)
+    meter.charge("keys_view_allocation")
+    result = table.keys()
+    meter.charge("keys_return_reference")
+    _charge_cache_commit(meter, staged)
+    _commit_order(staged)
+    return result
+
+
+def _ordered_items(owner):
+    meter = owner._meter
+    meter.charge("items_cache_reads")
+    if owner._items_cache is not None:
+        meter.charge("items_cached_return_reference")
+        return owner._items_cache
+    table, staged = _realize_order(meter, owner._order)
+    meter.charge("items_result_tuple_allocation")
+    meter.charge("items_pair_generator_allocation")
+    def pairs():
+        for name in table:
+            meter.charge("items_key_visits")
+            entry = owner._entry(name)
+            if entry is MISSING:
+                raise AssertionError("order contains an absent name")
+            meter.charge("items_entry_value_reads")
+            meter.charge("items_pair_allocation")
+            meter.charge("items_pair_reference_copies", 2)
+            meter.charge("items_result_reference_copies")
+            yield name, entry.value
+    result = tuple(pairs())
+    meter.charge("items_return_reference")
+    _charge_cache_commit(meter, staged, 1)
+    _commit_order(staged)
+    owner._items_cache = result
+    return result
+
+
+class NameVersion:
+    __slots__ = ("_meter", "_root", "_history", "_order", "_size", "_items_cache")
+
+    def __init__(self, meter, root, history, order, size, items_cache=None):
+        meter.charge("version_allocation")
+        meter.charge("version_reference_copies", 6)
+        self._meter, self._root, self._history = meter, root, history
+        self._order, self._size, self._items_cache = order, size, items_cache
+
+    @classmethod
+    def empty(cls, meter):
+        meter.charge("empty_order_dictionary_allocation")
+        memo = _seal_order_table(meter, {})
+        return cls(meter, None, _history(meter, None, ()),
+                   _order(meter, "empty", cache=memo), 0)
+
+
+    @classmethod
+    def from_unique_entries(cls, meter, entries):
+        """One staged detached build; input iteration itself is not rolled back."""
+        meter.charge("bulk_input_iterator_requests")
+        meter.charge("bulk_record_list_allocation")
+        meter.charge("bulk_order_dictionary_allocation")
+        records, order = [], {}
+        for pair in entries:
+            meter.charge("bulk_input_visits")
+            meter.charge("bulk_pair_validation")
+            if type(pair) is not tuple or len(pair) != 2:
+                raise TypeError("bulk entries must be two-element tuples")
+            name, entry = pair
+            meter.charge("bulk_key_validation")
+            _check_name(name)
+            meter.charge("bulk_entry_validation")
+            if type(entry) is not Entry or type(entry.no_work) is not bool:
+                raise TypeError("bulk entries require exact Entry(value, bool)")
+            meter.charge("bulk_uniqueness_attempts")
+            if name in order:
+                raise ValueError("bulk input contains a duplicate name")
+            meter.charge("bulk_order_writes")
+            meter.charge("bulk_order_reference_copies", 2)
+            order[name] = None
+            hashed = _radix_hash(meter, name)
+            meter.charge("bulk_record_allocation")
+            meter.charge("bulk_record_reference_copies", 3)
+            meter.charge("bulk_record_list_reference_copies")
+            records.append((name, entry, hashed))
+        root = _radix_bulk(meter, records)
+        memo = _seal_order_table(meter, order)
+        history = _history(meter, None, ())
+        recipe = _order(meter, "known", cache=memo)
+        meter.charge("bulk_size_reads")
+        result = cls(meter, root, history, recipe, len(order))
+        meter.charge("bulk_return_reference")
+        return result
+
+
+    def __len__(self):
+        self._meter.charge("size_read")
+        return self._size
+
+    def _entry(self, name):
+        return _radix_lookup(self._meter, self._root, name)
+
+    def get(self, name, default=None):
+        _check_name(name)
+        entry = self._entry(name)
+        return default if entry is MISSING else entry.value
+
+    def set(self, name, value, *, no_work=False):
+        cursor = NameCursor(self)
+        cursor.set(name, value, no_work=no_work)
+        return cursor.snapshot()
+
+    def delete(self, name):
+        cursor = NameCursor(self)
+        cursor.delete(name)
+        return cursor.snapshot()
+
+    def fork(self):
+        self._meter.charge("fork_reference_copies")
+        return self
+
+    def keys(self):
+        return _keys(self)
+
+    def ordered_items(self):
+        return _ordered_items(self)
+
+
+@dataclass(frozen=True, slots=True)
+class _Publication:
+    version: NameVersion
+    empty_tail: object
+    changed: bool
+
+
+def _prepare_publication(cursor):
+    """Stage private index paths/history; no owner or order-cache mutation."""
+    meter = cursor._meter
+    meter.charge("publication_tail_size_read")
+    dirty = bool(cursor._tail) or cursor._order is not cursor._base._order
+    if not dirty:
+        meter.charge("publication_plan_allocation")
+        meter.charge("publication_plan_reference_copies", 3)
+        return _Publication(cursor._base, None, False)
+    meter.charge("publication_change_tuple_allocation")
+    meter.charge("publication_change_entry_visits", len(cursor._tail))
+    meter.charge("publication_change_reference_copies", len(cursor._tail))
+    changes = tuple(cursor._tail)
+    history = _history(meter, cursor._base._history, changes)
+    root = cursor._base._root
+    for name, replacement in cursor._tail.items():
+        meter.charge("publication_private_entry_visits")
+        root = _radix_edit(meter, root, name, replacement, _radix_hash(meter, name))
+    if cursor._tail:
+        root = _radix_freeze(meter, root)
+    version = NameVersion(meter,

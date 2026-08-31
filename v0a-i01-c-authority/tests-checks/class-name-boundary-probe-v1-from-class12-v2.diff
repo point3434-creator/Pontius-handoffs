@@ -1,0 +1,230 @@
+--- class-semantic-extension-probe-v2.py
++++ class-name-boundary-probe-v1.py
+@@ -1,4 +1,4 @@
+-"""Fixed twelve-case v19 probe; authoring does not authorize execution."""
++"""Fixed eight-case class Name-boundary probe; authoring does not authorize execution."""
+ import ast
+ import builtins
+ from collections import Counter
+@@ -10,16 +10,21 @@
+ import stat
+ import sys
+ 
+-PACK_SHA = "925ae5b9354377a5957f0c32c8bf5b58fea01612498b835abd6392f9cc87d268"
+-SCHEDULE_SHA = "6f3c8c917f896cc1ffa352b054d4aeee73cb4a4dde85657c9da97a8996363913"
+-PAYLOAD = ".class-semantic-extension"
+-SCHEMA = "pontius-class-semantic-extension-v1"
++PACK_SHA = "31c50af8fda3cebc65e44d655db600dd1029a3e110b711a82d475750ece05a1c"
++SCHEDULE_SHA = "2550b4d2681e0ff5884220154b63c4c15e6f2971208fb804cdf52d956e6adbb0"
++PAYLOAD = ".class-name-boundary"
++SCHEMA = "pontius-class-name-boundary-v1"
+ CASE_IDS = (
+-    "call-raise-unsafe", "call-raise-safe", "forwarded-grandparent-unsafe",
+-    "forwarded-grandparent-safe", "define-after-change-unsafe", "define-after-change-safe",
+-    "if-frame-safe", "try-frame-safe", "nonlocal-delete-unsafe",
+-    "nonlocal-readwrite-safe", "recursive-row-safe", "recursive-row-unsafe",
++    'class-free-read-unsafe',
++    'class-free-read-safe',
++    'class-same-value-shadow-safe',
++    'class-same-value-shadow-unsafe',
++    'class-direct-nonlocal-unsafe',
++    'class-direct-nonlocal-safe',
++    'class-direct-global-unsafe',
++    'class-direct-global-safe-refused',
+ )
++
+ SLOTS = {
+     "311": (r"D:\Pontius-tools\py311\Scripts\python.exe", (3, 11, 15)),
+     "314": (r"D:\Pontius\.venv\Scripts\python.exe", (3, 14, 6)),
+@@ -73,14 +78,14 @@
+     require(digest(raw) == PACK_SHA, "casepack pin")
+     pack = json.loads(raw)
+     require(pack["schema"] == "pontius-storage-composition-cases-v1"
+-            and pack["pack_name"] == "class-semantic-extension-v1", "casepack schema")
++            and pack["pack_name"] == "class-name-boundary-v1", "casepack schema")
+     require(pack["schedule_sha256"] == SCHEDULE_SHA, "schedule pin")
+-    require(pack["planned_cases"] == pack["planned_projections"] == 12, "finite counts")
++    require(pack["planned_cases"] == pack["planned_projections"] == 8, "finite counts")
+     require(tuple(case["id"] for case in pack["cases"]) == CASE_IDS, "case order")
+     require(tuple(case["schedule_id"] for case in pack["cases"])
+-            == tuple("C" + str(n).zfill(2) for n in range(1, 13)), "schedule identities")
++            == tuple("N" + str(n).zfill(2) for n in range(1, 9)), "schedule identities")
+     require(dict(Counter(case["classification"] for case in pack["cases"]))
+-            == {"clean": 6, "refuse": 5, "permitted-refusal": 1}, "classifications")
++            == {"clean": 2, "refuse": 5, "permitted-refusal": 1}, "classifications")
+     for case in pack["cases"]:
+         for field, hash_field in (("source", "source_sha256"), ("oracle_source", "oracle_sha256")):
+             value = case[field]
+@@ -133,57 +138,6 @@
+         baseline_commit="1" * 40, baseline_root_tree_oid="2" * 40,
+         inventory_document=inventory, inventory_document_bytes=canonical(inventory),
+         sources={relative: source}, item_universe=(("stable_id", stable_id),))
+-
+-
+-def install_route_observer(generator):
+-    original = generator._review_body
+-    selected = {"case": None, "events": [], "ordinal": 0}
+-
+-    def emit(event, budget):
+-        before = budget.work_units if budget is not None else None
+-        selected["events"].append(event)
+-        print(json.dumps({"class_extension_route": event}, allow_nan=False), flush=True)
+-        require(budget is None or budget.work_units == before, "route observer consumed budget")
+-
+-    def wrapped(node, **keywords):
+-        if selected["case"] != "recursive-row-safe" or node.name != "invoke":
+-            return original(node, **keywords)
+-        ordinal = selected["ordinal"]
+-        selected["ordinal"] += 1
+-        budget = keywords.get("analysis_budget")
+-        # Coverage needs the actual recursive entry and returned public row.
+-        # Do not inspect private projection storage or perform charged reads.
+-        common = {"case": selected["case"], "ordinal": ordinal, "function": "invoke",
+-                  "line": node.lineno, "closure_depth": keywords.get("closure_depth", 0)}
+-        emit({**common, "event": "entry"}, budget)
+-        try:
+-            result = original(node, **keywords)
+-        except BaseException as error:
+-            emit({**common, "event": "exception", "error_type": type(error).__name__}, budget)
+-            raise
+-        else:
+-            # Result is ordinary public-row dictionaries; retain only copied scalar argv.
+-            rows, blockers = result
+-            argv = [list(row["argv"]) for row in rows if row.get("capability_kind") == "subprocess"]
+-            require(all(type(arg) is str for row in argv for arg in row), "non-scalar route argv")
+-            emit({**common, "event": "return", "subprocess_argv": argv,
+-                  "blocker_count": len(blockers)}, budget)
+-            return result
+-    generator._review_body = wrapped
+-    return selected, original
+-
+-
+-def route_result(events, required):
+-    if not required:
+-        return {"required": False, "events": [], "coverage_ok": True, "status": "not-required"}
+-    entries = {event["ordinal"] for event in events
+-               if event["event"] == "entry" and event["closure_depth"] > 0}
+-    returned = any(event["event"] == "return" and event["ordinal"] in entries
+-                   and ["-m", "outer"] in event["subprocess_argv"] for event in events)
+-    return {"required": True, "events": events, "coverage_ok": bool(entries and returned),
+-            "status": "entry-and-row" if entries and returned else
+-                      "entry-without-row" if entries else "absent-on-this-run",
+-            "absence_is_coverage_failure": not bool(entries and returned)}
+ 
+ 
+ def main():
+@@ -239,72 +193,63 @@
+             and Path(resolution.origin).resolve() == (snapshot / "src/pontius/__init__.py").resolve(),
+             "wrong read-only package resolution")
+     pack = load_pack(payload / "cases.json")
+-    spec = importlib.util.spec_from_file_location("class_extension_generator", source_path)
++    spec = importlib.util.spec_from_file_location("class_name_boundary_generator", source_path)
+     require(spec is not None and spec.loader is not None, "generator import spec")
+     generator = importlib.util.module_from_spec(spec)
+     sys.modules[spec.name] = generator
+     spec.loader.exec_module(generator)
+     require({name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed")
+-    selected, original = install_route_observer(generator)
+-    semantic_failures, coverage_failures, oracle_errors, analyzer_errors = [], [], [], []
++    semantic_failures, oracle_errors, analyzer_errors = [], [], []
+     analyzed = 0
+-    try:
+-        for case in pack["cases"]:
+-            selected.update({"case": case["id"], "events": [], "ordinal": 0})
+-            actual, oracle_passed, oracle_error = None, False, None
++    for case in pack["cases"]:
++        actual, oracle_passed, oracle_error = None, False, None
++        try:
++            actual, oracle_passed = oracle(case)
++        except Exception as error:
++            oracle_error = {"type": type(error).__name__, "message": str(error)}
++        review, analyzer_error = None, None
++        if not oracle_passed:
++            oracle_errors.append(case["id"])
++        else:
+             try:
+-                actual, oracle_passed = oracle(case)
++                review = public_review(generator, case["source"].encode())
++                analyzed += 1
+             except Exception as error:
+-                oracle_error = {"type": type(error).__name__, "message": str(error)}
+-            review, analyzer_error = None, None
+-            if not oracle_passed:
+-                oracle_errors.append(case["id"])
+-            else:
+-                try:
+-                    review = public_review(generator, case["source"].encode())
+-                    analyzed += 1
+-                except Exception as error:
+-                    analyzer_error = {"type": type(error).__name__, "message": str(error)}
+-                    analyzer_errors.append(case["id"])
+-            rows = review["receipt"]["expanded_rows"] if review is not None else []
+-            argv = [row["argv"] for row in rows if row["capability_kind"] == "subprocess"]
+-            blockers = review["unresolved_dynamic_blockers"] if review is not None else []
+-            public_ok = (bool(blockers) if case["classification"] == "refuse" else
+-                         bool(blockers) or argv == case["required_argv"]
+-                         if case["classification"] == "permitted-refusal" else
+-                         not blockers and argv == case["required_argv"])
+-            semantic_ok = bool(oracle_passed and review is not None and public_ok)
+-            route = route_result(list(selected["events"]), case["id"] == "recursive-row-safe")
+-            if not semantic_ok:
+-                semantic_failures.append(case["id"])
+-            if not route["coverage_ok"]:
+-                coverage_failures.append(case["id"])
+-            print(json.dumps({
+-                "class_extension_case": case["id"], "schedule_id": case["schedule_id"],
+-                "classification": case["classification"], "source_sha256": case["source_sha256"],
+-                "oracle_sha256": case["oracle_sha256"], "expected": case["expected"],
+-                "unreachable_events": case["unreachable_events"], "required_argv": case["required_argv"],
+-                "oracle_actual": actual, "oracle_passed": oracle_passed, "oracle_error": oracle_error,
+-                "analyzer_error": analyzer_error, "argv": argv, "expanded_rows": rows,
+-                "blockers": blockers, "semantic_passed": semantic_ok, "route_evidence": route,
+-                "passed": semantic_ok and route["coverage_ok"],
+-                "receipt_sha256": digest(canonical(review["receipt"])) if review is not None else None,
+-            }, allow_nan=False), flush=True)
+-    finally:
+-        generator._review_body = original
++                analyzer_error = {"type": type(error).__name__, "message": str(error)}
++                analyzer_errors.append(case["id"])
++        rows = review["receipt"]["expanded_rows"] if review is not None else []
++        argv = [row["argv"] for row in rows if row["capability_kind"] == "subprocess"]
++        blockers = review["unresolved_dynamic_blockers"] if review is not None else []
++        public_ok = (bool(blockers) if case["classification"] == "refuse" else
++                     bool(blockers) or argv == case["required_argv"]
++                     if case["classification"] == "permitted-refusal" else
++                     not blockers and argv == case["required_argv"])
++        semantic_ok = bool(oracle_passed and review is not None and public_ok)
++        if not semantic_ok:
++            semantic_failures.append(case["id"])
++        print(json.dumps({
++            "class_name_boundary_case": case["id"], "schedule_id": case["schedule_id"],
++            "classification": case["classification"], "source_sha256": case["source_sha256"],
++            "oracle_sha256": case["oracle_sha256"], "expected": case["expected"],
++            "unreachable_events": case["unreachable_events"], "required_argv": case["required_argv"],
++            "oracle_actual": actual, "oracle_passed": oracle_passed, "oracle_error": oracle_error,
++            "analyzer_error": analyzer_error, "argv": argv, "expanded_rows": rows,
++            "blockers": blockers, "semantic_passed": semantic_ok, "passed": semantic_ok,
++            "receipt_sha256": digest(canonical(review["receipt"])) if review is not None else None,
++        }, allow_nan=False), flush=True)
+     require({name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed during run")
+     hashes(snapshot, manifest)
+     require(digest(checked(payload / "manifest.json").read_bytes()) == manifest_sha, "manifest changed")
+-    summary = {"class_extension_summary": True, "schema": SCHEMA, "slot": slot,
++    summary = {"class_name_boundary_summary": True, "schema": SCHEMA, "slot": slot,
+                "generator_sha256": source_sha, "pack_sha256": PACK_SHA, "probe_sha256": probe_sha,
+-               "schedule_sha256": SCHEDULE_SHA, "planned_cases": 12, "case_count": 12,
+-               "projections": 12, "analyzed_cases": analyzed,
+-               "semantic_failures": semantic_failures, "coverage_failures": coverage_failures,
++               "schedule_sha256": SCHEDULE_SHA, "planned_cases": 8, "case_count": 8,
++               "projections": 8, "analyzed_cases": analyzed,
++               "semantic_failures": semantic_failures,
+                "oracle_errors": oracle_errors, "analyzer_errors": analyzer_errors,
+-               "completed": analyzed == 12 and not oracle_errors and not analyzer_errors,
++               "completed": analyzed == 8 and not oracle_errors and not analyzer_errors,
+                "classifications": pack["classifications"], "caps": CAPS}
+     print(json.dumps(summary), flush=True)
+-    return int(bool(semantic_failures or coverage_failures or oracle_errors or analyzer_errors))
++    return int(bool(semantic_failures or oracle_errors or analyzer_errors))
+ 
+ 
+ if __name__ == "__main__":

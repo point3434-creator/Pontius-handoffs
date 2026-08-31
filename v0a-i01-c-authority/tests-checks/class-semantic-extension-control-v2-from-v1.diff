@@ -1,0 +1,80 @@
+--- control-v1
++++ control-v2
+@@ -3,7 +3,7 @@
+ Run this controller with exact floor Python 3.11.15 and -I -S -B -P.
+ Arguments: LABEL SLOT RETAINED_SOURCE_ABSOLUTE SOURCE_SHA --control-sha256 SHA
+ For SLOT=314 also supply --floor-receipt ABSOLUTE --floor-sha256 SHA.
+-Only exact retained v19 is admitted. The independent production watch stays v20.
++An absolute T candidate plus its exact SHA is required. The independent W watch stays v20.
+ Child uses -B -P, scrubbed environment, snapshot/src PYTHONPATH, hash seed 0.
+ """
+ import argparse
+@@ -24,11 +24,10 @@
+ GIT = Path(r"C:\Program Files\Git\cmd\git.exe")
+ BASE = "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358"
+ BASE_GENERATOR_SHA = "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+-V19_SHA = "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1"
+ WATCH = Path(r"D:\Pontius-worktrees\codex-v0a-i01-c-authority-v1\tools\generate_test_inventory.py")
+ WATCH_SHA = "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+-PROBE = CHECKS / "class-semantic-extension-probe-v1.py"
+-PROBE_SHA = "ca88145516744909acba5010aa4aeeb85351b17df9379b46d15550f8829c009c"
++PROBE = CHECKS / "class-semantic-extension-probe-v2.py"
++PROBE_SHA = "40240ceb30d676a71182c68d03a09970296b604d6d3d136b4b2b9952aec25084"
+ PACK = CHECKS / "class-semantic-extension-cases-v1.json"
+ PACK_SHA = "925ae5b9354377a5957f0c32c8bf5b58fea01612498b835abd6392f9cc87d268"
+ SCHEDULE = ROOT / "engineer-class-semantic-schedules-v2.md"
+@@ -157,7 +156,7 @@
+     require(identity["cwd"] == setup["snapshot"] and identity["environment"] == setup["environment"]
+             and identity["manifest_sha256"] == setup["manifest_sha256"]
+             and identity["verified_files"] == len(setup["before"])
+-            and identity["generator_sha256"] == V19_SHA and identity["probe_sha256"] == PROBE_SHA,
++            and identity["generator_sha256"] == setup["generator_sha256"] and identity["probe_sha256"] == PROBE_SHA,
+             "identity context")
+     cases = [r for r in records if "class_extension_case" in r]
+     require(tuple(r["class_extension_case"] for r in cases)
+@@ -196,7 +195,7 @@
+     require(len(summaries) == 1 and records[-1] == summaries[0], "missing/extra/final summary")
+     summary = summaries[0]
+     require(summary["schema"] == SCHEMA and summary["slot"] == setup["slot"]
+-            and summary["generator_sha256"] == V19_SHA and summary["pack_sha256"] == PACK_SHA
++            and summary["generator_sha256"] == setup["generator_sha256"] and summary["pack_sha256"] == PACK_SHA
+             and summary["probe_sha256"] == PROBE_SHA and summary["schedule_sha256"] == SCHEDULE_SHA,
+             "summary pins")
+     require(summary["planned_cases"] == summary["case_count"] == summary["projections"] == 12,
+@@ -229,6 +228,8 @@
+     parser.add_argument("--floor-receipt")
+     parser.add_argument("--floor-sha256")
+     args = parser.parse_args()
++    require(valid_digest(args.overlay_sha256), "explicit candidate digest")
++    source_sha = args.overlay_sha256
+     require(re.fullmatch("[a-z0-9][a-z0-9-]{0,60}", args.label), "label")
+     checked(ROOT, True)
+     checked(CHECKS, True)
+@@ -249,13 +250,13 @@
+     write_json(streams["setup"], setup)
+     try:
+         overlay = checked(args.overlay_source)
+-        require(overlay == ROOT / "engineer-generator-v19.py" and args.overlay_sha256 == V19_SHA,
+-                "only explicit exact retained v19 admitted")
++        require(overlay.parent == ROOT and overlay.name.startswith("engineer-generator-")
++                and overlay.suffix == ".py", "candidate must be an explicit retained T source")
+         control = checked(Path(__file__).absolute())
+         require(control.is_relative_to(CHECKS) and valid_digest(args.control_sha256), "root control pin")
+         input_paths = {"overlay": overlay, "watch": WATCH, "probe": PROBE, "pack": PACK,
+                        "schedule": SCHEDULE, "control": control}
+-        input_hashes = {"overlay": V19_SHA, "watch": WATCH_SHA, "probe": PROBE_SHA,
++        input_hashes = {"overlay": source_sha, "watch": WATCH_SHA, "probe": PROBE_SHA,
+                         "pack": PACK_SHA, "schedule": SCHEDULE_SHA, "control": args.control_sha256}
+         inputs = {key: checked(p).read_bytes() for key, p in input_paths.items()}
+         require({key: sha(raw) for key, raw in inputs.items()} == input_hashes, "original input pin mismatch")
+@@ -333,8 +334,8 @@
+         tracked = git(snapshot, temp, "ls-tree", "-r", "-z", "--name-only", BASE).decode().split("\0")[:-1]
+         require(len(tracked) == len(set(tracked)) == 1761, "tracked count")
+         before = file_hashes(snapshot, tracked)
+-        require(before[GENERATOR] == V19_SHA, "copied overlay pin")
+-        run = {"schema": SCHEMA, "slot": args.slot, "generator_sha256": V19_SHA,
++        require(before[GENERATOR] == source_sha, "copied overlay pin")
++        run = {"schema": SCHEMA, "slot": args.slot, "generator_sha256": source_sha,
+                "probe_sha256": PROBE_SHA, "pack_sha256": PACK_SHA, "schedule_sha256": SCHEDULE_SHA,
+                "control_sha256": args.control_sha256, "overlay_source": str(overlay),
+                "watch_source": str(WATCH), "watch_sha256": WATCH_SHA}

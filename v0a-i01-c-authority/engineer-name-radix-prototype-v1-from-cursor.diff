@@ -1,0 +1,600 @@
+--- engineer-name-cursor-prototype-v1.py
++++ engineer-name-radix-prototype-v1.py
+@@ -1,11 +1,15 @@
+-"""Isolated owned name-cursor experiment; no production imports or authority model."""
++"""Isolated persistent radix name-store experiment; no production imports or payload."""
+ from __future__ import annotations
+ 
+ from dataclasses import dataclass
+ from types import MappingProxyType
++import sys
+ 
+ MAXIMUM_WORK = 262144
+-MAXIMUM_SEALED_LAYERS = 8  # Representation threshold, never an admission/refusal limit.
++_RADIX_BITS = 4
++_LEAF_SIZE = 16  # Fixed structural split threshold, never an admission limit.
++_HASH_WIDTH = sys.hash_info.width
++_HASH_MASK = (1 << _HASH_WIDTH) - 1
+ MISSING = object()
+ _DELETED = object()
+ 
+@@ -66,74 +70,318 @@
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+-class _Layer:
++class _RadixLeaf:
+     data: object
+     pending: tuple
+ 
+ 
+-def _seal_layer(meter, data):
+-    """Caller must relinquish its sole mutable alias when publication commits."""
+-    meter.charge("pending_list_allocation")
++@dataclass(frozen=True, slots=True)
++class _RadixBranch:
++    bitmap: int
++    children: tuple
++    pending_count: int
++
++
++class _LeafEdit:
++    __slots__ = ("data",)
++
++    def __init__(self, meter, data):
++        meter.charge("radix_leaf_editor_allocation")
++        meter.charge("radix_editor_field_reference_copies")
++        self.data = data
++
++
++class _BranchEdit:
++    __slots__ = ("base", "changes")
++
++    def __init__(self, meter, base):
++        meter.charge("radix_branch_editor_allocation")
++        meter.charge("radix_editor_change_dictionary_allocation")
++        meter.charge("radix_editor_field_reference_copies", 2)
++        self.base, self.changes = base, {}
++
++
++def _radix_hash(meter, name):
++    meter.charge("radix_hash_requests")
++    meter.charge("radix_hash_normalizations")
++    return hash(name) & _HASH_MASK
++
++
++def _radix_slot(meter, hashed, shift):
++    meter.charge("radix_route_steps")
++    return (hashed >> shift) & 15
++
++
++def _radix_child(meter, branch, slot):
++    if branch is None:
++        return None
++    meter.charge("radix_bitmap_reads")
++    bit = 1 << slot
++    if not branch.bitmap & bit:
++        return None
++    meter.charge("radix_child_index_operations")
++    index = (branch.bitmap & (bit - 1)).bit_count()
++    meter.charge("radix_child_reference_visits")
++    return branch.children[index]
++
++
++def _radix_lookup(meter, root, name):
++    meter.charge("radix_root_reads")
++    if root is None:
++        return MISSING
++    hashed = _radix_hash(meter, name)
++    node, shift = root, 0
++    while isinstance(node, _RadixBranch):
++        meter.charge("radix_lookup_node_visits")
++        node = _radix_child(meter, node, _radix_slot(meter, hashed, shift))
++        if node is None:
++            return MISSING
++        shift += _RADIX_BITS
++    meter.charge("radix_lookup_node_visits")
++    if shift >= _HASH_WIDTH:
++        meter.charge("radix_terminal_collision_lookup_operations")
++    meter.charge("radix_leaf_dictionary_attempts")
++    return node.data.get(name, MISSING)
++
++
++def _radix_pending_count(meter, node):
++    if node is None:
++        return 0
++    meter.charge("radix_pending_count_reads")
++    return len(node.pending) if isinstance(node, _RadixLeaf) else node.pending_count
++
++
++def _radix_leaf(meter, data, pending):
++    """Own data/pending: no caller may mutate them after successful publication."""
++    meter.charge("radix_pending_tuple_allocation")
++    meter.charge("radix_pending_tuple_reference_copies", len(pending))
++    names = tuple(pending)
++    meter.charge("radix_leaf_proxy_allocation")
++    meter.charge("radix_leaf_proxy_reference_copies")
++    proxy = MappingProxyType(data)
++    meter.charge("radix_leaf_allocation")
++    meter.charge("radix_leaf_field_reference_copies", 2)
++    return _RadixLeaf(proxy, names)
++
++
++def _radix_seal_leaf(meter, data):
++    meter.charge("radix_pending_list_allocation")
+     pending = []
+     for name, entry in data.items():
+-        meter.charge("publication_tail_entry_visits")
+-        if entry is not _DELETED:
+-            meter.charge("pending_certificate_reads")
++        meter.charge("radix_pending_entry_visits")
++        meter.charge("radix_pending_certificate_reads")
++        if not entry.no_work:
++            meter.charge("radix_pending_list_reference_copies")
++            pending.append(name)
++    return _radix_leaf(meter, data, pending)
++
++
++def _radix_copy_leaf(meter, leaf):
++    meter.charge("radix_leaf_copy_dictionary_allocation")
++    data = {}
++    for name, entry in leaf.data.items():
++        meter.charge("radix_leaf_copy_entry_visits")
++        meter.charge("radix_leaf_copy_dictionary_writes")
++        meter.charge("radix_leaf_copy_reference_copies", 2)
++        data[name] = entry
++    return _LeafEdit(meter, data)
++
++
++def _radix_records(meter, data):
++    meter.charge("radix_record_list_allocation")
++    records = []
++    for name, entry in data.items():
++        meter.charge("radix_split_input_visits")
++        hashed = _radix_hash(meter, name)
++        meter.charge("radix_record_allocation")
++        meter.charge("radix_record_reference_copies", 3)
++        meter.charge("radix_record_list_reference_copies")
++        records.append((name, entry, hashed))
++    return records
++
++
++def _radix_group(meter, records, shift):
++    """One owned bucket list per occupied nibble; explicit record routing."""
++    meter.charge("radix_group_dictionary_allocation")
++    groups = {}
++    for record in records:
++        meter.charge("radix_group_record_visits")
++        slot = _radix_slot(meter, record[2], shift)
++        meter.charge("radix_group_dictionary_attempts")
++        group = groups.get(slot)
++        if group is None:
++            meter.charge("radix_group_list_allocation")
++            group = []
++            meter.charge("radix_group_dictionary_writes")
++            meter.charge("radix_group_reference_copies", 2)
++            groups[slot] = group
++        meter.charge("radix_group_list_reference_copies")
++        group.append(record)
++    return groups
++
++
++def _radix_edit_records(meter, records, shift):
++    """Build private paths for a split; no immutable root is yet published."""
++    meter.charge("radix_record_size_reads")
++    if len(records) <= _LEAF_SIZE or shift >= _HASH_WIDTH:
++        if shift >= _HASH_WIDTH:
++            meter.charge("radix_terminal_collision_edit_operations")
++        meter.charge("radix_new_leaf_dictionary_allocation")
++        data = {}
++        for name, entry, _hashed in records:
++            meter.charge("radix_split_leaf_entry_visits")
++            meter.charge("radix_split_leaf_dictionary_writes")
++            meter.charge("radix_split_leaf_reference_copies", 2)
++            data[name] = entry
++        return _LeafEdit(meter, data)
++    groups = _radix_group(meter, records, shift)
++    result = _BranchEdit(meter, None)
++    for slot, group in groups.items():
++        meter.charge("radix_group_child_visits")
++        child = _radix_edit_records(meter, group, shift + _RADIX_BITS)
++        meter.charge("radix_editor_dictionary_writes")
++        meter.charge("radix_editor_child_reference_copies", 2)
++        result.changes[slot] = child
++    return result
++
++
++def _radix_edit(meter, node, name, replacement, hashed, shift=0):
++    """All mutations belong to an unpublished editor, never to the base root."""
++    meter.charge("radix_edit_node_visits")
++    if node is None:
++        if replacement is _DELETED:
++            return None
++        meter.charge("radix_new_leaf_dictionary_allocation")
++        node = _LeafEdit(meter, {})
++    elif isinstance(node, _RadixLeaf):
++        node = _radix_copy_leaf(meter, node)
++    if isinstance(node, _LeafEdit):
++        if shift >= _HASH_WIDTH:
++            meter.charge("radix_terminal_collision_edit_operations")
++        meter.charge("radix_leaf_edit_dictionary_attempts")
++        present = name in node.data
++        if replacement is _DELETED:
++            if present:
++                meter.charge("radix_leaf_edit_dictionary_deletes")
++                del node.data[name]
++        else:
++            meter.charge("radix_leaf_edit_dictionary_writes")
++            meter.charge("radix_leaf_edit_reference_copies", 1 + int(not present))
++            node.data[name] = replacement
++        meter.charge("radix_leaf_size_reads")
++        if not node.data:
++            return None
++        if len(node.data) > _LEAF_SIZE and shift < _HASH_WIDTH:
++            return _radix_edit_records(meter, _radix_records(meter, node.data), shift)
++        return node
++    if isinstance(node, _RadixBranch):
++        node = _BranchEdit(meter, node)
++    slot = _radix_slot(meter, hashed, shift)
++    meter.charge("radix_editor_dictionary_attempts")
++    old = node.changes.get(slot, MISSING)
++    if old is MISSING:
++        old = _radix_child(meter, node.base, slot)
++        fresh_slot = True
++    else:
++        fresh_slot = False
++    child = _radix_edit(meter, old, name, replacement, hashed, shift + _RADIX_BITS)
++    meter.charge("radix_editor_dictionary_writes")
++    meter.charge("radix_editor_child_reference_copies", 1 + int(fresh_slot))
++    node.changes[slot] = child
++    return node
++
++
++def _radix_freeze(meter, node):
++    """Freeze owned paths only; unchanged immutable siblings remain shared."""
++    meter.charge("radix_freeze_node_visits")
++    if node is None or isinstance(node, (_RadixLeaf, _RadixBranch)):
++        return node
++    if isinstance(node, _LeafEdit):
++        return _radix_seal_leaf(meter, node.data)
++    meter.charge("radix_child_list_allocation")
++    children, bitmap, pending_count = [], 0, 0
++    for slot in range(16):
++        meter.charge("radix_freeze_slot_visits")
++        meter.charge("radix_editor_dictionary_attempts")
++        child = node.changes.get(slot, MISSING)
++        if child is MISSING:
++            child = _radix_child(meter, node.base, slot)
++        else:
++            child = _radix_freeze(meter, child)
++        if child is not None:
++            bitmap |= 1 << slot
++            pending_count += _radix_pending_count(meter, child)
++            meter.charge("radix_child_list_reference_copies")
++            children.append(child)
++    if not children:
++        return None
++    meter.charge("radix_child_tuple_allocation")
++    meter.charge("radix_child_tuple_reference_copies", len(children))
++    frozen = tuple(children)
++    meter.charge("radix_branch_allocation")
++    meter.charge("radix_branch_field_reference_copies", 3)
++    return _RadixBranch(bitmap, frozen, pending_count)
++
++
++def _radix_bulk(meter, records, shift=0):
++    """Complete unique inputs build once; no predecessor lookup or immutable set."""
++    meter.charge("bulk_record_size_reads")
++    if not records:
++        return None
++    if len(records) <= _LEAF_SIZE or shift >= _HASH_WIDTH:
++        if shift >= _HASH_WIDTH:
++            meter.charge("radix_terminal_collision_bulk_operations")
++        meter.charge("bulk_leaf_dictionary_allocation")
++        meter.charge("radix_pending_list_allocation")
++        data, pending = {}, []
++        for name, entry, _hashed in records:
++            meter.charge("bulk_leaf_entry_visits")
++            meter.charge("bulk_leaf_dictionary_writes")
++            meter.charge("bulk_leaf_reference_copies", 2)
++            data[name] = entry
++            meter.charge("radix_pending_certificate_reads")
+             if not entry.no_work:
+-                meter.charge("pending_list_reference_copies")
++                meter.charge("radix_pending_list_reference_copies")
+                 pending.append(name)
+-    meter.charge("pending_tuple_allocation")
+-    meter.charge("pending_tuple_entry_visits", len(pending))
+-    meter.charge("pending_tuple_reference_copies", len(pending))
+-    names = tuple(pending)
+-    meter.charge("sealed_dictionary_proxy_allocation")
+-    meter.charge("sealed_dictionary_proxy_reference_copies")
+-    proxy = MappingProxyType(data)
+-    meter.charge("layer_allocation")
+-    meter.charge("layer_reference_copies", 2)
+-    return _Layer(proxy, names)
+-
+-
+-def _lookup_layers(meter, layers, name):
+-    for layer in reversed(layers):
+-        meter.charge("lookup_layer_visits")
+-        meter.charge("lookup_dictionary_attempts")
+-        entry = layer.data.get(name, MISSING)
+-        if entry is _DELETED:
+-            return MISSING
+-        if entry is not MISSING:
+-            return entry
+-    return MISSING
+-
+-
+-def _compact(meter, layers, tail):
+-    """Full oldest-to-newest compaction. Old snapshots retain their own layers."""
+-    meter.charge("compaction_dictionary_allocation")
+-    result = {}
+-    meter.charge("compaction_input_tuple_allocation")
+-    meter.charge("compaction_input_reference_copies", len(layers) + 1)
+-    tables = (*tuple(layer.data for layer in layers), tail)
+-    meter.charge("compaction_layer_reference_visits", len(layers))
+-    meter.charge("compaction_layer_reference_tuple_allocation")
+-    meter.charge("compaction_layer_reference_copies", len(layers))
+-    for table in tables:
+-        meter.charge("compaction_layer_visits")
+-        for name, entry in table.items():
+-            meter.charge("compaction_entry_visits")
+-            meter.charge("compaction_dictionary_attempts")
+-            old = result.get(name, MISSING)
+-            if entry is _DELETED:
+-                if old is not MISSING:
+-                    meter.charge("compaction_dictionary_deletes")
+-                    del result[name]
+-            else:
+-                meter.charge("compaction_dictionary_writes")
+-                meter.charge("compaction_reference_copies", 1 + int(old is MISSING))
+-                result[name] = entry
+-    layer = _seal_layer(meter, result)
+-    meter.charge("compaction_result_tuple_allocation")
+-    meter.charge("compaction_result_reference_copies")
+-    return (layer,)
++        return _radix_leaf(meter, data, pending)
++    groups = _radix_group(meter, records, shift)
++    meter.charge("radix_child_list_allocation")
++    children, bitmap, pending_count = [], 0, 0
++    for slot in range(16):
++        meter.charge("bulk_slot_visits")
++        meter.charge("bulk_group_dictionary_attempts")
++        group = groups.get(slot)
++        if group is None:
++            continue
++        child = _radix_bulk(meter, group, shift + _RADIX_BITS)
++        bitmap |= 1 << slot
++        pending_count += _radix_pending_count(meter, child)
++        meter.charge("radix_child_list_reference_copies")
++        children.append(child)
++    meter.charge("radix_child_tuple_allocation")
++    meter.charge("radix_child_tuple_reference_copies", len(children))
++    frozen = tuple(children)
++    meter.charge("radix_branch_allocation")
++    meter.charge("radix_branch_field_reference_copies", 3)
++    return _RadixBranch(bitmap, frozen, pending_count)
++
++
++def _radix_names(meter, root, pending_only=False):
++    """Enumerate effective names; history contains no value-bearing roots."""
++    meter.charge("radix_walk_node_visits")
++    if root is None:
++        return
++    if pending_only and not _radix_pending_count(meter, root):
++        return
++    if isinstance(root, _RadixLeaf):
++        names = root.pending if pending_only else root.data
++        for name in names:
++            meter.charge("radix_walk_name_visits")
++            yield name
++    else:
++        for child in root.children:
++            meter.charge("radix_walk_child_reference_visits")
++            yield from _radix_names(meter, child, pending_only)
+ 
+ 
+ class _Order:
+@@ -327,27 +575,67 @@
+ 
+ 
+ class NameVersion:
+-    __slots__ = ("_meter", "_layers", "_history", "_order", "_size", "_items_cache")
+-
+-    def __init__(self, meter, layers, history, order, size, items_cache=None):
++    __slots__ = ("_meter", "_root", "_history", "_order", "_size", "_items_cache")
++
++    def __init__(self, meter, root, history, order, size, items_cache=None):
+         meter.charge("version_allocation")
+         meter.charge("version_reference_copies", 6)
+-        self._meter, self._layers, self._history = meter, layers, history
++        self._meter, self._root, self._history = meter, root, history
+         self._order, self._size, self._items_cache = order, size, items_cache
+ 
+     @classmethod
+     def empty(cls, meter):
+         meter.charge("empty_order_dictionary_allocation")
+         memo = _seal_order_table(meter, {})
+-        return cls(meter, (), _history(meter, None, ()),
++        return cls(meter, None, _history(meter, None, ()),
+                    _order(meter, "empty", cache=memo), 0)
++
++
++    @classmethod
++    def from_unique_entries(cls, meter, entries):
++        """One staged detached build; input iteration itself is not rolled back."""
++        meter.charge("bulk_input_iterator_requests")
++        meter.charge("bulk_record_list_allocation")
++        meter.charge("bulk_order_dictionary_allocation")
++        records, order = [], {}
++        for pair in entries:
++            meter.charge("bulk_input_visits")
++            meter.charge("bulk_pair_validation")
++            if type(pair) is not tuple or len(pair) != 2:
++                raise TypeError("bulk entries must be two-element tuples")
++            name, entry = pair
++            meter.charge("bulk_key_validation")
++            _check_name(name)
++            meter.charge("bulk_entry_validation")
++            if type(entry) is not Entry or type(entry.no_work) is not bool:
++                raise TypeError("bulk entries require exact Entry(value, bool)")
++            meter.charge("bulk_uniqueness_attempts")
++            if name in order:
++                raise ValueError("bulk input contains a duplicate name")
++            meter.charge("bulk_order_writes")
++            meter.charge("bulk_order_reference_copies", 2)
++            order[name] = None
++            hashed = _radix_hash(meter, name)
++            meter.charge("bulk_record_allocation")
++            meter.charge("bulk_record_reference_copies", 3)
++            meter.charge("bulk_record_list_reference_copies")
++            records.append((name, entry, hashed))
++        root = _radix_bulk(meter, records)
++        memo = _seal_order_table(meter, order)
++        history = _history(meter, None, ())
++        recipe = _order(meter, "known", cache=memo)
++        meter.charge("bulk_size_reads")
++        result = cls(meter, root, history, recipe, len(order))
++        meter.charge("bulk_return_reference")
++        return result
++
+ 
+     def __len__(self):
+         self._meter.charge("size_read")
+         return self._size
+ 
+     def _entry(self, name):
+-        return _lookup_layers(self._meter, self._layers, name)
++        return _radix_lookup(self._meter, self._root, name)
+ 
+     def get(self, name, default=None):
+         _check_name(name)
+@@ -380,56 +668,45 @@
+     version: NameVersion
+     empty_tail: object
+     changed: bool
+-    compacted: bool
+ 
+ 
+ def _prepare_publication(cursor):
+-    """No owner mutation, order memo publication, or exposed mutable alias."""
++    """Stage private index paths/history; no owner or order-cache mutation."""
+     meter = cursor._meter
+     meter.charge("publication_tail_size_read")
+     dirty = bool(cursor._tail) or cursor._order is not cursor._base._order
+     if not dirty:
+         meter.charge("publication_plan_allocation")
+-        meter.charge("publication_plan_reference_copies", 4)
+-        return _Publication(cursor._base, None, False, False)
++        meter.charge("publication_plan_reference_copies", 3)
++        return _Publication(cursor._base, None, False)
+     meter.charge("publication_change_tuple_allocation")
+     meter.charge("publication_change_entry_visits", len(cursor._tail))
+     meter.charge("publication_change_reference_copies", len(cursor._tail))
+     changes = tuple(cursor._tail)
+     history = _history(meter, cursor._base._history, changes)
+-    layers = cursor._base._layers
+-    compacted = False
++    root = cursor._base._root
++    for name, replacement in cursor._tail.items():
++        meter.charge("publication_private_entry_visits")
++        root = _radix_edit(meter, root, name, replacement, _radix_hash(meter, name))
+     if cursor._tail:
+-        meter.charge("publication_layer_count_read")
+-        if len(layers) >= MAXIMUM_SEALED_LAYERS:
+-            layers = _compact(meter, layers, cursor._tail)
+-            compacted = True
+-        else:
+-            layer = _seal_layer(meter, cursor._tail)
+-            meter.charge("publication_layer_tuple_allocation")
+-            meter.charge("publication_layer_reference_copies", len(layers) + 1)
+-            layers = (*layers, layer)
+-    version = NameVersion(meter, layers, history, cursor._order,
++        root = _radix_freeze(meter, root)
++    version = NameVersion(meter, root, history, cursor._order,
+                           cursor._size, cursor._items_cache)
+     meter.charge("publication_fresh_tail_allocation")
+     empty_tail = {}
+     meter.charge("publication_plan_allocation")
+-    meter.charge("publication_plan_reference_copies", 4)
+-    return _Publication(version, empty_tail, True, compacted)
++    meter.charge("publication_plan_reference_copies", 3)
++    return _Publication(version, empty_tail, True)
+ 
+ 
+ def _charge_publication_commit(meter, plan):
+     if plan.changed:
+         meter.charge("snapshot_publications")
+-        if plan.compacted:
+-            meter.charge("compaction_publication_charge")
+         meter.charge("cursor_publication_reference_copies", 2)
+ 
+ 
+ def _commit_publication(cursor, plan):
+     if plan.changed:
+-        # Only these two fields change: order, size, and content memo already
+-        # describe exactly this logical cursor. All later writes get a new tail.
+         cursor._base = plan.version
+         cursor._tail = plan.empty_tail
+ 
+@@ -460,7 +737,7 @@
+             return MISSING
+         if entry is not MISSING:
+             return entry
+-        return _lookup_layers(meter, self._base._layers, name)
++        return _radix_lookup(meter, self._base._root, name)
+ 
+     def get(self, name, default=None):
+         _check_name(name)
+@@ -473,7 +750,7 @@
+         meter.charge("write_private_tail_attempts")
+         tail_entry = self._tail.get(name, MISSING)
+         if tail_entry is MISSING:
+-            old = _lookup_layers(meter, self._base._layers, name)
++            old = _radix_lookup(meter, self._base._root, name)
+         else:
+             old = MISSING if tail_entry is _DELETED else tail_entry
+         if replacement is _DELETED and old is MISSING:
+@@ -551,24 +828,8 @@
+ 
+ 
+ def _pending_names(meter, state):
+-    """Historical pending metadata is filtered through the effective newest entry."""
+-    meter.charge("pending_seen_dictionary_allocation")
+-    seen = {}
+-    for layer in reversed(state._layers):
+-        meter.charge("pending_layer_visits")
+-        for name in layer.pending:
+-            meter.charge("pending_name_visits")
+-            meter.charge("pending_seen_attempts")
+-            if name in seen:
+-                continue
+-            meter.charge("pending_seen_writes")
+-            meter.charge("pending_seen_reference_copies", 2)
+-            seen[name] = None
+-            entry = state._entry(name)
+-            if entry is not MISSING:
+-                meter.charge("pending_effective_certificate_reads")
+-                if not entry.no_work:
+-                    yield name
++    """Only effective pending entries exist in the current immutable root."""
++    yield from _radix_names(meter, state._root, pending_only=True)
+ 
+ 
+ def join(meter, states, merge):
+@@ -595,11 +856,8 @@
+     for state in states:
+         meter.charge("join_state_visits")
+         if base is None:
+-            for layer in state._layers:
+-                meter.charge("join_unrelated_layer_visits")
+-                for name in layer.data:
+-                    meter.charge("join_unrelated_name_visits")
+-                    remember(name)
++            for name in _radix_names(meter, state._root):
++                remember(name)
+         else:
+             token = state._history
+             while token is not base:

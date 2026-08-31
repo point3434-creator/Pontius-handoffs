@@ -1,0 +1,376 @@
+"""Independent indexed-storage schedules; public APIs and builtin oracles only."""
+from __future__ import annotations
+
+from contextlib import contextmanager
+import gc
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+import traceback
+import weakref
+
+MAXIMUM = 262144
+CASE_SHA256 = "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a"
+SPEC_SHA256 = "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9"
+CASE_PATH = Path(__file__).with_name("indexed-storage-extension-cases-v1.json")
+SPEC_PATH = Path(__file__).with_name("indexed-storage-extension-spec-v1.md")
+ABSENT = object()
+KEY_VIEW_TYPE = type({}.keys())
+
+
+class AccountingError(AssertionError):
+    pass
+
+
+class UnmetStructuralPrecondition(AssertionError):
+    pass
+
+
+class KeyObserver:
+    active = False
+    hashes = 0
+    equalities = 0
+
+
+class CollidingName(str):
+    def __hash__(self):
+        if KeyObserver.active:
+            KeyObserver.hashes += 1
+        return 0
+
+    def __eq__(self, other):
+        if KeyObserver.active:
+            KeyObserver.equalities += 1
+        return str.__eq__(self, other)
+
+
+@contextmanager
+def oracle_keys():
+    previous = KeyObserver.active
+    KeyObserver.active = False
+    try:
+        yield
+    finally:
+        KeyObserver.active = previous
+
+
+class Value:
+    __slots__ = ("term", "__weakref__")
+
+    def __init__(self, term):
+        self.term = term
+
+
+class Values:
+    def __init__(self):
+        self.known = {}
+
+    def atom(self, label):
+        term = ("atom", label)
+        if term not in self.known:
+            self.known[term] = Value(term)
+        return self.known[term]
+
+    def merge(self, name, supplied):
+        first = supplied[0]
+        if first is not ABSENT and all(item is first for item in supplied):
+            return first, True
+        term = ("join", str(name), tuple(
+            ("absent",) if item is ABSENT else item.term for item in supplied))
+        if term not in self.known:
+            self.known[term] = Value(term)
+        return self.known[term], False
+
+
+class Reference:
+    def __init__(self, values=None, no_work=None):
+        self.values = dict(values or {})
+        self.no_work = dict(no_work or {})
+
+    def fork(self):
+        return Reference(self.values, self.no_work)
+
+    def set(self, key, value, no_work):
+        self.values[key] = value
+        self.no_work[key] = no_work
+
+    def delete(self, key):
+        del self.values[key]
+        del self.no_work[key]
+
+
+def legacy_join(states, tokens):
+    if not states:
+        return Reference(), {}, set()
+    if len(states) == 1:
+        return states[0].fork(), {}, set()
+    result, arguments, required = Reference(), {}, set()
+    # Literal legacy algorithm, independently evaluated in this child.
+    for name in set().union(*(state.values.keys() for state in states)):
+        supplied = tuple(state.values.get(name, ABSENT) for state in states)
+        arguments[name] = supplied
+        first = supplied[0]
+        if (first is ABSENT or any(value is not first for value in supplied)
+                or any(not state.no_work.get(name, False) for state in states)):
+            required.add(name)
+        value, proof = tokens.merge(name, supplied)
+        result.set(name, value, proof)
+    return result, arguments, required
+
+
+def delta(after, before):
+    return {key: after.get(key, 0) - before.get(key, 0)
+            for key in sorted(set(after) | set(before))
+            if after.get(key, 0) != before.get(key, 0)}
+
+
+def encoded(reference):
+    return [(str(name), value.term, reference.no_work[name])
+            for name, value in reference.values.items()]
+
+
+def checked_keys(actual, reference):
+    assert type(actual) is KEY_VIEW_TYPE, "keys must be a genuine dict_keys snapshot"
+    assert tuple(actual) == tuple(reference.values), "builtin key order differs"
+
+
+def checked_items(actual, reference):
+    assert isinstance(actual, tuple), "ordered_items must be an immutable tuple"
+    assert len(actual) == len(reference.values), "item count differs"
+    for got, expected in zip(actual, reference.values.items(), strict=True):
+        assert isinstance(got, tuple) and len(got) == 2
+        assert got[0] == expected[0] and got[1] is expected[1], "order/value identity differs"
+
+
+def ordinary_names(n):
+    return tuple("u" + str(i).zfill(4) for i in range(n))
+
+
+def collision_names(n):
+    return tuple(CollidingName("c" + str(i).zfill(4)) for i in range(n))
+
+
+def check_closed_domain(keys):
+    assert not KeyObserver.active
+    collision_texts = {str(key) for key in keys if type(key) is CollidingName}
+    assert all(type(key) is CollidingName or str(key) not in collision_texts for key in keys)
+    for left in keys:
+        for right in keys:
+            if left == right:
+                assert hash(left) == hash(right), "closed key domain violates equality/hash law"
+
+
+class CountedEntries:
+    """Pure replayable input contents; only independent iteration counters change."""
+    def __init__(self, entries):
+        self.entries = tuple(entries)
+        self.iterations = 0
+        self.visits = 0
+
+    def __iter__(self):
+        self.iterations += 1
+        for entry in self.entries:
+            self.visits += 1
+            yield entry
+
+
+class Ledger:
+    def __init__(self, api, accounting, report):
+        self.api, self.accounting, self.report = api, accounting, report
+        self.events = report["cost_events"] = []
+        self.meter = api.Meter(limit=MAXIMUM)
+        self.events.append({
+            "phase": "meter_init", "operation": "Meter",
+            "units": self.meter.used, "counts": dict(self.meter.counts),
+            "key_protocol": {"hash_calls": 0, "equality_calls": 0}})
+        self._classify(self.events[-1])
+
+    def _classify(self, event):
+        counts = event["counts"]
+        unknown = sorted(set(counts) - set(self.accounting["categories"]))
+        problems = []
+        if unknown:
+            problems.append("unmapped charged categories: " + repr(unknown))
+        if any(type(value) is not int or value < 0 for value in counts.values()):
+            problems.append("invalid or refunded category units")
+        if event["units"] < 0 or sum(counts.values()) != event["units"]:
+            problems.append("category totals do not equal full charged units")
+        event["physical_events"] = sum(value for key, value in counts.items()
+            if key in self.accounting["categories"]
+            and self.accounting["categories"][key]["metric"] == "P")
+        if problems:
+            self.report.setdefault("accounting_errors", []).extend(problems)
+        return problems
+
+    def call(self, phase, operation, function):
+        assert not KeyObserver.active, "nested measured oracle call"
+        before, counts = self.meter.used, dict(self.meter.counts)
+        hashes, equalities = KeyObserver.hashes, KeyObserver.equalities
+        event = {"phase": phase, "operation": operation}
+        KeyObserver.active = True
+        failed = False
+        try:
+            result = function()
+        except BaseException as error:
+            failed = True
+            event["raised"] = type(error).__name__
+            raise
+        finally:
+            KeyObserver.active = False
+            event["units"] = self.meter.used - before
+            event["counts"] = delta(self.meter.counts, counts)
+            event["key_protocol"] = {
+                "hash_calls": KeyObserver.hashes - hashes,
+                "equality_calls": KeyObserver.equalities - equalities}
+            problems = self._classify(event)
+            self.events.append(event)
+        if problems and not failed:
+            raise AccountingError("; ".join(problems))
+        return result
+
+    def finish(self, complete=True):
+        self.report["meter_used"] = self.meter.used
+        self.report["meter_counts"] = dict(self.meter.counts)
+        self.report["ending_meter_limit"] = self.meter.limit
+        phases = {}
+        for event in self.events:
+            phase = phases.setdefault(event["phase"], {"units": 0, "physical_events": 0})
+            phase["units"] += event["units"]
+            phase["physical_events"] += event["physical_events"]
+        self.report["phase_costs"] = phases
+        self.report["accounting_complete"] = not self.report.get("accounting_errors")
+        self.report["maximum_meter_limit"] = MAXIMUM
+        assert sum(event["units"] for event in self.events) == self.meter.used
+        if complete:
+            assert self.meter.limit == MAXIMUM and 0 <= self.meter.used <= MAXIMUM
+            assert self.report["accounting_complete"], "accounting incomplete"
+
+
+class Harness:
+    def __init__(self, api, accounting, report):
+        self.api, self.accounting, self.report = api, accounting, report
+        self.ledger = Ledger(api, accounting, report)
+        self.tokens = Values()
+        report["observations"], report["callbacks"], report["bulk_calls"] = [], [], []
+
+    def empty(self):
+        version = self.ledger.call("construction", "empty",
+            lambda: self.api.NameVersion.empty(self.ledger.meter))
+        cursor = self.ledger.call("construction", "NameCursor",
+            lambda: self.api.NameCursor(version))
+        assert isinstance(cursor, self.api.NameCursor)
+        return cursor, Reference()
+
+    def cursor(self, version, reference, phase="construction"):
+        cursor = self.ledger.call(phase, "NameCursor", lambda: self.api.NameCursor(version))
+        assert isinstance(cursor, self.api.NameCursor)
+        return cursor, reference.fork()
+
+    def set(self, cursor, reference, name, value, proof, phase="mutation"):
+        result = self.ledger.call(phase, "set",
+            lambda: cursor.set(name, value, no_work=proof))
+        assert result is None
+        reference.set(name, value, proof)
+
+    def delete(self, cursor, reference, name, phase="mutation"):
+        result = self.ledger.call(phase, "delete", lambda: cursor.delete(name))
+        assert result is None
+        reference.delete(name)
+
+    def fork(self, cursor, reference, phase="publication"):
+        child = self.ledger.call(phase, "fork", cursor.fork)
+        assert isinstance(child, self.api.NameCursor) and child is not cursor
+        return child, reference.fork()
+
+    def snapshot(self, cursor, reference, phase="publication"):
+        version = self.ledger.call(phase, "snapshot", cursor.snapshot)
+        assert isinstance(version, self.api.NameVersion)
+        return version, reference.fork()
+
+    def get(self, state, reference, name, phase="lookup_validation"):
+        actual = self.ledger.call(phase, "get", lambda: state.get(name, ABSENT))
+        assert actual is reference.values.get(name, ABSENT)
+
+    def ordered(self, state, reference, prefix="terminal", repeats=2):
+        for repetition in range(repeats):
+            for operation in ("keys", "ordered_items"):
+                suffix = "keys" if operation == "keys" else "items"
+                phase = prefix + "_" + suffix if repetition == 0 else "repeated_" + suffix
+                got = self.ledger.call(phase, operation, getattr(state, operation))
+                (checked_keys if operation == "keys" else checked_items)(got, reference)
+                self.report["observations"].append({
+                    "phase": phase, "operation": operation,
+                    "values": encoded(reference)})
+        got = self.ledger.call("validation", "len", lambda: len(state))
+        assert got == len(reference.values)
+
+    def bulk(self, reference, phase="bulk_build"):
+        entries = tuple((key, self.api.Entry(value, no_work=reference.no_work[key]))
+                        for key, value in reference.values.items())
+        sequence = CountedEntries(entries)
+        version = self.bulk_call(sequence, phase)
+        return version, reference.fork()
+
+    def bulk_call(self, sequence, phase):
+        iterations, visits = sequence.iterations, sequence.visits
+        version = self.ledger.call(phase, "from_unique_entries",
+            lambda: self.api.NameVersion.from_unique_entries(self.ledger.meter, sequence))
+        assert isinstance(version, self.api.NameVersion)
+        n = len(sequence.entries)
+        assert sequence.iterations - iterations == 1 and sequence.visits - visits == n
+        event = self.ledger.events[-1]
+        for key in ("input_visits", "uniqueness_attempts", "order_writes"):
+            category = self.accounting["bulk_counters"][key]
+            assert event["counts"].get(category, 0) == n, "bulk counter differs: " + key
+        self.report["bulk_calls"].append({"n": n, "phase": phase,
+            "input_iterations": 1, "input_visits": n, "units": event["units"]})
+        return version
+
+    def join(self, versions, references, phase="join"):
+        expected, arguments, required = legacy_join(references, self.tokens)
+        called = []
+        def merge(name, supplied):
+            # Callback validation/reference work is not prototype key-protocol work.
+            with oracle_keys():
+                assert name in arguments
+                converted = tuple(ABSENT if value is self.api.MISSING else value
+                                  for value in supplied)
+                wanted = arguments[name]
+                assert len(converted) == len(wanted)
+                assert all(a is b for a, b in zip(converted, wanted, strict=True))
+                called.append(name)
+                value, proof = self.tokens.merge(name, converted)
+                return self.api.Entry(value, no_work=proof)
+        result = self.ledger.call(phase, "join",
+            lambda: self.api.join(self.ledger.meter, versions, merge))
+        assert isinstance(result, self.api.NameVersion)
+        assert required <= set(called), "changed/pending callback omitted"
+        self.report["callbacks"].append({
+            "required_names": sorted(str(key) for key in required),
+            "actual_names": [str(key) for key in called],
+            "legacy_order": [str(key) for key in expected.values],
+            "inter_name_order_asserted": False})
+        self.ordered(result, expected, prefix="joined", repeats=2)
+        return result, expected
+
+    def collision_evidence(self):
+        events = self.ledger.events
+        attempts = sum(event["counts"].get(category, 0)
+            for event in events for category in self.accounting["collision_attempt_categories"])
+        terminal = sum(event["counts"].get(category, 0)
+            for event in events for category in self.accounting["terminal_collision_categories"])
+        hashes = sum(event["key_protocol"]["hash_calls"] for event in events)
+        equalities = sum(event["key_protocol"]["equality_calls"] for event in events)
+        evidence = {"hash_calls": hashes, "equality_calls": equalities,
+            "declared_dictionary_attempt_units": attempts,
+            "terminal_collision_units": terminal,
+            "terminal_collision_exercised": terminal > 0,
+            "key_protocol_comparisons_are_meter_units": False,
+            "closed_domain_only": True}
+        self.report["collision_evidence"] = evidence
+        if not (hashes > 0 and equalities > 0 and attempts > 0):
+            raise UnmetStructuralPrecondition("actual closed-domain collision work not observed")
+
+

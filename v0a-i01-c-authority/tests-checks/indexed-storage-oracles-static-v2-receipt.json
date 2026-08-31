@@ -1,0 +1,19 @@
+{
+  "schema": "pontius-static-artifact-receipt-v2",
+  "static_only": true,
+  "payload_executed": false,
+  "candidate_imported": false,
+  "started": "2026-08-31T11:44:32.0384539+00:00",
+  "completed": true,
+  "timed_out": false,
+  "process_id": 21904,
+  "exit_code": 0,
+  "control": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\indexed-storage-oracles-static-control-v2.py",
+  "control_sha256": "add60d8526fe670b9718f6e804a9c796acf8be6fc7d0ca2c6e97560533ad44c0",
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "args": "-I -S -B -P \"D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\indexed-storage-oracles-static-control-v2.py\"",
+  "cwd": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks",
+  "temp": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\static-only-temp-bf575197411e475cbcd483bc6344c6d4",
+  "stdout_sha256": "66b3901d293ae03ce002f4d6d091d44ca10c283210c438cd97e9a2f5648625e8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

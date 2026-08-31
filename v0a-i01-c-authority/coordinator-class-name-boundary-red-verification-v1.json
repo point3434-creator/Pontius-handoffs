@@ -1,0 +1,38 @@
+{
+  "schema": "coordinator-class-name-boundary-red-verification-v1",
+  "pack_sha256": "31c50af8fda3cebc65e44d655db600dd1029a3e110b711a82d475750ece05a1c",
+  "results": [
+    {
+      "slot": "311",
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-name-boundary-v19-red01-311-receipt.json",
+      "receipt_sha256": "5285ffaf0ad76c3cf0170e5dc101da343ead3f750dc3a027378ea358dc721cf5",
+      "log_sha256": "76a1d085434ac0ef2bf28a30dbeef7be4b7418262c53bbdd2787d4ad317cad5f",
+      "rehash_file_count_including_manifest": 1768,
+      "semantic_failures": [
+        "class-free-read-safe",
+        "class-same-value-shadow-safe",
+        "class-direct-nonlocal-unsafe",
+        "class-direct-global-safe-refused"
+      ],
+      "harmless_models_passed": 8,
+      "analyzer_errors": 0
+    },
+    {
+      "slot": "314",
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-name-boundary-v19-red01-314-receipt.json",
+      "receipt_sha256": "3916d1258069dd0191af44dd2fd38847f12d951aab819339ac101e5ddf62b829",
+      "log_sha256": "24ddbcbeb8b8b0bcf32e535cf9c4ef089862d0237f8c90bd3be711f1e380534a",
+      "rehash_file_count_including_manifest": 1773,
+      "semantic_failures": [
+        "class-free-read-safe",
+        "class-same-value-shadow-safe",
+        "class-direct-nonlocal-unsafe",
+        "class-direct-global-safe-refused"
+      ],
+      "harmless_models_passed": 8,
+      "analyzer_errors": 0
+    }
+  ],
+  "complete_per_case_records_equal_across_runtimes": true,
+  "standing": "Replicated prerepair v19 RED; not a semantic implementation or cold verdict"
+}

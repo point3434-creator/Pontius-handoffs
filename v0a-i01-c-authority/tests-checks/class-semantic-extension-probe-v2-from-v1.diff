@@ -1,0 +1,71 @@
+--- probe-v1
++++ probe-v2
+@@ -12,7 +12,6 @@
+ 
+ PACK_SHA = "925ae5b9354377a5957f0c32c8bf5b58fea01612498b835abd6392f9cc87d268"
+ SCHEDULE_SHA = "6f3c8c917f896cc1ffa352b054d4aeee73cb4a4dde85657c9da97a8996363913"
+-V19_SHA = "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1"
+ PAYLOAD = ".class-semantic-extension"
+ SCHEMA = "pontius-class-semantic-extension-v1"
+ CASE_IDS = (
+@@ -152,18 +151,11 @@
+         ordinal = selected["ordinal"]
+         selected["ordinal"] += 1
+         budget = keywords.get("analysis_budget")
+-        values = keywords.get("entry_values")
+-        before = budget.work_units if budget is not None else None
+-        projected = {}
+-        for name in ("armed", "module"):
+-            value = dict.get(values, name) if isinstance(values, dict) else None
+-            projected[name] = {"kind": getattr(value, "kind", None), "scalar": (
+-                value.value if value is not None and type(value.value) in (str, bool, int, type(None))
+-                else None)}
+-        require(budget is None or budget.work_units == before, "route snapshot consumed budget")
++        # Coverage needs the actual recursive entry and returned public row.
++        # Do not inspect private projection storage or perform charged reads.
+         common = {"case": selected["case"], "ordinal": ordinal, "function": "invoke",
+                   "line": node.lineno, "closure_depth": keywords.get("closure_depth", 0)}
+-        emit({**common, "event": "entry", "projected": projected}, budget)
++        emit({**common, "event": "entry"}, budget)
+         try:
+             result = original(node, **keywords)
+         except BaseException as error:
+@@ -220,22 +212,25 @@
+     hashes(snapshot, manifest)
+     run = json.loads(checked(payload / "run.json").read_bytes())
+     require(run["schema"] == SCHEMA and run["slot"] == slot, "run config")
+-    require(run["generator_sha256"] == V19_SHA and run["pack_sha256"] == PACK_SHA
++    source_sha = run["generator_sha256"]
++    require(type(source_sha) is str and len(source_sha) == 64
++            and all(c in "0123456789abcdef" for c in source_sha), "candidate digest")
++    require(run["pack_sha256"] == PACK_SHA
+             and run["schedule_sha256"] == SCHEDULE_SHA, "run input identity")
+     probe_sha = digest(checked(Path(__file__).absolute()).read_bytes())
+     require(probe_sha == run["probe_sha256"], "probe pin")
+     require(digest(checked(payload / "control.py").read_bytes()) == run["control_sha256"], "control pin")
+     require(digest(checked(payload / "schedule.md").read_bytes()) == SCHEDULE_SHA, "schedule bytes")
+     source_path = snapshot / "tools/generate_test_inventory.py"
+-    require(digest(checked(source_path).read_bytes()) == V19_SHA
+-            and digest(checked(payload / "retained-source.py").read_bytes()) == V19_SHA, "exact v19")
++    require(digest(checked(source_path).read_bytes()) == source_sha
++            and digest(checked(payload / "retained-source.py").read_bytes()) == source_sha, "exact retained candidate")
+     sys.stdout.reconfigure(newline="\n")
+     sys.stderr.reconfigure(newline="\n")
+     identity = {"executable": sys.executable, "implementation": sys.implementation.name,
+                 "version": sys.version, "version_info": list(sys.version_info[:3]),
+                 "cwd": str(snapshot), "flags": str(sys.flags), "environment": actual_environment,
+                 "manifest_sha256": manifest_sha, "verified_files": len(manifest),
+-                "generator_sha256": V19_SHA, "probe_sha256": probe_sha}
++                "generator_sha256": source_sha, "probe_sha256": probe_sha}
+     print(json.dumps({"identity_before_imports": identity}), flush=True)
+     require(not any(n == "pontius" or n.startswith("pontius.") for n in sys.modules),
+             "Pontius imported before generator")
+@@ -301,7 +296,7 @@
+     hashes(snapshot, manifest)
+     require(digest(checked(payload / "manifest.json").read_bytes()) == manifest_sha, "manifest changed")
+     summary = {"class_extension_summary": True, "schema": SCHEMA, "slot": slot,
+-               "generator_sha256": V19_SHA, "pack_sha256": PACK_SHA, "probe_sha256": probe_sha,
++               "generator_sha256": source_sha, "pack_sha256": PACK_SHA, "probe_sha256": probe_sha,
+                "schedule_sha256": SCHEDULE_SHA, "planned_cases": 12, "case_count": 12,
+                "projections": 12, "analyzed_cases": analyzed,
+                "semantic_failures": semantic_failures, "coverage_failures": coverage_failures,
