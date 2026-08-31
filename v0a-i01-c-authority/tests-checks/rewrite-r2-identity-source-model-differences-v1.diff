@@ -1,0 +1,244 @@
+--- scale-n8-s4-d0-normal/source.py
++++ identity-scale-n8-s4-d0-normal/source.py
+@@ -14,11 +14,12 @@
+         ambient_7 = 7
+         work0 = 0
+         work1 = 0
+-        if self.choice == 0:
++        selector = self.choice
++        if selector is True:
+             pass
+-        elif self.choice == 1:
++        elif selector is False:
+             pass
+-        elif self.choice == 2:
++        elif selector is None:
+             pass
+         else:
+             pass
+--- scale-n8-s4-d0-normal/model.py
++++ identity-scale-n8-s4-d0-normal/model.py
+@@ -1,5 +1,18 @@
+ _events = []
+ class Model:
++    def __init__(self, region):
++        if type(region) is not str:
++            raise TypeError("identity region must be an exact string")
++        if region == "true":
++            self.choice = True
++        elif region == "false":
++            self.choice = False
++        elif region == "none":
++            self.choice = None
++        elif region == "other":
++            self.choice = object()
++        else:
++            raise ValueError("unknown identity region")
+     @staticmethod
+     def _launch():
+         _events.append("sink")
+@@ -15,11 +28,12 @@
+         ambient_7 = 7
+         work0 = 0
+         work1 = 0
+-        if self.choice == 0:
++        selector = self.choice
++        if selector is True:
+             _events.append("branch:0")
+-        elif self.choice == 1:
++        elif selector is False:
+             _events.append("branch:1")
+-        elif self.choice == 2:
++        elif selector is None:
+             _events.append("branch:2")
+         else:
+             _events.append("branch:3")
+--- scale-n64-s4-d0-normal/source.py
++++ identity-scale-n64-s4-d0-normal/source.py
+@@ -70,11 +70,12 @@
+         ambient_63 = 63
+         work0 = 0
+         work1 = 0
+-        if self.choice == 0:
++        selector = self.choice
++        if selector is True:
+             pass
+-        elif self.choice == 1:
++        elif selector is False:
+             pass
+-        elif self.choice == 2:
++        elif selector is None:
+             pass
+         else:
+             pass
+--- scale-n64-s4-d0-normal/model.py
++++ identity-scale-n64-s4-d0-normal/model.py
+@@ -1,5 +1,18 @@
+ _events = []
+ class Model:
++    def __init__(self, region):
++        if type(region) is not str:
++            raise TypeError("identity region must be an exact string")
++        if region == "true":
++            self.choice = True
++        elif region == "false":
++            self.choice = False
++        elif region == "none":
++            self.choice = None
++        elif region == "other":
++            self.choice = object()
++        else:
++            raise ValueError("unknown identity region")
+     @staticmethod
+     def _launch():
+         _events.append("sink")
+@@ -71,11 +84,12 @@
+         ambient_63 = 63
+         work0 = 0
+         work1 = 0
+-        if self.choice == 0:
++        selector = self.choice
++        if selector is True:
+             _events.append("branch:0")
+-        elif self.choice == 1:
++        elif selector is False:
+             _events.append("branch:1")
+-        elif self.choice == 2:
++        elif selector is None:
+             _events.append("branch:2")
+         else:
+             _events.append("branch:3")
+--- scale-n8-s4-d2-exceptional/source.py
++++ identity-scale-n8-s4-d2-exceptional/source.py
+@@ -15,15 +15,16 @@
+         work0 = 0
+         work1 = 0
+         try:
+-            if self.choice == 0:
++            selector = self.choice
++            if selector is True:
+                 work0 = 1
+                 work1 = -1
+                 raise ValueError()
+-            elif self.choice == 1:
++            elif selector is False:
+                 work0 = 2
+                 work1 = -2
+                 raise TypeError()
+-            elif self.choice == 2:
++            elif selector is None:
+                 work0 = 3
+                 work1 = -3
+                 raise KeyError()
+--- scale-n8-s4-d2-exceptional/model.py
++++ identity-scale-n8-s4-d2-exceptional/model.py
+@@ -1,5 +1,18 @@
+ _events = []
+ class Model:
++    def __init__(self, region):
++        if type(region) is not str:
++            raise TypeError("identity region must be an exact string")
++        if region == "true":
++            self.choice = True
++        elif region == "false":
++            self.choice = False
++        elif region == "none":
++            self.choice = None
++        elif region == "other":
++            self.choice = object()
++        else:
++            raise ValueError("unknown identity region")
+     @staticmethod
+     def _launch():
+         _events.append("sink")
+@@ -16,19 +29,20 @@
+         work0 = 0
+         work1 = 0
+         try:
+-            if self.choice == 0:
++            selector = self.choice
++            if selector is True:
+                 _events.append("branch:0")
+                 work0 = 1
+                 work1 = -1
+                 _events.append("raise:ValueError")
+                 raise ValueError()
+-            elif self.choice == 1:
++            elif selector is False:
+                 _events.append("branch:1")
+                 work0 = 2
+                 work1 = -2
+                 _events.append("raise:TypeError")
+                 raise TypeError()
+-            elif self.choice == 2:
++            elif selector is None:
+                 _events.append("branch:2")
+                 work0 = 3
+                 work1 = -3
+--- scale-n64-s4-d2-exceptional/source.py
++++ identity-scale-n64-s4-d2-exceptional/source.py
+@@ -71,15 +71,16 @@
+         work0 = 0
+         work1 = 0
+         try:
+-            if self.choice == 0:
++            selector = self.choice
++            if selector is True:
+                 work0 = 1
+                 work1 = -1
+                 raise ValueError()
+-            elif self.choice == 1:
++            elif selector is False:
+                 work0 = 2
+                 work1 = -2
+                 raise TypeError()
+-            elif self.choice == 2:
++            elif selector is None:
+                 work0 = 3
+                 work1 = -3
+                 raise KeyError()
+--- scale-n64-s4-d2-exceptional/model.py
++++ identity-scale-n64-s4-d2-exceptional/model.py
+@@ -1,5 +1,18 @@
+ _events = []
+ class Model:
++    def __init__(self, region):
++        if type(region) is not str:
++            raise TypeError("identity region must be an exact string")
++        if region == "true":
++            self.choice = True
++        elif region == "false":
++            self.choice = False
++        elif region == "none":
++            self.choice = None
++        elif region == "other":
++            self.choice = object()
++        else:
++            raise ValueError("unknown identity region")
+     @staticmethod
+     def _launch():
+         _events.append("sink")
+@@ -72,19 +85,20 @@
+         work0 = 0
+         work1 = 0
+         try:
+-            if self.choice == 0:
++            selector = self.choice
++            if selector is True:
+                 _events.append("branch:0")
+                 work0 = 1
+                 work1 = -1
+                 _events.append("raise:ValueError")
+                 raise ValueError()
+-            elif self.choice == 1:
++            elif selector is False:
+                 _events.append("branch:1")
+                 work0 = 2
+                 work1 = -2
+                 _events.append("raise:TypeError")
+                 raise TypeError()
+-            elif self.choice == 2:
++            elif selector is None:
+                 _events.append("branch:2")
+                 work0 = 3
+                 work1 = -3

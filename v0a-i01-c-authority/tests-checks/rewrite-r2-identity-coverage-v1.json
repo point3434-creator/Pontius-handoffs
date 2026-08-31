@@ -1,0 +1,529 @@
+{
+  "AST_checked_harmless_Models": 4,
+  "AST_checked_sensitive_sources": 4,
+  "Models_executed": false,
+  "actual_static_runtime": [
+    3,
+    11,
+    15
+  ],
+  "author": "codex/cold_review_a",
+  "authoring_validation_notes": [
+    "Event stripping preserves explicit empty branch/else/handler bodies as Pass; the initial normalizer omitted the D0 else and was corrected before any output artifact existed."
+  ],
+  "candidate_imported": false,
+  "case_pack_ref": "tests-checks/rewrite-r2-identity-cases-v1.json",
+  "case_pack_sha256": "4834971b9d63aa182c1207959721b6bb65f742a106541d96975945060134d9ea",
+  "differences": [
+    {
+      "both_launch_spans_byte_exact": true,
+      "classification_unchanged": "clean",
+      "expected_outputs_equal_predecessor_except_discriminant_key": true,
+      "latch_position": "after ambient/work initialization immediately before ladder",
+      "model_inverse_bytes_exact": true,
+      "model_launch_source_sha256": "cf22a0ceaffdfdb217d9628be44772d67a7662b5edb9e2ac44c331df62124c58",
+      "model_normalized_AST_equals_old": true,
+      "model_static_safety": {
+        "allowed_direct_builtin_calls": [
+          "IndexError",
+          "KeyError",
+          "TypeError",
+          "ValueError",
+          "object",
+          "type"
+        ],
+        "candidate_or_sensitive_calls": 0,
+        "constructor_ast_sha256": "ddada84450c6b5c77326e853489960be6eba1bbb3dae6ef477ae58aa568d3568",
+        "imports": 0,
+        "object_creation": "one syntactic object() call, reached only by exact region other"
+      },
+      "model_test_projection_equals_sensitive_test_AST": true,
+      "new_id": "identity-scale-n8-s4-d0-normal",
+      "new_json_pointer": "/cases/0",
+      "new_model_bytes": 1302,
+      "new_model_sha256": "188295670ffc374851e3c21426acbe61d66c4239b1832c49175d6e9b7b3639d2",
+      "new_record_canonical_sha256": "fc012468d35256dfef0639c5bb7309a37897fe39b3d7f432762285a586abadb1",
+      "new_source_bytes": 718,
+      "new_source_sha256": "4de9d83394368d269d925206a0ff2d133a132ce0a4a2b1134f63db0dff67985f",
+      "old_id": "scale-n8-s4-d0-normal",
+      "old_model_bytes": 808,
+      "old_model_sha256": "c3085cc320db1712eb6a2ef5c4777b18d28278004235579ffd85cb29100c47fa",
+      "old_record_canonical_sha256": "f5fbd7b9d9fd46c2bbef7d33af7ed5d68e7e38c51f03e5b4fdbf7e2f751228df",
+      "old_source_bytes": 686,
+      "old_source_sha256": "7a496280160092f1389045b0d640f9871f4080b1807db988d04725730fa8b1c7",
+      "region_mapping": [
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "ValueError",
+          "D2_work_pair": [
+            1,
+            -1
+          ],
+          "predecessor_choice": 0,
+          "region": "true",
+          "selector_semantics": "singleton True"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "TypeError",
+          "D2_work_pair": [
+            2,
+            -2
+          ],
+          "predecessor_choice": 1,
+          "region": "false",
+          "selector_semantics": "singleton False"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "KeyError",
+          "D2_work_pair": [
+            3,
+            -3
+          ],
+          "predecessor_choice": 2,
+          "region": "none",
+          "selector_semantics": "singleton None"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "IndexError",
+          "D2_work_pair": [
+            4,
+            -4
+          ],
+          "predecessor_choice": 3,
+          "region": "other",
+          "selector_semantics": "fresh plain object"
+        }
+      ],
+      "sensitive_launch_source_sha256": "a3e7b9bd6af9f6f225eed19ed6bbaca84cf03ec6070062d2fdfbc9a7935d2f6e",
+      "source_choice_load_lines": [
+        17
+      ],
+      "source_identity_lines": [
+        18,
+        20,
+        22
+      ],
+      "source_inverse_bytes_exact": true,
+      "source_normalized_AST_equals_old": true
+    },
+    {
+      "both_launch_spans_byte_exact": true,
+      "classification_unchanged": "clean",
+      "expected_outputs_equal_predecessor_except_discriminant_key": true,
+      "latch_position": "after ambient/work initialization immediately before ladder",
+      "model_inverse_bytes_exact": true,
+      "model_launch_source_sha256": "cf22a0ceaffdfdb217d9628be44772d67a7662b5edb9e2ac44c331df62124c58",
+      "model_normalized_AST_equals_old": true,
+      "model_static_safety": {
+        "allowed_direct_builtin_calls": [
+          "IndexError",
+          "KeyError",
+          "TypeError",
+          "ValueError",
+          "object",
+          "type"
+        ],
+        "candidate_or_sensitive_calls": 0,
+        "constructor_ast_sha256": "ddada84450c6b5c77326e853489960be6eba1bbb3dae6ef477ae58aa568d3568",
+        "imports": 0,
+        "object_creation": "one syntactic object() call, reached only by exact region other"
+      },
+      "model_test_projection_equals_sensitive_test_AST": true,
+      "new_id": "identity-scale-n64-s4-d0-normal",
+      "new_json_pointer": "/cases/1",
+      "new_model_bytes": 3312,
+      "new_model_sha256": "55fbdef330c8dcc3524c326b3be6ad90e83f7bf9c7c000d6df6a7b62fd5790ad",
+      "new_record_canonical_sha256": "c363ddc021978a437b1642648ad3b3ac1dfedb95020e4888beb504a0803f85a6",
+      "new_source_bytes": 2058,
+      "new_source_sha256": "8ad412a275b4e16986b8e5ed66bcc3f21ffdfe02a53ece3baf6e4767935b9281",
+      "old_id": "scale-n64-s4-d0-normal",
+      "old_model_bytes": 2818,
+      "old_model_sha256": "00a3a4792a10e0279efc591401f7856bd157b580b234f6d2972246912c780ed4",
+      "old_record_canonical_sha256": "549d4dfa15a2db0f927b5fba162f21f2b3bf8e4b4924bc14d66229242badd83b",
+      "old_source_bytes": 2026,
+      "old_source_sha256": "8cd92fb80500595801e3948c1cb9a7ac825334457139b70933307714ad09fe10",
+      "region_mapping": [
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "ValueError",
+          "D2_work_pair": [
+            1,
+            -1
+          ],
+          "predecessor_choice": 0,
+          "region": "true",
+          "selector_semantics": "singleton True"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "TypeError",
+          "D2_work_pair": [
+            2,
+            -2
+          ],
+          "predecessor_choice": 1,
+          "region": "false",
+          "selector_semantics": "singleton False"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "KeyError",
+          "D2_work_pair": [
+            3,
+            -3
+          ],
+          "predecessor_choice": 2,
+          "region": "none",
+          "selector_semantics": "singleton None"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "IndexError",
+          "D2_work_pair": [
+            4,
+            -4
+          ],
+          "predecessor_choice": 3,
+          "region": "other",
+          "selector_semantics": "fresh plain object"
+        }
+      ],
+      "sensitive_launch_source_sha256": "a3e7b9bd6af9f6f225eed19ed6bbaca84cf03ec6070062d2fdfbc9a7935d2f6e",
+      "source_choice_load_lines": [
+        73
+      ],
+      "source_identity_lines": [
+        74,
+        76,
+        78
+      ],
+      "source_inverse_bytes_exact": true,
+      "source_normalized_AST_equals_old": true
+    },
+    {
+      "both_launch_spans_byte_exact": true,
+      "classification_unchanged": "clean",
+      "expected_outputs_equal_predecessor_except_discriminant_key": true,
+      "latch_position": "inside original try before ladder, after initialization",
+      "model_inverse_bytes_exact": true,
+      "model_launch_source_sha256": "cf22a0ceaffdfdb217d9628be44772d67a7662b5edb9e2ac44c331df62124c58",
+      "model_normalized_AST_equals_old": true,
+      "model_static_safety": {
+        "allowed_direct_builtin_calls": [
+          "IndexError",
+          "KeyError",
+          "TypeError",
+          "ValueError",
+          "object",
+          "type"
+        ],
+        "candidate_or_sensitive_calls": 0,
+        "constructor_ast_sha256": "ddada84450c6b5c77326e853489960be6eba1bbb3dae6ef477ae58aa568d3568",
+        "imports": 0,
+        "object_creation": "one syntactic object() call, reached only by exact region other"
+      },
+      "model_test_projection_equals_sensitive_test_AST": true,
+      "new_id": "identity-scale-n8-s4-d2-exceptional",
+      "new_json_pointer": "/cases/2",
+      "new_model_bytes": 2001,
+      "new_model_sha256": "0221d47929a3dbb117919ee0e9c0a00112459a56fc5416243b5d396ec18ba834",
+      "new_record_canonical_sha256": "b68d135fae80c398c5984aafbc2b21b4d70bf28ce16a7f2221d12616f2bf4348",
+      "new_source_bytes": 1111,
+      "new_source_sha256": "9cb2f14f8cc4c1f099f6c99eddbb0e7348b2013871404bb78b2db366d432d439",
+      "old_id": "scale-n8-s4-d2-exceptional",
+      "old_model_bytes": 1503,
+      "old_model_sha256": "335cf692d739f50143151b2429fd34d8f22328661701f95c91acc1767feac3b0",
+      "old_record_canonical_sha256": "c0292310789ef42c6e0570a86ab7c3ac9878407e33352b59031a6f81c99c7d03",
+      "old_source_bytes": 1075,
+      "old_source_sha256": "0e22e6aa9144d52d49c0c9a1a398b4fec9d7213b03e64b3af39278b92e3a2303",
+      "region_mapping": [
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "ValueError",
+          "D2_work_pair": [
+            1,
+            -1
+          ],
+          "predecessor_choice": 0,
+          "region": "true",
+          "selector_semantics": "singleton True"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "TypeError",
+          "D2_work_pair": [
+            2,
+            -2
+          ],
+          "predecessor_choice": 1,
+          "region": "false",
+          "selector_semantics": "singleton False"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "KeyError",
+          "D2_work_pair": [
+            3,
+            -3
+          ],
+          "predecessor_choice": 2,
+          "region": "none",
+          "selector_semantics": "singleton None"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "IndexError",
+          "D2_work_pair": [
+            4,
+            -4
+          ],
+          "predecessor_choice": 3,
+          "region": "other",
+          "selector_semantics": "fresh plain object"
+        }
+      ],
+      "sensitive_launch_source_sha256": "a3e7b9bd6af9f6f225eed19ed6bbaca84cf03ec6070062d2fdfbc9a7935d2f6e",
+      "source_choice_load_lines": [
+        18
+      ],
+      "source_identity_lines": [
+        19,
+        23,
+        27
+      ],
+      "source_inverse_bytes_exact": true,
+      "source_normalized_AST_equals_old": true
+    },
+    {
+      "both_launch_spans_byte_exact": true,
+      "classification_unchanged": "clean",
+      "expected_outputs_equal_predecessor_except_discriminant_key": true,
+      "latch_position": "inside original try before ladder, after initialization",
+      "model_inverse_bytes_exact": true,
+      "model_launch_source_sha256": "cf22a0ceaffdfdb217d9628be44772d67a7662b5edb9e2ac44c331df62124c58",
+      "model_normalized_AST_equals_old": true,
+      "model_static_safety": {
+        "allowed_direct_builtin_calls": [
+          "IndexError",
+          "KeyError",
+          "TypeError",
+          "ValueError",
+          "object",
+          "type"
+        ],
+        "candidate_or_sensitive_calls": 0,
+        "constructor_ast_sha256": "ddada84450c6b5c77326e853489960be6eba1bbb3dae6ef477ae58aa568d3568",
+        "imports": 0,
+        "object_creation": "one syntactic object() call, reached only by exact region other"
+      },
+      "model_test_projection_equals_sensitive_test_AST": true,
+      "new_id": "identity-scale-n64-s4-d2-exceptional",
+      "new_json_pointer": "/cases/3",
+      "new_model_bytes": 4011,
+      "new_model_sha256": "cba19a234b42c6a488ba14ab009cf739eb43f41425110b42e0180762cd916ce2",
+      "new_record_canonical_sha256": "b9733da1d9c2860f9169e7342bbe1862500a2e1f91fa6c2107edbd9870078696",
+      "new_source_bytes": 2451,
+      "new_source_sha256": "14a973fb586ed3529fffe37fa1fd513084dd6bf2d7b6d87881388984225cb135",
+      "old_id": "scale-n64-s4-d2-exceptional",
+      "old_model_bytes": 3513,
+      "old_model_sha256": "12818b59ac4dc3d9ed3768c28afef434e34b6ebf387a5c3b4bf469d44cc9740f",
+      "old_record_canonical_sha256": "2bdc1710de8c485206a742085b86fda2efaaba1fc69ddb3c1fc16c3482096817",
+      "old_source_bytes": 2415,
+      "old_source_sha256": "a67c06db53e8804496c85cf9437e5fbfa9c68a235e27e0af69b454713167b33d",
+      "region_mapping": [
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "ValueError",
+          "D2_work_pair": [
+            1,
+            -1
+          ],
+          "predecessor_choice": 0,
+          "region": "true",
+          "selector_semantics": "singleton True"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "TypeError",
+          "D2_work_pair": [
+            2,
+            -2
+          ],
+          "predecessor_choice": 1,
+          "region": "false",
+          "selector_semantics": "singleton False"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "KeyError",
+          "D2_work_pair": [
+            3,
+            -3
+          ],
+          "predecessor_choice": 2,
+          "region": "none",
+          "selector_semantics": "singleton None"
+        },
+        {
+          "D0_work_pair": [
+            0,
+            0
+          ],
+          "D2_exception": "IndexError",
+          "D2_work_pair": [
+            4,
+            -4
+          ],
+          "predecessor_choice": 3,
+          "region": "other",
+          "selector_semantics": "fresh plain object"
+        }
+      ],
+      "sensitive_launch_source_sha256": "a3e7b9bd6af9f6f225eed19ed6bbaca84cf03ec6070062d2fdfbc9a7935d2f6e",
+      "source_choice_load_lines": [
+        74
+      ],
+      "source_identity_lines": [
+        75,
+        79,
+        83
+      ],
+      "source_inverse_bytes_exact": true,
+      "source_normalized_AST_equals_old": true
+    }
+  ],
+  "exercised_cases": 0,
+  "exercised_projections": 0,
+  "flags": [
+    "-I",
+    "-S",
+    "-B",
+    "-P"
+  ],
+  "inputs": {
+    "rewrite-early-population-v1.json": {
+      "bytes": 45888,
+      "sha256": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce"
+    },
+    "rewrite-r2-identity-partition-premise-review-v1.md": {
+      "bytes": 6385,
+      "sha256": "ed38152d0fd03fb0acf15d87e52494b88d343f41c1d032d89322a0dbd09607f8"
+    },
+    "rewrite-r2-planning-v1-manifest.sha256": {
+      "bytes": 812,
+      "sha256": "d1a610cd7ffdfae792d402b1882dba7677b2baadc8c65397781da8d33da58a43"
+    },
+    "rewrite-r2-premise-disposition-v1.md": {
+      "bytes": 6361,
+      "sha256": "bdf3b13684d50318c48ddbe3af1682b6e298136e21af3d1ef76ffe7a3f52e6b4"
+    },
+    "rewrite-r2-scale-sibling-premise-inventory-v1.md": {
+      "bytes": 5770,
+      "sha256": "4131b7e76fcd4c1db416fd2a3d2b22c66c113861523c3726104a358cf4bcf310"
+    },
+    "tests-checks/name-environment-cases-v1.json": {
+      "bytes": 117394,
+      "sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c"
+    },
+    "tests-checks/name-environment-probe-v1.py": {
+      "bytes": 12207,
+      "sha256": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4"
+    },
+    "tests-checks/storage-composition-cases-v1.json": {
+      "bytes": 7341,
+      "sha256": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709"
+    }
+  },
+  "new_Model_constructor_ast_sha256": "ddada84450c6b5c77326e853489960be6eba1bbb3dae6ef477ae58aa568d3568",
+  "new_Model_constructor_source": "    def __init__(self, region):\n        if type(region) is not str:\n            raise TypeError(\"identity region must be an exact string\")\n        if region == \"true\":\n            self.choice = True\n        elif region == \"false\":\n            self.choice = False\n        elif region == \"none\":\n            self.choice = None\n        elif region == \"other\":\n            self.choice = object()\n        else:\n            raise ValueError(\"unknown identity region\")\n",
+  "old_projection_wrapper_not_reused": true,
+  "original_packs_unchanged_after_authoring": true,
+  "planned_cases": 4,
+  "planned_projections": 16,
+  "proof_limits": [
+    "Static Model/source correspondence and frozen expected projections only; runtime outcomes not yet verified.",
+    "Model output result fixed is the unchanged launch projection label, not literal source helper return equality.",
+    "Open receiver lookup remains a separate admitted contract; identity only proves its own result protocol inert.",
+    "No new interpretation, candidate, harness, control or observer was authored."
+  ],
+  "public_envelope": {
+    "inventory_document_bytes_sha256": "f188f624991fcb4740f8fd4873bb3c16d0b890a0baae1d2711bcfcbf1feaecf2",
+    "no_selector_domain_argument": true,
+    "original_public_review_AST_sha256": "bccb4b0d8d5d3f734a40b9290298747a08976ad93d792f851c77e9fa23a0334f",
+    "original_public_review_raw_sha256": "55ad7dd39403057b2d49e0a72b23343de9c873c27312a6e7df32ed5c3f705019",
+    "original_public_review_source_ref": {
+      "ast_sha256": "bccb4b0d8d5d3f734a40b9290298747a08976ad93d792f851c77e9fa23a0334f",
+      "end_line": 122,
+      "source_ref": "tests-checks/name-environment-probe-v1.py",
+      "source_span_bytes": 1139,
+      "source_span_sha256": "55ad7dd39403057b2d49e0a72b23343de9c873c27312a6e7df32ed5c3f705019",
+      "start_line": 104,
+      "symbol": "public_review"
+    },
+    "public_function_was_only_parsed_not_called": true,
+    "unchanged_public_API_inventory_stable_ids_helper_sinks": true
+  },
+  "raw_difference_ref": "tests-checks/rewrite-r2-identity-source-model-differences-v1.diff",
+  "raw_difference_sha256": "d132ded3312b936a5510a4c498f39c06d3a4a6259903cd8ddef0269211e110a6",
+  "schema": "pontius-rewrite-r2-identity-static-coverage-v1",
+  "sensitive_sources_executed": false,
+  "source_or_Model_payload_dispatched": false,
+  "unchanged_original_population_record_hashes": {
+    "class-adoption-safe": "a2340d2f00d3a17a96098d02ebc921fceb4bf70fe134e67bbc1041e5fa99e320",
+    "class-adoption-unsafe": "afe151c65f3b3f545709798033ac6d92bbc0e4efe8f3595b6cf3e3c81192807e",
+    "generator70": "fe773769d148ef00a2398a35bdb53bf657125c5612eaeb20c22127d3b788c8c4",
+    "helper65": "b7f8524d765b16bd801072da511c2faa2519b9ad3867ad2ad1828d61a6525a1c",
+    "hidden-cell-joined-dormant": "fc56564d9a145da7dcc0bdce6fb2fcbce1956db2b1c4a079d59220a8d890acae",
+    "hidden-cell-joined-reached": "076636871a9c143aec929c7a4f86dfe1a0a0e4d16189a96f5f75ec4926e94e7c",
+    "shared-list-consumed": "fb0ac35992deedd77b05e9869b26855c92bb1996079185293978baa7d3d1efdf",
+    "shared-list-dormant": "eaf10d514a9bead7d3164a80fcb4a22571c9bc7d63caf811bf052caca85c0be5"
+  }
+}
