@@ -1,0 +1,42 @@
+{
+  "schema": "coordinator-class-owner-l8-inspection-v1",
+  "pins": {
+    "class-owner-late-store-cases-v1.json": "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47",
+    "class-owner-late-store-spec-v1.md": "d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1",
+    "class-owner-late-store-probe-v1.py": "6fa50f3268c4e672e03819adde462d5a044f00dfa7b849b0d273450f14ffcf22",
+    "class-owner-late-store-control-v1.py": "1a1a0483b118e41de5e343c6dff11e8cc577928fd37daeb0c7dd0b9a5aeb7b1c",
+    "class-comprehension-extension-probe-v2.py": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426",
+    "class-comprehension-extension-control-v2.py": "34c16309d974e40909bc352d509308b19d2fa4fd42f06386d27430fcf07526e2"
+  },
+  "changed_functions": {
+    "probe": [
+      "load_pack",
+      "main",
+      "oracle"
+    ],
+    "control": [
+      "main",
+      "validate_result"
+    ]
+  },
+  "checked_cases": [
+    "L01-local-direct-unsafe",
+    "L02-local-direct-dormant",
+    "L03-local-contained-unsafe",
+    "L04-local-contained-dormant",
+    "L05-local-captured-unsafe",
+    "L06-local-captured-dormant",
+    "L07-module-class-unsafe",
+    "L08-module-class-scalar-clean"
+  ],
+  "old_case_count_rehashed": 44,
+  "source_model_ast_correspondence": 8,
+  "payload_executed": false,
+  "manual_review": [
+    "Read all eight sensitive source strings only as text/AST, all harmless Models, complete spec and both full R8 harness deltas.",
+    "Aliases predate the store. Local unsafe/dormant pairs differ only by literal consumption guard; module-origin control deliberately stores scalar0.",
+    "Sink body and all Model call forms are harmless. Independent real execution will check fixed traces before invoking the public analyzer on unexecuted sensitive bytes.",
+    "Existing identity-before-imports, snapshot custody, original caps, actual311-first and bounded direct-child watchdog retained. No private analyzer observer added."
+  ],
+  "disposition": "Authorize root-owned serialized v23 diagnostic311, then same-candidate314 only after complete/intact floor evidence. Semantic RED may replicate; no infrastructure failure may. No source edit or integration."
+}

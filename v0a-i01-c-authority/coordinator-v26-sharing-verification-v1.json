@@ -1,0 +1,681 @@
+{
+  "schema": "coordinator-v26-sharing-verification-v1",
+  "results": [
+    {
+      "case": "generator70",
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\depth-budget-v26-sharing01-generator70-311-receipt.json",
+      "receipt_sha256": "79339c7b8106d1eee699b41acf7c1c77b1eb54e382eef1483c5a99627b753eec",
+      "snapshot": "D:\\pontius-snapshots\\depth-budget-8460935e1a3a42d593c4f332cb8508ab\\snapshot",
+      "snapshot_files_rehashed": 1766,
+      "fixture_sha256": "635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3",
+      "refusal": "analysis work units exceed 262144",
+      "original_expectation": "^analysis deferred generator depth exceeds 64$",
+      "failing_epoch": 6,
+      "original_budgets": 6,
+      "work_before": 262144,
+      "requested_units": 1,
+      "component_units": {
+        "assignment_or_overlay": 296,
+        "authority_fork": 1582,
+        "authority_join": 72,
+        "authority_map": 1203,
+        "bulk_constructor_preparation": 1412,
+        "bulk_full_join_preparation": 40248,
+        "constructor": 409,
+        "entry_transfer_or_certificate": 10952,
+        "fork": 3164,
+        "name_lookup": 80539,
+        "ordering": 19572,
+        "other": 36832,
+        "publication": 2304,
+        "radix_bulk": 27454,
+        "radix_edit": 13875,
+        "radix_freeze": 5964,
+        "radix_leaf_copy": 895,
+        "snapshot": 144,
+        "state_join": 15228
+      },
+      "events": {
+        "authority_fork/calls": 226,
+        "authority_fork/completed": 226,
+        "authority_fork/exits": 226,
+        "authority_transfer/calls": 2888,
+        "authority_transfer/completed": 2888,
+        "authority_transfer/exits": 2888,
+        "bulk_input_iterator_requests/_ExecutionState.__init__/charge_attempts": 1,
+        "bulk_input_iterator_requests/_SourceOrderedResolver._merge_states/charge_attempts": 36,
+        "bulk_return_reference/_ExecutionState.__init__/charge_attempts": 1,
+        "bulk_return_reference/_SourceOrderedResolver._merge_states/charge_attempts": 36,
+        "changed_publications_committed": 37,
+        "cursor_fork/calls": 226,
+        "cursor_fork/completed": 226,
+        "cursor_fork/exits": 226,
+        "cursor_snapshot/calls": 72,
+        "cursor_snapshot/completed": 72,
+        "cursor_snapshot/exits": 72,
+        "execution_constructor/calls": 1,
+        "execution_constructor/completed": 1,
+        "execution_constructor/exits": 1,
+        "execution_copy/calls": 226,
+        "execution_copy/completed": 226,
+        "execution_copy/exits": 226,
+        "ordered_items/calls": 75,
+        "ordered_items/completed": 74,
+        "ordered_items/exits": 75,
+        "ordered_keys/calls": 72,
+        "ordered_keys/completed": 72,
+        "ordered_keys/exits": 72,
+        "publication_commit/calls": 298,
+        "publication_commit/completed": 298,
+        "publication_commit/exits": 298,
+        "publication_preparation/calls": 298,
+        "publication_preparation/completed": 298,
+        "publication_preparation/exits": 298,
+        "state_merge/calls": 112,
+        "state_merge/completed": 112,
+        "state_merge/exits": 112
+      },
+      "bulk_input_shapes": [
+        {
+          "attempts": 1,
+          "input_names": [],
+          "kind": "constructor",
+          "parent_names": 1,
+          "source_or_unique_names": 73
+        },
+        {
+          "attempts": 36,
+          "input_names": [
+            73,
+            73
+          ],
+          "kind": "full_join",
+          "parent_names": null,
+          "source_or_unique_names": 73
+        }
+      ],
+      "publication_preparation_inclusive_units": 9718,
+      "publication_groups": [
+        {
+          "tail_entries": 0,
+          "dirty": false,
+          "completed": true,
+          "calls": 261,
+          "units": 1305,
+          "minimum_units": 5,
+          "maximum_units": 5,
+          "base_min": 73,
+          "base_max": 73
+        },
+        {
+          "tail_entries": 1,
+          "dirty": true,
+          "completed": true,
+          "calls": 37,
+          "units": 8413,
+          "minimum_units": 193,
+          "maximum_units": 265,
+          "base_min": 73,
+          "base_max": 73
+        }
+      ],
+      "top_name_kinds": [
+        [
+          "radix_lookup_node_visits",
+          16108
+        ],
+        [
+          "radix_hash_normalizations",
+          10792
+        ],
+        [
+          "radix_hash_requests",
+          10792
+        ],
+        [
+          "radix_route_steps",
+          10792
+        ],
+        [
+          "radix_bitmap_reads",
+          8646
+        ],
+        [
+          "radix_child_index_operations",
+          8646
+        ],
+        [
+          "radix_child_reference_visits",
+          8646
+        ],
+        [
+          "bulk_record_reference_copies",
+          8103
+        ],
+        [
+          "radix_root_reads",
+          8054
+        ],
+        [
+          "radix_leaf_dictionary_attempts",
+          8053
+        ],
+        [
+          "entry_reference_copies",
+          5476
+        ],
+        [
+          "items_pair_reference_copies",
+          5444
+        ],
+        [
+          "adapter_bulk_pair_reference_copies",
+          5402
+        ],
+        [
+          "bulk_leaf_reference_copies",
+          5402
+        ],
+        [
+          "bulk_order_reference_copies",
+          5402
+        ],
+        [
+          "adapter_merge_values_generator_references",
+          5256
+        ],
+        [
+          "radix_pending_certificate_reads",
+          2897
+        ],
+        [
+          "radix_pending_list_reference_copies",
+          2897
+        ],
+        [
+          "radix_pending_tuple_reference_copies",
+          2897
+        ],
+        [
+          "lookup_private_tail_attempts",
+          2761
+        ]
+      ],
+      "top_original_charge_parents": [
+        {
+          "caller": "_SourceOrderedResolver._merge_states.<locals>.merged_entries:22329",
+          "parent": "_NameVersion.from_unique_entries:14632",
+          "units": 13140
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_hash:14160",
+          "units": 10792
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_hash:14161",
+          "units": 10792
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_slot:14165",
+          "units": 10792
+        },
+        {
+          "caller": "_SourceOrderedResolver._merge_states:22314",
+          "parent": "counted.<locals>.wrapped:446",
+          "units": 10584
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_child:14171",
+          "units": 8646
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_child:14175",
+          "units": 8646
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_child:14177",
+          "units": 8646
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_NameVersion.from_unique_entries:14651",
+          "units": 8103
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_lookup:14181",
+          "units": 8054
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_lookup:14187",
+          "units": 8054
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_lookup:14192",
+          "units": 8054
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_lookup:14195",
+          "units": 8053
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_ExecutionState._transferred_name_entry:15077",
+          "units": 5476
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_ordered_items.<locals>.pairs:14598",
+          "units": 5444
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_NameVersion.from_unique_entries:14647",
+          "units": 5402
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_bulk:14382",
+          "units": 5402
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_SourceOrderedResolver._merge_states.<locals>.merged_entries:22328",
+          "units": 5256
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_SourceOrderedResolver._merge_states.<locals>.merged_entries:22337",
+          "units": 5256
+        },
+        {
+          "caller": "_NameMeter.charge:14095",
+          "parent": "_name_radix_leaf:14207",
+          "units": 2897
+        }
+      ],
+      "failure_stack": [
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_NameMeter.charge",
+          "line": 14095
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_name_radix_lookup",
+          "line": 14192,
+          "name": "g57"
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_NameCursor._entry",
+          "line": 14766,
+          "name": "g57"
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_name_ordered_items.<locals>.pairs",
+          "line": 14593,
+          "name": "g57"
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_name_ordered_items",
+          "line": 14601
+        },
+        {
+          "file": "probe.py",
+          "function": "counted.<locals>.wrapped",
+          "line": 446
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_NameCursor.ordered_items",
+          "line": 14834
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_ExecutionState.items",
+          "line": 15039
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "_flow_aliases",
+          "line": 13397,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_node": {
+            "callee_name": "range",
+            "kind": "Call",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._snapshot_call",
+          "line": 17147,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_node": {
+            "callee_name": "range",
+            "kind": "Call",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._evaluate_value",
+          "line": 20190,
+          "record": true,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_node": {
+            "callee_name": "range",
+            "kind": "Call",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._evaluate",
+          "line": 19530,
+          "record": true,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_node": {
+            "kind": "GeneratorExp",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._evaluate_value",
+          "line": 21382,
+          "record": true,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_node": {
+            "kind": "GeneratorExp",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._evaluate",
+          "line": 19530,
+          "record": true,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_statement": {
+            "kind": "Assign",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._statements",
+          "line": 23481,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_statement": {
+            "kind": "Assign",
+            "line": 42
+          },
+          "current_authority_enabled": false,
+          "current_authority_status": "present",
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._flow_expression_statement",
+          "line": 22653,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_statement": {
+            "kind": "Assign",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._flow_statement_value",
+          "line": 23207,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_statement": {
+            "kind": "Assign",
+            "line": 42
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._flow_statement",
+          "line": 22666,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "ast_statement": {
+            "kind": "Assign",
+            "line": 42
+          },
+          "current_authority_enabled": false,
+          "current_authority_status": "present",
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver._flow_statements",
+          "line": 22629,
+          "values_authority_enabled": false,
+          "values_authority_status": "present"
+        },
+        {
+          "_active_deferred_generator_probes_count": 0,
+          "_active_deferred_local_generators_count": 0,
+          "_active_local_helper_returns_count": 0,
+          "_evaluation_depth": 2,
+          "active_helper_effects_count": 0,
+          "file": "tools/generate_test_inventory.py",
+          "function": "_SourceOrderedResolver.resolve",
+          "line": 16808
+        },
+        {
+          "ast_method": {
+            "kind": "FunctionDef",
+            "line": 4,
+            "name": "test_static"
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_unittest_receiver_attributes",
+          "line": 27195
+        },
+        {
+          "ast_node": {
+            "kind": "FunctionDef",
+            "line": 4,
+            "name": "test_static"
+          },
+          "file": "probe.py",
+          "function": "stage_scope.<locals>.wrapped",
+          "line": 501,
+          "name": "_unittest_receiver_attributes"
+        },
+        {
+          "ast_method": {
+            "kind": "FunctionDef",
+            "line": 4,
+            "name": "test_static"
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_unittest_entry_preflight",
+          "line": 27351,
+          "relative_path": "tests/test_review.py"
+        },
+        {
+          "ast_node": {
+            "kind": "FunctionDef",
+            "line": 4,
+            "name": "test_static"
+          },
+          "file": "probe.py",
+          "function": "stage_scope.<locals>.wrapped",
+          "line": 501,
+          "name": "_unittest_entry_preflight"
+        },
+        {
+          "ast_method": {
+            "kind": "FunctionDef",
+            "line": 4,
+            "name": "test_static"
+          },
+          "file": "tools/generate_test_inventory.py",
+          "function": "_process_review_rows",
+          "line": 27644,
+          "relative_path": "tests/test_review.py",
+          "stable_id": "tests/test_review.py::ReviewTests::test_static"
+        },
+        {
+          "file": "tools/generate_test_inventory.py",
+          "function": "derive_design_review",
+          "line": 27890,
+          "relative_path": "tools/test_child.py"
+        },
+        {
+          "file": "test_inventory_and_profiles.py",
+          "function": "DesignReviewTests._review",
+          "line": 1989
+        },
+        {
+          "file": "probe.py",
+          "function": "<module>",
+          "line": 591
+        },
+        {
+          "file": "<frozen runpy>",
+          "function": "_run_code",
+          "line": 88
+        },
+        {
+          "file": "<frozen runpy>",
+          "function": "_run_module_code",
+          "line": 98
+        },
+        {
+          "file": "<frozen runpy>",
+          "function": "run_path",
+          "line": 291
+        },
+        {
+          "file": "wrapper.py",
+          "function": "main",
+          "line": 101,
+          "name": "control"
+        },
+        {
+          "file": "wrapper.py",
+          "function": "<module>",
+          "line": 105
+        }
+      ],
+      "pipeline_events": {
+        "_review_body/_run_gpu_probe:1/calls": 1,
+        "_review_body/_run_gpu_probe:1/completed": 1,
+        "_unittest_entry_preflight/test_static:4/calls": 1,
+        "_unittest_receiver_attributes/test_static:4/calls": 1
+      },
+      "full_join_sharing_facts": [
+        {
+          "epoch": 6,
+          "all_roots_pending": true,
+          "all_source_authorities_disabled": true,
+          "attempts": 36,
+          "exact_execution_state_sources": true,
+          "exact_name_version_inputs": true,
+          "input_count": 2,
+          "per_root_pending": [
+            {
+              "all_pending": true,
+              "pending_count": 73,
+              "pending_count_known": true,
+              "size": 73
+            },
+            {
+              "all_pending": true,
+              "pending_count": 73,
+              "pending_count_known": true,
+              "size": 73
+            }
+          ],
+          "published_roots_same_by_identity": false,
+          "restricted_C_guard_facts": false,
+          "same_budget": true,
+          "same_meter": true,
+          "source_count": 2
+        }
+      ],
+      "restricted_C_guard_hits": 0,
+      "disposition": "The proposed identical-root shortcut has zero hits in the measured failing path; do not implement it as this case's remedy. A broader context-local disabled-transfer proof would require separate design authorization."
+    }
+  ],
+  "source_sha256": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+  "caps_unchanged": true,
+  "payload_executed_by_verifier": false,
+  "standing": "One completed diagnostic measures the proposed shared-root guard, while reproducing the existing work-cap failure. No product pass, optimization approval or cold verdict. Separate semantic repair remains necessary.",
+  "limitations": "Hash seed remains absent as in original design tests; do not infer strict cross-run cost ratios. Inclusive publication totals overlap the disjoint component partition. Observer overhead is not a runtime benchmark."
+}

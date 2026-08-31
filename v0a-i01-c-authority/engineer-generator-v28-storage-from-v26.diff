@@ -1,0 +1,144 @@
+--- engineer-generator-v26-storage.py
++++ engineer-generator-v28-storage.py
+@@ -14341,21 +14341,74 @@
+         return node
+     if isinstance(node, _NameLeafEdit):
+         return _name_radix_seal_leaf(meter, node.data)
++    meter.charge("radix_freeze_base_reads")
++    base = node.base
+     meter.charge("radix_child_list_allocation")
+-    children, bitmap, pending_count = [], 0, 0
+-    for slot in range(16):
+-        meter.charge("radix_freeze_slot_visits")
+-        meter.charge("radix_editor_dictionary_attempts")
+-        child = node.changes.get(slot, _NAME_MISSING)
+-        if child is _NAME_MISSING:
+-            child = _name_radix_child(meter, node.base, slot)
+-        else:
+-            child = _name_radix_freeze(meter, child)
+-        if child is not None:
+-            bitmap |= 1 << slot
+-            pending_count += _name_radix_pending_count(meter, child)
+-            meter.charge("radix_child_list_reference_copies")
+-            children.append(child)
++    if base is None:
++        children, bitmap, pending_count = [], 0, 0
++        for slot in range(16):
++            meter.charge("radix_freeze_slot_visits")
++            meter.charge("radix_editor_dictionary_attempts")
++            child = node.changes.get(slot, _NAME_MISSING)
++            if child is _NAME_MISSING:
++                child = _name_radix_child(meter, node.base, slot)
++            else:
++                child = _name_radix_freeze(meter, child)
++            if child is not None:
++                bitmap |= 1 << slot
++                pending_count += _name_radix_pending_count(meter, child)
++                meter.charge("radix_child_list_reference_copies")
++                children.append(child)
++    else:
++        # All edits stay private. Each old child comes from the immutable base;
++        # only packed-list ranks follow the evolving working bitmap.
++        meter.charge("radix_freeze_base_metadata_reads", 3)
++        base_bitmap, base_children, pending_count = base.bitmap, base.children, base.pending_count
++        bitmap = base_bitmap
++        meter.charge("radix_freeze_base_child_size_reads")
++        meter.charge("radix_freeze_base_child_reference_copies", len(base_children))
++        children = list(base_children)
++        meter.charge("radix_freeze_change_view_and_iterator_allocations", 2)
++        for slot, replacement in node.changes.items():
++            meter.charge("radix_freeze_changed_slot_visits")
++            bit = 1 << slot
++            meter.charge("radix_freeze_base_slot_tests")
++            if base_bitmap & bit:
++                meter.charge("radix_child_index_operations")
++                old_index = (base_bitmap & (bit - 1)).bit_count()
++                meter.charge("radix_child_reference_visits")
++                old_child = base_children[old_index]
++            else:
++                old_child = None
++            child = _name_radix_freeze(meter, replacement)
++            old_pending = _name_radix_pending_count(meter, old_child)
++            new_pending = _name_radix_pending_count(meter, child)
++            meter.charge("radix_freeze_pending_delta_operations", 2)
++            pending_count += new_pending - old_pending
++            meter.charge("radix_freeze_working_bitmap_reads")
++            present = bool(bitmap & bit)
++            meter.charge("radix_freeze_working_rank_operations")
++            index = (bitmap & (bit - 1)).bit_count()
++            if child is None:
++                if present:
++                    meter.charge("radix_freeze_child_delete_operations")
++                    meter.charge("radix_freeze_working_child_size_reads")
++                    meter.charge("radix_freeze_child_shift_reference_copies", len(children) - index - 1)
++                    del children[index]
++                    meter.charge("radix_freeze_working_bitmap_writes")
++                    bitmap &= ~bit
++            elif present:
++                meter.charge("radix_freeze_child_replace_operations")
++                meter.charge("radix_child_list_reference_copies")
++                children[index] = child
++            else:
++                meter.charge("radix_freeze_child_insert_operations")
++                meter.charge("radix_freeze_working_child_size_reads")
++                meter.charge("radix_freeze_child_shift_reference_copies", len(children) - index)
++                meter.charge("radix_child_list_reference_copies")
++                children.insert(index, child)
++                meter.charge("radix_freeze_working_bitmap_writes")
++                bitmap |= bit
+     if not children:
+         return None
+     meter.charge("radix_child_tuple_allocation")
+@@ -15330,7 +15383,51 @@
+                 self.values.get(name, seed), helper_provenance=seed.helper_provenance,
+                 namespace_effects=seed.namespace_effects,
+             )
+-        self.values.update(entry_values or {})
++        # Earlier setup is unchanged. Borrow only across the proved zero-write
++        # lexical window; the final ExecutionState constructor still forks.
++        self.budget.consume()  # Exact prepared mapping type check.
++        borrow_entry = type(self.values) is dict
++        if borrow_entry:
++            self.budget.consume()  # Prepared dictionary length read.
++            borrow_entry = not self.values
++        if borrow_entry:
++            self.budget.consume()  # Exact entry wrapper type check.
++            borrow_entry = type(entry_values) is _ExecutionState
++        if borrow_entry:
++            self.budget.consume()  # Exact lexical-scope type check.
++            borrow_entry = type(self.lexical_scope) is _LexicalBindingScope
++        if borrow_entry:
++            self.budget.consume()  # Registry type and ordinary-dict test.
++            registry_type = type(self.helper_registry)
++            if registry_type is not dict:
++                self.budget.consume()  # The one other nonreentrant registry type.
++                borrow_entry = registry_type is _ReviewRegistry
++        if borrow_entry:
++            self.budget.consume(4)  # Binding-set tuple and its three references.
++            binding_sets = (
++                self.lexical_scope.local_names,
++                self.lexical_scope.nonlocal_names,
++                self.lexical_scope.global_names,
++            )
++            for binding_names in binding_sets:
++                self.budget.consume(2)  # Set visit and exact type check.
++                if type(binding_names) is not frozenset:
++                    borrow_entry = False
++                    break
++                self.budget.consume()  # Empty-set check.
++                if binding_names:
++                    borrow_entry = False
++                    break
++        if borrow_entry:
++            # Preserve the original source truthiness exactly once. Falsey entry
++            # names keep the old detached construction, with the same parent.
++            if entry_values:
++                self.budget.consume()  # Borrow the exact name-input reference.
++                self.values = entry_values
++            else:
++                self.values.update({})
++        else:
++            self.values.update(entry_values or {})
+         for name in self.lexical_scope.local_names:
+             if name in self.lexical_scope.parameter_names:
+                 if helper_registry is None:

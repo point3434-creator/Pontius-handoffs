@@ -1,0 +1,89 @@
+--- prototype/_radix_freeze (AST presentation)
++++ v28/_radix_freeze (binding-aware inverse AST presentation)
+@@ -5,21 +5,72 @@
+         return node
+     if isinstance(node, _LeafEdit):
+         return _radix_seal_leaf(meter, node.data)
++    meter.charge('radix_freeze_base_reads')
++    base = node.base
+     meter.charge('radix_child_list_allocation')
+-    children, bitmap, pending_count = ([], 0, 0)
+-    for slot in range(16):
+-        meter.charge('radix_freeze_slot_visits')
+-        meter.charge('radix_editor_dictionary_attempts')
+-        child = node.changes.get(slot, MISSING)
+-        if child is MISSING:
+-            child = _radix_child(meter, node.base, slot)
+-        else:
+-            child = _radix_freeze(meter, child)
+-        if child is not None:
+-            bitmap |= 1 << slot
+-            pending_count += _radix_pending_count(meter, child)
+-            meter.charge('radix_child_list_reference_copies')
+-            children.append(child)
++    if base is None:
++        children, bitmap, pending_count = ([], 0, 0)
++        for slot in range(16):
++            meter.charge('radix_freeze_slot_visits')
++            meter.charge('radix_editor_dictionary_attempts')
++            child = node.changes.get(slot, MISSING)
++            if child is MISSING:
++                child = _radix_child(meter, node.base, slot)
++            else:
++                child = _radix_freeze(meter, child)
++            if child is not None:
++                bitmap |= 1 << slot
++                pending_count += _radix_pending_count(meter, child)
++                meter.charge('radix_child_list_reference_copies')
++                children.append(child)
++    else:
++        meter.charge('radix_freeze_base_metadata_reads', 3)
++        base_bitmap, base_children, pending_count = (base.bitmap, base.children, base.pending_count)
++        bitmap = base_bitmap
++        meter.charge('radix_freeze_base_child_size_reads')
++        meter.charge('radix_freeze_base_child_reference_copies', len(base_children))
++        children = list(base_children)
++        meter.charge('radix_freeze_change_view_and_iterator_allocations', 2)
++        for slot, replacement in node.changes.items():
++            meter.charge('radix_freeze_changed_slot_visits')
++            bit = 1 << slot
++            meter.charge('radix_freeze_base_slot_tests')
++            if base_bitmap & bit:
++                meter.charge('radix_child_index_operations')
++                old_index = (base_bitmap & bit - 1).bit_count()
++                meter.charge('radix_child_reference_visits')
++                old_child = base_children[old_index]
++            else:
++                old_child = None
++            child = _radix_freeze(meter, replacement)
++            old_pending = _radix_pending_count(meter, old_child)
++            new_pending = _radix_pending_count(meter, child)
++            meter.charge('radix_freeze_pending_delta_operations', 2)
++            pending_count += new_pending - old_pending
++            meter.charge('radix_freeze_working_bitmap_reads')
++            present = bool(bitmap & bit)
++            meter.charge('radix_freeze_working_rank_operations')
++            index = (bitmap & bit - 1).bit_count()
++            if child is None:
++                if present:
++                    meter.charge('radix_freeze_child_delete_operations')
++                    meter.charge('radix_freeze_working_child_size_reads')
++                    meter.charge('radix_freeze_child_shift_reference_copies', len(children) - index - 1)
++                    del children[index]
++                    meter.charge('radix_freeze_working_bitmap_writes')
++                    bitmap &= ~bit
++            elif present:
++                meter.charge('radix_freeze_child_replace_operations')
++                meter.charge('radix_child_list_reference_copies')
++                children[index] = child
++            else:
++                meter.charge('radix_freeze_child_insert_operations')
++                meter.charge('radix_freeze_working_child_size_reads')
++                meter.charge('radix_freeze_child_shift_reference_copies', len(children) - index)
++                meter.charge('radix_child_list_reference_copies')
++                children.insert(index, child)
++                meter.charge('radix_freeze_working_bitmap_writes')
++                bitmap |= bit
+     if not children:
+         return None
+     meter.charge('radix_child_tuple_allocation')

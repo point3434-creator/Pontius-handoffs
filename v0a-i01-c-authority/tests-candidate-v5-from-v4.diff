@@ -1,0 +1,11 @@
+--- tests-candidate-v4.py
++++ tests-candidate-v5.py
+@@ -4948,7 +4948,7 @@
+         )
+         with self.assertRaisesRegex(
+             self.generator.InventoryError,
+-            "analysis.*(?:depth|budget)",
++            "^analysis (?:helper depth exceeds 64|work units exceed 262144)$",
+         ):
+             self._review(
+                 sources={

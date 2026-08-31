@@ -1,0 +1,943 @@
+{
+  "all_class_bodies_unchanged": true,
+  "candidate_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "candidate_shadowed_mapped_bindings": [],
+  "class_member_and_slot_proofs": [
+    {
+      "candidate_class": "_NameEntry",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "Entry",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [],
+        "dataclass_generated_initializer": true,
+        "self_member_uses": [],
+        "slot_layout_ok": true,
+        "slots": [
+          "value",
+          "no_work"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameHistory",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_History",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [],
+        "dataclass_generated_initializer": true,
+        "self_member_uses": [],
+        "slot_layout_ok": true,
+        "slots": [
+          "parent",
+          "changes",
+          "depth"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameRadixLeaf",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_RadixLeaf",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [],
+        "dataclass_generated_initializer": true,
+        "self_member_uses": [],
+        "slot_layout_ok": true,
+        "slots": [
+          "data",
+          "pending"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameRadixBranch",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_RadixBranch",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [],
+        "dataclass_generated_initializer": true,
+        "self_member_uses": [],
+        "slot_layout_ok": true,
+        "slots": [
+          "bitmap",
+          "children",
+          "pending_count"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameLeafEdit",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_LeafEdit",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [
+          "data"
+        ],
+        "dataclass_generated_initializer": false,
+        "self_member_uses": [
+          {
+            "context": "Store",
+            "member": "data",
+            "method": "__init__"
+          }
+        ],
+        "slot_layout_ok": true,
+        "slots": [
+          "data"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameBranchEdit",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_BranchEdit",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [
+          "base",
+          "changes"
+        ],
+        "dataclass_generated_initializer": false,
+        "self_member_uses": [
+          {
+            "context": "Store",
+            "member": "base",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "changes",
+            "method": "__init__"
+          }
+        ],
+        "slot_layout_ok": true,
+        "slots": [
+          "base",
+          "changes"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameOrder",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_Order",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [
+          "kind",
+          "parents",
+          "name",
+          "cache"
+        ],
+        "dataclass_generated_initializer": false,
+        "self_member_uses": [
+          {
+            "context": "Store",
+            "member": "kind",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "parents",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "name",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "cache",
+            "method": "__init__"
+          }
+        ],
+        "slot_layout_ok": true,
+        "slots": [
+          "kind",
+          "parents",
+          "name",
+          "cache"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameVersion",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "NameVersion",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [
+          "_meter",
+          "_root",
+          "_history",
+          "_order",
+          "_size",
+          "_items_cache"
+        ],
+        "dataclass_generated_initializer": false,
+        "self_member_uses": [
+          {
+            "context": "Store",
+            "member": "_meter",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_root",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_history",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_order",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_size",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_items_cache",
+            "method": "__init__"
+          },
+          {
+            "context": "Load",
+            "member": "_size",
+            "method": "__len__"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "__len__"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_root",
+            "method": "_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_entry",
+            "method": "get"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "fork"
+          }
+        ],
+        "slot_layout_ok": true,
+        "slots": [
+          "_meter",
+          "_root",
+          "_history",
+          "_order",
+          "_size",
+          "_items_cache"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NamePublication",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "_Publication",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [],
+        "dataclass_generated_initializer": true,
+        "self_member_uses": [],
+        "slot_layout_ok": true,
+        "slots": [
+          "version",
+          "empty_tail",
+          "changed"
+        ],
+        "unknown_members": []
+      }
+    },
+    {
+      "candidate_class": "_NameCursor",
+      "class_AST_unchanged_from_v26": true,
+      "members_and_literal_strings_equal_prototype": true,
+      "prototype_class": "NameCursor",
+      "validated_v26_slot_inventory": {
+        "constructor_covers_slots": true,
+        "constructor_writes": [
+          "_items_cache",
+          "_meter",
+          "_base",
+          "_tail",
+          "_order",
+          "_size"
+        ],
+        "dataclass_generated_initializer": false,
+        "self_member_uses": [
+          {
+            "context": "Store",
+            "member": "_items_cache",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_meter",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_base",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_tail",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_order",
+            "method": "__init__"
+          },
+          {
+            "context": "Store",
+            "member": "_size",
+            "method": "__init__"
+          },
+          {
+            "context": "Load",
+            "member": "_size",
+            "method": "__len__"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "__len__"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_tail",
+            "method": "_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_base",
+            "method": "_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_entry",
+            "method": "get"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_order",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_tail",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Store",
+            "member": "_order",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Store",
+            "member": "_size",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Store",
+            "member": "_items_cache",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_tail",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_size",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_base",
+            "method": "_replace_entry"
+          },
+          {
+            "context": "Load",
+            "member": "_replace_entry",
+            "method": "set"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "set"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "set"
+          },
+          {
+            "context": "Load",
+            "member": "_replace_entry",
+            "method": "delete"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "snapshot"
+          },
+          {
+            "context": "Load",
+            "member": "_meter",
+            "method": "fork"
+          }
+        ],
+        "slot_layout_ok": true,
+        "slots": [
+          "_meter",
+          "_base",
+          "_tail",
+          "_order",
+          "_size",
+          "_items_cache"
+        ],
+        "unknown_members": []
+      }
+    }
+  ],
+  "constants": 6,
+  "definitions": 41,
+  "global_binding_map": {
+    "Entry": "_NameEntry",
+    "MISSING": "_NAME_MISSING",
+    "Meter": "_NameMeter",
+    "NameCursor": "_NameCursor",
+    "NameVersion": "_NameVersion",
+    "_BranchEdit": "_NameBranchEdit",
+    "_DELETED": "_NAME_DELETED",
+    "_HASH_MASK": "_NAME_HASH_MASK",
+    "_HASH_WIDTH": "_NAME_HASH_WIDTH",
+    "_History": "_NameHistory",
+    "_LEAF_SIZE": "_NAME_LEAF_SIZE",
+    "_LeafEdit": "_NameLeafEdit",
+    "_Order": "_NameOrder",
+    "_Publication": "_NamePublication",
+    "_RADIX_BITS": "_NAME_RADIX_BITS",
+    "_RadixBranch": "_NameRadixBranch",
+    "_RadixLeaf": "_NameRadixLeaf",
+    "_charge_cache_commit": "_name_charge_cache_commit",
+    "_charge_publication_commit": "_name_charge_publication_commit",
+    "_check_name": "_name_check_name",
+    "_commit_order": "_name_commit_order",
+    "_commit_publication": "_name_commit_publication",
+    "_common_history": "_name_common_history",
+    "_history": "_name_history",
+    "_keys": "_name_keys",
+    "_known_order": "_name_known_order",
+    "_order": "_name_order",
+    "_ordered_items": "_name_ordered_items",
+    "_pending_names": "_name_pending_names",
+    "_prepare_publication": "_name_prepare_publication",
+    "_radix_bulk": "_name_radix_bulk",
+    "_radix_child": "_name_radix_child",
+    "_radix_copy_leaf": "_name_radix_copy_leaf",
+    "_radix_edit": "_name_radix_edit",
+    "_radix_edit_records": "_name_radix_edit_records",
+    "_radix_freeze": "_name_radix_freeze",
+    "_radix_group": "_name_radix_group",
+    "_radix_hash": "_name_radix_hash",
+    "_radix_leaf": "_name_radix_leaf",
+    "_radix_lookup": "_name_radix_lookup",
+    "_radix_names": "_name_radix_names",
+    "_radix_pending_count": "_name_radix_pending_count",
+    "_radix_records": "_name_radix_records",
+    "_radix_seal_leaf": "_name_radix_seal_leaf",
+    "_radix_slot": "_name_radix_slot",
+    "_realize_order": "_name_realize_order",
+    "_seal_order_table": "_name_seal_order_table",
+    "join": "_join_name_versions"
+  },
+  "intentional_changed_definition": "_radix_freeze",
+  "policy": "Transform declarations and ast.Name global bindings only after a full lexical audit. Never transform Attribute.attr, slots, strings, parameters or keywords.",
+  "predecessor_sha256": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+  "primitive_objects": [
+    {
+      "candidate_AST_sha256": "a8321402424440c9eedfa0addba0f53a0c82c975d3b1284e82b766ff27e4000c",
+      "candidate_line": 14111,
+      "candidate_name": "_NameEntry",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "20b330f0846cec1510c4e02343efd38d3729dba9b19c04ce5e0f7a94f77b6d8c",
+      "prototype_name": "Entry"
+    },
+    {
+      "candidate_AST_sha256": "9f5d7acf1c3650702ae02dad172c264f443083c4a90b785dd252481bd4584c97",
+      "candidate_line": 14115,
+      "candidate_name": "_name_check_name",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "5b5117d0371b25d627335e52a70d8c94a07b2374836eceb54c5cc885536ccd23",
+      "prototype_name": "_check_name"
+    },
+    {
+      "candidate_AST_sha256": "a82140a3362a0e532ace7033e25e614c3782e5fcf451160a95fbcd6908492457",
+      "candidate_line": 14120,
+      "candidate_name": "_NameHistory",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "f962aec3f368f5bdf06ebc1a42084a0bbfe921e03d2bedb8f85be2f8bb338d0a",
+      "prototype_name": "_History"
+    },
+    {
+      "candidate_AST_sha256": "094a980bdd358c009641f10aefcd40f44257eefd52e9576c1fa82fd64aa0a853",
+      "candidate_line": 14125,
+      "candidate_name": "_name_history",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "254475bbe67a907468629931a33075f1862d656a10e3dd3052b31d1212b02d6b",
+      "prototype_name": "_history"
+    },
+    {
+      "candidate_AST_sha256": "949fbede8ff42afaff99dcedf2adff825dc8325d714c58cdcc413e05f41da659",
+      "candidate_line": 14132,
+      "candidate_name": "_NameRadixLeaf",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "6f45fb3cf112e9019453ea3f7dfa9fd56d2e8f09654830b64a04c32f4f946f48",
+      "prototype_name": "_RadixLeaf"
+    },
+    {
+      "candidate_AST_sha256": "9a40ae91983830bacd78c1e1ff794bc3711a829315e73cae00a8f4f93b5f7bc6",
+      "candidate_line": 14137,
+      "candidate_name": "_NameRadixBranch",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "e2f857eccbe5fb06d36bf558c1197483b44df3bbbfe4cc2e7615fc78b017b681",
+      "prototype_name": "_RadixBranch"
+    },
+    {
+      "candidate_AST_sha256": "ef20a5b9063b2e8ba809b1cad37fa6ad797f0631f2a611f3f2b09f9940fed3fc",
+      "candidate_line": 14142,
+      "candidate_name": "_NameLeafEdit",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "0fa517793b4b01ca20dcbd91338c2b2a8324dfd82ff3e7e3bbef29a8f75648ad",
+      "prototype_name": "_LeafEdit"
+    },
+    {
+      "candidate_AST_sha256": "007ab6140027e7d77b7e6308fdd052b3d9bb12b805b91b494d5a52c47ac3a3f1",
+      "candidate_line": 14150,
+      "candidate_name": "_NameBranchEdit",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "4b59a3ea3f07c289fa19248e3cdd6ddb5a340bc66a323c2d30d54cda6fe3a4b9",
+      "prototype_name": "_BranchEdit"
+    },
+    {
+      "candidate_AST_sha256": "bfd96fc535a1c061d8039b9d7dab9d21588be9a6d494605191f5341b75313af5",
+      "candidate_line": 14159,
+      "candidate_name": "_name_radix_hash",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "4c8f4764fb6ca8ff19149ed0a3d2d82f339317a717f4e2d9c91aeb1f0b405cd5",
+      "prototype_name": "_radix_hash"
+    },
+    {
+      "candidate_AST_sha256": "0e7a5de4f7610265f0b2669cf704b0c143ccc3d1f2bc295d9b7cde9300d9ae18",
+      "candidate_line": 14164,
+      "candidate_name": "_name_radix_slot",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "d51812708b548589f1bb5bb904390b7e424f1a27c6ed816021cef5039b39ccec",
+      "prototype_name": "_radix_slot"
+    },
+    {
+      "candidate_AST_sha256": "5524b0aa5a04b8c451924a5679e408062b67cc244e2ecb692c652e33d2605226",
+      "candidate_line": 14168,
+      "candidate_name": "_name_radix_child",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "cdc231e6d1e6b73ad5a21bf527d0daafcbcd27a2ac06472fe35bd6e4d9b1b3c5",
+      "prototype_name": "_radix_child"
+    },
+    {
+      "candidate_AST_sha256": "4028abf2c5149d735147c7a076506f516650aa6d82d1a8ee6fbf74b59e8561ce",
+      "candidate_line": 14180,
+      "candidate_name": "_name_radix_lookup",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "b90648bbb079af4c86a21e535d285bee61961555f66b9bb28f18ea69cc57a660",
+      "prototype_name": "_radix_lookup"
+    },
+    {
+      "candidate_AST_sha256": "cf4369332f7a9e57a2357c7190d7a6764fe03e95264d2f43b9ebd5e5a037b715",
+      "candidate_line": 14198,
+      "candidate_name": "_name_radix_pending_count",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "adf0e07764938f5eb5f4aebbd2f55457efad8f8b156c9049fd62429251241138",
+      "prototype_name": "_radix_pending_count"
+    },
+    {
+      "candidate_AST_sha256": "211c12a34e3dcad726a5a03d8726d4d4363455bd58997180d75b8cac1d118f9e",
+      "candidate_line": 14204,
+      "candidate_name": "_name_radix_leaf",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "0ddaaf6a624424b95c3a63b945a6981a9155c204d8aab85d585a604048c1a2d7",
+      "prototype_name": "_radix_leaf"
+    },
+    {
+      "candidate_AST_sha256": "be2eb62df61a738026704da94b3c5d22e6f659ea00ffec4a98e131c174ad32c9",
+      "candidate_line": 14216,
+      "candidate_name": "_name_radix_seal_leaf",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "a0ccc2df06ef527aac7d33df755a6db82eae5b1ee4c8585ab4459d090672463d",
+      "prototype_name": "_radix_seal_leaf"
+    },
+    {
+      "candidate_AST_sha256": "874a2ae0beb8874c685e58d05ac786c69b183a3ff8dad0f489a64b487051c80e",
+      "candidate_line": 14227,
+      "candidate_name": "_name_radix_copy_leaf",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "e9cdd513aef4a127d3062c1923d47e2effb97be97961b72d04b06b3bc56f88b6",
+      "prototype_name": "_radix_copy_leaf"
+    },
+    {
+      "candidate_AST_sha256": "c8cb1cfb0ce84f10eb7b5af4f035f78eb3e00b3f51309b1353b5307ec42f49ff",
+      "candidate_line": 14237,
+      "candidate_name": "_name_radix_records",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "1509f3df463b0525e0226e29bc354afd7ab257cf750ae28470c61481a01cc000",
+      "prototype_name": "_radix_records"
+    },
+    {
+      "candidate_AST_sha256": "263240597f43ecaa6d7695f12c3f34725d5d272937b7dc7e24465b53a0366968",
+      "candidate_line": 14249,
+      "candidate_name": "_name_radix_group",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "d2d4956426a411db5732f237e82a22e27e33db4b621e0d48ef519c8119d0a125",
+      "prototype_name": "_radix_group"
+    },
+    {
+      "candidate_AST_sha256": "586efc42725d5f04595623c08213fea5c40cc5b700ade7a2ef80b8747ccff9cc",
+      "candidate_line": 14268,
+      "candidate_name": "_name_radix_edit_records",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "4149878c1ed4f17df2f165b2500a2243d6e41dd8868efac732916efdbfc5ffb1",
+      "prototype_name": "_radix_edit_records"
+    },
+    {
+      "candidate_AST_sha256": "c3029e529522087b1790eaa015bcf2f45a03efe386ed4fcd81d0dbfb52d969ed",
+      "candidate_line": 14292,
+      "candidate_name": "_name_radix_edit",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "cfba45fe6ed33dc423d648287662d540cce91d55bd4ae9203ec0a21958b4b2b0",
+      "prototype_name": "_radix_edit"
+    },
+    {
+      "candidate_AST_sha256": "596a49769b443c226b8a087b19a7757909eb74c426c993eaf86a7a9856ba13d0",
+      "candidate_line": 14337,
+      "candidate_name": "_name_radix_freeze",
+      "equal_to_binding_aware_reference": false,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "a251aa9f289ccf882fccfcdcf8fce0f539de4c65fb3d3e72c06e57d86384fe31",
+      "prototype_name": "_radix_freeze"
+    },
+    {
+      "candidate_AST_sha256": "b4ce9f2eadbba0957e092cc8429abd78cff798d405c7b3c447ba6b686d796054",
+      "candidate_line": 14421,
+      "candidate_name": "_name_radix_bulk",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "6545eaa0edff1a11aa4a2c0feff56582702db5d284f0984c6dade87b72731022",
+      "prototype_name": "_radix_bulk"
+    },
+    {
+      "candidate_AST_sha256": "b429c961c6b7abd920cb9231e92241a67af70b1fbe7cdae0b41247a7f202c22e",
+      "candidate_line": 14463,
+      "candidate_name": "_name_radix_names",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "926a98fd29460f58b8a275db5b0c13777831cd5715c395335b86c68f9fb134bc",
+      "prototype_name": "_radix_names"
+    },
+    {
+      "candidate_AST_sha256": "f54a73c6a96cd05089fca1deccf9b0093769d25534eafe770d834c2e171ebe6a",
+      "candidate_line": 14480,
+      "candidate_name": "_NameOrder",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "99a116feb495672c957e5c3b613a15153c3f6d2d34170fe4a06b1516483f3b9b",
+      "prototype_name": "_Order"
+    },
+    {
+      "candidate_AST_sha256": "0971bf26db517639558f6d438a3cc6542b2fd29b1ce3631267cf9289600cadb4",
+      "candidate_line": 14486,
+      "candidate_name": "_name_order",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "57b88d559869fa2fbd2e41d534fb958e6a5d25f6e9214174a689f1ed662cccd9",
+      "prototype_name": "_order"
+    },
+    {
+      "candidate_AST_sha256": "28aeac998de86a2a25a0a4b37e8cb646c9f26febbf4f4e8dc1a09f70d5ef1187",
+      "candidate_line": 14494,
+      "candidate_name": "_name_known_order",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "569a50b0021169c8c2b47c3dcbf463a642312fd5790cbd1d32a07f0a1efa85b1",
+      "prototype_name": "_known_order"
+    },
+    {
+      "candidate_AST_sha256": "8fcd32b3866c0fe8fa29cc1b1e9082d2fe1a2a0b0cecda931eb7d6ab6eeadb86",
+      "candidate_line": 14501,
+      "candidate_name": "_name_seal_order_table",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "d3ab4274fe604c9ef12b9b96974dc80494de6c3aa43071f33e2677fa01cd10b0",
+      "prototype_name": "_seal_order_table"
+    },
+    {
+      "candidate_AST_sha256": "4287f37bed75d0c7ae887ee78f084668a01e44ee11e5b60d2a9305494523cf02",
+      "candidate_line": 14506,
+      "candidate_name": "_name_realize_order",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "c5b4be79fb4ef0849eadfa809f1e433488f522fdedbe28c18a2d40f4dd1d1975",
+      "prototype_name": "_realize_order"
+    },
+    {
+      "candidate_AST_sha256": "95af76e1e912f3fbd308068336d99f5d99c3235473ad8c654543790147bf33b9",
+      "candidate_line": 14615,
+      "candidate_name": "_name_charge_cache_commit",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "a7e94406bfe207ec627171f19a5dd8a59c46b64c9e515e51205e8bfc513d3231",
+      "prototype_name": "_charge_cache_commit"
+    },
+    {
+      "candidate_AST_sha256": "8547c7fde32588a7732341b841d8b23ee9d775449ead32973425259bd69a466d",
+      "candidate_line": 14619,
+      "candidate_name": "_name_commit_order",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "9e535769e49c1987361180face5495a1a3d0c19393da6a54bca06661af003ef5",
+      "prototype_name": "_commit_order"
+    },
+    {
+      "candidate_AST_sha256": "2f43d53054d84493add8aa4677785c9dd84a4f7161e8265e961247aa3ea9b9f3",
+      "candidate_line": 14624,
+      "candidate_name": "_name_keys",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "ffc6b6d8db7af93dbd65f7525cff5fffb8749fdebfc6b2796698f67ddb82935a",
+      "prototype_name": "_keys"
+    },
+    {
+      "candidate_AST_sha256": "97e25cf279efc60379f645b57a62e7b936673c58952ff6d0827ef7c3db84bc6e",
+      "candidate_line": 14634,
+      "candidate_name": "_name_ordered_items",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "5da2f02183fde81363eff357b9b3a222306fb8b5d0fe9229c32124bb3c229b9f",
+      "prototype_name": "_ordered_items"
+    },
+    {
+      "candidate_AST_sha256": "950c61abac6628fdae5d89b5ce5387250944304269555503be196a340424b4fe",
+      "candidate_line": 14661,
+      "candidate_name": "_NameVersion",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "9cb078ed14f4bdefe2378f4095e1897e5e31fd99e1804179410f27d561c7bad0",
+      "prototype_name": "NameVersion"
+    },
+    {
+      "candidate_AST_sha256": "72e923a93b4764535d894274d6a40a76c42306ce5dd4e0b6954801e45e613738",
+      "candidate_line": 14750,
+      "candidate_name": "_NamePublication",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "6b4395b96ff34449480aacda0faa7a319ab6a8ad041764548fd0b01542013a61",
+      "prototype_name": "_Publication"
+    },
+    {
+      "candidate_AST_sha256": "4ef9cba2bf8f72ae04885283b1491668991ef98eca4f6666c5f9cb2296913be3",
+      "candidate_line": 14755,
+      "candidate_name": "_name_prepare_publication",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "8e814deb4861ca5113b7832c444e1fec6526a42184212a30af5f265111e4f354",
+      "prototype_name": "_prepare_publication"
+    },
+    {
+      "candidate_AST_sha256": "037149ed118354a836fc3b2cfe409ff8a7233aa1a3e4b2b8fc183c8045ac09e4",
+      "candidate_line": 14783,
+      "candidate_name": "_name_charge_publication_commit",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "10e7d6b29df4a31422f36ae241b79104f00442e3246ca8a370c165c3dbdbd9d1",
+      "prototype_name": "_charge_publication_commit"
+    },
+    {
+      "candidate_AST_sha256": "b86236fd402f2d5cb6f64db4cb9262c037f60ca45ccdbedfbc5f459852f93289",
+      "candidate_line": 14788,
+      "candidate_name": "_name_commit_publication",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "3905cd197e05754204b9436a23a392d553dd36b88aff036efb70efb062ee4f82",
+      "prototype_name": "_commit_publication"
+    },
+    {
+      "candidate_AST_sha256": "135d974f977a48d90d28565dfcd6bcd0427110d4e345ef48c8f58c5f29ed1bcd",
+      "candidate_line": 14793,
+      "candidate_name": "_NameCursor",
+      "equal_to_binding_aware_reference": true,
+      "kind": "ClassDef",
+      "prototype_AST_sha256": "f0ee7e93d01423a603d282f616a2f98b662a90707ffded357f6aee354bbed614",
+      "prototype_name": "NameCursor"
+    },
+    {
+      "candidate_AST_sha256": "f7c59e37928143806967e4d0de9c08a7767b41d8622b5f6448a684c2bd87910a",
+      "candidate_line": 14889,
+      "candidate_name": "_name_common_history",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "36016616984ebec49d16b2ef80eda820804f2969f7da6dee714095e90a994176",
+      "prototype_name": "_common_history"
+    },
+    {
+      "candidate_AST_sha256": "de885f6a75a3cc363e4a4f7af58c9ad49eea2bb7b6e6eb6194da462ae565c13f",
+      "candidate_line": 14907,
+      "candidate_name": "_name_pending_names",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "25a437d5e6f944af6cf8f61fb4c31dd01deaeacec97c24dd308b318c35c60f86",
+      "prototype_name": "_pending_names"
+    },
+    {
+      "candidate_AST_sha256": "5ef912d0759f5c0c202893c9cc6b50999fe456b23c7d7b65cdbd98adcdab4a5c",
+      "candidate_line": 14911,
+      "candidate_name": "_join_name_versions",
+      "equal_to_binding_aware_reference": true,
+      "kind": "FunctionDef",
+      "prototype_AST_sha256": "0949ed935bd8be4185dda67b938c654561be4af88a44c878584db6d1024cef69",
+      "prototype_name": "join"
+    },
+    {
+      "candidate_AST_sha256": "6075a4bc034753816a8c7f659c8ba74d46e45e811e7f024a10e57425c0cef4b5",
+      "candidate_line": 14098,
+      "candidate_name": "_NAME_RADIX_BITS",
+      "equal_to_binding_aware_reference": true,
+      "kind": "Assign",
+      "prototype_AST_sha256": "54bfa1eaa5c5df0f100036d803a7ed8cff70a6633ae4deaef7ee1747d968df78",
+      "prototype_name": "_RADIX_BITS"
+    },
+    {
+      "candidate_AST_sha256": "4bc2377f853d7eac3b6c9ce9b518d3ff90e71d9ad5c50db46ce34686ed6f5843",
+      "candidate_line": 14100,
+      "candidate_name": "_NAME_LEAF_SIZE",
+      "equal_to_binding_aware_reference": true,
+      "kind": "Assign",
+      "prototype_AST_sha256": "0a4d4ac96448651c79e8e33e86c4c28c2b2acfa55ca1095559205aa8d3697cca",
+      "prototype_name": "_LEAF_SIZE"
+    },
+    {
+      "candidate_AST_sha256": "3316ddf4fe7765914ae1399cd54a26f2ec1658f624cdef3af42adb58f71232da",
+      "candidate_line": 14102,
+      "candidate_name": "_NAME_HASH_WIDTH",
+      "equal_to_binding_aware_reference": true,
+      "kind": "Assign",
+      "prototype_AST_sha256": "8b9a769f5d36d0f7b805f4b58e3052166d1f76d9c9fadeb42146a36b1be4f147",
+      "prototype_name": "_HASH_WIDTH"
+    },
+    {
+      "candidate_AST_sha256": "e21b0a794bdf4692d6e4d4b842adbf361a7496f1992ab9f9dc761925b6e42cad",
+      "candidate_line": 14104,
+      "candidate_name": "_NAME_HASH_MASK",
+      "equal_to_binding_aware_reference": true,
+      "kind": "Assign",
+      "prototype_AST_sha256": "b65c0f40cb10412aa06548f1704db7d6614d1d18863c0d962604d3495f4ca679",
+      "prototype_name": "_HASH_MASK"
+    },
+    {
+      "candidate_AST_sha256": "1786cecdd30fc8330c2b110958c867c729b334225d50cabf3de65c26bbf0dc04",
+      "candidate_line": 14106,
+      "candidate_name": "_NAME_MISSING",
+      "equal_to_binding_aware_reference": true,
+      "kind": "Assign",
+      "prototype_AST_sha256": "9925bdb5d84c06500156645ca3c91f305cf6544ea1ea9d21a0bf9dd5cf832df8",
+      "prototype_name": "MISSING"
+    },
+    {
+      "candidate_AST_sha256": "0ba51bddccc59e3f760f6dff16ae7844a1f0d1e41e75598ea8d8fd5f2016f5b2",
+      "candidate_line": 14108,
+      "candidate_name": "_NAME_DELETED",
+      "equal_to_binding_aware_reference": true,
+      "kind": "Assign",
+      "prototype_AST_sha256": "e71023d3e8b4151efea5e306f5b30b9e2fccc73cc778955c7ea0a7f1a0df2835",
+      "prototype_name": "_DELETED"
+    }
+  ],
+  "prototype_sha256": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71",
+  "prototype_shadowed_mapped_bindings": [],
+  "remaining_members_outside_the_freeze_function_unchanged": true,
+  "schema": "pontius-v28-storage-binding-proof-v1",
+  "unchanged_definitions": 40
+}

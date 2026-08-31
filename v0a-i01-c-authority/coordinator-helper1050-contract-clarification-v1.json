@@ -1,0 +1,18 @@
+{
+  "schema": "coordinator-helper1050-contract-clarification-v1",
+  "standing": "Engineering source/contract clarification, not a cold review or changed acceptance verdict",
+  "base_frozen_candidate": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "base_manifest_sha256": "8741fa20b1ebc7e9e9d226f463680c603c348f1332bf19c8ae12b29579f76deb",
+  "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "diagnostic_receipt_sha256": "39c226dd9a619edc22da425d846a4e07319eb24bb42064f5e323392fb352015f",
+  "diagnostic_manifest_sha256": "5e18fa9545ee6dda674028e0460741a472452c660d1f9bb96685a2dd725d6e1f",
+  "diagnostic_source_sha256": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+  "helper1050_allowed_pattern": "analysis.*(?:depth|budget)",
+  "separate_canonical_budget_pattern": "^analysis work units exceed 262144$",
+  "observed_refusal": "analysis work units exceed 262144",
+  "helper1050_regex_matches": false,
+  "canonical_work_budget_regex_matches": true,
+  "correction": "Helper1050 permits depth or budget; it does not require reaching helper depth after1050definitions. A bounded work refusal is already observed, but the unchanged helper test does not recognize its canonical wording. The two exact-depth tests remain substantive depth-versus-work failures.",
+  "disposition": "Keep current50/53 outcome and all failed artifacts. No source, error string, assertion, cap or expected label is changed. Any future recognition of the canonical budget category requires an explicit expectation reconciliation in a new candidate; never retroactively label this run green.",
+  "payload_executed": false
+}

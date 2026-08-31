@@ -1,0 +1,111 @@
+{
+  "A_line": 14337,
+  "B_earlier_setup_AST_unchanged": true,
+  "B_final_constructor_line": 15492,
+  "B_first_line": 15388,
+  "B_following_lexical_loop_names": [
+    "local_names",
+    "nonlocal_names",
+    "global_names"
+  ],
+  "B_following_lexical_loops_and_final_fork_AST_unchanged": true,
+  "C_implemented": false,
+  "W_written": false,
+  "all1761_W_paths_unchanged": true,
+  "analysis_caps_unchanged": 5,
+  "artifacts": {
+    "engineer-generator-v28-storage-accounting-v1.json": "077c1b4779709672a79368ea1081ecd9cb0499c651851a571a80f075e983c45b",
+    "engineer-generator-v28-storage-binding-proof-v1.json": "d786b9a609a37bf88ea18d6d6585d2ffb6cafd6ced908d23c1e086291ed8650c",
+    "engineer-generator-v28-storage-from-r010.diff": "778bbfad6e76b65eb3e05c986b4202bc99deee9a5e966f635a1b1fadc9d9eeb0",
+    "engineer-generator-v28-storage-from-v26.diff": "bda8529822ef1a911cb459590f3f626afa191667235b5c30e7afb679703b6261",
+    "engineer-generator-v28-storage-preservation-v1.json": "df90b1686d6760a9c3876ca0f0f81ae56519d1368a5cd811db8461a9790a2d0d",
+    "engineer-generator-v28-storage-primitive-from-reference.diff": "431ccd5590816f58edf39c4a1f4dd495721141210471977b64cc63f6530260b7",
+    "engineer-generator-v28-storage.py": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e"
+  },
+  "authorized_changes": [
+    "A: existing-base radix freeze staging; original new-base loop retained",
+    "B: guarded late exact entry borrow through zero-write lexical window"
+  ],
+  "binding_aware_primitive_equal_constants": 6,
+  "binding_aware_primitive_equal_definitions": 40,
+  "clarification_sha256": "7a4e338e5ed990df6cfa2d850638833362036558f649ae626ea0e0472239fce5",
+  "exact_inverse_recovers_v26": true,
+  "freeze_common_return_suffix_AST_unchanged": true,
+  "freeze_contains_no_attribute_store_or_delete": true,
+  "helper1050_contract_nuance": "Original4949 accepts analysis.*(?:depth|budget); unchanged work exception says analysis work units exceed262144 (spacing preserved in source), and original20587 requires that wording. Do not infer that helper1050 must reach depth. No test, regex or error wording changed; root owns the contract reconciliation.",
+  "limitations": [
+    "Static proof is not runtime validation. Existing design53 must run first after root inspection.",
+    "Existing primitive order/collision/retention/atomicity requirements still need verification against changed freeze; prior558 checks bind the prior primitive only.",
+    "Generator70 full disabled joins remain unchanged; C utility and whole generation success are unproven."
+  ],
+  "measured_RED_verification_sha256": "2e729e903ed0f0c869e88aa595d62bc0da5a2f3a47d29962f901a4865a87bf30",
+  "new_B_consume_sites": 10,
+  "new_branch_loop_AST_unchanged": true,
+  "new_name_categories": [
+    "radix_freeze_base_child_reference_copies",
+    "radix_freeze_base_child_size_reads",
+    "radix_freeze_base_metadata_reads",
+    "radix_freeze_base_reads",
+    "radix_freeze_base_slot_tests",
+    "radix_freeze_change_view_and_iterator_allocations",
+    "radix_freeze_changed_slot_visits",
+    "radix_freeze_child_delete_operations",
+    "radix_freeze_child_insert_operations",
+    "radix_freeze_child_replace_operations",
+    "radix_freeze_child_shift_reference_copies",
+    "radix_freeze_pending_delta_operations",
+    "radix_freeze_working_bitmap_reads",
+    "radix_freeze_working_bitmap_writes",
+    "radix_freeze_working_child_size_reads",
+    "radix_freeze_working_rank_operations"
+  ],
+  "payload_executed": false,
+  "plan_sha256": "e32d45c914cf9422429f493b3dfec475e23d05d58f957dca896ec95b75bb2d93",
+  "predecessor_sha256": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+  "protected_definitions": {
+    "_AnalysisBudget": {
+      "AST_sha256": "7e05e9847b75941037b4ca6599e421055c31fdd4ee2bc43b833539727df62ac9",
+      "source_sha256": "7abc9ff1427395eefc51804e98f7958a21fb9cda3ce4fe7fd68097a7c482375c"
+    },
+    "_AuthorityMap": {
+      "AST_sha256": "0b4002e6dbee9feab850f9f7f05fda08152119ac16101349a6af366552ade724",
+      "source_sha256": "69f77298343bf610c8af759326c0f2ab0f44ce9b91040c4bbf7388221bd1692a"
+    },
+    "_AuthorityState": {
+      "AST_sha256": "74d64ef3b41cdae419476098c985bada58eeadd4376ca8ebfb1c4f8cf3ddbfb2",
+      "source_sha256": "4bbd32cabd8ff01d0d49643f0126164227e4d9c08b8aead6d2cc77afad04ecd1"
+    },
+    "_ExecutionState": {
+      "AST_sha256": "72cb5e937d24f8208c5fc8a33216bff5a234360ab7d01c5be2b8d9035a70f4d2",
+      "source_sha256": "29e1d332a61d1ada8e998cd7de2e0b1b79116c8c7950f2a2cfd133773c66b3ed"
+    },
+    "_ExecutionState._write_cells": {
+      "AST_sha256": "eda15f1b76e4fdcc7569dc579a91cbf5a6d0063bd0822f912ba1b7e0488ad343",
+      "source_sha256": "c9a490e4e8884b0a156fc6ce3122128b29649da67b083e9d1b2b5f8e6b7aaad7"
+    },
+    "_NameMeter": {
+      "AST_sha256": "bbd3cc8bffc94314cf926e22f9d9c6ea30bad186300363fe219526d3d8e302d9",
+      "source_sha256": "7ffc961142b4078583fe9091b2e41ceae5211d710f8fd327353b1cbca9dff3fd"
+    },
+    "_ObservedAuthorityMap": {
+      "AST_sha256": "fbc46801cf50d792cf7f2f5a960e072a42a8a9a726555aa0bbb0c9d40a095b67",
+      "source_sha256": "df636b2279fef203c7fa98df6e958d4e6a7cc6bd68afa817027fa25f5a6fd78d"
+    },
+    "_SourceOrderedResolver._merge_states": {
+      "AST_sha256": "fdb9e1d10d8118943141d418796ca76673ae84662efef397a65771f3c0de9d47",
+      "source_sha256": "dd71f0d9402c4b3502f7489e28b4be84d0ce0439fc11e28cbc8025f3bd36c51b"
+    },
+    "_transfer_authority": {
+      "AST_sha256": "1fcab0f855ce13bc43f90053d04dd1d25d58bd3faa39d63a33f3eb4039fc4186",
+      "source_sha256": "27dab6ba17f1df730f806bfc2b92b7760a2bf8a833a1d473a46896c598335fac"
+    }
+  },
+  "prototype_sha256": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71",
+  "schema": "pontius-v28-storage-static-v1",
+  "semantic_v25_combined": false,
+  "source_bytes": 1155436,
+  "source_imported_or_executed": false,
+  "source_parsed_and_syntax_compiled_only": true,
+  "source_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "whole_module_AST_equal_after_reversing_only_A_and_B": true
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "coordinator-navigation-v14",
+  "before_sha256": "a23bd4da38ab3118b975cd1e01316fa64f43c96f839e9b269e466f2b7733ec2b",
+  "after_sha256": "8bacea70ec4512d85eea9b0a7c803f94e6cd7f5001074fd38f409915329d5550",
+  "pins": {
+    "coordinator-v28-design-verification-v1.json": "a70eb13b0c3edb59d7944857a79d1d8c0d99aacbd715a7819c958f22e5fbf186",
+    "coordinator-v26-sharing-verification-v1.json": "a3d382e897e72d8c6e46c200418180823c9c1b727417e52dca9a42e68fc09801",
+    "coordinator-helper1050-contract-clarification-v1.json": "020b99d9e5fef402baf964eafd14fbda4416dc35bb2f095d27a7f3594d5de447",
+    "coordinator-v23-class-owner-l8-verification-v1.json": "0ff78f0573d8cae835509d987b61a7ec12574912f0b63e3d3121d918325def5b",
+    "coordinator-budget-assertion-candidate-static-v1.json": "e4074f8e906ea02bd15d0be4dbc0d9edcc8b61812db84937b71a136b2fc2d339"
+  },
+  "production_source_changed": false,
+  "payload_running": false,
+  "storage": "v28 original design51/53; primitive recheck and disabled-join plan pending",
+  "semantic": "v25 authoring; v23 late-store4/8 repeated with identical records",
+  "test_correction": "Retained one-assertion candidate; independent review pending",
+  "prior_navigation_retained": "coordinator-navigation-v13-before-v14.md"
+}

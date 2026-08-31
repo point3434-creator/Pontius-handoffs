@@ -1,0 +1,141 @@
+{
+  "case_pack_sha256": "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47",
+  "changed_control_functions": [
+    "main",
+    "validate_result"
+  ],
+  "changed_probe_functions": [
+    "load_pack",
+    "main",
+    "oracle"
+  ],
+  "classifications": {
+    "clean": 4,
+    "refuse": 4
+  },
+  "compiled_only": true,
+  "distinct_family_payload_output_prefix_and_result_schema": true,
+  "edit_reversal_exact_bytes": true,
+  "edits": {
+    "control": [
+      {
+        "after": "class-owner-late-store",
+        "before": "class-comprehension-extension",
+        "occurrences": 8
+      },
+      {
+        "after": "class_owner_late_store",
+        "before": "class_comprehension_extension",
+        "occurrences": 3
+      },
+      {
+        "after": "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47",
+        "before": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+        "occurrences": 1
+      },
+      {
+        "after": "d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1",
+        "before": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+        "occurrences": 1
+      },
+      {
+        "after": "{\"clean\": 4, \"refuse\": 4}",
+        "before": "{\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}",
+        "occurrences": 2
+      },
+      {
+        "after": "empty-class late-member alias",
+        "before": "class/comprehension boundary",
+        "occurrences": 1
+      },
+      {
+        "after": "class-owner-late-store-probe-v1.py",
+        "before": "class-owner-late-store-probe-v2.py",
+        "occurrences": 1
+      },
+      {
+        "after": "6fa50f3268c4e672e03819adde462d5a044f00dfa7b849b0d273450f14ffcf22",
+        "before": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426",
+        "occurrences": 1
+      }
+    ],
+    "probe": [
+      {
+        "after": "class-owner-late-store",
+        "before": "class-comprehension-extension",
+        "occurrences": 3
+      },
+      {
+        "after": "class_owner_late_store",
+        "before": "class_comprehension_extension",
+        "occurrences": 4
+      },
+      {
+        "after": "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47",
+        "before": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+        "occurrences": 1
+      },
+      {
+        "after": "d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1",
+        "before": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+        "occurrences": 1
+      },
+      {
+        "after": "{\"clean\": 4, \"refuse\": 4}",
+        "before": "{\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}",
+        "occurrences": 1
+      },
+      {
+        "after": "empty-class late-member alias",
+        "before": "class/comprehension boundary",
+        "occurrences": 1
+      },
+      {
+        "after": "(\n    \"L01-local-direct-unsafe\",\n    \"L02-local-direct-dormant\",\n    \"L03-local-contained-unsafe\",\n    \"L04-local-contained-dormant\",\n    \"L05-local-captured-unsafe\",\n    \"L06-local-captured-dormant\",\n    \"L07-module-class-unsafe\",\n    \"L08-module-class-scalar-clean\",\n)",
+        "before": "(\n    \"R01-attribute-receiver-unsafe\",\n    \"R02-attribute-receiver-dormant\",\n    \"R03-indexed-receiver-unsafe\",\n    \"R04-indexed-receiver-dormant\",\n    \"R05-nested-generator-join-unsafe\",\n    \"R06-nested-generator-join-safe\",\n    \"R07-initially-empty-generator-grown-unsafe\",\n    \"R08-initially-empty-generator-dormant\",\n)",
+        "occurrences": 1
+      },
+      {
+        "after": "tuple(\"L\" + str(n).zfill(2) for n in range(1, 9))",
+        "before": "tuple(\"R\" + str(n).zfill(2) for n in range(1, 9))",
+        "occurrences": 1
+      },
+      {
+        "after": "            == \"53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499\"\n            and pack[\"requirements\"][\"semantic_plan_v3_sha256\"]\n            == \"1d661231a472fc689af06ea993234f27ab88a65da950d83f1811c1f941d94723\"\n            and pack[\"requirements\"][\"old_44_expectations_unchanged\"] is True,\n",
+        "before": "            == \"53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499\",\n",
+        "occurrences": 1
+      }
+    ]
+  },
+  "exact_8_summary_fields_and_case_ids_verified_statically": true,
+  "no_private_analyzer_observer_added": true,
+  "original_caps_unchanged": true,
+  "outputs": {
+    "class-owner-late-store-control-v1-from-R8-v2.diff": {
+      "bytes": 5902,
+      "sha256": "fd48dcd644b409ef271345d808185fbefa32d81d4b01898342f25592a291c694"
+    },
+    "class-owner-late-store-control-v1.py": {
+      "bytes": 27623,
+      "sha256": "1a1a0483b118e41de5e343c6dff11e8cc577928fd37daeb0c7dd0b9a5aeb7b1c"
+    },
+    "class-owner-late-store-probe-v1-from-R8-v2.diff": {
+      "bytes": 6262,
+      "sha256": "4d022ba0fe2490735d4f9cd474ea603bdb741ab20825131ab7960cfb61655cad"
+    },
+    "class-owner-late-store-probe-v1.py": {
+      "bytes": 14625,
+      "sha256": "6fa50f3268c4e672e03819adde462d5a044f00dfa7b849b0d273450f14ffcf22"
+    }
+  },
+  "payload_executed": false,
+  "predecessors": {
+    "class-comprehension-extension-control-v2.py": "34c16309d974e40909bc352d509308b19d2fa4fd42f06386d27430fcf07526e2",
+    "class-comprehension-extension-probe-v2.py": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426"
+  },
+  "public_review_ast_identical": true,
+  "runtime_custody_and_floor_gate_preserved_except_family_literals": true,
+  "schema": "codex-a-class-owner-late-store-harness-static-v1",
+  "spec_sha256": "d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1",
+  "standing": "Static authoring only; no controller, probe, candidate or Model executed"
+}

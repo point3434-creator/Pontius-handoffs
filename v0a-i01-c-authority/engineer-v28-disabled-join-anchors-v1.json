@@ -1,0 +1,178 @@
+{
+  "W_generator_sha256_after": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+  "W_generator_sha256_before": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+  "facts": {
+    "common_history_or_K_measured": false,
+    "generator70_exact_depth_red": true,
+    "helper1050_contract_conflict_unmodified": true,
+    "helper65_passed": true,
+    "v26_identical_root_C_hits": 0,
+    "v26_identical_root_C_population": 36,
+    "v28_design_passed": 51,
+    "v28_design_total": 53
+  },
+  "full_union_order_work_retained": true,
+  "generic_primitive_API_unchanged": true,
+  "implementation_authorized_by_this_artifact": false,
+  "payload_executed": false,
+  "pending_debt_preserved_in_plan": true,
+  "plan_sha256": "d8faada0f14b1f7ffb0e0062ebd90e6fe196718b663cba93d39cd8246ff1b7fa",
+  "proposed_elision": "Only an operation-local all-disabled/all-pending/common-history unchanged entry with exact NameEntry and exact FlowValue passes the local check; arbitrary values use original per-name merge/transfer.",
+  "root_evidence": {
+    "coordinator-v26-sharing-verification-v1.json": "a3d382e897e72d8c6e46c200418180823c9c1b727417e52dca9a42e68fc09801",
+    "coordinator-v28-design-verification-v1.json": "a70eb13b0c3edb59d7944857a79d1d8c0d99aacbd715a7819c958f22e5fbf186"
+  },
+  "runtime_improvement_claimed": false,
+  "schema": "pontius-v28-disabled-join-plan-anchors-v1",
+  "scope": "Read-only analysis plus create-only plan/anchor artifacts; no candidate or oracle changes.",
+  "source_anchors": {
+    "_AuthorityState.join": {
+      "AST_sha256": "fb7a9a378b4ac02e433b0caf5eda3c2ac25f5f4b3b92add8da386d20516be901",
+      "end": 14031,
+      "source_sha256": "453634f53f4cc2b6209d3769243b0ccbaa6ae35ee8ec1135c02420eaee37deb0",
+      "start": 14008
+    },
+    "_ExecutionState._project": {
+      "AST_sha256": "db5d3df3bba73297b680d6cbf1c1fcd8f46c04c240639ee584eb4cbe07faef99",
+      "end": 15135,
+      "source_sha256": "40eb1510c513ba34758f8fdb6d512ab125f980084f5ad8acca0617cccb293f6c",
+      "start": 15133
+    },
+    "_ExecutionState._transferred_name_entry": {
+      "AST_sha256": "960449df29fbee38ec80425c47f0e2abe75b617b69dc2650027ba15a174782da",
+      "end": 15131,
+      "source_sha256": "1caa4be48ff19d82a05b8e3f2a432711985711f90efba7f6716c05412ec7ecd0",
+      "start": 15116
+    },
+    "_ExecutionState._write_cells": {
+      "AST_sha256": "eda15f1b76e4fdcc7569dc579a91cbf5a6d0063bd0822f912ba1b7e0488ad343",
+      "end": 15159,
+      "source_sha256": "c9a490e4e8884b0a156fc6ce3122128b29649da67b083e9d1b2b5f8e6b7aaad7",
+      "start": 15155
+    },
+    "_ExecutionState.clear": {
+      "AST_sha256": "b8f7cdfdf9076c40ea4a1f998a5deb3c10ddd8211f8dfc3a75dcfaa1b37c4120",
+      "end": 15211,
+      "source_sha256": "4760a5be06dfd0e9282ac6b897630af31be65530c81dc4f83b7cf4b59f4fcd05",
+      "start": 15209
+    },
+    "_ExecutionState.copy": {
+      "AST_sha256": "bd27639d8d089c5c2963a431d165c65a17d4d5d7171e25c31e0d320cf3d54c4e",
+      "end": 15219,
+      "source_sha256": "1c025769475f05cfe00907015ce3793d8db1b693c582f84d1d7291dc290d980e",
+      "start": 15213
+    },
+    "_FlowValue": {
+      "AST_sha256": "04a6a3bb3f72db179b10241d002bd4dee8a87ca6540f4feb4b14162ccc9790c5",
+      "end": 9037,
+      "source_sha256": "4f193db27e86a8d0fc66813211854048944f09e3c10e53053aa07c1313c47970",
+      "start": 9019
+    },
+    "_NameCursor._replace_entry": {
+      "AST_sha256": "2be0f2efcd34d4f564b7c398a46beac7a374ec78b0e11317a039d3b2366902a1",
+      "end": 14850,
+      "source_sha256": "7df22567b861b7d0c598eb2f5eeb5238b0fe9c2136d15460cddea53b2e3d29e3",
+      "start": 14826
+    },
+    "_NameCursor.snapshot": {
+      "AST_sha256": "027498495cee744158b3bb978c0128d42cc33f0d6dff45571a184c3053d3cd95",
+      "end": 14871,
+      "source_sha256": "7d2700b57a80943970baf4ac22c71d4f31554ed8eb930c56ab6db6f86657c0f4",
+      "start": 14864
+    },
+    "_NameEntry": {
+      "AST_sha256": "a8321402424440c9eedfa0addba0f53a0c82c975d3b1284e82b766ff27e4000c",
+      "end": 14113,
+      "source_sha256": "53ba0e6cc2216c004ba5807210e80705decc921510861c615b17899bc07ae2dd",
+      "start": 14111
+    },
+    "_NameVersion.from_unique_entries": {
+      "AST_sha256": "65dd96cb1413b543523040e88aa8b4d112fb1bd73a66c2072b099e6489bb86f9",
+      "end": 14714,
+      "source_sha256": "289add247a1714657830dd79743d6158a05a1c9c4fe12021dc9e3ca37e0b00bb",
+      "start": 14679
+    },
+    "_SourceOrderedResolver._merge_states": {
+      "AST_sha256": "fdb9e1d10d8118943141d418796ca76673ae84662efef397a65771f3c0de9d47",
+      "end": 22457,
+      "source_sha256": "dd71f0d9402c4b3502f7489e28b4be84d0ce0439fc11e28cbc8025f3bd36c51b",
+      "start": 22351
+    },
+    "_SourceOrderedResolver._snapshot_call": {
+      "AST_sha256": "97f328de15bf07f4e549c24aa1823bc9a01384d97d1d8a66ad43b2713ba1e4b6",
+      "end": 17304,
+      "source_sha256": "2b8a417960d4226ab3eedc9e2ad15751bc2996ab6b01964ca4c1c4b379563541",
+      "start": 17214
+    },
+    "_join_name_versions": {
+      "AST_sha256": "5ef912d0759f5c0c202893c9cc6b50999fe456b23c7d7b65cdbd98adcdab4a5c",
+      "end": 14980,
+      "source_sha256": "4317108ab468c56e0089d9e6c6681a9403290d6877855849daaeb41b3ff9e4c2",
+      "start": 14911
+    },
+    "_merge_flow_values": {
+      "AST_sha256": "d1a91cc8c98d4dfa0caf57698d7c8bd15636bb187130d1ba65ff96f3b862a74f",
+      "end": 13489,
+      "source_sha256": "9aa22da78c5bfc69aff72862c1bc8e27f5e74073921be5a5f0b950f14043da95",
+      "start": 13431
+    },
+    "_merge_legacy_flow_values": {
+      "AST_sha256": "a594001e63bd80afb872e1a2ceb84a6feb327b11ad91e0c86e780e24317edcbc",
+      "end": 13788,
+      "source_sha256": "344d21b15676eeaf773116bee87aae2f59a21414639c5ce6850f94486ac43db6",
+      "start": 13492
+    },
+    "_name_common_history": {
+      "AST_sha256": "f7c59e37928143806967e4d0de9c08a7767b41d8622b5f6448a684c2bd87910a",
+      "end": 14905,
+      "source_sha256": "79f2ab7d2e30a8246b0653dc28146c8fe264b8829e322c46ce2ecdf0dc22611c",
+      "start": 14889
+    },
+    "_name_history": {
+      "AST_sha256": "094a980bdd358c009641f10aefcd40f44257eefd52e9576c1fa82fd64aa0a853",
+      "end": 14129,
+      "source_sha256": "486dbf86d5f30d0263043112e4cb26a2a078723689d5a4f166447ac49650b376",
+      "start": 14125
+    },
+    "_name_pending_names": {
+      "AST_sha256": "de885f6a75a3cc363e4a4f7af58c9ad49eea2bb7b6e6eb6194da462ae565c13f",
+      "end": 14909,
+      "source_sha256": "dd35f13eedff6dc7171b4bf62cc6053a2291a18f2a32dbb4a3e7070416e6db91",
+      "start": 14907
+    },
+    "_name_prepare_publication": {
+      "AST_sha256": "4ef9cba2bf8f72ae04885283b1491668991ef98eca4f6666c5f9cb2296913be3",
+      "end": 14781,
+      "source_sha256": "7ce53c0b0cdf7f3a6a0dde425a6d21dacb66ffeec7121a0610432c003c0a93e6",
+      "start": 14755
+    },
+    "_name_radix_pending_count": {
+      "AST_sha256": "cf4369332f7a9e57a2357c7190d7a6764fe03e95264d2f43b9ebd5e5a037b715",
+      "end": 14202,
+      "source_sha256": "8311d2c7e0e1dedcaa52f666494c4cee4015a97c8c05338d03b9924e3b30224a",
+      "start": 14198
+    },
+    "_name_realize_order": {
+      "AST_sha256": "4287f37bed75d0c7ae887ee78f084668a01e44ee11e5b60d2a9305494523cf02",
+      "end": 14613,
+      "source_sha256": "a3b9c7451ad075fa64333179a14000b25dee906e01651ef455897aa5203496b4",
+      "start": 14506
+    },
+    "_name_seal_order_table": {
+      "AST_sha256": "8fcd32b3866c0fe8fa29cc1b1e9082d2fe1a2a0b0cecda931eb7d6ab6eeadb86",
+      "end": 14504,
+      "source_sha256": "0a3cea94f48895034a918b96ec0021a72e3ce598cd2194a8d4146f170931dd5b",
+      "start": 14501
+    },
+    "_transfer_authority": {
+      "AST_sha256": "1fcab0f855ce13bc43f90053d04dd1d25d58bd3faa39d63a33f3eb4039fc4186",
+      "end": 14083,
+      "source_sha256": "27dab6ba17f1df730f806bfc2b92b7760a2bf8a833a1d473a46896c598335fac",
+      "start": 14034
+    }
+  },
+  "source_imported": false,
+  "source_mutated": false,
+  "source_path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-generator-v28-storage.py",
+  "source_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e"
+}

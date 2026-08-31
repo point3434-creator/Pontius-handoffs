@@ -1,0 +1,21 @@
+{
+  "schema": "codex-a-depth-budget-v4-authoring-receipt-v1",
+  "command": [
+    "D:/Pontius-tools/py311/Scripts/python.exe",
+    "-I",
+    "-S",
+    "-B",
+    "-P",
+    "D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks/depth-budget-v4-authoring-v1.py"
+  ],
+  "authoring_recipe_sha256": "b54a75a38db76fdedb751afd205b1e264fb14c0699cbafaa5fda9077ab1f28ab",
+  "result": {
+    "chunk_id": "f191b9",
+    "wall_time_seconds": 0.5200232,
+    "exit_code": 0,
+    "original_token_count": 182,
+    "output": "{\"created\": {\"engineer-depth-budget-probe-v4-from-v3.diff\": {\"bytes\": 5390, \"sha256\": \"674296516e644c210ce873337e169ec414db0dc26a68ecaa878e712a7e419c24\"}, \"engineer-depth-budget-probe-v4.py\": {\"bytes\": 31708, \"sha256\": \"559b099f96a4fcfb9b88eb05338a45ad2184ca5e153a360ee0123e0ee7969379\"}, \"engineer-depth-budget-v4-static-v1.json\": {\"bytes\": 2434, \"sha256\": \"214f1558b94134a8480e327bd438f81eaeb0db527404a1edb3f082198844b721\"}, \"tests-depth-budget-control-v4-from-v3.diff\": {\"bytes\": 1074, \"sha256\": \"7a5d62a8353797cf7bb869ab9a653191b3ad3c792c98c30741be72cf741798f3\"}, \"tests-depth-budget-control-v4.py\": {\"bytes\": 29505, \"sha256\": \"d62807554ffd50b7552879c5a7eb8b4b940e729063ab041d36ee9e79b823c8a5\"}}, \"payload_executed\": false}\r\n"
+  },
+  "payload_executed": false,
+  "standing": "Static text authoring/AST compile only; not diagnostic execution or product verification"
+}

@@ -1,0 +1,108 @@
+--- class-comprehension-extension-probe-v2.py
++++ class-owner-late-store-probe-v1.py
+@@ -1,4 +1,4 @@
+-"""Fixed eight-case class/comprehension boundary probe; authoring does not authorize execution."""
++"""Fixed eight-case empty-class late-member alias probe; authoring does not authorize execution."""
+ import ast
+ import builtins
+ from collections import Counter
+@@ -10,19 +10,19 @@
+ import stat
+ import sys
+ 
+-PACK_SHA = "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd"
+-SCHEDULE_SHA = "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6"
+-PAYLOAD = ".class-comprehension-extension"
+-SCHEMA = "pontius-class-comprehension-extension-v1"
++PACK_SHA = "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47"
++SCHEDULE_SHA = "d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1"
++PAYLOAD = ".class-owner-late-store"
++SCHEMA = "pontius-class-owner-late-store-v1"
+ CASE_IDS = (
+-    "R01-attribute-receiver-unsafe",
+-    "R02-attribute-receiver-dormant",
+-    "R03-indexed-receiver-unsafe",
+-    "R04-indexed-receiver-dormant",
+-    "R05-nested-generator-join-unsafe",
+-    "R06-nested-generator-join-safe",
+-    "R07-initially-empty-generator-grown-unsafe",
+-    "R08-initially-empty-generator-dormant",
++    "L01-local-direct-unsafe",
++    "L02-local-direct-dormant",
++    "L03-local-contained-unsafe",
++    "L04-local-contained-dormant",
++    "L05-local-captured-unsafe",
++    "L06-local-captured-dormant",
++    "L07-module-class-unsafe",
++    "L08-module-class-scalar-clean",
+ )
+ 
+ SLOTS = {
+@@ -78,24 +78,27 @@
+     require(digest(raw) == PACK_SHA, "casepack pin")
+     pack = json.loads(raw)
+     require(pack["schema"] == "pontius-storage-composition-cases-v1"
+-            and pack["pack_name"] == "class-comprehension-extension-v1", "casepack schema")
++            and pack["pack_name"] == "class-owner-late-store-v1", "casepack schema")
+     require(pack["requirements"]["class_name_addendum_sha256"]
+             == "de7b5417b2cc899710af0a32332360f31546b6264d1cb58896104a362568e93f"
+             and pack["requirements"]["candidate_v23_inspected"] is True
+             and pack["requirements"]["extension_results_opened"] is False
+             and pack["requirements"]["root_table_approved"] is True
+             and pack["requirements"]["source_basis_v23_sha256"]
+-            == "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
++            == "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499"
++            and pack["requirements"]["semantic_plan_v3_sha256"]
++            == "1d661231a472fc689af06ea993234f27ab88a65da950d83f1811c1f941d94723"
++            and pack["requirements"]["old_44_expectations_unchanged"] is True,
+             "frozen requirement basis")
+     require(all(type(pack[field]) is int
+                 for field in ("planned_cases", "planned_projections"))
+             and pack["planned_cases"] == pack["planned_projections"] == 8, "finite counts")
+     require(tuple(case["id"] for case in pack["cases"]) == CASE_IDS, "case order")
+     require(tuple(case["schedule_id"] for case in pack["cases"])
+-            == tuple("R" + str(n).zfill(2) for n in range(1, 9)), "schedule identities")
++            == tuple("L" + str(n).zfill(2) for n in range(1, 9)), "schedule identities")
+     require(type(pack["classifications"]) is dict
+             and all(type(count) is int for count in pack["classifications"].values())
+-            and pack["classifications"] == {"clean": 3, "refuse": 4, "permitted-refusal": 1}
++            and pack["classifications"] == {"clean": 4, "refuse": 4}
+             and dict(Counter(case["classification"] for case in pack["cases"]))
+             == pack["classifications"], "classifications")
+     for case in pack["cases"]:
+@@ -118,7 +121,7 @@
+             "harmless model forbidden name")
+     allowed = {name: getattr(builtins, name)
+                for name in ("__build_class__", "staticmethod", "tuple", "list", "NameError")}
+-    namespace = {"__builtins__": allowed, "__name__": "independent_class_comprehension_extension_model"}
++    namespace = {"__builtins__": allowed, "__name__": "independent_class_owner_late_store_model"}
+     # Only the separately authored, pinned harmless Model is executed.
+     exec(compile(tree, "<independent-harmless-model>", "exec", dont_inherit=True), namespace)
+     try:
+@@ -205,7 +208,7 @@
+             and Path(resolution.origin).resolve() == (snapshot / "src/pontius/__init__.py").resolve(),
+             "wrong read-only package resolution")
+     pack = load_pack(payload / "cases.json")
+-    spec = importlib.util.spec_from_file_location("class_comprehension_extension_generator", source_path)
++    spec = importlib.util.spec_from_file_location("class_owner_late_store_generator", source_path)
+     require(spec is not None and spec.loader is not None, "generator import spec")
+     generator = importlib.util.module_from_spec(spec)
+     sys.modules[spec.name] = generator
+@@ -241,7 +244,7 @@
+         if not semantic_ok:
+             semantic_failures.append(case["id"])
+         print(json.dumps({
+-            "class_comprehension_extension_case": case["id"], "schedule_id": case["schedule_id"],
++            "class_owner_late_store_case": case["id"], "schedule_id": case["schedule_id"],
+             "classification": case["classification"], "source_sha256": case["source_sha256"],
+             "oracle_sha256": case["oracle_sha256"], "expected": case["expected"],
+             "unreachable_events": case["unreachable_events"], "required_argv": case["required_argv"],
+@@ -254,7 +257,7 @@
+             and {name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed during run")
+     hashes(snapshot, manifest)
+     require(digest(checked(payload / "manifest.json").read_bytes()) == manifest_sha, "manifest changed")
+-    summary = {"class_comprehension_extension_summary": True, "schema": SCHEMA, "slot": slot,
++    summary = {"class_owner_late_store_summary": True, "schema": SCHEMA, "slot": slot,
+                "generator_sha256": source_sha, "pack_sha256": PACK_SHA, "probe_sha256": probe_sha,
+                "schedule_sha256": SCHEDULE_SHA, "planned_cases": 8, "case_count": 8,
+                "projections": 8, "analyzed_cases": analyzed,

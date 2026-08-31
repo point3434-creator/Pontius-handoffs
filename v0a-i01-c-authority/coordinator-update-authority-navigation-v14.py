@@ -1,4 +1,22 @@
-# C authority repair: current checkpoint
+"""Update mutable navigation; retain the exact previous checkpoint."""
+from pathlib import Path
+import hashlib
+import json
+
+T = Path(r"D:\Pontius-handoffs\v0a-i01-c-authority")
+h = lambda raw: hashlib.sha256(raw).hexdigest()
+current = T / "CURRENT.md"
+before = current.read_bytes()
+assert h(before) == "a23bd4da38ab3118b975cd1e01316fa64f43c96f839e9b269e466f2b7733ec2b"
+pins = {
+    "coordinator-v28-design-verification-v1.json": "a70eb13b0c3edb59d7944857a79d1d8c0d99aacbd715a7819c958f22e5fbf186",
+    "coordinator-v26-sharing-verification-v1.json": "a3d382e897e72d8c6e46c200418180823c9c1b727417e52dca9a42e68fc09801",
+    "coordinator-helper1050-contract-clarification-v1.json": "020b99d9e5fef402baf964eafd14fbda4416dc35bb2f095d27a7f3594d5de447",
+    "coordinator-v23-class-owner-l8-verification-v1.json": "0ff78f0573d8cae835509d987b61a7ec12574912f0b63e3d3121d918325def5b",
+    "coordinator-budget-assertion-candidate-static-v1.json": "e4074f8e906ea02bd15d0be4dbc0d9edcc8b61812db84937b71a136b2fc2d339",
+}
+assert all(h((T / name).read_bytes()) == pin for name, pin in pins.items())
+after = '''# C authority repair: current checkpoint
 
 2026-08-31. Navigation only. No new frozen review pair, cold verdict, acceptance
 claim or main integration. Reviews bind to a git snapshot ref and manifest SHA-256.
@@ -74,3 +92,19 @@ No guarded profile, GPU or live15-second action-wall claim follows from this wor
 
 [Prior navigation](coordinator-navigation-v13-before-v14.md) retains the preceding
 checkpoint. Every issued source, failed result and raw evidence remains immutable.
+'''.encode()
+report = {"schema": "coordinator-navigation-v14", "before_sha256": h(before), "after_sha256": h(after),
+          "pins": pins, "production_source_changed": False, "payload_running": False,
+          "storage": "v28 original design51/53; primitive recheck and disabled-join plan pending",
+          "semantic": "v25 authoring; v23 late-store4/8 repeated with identical records",
+          "test_correction": "Retained one-assertion candidate; independent review pending",
+          "prior_navigation_retained": "coordinator-navigation-v13-before-v14.md"}
+outputs = {"coordinator-navigation-v13-before-v14.md": before,
+           "coordinator-update-authority-navigation-v14.py": Path(__file__).read_bytes(),
+           "coordinator-navigation-v14.json": (json.dumps(report, indent=2) + "\n").encode()}
+assert not any((T / name).exists() for name in outputs)
+for name, raw in outputs.items():
+    with (T / name).open("xb") as stream:
+        stream.write(raw)
+current.write_bytes(after)
+print(json.dumps({"navigation_sha256": h(after), "old_navigation_retained": True, "source_changed": False}))

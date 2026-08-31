@@ -1,0 +1,44 @@
+{
+  "schema": "codex-a-class-owner-late-store-authoring-receipt-v1",
+  "standing": "Static authoring/compile/correspondence only; no Model, sensitive source, candidate, probe or controller payload executed",
+  "creation_failure": {
+    "stage": "oversized command before process creation",
+    "windows_error": 206,
+    "description": "Windows rejected the initial all-in-one authoring transfer; no command process or authoring output was created. Six immutable base64 text parts were then assembled create-only."
+  },
+  "recipes": {
+    "class-owner-late-store-case-authoring-v1.py": "ebb6617eb0fa2440b70095d729bb179aa7e8eabc728eeb6629b5d615456c46bc",
+    "class-owner-late-store-case-authoring-v2.py": "13470f6135ddad2e8973992337ccb4dc715eac713f8a1693051178ded4af42a1",
+    "class-owner-late-store-harness-authoring-v1.py": "e659da06cbe61d3fb2a197d53b3c5834e7e31c321cdf85687fa3082733110d8b"
+  },
+  "initial_static_run": {
+    "chunk_id": "7a92f8",
+    "wall_time_seconds": 0.1234637,
+    "exit_code": 1,
+    "original_token_count": 76,
+    "output": "Traceback (most recent call last):\r\n  File \"D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-owner-late-store-case-authoring-v1.py\", line 33, in <module>\r\n    assert sum(row[\"cases\"] for row in old.values()) == 44\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError\r\n"
+  },
+  "correction": "The initial static preservation list enumerated only four packs/34 cases and failed before output. The create-only v2 recipe includes the separate storage4 and scalar6 packs, totaling six packs/44. New schedules, Models and expectations were not changed. An unissued specification sentence was clarified to identify Bare/Installer rather than the separate ReviewTests/Model sink scaffold.",
+  "corrected_case_static_run": {
+    "chunk_id": "e7b170",
+    "wall_time_seconds": 0.1329239,
+    "exit_code": 0,
+    "original_token_count": 122,
+    "output": "{\"created\": {\"class-owner-late-store-cases-v1.json\": {\"bytes\": 24634, \"sha256\": \"08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47\"}, \"class-owner-late-store-spec-v1.md\": {\"bytes\": 8182, \"sha256\": \"d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1\"}, \"class-owner-late-store-static-proof-v1.json\": {\"bytes\": 6068, \"sha256\": \"f93eb549b5b6b37b5f8f0e77654f45d056677f0ffe0c246ee1d66f9ab154e2fa\"}}, \"old_expectations_preserved\": 44, \"payload_executed\": false}\r\n"
+  },
+  "harness_static_run": {
+    "chunk_id": "d02319",
+    "wall_time_seconds": 0.1836482,
+    "exit_code": 0,
+    "original_token_count": 189,
+    "output": "{\"created\": {\"class-owner-late-store-control-v1-from-R8-v2.diff\": {\"bytes\": 5902, \"sha256\": \"fd48dcd644b409ef271345d808185fbefa32d81d4b01898342f25592a291c694\"}, \"class-owner-late-store-control-v1.py\": {\"bytes\": 27623, \"sha256\": \"1a1a0483b118e41de5e343c6dff11e8cc577928fd37daeb0c7dd0b9a5aeb7b1c\"}, \"class-owner-late-store-harness-static-proof-v1.json\": {\"bytes\": 5746, \"sha256\": \"c01b17a8e13ac1dd0eeeebe9cf1dd042f2c08e79451581a7557320aa547e7a7c\"}, \"class-owner-late-store-probe-v1-from-R8-v2.diff\": {\"bytes\": 6262, \"sha256\": \"4d022ba0fe2490735d4f9cd474ea603bdb741ab20825131ab7960cfb61655cad\"}, \"class-owner-late-store-probe-v1.py\": {\"bytes\": 14625, \"sha256\": \"6fa50f3268c4e672e03819adde462d5a044f00dfa7b849b0d273450f14ffcf22\"}}, \"payload_executed\": false}\r\n"
+  },
+  "execution_command_prefix": [
+    "D:/Pontius-tools/py311/Scripts/python.exe",
+    "-I",
+    "-S",
+    "-B",
+    "-P"
+  ],
+  "payload_executed": false
+}

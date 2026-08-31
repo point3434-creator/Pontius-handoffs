@@ -1,0 +1,169 @@
+{
+  "schema": "codex-a-class-owner-late-store-static-v1",
+  "author": "codex/cold_review_a",
+  "standing": "Static engineering witness proof; no runtime or product verdict",
+  "source_basis_v23_sha256": "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
+  "semantic_plan_v3_sha256": "1d661231a472fc689af06ea993234f27ab88a65da950d83f1811c1f941d94723",
+  "case_pack_sha256": "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47",
+  "spec_sha256": "d122e974986d3022b2a95a531b8ca7c92a25dd845b2dc006983bd43a68a205a1",
+  "planned_cases": 8,
+  "planned_projections": 8,
+  "classifications": {
+    "refuse": 4,
+    "clean": 4
+  },
+  "old_44_case_packs": {
+    "class-semantic-extension-cases-v1.json": {
+      "sha256": "925ae5b9354377a5957f0c32c8bf5b58fea01612498b835abd6392f9cc87d268",
+      "cases": 12
+    },
+    "class-name-boundary-cases-v1.json": {
+      "sha256": "31c50af8fda3cebc65e44d655db600dd1029a3e110b711a82d475750ece05a1c",
+      "cases": 8
+    },
+    "class-comprehension-boundary-cases-v1.json": {
+      "sha256": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+      "cases": 6
+    },
+    "class-comprehension-extension-cases-v1.json": {
+      "sha256": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+      "cases": 8
+    },
+    "storage-composition-cases-v1.json": {
+      "sha256": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709",
+      "cases": 4
+    },
+    "scalar-class-composition-cases-v1.json": {
+      "sha256": "50e88cedf77f902012237ccd88700c911fa8f3681c8dada380cca6c3142659ac",
+      "cases": 6
+    }
+  },
+  "normal_pair_only_consumption_guard_differs": true,
+  "module_pair_control_intentionally_scalar_and_dormant": true,
+  "model_trace_expectations_fixed_without_execution": true,
+  "cases": [
+    {
+      "id": "L01-local-direct-unsafe",
+      "source_sha256": "e783cbec04bcc21b1509d989650b4f6acc781f43a901a619aec3675d7c4e3b7e",
+      "oracle_sha256": "f5be1d56cd6b2e60a6be0763572631f92ab3dc760f2b27944ff838eb7ac7aaf9",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L02-local-direct-dormant",
+      "source_sha256": "330670fc0c0df607f85fb69ff570f6c2b5a624b80821e2d56db1b7d4c963920f",
+      "oracle_sha256": "366aae899447fe56407d9968e6e4b86943892604a74c7b3fc4185d0437e16ff2",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L03-local-contained-unsafe",
+      "source_sha256": "43fdcd49d32d87173d2fc157b13f182a2e049194a09e5d70ab334e123572898d",
+      "oracle_sha256": "c3bbf99fd17e9b78675195ff80d7fcf625cb60d5956999a3e6ebbc71894911e6",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L04-local-contained-dormant",
+      "source_sha256": "9fb4d4199aa0ccbe0c93d558401f1d10bcd9e86f98cf39085523c662017a27c8",
+      "oracle_sha256": "df25723de9f3cc48083202b99a4f7118b4fe4d6bf8575c4b19db89a36d7a396e",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L05-local-captured-unsafe",
+      "source_sha256": "bf40143400f0ae8caa03b4a0448ce36bb965cd7d11971dda474caa9229bd10e8",
+      "oracle_sha256": "3e02408cae5be6e52168fe059a41d3430710a1a0a8b1fc6d7f2c1e75b2769dae",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "captured",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L06-local-captured-dormant",
+      "source_sha256": "413579105a033ae27572e78432775daa338111b959e9303474c6e16983d1c729",
+      "oracle_sha256": "0c373a49065a473d1e287e0fb587252ad819c426c9f36ce941f508579eb9e74f",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "captured",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L07-module-class-unsafe",
+      "source_sha256": "6da92aff3be671cab528f94c4288023928a741b8d62959c3454dfc1f30441027",
+      "oracle_sha256": "350e091f316237736cd7a44b5a8c51a31cc21e38579bb490ba12fe952b7def07",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "read",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    },
+    {
+      "id": "L08-module-class-scalar-clean",
+      "source_sha256": "bf1bd52a4aa35d2e49fbc079059399cf4989197493faf986d1e83d4d5b9a53ff",
+      "oracle_sha256": "3a0d970aff3dc8dd6f03168f2f0e7e033a637a05b7645023b7bdc7b1951c5425",
+      "test_body_ast_correspondence": true,
+      "module_owner_ast_correspondence": true,
+      "source_event_order_checked": true,
+      "model_call_forms": [
+        "_events.append",
+        "self._launch",
+        "tuple"
+      ],
+      "model_executed": false
+    }
+  ],
+  "compiled_only": true,
+  "payloads_or_sensitive_fixture_bodies_executed": false
+}

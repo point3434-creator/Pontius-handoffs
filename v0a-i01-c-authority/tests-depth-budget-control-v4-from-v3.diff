@@ -1,0 +1,15 @@
+--- tests-depth-budget-control-v3.py
++++ tests-depth-budget-control-v4.py
+@@ -30,10 +30,10 @@
+ SOURCE_RELATIVE = "tools/generate_test_inventory.py"
+ TEST_RELATIVE = "tests/test_inventory_and_profiles.py"
+ SOURCE_SHA = "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951"
+-PROBE_SHA = "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae"
++PROBE_SHA = "559b099f96a4fcfb9b88eb05338a45ad2184ca5e153a360ee0123e0ee7969379"
+ FIXTURE_SHAS = {'helper1050': '148ffd41c2a5d5616a4b8d1cf8bc297f488ae8f6ddc1109d1d2842afa9183754', 'helper65': '94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6', 'generator70': '635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3'}
+ EXPECTATIONS = {'helper1050': 'analysis.*(?:depth|budget)', 'helper65': '^analysis helper depth exceeds 64$', 'generator70': '^analysis deferred generator depth exceeds 64$'}
+-PROBE = ROOT / "engineer-depth-budget-probe-v3.py"
++PROBE = ROOT / "engineer-depth-budget-probe-v4.py"
+ CASES = ("helper1050", "helper65", "generator70")
+ TRACKED_COUNT = 1761
+ TIMEOUT = 60

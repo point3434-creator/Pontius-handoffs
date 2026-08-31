@@ -1,0 +1,103 @@
+--- engineer-depth-budget-probe-v3.py
++++ engineer-depth-budget-probe-v4.py
+@@ -65,6 +65,7 @@
+         "stage_units": collections.Counter(), "events": collections.Counter(),
+         "creation_stack": stack_info(sys._getframe(1)),
+         "publication_costs": {}, "bulk_shapes": collections.Counter(),
++        "full_join_sharing": collections.Counter(),
+     }
+     records_by_id[id(self)] = entry
+     records.append(entry)
+@@ -148,6 +149,64 @@
+     return None
+ 
+ 
++def raw_full_join_sharing(local):
++    """Ephemeral raw reads; the returned signature contains only bool/int tuples."""
++    inputs, states = local.get("name_inputs"), local.get("states")
++    versions = inputs if type(inputs) is tuple else ()
++    sources = states if type(states) in (list, tuple) else ()
++    exact_versions = bool(versions) and all(
++        type(value) is generator._NameVersion for value in versions)
++    exact_sources = bool(sources) and len(sources) == len(versions) and all(
++        type(value) is generator._ExecutionState for value in sources)
++    meter, resolver = local.get("meter"), local.get("self")
++    exact_meter = type(meter) is generator._NameMeter
++    budget = (vars(resolver).get("budget")
++              if type(resolver) is generator._SourceOrderedResolver else None)
++    same_roots = exact_versions and all(
++        object.__getattribute__(value, "_root")
++        is object.__getattribute__(versions[0], "_root") for value in versions)
++    same_meter = exact_versions and exact_sources and exact_meter and all(
++        object.__getattribute__(value, "_meter") is meter for value in versions)
++    same_budget = exact_sources and exact_meter and budget is not None and (
++        object.__getattribute__(meter, "budget") is budget)
++    disabled = exact_sources
++    for source in sources:
++        if type(source) is not generator._ExecutionState:
++            disabled = same_meter = same_budget = False
++            continue
++        authority, cursor = vars(source).get("authority"), vars(source).get("_names")
++        if type(authority) is generator._AuthorityState:
++            disabled = disabled and vars(authority).get("enabled") is False
++            same_budget = same_budget and vars(authority).get("budget") is budget
++        else:
++            disabled = same_budget = False
++        same_meter = same_meter and type(cursor) is generator._NameCursor and (
++            object.__getattribute__(cursor, "_meter") is meter)
++    pending_rows = []
++    for version in versions:
++        size, pending, known = -1, -1, False
++        if type(version) is generator._NameVersion:
++            size = object.__getattribute__(version, "_size")
++            size = size if type(size) is int and size >= 0 else -1
++            root = object.__getattribute__(version, "_root")
++            if root is None:
++                pending, known = 0, True
++            elif type(root) is generator._NameRadixLeaf:
++                raw = object.__getattribute__(root, "pending")
++                if type(raw) is tuple:
++                    pending, known = len(raw), True
++            elif type(root) is generator._NameRadixBranch:
++                raw = object.__getattribute__(root, "pending_count")
++                if type(raw) is int and raw >= 0:
++                    pending, known = raw, True
++        pending_rows.append((size, pending, known, known and size >= 0 and pending == size))
++    all_pending = exact_versions and all(row[3] for row in pending_rows)
++    return (len(versions), len(sources), exact_versions, exact_sources, same_roots,
++            disabled, same_meter, same_budget, tuple(pending_rows), all_pending,
++            exact_versions and exact_sources and same_roots and disabled
++            and same_meter and same_budget and all_pending)
++
++
+ def record_bulk_shape(entry, frame):
+     if frame is None:
+         return
+@@ -159,6 +218,7 @@
+         inputs, names = local.get("name_inputs"), local.get("names")
+         counts = tuple(raw_name_count(item) for item in inputs) if type(inputs) is tuple else ()
+         shape = ("full_join", len(names) if type(names) is set else None, None, counts)
++        entry["full_join_sharing"][raw_full_join_sharing(local)] += 1
+     else:
+         shape = ("other", None, None, ())
+     entry["bulk_shapes"][shape] += 1
+@@ -184,6 +244,19 @@
+             {"kind": shape[0], "source_or_unique_names": shape[1], "parent_names": shape[2],
+              "input_names": list(shape[3]), "attempts": count}
+             for shape, count in entry["bulk_shapes"].items()
++        ],
++        "full_join_sharing_facts": [
++            {"input_count": facts[0], "source_count": facts[1],
++             "exact_name_version_inputs": facts[2], "exact_execution_state_sources": facts[3],
++             "published_roots_same_by_identity": facts[4],
++             "all_source_authorities_disabled": facts[5],
++             "same_meter": facts[6], "same_budget": facts[7],
++             "per_root_pending": [
++                 {"size": row[0], "pending_count": row[1], "pending_count_known": row[2],
++                  "all_pending": row[3]} for row in facts[8]],
++             "all_roots_pending": facts[9], "restricted_C_guard_facts": facts[10],
++             "attempts": count}
++            for facts, count in entry["full_join_sharing"].items()
+         ],
+         "creation_stack": entry["creation_stack"],
+     }

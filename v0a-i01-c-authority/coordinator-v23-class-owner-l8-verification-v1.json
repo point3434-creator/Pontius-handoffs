@@ -1,0 +1,37 @@
+{
+  "schema": "coordinator-v23-class-owner-l8-verification-v1",
+  "runs": [
+    {
+      "slot": "311",
+      "receipt_sha256": "147beb79bd5182a92fe32a21e32d3b3e80b3e95ca7440cd887645bedf8b5c5e3",
+      "snapshot": "D:\\pontius-snapshots\\class-owner-late-store-a80ff9e0b1474212abc850266d11c57b\\snapshot",
+      "files_rehashed": 1768,
+      "cases": 8,
+      "passed": 4,
+      "wrong_clean_cases": [
+        "L01-local-direct-unsafe",
+        "L03-local-contained-unsafe",
+        "L05-local-captured-unsafe",
+        "L07-module-class-unsafe"
+      ]
+    },
+    {
+      "slot": "314",
+      "receipt_sha256": "b1ebed05ad93a5bd0dbd2b444034d6cd5e3b8717e36de052a95d2e3c460f6a5a",
+      "snapshot": "D:\\pontius-snapshots\\class-owner-late-store-a213bfab36c24805a2f0de3fa66eae34\\snapshot",
+      "files_rehashed": 1773,
+      "cases": 8,
+      "passed": 4,
+      "wrong_clean_cases": [
+        "L01-local-direct-unsafe",
+        "L03-local-contained-unsafe",
+        "L05-local-captured-unsafe",
+        "L07-module-class-unsafe"
+      ]
+    }
+  ],
+  "complete_case_records_equal_across_interpreters": true,
+  "payload_executed_by_verifier": false,
+  "interpretation": "All four unsafe late-member alias cases silently authorize the fixed sink on v23; all four clean controls pass. Models and analyzers complete without errors, with original caps. This is new observed RED supporting the already drafted class-owner repair; not an implementation verdict.",
+  "disposition": "Retain both frozen runs. Existing44 expectations stay fixed. No integration or broader payload authorized by this evidence reader."
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "coordinator-budget-assertion-candidate-static-v1",
+  "before_sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+  "candidate_sha256": "48c4620bf5585a76d500b3c9bf4cad4559a04d4f544bc3808832d37b58b03add",
+  "only_changed_ast_constant": {
+    "method": "test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+    "before": "analysis.*(?:depth|budget)",
+    "after": "^analysis (?:helper depth exceeds 64|work units exceed 262144)$"
+  },
+  "all_other_test_ast_equal": true,
+  "pure_regex_checks": {
+    "analysis helper depth exceeds 64": true,
+    "analysis work units exceed 262144": true,
+    "analysis helper depth exceeds 63": false,
+    "analysis work units exceed 262145": false,
+    "analysis arbitrary budget issue": false,
+    "prefix analysis work units exceed 262144 suffix": false,
+    "analysis deferred generator depth exceeds 64": false
+  },
+  "payload_executed": false,
+  "installed": false,
+  "standing": "Proposed narrow consistency correction; independent review pending."
+}

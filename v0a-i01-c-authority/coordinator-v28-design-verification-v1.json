@@ -1,0 +1,26 @@
+{
+  "schema": "coordinator-v28-design-verification-v1",
+  "receipt_sha256": "2002eab44b3ff699ad55298972696ad90aec2c2c38a9019cef12c848a9c0807a",
+  "source_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "snapshot": "D:\\pontius-snapshots\\focused-authority-14993f9898b8493db0a6a7995072469e\\snapshot",
+  "manifest_sha256": "07efb743b30e7cea58da2f05cf5ab8bbedc2d9d89eded420fa8cde4710416307",
+  "files_rehashed": 1766,
+  "version": [
+    3,
+    11,
+    15
+  ],
+  "tests_run": 53,
+  "passed": 51,
+  "failed": [
+    "focused_frozen_tests.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+    "focused_frozen_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+  ],
+  "errors": 0,
+  "skips": 0,
+  "helper65_exact_depth_method_passed": true,
+  "helper1050": "Canonical work-cap refusal is allowed by the test's intended depth-or-budget category but not matched by its current regex. Original method remains failed; no expectation/source/cap changed.",
+  "generator70": "Exact-depth method still gets work-cap refusal. Substantive analyzer fitness gate remains failed.",
+  "payload_executed_by_verifier": false,
+  "disposition": "Retain A+B result without integration. Primitive freeze evidence still required; no dev/matrix/corpus expansion from this failed design candidate. Identical-root C has zero measured hits and stays out."
+}
