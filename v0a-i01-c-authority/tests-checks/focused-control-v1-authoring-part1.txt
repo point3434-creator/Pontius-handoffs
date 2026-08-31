@@ -1,0 +1,289 @@
+"""Finite focused controller. Root review is required before every dispatch.
+
+Controller: actual CPython 3.11.15 with -I -S -B -P.
+Payload: selected actual interpreter with -B -P, fresh r010 snapshot.
+Only design53 or the immutable matrix192 is admitted. No mutable W input.
+"""
+import argparse
+from collections import Counter
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import stat
+import subprocess
+import sys
+import time
+import traceback
+import uuid
+
+ROOT = Path(r"D:\Pontius-handoffs\v0a-i01-c-authority")
+WORKSPACE = Path(r"D:\Pontius")
+SNAPSHOTS = Path(r"D:\pontius-snapshots")
+WATCH = Path(r"D:\Pontius-worktrees\codex-v0a-i01-c-authority-v1"
+             r"\tools\generate_test_inventory.py")
+GIT = Path(r"C:\Program Files\Git\cmd\git.exe")
+BASE = "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358"
+ORIGINAL_SOURCE_SHA = "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+ORIGINAL_TESTS_SHA = "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+MATRIX_SHA = "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd"
+WRAPPER = ROOT / "tests-focused-wrapper-v1.py"
+WRAPPER_SHA = "839e30c19b825defae4fea30ec899a43cd0ad346953215421b81478ffc20ca35"
+POPULATION = ROOT / "tests-focused-population-v1.json"
+POPULATION_SHA = "8799fd0f5996b84397b42f12b84f19a120a3b99f4be76a78775a4e5666856362"
+MATRIX = ROOT / "tests-candidate-v4.py"
+SLOTS = {
+    "311": (Path(r"D:\Pontius-tools\py311\Scripts\python.exe"), [3, 11, 15]),
+    "314": (Path(r"D:\Pontius\.venv\Scripts\python.exe"), [3, 14, 6]),
+}
+SCHEMA = "c-authority-focused-control-v1"
+PAYLOAD = ".focused-authority"
+SOURCE_RELATIVE = "tools/generate_test_inventory.py"
+TEST_RELATIVE = "tests/test_inventory_and_profiles.py"
+TRACKED_COUNT = 1761
+TIMEOUT = 60
+
+
+def require(value, message):
+    if not value:
+        raise RuntimeError(message)
+
+
+def digest(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def valid_sha(value):
+    return type(value) is str and re.fullmatch("[0-9a-f]{64}", value) is not None
+
+
+def checked(path, regular=False):
+    require(path.is_absolute() and ".." not in path.parts, "unsafe absolute path")
+    for ancestor in (path, *path.parents):
+        information = ancestor.lstat()
+        require(not (getattr(information, "st_file_attributes", 0)
+                     & stat.FILE_ATTRIBUTE_REPARSE_POINT), "reparse path: " + str(ancestor))
+        if ancestor != path:
+            require(stat.S_ISDIR(information.st_mode), "nondirectory ancestor")
+    if regular:
+        require(stat.S_ISREG(path.lstat().st_mode), "nonregular input: " + str(path))
+    return path
+
+
+def handoff_file(value, suffix):
+    path = Path(value)
+    require(path.is_relative_to(ROOT) and path.suffix == suffix,
+            "input must be an absolute retained handoff " + suffix)
+    return checked(path, regular=True)
+
+
+def pinned(path, expected):
+    require(valid_sha(expected), "SHA256 argument")
+    raw = checked(path, regular=True).read_bytes()
+    require(digest(raw) == expected, "input hash mismatch: " + str(path))
+    return raw
+
+
+def create(path, raw):
+    with path.open("xb") as stream:
+        stream.write(raw)
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def encoded(value):
+    return (json.dumps(value, indent=2, sort_keys=True) + "\n").encode("utf-8")
+
+
+def save_stream(stream, value):
+    # The exclusively created receipt is unpublished until this invocation ends.
+    stream.seek(0)
+    stream.write(encoded(value))
+    stream.truncate()
+    stream.flush()
+    os.fsync(stream.fileno())
+
+
+def environment_for(temp, snapshot=None):
+    windows = checked(Path(os.environ["SYSTEMROOT"]))
+    system = checked(windows / "System32")
+    environment = {
+        "SYSTEMROOT": str(windows), "WINDIR": str(windows),
+        "COMSPEC": str(checked(system / "cmd.exe", regular=True)),
+        "PATH": str(system), "TEMP": str(temp), "TMP": str(temp),
+        "PONTIUS_GIT": str(checked(GIT, regular=True)),
+        "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": "NUL",
+        "GIT_CONFIG_SYSTEM": "NUL", "GIT_ATTR_NOSYSTEM": "1",
+        "PYTHONNOUSERSITE": "1",
+    }
+    if snapshot is not None:
+        environment["PYTHONPATH"] = str(snapshot / "src")
+    return environment
+
+
+def git(repository, temp, *arguments):
+    command = [
+        str(checked(GIT, regular=True)), "-c", "core.autocrlf=false",
+        "-c", "core.hooksPath=NUL", "-c", "init.templateDir=",
+        "-c", "core.attributesFile=NUL", "-c", "core.fsmonitor=false",
+        "-C", str(repository), *arguments,
+    ]
+    return subprocess.run(command, cwd=repository, env=environment_for(temp),
+                          check=True, capture_output=True, timeout=TIMEOUT,
+                          creationflags=subprocess.CREATE_NO_WINDOW).stdout
+
+
+def names_from(raw):
+    return [name.decode("utf-8") for name in raw.split(b"\0") if name]
+
+
+def file_hashes(snapshot, names):
+    result = {}
+    for name in names:
+        relative = Path(name)
+        require(not relative.is_absolute() and not relative.drive
+                and ".." not in relative.parts, "unsafe snapshot name")
+        target = snapshot / relative
+        require(target.is_relative_to(snapshot), "snapshot path containment")
+        result[name] = digest(checked(target, regular=True).read_bytes())
+    return result
+
+
+def output_records(raw):
+    records = []
+    invalid = []
+    for number, line in enumerate(raw.decode("utf-8", errors="replace").splitlines(), 1):
+        if not line.startswith("{"):
+            continue
+        try:
+            value = json.loads(line)
+        except (ValueError, TypeError):
+            invalid.append(number)
+            continue
+        if type(value) is dict:
+            records.append(value)
+    return records, invalid
+
+
+def assess(raw, population, kind, identity_expected):
+    records, invalid_lines = output_records(raw)
+    controls = [row["focused_control"] for row in records if "focused_control" in row]
+    require(all(type(row) is dict for row in controls), "control record type")
+    identities = [row for row in controls if row.get("event") == "identity"]
+    summaries = [row for row in controls if row.get("event") == "unittest_summary"]
+    population_rows = [row for row in controls if row.get("event") == "population"]
+    started = [row.get("id") for row in controls if row.get("event") == "test_started"]
+    finished = [row.get("id") for row in controls if row.get("event") == "test_finished"]
+    bootstrap_errors = [row for row in controls if row.get("event") == "bootstrap_error"]
+    expected = population[kind]
+    expected_ids = ["focused_frozen_tests." + expected["class_name"] + "." + name
+                    for name in expected["methods"]]
+    errors = []
+    identity_valid = False
+    if len(identities) == 1:
+        identity = identities[0]
+        identity_valid = all(identity.get(key) == value
+                             for key, value in identity_expected.items())
+        identity_valid = identity_valid and (
+            identity.get("safe_path") is True
+            and identity.get("dont_write_bytecode") is True
+            and type(identity.get("tracked_count")) is int
+            and identity["tracked_count"] == TRACKED_COUNT
+            and all(type(identity.get(key)) is int and identity[key] == value
+                    for key, value in {"optimize": 0, "no_site": 0, "no_user_site": 1,
+                                       "isolated": 0, "ignore_environment": 0}.items()))
+    if not identity_valid:
+        errors.append("identity missing, duplicated, or mismatched")
+    complete = False
+    successful = False
+    summary = summaries[0] if len(summaries) == 1 else None
+    if summary is not None:
+        complete = (summary.get("complete_population") is True
+                    and type(summary.get("tests_run")) is int
+                    and summary["tests_run"] == expected["planned_methods"]
+                    and type(summary.get("planned_methods")) is int
+                    and summary["planned_methods"] == expected["planned_methods"]
+                    and summary.get("kind") == kind
+                    and summary.get("started_ids") == expected_ids
+                    and summary.get("completed_ids") == expected_ids
+                    and started == expected_ids and finished == expected_ids)
+        successful = summary.get("successful") is True and all(
+            summary.get(key) == [] for key in
+            ("failures", "errors", "skips", "expected_failures", "unexpected_successes"))
+    population_valid = (
+        len(population_rows) == 1 and population_rows[0].get("kind") == kind
+        and type(population_rows[0].get("planned_methods")) is int
+        and population_rows[0]["planned_methods"] == expected["planned_methods"]
+        and population_rows[0].get("ids") == expected_ids)
+    if not complete or not population_valid:
+        errors.append("unittest population incomplete or mismatched")
+    if invalid_lines:
+        errors.append("malformed JSON output lines")
+    if bootstrap_errors:
+        errors.append("bootstrap error record")
+    matrix = None
+    if kind == "matrix":
+        families = expected["families"]
+        summaries_by_family = [row for row in records if "matrix_summary" in row]
+        cases = [row for row in records if "matrix" in row and "classification" in row]
+        case_errors = [row for row in records if "matrix" in row
+                       and ("oracle_error" in row or "analyzer_error" in row)]
+        ids = [(row.get("matrix"), row.get("case")) for row in cases]
+        family_counts = Counter(row.get("matrix") for row in cases)
+        classifications = Counter(row.get("classification") for row in cases)
+        projections = sum(len(row["witnesses"]) for row in cases
+                          if type(row.get("witnesses")) is list)
+        shape_valid = all(
+            type(row.get("case")) is str and bool(row["case"])
+            and valid_sha(row.get("source_sha256")) and valid_sha(row.get("oracle_sha256"))
+            and type(row.get("witnesses")) is list
+            and all(type(witness) is dict and type(witness.get("trace")) is list
+                    and type(witness.get("choice")) is bool
+                    for witness in row["witnesses"])
+            and type(row.get("argv")) is list and type(row.get("blockers")) is list
+            and type(row.get("unreachable_events")) is list for row in cases)
+        family_summaries_valid = (
+            len(summaries_by_family) == len(families)
+            and Counter(row.get("matrix_summary") for row in summaries_by_family)
+            == Counter({family: 1 for family in families}))
+        if family_summaries_valid:
+            for row in summaries_by_family:
+                count = families[row["matrix_summary"]]
+                family_summaries_valid = family_summaries_valid and all(
+                    type(row.get(key)) is int and row[key] == count
+                    for key in ("planned", "generated", "exercised"))
+                family_summaries_valid = family_summaries_valid and all(
+                    row.get(key) == [] for key in
+                    ("unreachable_cases", "oracle_errors", "analyzer_errors"))
+        matrix_complete = (
+            shape_valid and family_summaries_valid and not case_errors
+            and len(cases) == expected["planned_cases"]
+            and len(set(ids)) == len(cases) and dict(family_counts) == families
+            and projections == expected["planned_projections"]
+            and dict(classifications) == expected["classifications"])
+        matrix = {
+            "complete": matrix_complete, "planned_cases": expected["planned_cases"],
+            "case_records": len(cases), "unique_case_ids": len(set(ids)),
+            "planned_projections": expected["planned_projections"],
+            "projections": projections, "family_counts": dict(family_counts),
+            "classifications": dict(classifications), "family_summaries": summaries_by_family,
+            "case_error_records": case_errors,
+            "last_completed_case": list(ids[-1]) if ids else None,
+        }
+        if not matrix_complete:
+            errors.append("matrix population, harmless oracle, or analyzer execution incomplete")
+        complete = complete and matrix_complete
+    return {
+        "identity_valid": identity_valid, "identity": identities[0] if len(identities) == 1 else None,
+        "population_valid": population_valid, "complete": complete,
+        "successful": successful and complete and identity_valid
+                      and not errors and not bootstrap_errors,
+        "summary": summary, "matrix": matrix, "validation_errors": errors,
+        "bootstrap_errors": bootstrap_errors, "invalid_json_lines": invalid_lines,
+        "started_method_count": len(started), "finished_method_count": len(finished),
+        "last_started_test": started[-1] if started else None,
+        "last_finished_test": finished[-1] if finished else None,
+    }
+
+

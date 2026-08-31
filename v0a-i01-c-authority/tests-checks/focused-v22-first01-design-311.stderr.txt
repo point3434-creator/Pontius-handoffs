@@ -1,0 +1,87 @@
+test_analysis_budgets_contain_deep_helpers_and_invalid_ranges (focused_frozen_tests.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges) ... FAIL
+test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects (focused_frozen_tests.DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects) ... ok
+test_callable_authority_annotations_refuse_without_inventing_execution (focused_frozen_tests.DesignReviewTests.test_callable_authority_annotations_refuse_without_inventing_execution) ... ok
+test_callable_authority_async_creation_retains_only_future_effects (focused_frozen_tests.DesignReviewTests.test_callable_authority_async_creation_retains_only_future_effects) ... ok
+test_callable_authority_class_construction_uses_source_point_bindings (focused_frozen_tests.DesignReviewTests.test_callable_authority_class_construction_uses_source_point_bindings) ... ok
+test_callable_authority_construction_defaults_and_deferred_identity (focused_frozen_tests.DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity) ... ok
+test_callable_authority_decorator_application_uses_the_call_context (focused_frozen_tests.DesignReviewTests.test_callable_authority_decorator_application_uses_the_call_context) ... ok
+test_callable_authority_descriptor_construction_refuses_effects (focused_frozen_tests.DesignReviewTests.test_callable_authority_descriptor_construction_refuses_effects) ... ok
+test_callable_authority_escape_is_independent_of_incidental_owner_loads (focused_frozen_tests.DesignReviewTests.test_callable_authority_escape_is_independent_of_incidental_owner_loads)
+Captured helper authority survives each callable/forwarding spelling. ... ok
+test_callable_authority_forwarded_inputs_follow_execution_order (focused_frozen_tests.DesignReviewTests.test_callable_authority_forwarded_inputs_follow_execution_order) ... ok
+test_callable_authority_implicit_execution_cannot_hide_owner_writes (focused_frozen_tests.DesignReviewTests.test_callable_authority_implicit_execution_cannot_hide_owner_writes)
+Modeled dispatch must distinguish owner effects from capability-free syntax. ... ok
+test_callable_authority_missing_free_proof_is_an_obligation (focused_frozen_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) ... ok
+test_callable_authority_native_storage_retains_without_invoking (focused_frozen_tests.DesignReviewTests.test_callable_authority_native_storage_retains_without_invoking) ... ok
+test_callable_authority_preserves_dormant_and_unrelated_bodies (focused_frozen_tests.DesignReviewTests.test_callable_authority_preserves_dormant_and_unrelated_bodies)
+Proof checks cannot execute dormant bodies or invent receiver mutation. ... ok
+test_callable_authority_protocol_forwarding_retains_effect_context (focused_frozen_tests.DesignReviewTests.test_callable_authority_protocol_forwarding_retains_effect_context) ... ok
+test_declared_unconditional_skip_body_cannot_grant_capabilities (focused_frozen_tests.DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities) ... ok
+test_descriptor_defaults_preserve_real_python_argument_binding (focused_frozen_tests.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_each_referenced_process_semantic_changes_the_design_row_digest (focused_frozen_tests.DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest) ... ok
+test_environment_update_delete_alias_and_branch_state_is_call_local (focused_frozen_tests.DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local) ... ok
+test_helper_effective_input_matrix_distinguishes_execution_and_effects (focused_frozen_tests.DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects) ... ok
+test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (focused_frozen_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) ... ok
+test_helper_effective_inputs_preserve_overrides_and_nonexecution (focused_frozen_tests.DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution) ... ok
+test_helper_effective_inputs_preserve_reached_owner_mutations (focused_frozen_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) ... ok
+test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (focused_frozen_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) ... ok
+test_helper_provenance_callee_capture_and_local_admission (focused_frozen_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) ... ok
+test_helper_provenance_comprehension_scope_is_source_ordered (focused_frozen_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) ... ok
+test_helper_provenance_imported_initialization_mutation_is_owner_scoped (focused_frozen_tests.DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped) ... ok
+test_helper_provenance_module_exports_and_skip_identity_are_exact (focused_frozen_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) ... ok
+test_helper_provenance_original_members_require_stability (focused_frozen_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) ... ok
+test_helper_provenance_precision_preserves_original_values_and_members (focused_frozen_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) ... ok
+test_helper_provenance_scoped_binding_losses_remain_blocked (focused_frozen_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) ... ok
+test_helper_provenance_unsupported_effects_and_escapes_refuse (focused_frozen_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) ... ok
+test_helper_provenance_values_defaults_and_callable_mutation (focused_frozen_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) ... ok
+test_helper_registry_and_argument_binding_fail_closed (focused_frozen_tests.DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed) ... ok
+test_import_time_nested_and_duplicate_sensitive_calls_fail_closed (focused_frozen_tests.DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed) ... ok
+test_invalid_static_helper_arguments_remain_blocked (focused_frozen_tests.DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked) ... ok
+test_match_exception_and_child_program_analysis_never_silently_undercounts (focused_frozen_tests.DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts) ... ok
+test_protected_results_match_captures_and_child_provenance_are_complete (focused_frozen_tests.DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete) ... ok
+test_reaching_definitions_preserve_sensitive_reassignments_and_containers (focused_frozen_tests.DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers) ... ok
+test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all (focused_frozen_tests.DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all) ... ok
+test_receiver_descriptor_not_parameter_spelling_controls_binding (focused_frozen_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) ... ok
+test_registered_probe_and_cross_file_helpers_are_exactly_resolved (focused_frozen_tests.DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved) ... ok
+test_round4_analysis_budget_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent) ... ok
+test_round4_child_and_helper_provenance_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) ... ok
+test_round4_decorator_definition_point_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent) ... ok
+test_round4_exception_environment_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent) ... ok
+test_round4_match_capture_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_match_capture_red_contracts_are_independent) ... ok
+test_round4_sensitive_provenance_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent) ... ok
+test_round4_source_order_and_branch_bounds_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) ... FAIL
+test_source_order_bounds_exception_environments_and_decorators_are_exact (focused_frozen_tests.DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact) ... ok
+test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved (focused_frozen_tests.DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved) ... ok
+test_unproven_helper_descriptor_provenance_remains_blocked (focused_frozen_tests.DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked) ... ok
+test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization (focused_frozen_tests.DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization) ... ok
+
+======================================================================
+FAIL: test_analysis_budgets_contain_deep_helpers_and_invalid_ranges (focused_frozen_tests.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges)
+----------------------------------------------------------------------
+pontius_test_inventory_generator.InventoryError: analysis work units exceed 262144
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\focused-authority-21b69a0935b24e2999ec6c0e76253712\snapshot\tests\test_inventory_and_profiles.py", line 4949, in test_analysis_budgets_contain_deep_helpers_and_invalid_ranges
+    with self.assertRaisesRegex(
+AssertionError: "analysis.*(?:depth|budget)" does not match "analysis work units exceed 262144"
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (focused_frozen_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent)
+----------------------------------------------------------------------
+pontius_test_inventory_generator.InventoryError: analysis work units exceed 262144
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\focused-authority-21b69a0935b24e2999ec6c0e76253712\snapshot\tests\test_inventory_and_profiles.py", line 19426, in test_round4_source_order_and_branch_bounds_red_contracts_are_independent
+    self._fix15_frozen_review_boundary_contracts()
+  File "D:\pontius-snapshots\focused-authority-21b69a0935b24e2999ec6c0e76253712\snapshot\tests\test_inventory_and_profiles.py", line 14551, in _fix15_frozen_review_boundary_contracts
+    with self.assertRaisesRegex(
+AssertionError: "^analysis deferred generator depth exceeds 64$" does not match "analysis work units exceed 262144"
+
+----------------------------------------------------------------------
+Ran 53 tests in 12.117s
+
+FAILED (failures=2)

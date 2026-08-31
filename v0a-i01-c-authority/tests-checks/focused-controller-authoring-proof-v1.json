@@ -1,0 +1,83 @@
+{
+  "schema": "c-authority-focused-controller-authoring-proof-v1",
+  "scope": "static authoring, not executed verification",
+  "payloads_executed": 0,
+  "python_parse_or_import_executed": false,
+  "root_review_required_before_dispatch": true,
+  "base_commit": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "pins": {
+    "control": {
+      "path": "tests-focused-control-v1.py",
+      "sha256": "2676cc5e58db5a1e70044610de1876c96e23b38cd1a55c4f22f47aaa59118eba",
+      "bytes": 33020
+    },
+    "wrapper": {
+      "path": "tests-focused-wrapper-v1.py",
+      "sha256": "839e30c19b825defae4fea30ec899a43cd0ad346953215421b81478ffc20ca35",
+      "bytes": 9701
+    },
+    "population": {
+      "path": "tests-focused-population-v1.json",
+      "sha256": "8799fd0f5996b84397b42f12b84f19a120a3b99f4be76a78775a4e5666856362",
+      "bytes": 5809
+    },
+    "tests_v4": {
+      "path": "tests-candidate-v4.py",
+      "sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+      "bytes": 1296462
+    }
+  },
+  "static_checks": {
+    "all_released_bytes_lf_no_cr": true,
+    "original_design_raw_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "original_design_methods": 53,
+    "original_design_names_equal_population": true,
+    "matrix_methods": 8,
+    "matrix_names_equal_population": true,
+    "matrix_cases": 192,
+    "matrix_projections": 212,
+    "classification_counts": {
+      "refuse": 92,
+      "clean": 81,
+      "permitted-refusal": 19
+    }
+  },
+  "allowed_modes": [
+    "design",
+    "matrix"
+  ],
+  "explicit_arguments": [
+    "label",
+    "slot",
+    "kind",
+    "source-path",
+    "source-sha",
+    "control-sha",
+    "watch-sha"
+  ],
+  "dev_requires": [
+    "floor-receipt",
+    "floor-sha"
+  ],
+  "source_of_execution_bytes": "explicit retained source under T; never W",
+  "scope_exclusions": [
+    "payload execution by author",
+    "W edits",
+    "primary edits",
+    "extra probes",
+    "ordinary generation",
+    "broad wall",
+    "GPU",
+    "owner execution",
+    "cap changes",
+    "ledger",
+    "commits",
+    "push"
+  ],
+  "limits": [
+    "Static source authoring only; controller not yet parsed or executed.",
+    "60-second watchdog covers direct payload process, not descendant tree.",
+    "Root must serialize; no lane lock.",
+    "Full before/after maps are produced only by a future root-approved dispatch."
+  ]
+}

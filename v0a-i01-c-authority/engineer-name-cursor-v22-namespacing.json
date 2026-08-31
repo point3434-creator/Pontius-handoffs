@@ -1,0 +1,150 @@
+{
+  "candidate_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+  "prototype_sha256": "67acb279510924311266b985e15e95e53ae9d0a11d64a50d108f254a690deb2a",
+  "identifier_map": {
+    "MAXIMUM_SEALED_LAYERS": "_MAXIMUM_NAME_SEALED_LAYERS",
+    "MISSING": "_NAME_MISSING",
+    "_DELETED": "_NAME_DELETED",
+    "Entry": "_NameEntry",
+    "_check_name": "_name_check_name",
+    "_History": "_NameHistory",
+    "_history": "_name_history",
+    "_Layer": "_NameLayer",
+    "_seal_layer": "_name_seal_layer",
+    "_lookup_layers": "_name_lookup_layers",
+    "_compact": "_name_compact",
+    "_Order": "_NameOrder",
+    "_order": "_name_order",
+    "_known_order": "_name_known_order",
+    "_seal_order_table": "_name_seal_order_table",
+    "_realize_order": "_name_realize_order",
+    "_charge_cache_commit": "_name_charge_cache_commit",
+    "_commit_order": "_name_commit_order",
+    "_keys": "_name_keys",
+    "_ordered_items": "_name_ordered_items",
+    "NameVersion": "_NameVersion",
+    "_Publication": "_NamePublication",
+    "_prepare_publication": "_name_prepare_publication",
+    "_charge_publication_commit": "_name_charge_publication_commit",
+    "_commit_publication": "_name_commit_publication",
+    "NameCursor": "_NameCursor",
+    "_common_history": "_name_common_history",
+    "_pending_names": "_name_pending_names",
+    "join": "_join_name_versions"
+  },
+  "excluded_prototype_definitions": [
+    "Meter",
+    "BudgetExceeded",
+    "MAXIMUM_WORK",
+    "imports",
+    "module docstring"
+  ],
+  "meter_bridge": "Existing _NameMeter AST unchanged; charge delegates original _AnalysisBudget.consume.",
+  "mapping_method": "Top-level declaration names and ast.Name identifiers only; attributes, slots and string literals are unchanged.",
+  "canonical_transplant_proof": {
+    "_NameEntry": {
+      "canonical_ast_sha256": "a8321402424440c9eedfa0addba0f53a0c82c975d3b1284e82b766ff27e4000c",
+      "line": 14103
+    },
+    "_name_check_name": {
+      "canonical_ast_sha256": "9f5d7acf1c3650702ae02dad172c264f443083c4a90b785dd252481bd4584c97",
+      "line": 14107
+    },
+    "_NameHistory": {
+      "canonical_ast_sha256": "a82140a3362a0e532ace7033e25e614c3782e5fcf451160a95fbcd6908492457",
+      "line": 14112
+    },
+    "_name_history": {
+      "canonical_ast_sha256": "094a980bdd358c009641f10aefcd40f44257eefd52e9576c1fa82fd64aa0a853",
+      "line": 14117
+    },
+    "_NameLayer": {
+      "canonical_ast_sha256": "39502b1bc1afda332c924bb957ae32ab55af30983423f1b89e0c77ac739f25d0",
+      "line": 14124
+    },
+    "_name_seal_layer": {
+      "canonical_ast_sha256": "c145b9f585d631184ec28af5a932c9e93d2f41d031fba102a47d410affd4466d",
+      "line": 14128
+    },
+    "_name_lookup_layers": {
+      "canonical_ast_sha256": "c551e08402f178123a5040b16b53435f56c503fda9a5c976284da547d53f5e11",
+      "line": 14150
+    },
+    "_name_compact": {
+      "canonical_ast_sha256": "0bbcdf032081a1f35a069a60614998aca0323cc4b272c63837f9a08b032d7eae",
+      "line": 14161
+    },
+    "_NameOrder": {
+      "canonical_ast_sha256": "f54a73c6a96cd05089fca1deccf9b0093769d25534eafe770d834c2e171ebe6a",
+      "line": 14190
+    },
+    "_name_order": {
+      "canonical_ast_sha256": "0971bf26db517639558f6d438a3cc6542b2fd29b1ce3631267cf9289600cadb4",
+      "line": 14196
+    },
+    "_name_known_order": {
+      "canonical_ast_sha256": "28aeac998de86a2a25a0a4b37e8cb646c9f26febbf4f4e8dc1a09f70d5ef1187",
+      "line": 14204
+    },
+    "_name_seal_order_table": {
+      "canonical_ast_sha256": "8fcd32b3866c0fe8fa29cc1b1e9082d2fe1a2a0b0cecda931eb7d6ab6eeadb86",
+      "line": 14211
+    },
+    "_name_realize_order": {
+      "canonical_ast_sha256": "4287f37bed75d0c7ae887ee78f084668a01e44ee11e5b60d2a9305494523cf02",
+      "line": 14216
+    },
+    "_name_charge_cache_commit": {
+      "canonical_ast_sha256": "95af76e1e912f3fbd308068336d99f5d99c3235473ad8c654543790147bf33b9",
+      "line": 14325
+    },
+    "_name_commit_order": {
+      "canonical_ast_sha256": "8547c7fde32588a7732341b841d8b23ee9d775449ead32973425259bd69a466d",
+      "line": 14329
+    },
+    "_name_keys": {
+      "canonical_ast_sha256": "2f43d53054d84493add8aa4677785c9dd84a4f7161e8265e961247aa3ea9b9f3",
+      "line": 14334
+    },
+    "_name_ordered_items": {
+      "canonical_ast_sha256": "97e25cf279efc60379f645b57a62e7b936673c58952ff6d0827ef7c3db84bc6e",
+      "line": 14344
+    },
+    "_NameVersion": {
+      "canonical_ast_sha256": "af358d666bbd6a3a151c2907f92a4a7e69a91af4cb856765cec0006743408b49",
+      "line": 14372
+    },
+    "_NamePublication": {
+      "canonical_ast_sha256": "5a22d3b6b7d5bbecde9e32ec55382cc4c2b92fc8ed9e2e244b3da729b203bcb9",
+      "line": 14420
+    },
+    "_name_prepare_publication": {
+      "canonical_ast_sha256": "5ebb054ff8f84dcba5481efa12dbe96a83d19a9dc679a74e2477ef5a8e3574b1",
+      "line": 14426
+    },
+    "_name_charge_publication_commit": {
+      "canonical_ast_sha256": "d1dbf1ec506f66bb5dc778f1fc1d14bf741149c38299d493629c950bf228eb18",
+      "line": 14459
+    },
+    "_name_commit_publication": {
+      "canonical_ast_sha256": "b86236fd402f2d5cb6f64db4cb9262c037f60ca45ccdbedfbc5f459852f93289",
+      "line": 14466
+    },
+    "_NameCursor": {
+      "canonical_ast_sha256": "69958f5bce54d2476db89b8f75ae20db63db79591d7599178a8710c1ccab443e",
+      "line": 14471
+    },
+    "_name_common_history": {
+      "canonical_ast_sha256": "f7c59e37928143806967e4d0de9c08a7767b41d8622b5f6448a684c2bd87910a",
+      "line": 14567
+    },
+    "_name_pending_names": {
+      "canonical_ast_sha256": "c2ebfeae03819f99470136e491125482c62ffa9ad336719d8d5f5903cddc6a1c",
+      "line": 14585
+    },
+    "_join_name_versions": {
+      "canonical_ast_sha256": "e95de71ad1c7da7c60389a47d1f834497095ddfb01040eb4d87881ea80d720a8",
+      "line": 14605
+    }
+  }
+}

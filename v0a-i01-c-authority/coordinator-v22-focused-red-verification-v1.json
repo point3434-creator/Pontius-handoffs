@@ -1,0 +1,45 @@
+{
+  "schema": "coordinator-v22-focused-red-verification-v1",
+  "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\focused-v22-first01-design-311-receipt.json",
+  "receipt_sha256": "0ce67a5f0846dd67655234cc27d51a560ee3711dda8f5b0a9194432ff6ee62fd",
+  "source_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+  "snapshot_files_rehashed": 1766,
+  "tests_run": 53,
+  "passed": 51,
+  "failures": [
+    "focused_frozen_tests.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+    "focused_frozen_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+  ],
+  "errors": 0,
+  "actual_interpreter": [
+    3,
+    11,
+    15
+  ],
+  "outputs": {
+    "log": {
+      "bytes": 50347,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\focused-v22-first01-design-311.txt",
+      "sha256": "c4cbfbe8c46f110232e3a4b952b6b881afdd53b209d11d7efff5c04bf25819a9"
+    },
+    "setup": {
+      "bytes": 483887,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\focused-v22-first01-design-311-setup.json",
+      "sha256": "8d6f59cce7de084a3ac16562d9ac5681ce4eb2c314cf177fc54c84e6fd8bcbd6"
+    },
+    "stderr": {
+      "bytes": 11917,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\focused-v22-first01-design-311.stderr.txt",
+      "sha256": "3568c20b74cb3eb8762a440326718f09a26d56692be17185994af9b3d835cd91"
+    },
+    "stdout": {
+      "bytes": 38644,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\focused-v22-first01-design-311.stdout.txt",
+      "sha256": "275af88818395f400f32e6e3d8055fcb1eafb390d88342e7601e34b5d016f85e"
+    }
+  },
+  "integrity_independently_verified": true,
+  "interpretation": "Work-cap rejection precedes expected depth rejection in helper1050 and generator70 fixtures.",
+  "scope_limit": "Not a full function pass for either failed method; later assertions in those methods did not run.",
+  "next": "Hold matrix, dev and public24 expansion. Diagnose exact failing cases with original budget/caps unchanged."
+}

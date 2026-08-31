@@ -1,0 +1,18 @@
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -14719,6 +14719,7 @@
+                     inherited = parent._names._entry(name)
+             if inherited is not _NAME_MISSING and inherited.value is value:
+                 # Retain the exact parent's proof OR pending debt, without transfer.
++                _name_check_name(name)
+                 self._names._replace_entry(name, inherited)
+             else:
+                 self[name] = value
+@@ -14798,6 +14799,7 @@
+ 
+     def __setitem__(self, name: str, value: _FlowValue) -> None:
+         entry = self._transferred_name_entry(value)
++        _name_check_name(name)
+         self._names._replace_entry(name, entry)
+         # Uncaptured module globals retain immutable provenance in the value
+         # map. A cell is allocated only by actual lexical capture; locals were
