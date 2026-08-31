@@ -135,31 +135,3 @@ comparison premise and a separately frozen correction. No broad suite, original
 test migration, main integration, final cold acceptance or live-hand result yet.
 Source remains held while the next plan is reviewed. Earlier entries describe
 their historical checkpoints and are not relabeled by this addendum.
-
-
-## R2 inputs and harness authoring
-
-R1 Gate A remains green on both actual interpreters; no later runtime has run.
-The next population uses four new identity-partition sources and independent
-Models, preserving all six original controls and both original depth cases.
-The source-visible identity premise replaces only the previously identified
-unproved equality premise; old evidence and twelve later sibling obligations
-remain unchanged.
-
-The independent input review found one missing original envelope reference.
-The population-only v2 correction adds that exact entry; all twelve references
-now resolve and all eight original descriptors/envelopes remain exact. See
-[the closure review](rewrite-r2-population-v2-closure-review-v1.md).
-The corrected population is frozen at H 2393d9b3680426f5a3169ddb19e7b542ce68531d,
-manifest 3ca45c9839ae6f7101d6405607260d766a18ed6ab260886c65a92bffb1a2471d.
-
-The bounded exception/generator plan and natural-operation observer spec have
-SOUND engineering reviews. [Harness authoring](rewrite-r2-harness-authoring-disposition-v1.md)
-is authorized at H d50db9a83ba86ac9711676af700c9db814c0e752, manifest
-387b77ff2790486cfc00924c2e05ea77cde703b166e67f12246bcf858ead8174.
-Next: freeze/review exact harness, retain full twelve-case R1 baseline, then
-R2 source GO under its separate 1500-line limit. Intermediate source checks
-remain static. Production, broad acceptance, final cold reviews and main
-integration are still open; no new performance or live-hand claim follows.
-
-[Navigation before this entry](coordinator-navigation-v20-before-v21.md).
