@@ -1,0 +1,295 @@
+--- Task1-v2
++++ Task2-v1
+@@ -9525,6 +9525,292 @@
+     return tuple(outcomes)
+ 
+ 
++def _c_fact_tuple(budget: _AnalysisBudget, values: Sequence[object]) -> tuple:
++    budget.consume(1 + 2 * len(values))  # Tuple, visits and retained references.
++    return tuple(values)
++
++
++def _c_scope(
++    budget: _AnalysisBudget, path: str, node: ast.AST,
++    scopes: dict[ast.AST, _CScope], signatures: dict[ast.AST, _ReviewFunction],
++) -> _CScope:
++    kind = "module" if isinstance(node, ast.Module) else (
++        "class" if isinstance(node, ast.ClassDef) else "function"
++    )
++    budget.consume(7)  # Four ordered name maps, children/sites/parameters lists.
++    local: dict[str, None] = {}
++    loads: dict[str, None] = {}
++    globals_: dict[str, None] = {}
++    nonlocals: dict[str, None] = {}
++    children: list[_CScope] = []
++    sites: list[ast.AST] = []
++    parameters: list[str] = []
++
++    def name(table: dict[str, None], value: str) -> None:
++        budget.consume()  # Membership probe.
++        if value not in table:
++            budget.consume(3)  # Insertion and retained key/value.
++            table[value] = None
++
++    def visit(current: ast.AST) -> None:
++        budget.consume()  # This scope's syntax visit.
++        if isinstance(current, (ast.Call, ast.Assign, ast.AnnAssign, ast.Delete)):
++            budget.consume(2)
++            sites.append(current)
++        if isinstance(current, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
++            name(local, current.name)
++            child = _c_scope(budget, path, current, scopes, signatures)
++            budget.consume(2)
++            children.append(child)
++            for expression in current.decorator_list:
++                budget.consume()
++                visit(expression)
++            if isinstance(current, ast.ClassDef):
++                for expression in current.bases:
++                    budget.consume()
++                    visit(expression)
++                for keyword in current.keywords:
++                    budget.consume()
++                    visit(keyword.value)
++            else:
++                for expression in current.args.defaults:
++                    budget.consume()
++                    visit(expression)
++                for expression in current.args.kw_defaults:
++                    budget.consume()
++                    if expression is not None:
++                        visit(expression)
++            return
++        if isinstance(current, ast.Lambda):
++            # Its body is a separate, unsupported activation, never an outer store.
++            for expression in current.args.defaults:
++                budget.consume()
++                visit(expression)
++            for expression in current.args.kw_defaults:
++                budget.consume()
++                if expression is not None:
++                    visit(expression)
++            return
++        if isinstance(current, (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)):
++            # R1 refuses reached comprehension execution; only its eager header is outer.
++            if current.generators:
++                visit(current.generators[0].iter)
++            return
++        if isinstance(current, ast.Name):
++            name(loads if isinstance(current.ctx, ast.Load) else local, current.id)
++        elif isinstance(current, (ast.Global, ast.Nonlocal)):
++            for value in current.names:
++                budget.consume()
++                name(globals_ if isinstance(current, ast.Global) else nonlocals, value)
++        elif isinstance(current, (ast.Import, ast.ImportFrom)):
++            for alias in current.names:
++                budget.consume()
++                name(local, alias.asname or alias.name.split(".", 1)[0])
++            return
++        elif isinstance(current, ast.ExceptHandler) and current.name:
++            name(local, current.name)
++        for child_node in ast.iter_child_nodes(current):
++            budget.consume()  # Traversed syntax edge.
++            visit(child_node)
++
++    if kind == "function":
++        arguments = node.args
++        for group in (arguments.posonlyargs, arguments.args, arguments.kwonlyargs):
++            budget.consume()
++            for parameter in group:
++                budget.consume(3)  # Visit, append and retained parameter name.
++                parameters.append(parameter.arg)
++                name(local, parameter.arg)
++        for parameter in (arguments.vararg, arguments.kwarg):
++            budget.consume()
++            if parameter is not None:
++                budget.consume(2)
++                parameters.append(parameter.arg)
++                name(local, parameter.arg)
++    for statement in node.body:
++        budget.consume()
++        visit(statement)
++    for table in (globals_, nonlocals):
++        budget.consume()
++        for value in table:
++            budget.consume(2)  # Visit and local-map removal probe.
++            if value in local:
++                budget.consume()
++                del local[value]
++    budget.consume()  # Ordered free-route map.
++    free: dict[str, None] = {}
++    for table in (loads, nonlocals):
++        budget.consume()
++        for value in table:
++            budget.consume(3)  # Visit and two declaration probes.
++            if value not in local and value not in globals_:
++                name(free, value)
++    for child in children:
++        budget.consume()
++        for value in child.free_names:
++            budget.consume()
++            if kind == "function":
++                budget.consume(2)
++                if value in local or value in globals_:
++                    continue
++            name(free, value)  # Class slots do not block forwarding to a method.
++    locals_tuple = _c_fact_tuple(budget, local)
++    parameters_tuple = _c_fact_tuple(budget, parameters)
++    free_tuple = _c_fact_tuple(budget, free)
++    children_tuple = _c_fact_tuple(budget, children)
++    sites_tuple = _c_fact_tuple(budget, sites)
++    budget.consume(2 + 2 * (len(globals_) + len(nonlocals)))
++    global_set, nonlocal_set = frozenset(globals_), frozenset(nonlocals)
++    budget.consume(11)  # Scope allocation and ten retained fields.
++    scope = _CScope(node, path, kind, locals_tuple, parameters_tuple,
++                    global_set, nonlocal_set, free_tuple, children_tuple, sites_tuple)
++    budget.consume(3)
++    scopes[node] = scope
++    if kind == "function":
++        budget.consume(16)  # Empty mapping/proxy and twelve-field template descriptor.
++        empty = MappingProxyType({})
++        definition = _ReviewFunction(path, node, empty, empty, None)
++        budget.consume(3)
++        signatures[node] = definition
++    return scope
++
++
++def _c_program(
++    parsed: Mapping[str, ast.Module], certificate_budgets: Mapping[str, _AnalysisBudget],
++) -> _CProgram:
++    if not parsed:
++        raise InventoryError("canonical review has no source modules")
++    first = next(iter(parsed))
++    budget = certificate_budgets[first]
++    budget.consume(3)  # Program's three builder maps.
++    modules: dict[str, _CScope] = {}
++    scopes: dict[ast.AST, _CScope] = {}
++    signatures: dict[ast.AST, _ReviewFunction] = {}
++    for path, tree in parsed.items():
++        budget = certificate_budgets[path]
++        budget.consume(2)  # Source visit and owner selection.
++        scope = _c_scope(budget, path, tree, scopes, signatures)
++        budget.consume(3)
++        modules[path] = scope
++    budget.consume(10)  # Three immutable proxies plus program with three fields.
++    return _CProgram(MappingProxyType(modules), MappingProxyType(scopes),
++                     MappingProxyType(signatures))
++
++
++def _c_local_name(ctx: _CContext, scope: _CScope, name: str) -> bool:
++    for candidate in scope.local_names:
++        ctx.budget.consume()
++        if candidate == name:
++            return True
++    return False
++
++
++def _c_namespace(
++    ctx: _CContext, state: _CState | _CView, owner: _CRef,
++) -> _CNamespace:
++    record = _c_object_read(ctx, state, owner)
++    if not isinstance(record, _CNamespace):
++        raise InventoryError("canonical namespace owner is missing or incompatible")
++    return record
++
++
++def _c_namespace_write(
++    ctx: _CContext, state: _CState, owner: _CRef, name: str, value: _CValue | None,
++) -> None:
++    record = _c_namespace(ctx, state, owner)
++    ctx.budget.consume(1 + 3 * len(record.members))
++    members = dict(record.members)
++    ctx.budget.consume()
++    if value is None:
++        members.pop(name, None)
++    else:
++        ctx.budget.consume(2)
++        members[name] = value
++    ctx.budget.consume(6)  # Proxy and its map ref; namespace and three fields.
++    updated = _CNamespace(record.kind, MappingProxyType(members), record.origin)
++    if not _c_object_write(ctx, state, owner, updated):
++        raise InventoryError("canonical namespace owner disappeared")
++
++
++def _c_capture(
++    ctx: _CContext, state: _CState, frame: _CFrame, name: str,
++) -> _CCapture:
++    while frame.scope.kind == "class":
++        ctx.budget.consume()
++        if frame.enclosing_nonclass is None:
++            raise InventoryError("canonical class lacks its enclosing frame")
++        frame = frame.enclosing_nonclass
++    ctx.budget.consume()
++    if frame.scope.kind == "function" and _c_local_name(ctx, frame.scope, name):
++        if frame.activation_id is None:
++            raise InventoryError("canonical function lacks lexical activation")
++        ctx.budget.consume(3)
++        cell = _CCellRef(frame.activation_id, name)
++        if _c_cell_read(ctx, state, cell) is None:
++            raise InventoryError("canonical declared lexical destination is missing")
++        ctx.budget.consume(6)
++        return _CCapture("cell", cell, None, name)
++    ctx.budget.consume()
++    if name not in frame.scope.global_names:
++        ctx.budget.consume()
++        captured = frame.captures.get(name)
++        if captured is not None:
++            return captured
++    ctx.budget.consume(6)
++    return _CCapture("module", None, frame.module, name)
++
++
++def _c_captures(
++    ctx: _CContext, state: _CState, frame: _CFrame, template: _CScope,
++) -> Mapping[str, _CCapture]:
++    ctx.budget.consume()
++    result: dict[str, _CCapture] = {}
++    for name in template.free_names:
++        ctx.budget.consume(2)  # Visit and declaration probe.
++        captured = _c_capture(ctx, state, frame, name)
++        if name in template.nonlocal_names and captured.kind != "cell":
++            ctx.budget.consume(6)
++            captured = _CCapture("unresolved", None, None, name,
++                                 "nonlocal destination has no lexical owner")
++        ctx.budget.consume(3)
++        result[name] = captured
++    ctx.budget.consume(2)
++    return MappingProxyType(result)
++
++
++def _c_name_route(
++    ctx: _CContext, state: _CState, frame: _CFrame, name: str, *, writing: bool = False,
++) -> _CCapture:
++    ctx.budget.consume(2)  # Declaration probes.
++    if name in frame.scope.global_names:
++        ctx.budget.consume(6)
++        return _CCapture("module", None, frame.module, name)
++    if name in frame.scope.nonlocal_names:
++        ctx.budget.consume()
++        route = frame.captures.get(name)
++        if route is not None and route.kind == "cell":
++            return route
++        ctx.budget.consume(6)
++        return _CCapture("unresolved", None, None, name, "missing nonlocal cell")
++    if frame.scope.kind == "function":
++        return _c_capture(ctx, state, frame, name)
++    if frame.scope.kind == "class":
++        if frame.class_namespace is None:
++            raise InventoryError("canonical class namespace is missing")
++        record = _c_namespace(ctx, state, frame.class_namespace)
++        ctx.budget.consume()
++        if writing or name in record.members:
++            ctx.budget.consume(6)
++            return _CCapture("class", None, frame.class_namespace, name)
++        if not _c_local_name(ctx, frame.scope, name):
++            ctx.budget.consume()
++            route = frame.captures.get(name)
++            if route is not None:
++                return route
++    ctx.budget.consume(6)
++    return _CCapture("module", None, frame.module, name)
++
++
+ @dataclass(slots=True)
+ class _PreclassifierExceptionalState:
+     state: tuple[dict[str, str], set[str]]
