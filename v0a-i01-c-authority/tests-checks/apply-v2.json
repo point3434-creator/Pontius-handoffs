@@ -1,0 +1,22 @@
+{
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "before_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "original_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "tests_sha256": "c7f8d1ada3cdddc413f5074133cdbf2203ae9f62dfbb06798cddb984b1cb237f",
+  "candidate": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-candidate-v2.py",
+  "patch": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-patch-v2.diff",
+  "patch_sha256": "33615514edec9f31dc035385b1c9f2a580a74762378af6dd386a995ba422672f",
+  "addition_sha256": "1d2a8b82e5a8f9f9c35052cb0f0efcce4bd532f833873a24405c9eeff9292935",
+  "new_methods": [
+    "test_authority_transfer_issued_witnesses",
+    "test_authority_transfer_capture_route_execution_matrix",
+    "test_authority_transfer_live_cells_and_activation_identity",
+    "test_authority_transfer_native_alias_mutation_matrix",
+    "test_authority_transfer_mapping_extraction_and_later_clear",
+    "test_authority_transfer_ordered_class_binding_matrix",
+    "test_authority_transfer_exception_and_join_successors"
+  ],
+  "all_old_ast_unchanged": true,
+  "old_source_prefix_unchanged": true,
+  "control_sha256": "294b40db7512c383072b98ebd9af5079b7c2a443da4cf44056a9d3570f130418"
+}

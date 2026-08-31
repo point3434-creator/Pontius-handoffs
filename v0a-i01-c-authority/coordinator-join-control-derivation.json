@@ -1,0 +1,14 @@
+{
+  "base": "engineer-run-v1.py",
+  "base_sha256": "63c7103f5174cb19096273ca6a3f56805e69cb04cc93bf25d192e987274f6389",
+  "control_sha256": "b5db2e54d02de31987a56fe0542162764fa22c9bf4b9d78b67501495ea6dff8e",
+  "probe_sha256": "1d91f234169e17833c7a40c35674564a6b6daa687d658cb06d93dbecd7341995",
+  "substitutions": {
+    "W=P(r'D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1')": "W=P(r'D:\\Pontius\\engineer-authority-b4a5641b7aca4ca4a4d730c9a8a02369\\harness')",
+    "PROBES={'probe-a':(OLD/'checks/codex-a-probe-targets-v2.py','b0171cf48c0905f558829173c549c85cee760786565fe88fe2a5f3cfd00d1669'),'probe-b':(OLD/'checks/codex-b-probes.py','d68762c9c55edff55325d02c4301096c0201471a7b27e84edfa48380656ff4ee')}": "PROBES={'join':(ROOT/'coordinator-join-probe-v1.py','1d91f234169e17833c7a40c35674564a6b6daa687d658cb06d93dbecd7341995')}",
+    "checks=ROOT/'engineer-checks'": "checks=ROOT/'coordinator-checks'",
+    "'engineer-authority-'": "'coordinator-authority-'",
+    "overlay=(W/'tools/generate_test_inventory.py').read_bytes()": "overlay=(W/'tools/generate_test_inventory.py').read_bytes()\nreq(h(overlay)=='33f944158ca20df62724d83d44a680440c455653100ba28d67b69954849cd8a5','issued iteration05 source changed')",
+    "req(kind in {*PROBES,'design'},'kind')": "req(kind in PROBES,'kind')"
+  }
+}

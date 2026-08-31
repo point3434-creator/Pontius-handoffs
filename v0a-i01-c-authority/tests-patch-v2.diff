@@ -1,0 +1,536 @@
+--- a/tests/test_inventory_and_profiles.py
++++ b/tests/test_inventory_and_profiles.py
+@@ -31670,5 +31670,533 @@
+                 lease.close()
+ 
+ 
++class AuthorityTransferMatrixTests(unittest.TestCase):
++    """Bounded public contracts, with separately rendered harmless Python oracles."""
++
++    @staticmethod
++    def _schedule(
++        label: str,
++        body: str,
++        *,
++        trace: tuple[str, ...],
++        result: str = "fixed",
++        classification: str = "clean",
++        tail: str = "return self._launch()",
++        module_tail: str = "",
++        unreachable: tuple[str, ...] = (),
++        choices: tuple[tuple[bool, tuple[str, ...], str], ...] = (),
++        required_argv: tuple[tuple[str, ...], ...] | None = None,
++    ) -> dict[str, object]:
++        return {
++            "label": label, "body": body, "trace": trace, "result": result,
++            "classification": classification, "tail": tail,
++            "module_tail": module_tail, "unreachable": unreachable, "choices": choices,
++            "required_argv": required_argv,
++        }
++
++    @staticmethod
++    def _callback(capture: str, mode: str, *, ignored: bool = False) -> str:
++        prefix = "owner = ReviewTests\n" if capture == "cell" else ""
++        parameters = "_=None" if ignored else ""
++        if capture == "default":
++            parameters += (", " if parameters else "") + "owner=ReviewTests"
++        body = "# oracle body\n"
++        if mode == "raise-before":
++            body += "raise ValueError()\n"
++        if mode in {"write", "dormant", "raise-before", "write-then-raise"}:
++            body += "owner._launch = None\n# oracle write\n"
++        else:
++            body += "unused = owner\n"
++        if mode == "write-then-raise":
++            body += "raise ValueError()\n"
++        body += "return 1"
++        return prefix + "def callback(" + parameters + "):\n" + textwrap.indent(body, "    ")
++
++    @staticmethod
++    def _program(schedule: dict[str, object], *, harmless: bool) -> str:
++        # Assemble the safe sink independently. Never transform an executable sink.
++        if harmless:
++            head = "import unittest\n_events = []\n"
++            launch = '_events.append("sink")\nreturn "fixed"'
++        else:
++            head = "import subprocess, sys, unittest\n"
++            launch = (
++                'subprocess.run([sys.executable, "-m", "fixed"], cwd=".", '
++                'env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)'
++            )
++        body = str(schedule["body"]) + "\n" + str(schedule["tail"])
++        program = (
++            head + "class ReviewTests(unittest.TestCase):\n"
++            "    @staticmethod\n    def _launch(ignored=None):\n"
++            + textwrap.indent(launch, "        ")
++            + "\n    def test_static(self):\n" + textwrap.indent(body, "        ")
++            + "\n" + str(schedule["module_tail"]) + "\n"
++        )
++        if harmless:
++            observed = []
++            for line in program.splitlines():
++                stripped = line.lstrip()
++                if stripped.startswith("# oracle "):
++                    event = stripped.removeprefix("# oracle ")
++                    indent = line[:len(line) - len(stripped)]
++                    line = indent + "_events.append(" + repr(event) + ")"
++                observed.append(line)
++            program = "\n".join(observed) + "\n"
++        return program
++
++    def _exercise(self, family: str, cases: list[dict[str, object]], planned: int) -> None:
++        self.assertEqual(len(cases), planned, "matrix generation must not silently omit cases")
++        labels = [str(case["label"]) for case in cases]
++        self.assertEqual(len(labels), len(set(labels)), "matrix case identifiers must be unique")
++        generator = _load_generator()
++        stable_id = "tests/test_review.py::ReviewTests::test_static"
++        assignment = {
++            "profile_name": "current", "payload_id": "current:tests/test_review.py",
++            "expectation": {"kind": "pass"},
++        }
++        census = {
++            "test_file_count": 1, "stable_id_count": 1,
++            "stable_ids_sha256": sha256((stable_id + "\n").encode()).hexdigest(),
++        }
++        inventory = {
++            "schema_version": "pontius-test-inventory-v1", "baseline_commit": "1" * 40,
++            "baseline_discovery": census, "discovery": census,
++            "entries": [{
++                "stable_id": stable_id, "relative_path": "tests/test_review.py",
++                "case_name": "ReviewTests", "method_name": "test_static",
++                "assignment": assignment, "baseline_assignment": assignment,
++            }],
++        }
++        inventory_bytes = _canonical_json_bytes(inventory) + b"\n"
++        exercised = 0
++        oracle_errors = []
++        analyzer_errors = []
++        unexecuted = []
++        for case in cases:
++            label = str(case["label"])
++            with self.subTest(family=family, schedule=label):
++                source = self._program(case, harmless=False).encode("utf-8")
++                pure = self._program(case, harmless=True)
++                self.assertNotIn("subprocess", pure)
++                self.assertNotIn("pontius", pure)
++                witnesses = []
++                variants = case["choices"] or ((False, case["trace"], case["result"]),)
++                for choice, expected_trace, expected_result in variants:
++                    namespace = {}
++                    try:
++                        exec(compile(pure, "<authority-oracle>", "exec", dont_inherit=True),
++                             namespace)
++                        instance = namespace["ReviewTests"]()
++                        instance.choice = choice
++                        try:
++                            actual = instance.test_static()
++                        except Exception as error:
++                            actual = type(error).__name__
++                        events = tuple(namespace["_events"])
++                    except Exception as error:
++                        oracle_errors.append(label)
++                        print(json.dumps({"matrix": family, "case": label,
++                                          "oracle_error": type(error).__name__,
++                                          "message": str(error)}), flush=True)
++                        raise
++                    witnesses.append({"choice": choice, "result": actual, "trace": events})
++                    if actual != expected_result or events != expected_trace:
++                        oracle_errors.append(label)
++                    self.assertEqual(actual, expected_result, "invalid runtime oracle")
++                    self.assertEqual(events, expected_trace, "invalid effect/order oracle")
++                    for event in case["unreachable"]:
++                        self.assertNotIn(event, events, "claimed dead event was executed")
++                try:
++                    review = generator.derive_design_review(
++                        baseline_commit="1" * 40, baseline_root_tree_oid="2" * 40,
++                        inventory_document=inventory, inventory_document_bytes=inventory_bytes,
++                        sources={"tests/test_review.py": source},
++                        item_universe=(("stable_id", stable_id),),
++                    )
++                except Exception as error:
++                    analyzer_errors.append(label)
++                    print(json.dumps({"matrix": family, "case": label,
++                                      "analyzer_error": type(error).__name__,
++                                      "message": str(error)}), flush=True)
++                    raise
++                exercised += 1
++                if case["unreachable"]:
++                    unexecuted.append({"case": label, "events": case["unreachable"]})
++                rows = [row for row in review["receipt"]["expanded_rows"]
++                        if row["capability_kind"] == "subprocess"]
++                blockers = review["unresolved_dynamic_blockers"]
++                argv = [row["argv"] for row in rows]
++                print(json.dumps({
++                    "matrix": family, "case": label, "classification": case["classification"],
++                    "source_sha256": sha256(source).hexdigest(),
++                    "oracle_sha256": sha256(pure.encode()).hexdigest(),
++                    "witnesses": witnesses, "argv": argv, "blockers": blockers,
++                    "unreachable_events": case["unreachable"],
++                }), flush=True)
++                if case["classification"] == "refuse":
++                    self.assertTrue(blockers, "relevant reached/escaped authority needs a blocker")
++                    if case["required_argv"] is not None:
++                        self.assertEqual(argv, [list(row) for row in case["required_argv"]])
++                elif case["classification"] == "permitted-refusal":
++                    if not blockers:
++                        self.assertEqual(argv, [["-m", "fixed"]])
++                else:
++                    self.assertEqual(case["classification"], "clean")
++                    self.assertFalse(blockers, "lawful represented schedule must remain admitted")
++                    self.assertEqual(argv, [["-m", "fixed"]])
++        print(json.dumps({
++            "matrix_summary": family, "planned": planned, "generated": len(cases),
++            "exercised": exercised, "unreachable_cases": [],
++            "proved_unexecuted_events": unexecuted,
++            "oracle_errors": oracle_errors, "analyzer_errors": analyzer_errors,
++        }), flush=True)
++
++    def test_authority_transfer_issued_witnesses(self) -> None:
++        cases = []
++        for expression in ("callback", "(callback,)[0]", '{"cb": callback}["cb"]'):
++            body = (
++                "owner = None\n"
++                "def callback():\n    # oracle body\n"
++                "    if owner is not None:\n        owner._launch = None\n"
++                "        # oracle write\n"
++                "def forward(callback):\n    return " + expression + "\n"
++                "saved = forward(callback)\nowner = ReviewTests\nsaved()"
++            )
++            cases.append(self._schedule(
++                "A01/" + expression, body, trace=("body", "write"),
++                result="TypeError", classification="refuse",
++            ))
++        for extraction in ('bag.pop("cb")', 'bag.get("cb")', "bag.popitem()[1]"):
++            body = (self._callback("default", "write") + '\nbag = {"cb": callback}\n'
++                    "saved = " + extraction + "\nsaved()")
++            cases.append(self._schedule(
++                "A02/" + extraction, body, trace=("body", "write"),
++                result="TypeError", classification="refuse",
++            ))
++        for kind in ("captured", "called", "decorator"):
++            member = (
++                "    def callback(function=None):\n        # oracle body\n"
++                "        ReviewTests._launch = None\n        # oracle write\n"
++                "        return function\n"
++            )
++            if kind == "captured":
++                use = ("    def __call__(self, target=callback):\n        target()\nValue()()")
++            elif kind == "called":
++                use = "    def method(self, value=callback()):\n        return 1"
++            else:
++                use = "    @callback\n    def method(self):\n        return 1"
++            cases.append(self._schedule(
++                "A03/" + kind, "class Value:\n" + member + use,
++                trace=("body", "write"), result="TypeError", classification="refuse",
++            ))
++        retained = (
++            ("nested-list", "bag = [[]]\nbag[0].append(callback)", "bag[0][0]", False),
++            ("mapping-list", 'bag = {"x": []}\nbag["x"].append(callback)',
++             'bag["x"][0]', False),
++            ("tuple-list", "bag = ([],)\nbag[0].append(callback)", "bag[0][0]", False),
++            ("older-alias", "items = []\nbag = [items]\nbag[0].append(callback)",
++             "bag[0][0]", False),
++            ("extend", "bag = [[]]\nbag[0].extend([callback])", "bag[0][0]", False),
++            ("insert", "bag = [[]]\nbag[0].insert(0, callback)", "bag[0][0]", False),
++            ("direct", "bag = [[]]\nbag[0].append(callback)", "bag[0][0]", True),
++        )
++        for label, store, extraction, direct in retained:
++            invocation = extraction + "(None)" if direct else "external(" + extraction + ")"
++            cases.append(self._schedule(
++                "B01/" + label, self._callback("default", "write", ignored=True)
++                + "\n" + store + "\n" + invocation,
++                trace=("body", "write"), result="TypeError", classification="refuse",
++                module_tail="def external(callback):\n    callback(None)\n",
++            ))
++        self._exercise("issued-witnesses", cases, 16)
++
++    def test_authority_transfer_capture_route_execution_matrix(self) -> None:
++        routes = (
++            ("direct", "", "callback()"),
++            ("alias", "saved = callback", "saved()"),
++            ("forward", "def forward(target):\n    target()", "forward(callback)"),
++            ("return", "def forward(target):\n    return target\nsaved = forward(callback)",
++             "saved()"),
++            ("returned-nest", 'def forward(target):\n    return {"cb": (target,)}\n'
++             'saved = forward(callback)["cb"][0]', "saved()"),
++            ("flat-store", "bag = []\nbag.append(callback)", "bag[0]()"),
++            ("nested-store", 'bag = {"inner": [[]]}\nbag["inner"][0].append(callback)',
++             'bag["inner"][0][0]()'),
++            ("protocol", "class Value:\n    def __call__(self):\n        callback()",
++             "Value()()"),
++        )
++        cases = []
++        for capture in ("default", "cell"):
++            for route, setup, invocation in routes:
++                for mode in ("dormant", "readonly", "write", "raise-before"):
++                    body = self._callback(capture, mode) + "\n" + setup
++                    trace = ("sink",)
++                    dead = ("body", "write")
++                    if mode == "raise-before":
++                        body += "\ntry:\n    " + invocation
++                        body += "\nexcept ValueError:\n    # oracle caught\n    pass"
++                        trace, dead = ("body", "caught", "sink"), ("write",)
++                    elif mode != "dormant":
++                        body += "\n" + invocation
++                        trace = ("body", "write") if mode == "write" else ("body", "sink")
++                        dead = () if mode == "write" else ("write",)
++                    cases.append(self._schedule(
++                        "/".join((capture, route, mode)), body, trace=trace,
++                        result="TypeError" if mode == "write" else "fixed",
++                        classification="refuse" if mode == "write" else "clean",
++                        unreachable=dead,
++                    ))
++        self._exercise("capture-route-execution", cases, 64)
++
++    def test_authority_transfer_live_cells_and_activation_identity(self) -> None:
++        cases = []
++        for capture in ("default", "cell"):
++            for upward in (False, True):
++                for returned in ("callback", "(callback,)[0]", '{"cb": callback}["cb"]'):
++                    for rebound_before_return in (False, True):
++                        first, later = (("None", "ReviewTests") if upward
++                                        else ("ReviewTests", "None"))
++                        signature = "owner=owner" if capture == "default" else ""
++                        body = (
++                            "owner = " + first + "\ndef callback(" + signature + "):\n"
++                            "    # oracle body\n    if owner is not None:\n"
++                            "        owner._launch = None\n        # oracle write\n"
++                            "def forward(target):\n    callback = target\n    return " + returned
++                        )
++                        rebind = "\nowner = " + later
++                        if rebound_before_return:
++                            body += rebind
++                        body += "\nsaved = forward(callback)"
++                        if not rebound_before_return:
++                            body += rebind
++                        body += "\nsaved()"
++                        writes = upward if capture == "cell" else not upward
++                        cases.append(self._schedule(
++                            f"{capture}/{upward}/{returned}/{rebound_before_return}", body,
++                            trace=("body", "write") if writes else ("body", "sink"),
++                            result="TypeError" if writes else "fixed",
++                            classification="refuse" if writes else "clean",
++                        ))
++        for capture in ("default", "cell"):
++            for selected in ("first", "second"):
++                signature = "target=owner" if capture == "default" else ""
++                owner = "target" if capture == "default" else "owner"
++                body = (
++                    "def factory(owner):\n    def callback(" + signature + "):\n"
++                    "        # oracle body\n        if " + owner + " is not None:\n"
++                    "            " + owner + "._launch = None\n            # oracle write\n"
++                    "    return callback\nfirst = factory(None)\nsecond = factory(ReviewTests)\n"
++                    + selected + "()"
++                )
++                writes = selected == "second"
++                cases.append(self._schedule(
++                    f"activation/{capture}/{selected}", body,
++                    trace=("body", "write") if writes else ("body", "sink"),
++                    result="TypeError" if writes else "fixed",
++                    classification="refuse" if writes else "clean",
++                ))
++        self._exercise("live-cells-and-activations", cases, 28)
++
++    def test_authority_transfer_native_alias_mutation_matrix(self) -> None:
++        cases = []
++        for alias_before in (False, True):
++            operations = ("append(callback)", "extend([callback])", "insert(0, callback)")
++            for operation in operations:
++                for read_other_alias in (False, True):
++                    for consumed in (False, True):
++                        body = self._callback("default", "write") + "\nitems = []\n"
++                        if alias_before:
++                            body += 'bag = {"items": (items,)}\n'
++                        body += "items." + operation + "\n"
++                        if not alias_before:
++                            body += 'bag = {"items": (items,)}\n'
++                        access = 'bag["items"][0][0]' if read_other_alias else "items[0]"
++                        if consumed:
++                            body += access + "()\n"
++                        cases.append(self._schedule(
++                            f"{alias_before}/{operation}/{read_other_alias}/{consumed}", body,
++                            trace=("body", "write") if consumed else ("sink",),
++                            result="TypeError" if consumed else "fixed",
++                            classification="refuse" if consumed else "clean",
++                            unreachable=() if consumed else ("body", "write"),
++                        ))
++        self._exercise("native-alias-mutation", cases, 24)
++
++    def test_authority_transfer_mapping_extraction_and_later_clear(self) -> None:
++        cases = []
++        for operation in ('get("cb")', 'pop("cb")', "popitem()[1]"):
++            for nested in (False, True):
++                for consumed in (False, True):
++                    setup = 'bag = ({"cb": callback},)' if nested else 'bag = {"cb": callback}'
++                    owner = "bag[0]" if nested else "bag"
++                    body = self._callback("default", "write") + "\n" + setup
++                    body += "\nsaved = " + owner + "." + operation
++                    if consumed:
++                        body += "\nsaved()"
++                    cases.append(self._schedule(
++                        f"{operation}/{nested}/{consumed}", body,
++                        trace=("body", "write") if consumed else ("sink",),
++                        result="TypeError" if consumed else "fixed",
++                        classification="refuse" if consumed else "clean",
++                        unreachable=() if consumed else ("body", "write"),
++                    ))
++        for kind in ("list", "dict"):
++            for consumed in (False, True):
++                setup = "bag = [callback]\nsaved = bag[0]" if kind == "list" else (
++                    'bag = {"cb": callback}\nsaved = bag["cb"]'
++                )
++                body = self._callback("default", "write") + "\n" + setup + "\nbag.clear()"
++                if consumed:
++                    body += "\nsaved()"
++                cases.append(self._schedule(
++                    f"captured-before-clear/{kind}/{consumed}", body,
++                    trace=("body", "write") if consumed else ("sink",),
++                    result="TypeError" if consumed else "fixed",
++                    classification="refuse" if consumed else "clean",
++                    unreachable=() if consumed else ("body", "write"),
++                ))
++        self._exercise("mapping-extraction-and-clear", cases, 16)
++
++    def test_authority_transfer_ordered_class_binding_matrix(self) -> None:
++        cases = []
++        for binding in ("assignment", "definition"):
++            for use in ("captured", "called", "decorator"):
++                for writes in (False, True):
++                    effect = (
++                        "# oracle body\nReviewTests._launch = None\n# oracle write\n"
++                        if writes else "# oracle body\n"
++                    )
++                    definition = "def callback(function=None):\n" + textwrap.indent(
++                        effect + "return function", "    ",
++                    ) + "\n"
++                    body = ("" if binding == "definition" else
++                            definition.replace("def callback(", "def source_callback("))
++                    body += "class Value:\n"
++                    body += (textwrap.indent(definition, "    ") if binding == "definition"
++                             else "    callback = source_callback\n")
++                    if use == "captured":
++                        body += ("    def __call__(self, target=callback):\n        target()\n"
++                                 "    callback = None\nValue()()")
++                    elif use == "called":
++                        body += "    def method(self, value=callback()):\n        return 1"
++                    else:
++                        body += "    @callback\n    def method(self):\n        return 1"
++                    cases.append(self._schedule(
++                        f"{binding}/{use}/{writes}", body,
++                        trace=("body", "write") if writes else ("body", "sink"),
++                        result="TypeError" if writes else "fixed",
++                        classification="refuse" if writes else "clean",
++                    ))
++        for use in ("default", "decorator"):
++            for fail_first in (False, True):
++                body = (
++                    self._callback("default", "write")
++                    + "\ndef abort(function=None):\n    # oracle abort\n    raise ValueError()\n"
++                    "try:\n    class Value:\n"
++                )
++                if use == "default":
++                    defaults = "abort(), callback()" if fail_first else "callback(), abort()"
++                    first, second = defaults.split(", ")
++                    body += ("        def method(self, first=" + first + ", second=" + second
++                             + "):\n            return 1\n")
++                else:
++                    decorators = ("callback", "abort") if fail_first else ("abort", "callback")
++                    # Applications are bottom-up; callback accepts its wrapped function.
++                    body = body.replace("def callback(owner=ReviewTests):",
++                                        "def callback(function=None, owner=ReviewTests):")
++                    body += "".join("        @" + name + "\n" for name in decorators)
++                    body += "        def method(self):\n            return 1\n"
++                body += "except ValueError:\n    # oracle caught\n    pass"
++                writes = not fail_first
++                cases.append(self._schedule(
++                    f"construction-failure/{use}/{fail_first}", body,
++                    trace=("abort", "caught", "sink") if fail_first else (
++                        "body", "write", "abort", "caught"
++                    ),
++                    result="TypeError" if writes else "fixed",
++                    classification="refuse" if writes else "clean",
++                    unreachable=("body", "write") if fail_first else (),
++                ))
++        self._exercise("ordered-class-binding", cases, 16)
++
++    def test_authority_transfer_exception_and_join_successors(self) -> None:
++        cases = []
++        callback = self._callback("default", "write")
++        cases.append(self._schedule(
++            "deleted-callee-before-argument",
++            callback + "\ntarget = None\ndel target\ntry:\n    target(callback())\n"
++            "except UnboundLocalError:\n    # oracle caught\n    pass",
++            trace=("caught", "sink"), unreachable=("body", "write"),
++        ))
++        cases.append(self._schedule(
++            "argument-before-invalid-binding",
++            callback + "\ndef consume(owner=None, /):\n    # oracle consume-body\n    pass\n"
++            "try:\n    consume(owner=callback())\nexcept TypeError:\n    # oracle caught\n    pass",
++            trace=("body", "write", "caught"), result="TypeError", classification="refuse",
++            unreachable=("consume-body",),
++        ))
++        cases.append(self._schedule(
++            "selected-callee-before-argument",
++            callback + "\nself._launch(callback())",
++            trace=("body", "write", "sink"), result="fixed", classification="refuse",
++            tail='return "fixed"', required_argv=(("-m", "fixed"),),
++        ))
++        for order in ("raise-before", "write-then-raise"):
++            writes = order == "write-then-raise"
++            cases.append(self._schedule(
++                order, self._callback("default", order)
++                + "\ntry:\n    callback()\nexcept ValueError:\n    # oracle caught\n    pass",
++                trace=("body", "write", "caught") if writes else ("body", "caught", "sink"),
++                result="TypeError" if writes else "fixed",
++                classification="refuse" if writes else "clean",
++                unreachable=() if writes else ("write",),
++            ))
++        cases.append(self._schedule(
++            "return-through-finally",
++            callback + "\ndef forward():\n    try:\n        return 1\n"
++            "    finally:\n        # oracle finally\n        callback()\nforward()",
++            trace=("finally", "body", "write"), result="TypeError", classification="refuse",
++        ))
++        cases.append(self._schedule(
++            "nonmatching-handler",
++            callback + "\ntry:\n    try:\n        raise ValueError()\n"
++            "    except TypeError:\n        callback()\n"
++            "except ValueError:\n    # oracle caught\n    pass",
++            trace=("caught", "sink"), unreachable=("body", "write"),
++        ))
++        cases.append(self._schedule(
++            "constant-dead-storage",
++            callback + "\nif False:\n    bag = [[]]\n    bag[0].append(callback)\n"
++            "    bag[0][0]()",
++            trace=("sink",), unreachable=("body", "write"),
++        ))
++        cases.append(self._schedule(
++            "unknown-readonly-seam", "if self.choice:\n    pass\nelse:\n    pass",
++            trace=("sink",), choices=((False, ("sink",), "fixed"), (True, ("sink",), "fixed")),
++        ))
++        cases.append(self._schedule(
++            "unsafe-join",
++            callback + "\nif self.choice:\n    callback()\nelse:\n    pass",
++            trace=(), classification="refuse",
++            choices=((False, ("sink",), "fixed"), (True, ("body", "write"), "TypeError")),
++        ))
++        cases.append(self._schedule(
++            "readonly-alias-join",
++            self._callback("default", "readonly")
++            + "\nif self.choice:\n    saved = callback\nelse:\n    saved = (callback,)[0]\nsaved()",
++            trace=(), choices=((False, ("body", "sink"), "fixed"),
++                              (True, ("body", "sink"), "fixed")),
++        ))
++        cases.append(self._schedule(
++            "nested-mutation-join",
++            callback + "\nitems = []\nbag = [items]\nif self.choice:\n"
++            "    items.append(callback)\n    bag[0][0]()\nelse:\n    pass",
++            trace=(), classification="refuse",
++            choices=((False, ("sink",), "fixed"), (True, ("body", "write"), "TypeError")),
++        ))
++        self._exercise("exception-and-join-successors", cases, 12)
++
++
++
+ if __name__ == "__main__":
+     unittest.main()

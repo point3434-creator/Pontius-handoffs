@@ -1,0 +1,53 @@
+{
+  "candidate": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "generator_overlay_sha256": "33f944158ca20df62724d83d44a680440c455653100ba28d67b69954849cd8a5",
+  "snapshot": "D:\\Pontius\\coordinator-authority-a88c51d3e88346c28ad66ca5150f1269\\harness",
+  "temp": "D:\\Pontius\\coordinator-authority-a88c51d3e88346c28ad66ca5150f1269\\temp",
+  "before": {
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tools/generate_test_inventory.py": "33f944158ca20df62724d83d44a680440c455653100ba28d67b69954849cd8a5",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "tests/test_inventory_and_profiles.py": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys,json,os,importlib.util,runpy,unittest\nfrom pathlib import Path\nexe,version,kind,target=sys.argv[1:]\nassert sys.implementation.name=='cpython' and '.'.join(map(str,sys.version_info[:3]))==version\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert sys.flags.safe_path and sys.dont_write_bytecode and not sys.flags.optimize\nprint(json.dumps({'identity_before_imports':{'executable':sys.executable,'version':sys.version,'version_info':list(sys.version_info[:3]),'implementation':sys.implementation.name,'cwd':str(Path.cwd()),'pythonpath':os.environ.get('PYTHONPATH'),'flags':str(sys.flags)}}),flush=True)\nassert Path(importlib.util.find_spec('pontius').origin).resolve()==(Path.cwd()/'src/pontius/__init__.py').resolve()\nsys.argv=[target]\nif kind=='design':\n    namespace=runpy.run_path(target,run_name='engineer_focused_design')\n    suite=unittest.defaultTestLoader.loadTestsFromTestCase(namespace['DesignReviewTests'])\n    result=unittest.TextTestRunner(verbosity=2).run(suite)\n    raise SystemExit(not result.wasSuccessful())\nrunpy.run_path(target,run_name='__main__')\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15",
+    "join",
+    "D:\\Pontius-handoffs\\v0a-i01-c-authority\\coordinator-join-probe-v1.py"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\Pontius\\coordinator-authority-a88c51d3e88346c28ad66ca5150f1269\\temp",
+    "TMP": "D:\\Pontius\\coordinator-authority-a88c51d3e88346c28ad66ca5150f1269\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\Pontius\\coordinator-authority-a88c51d3e88346c28ad66ca5150f1269\\harness\\src"
+  },
+  "probe_sha256": "1d91f234169e17833c7a40c35674564a6b6daa687d658cb06d93dbecd7341995",
+  "control_sha256": "b5db2e54d02de31987a56fe0542162764fa22c9bf4b9d78b67501495ea6dff8e"
+}

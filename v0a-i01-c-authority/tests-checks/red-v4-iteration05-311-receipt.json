@@ -1,0 +1,87 @@
+{
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "slot": "311",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys, runpy, json, importlib.util, os\nfrom pathlib import Path\nexe, expected = sys.argv[1:3]\nassert sys.implementation.name == \"cpython\"\nassert Path(sys.executable).resolve() == Path(exe).resolve()\nassert \".\".join(map(str, sys.version_info[:3])) == expected\nassert sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize\nprint(json.dumps({\"identity_before_import\": {\n    \"executable\": sys.executable, \"implementation\": sys.implementation.name,\n    \"version\": sys.version, \"version_info\": list(sys.version_info[:3]),\n    \"cwd\": str(Path.cwd()), \"pythonpath\": os.environ.get(\"PYTHONPATH\"),\n}}), flush=True)\nassert Path(importlib.util.find_spec(\"pontius.v0a.trace\").origin).resolve() == (\n    Path.cwd() / \"src/pontius/v0a/trace.py\").resolve()\nsys.argv = [\"tests/test_inventory_and_profiles.py\", \"AuthorityTransferMatrixTests.test_authority_transfer_joined_activation_alternatives\"]\nrunpy.run_path(sys.argv[0], run_name=\"__main__\")\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-authority-tests-v4-iteration05-eeafc973b1ba45f0b76c37862c40f8ed\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-authority-tests-v4-iteration05-eeafc973b1ba45f0b76c37862c40f8ed\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-tests-v4-iteration05-eeafc973b1ba45f0b76c37862c40f8ed\\snapshot\\src"
+  },
+  "identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      11,
+      15
+    ],
+    "cwd": "D:\\pontius-snapshots\\c-authority-tests-v4-iteration05-eeafc973b1ba45f0b76c37862c40f8ed\\snapshot",
+    "pythonpath": "D:\\pontius-snapshots\\c-authority-tests-v4-iteration05-eeafc973b1ba45f0b76c37862c40f8ed\\snapshot\\src"
+  },
+  "metadata_sha256": "e1061f4dc0eb89260a19745faf419a8b01b21b7c321919c7ae49591fc51de733",
+  "tests_sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+  "generator_sha256": "33f944158ca20df62724d83d44a680440c455653100ba28d67b69954849cd8a5",
+  "frozen_r010_generator_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "focus": "joined-activation-alternatives",
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\red-v4-iteration05-311.txt",
+  "log_sha256": "5eddeed74955f171585651d5a1af0be6a704cde4c25aaa526061cd395a61fc6e",
+  "all_tracked_paths_unchanged": 1761,
+  "matrix_summaries": [
+    {
+      "matrix_summary": "joined-activation-alternatives",
+      "planned": 16,
+      "generated": 16,
+      "exercised": 16,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [
+        {
+          "case": "cell/both-safe/statement",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/both-safe/conditional",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/both-safe/statement",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/both-safe/conditional",
+          "events": [
+            "write"
+          ]
+        }
+      ],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    }
+  ],
+  "control_sha256": "9ce99c5fd85ad01c023865f002d7042d6f5be6ad18736d4c369ef83977024fd4"
+}

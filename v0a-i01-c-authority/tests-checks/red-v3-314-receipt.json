@@ -1,0 +1,616 @@
+{
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "slot": "314",
+  "command": [
+    "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys, runpy, json, importlib.util, os\nfrom pathlib import Path\nexe, expected = sys.argv[1:3]\nassert sys.implementation.name == \"cpython\"\nassert Path(sys.executable).resolve() == Path(exe).resolve()\nassert \".\".join(map(str, sys.version_info[:3])) == expected\nassert sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize\nprint(json.dumps({\"identity_before_import\": {\n    \"executable\": sys.executable, \"implementation\": sys.implementation.name,\n    \"version\": sys.version, \"version_info\": list(sys.version_info[:3]),\n    \"cwd\": str(Path.cwd()), \"pythonpath\": os.environ.get(\"PYTHONPATH\"),\n}}), flush=True)\nassert Path(importlib.util.find_spec(\"pontius.v0a.trace\").origin).resolve() == (\n    Path.cwd() / \"src/pontius/v0a/trace.py\").resolve()\nsys.argv = [\"tests/test_inventory_and_profiles.py\", \"AuthorityTransferMatrixTests\"]\nrunpy.run_path(sys.argv[0], run_name=\"__main__\")\n",
+    "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "3.14.6"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-authority-tests-v3-7ebaf3844488440fa86f946f5fe14783\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-authority-tests-v3-7ebaf3844488440fa86f946f5fe14783\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-tests-v3-7ebaf3844488440fa86f946f5fe14783\\snapshot\\src"
+  },
+  "identity": {
+    "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      14,
+      6
+    ],
+    "cwd": "D:\\pontius-snapshots\\c-authority-tests-v3-7ebaf3844488440fa86f946f5fe14783\\snapshot",
+    "pythonpath": "D:\\pontius-snapshots\\c-authority-tests-v3-7ebaf3844488440fa86f946f5fe14783\\snapshot\\src"
+  },
+  "metadata_sha256": "f2d85ca24d332111701a98fabc2871f5f0b05efbeaf9b149fed54a1ab1100655",
+  "tests_sha256": "59a7698d9dcf564a54cb98be2c5893f2c58e9d8adea1d03daf8ea0a38eef33db",
+  "generator_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\red-v3-314.txt",
+  "log_sha256": "96d1e385721208350b0d238d701551ba759da0ffeeba803764319c6d8386c726",
+  "all_tracked_paths_unchanged": 1761,
+  "matrix_summaries": [
+    {
+      "matrix_summary": "capture-route-execution",
+      "planned": 64,
+      "generated": 64,
+      "exercised": 64,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [
+        {
+          "case": "default/direct/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/direct/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/direct/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/alias/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/alias/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/alias/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/forward/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/forward/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/forward/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/return/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/return/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/return/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/returned-nest/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/returned-nest/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/returned-nest/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/flat-store/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/flat-store/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/flat-store/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/nested-store/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/nested-store/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/nested-store/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/protocol/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "default/protocol/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "default/protocol/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/direct/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/direct/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/direct/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/alias/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/alias/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/alias/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/forward/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/forward/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/forward/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/return/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/return/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/return/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/returned-nest/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/returned-nest/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/returned-nest/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/flat-store/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/flat-store/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/flat-store/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/nested-store/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/nested-store/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/nested-store/raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/protocol/dormant",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "cell/protocol/readonly",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "cell/protocol/raise-before",
+          "events": [
+            "write"
+          ]
+        }
+      ],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    },
+    {
+      "matrix_summary": "exception-and-join-successors",
+      "planned": 12,
+      "generated": 12,
+      "exercised": 12,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [
+        {
+          "case": "deleted-callee-before-argument",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "argument-before-invalid-binding",
+          "events": [
+            "consume-body"
+          ]
+        },
+        {
+          "case": "raise-before",
+          "events": [
+            "write"
+          ]
+        },
+        {
+          "case": "nonmatching-handler",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "constant-dead-storage",
+          "events": [
+            "body",
+            "write"
+          ]
+        }
+      ],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    },
+    {
+      "matrix_summary": "issued-witnesses",
+      "planned": 16,
+      "generated": 16,
+      "exercised": 16,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    },
+    {
+      "matrix_summary": "live-cells-and-activations",
+      "planned": 28,
+      "generated": 28,
+      "exercised": 28,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    },
+    {
+      "matrix_summary": "mapping-extraction-and-clear",
+      "planned": 16,
+      "generated": 16,
+      "exercised": 16,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [
+        {
+          "case": "get(\"cb\")/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "get(\"cb\")/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "pop(\"cb\")/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "pop(\"cb\")/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "popitem()[1]/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "popitem()[1]/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "captured-before-clear/list/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "captured-before-clear/dict/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        }
+      ],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    },
+    {
+      "matrix_summary": "native-alias-mutation",
+      "planned": 24,
+      "generated": 24,
+      "exercised": 24,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [
+        {
+          "case": "False/append(callback)/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "False/append(callback)/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "False/extend([callback])/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "False/extend([callback])/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "False/insert(0, callback)/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "False/insert(0, callback)/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "True/append(callback)/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "True/append(callback)/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "True/extend([callback])/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "True/extend([callback])/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "True/insert(0, callback)/False/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "True/insert(0, callback)/True/False",
+          "events": [
+            "body",
+            "write"
+          ]
+        }
+      ],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    },
+    {
+      "matrix_summary": "ordered-class-binding",
+      "planned": 16,
+      "generated": 16,
+      "exercised": 16,
+      "unreachable_cases": [],
+      "proved_unexecuted_events": [
+        {
+          "case": "construction-failure/default/True",
+          "events": [
+            "body",
+            "write"
+          ]
+        },
+        {
+          "case": "construction-failure/decorator/True",
+          "events": [
+            "body",
+            "write"
+          ]
+        }
+      ],
+      "oracle_errors": [],
+      "analyzer_errors": []
+    }
+  ],
+  "control_sha256": "294b40db7512c383072b98ebd9af5079b7c2a443da4cf44056a9d3570f130418"
+}

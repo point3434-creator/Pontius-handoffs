@@ -1,0 +1,143 @@
+{
+  "purpose": "Independent coordinator static/evidence binding verification, not new payload execution",
+  "tests_sha256": "59a7698d9dcf564a54cb98be2c5893f2c58e9d8adea1d03daf8ea0a38eef33db",
+  "preserved_method_asts": 206,
+  "record_checks": [
+    {
+      "slot": "311",
+      "receipt_sha256": "437bb8270772ef908258cd85e36007adecc09a281052aa22917e6abd00723bc5",
+      "log_sha256": "5aa69035afd5c5ea2eda7b92ac46f8c4988faf71342d750883d34eb28b5f9ab0",
+      "cases_identical_except_approved_classification": 176,
+      "changed_cases": [
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/return/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/return/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/returned-nest/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/returned-nest/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/flat-store/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/flat-store/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/return/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/return/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/returned-nest/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/returned-nest/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/flat-store/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/flat-store/raise-before"
+        },
+        {
+          "matrix": "live-cells-and-activations",
+          "case": "cell/False/callback/False"
+        },
+        {
+          "matrix": "live-cells-and-activations",
+          "case": "cell/False/(callback,)[0]/False"
+        },
+        {
+          "matrix": "live-cells-and-activations",
+          "case": "cell/False/{\"cb\": callback}[\"cb\"]/False"
+        }
+      ]
+    },
+    {
+      "slot": "314",
+      "receipt_sha256": "6d3578fde73c8034095bbaab6637d42afc29406804b60dc666ff5c8c44b9e990",
+      "log_sha256": "96d1e385721208350b0d238d701551ba759da0ffeeba803764319c6d8386c726",
+      "cases_identical_except_approved_classification": 176,
+      "changed_cases": [
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/return/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/return/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/returned-nest/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/returned-nest/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/flat-store/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "default/flat-store/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/return/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/return/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/returned-nest/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/returned-nest/raise-before"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/flat-store/readonly"
+        },
+        {
+          "matrix": "capture-route-execution",
+          "case": "cell/flat-store/raise-before"
+        },
+        {
+          "matrix": "live-cells-and-activations",
+          "case": "cell/False/callback/False"
+        },
+        {
+          "matrix": "live-cells-and-activations",
+          "case": "cell/False/(callback,)[0]/False"
+        },
+        {
+          "matrix": "live-cells-and-activations",
+          "case": "cell/False/{\"cb\": callback}[\"cb\"]/False"
+        }
+      ]
+    }
+  ]
+}

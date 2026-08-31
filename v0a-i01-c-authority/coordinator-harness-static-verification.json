@@ -1,0 +1,33 @@
+{
+  "schema_version": "pontius-c-authority-harness-static-verification-v1",
+  "runner_sha256": "2fee06a156113ffecd54c319c4029300e11a8d7f26edc16be6ff8c396c33aa72",
+  "parent_sha256": "62bf07eb88845dfc30c3820aeb8c899ccfbe8111d811192485e2826a5ecfc20c",
+  "functions_and_classes": {
+    "Blocker": "AST unchanged except documented schema/output-directory string constants",
+    "require": "AST unchanged except documented schema/output-directory string constants",
+    "is_digest": "AST unchanged except documented schema/output-directory string constants",
+    "digest_bytes": "AST unchanged except documented schema/output-directory string constants",
+    "checked_path": "AST unchanged except documented schema/output-directory string constants",
+    "digest": "AST unchanged except documented schema/output-directory string constants",
+    "object_pairs": "AST unchanged except documented schema/output-directory string constants",
+    "json_bytes": "AST unchanged except documented schema/output-directory string constants",
+    "create": "AST unchanged except documented schema/output-directory string constants",
+    "runtime_identity": "AST unchanged except documented schema/output-directory string constants",
+    "require_control_runtime": "AST unchanged except documented schema/output-directory string constants",
+    "control_environment": "AST unchanged except documented schema/output-directory string constants",
+    "git_bytes": "AST unchanged except documented schema/output-directory string constants",
+    "source_hashes": "AST unchanged except documented schema/output-directory string constants",
+    "stored_hashes": "AST unchanged except documented schema/output-directory string constants",
+    "harness_hashes": "AST unchanged except documented schema/output-directory string constants",
+    "validate_target": "AST unchanged except documented schema/output-directory string constants",
+    "validate_setup_value": "AST unchanged except documented schema/output-directory string constants",
+    "load_setup": "AST unchanged except documented schema/output-directory string constants",
+    "prepare": "AST unchanged except documented schema/output-directory string constants",
+    "run": "AST unchanged except documented schema/output-directory string constants",
+    "main": "AST unchanged except documented schema/output-directory string constants"
+  },
+  "snapshot_metadata_sha256": "daf3c89d918cc8cf9294d5e7ef7ead16df6aea173e79e6a23292a76c18608110",
+  "frozen_paths_verified": 17,
+  "payloads_run": false,
+  "scope": "Static derivation comparison and source-bound preparation, not an independent runtime or security audit"
+}
