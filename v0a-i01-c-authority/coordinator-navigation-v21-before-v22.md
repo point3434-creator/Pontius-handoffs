@@ -163,16 +163,3 @@ remain static. Production, broad acceptance, final cold reviews and main
 integration are still open; no new performance or live-hand claim follows.
 
 [Navigation before this entry](coordinator-navigation-v20-before-v21.md).
-
-## R2 baseline closed; first source checkpoint active
-
-The fixed r2-base01 run completed on actual Python 3.11.15: twelve public
-attempts, twenty-four matching Model projections, seven expectations met and
-five planned semantic/mechanism failures. Custody, accounting, requested-unit
-reserve and observer lifecycle checks passed. No development run followed RED.
-
-See rewrite-r2-baseline-results-v1.md and its retained raw receipt and independent
-verification. The source writer may now implement only the first bounded identity
-branch checkpoint under rewrite-r2-source-checkpoint1-disposition-v1.md. C8fc is
-the immutable R1 baseline; new checkpoint bytes require their own frozen review.
-No main integration, broad acceptance or final cold review is complete.

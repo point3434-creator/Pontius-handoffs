@@ -1,0 +1,360 @@
+{
+  "kind": "independent R1 full-baseline custody and raw-record replay; no candidate or Model imports",
+  "harness_ref": "1ffb59efd95c4a41b87b92de8fd56f26801ff918",
+  "harness_manifest_sha256": "dcb016d9f4eb27d33d55ecba0d0a00ff87de1dccc76a90f095dc7230ac29a61d",
+  "receipt_sha256": "7b93ce869bca7697036e1f91bb31473d9c8f29dd51117c89f1544b4b1dda7382",
+  "source_sha256": "c8fc013d2be7599aa41b873552dd2a11191f2be1342d1a8f2bd04a39dc1dbd5f",
+  "snapshot_manifest_sha256": "65ad96b5d52cc57eea804e8a9bcb84012ad2d340a69b0a2caf28f205bda35521",
+  "snapshot_files_rehashed": 1778,
+  "harness_blobs_rehashed": 10,
+  "input_files_rehashed": 18,
+  "observation_complete": true,
+  "completed": false,
+  "success": false,
+  "lifecycle_ok": true,
+  "semantic_failures": [
+    "generator70",
+    "identity-scale-n8-s4-d0-normal",
+    "identity-scale-n64-s4-d0-normal",
+    "identity-scale-n8-s4-d2-exceptional",
+    "identity-scale-n64-s4-d2-exceptional"
+  ],
+  "mechanism_failures": [
+    "generator70",
+    "identity-scale-n8-s4-d0-normal",
+    "identity-scale-n64-s4-d0-normal",
+    "identity-scale-n8-s4-d2-exceptional",
+    "identity-scale-n64-s4-d2-exceptional"
+  ],
+  "reserve_violations": [],
+  "cases": [
+    {
+      "id": "shared-list-consumed",
+      "semantic_passed": true,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 8,
+          "reason": "reached protected class namespace write"
+        }
+      ],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 3565,
+      "total_requested_units": 6119,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 7,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "shared-list-dormant",
+      "semantic_passed": true,
+      "public_exception": null,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 5681,
+      "total_requested_units": 8210,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 7,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "class-adoption-unsafe",
+      "semantic_passed": true,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 11,
+          "reason": "reached protected class namespace write"
+        }
+      ],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 3826,
+      "total_requested_units": 6476,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 8,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "class-adoption-safe",
+      "semantic_passed": true,
+      "public_exception": null,
+      "argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "blockers": [],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 6692,
+      "total_requested_units": 9333,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 9,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "hidden-cell-joined-reached",
+      "semantic_passed": true,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 17,
+          "reason": "unsupported implicit truth protocol"
+        }
+      ],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 2797,
+      "total_requested_units": 5394,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 7,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "hidden-cell-joined-dormant",
+      "semantic_passed": true,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 17,
+          "reason": "unsupported implicit truth protocol"
+        }
+      ],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 2773,
+      "total_requested_units": 5350,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 7,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "helper65",
+      "semantic_passed": true,
+      "public_exception": {
+        "type": "InventoryError",
+        "message": "analysis helper depth exceeds 64",
+        "is_inventory_error": true
+      },
+      "argv": [],
+      "blockers": [],
+      "mechanism_met": true,
+      "unavailable": [],
+      "epoch_count": 8,
+      "maximum_epoch_requested_units": 22925,
+      "total_requested_units": 53303,
+      "lineage": {
+        "births": 4,
+        "forks": 2,
+        "completed_writes": 2,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "generator70",
+      "semantic_passed": false,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "fixture:tests/test_review.py",
+          "relative_path": "fixture:tests/test_review.py",
+          "line": 0,
+          "reason": "unsupported or unavailable canonical review entry"
+        },
+        {
+          "item_id": "fixture:tests/test_review.py::ReviewTests",
+          "relative_path": "fixture:tests/test_review.py",
+          "line": 0,
+          "reason": "unsupported or unavailable canonical review entry"
+        },
+        {
+          "item_id": "probe:gpu-availability",
+          "relative_path": "probe:gpu-availability",
+          "line": 0,
+          "reason": "unsupported or unavailable canonical review entry"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 5,
+          "reason": "unsupported reached expression: GeneratorExp"
+        }
+      ],
+      "mechanism_met": false,
+      "unavailable": [
+        "deferred_depth_origin"
+      ],
+      "epoch_count": 8,
+      "maximum_epoch_requested_units": 2892,
+      "total_requested_units": 7987,
+      "lineage": {
+        "births": 4,
+        "forks": 2,
+        "completed_writes": 2,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "identity-scale-n8-s4-d0-normal",
+      "semantic_passed": false,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 18,
+          "reason": "unsupported implicit truth protocol"
+        }
+      ],
+      "mechanism_met": false,
+      "unavailable": [
+        "identity_decisions",
+        "alternative_sink_occurrences"
+      ],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 2939,
+      "total_requested_units": 5263,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 12,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "identity-scale-n64-s4-d0-normal",
+      "semantic_passed": false,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 74,
+          "reason": "unsupported implicit truth protocol"
+        }
+      ],
+      "mechanism_met": false,
+      "unavailable": [
+        "identity_decisions",
+        "alternative_sink_occurrences"
+      ],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 14951,
+      "total_requested_units": 18339,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 68,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "identity-scale-n8-s4-d2-exceptional",
+      "semantic_passed": false,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 17,
+          "reason": "unsupported reached statement: Try"
+        }
+      ],
+      "mechanism_met": false,
+      "unavailable": [
+        "identity_decisions",
+        "alternative_sink_occurrences",
+        "work_raise_handler_pairs"
+      ],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 2386,
+      "total_requested_units": 5156,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 11,
+        "inheritance_at_fork_ordinal": true
+      }
+    },
+    {
+      "id": "identity-scale-n64-s4-d2-exceptional",
+      "semantic_passed": false,
+      "public_exception": null,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 73,
+          "reason": "unsupported reached statement: Try"
+        }
+      ],
+      "mechanism_met": false,
+      "unavailable": [
+        "identity_decisions",
+        "alternative_sink_occurrences",
+        "work_raise_handler_pairs"
+      ],
+      "epoch_count": 4,
+      "maximum_epoch_requested_units": 14286,
+      "total_requested_units": 18120,
+      "lineage": {
+        "births": 2,
+        "forks": 1,
+        "completed_writes": 67,
+        "inheritance_at_fork_ordinal": true
+      }
+    }
+  ],
+  "script_sha256": "6324e8068510f1c50d7a5edc5224fa52ab1d31ec9dfc1bcebd39dedbfa15093e"
+}
