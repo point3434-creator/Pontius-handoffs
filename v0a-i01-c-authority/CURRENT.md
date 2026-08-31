@@ -49,11 +49,20 @@ structural RED, with no analyzer or oracle failure. [Coordinator verification](c
 checks the pinned evidence and identical cross-slot counters. The hidden tuple-return
 sentinel demonstrates safe refusal, not precise joined-cell resolution.
 
-The storage prototype is being checked against ordinary dictionaries and actual
-legacy set-union ordering before production integration. Full ordering costs,
-terminal reads and failure paths must be included. W remains exact v19; no new
-production replacement is implemented or declared GREEN here. All five caps,
-test contracts and accepted A/B remain fixed.
+The isolated storage prototype passed 204 checks across actual Python 3.11.15
+and 3.14.6, each with hash seeds 0, 1 and 17. [Coordinator verification](coordinator-storage-verification-v1.json)
+rehashes the six snapshots and verifies exact order, retained versions, failed-read
+cache behavior and equal same-seed records across interpreters. Zero-change joins
+cost 36 units each at both 8 and 64 ambient names; construction, terminal ordering
+and retained-version reads still carry substantial, separately recorded costs.
+This establishes pure-storage compatibility, not ordinary-corpus GREEN.
+
+The [bounded port disposition](coordinator-storage-integration-disposition-v1.md)
+authorizes the next production edit in the isolated C worktree only. The source
+there is now an engineering work surface until its exact successor is returned
+and reviewed; v19 remains the last tested production source. All five caps, test
+contracts, accepted A/B and the other three C paths remain fixed. No main source
+integration or new frozen handoff is implied.
 
 Remaining order: complete the bounded repair; ordinary generation; preservation
 of all 2873 existing inventory entries and 141 canonical capability rows;

@@ -1,0 +1,958 @@
+{
+  "schema": "coordinator-storage-prototype-verification-v1",
+  "results": [
+    {
+      "slot": "311",
+      "seed": "0",
+      "receipt_sha256": "904feb5c199253f0b478e947df23e3d4a50242ecbbbbd0e231ef601ee4c149f1",
+      "log_sha256": "3b01256e7be5e1e7b547244e35f4fd6a9c4309c13ec1c4b5ff3d6dce0f2a91ea",
+      "cases": 34,
+      "grid": [
+        {
+          "case": "cost-grid-n8-j2-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 746,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 342
+          },
+          "total": 1756
+        },
+        {
+          "case": "cost-grid-n8-j2-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 996,
+            "validation": 21,
+            "joins": 489,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 918
+          },
+          "total": 3007
+        },
+        {
+          "case": "cost-grid-n8-j4-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 748,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 666
+          },
+          "total": 2458
+        },
+        {
+          "case": "cost-grid-n8-j4-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 1248,
+            "validation": 37,
+            "joins": 1007,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 1818
+          },
+          "total": 4989
+        },
+        {
+          "case": "cost-grid-n64-j2-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10909,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 2470
+          },
+          "total": 17183
+        },
+        {
+          "case": "cost-grid-n64-j2-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11435,
+            "validation": 21,
+            "joins": 936,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 6630
+          },
+          "total": 22741
+        },
+        {
+          "case": "cost-grid-n64-j4-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10911,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 4810
+          },
+          "total": 21357
+        },
+        {
+          "case": "cost-grid-n64-j4-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11963,
+            "validation": 37,
+            "joins": 1934,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 13130
+          },
+          "total": 32535
+        }
+      ],
+      "snapshot_rehashed_files": 1767,
+      "manifest_sha256": "3665f8e37953e27daa0dcbe87aef446611a2f0e479447994d4d80ad01cd68486"
+    },
+    {
+      "slot": "311",
+      "seed": "1",
+      "receipt_sha256": "4cb46d012c071c447708be605c363dd25d0f399a6187cf5d3554ea0f65e0de84",
+      "log_sha256": "cb1d2c8f87b049941c993760ca8eed2120893d4e632cd8e32bc596dcc6711dc8",
+      "cases": 34,
+      "grid": [
+        {
+          "case": "cost-grid-n8-j2-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 746,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 342
+          },
+          "total": 1756
+        },
+        {
+          "case": "cost-grid-n8-j2-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 996,
+            "validation": 21,
+            "joins": 489,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 918
+          },
+          "total": 3007
+        },
+        {
+          "case": "cost-grid-n8-j4-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 748,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 666
+          },
+          "total": 2458
+        },
+        {
+          "case": "cost-grid-n8-j4-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 1248,
+            "validation": 37,
+            "joins": 1007,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 1818
+          },
+          "total": 4989
+        },
+        {
+          "case": "cost-grid-n64-j2-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10909,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 2470
+          },
+          "total": 17183
+        },
+        {
+          "case": "cost-grid-n64-j2-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11435,
+            "validation": 21,
+            "joins": 936,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 6630
+          },
+          "total": 22741
+        },
+        {
+          "case": "cost-grid-n64-j4-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10911,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 4810
+          },
+          "total": 21357
+        },
+        {
+          "case": "cost-grid-n64-j4-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11963,
+            "validation": 37,
+            "joins": 1934,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 13130
+          },
+          "total": 32535
+        }
+      ],
+      "snapshot_rehashed_files": 1767,
+      "manifest_sha256": "3665f8e37953e27daa0dcbe87aef446611a2f0e479447994d4d80ad01cd68486"
+    },
+    {
+      "slot": "311",
+      "seed": "17",
+      "receipt_sha256": "8d962e9971311a691e71972dd9ca3ebd33db92134866c95c85a3201b51575b98",
+      "log_sha256": "1558ec420d91752ebbbcb6221253f593ffda789fd4e7915f0355249302b4fa37",
+      "cases": 34,
+      "grid": [
+        {
+          "case": "cost-grid-n8-j2-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 746,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 342
+          },
+          "total": 1756
+        },
+        {
+          "case": "cost-grid-n8-j2-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 996,
+            "validation": 21,
+            "joins": 489,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 918
+          },
+          "total": 3007
+        },
+        {
+          "case": "cost-grid-n8-j4-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 748,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 666
+          },
+          "total": 2458
+        },
+        {
+          "case": "cost-grid-n8-j4-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 1248,
+            "validation": 37,
+            "joins": 1007,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 1818
+          },
+          "total": 4989
+        },
+        {
+          "case": "cost-grid-n64-j2-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10909,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 2470
+          },
+          "total": 17183
+        },
+        {
+          "case": "cost-grid-n64-j2-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11435,
+            "validation": 21,
+            "joins": 936,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 6630
+          },
+          "total": 22741
+        },
+        {
+          "case": "cost-grid-n64-j4-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10911,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 4810
+          },
+          "total": 21357
+        },
+        {
+          "case": "cost-grid-n64-j4-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11963,
+            "validation": 37,
+            "joins": 1934,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 13130
+          },
+          "total": 32535
+        }
+      ],
+      "snapshot_rehashed_files": 1767,
+      "manifest_sha256": "3665f8e37953e27daa0dcbe87aef446611a2f0e479447994d4d80ad01cd68486"
+    },
+    {
+      "slot": "314",
+      "seed": "0",
+      "receipt_sha256": "ce7b69ec24a4dd351c2be86ea4a0b08a277fb5cc3ed9e8e2e99a7ae486f09e93",
+      "log_sha256": "1db0e993e19f884463d13d1110805d3945b0d5759474b224fcfea2e35acc11e8",
+      "cases": 34,
+      "grid": [
+        {
+          "case": "cost-grid-n8-j2-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 746,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 342
+          },
+          "total": 1756
+        },
+        {
+          "case": "cost-grid-n8-j2-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 996,
+            "validation": 21,
+            "joins": 489,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 918
+          },
+          "total": 3007
+        },
+        {
+          "case": "cost-grid-n8-j4-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 748,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 666
+          },
+          "total": 2458
+        },
+        {
+          "case": "cost-grid-n8-j4-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 1248,
+            "validation": 37,
+            "joins": 1007,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 1818
+          },
+          "total": 4989
+        },
+        {
+          "case": "cost-grid-n64-j2-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10909,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 2470
+          },
+          "total": 17183
+        },
+        {
+          "case": "cost-grid-n64-j2-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11435,
+            "validation": 21,
+            "joins": 936,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 6630
+          },
+          "total": 22741
+        },
+        {
+          "case": "cost-grid-n64-j4-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10911,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 4810
+          },
+          "total": 21357
+        },
+        {
+          "case": "cost-grid-n64-j4-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11963,
+            "validation": 37,
+            "joins": 1934,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 13130
+          },
+          "total": 32535
+        }
+      ],
+      "snapshot_rehashed_files": 1767,
+      "manifest_sha256": "3665f8e37953e27daa0dcbe87aef446611a2f0e479447994d4d80ad01cd68486"
+    },
+    {
+      "slot": "314",
+      "seed": "1",
+      "receipt_sha256": "d41d2d7f78cb4a7bfdb62bfa4a7a7acebf7ba5001f48bfdfbff643b761852216",
+      "log_sha256": "a90648c9a6861173397475de7f55244852c9926df960af4edf43688dfcf0a0e5",
+      "cases": 34,
+      "grid": [
+        {
+          "case": "cost-grid-n8-j2-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 746,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 342
+          },
+          "total": 1756
+        },
+        {
+          "case": "cost-grid-n8-j2-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 996,
+            "validation": 21,
+            "joins": 489,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 918
+          },
+          "total": 3007
+        },
+        {
+          "case": "cost-grid-n8-j4-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 748,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 666
+          },
+          "total": 2458
+        },
+        {
+          "case": "cost-grid-n8-j4-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 1248,
+            "validation": 37,
+            "joins": 1007,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 1818
+          },
+          "total": 4989
+        },
+        {
+          "case": "cost-grid-n64-j2-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10909,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 2470
+          },
+          "total": 17183
+        },
+        {
+          "case": "cost-grid-n64-j2-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11435,
+            "validation": 21,
+            "joins": 936,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 6630
+          },
+          "total": 22741
+        },
+        {
+          "case": "cost-grid-n64-j4-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10911,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 4810
+          },
+          "total": 21357
+        },
+        {
+          "case": "cost-grid-n64-j4-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11963,
+            "validation": 37,
+            "joins": 1934,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 13130
+          },
+          "total": 32535
+        }
+      ],
+      "snapshot_rehashed_files": 1767,
+      "manifest_sha256": "3665f8e37953e27daa0dcbe87aef446611a2f0e479447994d4d80ad01cd68486"
+    },
+    {
+      "slot": "314",
+      "seed": "17",
+      "receipt_sha256": "b2bd3f97361ed58c5a501277ed87db00973983d53cda91e308fe8580e21820a1",
+      "log_sha256": "ce953878ab783e207c6a1b9ecd29f8e6c27d72a5a3543edf7ad44f21fa7c4b59",
+      "cases": 34,
+      "grid": [
+        {
+          "case": "cost-grid-n8-j2-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 746,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 342
+          },
+          "total": 1756
+        },
+        {
+          "case": "cost-grid-n8-j2-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 996,
+            "validation": 21,
+            "joins": 489,
+            "terminal_order": 547,
+            "repeated_order": 36,
+            "retained_order_audit": 918
+          },
+          "total": 3007
+        },
+        {
+          "case": "cost-grid-n8-j4-d0",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 748,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 666
+          },
+          "total": 2458
+        },
+        {
+          "case": "cost-grid-n8-j4-d2",
+          "parameters": {
+            "ambient": 8,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 1248,
+            "validation": 37,
+            "joins": 1007,
+            "terminal_order": 843,
+            "repeated_order": 36,
+            "retained_order_audit": 1818
+          },
+          "total": 4989
+        },
+        {
+          "case": "cost-grid-n64-j2-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10909,
+            "validation": 13,
+            "joins": 72,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 2470
+          },
+          "total": 17183
+        },
+        {
+          "case": "cost-grid-n64-j2-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 2,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11435,
+            "validation": 21,
+            "joins": 936,
+            "terminal_order": 3459,
+            "repeated_order": 260,
+            "retained_order_audit": 6630
+          },
+          "total": 22741
+        },
+        {
+          "case": "cost-grid-n64-j4-d0",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 0
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 10911,
+            "validation": 21,
+            "joins": 144,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 4810
+          },
+          "total": 21357
+        },
+        {
+          "case": "cost-grid-n64-j4-d2",
+          "parameters": {
+            "ambient": 64,
+            "joins": 4,
+            "changed": 2
+          },
+          "phase_units": {
+            "meter_initialization": 0,
+            "construction": 11963,
+            "validation": 37,
+            "joins": 1934,
+            "terminal_order": 5211,
+            "repeated_order": 260,
+            "retained_order_audit": 13130
+          },
+          "total": 32535
+        }
+      ],
+      "snapshot_rehashed_files": 1767,
+      "manifest_sha256": "3665f8e37953e27daa0dcbe87aef446611a2f0e479447994d4d80ad01cd68486"
+    }
+  ],
+  "completed_checks": 204,
+  "input_pins": {
+    "engineer-storage-prototype-v2.py": "22cc3966435fd4e6e0cecbcbb242275e72d34b36c835b4e960c7c712613822ff",
+    "engineer-storage-control-v2.py": "8a1d17448ad7a7298a5fda5a78261c04ad4567996b3f474b8853b915a06b400e",
+    "engineer-storage-run-config-v1.json": "07351a2ba5b508c43a5eee009a9be5365b18e1a6d01cb156ce9f55402786d316",
+    "tests-checks/storage-oracle-v2.py": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba",
+    "tests-checks/storage-oracle-cases-v2.json": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f"
+  },
+  "all_twenty_predecessor_cases_preserved": true,
+  "matching_seed_cross_interpreter_records_equal": true,
+  "preserved_source_and_controller_files": {
+    "D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1\\tools\\generate_test_inventory.py": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+    "D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1\\tests\\test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "D:\\Pontius\\CLAUDE.md": "af06aad6ec36b91a4e942d7cfc1d3560555ae60e50b023270a0807f247b32b76",
+    "D:\\Pontius\\docs\\workflow.md": "d9de38ede87fb619b3045a60ee7fab137ae23ba3b580c0a6d6b3ca14e567a170"
+  },
+  "verification_control_sha256": "f12cd559498de409cad74b32fb85094efb75f531c07e6ff8f4b8e54cbe7d1e06",
+  "limits": [
+    "Pure storage compatibility only; no production transfer or cells executed.",
+    "Includes construction, terminal order, repeated order, validation and retained-version audit costs.",
+    "No ordinary-corpus or production-performance claim.",
+    "Storage oracle plan v2 note was finalized after execution; case/oracle/control bytes were pinned before all six runs."
+  ]
+}
