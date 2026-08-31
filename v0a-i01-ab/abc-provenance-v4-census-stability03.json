@@ -1,0 +1,25 @@
+{
+  "input_sha256": {
+    "slice-c-provenance-v4-census-311-02.json": "9bcfda6943bd3399eb96a71e9cfcbcfb51fcc2d3581e54cb100e3aeeb738cda6",
+    "slice-c-provenance-v4-census-311-03.json": "e376d66e178c24af8965e937396464f8ed9267d1abe59ba929ddbf87f9bb8490",
+    "abc-provenance-v4-census-refresh01.json": "c326b88e7e6128f8e774e83b22d6e48f9825c0931a5cba36fe29204977a0d159",
+    "abc-provenance-v4-census-refresh02.json": "231e42b76440dedaa24438e096014ab730f77e396fd20a25b94964d3413c2be1",
+    "abc-provenance-v4-focused01-snapshot-v2.json": "b57b5bd719873f0fc9e606dfb5e1089342653425b55ae1b582197400096ef1b3"
+  },
+  "all_asserted_census_values_stable": true,
+  "asserted_fields_checked": [
+    "analysis_census",
+    "blocker_count",
+    "blocker_reason_counts",
+    "dynamic sensitive call result is unresolved",
+    "unregistered CuPy call is unresolved",
+    "deferred generator consumption is dynamically unresolved"
+  ],
+  "all_expanded_rows_identical": 141,
+  "all_blocker_records_identical": 1243,
+  "decoy_digest": "fb08cf306902edeb9c878005d50e0d83f89295f17b5f36d41bd129291f4552d8",
+  "generator_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "test_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "all_census_bound_inputs_rechecked": true,
+  "source_corpus_file_count": 405
+}

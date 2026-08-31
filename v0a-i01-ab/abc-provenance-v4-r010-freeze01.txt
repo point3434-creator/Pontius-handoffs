@@ -1,0 +1,34 @@
+{
+  "schema_version": "pontius-handoff-candidate-v1",
+  "task_id": "v0a-i01-ab",
+  "round": "r010",
+  "ref": "refs/heads/review/v0a-i01-ab/r010",
+  "commit": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "base": "d1ed3cbda6107d61ea8e77133871720af04970cd",
+  "tree": "21d7aeb7a6a5d5c6cd599e9467e838dd888c828d",
+  "manifest_sha256": "8741fa20b1ebc7e9e9d226f463680c603c348f1332bf19c8ae12b29579f76deb",
+  "date": "2026-08-30"
+}
+{
+  "packet": "D:\\Pontius-handoffs\\v0a-i01-ab\\r010",
+  "candidate": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-i01-ab",
+    "round": "r010",
+    "ref": "refs/heads/review/v0a-i01-ab/r010",
+    "commit": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+    "base": "d1ed3cbda6107d61ea8e77133871720af04970cd",
+    "tree": "21d7aeb7a6a5d5c6cd599e9467e838dd888c828d",
+    "manifest_sha256": "8741fa20b1ebc7e9e9d226f463680c603c348f1332bf19c8ae12b29579f76deb",
+    "date": "2026-08-30"
+  },
+  "coverage_sha256": "75513c3217e4f8bde476f6dcd7ddb214a4bd14b78161a0c980e31a39b3a3875f",
+  "acceptance_sha256": "889f0bb7508e22ac668b99165cdccf4b75ee0ada67ce50c1e12e20a1f2153da4",
+  "protocol_sha256": "ed025d87b3e3544e09861f6068d97cde38175f051ea87b3f69ac58992f9d9fbb",
+  "fix_delta": [
+    "tests/test-inventory.json",
+    "tests/test_inventory_and_profiles.py",
+    "tools/generate_test_inventory.py"
+  ],
+  "main_unchanged": true
+}

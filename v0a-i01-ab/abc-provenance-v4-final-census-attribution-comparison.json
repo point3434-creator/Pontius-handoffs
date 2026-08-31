@@ -1,0 +1,3226 @@
+{
+  "schema_version": "abc-provenance-v4-final-census-attribution-comparison-v1",
+  "standing": "Static artifact comparison and source attribution only; not a cold review, runtime validation, approval, or acceptance verdict.",
+  "old_census": {
+    "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\slice-c-provenance-v3-census-311-03.json",
+    "sha256": "42013dfbe68bf17a04dc48080f40191b3b89bde617bda59177c31a15edcef9a4",
+    "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness"
+  },
+  "final_census": {
+    "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\slice-c-provenance-v4-census-311-01.json",
+    "sha256": "279003a00735795c63a1e3f0e292499669ccd320abb2c7bef5f5f4dced0f3a82",
+    "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness"
+  },
+  "verified_source_hashes": [
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tools/generate_test_inventory.py",
+      "sha256": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tools/generate_dependency_baseline.py",
+      "sha256": "690845a3be276057196fbf86e5c795093c15bb3de54ab0bf413ea5529f8f9397"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test-inventory.json",
+      "sha256": "5dc7c91bb6f99f7a70d6c93159336d07db04555103048106878d7dea047ee46d"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test-profiles.toml",
+      "sha256": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_inventory_and_profiles.py",
+      "sha256": "a3b580a72851ca2d4dd359259c1897326a3c8048119fc6169a65a2fc50c8b102"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py",
+      "sha256": "6b48a6d872466a98a2616619776f35933fc6998db2c10c2c30387ded6f7f9d71"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_native_simplex_audit_reanalysis.py",
+      "sha256": "d95fba06549273fcb43fabf4a25370f6bdd7ab752592bfccc46f77ef6df17f25"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_native_simplex_audit_runner.py",
+      "sha256": "5ad48f15fa0dbaaf3cc6a06b86cf7bec3f914247664765eb8e9f7f162642ccb2"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_evidence_manifest_generation.py",
+      "sha256": "f9f4d7fe68dbea51b563693c13205ddc494d9fced4454b4017ff7f07adaea55a"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_v0a_replay.py",
+      "sha256": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_test_orchestration_configuration.py",
+      "sha256": "1525b28913510f073593d45ee6fca3ade32025f320c21e4e27983d4f039fbfec"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v3-focused02-f4be93d4192b4c1fadfe5b53aafc515c\\harness",
+      "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py",
+      "sha256": "cfeff758eebf81201536e26899fbdfc8c0d3b9857cf2e51e242878a1cda8f130"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tools/generate_test_inventory.py",
+      "sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tools/generate_dependency_baseline.py",
+      "sha256": "690845a3be276057196fbf86e5c795093c15bb3de54ab0bf413ea5529f8f9397"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test-inventory.json",
+      "sha256": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test-profiles.toml",
+      "sha256": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_inventory_and_profiles.py",
+      "sha256": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py",
+      "sha256": "6b48a6d872466a98a2616619776f35933fc6998db2c10c2c30387ded6f7f9d71"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_native_simplex_audit_reanalysis.py",
+      "sha256": "d95fba06549273fcb43fabf4a25370f6bdd7ab752592bfccc46f77ef6df17f25"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_native_simplex_audit_runner.py",
+      "sha256": "5ad48f15fa0dbaaf3cc6a06b86cf7bec3f914247664765eb8e9f7f162642ccb2"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_evidence_manifest_generation.py",
+      "sha256": "f9f4d7fe68dbea51b563693c13205ddc494d9fced4454b4017ff7f07adaea55a"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_v0a_replay.py",
+      "sha256": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_test_orchestration_configuration.py",
+      "sha256": "1525b28913510f073593d45ee6fca3ade32025f320c21e4e27983d4f039fbfec"
+    },
+    {
+      "snapshot": "D:\\pontius-snapshots\\abc-provenance-v4-census01-1a1bba2793f5489e9c98a94027a13f8b\\harness",
+      "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py",
+      "sha256": "cfeff758eebf81201536e26899fbdfc8c0d3b9857cf2e51e242878a1cda8f130"
+    }
+  ],
+  "changed_source_corpus_files": [
+    {
+      "relative_path": "tests/test_inventory_and_profiles.py",
+      "old_sha256": "a3b580a72851ca2d4dd359259c1897326a3c8048119fc6169a65a2fc50c8b102",
+      "new_sha256": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+    }
+  ],
+  "source_line_mapping": {
+    "relative_path": "tests/test_inventory_and_profiles.py",
+    "inserted_final_lines": [
+      21137,
+      21577
+    ],
+    "inserted_count": 441,
+    "old_lines_from": 21137,
+    "old_to_final_offset": 441,
+    "removing_insertion_restores_old_source_exactly": true,
+    "new_methods": [
+      {
+        "line": 21138,
+        "name": "test_callable_authority_escape_is_independent_of_incidental_owner_loads"
+      },
+      {
+        "line": 21187,
+        "name": "test_callable_authority_preserves_dormant_and_unrelated_bodies"
+      },
+      {
+        "line": 21212,
+        "name": "test_callable_authority_implicit_execution_cannot_hide_owner_writes"
+      },
+      {
+        "line": 21248,
+        "name": "test_callable_authority_forwarded_inputs_follow_execution_order"
+      },
+      {
+        "line": 21306,
+        "name": "test_callable_authority_async_creation_retains_only_future_effects"
+      },
+      {
+        "line": 21322,
+        "name": "test_callable_authority_protocol_forwarding_retains_effect_context"
+      },
+      {
+        "line": 21347,
+        "name": "test_callable_authority_construction_defaults_and_deferred_identity"
+      },
+      {
+        "line": 21381,
+        "name": "test_callable_authority_decorator_application_uses_the_call_context"
+      },
+      {
+        "line": 21396,
+        "name": "test_callable_authority_annotations_refuse_without_inventing_execution"
+      },
+      {
+        "line": 21459,
+        "name": "test_callable_authority_native_storage_retains_without_invoking"
+      },
+      {
+        "line": 21490,
+        "name": "test_callable_authority_missing_free_proof_is_an_obligation"
+      },
+      {
+        "line": 21513,
+        "name": "test_callable_authority_descriptor_construction_refuses_effects"
+      },
+      {
+        "line": 21534,
+        "name": "test_callable_authority_class_construction_uses_source_point_bindings"
+      }
+    ]
+  },
+  "capabilities": {
+    "expanded_rows_exactly_equal": true,
+    "old_expanded_count": 141,
+    "final_expanded_count": 141,
+    "spec_sha256": "d303a26e373f0b173a4283dcede5735fdae6b849fdb0cb0ffcddec9017e8012a",
+    "analyzed_sites_sha256": "3170f99166d98d3879109a0d02ea68a096bf096ae79e1d0ab871d6ba764f6020",
+    "old_analysis_census": {
+      "analyzed_sites_sha256": "3170f99166d98d3879109a0d02ea68a096bf096ae79e1d0ab871d6ba764f6020",
+      "cross_file_helper_edge_count": 27,
+      "cupy_call_node_count": 30,
+      "string_sink_decoy_count": 599,
+      "string_sink_decoy_partitions": {
+        "design_production": 17,
+        "historical_production": 6,
+        "prior_stabilization_synthetic": 34,
+        "task2_synthetic": 542
+      },
+      "string_sink_decoy_sha256": "2136e9e38c556de45235202b2b38f729f35b7ef5ff3678932575c4c1e35689db",
+      "subprocess_direct_site_count": 45,
+      "subprocess_helper_site_count": 5
+    },
+    "final_analysis_census": {
+      "analyzed_sites_sha256": "3170f99166d98d3879109a0d02ea68a096bf096ae79e1d0ab871d6ba764f6020",
+      "cross_file_helper_edge_count": 27,
+      "cupy_call_node_count": 30,
+      "string_sink_decoy_count": 601,
+      "string_sink_decoy_partitions": {
+        "design_production": 17,
+        "historical_production": 6,
+        "prior_stabilization_synthetic": 34,
+        "task2_synthetic": 544
+      },
+      "string_sink_decoy_sha256": "69c33850d37e91651ca1e8b836d2c3262ab4e6487634d16e8873e6df2c8c0424",
+      "subprocess_direct_site_count": 45,
+      "subprocess_helper_site_count": 5
+    },
+    "old_deny_count": 2801,
+    "final_deny_count": 2814,
+    "deny_removed": [],
+    "deny_added": [
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_annotations_refuse_without_inventing_execution",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_async_creation_retains_only_future_effects",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_class_construction_uses_source_point_bindings",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_construction_defaults_and_deferred_identity",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_decorator_application_uses_the_call_context",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_descriptor_construction_refuses_effects",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_escape_is_independent_of_incidental_owner_loads",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_forwarded_inputs_follow_execution_order",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_implicit_execution_cannot_hide_owner_writes",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_missing_free_proof_is_an_obligation",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_native_storage_retains_without_invoking",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_preserves_dormant_and_unrelated_bodies",
+        "item_kind": "stable_id"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_protocol_forwarding_retains_effect_context",
+        "item_kind": "stable_id"
+      }
+    ],
+    "universe_removed": [],
+    "universe_added": [
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_annotations_refuse_without_inventing_execution"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_async_creation_retains_only_future_effects"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_class_construction_uses_source_point_bindings"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_construction_defaults_and_deferred_identity"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_decorator_application_uses_the_call_context"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_descriptor_construction_refuses_effects"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_escape_is_independent_of_incidental_owner_loads"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_forwarded_inputs_follow_execution_order"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_implicit_execution_cannot_hide_owner_writes"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_missing_free_proof_is_an_obligation"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_native_storage_retains_without_invoking"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_preserves_dormant_and_unrelated_bodies"
+      ],
+      [
+        "stable_id",
+        "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_protocol_forwarding_retains_effect_context"
+      ]
+    ]
+  },
+  "blockers": {
+    "old_total": 895,
+    "final_total": 1243,
+    "net_delta": 348,
+    "old_unique_tuple_count": 693,
+    "final_unique_tuple_count": 1019,
+    "old_repeated_instances": 202,
+    "final_repeated_instances": 224,
+    "key_fields": [
+      "item_id",
+      "relative_path",
+      "line",
+      "reason"
+    ],
+    "multiplicity_preserved": true,
+    "raw_removed_count": 32,
+    "raw_removed": [
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests",
+        "line": 145,
+        "reason": "helper descriptor member identity is unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "line": 21337,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "line": 21339,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_descriptor_defaults_preserve_real_python_argument_binding",
+        "line": 21416,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "line": 21469,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "line": 21478,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "line": 21526,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "line": 21529,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_invalid_static_helper_arguments_remain_blocked",
+        "line": 21568,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+        "line": 21679,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+        "line": 21775,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24489,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24514,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24532,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24541,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24541,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24541,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24669,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24670,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24673,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24707,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24712,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24760,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24765,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 24821,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_marks_one_commit_and_never_rolls_back_after_cleanup_failure",
+        "line": 25394,
+        "reason": "helper namespace store is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_marks_one_commit_and_never_rolls_back_after_cleanup_failure",
+        "line": 25395,
+        "reason": "helper namespace store is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_baseline_counts_digests_and_materialized_partition_are_exact",
+        "line": 30383,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_historical_payload_subgroups_have_independently_locked_ids",
+        "line": 30701,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_exact_declared_unconditional_skips_match_outer_literal_and_digest",
+        "line": 30771,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_exact_interpreter_slots_profiles_and_budgets_are_declared",
+        "line": 30921,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_twelve_historical_cases_bind_exact_commits_trees_and_v7_overlays",
+        "line": 30978,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      }
+    ],
+    "offset_only_removed_count": 31,
+    "offset_only_removed_with_final_line": [
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21337,
+        "final_line": 21778,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21339,
+        "final_line": 21780,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_descriptor_defaults_preserve_real_python_argument_binding",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21416,
+        "final_line": 21857,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21469,
+        "final_line": 21910,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21478,
+        "final_line": 21919,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21526,
+        "final_line": 21967,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21529,
+        "final_line": 21970,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_invalid_static_helper_arguments_remain_blocked",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21568,
+        "final_line": 22009,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21679,
+        "final_line": 22120,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 21775,
+        "final_line": 22216,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24489,
+        "final_line": 24930,
+        "reason": "helper namespace escape is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24514,
+        "final_line": 24955,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24532,
+        "final_line": 24973,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24541,
+        "final_line": 24982,
+        "reason": "helper namespace escape is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24541,
+        "final_line": 24982,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24541,
+        "final_line": 24982,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24669,
+        "final_line": 25110,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24670,
+        "final_line": 25111,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24673,
+        "final_line": 25114,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24707,
+        "final_line": 25148,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24712,
+        "final_line": 25153,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24760,
+        "final_line": 25201,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24765,
+        "final_line": 25206,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 24821,
+        "final_line": 25262,
+        "reason": "helper namespace identity was mutated"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_marks_one_commit_and_never_rolls_back_after_cleanup_failure",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 25394,
+        "final_line": 25835,
+        "reason": "helper namespace store is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_marks_one_commit_and_never_rolls_back_after_cleanup_failure",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 25395,
+        "final_line": 25836,
+        "reason": "helper namespace store is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_baseline_counts_digests_and_materialized_partition_are_exact",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 30383,
+        "final_line": 30824,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_historical_payload_subgroups_have_independently_locked_ids",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 30701,
+        "final_line": 31142,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_exact_declared_unconditional_skips_match_outer_literal_and_digest",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 30771,
+        "final_line": 31212,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_exact_interpreter_slots_profiles_and_budgets_are_declared",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 30921,
+        "final_line": 31362,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_twelve_historical_cases_bind_exact_commits_trees_and_v7_overlays",
+        "relative_path": "tests/test_inventory_and_profiles.py",
+        "old_line": 30978,
+        "final_line": 31419,
+        "reason": "mixed protected receiver is dynamically unresolved"
+      }
+    ],
+    "semantic_removed_count": 1,
+    "semantic_removed": [
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests",
+        "line": 145,
+        "reason": "helper descriptor member identity is unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      }
+    ],
+    "semantic_added_count": 349,
+    "semantic_added": [
+      {
+        "item_id": "tests/test_behavioral_one_seat_master_v2.py::BehavioralOneSeatMasterV2Tests::test_finite_dual_mutation_cannot_overstate_certified_lower_bound",
+        "line": 98,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_behavioral_one_seat_master_v2.py"
+      },
+      {
+        "item_id": "tests/test_behavioral_one_seat_master_v2.py::BehavioralOneSeatMasterV2Tests::test_nonfinite_solver_primal_fails_closed_before_diagnostics",
+        "line": 124,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_behavioral_one_seat_master_v2.py"
+      },
+      {
+        "item_id": "tests/test_behavioral_one_seat_master_v2.py::BehavioralOneSeatMasterV2Tests::test_probability_violation_never_scales_with_a_large_chip_cap",
+        "line": 148,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_behavioral_one_seat_master_v2.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SolverTests::test_backend_exception_is_typed_once_and_preserves_its_cause",
+        "line": 445,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_consumer_v2.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SolverTests::test_corrupt_public_results_reject_after_exactly_one_call",
+        "line": 491,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_consumer_v2.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_public_highs_options_and_trusted_box_are_exact",
+        "line": 210,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_backend_status_shape_finiteness_and_objective_fail_closed",
+        "line": 258,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_probability_and_certificate_mutations_fail_closed",
+        "line": 272,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_probability_and_certificate_mutations_fail_closed",
+        "line": 283,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_invalid_exact_input_and_nonsemantic_bundle_fail_before_backend",
+        "line": 297,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_invalid_exact_input_and_nonsemantic_bundle_fail_before_backend",
+        "line": 308,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_invalid_exact_input_and_nonsemantic_bundle_fail_before_backend",
+        "line": 319,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_reduced_sizing_highs.py"
+      },
+      {
+        "item_id": "tests/test_certified_sizing_validation_runner.py::CertifiedSizingValidationSourceTests::test_toy_executor_cannot_mark_the_sealed_plan_as_executed",
+        "line": 304,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_sizing_validation_runner.py"
+      },
+      {
+        "item_id": "tests/test_certified_sizing_validation_runner.py::CertifiedSizingValidationToyTests::test_backend_exception_does_not_truncate_the_next_task",
+        "line": 329,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_certified_sizing_validation_runner.py"
+      },
+      {
+        "item_id": "tests/test_durable_evidence_journal.py::DurableEvidenceJournalTests::test_writer_orders_write_flush_fsync_before_receipt",
+        "line": 231,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_durable_evidence_journal.py"
+      },
+      {
+        "item_id": "tests/test_durable_evidence_journal.py::DurableEvidenceJournalTests::test_writer_orders_write_flush_fsync_before_receipt",
+        "line": 237,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_durable_evidence_journal.py"
+      },
+      {
+        "item_id": "tests/test_durable_evidence_journal.py::DurableEvidenceJournalTests::test_writer_orders_write_flush_fsync_before_receipt",
+        "line": 238,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_durable_evidence_journal.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_stage_is_bound_after_its_last_path_reverification",
+        "line": 1031,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_replace_is_bound_after_its_last_path_reverification",
+        "line": 1085,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_cleanup_is_bound_after_its_last_path_reverification",
+        "line": 1143,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_staged_temp_rejects_a_second_writer_while_owned",
+        "line": 1204,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_native_create_rejects_malformed_status_and_api_errors",
+        "line": 1344,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_native_create_rejects_malformed_status_and_api_errors",
+        "line": 1365,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_native_rename_disposition_and_close_errors_are_typed",
+        "line": 1397,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_file_api_fault_matrix_is_typed_one_variable_at_a_time",
+        "line": 1475,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_create_fault_matrix_varies_one_result_at_a_time",
+        "line": 1653,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_rename_and_disposition_status_channels_are_independent",
+        "line": 1700,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_malformed_create_is_registered_before_validation_cleanup",
+        "line": 1916,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_evidence_manifest_generation.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_greedy.py::FreshActionWidthGreedyTests",
+        "line": 126,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_greedy.py::FreshActionWidthGreedyTests::test_closed_campaign_rejects_before_reaching_consumer",
+        "line": 469,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_greedy.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_greedy_result.py::FreshActionWidthNonReplayGreedyResultTests",
+        "line": 61,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_greedy_result.py::FreshActionWidthNonReplayGreedyResultTests",
+        "line": 66,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_greedy_result.py::FreshActionWidthNonReplayGreedyResultTests",
+        "line": 71,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests",
+        "line": 96,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_graph_call_slots_and_response_closure_are_exact_and_solver_free",
+        "line": 217,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_real_teacher_counterpart_rebind_is_exact_without_a_consumer",
+        "line": 323,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_rejection_and_unexpected_exception_stop_without_a_next_call",
+        "line": 378,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_receipt_authority_append_failure_and_same_count_drift_are_typed",
+        "line": 450,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_receipt_authority_append_failure_and_same_count_drift_are_typed",
+        "line": 461,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_greedy.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification_result.py::FreshActionWidthNonReplayQualificationResultTests::test_exact_journal_rebinds_solver_free_and_without_reinvocation",
+        "line": 81,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification_result.py::FreshActionWidthNonReplayQualificationResultTests::test_exact_journal_rebinds_solver_free_and_without_reinvocation",
+        "line": 86,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification_result.py::FreshActionWidthNonReplayQualificationResultTests::test_exact_journal_rebinds_solver_free_and_without_reinvocation",
+        "line": 91,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests",
+        "line": 141,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_schedule_is_complete_ordered_candidate_blind_and_consumer_free",
+        "line": 239,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 334,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 342,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 344,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 345,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 346,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 347,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 348,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+        "line": 349,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 475,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 483,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 485,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 489,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 490,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_observation_and_terminal_append_failures_preserve_receipted_evidence",
+        "line": 505,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_observation_and_terminal_append_failures_preserve_receipted_evidence",
+        "line": 543,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_public_runner_preflight_and_exclusive_create_fail_without_a_call",
+        "line": 580,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_public_runner_preflight_and_exclusive_create_fail_without_a_call",
+        "line": 608,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_qualification.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_teacher_result.py::FreshActionWidthNonReplayTeacherResultTests",
+        "line": 57,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_teacher_result.py::FreshActionWidthNonReplayTeacherResultTests",
+        "line": 62,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_nonreplay_teacher_result.py::FreshActionWidthNonReplayTeacherResultTests",
+        "line": 67,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_schedule_is_exact_ordered_panel_bound_and_consumer_free",
+        "line": 192,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 381,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 382,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 384,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 388,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+        "line": 392,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_representative_prefixes_and_torn_tail_rebind_without_solving",
+        "line": 436,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 476,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 477,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 478,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 492,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 505,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 507,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 511,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 512,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+        "line": 513,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_public_runner_preflight_and_exclusive_create_never_call_on_failure",
+        "line": 525,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_public_runner_preflight_and_exclusive_create_never_call_on_failure",
+        "line": 560,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_nonreplay_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_qualification.py::FreshActionWidthQualificationSourceTests::test_value_free_schedule_is_complete_ordered_and_sealed",
+        "line": 205,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_qualification.py::FreshActionWidthQualificationSourceTests::test_preflight_rejection_makes_no_consumer_call",
+        "line": 404,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_qualification.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_teacher_result.py::FreshActionWidthTeacherResultTests",
+        "line": 52,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_teacher_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_teacher_result.py::FreshActionWidthTeacherResultTests",
+        "line": 57,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_teacher_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests",
+        "line": 121,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests::test_preflight_and_unexpected_execution_fail_without_hidden_retry",
+        "line": 423,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests::test_no_clobber_artifact_retention_is_canonical_and_verified",
+        "line": 508,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_teacher.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation_result.py::FreshActionWidthTransferConfirmationResultTests::test_exact_journal_rebinds_without_runner_consumer_solver_or_writer",
+        "line": 88,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation_result.py::FreshActionWidthTransferConfirmationResultTests::test_exact_journal_rebinds_without_runner_consumer_solver_or_writer",
+        "line": 93,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation_result.py::FreshActionWidthTransferConfirmationResultTests::test_exact_journal_rebinds_without_runner_consumer_solver_or_writer",
+        "line": 98,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation_result.py::FreshActionWidthTransferConfirmationResultTests::test_exact_journal_rebinds_without_runner_consumer_solver_or_writer",
+        "line": 103,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests",
+        "line": 123,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests",
+        "line": 135,
+        "reason": "deferred generator consumption is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests",
+        "line": 145,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_rejection_unexpected_and_numerical_stops_are_distinct",
+        "line": 485,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_rejection_unexpected_and_numerical_stops_are_distinct",
+        "line": 503,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_rejection_unexpected_and_numerical_stops_are_distinct",
+        "line": 503,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_rejection_unexpected_and_numerical_stops_are_distinct",
+        "line": 504,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_rejection_unexpected_and_numerical_stops_are_distinct",
+        "line": 508,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_rejection_unexpected_and_numerical_stops_are_distinct",
+        "line": 512,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 536,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 542,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 550,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 552,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 556,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 557,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 558,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 559,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 560,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 572,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 573,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 581,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+        "line": 582,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_confirmation.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification_result.py::FreshActionWidthTransferQualificationResultTests::test_exact_journal_rebinds_without_runner_consumer_or_solver",
+        "line": 83,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification_result.py::FreshActionWidthTransferQualificationResultTests::test_exact_journal_rebinds_without_runner_consumer_or_solver",
+        "line": 88,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification_result.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification_result.py::FreshActionWidthTransferQualificationResultTests::test_exact_journal_rebinds_without_runner_consumer_or_solver",
+        "line": 93,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification_result.py"
+      },
+      {
+        "item_id": "fixture:tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests",
+        "line": 150,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_every_semantic_terminal_category_is_distinct_and_sealed",
+        "line": 395,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_stop",
+        "line": 465,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_stop",
+        "line": 465,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_stop",
+        "line": 466,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_stop",
+        "line": 470,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_stop",
+        "line": 471,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_stop",
+        "line": 472,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_observation_and_terminal_append_failures_preserve_receipts",
+        "line": 489,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_observation_and_terminal_append_failures_preserve_receipts",
+        "line": 526,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_no_clobber_precedes_any_owner_call",
+        "line": 569,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_action_width_transfer_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_capacity_filling_qualification.py::FreshCapacityFillingQualificationTests::test_runner_owns_target_ambiguity_numerical_and_family_stops",
+        "line": 291,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_capacity_filling_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_capacity_filling_qualification.py::FreshCapacityFillingQualificationTests::test_runner_owns_target_ambiguity_numerical_and_family_stops",
+        "line": 303,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_capacity_filling_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_capacity_filling_qualification.py::FreshCapacityFillingQualificationTests::test_b_requires_an_exact_passed_a_and_opens_no_value_after_failure",
+        "line": 348,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_capacity_filling_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_collision_repair_qualification.py::FreshCollisionRepairQualificationTests::test_runner_owns_immediate_target_and_ambiguity_stops",
+        "line": 209,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_collision_repair_qualification.py"
+      },
+      {
+        "item_id": "tests/test_fresh_collision_repair_qualification.py::FreshCollisionRepairQualificationTests::test_runner_owns_immediate_target_and_ambiguity_stops",
+        "line": 221,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_fresh_collision_repair_qualification.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 216,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 223,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 225,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 226,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 237,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 239,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+        "line": 240,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling_v2.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling.py::GpuQuotientStagedScalingTests::test_stage_and_campaign_wall_rejections_stop_without_replay",
+        "line": 368,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling.py::GpuQuotientStagedScalingTests::test_stage_and_campaign_wall_rejections_stop_without_replay",
+        "line": 375,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling.py::GpuQuotientStagedScalingTests::test_stage_and_campaign_wall_rejections_stop_without_replay",
+        "line": 377,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling.py"
+      },
+      {
+        "item_id": "tests/test_gpu_quotient_staged_scaling.py::GpuQuotientStagedScalingTests::test_stage_and_campaign_wall_rejections_stop_without_replay",
+        "line": 378,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_gpu_quotient_staged_scaling.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+        "line": 2644,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_annotations_refuse_without_inventing_execution",
+        "line": 21443,
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 25138,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 25142,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 25188,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 25235,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+        "line": 25245,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_partial_lock_cleanup_is_reserved_and_retryable",
+        "line": 25316,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_partial_lock_cleanup_is_reserved_and_retryable",
+        "line": 25324,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_lock_closes_before_unlinking_its_name",
+        "line": 25379,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_lock_closes_before_unlinking_its_name",
+        "line": 25395,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_lock_closes_before_unlinking_its_name",
+        "line": 25461,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_lock_closes_before_unlinking_its_name",
+        "line": 25475,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_lock_disposition_failure_retains_owner",
+        "line": 25546,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25642,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25643,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25649,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25650,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25651,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25652,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25653,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25654,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25655,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+        "line": 25656,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_retains_complete_lock_set_through_last_child_cleanup",
+        "line": 25718,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_cleanup_manager_retries_before_next_writer_observation_and_is_bounded",
+        "line": 26180,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 26563,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 26703,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 26881,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 26885,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 26889,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 26893,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27096,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27100,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27104,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27108,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27202,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27383,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27387,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27391,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27395,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27423,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27424,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27425,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27426,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27427,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27431,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27432,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27441,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27442,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27449,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27451,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 27452,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28040,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28041,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28042,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28042,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28042,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28042,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28043,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28043,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28043,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28043,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28044,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28045,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28046,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28047,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28048,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28050,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28064,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28067,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+        "line": 28068,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_persistent_descriptor_cleanup_is_manager_owned",
+        "line": 28350,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_persistent_descriptor_cleanup_is_manager_owned",
+        "line": 28399,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_lf_writer_rejects_noncanonical_bytes_without_touching_target",
+        "line": 28465,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_lf_writer_rejects_noncanonical_bytes_without_touching_target",
+        "line": 28471,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_lf_writer_rejects_noncanonical_bytes_without_touching_target",
+        "line": 28472,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_lf_writer_rejects_noncanonical_bytes_without_touching_target",
+        "line": 28476,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28516,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28551,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28596,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28607,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28608,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28609,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+        "line": 28610,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+        "line": 28711,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+        "line": 28793,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+        "line": 28832,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+        "line": 28865,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+        "line": 29045,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+        "line": 29210,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_outer_transaction_retains_recovery_through_final_validation",
+        "line": 29267,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_outer_transaction_retains_recovery_through_final_validation",
+        "line": 29294,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_outer_transaction_retains_recovery_through_final_validation",
+        "line": 29355,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_publication_is_handle_relative_and_prebinds_recovery",
+        "line": 29491,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_transaction_coordinator_commits_before_releasing_git_lease",
+        "line": 29551,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_transaction_coordinator_commits_before_releasing_git_lease",
+        "line": 29555,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_deterministic_lock_refuses_second_cooperative_writer",
+        "line": 29649,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_deterministic_lock_refuses_second_cooperative_writer",
+        "line": 29654,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_deterministic_lock_refuses_second_cooperative_writer",
+        "line": 29655,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_deterministic_lock_refuses_second_cooperative_writer",
+        "line": 29656,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29767,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29771,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29776,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29783,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29784,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29785,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+        "line": 29786,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_fail_before_close_retains_transaction_ownership",
+        "line": 30079,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_finalize_faults_are_committed_cleanup",
+        "line": 30258,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_finalize_faults_are_committed_cleanup",
+        "line": 30272,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_finalize_faults_are_committed_cleanup",
+        "line": 30299,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_finalize_faults_are_committed_cleanup",
+        "line": 30306,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_finalize_faults_are_committed_cleanup",
+        "line": 30339,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_git_snapshot_fails_closed_without_memfd",
+        "line": 30520,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_git_snapshot_fails_closed_without_memfd",
+        "line": 30529,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_inventory_and_profiles.py"
+      },
+      {
+        "item_id": "tests/test_leaf_adjoint_batch_width_audit_v2.py::LeafAdjointBatchWidthAuditV2Tests::test_complete_family_scope_crosses_warmup_schedule_and_compaction",
+        "line": 49,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_leaf_adjoint_batch_width_audit_v2.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_exact_cubin_inspector_diagnostic.py::ExactCubinInspectorDiagnosticTests::test_exclusive_owner_path_cannot_replay",
+        "line": 319,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_exact_cubin_inspector_diagnostic.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_exact_cubin_inspector_diagnostic.py::ExactCubinInspectorDiagnosticTests::test_exclusive_owner_path_cannot_replay",
+        "line": 320,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_exact_cubin_inspector_diagnostic.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py::WorkPreflightV2SourceSealTests::test_handshake_rejects_wrong_challenge_and_import_claims",
+        "line": 250,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py::WorkPreflightV2SourceSealTests::test_handshake_rejects_wrong_challenge_and_import_claims",
+        "line": 268,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py::WorkPreflightV2SourceSealTests::test_handshake_rejects_wrong_challenge_and_import_claims",
+        "line": 286,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_reader_rejects_chunk_change_duplicate_and_reordering",
+        "line": 579,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_population_phase_and_partition_mutations_fail_closed",
+        "line": 658,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_population_phase_and_partition_mutations_fail_closed",
+        "line": 661,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_repair_suffix_claims_and_dependency_mutations_fail_closed",
+        "line": 675,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_repair_suffix_claims_and_dependency_mutations_fail_closed",
+        "line": 678,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 741,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 748,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 749,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 751,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 752,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 753,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 759,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 760,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+        "line": 765,
+        "reason": "helper callable identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_reader_rejects_every_synthetic_distortion_family",
+        "line": 985,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_reader_rejects_every_synthetic_distortion_family",
+        "line": 997,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_reader_rejects_every_synthetic_distortion_family",
+        "line": 1018,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_torn_suffix_and_fully_rehashed_pass_mutation_fail_closed",
+        "line": 1032,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_cuda_shared_direct_device.py::SharedDirectDeviceSourceSealTests::test_fake_compiler_retains_before_interpretation_and_loads_same_bytes",
+        "line": 784,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_cuda_shared_direct_device.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_device_preflight.py::FixedWidthDeviceSourceSealTests::test_reader_recomputes_exactness_faults_and_cubin_identity",
+        "line": 771,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_device_preflight.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 437,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 443,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 444,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 445,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 452,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 453,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+        "line": 455,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_legal_river_quotient_fixed_width_work_comparison.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_header_is_durable_before_every_injected_dependency",
+        "line": 290,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_header_is_durable_before_every_injected_dependency",
+        "line": 296,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_header_is_durable_before_every_injected_dependency",
+        "line": 297,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_header_is_durable_before_every_injected_dependency",
+        "line": 299,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_header_is_durable_before_every_injected_dependency",
+        "line": 300,
+        "reason": "helper namespace identity was mutated",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_retains_each_synthetic_outcome_and_never_replays",
+        "line": 314,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_retains_each_synthetic_outcome_and_never_replays",
+        "line": 325,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_pre_observation_exception_and_oversize_are_durable_failures",
+        "line": 340,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_torn_and_fully_rehashed_semantic_mutations_fail_closed",
+        "line": 360,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_literal_45_quotient_target_result.py"
+      },
+      {
+        "item_id": "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_highs_adapters_pass_only_the_frozen_minimization_contract",
+        "line": 302,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_native_simplex_audit_runner.py"
+      },
+      {
+        "item_id": "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_native_adapter_retains_failure_locals_without_a_second_solve",
+        "line": 343,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_native_simplex_audit_runner.py"
+      },
+      {
+        "item_id": "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_native_adapter_retains_failure_locals_without_a_second_solve",
+        "line": 374,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_native_simplex_audit_runner.py"
+      },
+      {
+        "item_id": "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_backend_and_schema_failures_are_captured_without_truncation",
+        "line": 475,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_native_simplex_audit_runner.py"
+      },
+      {
+        "item_id": "tests/test_reduced_river_sizing_lp.py::ReducedRiverSizingLpTests::test_live_oracle_passes_the_compiled_matrix_to_the_frozen_backend",
+        "line": 145,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_reduced_river_sizing_lp.py"
+      },
+      {
+        "item_id": "tests/test_reduced_river_sizing_lp.py::ReducedRiverSizingLpTests::test_live_oracle_passes_the_compiled_matrix_to_the_frozen_backend",
+        "line": 148,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_reduced_river_sizing_lp.py"
+      },
+      {
+        "item_id": "tests/test_runner_harness_v2.py::RunnerHarnessV2Tests::test_duplicate_keys_nonfinite_constants_and_oversize_fail_closed",
+        "line": 57,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_runner_harness_v2.py"
+      },
+      {
+        "item_id": "tests/test_runner_harness_v2.py::RunnerHarnessV2Tests::test_duplicate_keys_nonfinite_constants_and_oversize_fail_closed",
+        "line": 60,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_runner_harness_v2.py"
+      },
+      {
+        "item_id": "tests/test_stabilization_boundaries.py::DependencyBaselineTests::test_bound_write_detects_a_directory_swap_at_atomic_replace",
+        "line": 749,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_stabilization_boundaries.py"
+      },
+      {
+        "item_id": "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_capability_approval_is_scope_aware_and_transitive_for_full",
+        "line": 3061,
+        "reason": "helper namespace effects are dynamically unresolved",
+        "relative_path": "tests/test_test_orchestration_configuration.py"
+      },
+      {
+        "item_id": "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_capability_approval_is_scope_aware_and_transitive_for_full",
+        "line": 3086,
+        "reason": "helper namespace effects are dynamically unresolved",
+        "relative_path": "tests/test_test_orchestration_configuration.py"
+      },
+      {
+        "item_id": "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_unknown_profile_payload_and_capability_references_fail_closed",
+        "line": 3162,
+        "reason": "helper namespace effects are dynamically unresolved",
+        "relative_path": "tests/test_test_orchestration_configuration.py"
+      },
+      {
+        "item_id": "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_semantic_digests_use_normalized_collection_order",
+        "line": 3260,
+        "reason": "helper namespace effects are dynamically unresolved",
+        "relative_path": "tests/test_test_orchestration_configuration.py"
+      },
+      {
+        "item_id": "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_semantic_digests_use_normalized_collection_order",
+        "line": 3260,
+        "reason": "helper namespace effects are dynamically unresolved",
+        "relative_path": "tests/test_test_orchestration_configuration.py"
+      },
+      {
+        "item_id": "tests/test_v0a_hand_replay.py::EventValueContractTests::test_rejects_malformed_event_values",
+        "line": 298,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_hand_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_hand_replay.py::EventValueContractTests::test_events_cannot_carry_a_clock_timestamp",
+        "line": 313,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_hand_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_hand_replay.py::PolicyAdmissionRegressionTests::test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority",
+        "line": 942,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_hand_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_hand_replay.py::ValueAdmissionRegressionTests::test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry",
+        "line": 1230,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_hand_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::R3_02TypedClosureCauseTests::test_a_clock_fault_before_a_mismatch_gates_the_required_body",
+        "line": 587,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::R3_02TypedClosureCauseTests::test_a_clock_fault_before_a_mismatch_gates_the_required_body",
+        "line": 597,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::R3_02TypedClosureCauseTests::test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary",
+        "line": 615,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::R2_03BodyOwnershipTests::test_a_raised_body_error_precedes_its_cleanup_fault",
+        "line": 1026,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::R2_03BodyOwnershipTests::test_a_clock_fault_raised_by_the_body_is_not_lost",
+        "line": 1060,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::R2_03BodyOwnershipTests::test_a_returned_mismatch_still_precedes_a_later_cleanup_fault",
+        "line": 1091,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::FailureAdapterRegressionTests::test_required_settlement_entry_prevents_any_dead_witness_body",
+        "line": 1190,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::FailureAdapterRegressionTests::test_required_settlement_entry_prevents_any_dead_witness_body",
+        "line": 1200,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::FailureAdapterRegressionTests::test_caught_source_fault_survives_a_return_or_a_different_body_failure",
+        "line": 1261,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::FailureAdapterRegressionTests::test_error_handling_does_not_execute_caller_presentation_or_metadata",
+        "line": 1316,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::IncrementalPublicationTests::test_post_delivery_entry_failure_retains_decision_without_more_input_or_file",
+        "line": 1659,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      },
+      {
+        "item_id": "tests/test_v0a_replay.py::IncrementalPublicationTests::test_clock_loss_after_first_append_preserves_incomplete_file_and_closes_owner",
+        "line": 1691,
+        "reason": "helper namespace escape is dynamically unresolved",
+        "relative_path": "tests/test_v0a_replay.py"
+      }
+    ],
+    "semantic_additions_by_reason": [
+      {
+        "reason": "deferred generator consumption is dynamically unresolved",
+        "instances": 1,
+        "unique_tuple_count": 1
+      },
+      {
+        "reason": "helper callable identity was mutated",
+        "instances": 1,
+        "unique_tuple_count": 1
+      },
+      {
+        "reason": "helper namespace effects are dynamically unresolved",
+        "instances": 5,
+        "unique_tuple_count": 4
+      },
+      {
+        "reason": "helper namespace escape is dynamically unresolved",
+        "instances": 215,
+        "unique_tuple_count": 205
+      },
+      {
+        "reason": "helper namespace identity was mutated",
+        "instances": 126,
+        "unique_tuple_count": 115
+      },
+      {
+        "reason": "mixed protected receiver is dynamically unresolved",
+        "instances": 1,
+        "unique_tuple_count": 1
+      }
+    ],
+    "semantic_additions_by_path": [
+      {
+        "Name": "tests/test_behavioral_one_seat_master_v2.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_certified_reduced_sizing_consumer_v2.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_certified_reduced_sizing_highs.py",
+        "Count": 7
+      },
+      {
+        "Name": "tests/test_certified_sizing_validation_runner.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_durable_evidence_journal.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_evidence_manifest_generation.py",
+        "Count": 11
+      },
+      {
+        "Name": "tests/test_fresh_action_width_greedy.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_fresh_action_width_nonreplay_greedy_result.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_fresh_action_width_nonreplay_greedy.py",
+        "Count": 6
+      },
+      {
+        "Name": "tests/test_fresh_action_width_nonreplay_qualification_result.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_fresh_action_width_nonreplay_qualification.py",
+        "Count": 19
+      },
+      {
+        "Name": "tests/test_fresh_action_width_nonreplay_teacher_result.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_fresh_action_width_nonreplay_teacher.py",
+        "Count": 18
+      },
+      {
+        "Name": "tests/test_fresh_action_width_qualification.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_fresh_action_width_teacher_result.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_fresh_action_width_teacher.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_fresh_action_width_transfer_confirmation_result.py",
+        "Count": 4
+      },
+      {
+        "Name": "tests/test_fresh_action_width_transfer_confirmation.py",
+        "Count": 22
+      },
+      {
+        "Name": "tests/test_fresh_action_width_transfer_qualification_result.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_fresh_action_width_transfer_qualification.py",
+        "Count": 11
+      },
+      {
+        "Name": "tests/test_fresh_capacity_filling_qualification.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_fresh_collision_repair_qualification.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_gpu_quotient_staged_scaling_v2.py",
+        "Count": 7
+      },
+      {
+        "Name": "tests/test_gpu_quotient_staged_scaling.py",
+        "Count": 4
+      },
+      {
+        "Name": "tests/test_inventory_and_profiles.py",
+        "Count": 132
+      },
+      {
+        "Name": "tests/test_leaf_adjoint_batch_width_audit_v2.py",
+        "Count": 1
+      },
+      {
+        "Name": "tests/test_legal_river_exact_cubin_inspector_diagnostic.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py",
+        "Count": 3
+      },
+      {
+        "Name": "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py",
+        "Count": 5
+      },
+      {
+        "Name": "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py",
+        "Count": 13
+      },
+      {
+        "Name": "tests/test_legal_river_quotient_cuda_shared_direct_device.py",
+        "Count": 1
+      },
+      {
+        "Name": "tests/test_legal_river_quotient_fixed_width_device_preflight.py",
+        "Count": 1
+      },
+      {
+        "Name": "tests/test_legal_river_quotient_fixed_width_work_comparison.py",
+        "Count": 7
+      },
+      {
+        "Name": "tests/test_literal_45_quotient_target_result.py",
+        "Count": 9
+      },
+      {
+        "Name": "tests/test_native_simplex_audit_runner.py",
+        "Count": 4
+      },
+      {
+        "Name": "tests/test_reduced_river_sizing_lp.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_runner_harness_v2.py",
+        "Count": 2
+      },
+      {
+        "Name": "tests/test_stabilization_boundaries.py",
+        "Count": 1
+      },
+      {
+        "Name": "tests/test_test_orchestration_configuration.py",
+        "Count": 5
+      },
+      {
+        "Name": "tests/test_v0a_hand_replay.py",
+        "Count": 4
+      },
+      {
+        "Name": "tests/test_v0a_replay.py",
+        "Count": 12
+      }
+    ],
+    "old_blocked_item_count": 344,
+    "final_blocked_item_count": 447,
+    "newly_blocked": [
+      "fixture:tests/test_fresh_action_width_greedy.py::FreshActionWidthGreedyTests",
+      "fixture:tests/test_fresh_action_width_nonreplay_greedy_result.py::FreshActionWidthNonReplayGreedyResultTests",
+      "fixture:tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests",
+      "fixture:tests/test_fresh_action_width_nonreplay_teacher_result.py::FreshActionWidthNonReplayTeacherResultTests",
+      "fixture:tests/test_fresh_action_width_teacher_result.py::FreshActionWidthTeacherResultTests",
+      "fixture:tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests",
+      "tests/test_behavioral_one_seat_master_v2.py::BehavioralOneSeatMasterV2Tests::test_finite_dual_mutation_cannot_overstate_certified_lower_bound",
+      "tests/test_behavioral_one_seat_master_v2.py::BehavioralOneSeatMasterV2Tests::test_nonfinite_solver_primal_fails_closed_before_diagnostics",
+      "tests/test_behavioral_one_seat_master_v2.py::BehavioralOneSeatMasterV2Tests::test_probability_violation_never_scales_with_a_large_chip_cap",
+      "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SolverTests::test_backend_exception_is_typed_once_and_preserves_its_cause",
+      "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SolverTests::test_corrupt_public_results_reject_after_exactly_one_call",
+      "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_backend_status_shape_finiteness_and_objective_fail_closed",
+      "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_invalid_exact_input_and_nonsemantic_bundle_fail_before_backend",
+      "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_probability_and_certificate_mutations_fail_closed",
+      "tests/test_certified_reduced_sizing_highs.py::CertifiedReducedSizingHighsTests::test_public_highs_options_and_trusted_box_are_exact",
+      "tests/test_certified_sizing_validation_runner.py::CertifiedSizingValidationSourceTests::test_toy_executor_cannot_mark_the_sealed_plan_as_executed",
+      "tests/test_certified_sizing_validation_runner.py::CertifiedSizingValidationToyTests::test_backend_exception_does_not_truncate_the_next_task",
+      "tests/test_durable_evidence_journal.py::DurableEvidenceJournalTests::test_writer_orders_write_flush_fsync_before_receipt",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_cleanup_is_bound_after_its_last_path_reverification",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_create_fault_matrix_varies_one_result_at_a_time",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_file_api_fault_matrix_is_typed_one_variable_at_a_time",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_malformed_create_is_registered_before_validation_cleanup",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_native_create_rejects_malformed_status_and_api_errors",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_native_rename_disposition_and_close_errors_are_typed",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_rename_and_disposition_status_channels_are_independent",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_replace_is_bound_after_its_last_path_reverification",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_stage_is_bound_after_its_last_path_reverification",
+      "tests/test_evidence_manifest_generation.py::EvidenceManifestGenerationTests::test_windows_staged_temp_rejects_a_second_writer_while_owned",
+      "tests/test_fresh_action_width_greedy.py::FreshActionWidthGreedyTests::test_closed_campaign_rejects_before_reaching_consumer",
+      "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_graph_call_slots_and_response_closure_are_exact_and_solver_free",
+      "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_real_teacher_counterpart_rebind_is_exact_without_a_consumer",
+      "tests/test_fresh_action_width_nonreplay_qualification_result.py::FreshActionWidthNonReplayQualificationResultTests::test_exact_journal_rebinds_solver_free_and_without_reinvocation",
+      "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_distinct_rejection_unexpected_ambiguity_and_reversal_stops",
+      "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+      "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_public_runner_preflight_and_exclusive_create_fail_without_a_call",
+      "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_schedule_is_complete_ordered_candidate_blind_and_consumer_free",
+      "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_invalid_owner_evidence_becomes_durable_unexpected_evidence",
+      "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_public_runner_preflight_and_exclusive_create_never_call_on_failure",
+      "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_schedule_is_exact_ordered_panel_bound_and_consumer_free",
+      "tests/test_fresh_action_width_qualification.py::FreshActionWidthQualificationSourceTests::test_preflight_rejection_makes_no_consumer_call",
+      "tests/test_fresh_action_width_qualification.py::FreshActionWidthQualificationSourceTests::test_value_free_schedule_is_complete_ordered_and_sealed",
+      "tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests::test_no_clobber_artifact_retention_is_canonical_and_verified",
+      "tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests::test_preflight_and_unexpected_execution_fail_without_hidden_retry",
+      "tests/test_fresh_action_width_transfer_confirmation_result.py::FreshActionWidthTransferConfirmationResultTests::test_exact_journal_rebinds_without_runner_consumer_solver_or_writer",
+      "tests/test_fresh_action_width_transfer_qualification_result.py::FreshActionWidthTransferQualificationResultTests::test_exact_journal_rebinds_without_runner_consumer_or_solver",
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_no_clobber_precedes_any_owner_call",
+      "tests/test_fresh_capacity_filling_qualification.py::FreshCapacityFillingQualificationTests::test_b_requires_an_exact_passed_a_and_opens_no_value_after_failure",
+      "tests/test_fresh_capacity_filling_qualification.py::FreshCapacityFillingQualificationTests::test_runner_owns_target_ambiguity_numerical_and_family_stops",
+      "tests/test_fresh_collision_repair_qualification.py::FreshCollisionRepairQualificationTests::test_runner_owns_immediate_target_and_ambiguity_stops",
+      "tests/test_gpu_quotient_staged_scaling_v2.py::GpuQuotientStagedScalingV2Tests::test_before_and_after_stage_campaign_walls_have_distinct_seams",
+      "tests/test_gpu_quotient_staged_scaling.py::GpuQuotientStagedScalingTests::test_stage_and_campaign_wall_rejections_stop_without_replay",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_lf_writer_rejects_noncanonical_bytes_without_touching_target",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_publish_is_cas_bound_and_restores_post_publish_failures",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_atomic_replace_failure_preserves_original_and_cleans_staging_file",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_cleanup_manager_retries_before_next_writer_observation_and_is_bounded",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_outer_transaction_retains_recovery_through_final_validation",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_retains_complete_lock_set_through_last_child_cleanup",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_partial_lock_cleanup_is_reserved_and_retryable",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_finalize_faults_are_committed_cleanup",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_git_snapshot_fails_closed_without_memfd",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_lock_closes_before_unlinking_its_name",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_posix_persistent_descriptor_cleanup_is_manager_owned",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_transaction_coordinator_commits_before_releasing_git_lease",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_bound_governance_objects_refuse_conflicting_writes",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_deterministic_lock_refuses_second_cooperative_writer",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_fail_before_close_retains_transaction_ownership",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_lock_disposition_failure_retains_owner",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_persistent_close_failures_are_truthful_and_retryable",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_publication_is_handle_relative_and_prebinds_recovery",
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_windows_reversed_pair_writers_use_one_canonical_lock_order",
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_annotations_refuse_without_inventing_execution",
+      "tests/test_leaf_adjoint_batch_width_audit_v2.py::LeafAdjointBatchWidthAuditV2Tests::test_complete_family_scope_crosses_warmup_schedule_and_compaction",
+      "tests/test_legal_river_exact_cubin_inspector_diagnostic.py::ExactCubinInspectorDiagnosticTests::test_exclusive_owner_path_cannot_replay",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v2.py::WorkPreflightV2SourceSealTests::test_handshake_rejects_wrong_challenge_and_import_claims",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_population_phase_and_partition_mutations_fail_closed",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight_v4.py::WorkPreflightV4SourceSealTests::test_repair_suffix_claims_and_dependency_mutations_fail_closed",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_reader_rejects_every_synthetic_distortion_family",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_torn_suffix_and_fully_rehashed_pass_mutation_fail_closed",
+      "tests/test_legal_river_quotient_cuda_shared_direct_device.py::SharedDirectDeviceSourceSealTests::test_fake_compiler_retains_before_interpretation_and_loads_same_bytes",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight.py::FixedWidthDeviceSourceSealTests::test_reader_recomputes_exactness_faults_and_cubin_identity",
+      "tests/test_legal_river_quotient_fixed_width_work_comparison.py::SelectiveGlobalAndColexTests::test_streamed_global_scan_binds_domain_order_chunks_and_values",
+      "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_header_is_durable_before_every_injected_dependency",
+      "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_owner_retains_each_synthetic_outcome_and_never_replays",
+      "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_torn_and_fully_rehashed_semantic_mutations_fail_closed",
+      "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_backend_and_schema_failures_are_captured_without_truncation",
+      "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_highs_adapters_pass_only_the_frozen_minimization_contract",
+      "tests/test_native_simplex_audit_runner.py::NativeSimplexAuditRunnerTests::test_native_adapter_retains_failure_locals_without_a_second_solve",
+      "tests/test_runner_harness_v2.py::RunnerHarnessV2Tests::test_duplicate_keys_nonfinite_constants_and_oversize_fail_closed",
+      "tests/test_stabilization_boundaries.py::DependencyBaselineTests::test_bound_write_detects_a_directory_swap_at_atomic_replace",
+      "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_capability_approval_is_scope_aware_and_transitive_for_full",
+      "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_semantic_digests_use_normalized_collection_order",
+      "tests/test_test_orchestration_configuration.py::OrchestrationConfigurationTests::test_unknown_profile_payload_and_capability_references_fail_closed",
+      "tests/test_v0a_hand_replay.py::EventValueContractTests::test_events_cannot_carry_a_clock_timestamp",
+      "tests/test_v0a_hand_replay.py::EventValueContractTests::test_rejects_malformed_event_values",
+      "tests/test_v0a_hand_replay.py::PolicyAdmissionRegressionTests::test_outer_policy_identity_and_lookup_hooks_cannot_supply_authority",
+      "tests/test_v0a_hand_replay.py::ValueAdmissionRegressionTests::test_real_delivery_with_invalid_receipt_is_ambiguous_without_retry",
+      "tests/test_v0a_replay.py::FailureAdapterRegressionTests::test_caught_source_fault_survives_a_return_or_a_different_body_failure",
+      "tests/test_v0a_replay.py::FailureAdapterRegressionTests::test_error_handling_does_not_execute_caller_presentation_or_metadata",
+      "tests/test_v0a_replay.py::R2_03BodyOwnershipTests::test_a_clock_fault_raised_by_the_body_is_not_lost",
+      "tests/test_v0a_replay.py::R2_03BodyOwnershipTests::test_a_raised_body_error_precedes_its_cleanup_fault",
+      "tests/test_v0a_replay.py::R2_03BodyOwnershipTests::test_a_returned_mismatch_still_precedes_a_later_cleanup_fault",
+      "tests/test_v0a_replay.py::R3_02TypedClosureCauseTests::test_a_mismatch_before_a_clock_fault_keeps_the_mismatch_as_primary"
+    ],
+    "newly_unblocked": [],
+    "identity_additions_count": 127,
+    "identity_additions_with_same_item_same_path_new_escape_at_earlier_or_equal_line": 127,
+    "identity_link_limit": "Source-order co-occurrence plus invalidation code; not a dynamic causal trace or proof of runtime mutation."
+  },
+  "native_list_storage": {
+    "relative_path": "tests/test_native_simplex_audit_reanalysis.py",
+    "source_sha256": "d95fba06549273fcb43fabf4a25370f6bdd7ab752592bfccc46f77ef6df17f25",
+    "old_blocker_count": 200,
+    "final_blocker_count": 200,
+    "blocker_multiset_exactly_equal": true,
+    "store_positions": [
+      347,
+      354,
+      361,
+      370,
+      377
+    ],
+    "blockers_at_store_positions": [],
+    "later_explicit_callback_invocation_line": 382
+  },
+  "limits": [
+    "No helper, generator, test, inspected callback, sensitive body, GPU path, experiment owner, or publication path executed.",
+    "Read-only source and artifact inspection; only this new comparison JSON and the authorized new Markdown report are written.",
+    "Fixed supplied census/source hashes only; subsequent source or census-literal changes are outside this attribution.",
+    "Unresolved blockers identify static proof limits; their reason strings do not prove runtime mutation.",
+    "No universal correctness, soundness, performance, cold-review, or acceptance verdict."
+  ]
+}

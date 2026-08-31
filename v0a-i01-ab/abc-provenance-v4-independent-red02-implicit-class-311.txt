@@ -1,0 +1,115 @@
+{"identity_before_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+{"identity_before_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"}}
+{
+  "results": [
+    {
+      "case": "implicit-class-mutation",
+      "projection": "TypeError",
+      "blockers": [],
+      "process_rows": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "approval_scope": "design",
+          "capability_kind": "subprocess",
+          "capability_id": "process:d6f5c33b34909f066ae93697",
+          "executable_role": "python",
+          "executable_slot": "active_worker",
+          "executable_constraints": {},
+          "argv": [
+            "-m",
+            "fixed"
+          ],
+          "argv_template": [],
+          "dynamic_program_sha256": null,
+          "cwd_class": "target",
+          "environment_additions": {
+            "SAFE": "1"
+          },
+          "environment_removals": [],
+          "timeout_ns": 5000000000,
+          "expected_return_category": "completed",
+          "read_roots": [
+            "target"
+          ],
+          "write_roots": [],
+          "fixed_descendant_permission": false
+        }
+      ]
+    },
+    {
+      "case": "implicit-class-readonly",
+      "projection": "fixed",
+      "blockers": [],
+      "process_rows": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "approval_scope": "design",
+          "capability_kind": "subprocess",
+          "capability_id": "process:d6f5c33b34909f066ae93697",
+          "executable_role": "python",
+          "executable_slot": "active_worker",
+          "executable_constraints": {},
+          "argv": [
+            "-m",
+            "fixed"
+          ],
+          "argv_template": [],
+          "dynamic_program_sha256": null,
+          "cwd_class": "target",
+          "environment_additions": {
+            "SAFE": "1"
+          },
+          "environment_removals": [],
+          "timeout_ns": 5000000000,
+          "expected_return_category": "completed",
+          "read_roots": [
+            "target"
+          ],
+          "write_roots": [],
+          "fixed_descendant_permission": false
+        }
+      ]
+    },
+    {
+      "case": "direct-implicit-class",
+      "projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 10,
+          "reason": "helper namespace owner needed for mutation is unresolved"
+        }
+      ],
+      "process_rows": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "approval_scope": "design",
+          "capability_kind": "subprocess",
+          "capability_id": "process:d6f5c33b34909f066ae93697",
+          "executable_role": "python",
+          "executable_slot": "active_worker",
+          "executable_constraints": {},
+          "argv": [
+            "-m",
+            "fixed"
+          ],
+          "argv_template": [],
+          "dynamic_program_sha256": null,
+          "cwd_class": "target",
+          "environment_additions": {
+            "SAFE": "1"
+          },
+          "environment_removals": [],
+          "timeout_ns": 5000000000,
+          "expected_return_category": "completed",
+          "read_roots": [
+            "target"
+          ],
+          "write_roots": [],
+          "fixed_descendant_permission": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "metadata_sha256": "b57b5bd719873f0fc9e606dfb5e1089342653425b55ae1b582197400096ef1b3",
+  "slot": "311",
+  "source_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "driver_sha256": "5e26410c9969c06877cad3384328adf80edfa5bec460a84c60a84706f41b0fbf",
+  "results": [
+    {
+      "target": "tests/test_inventory_and_profiles.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-01-311-receipt.json",
+      "receipt_sha256": "bfe3ae623b7982fd66c8b65e951643ca032c25fdc2016e48441429fc014fbf1b",
+      "tests": 119,
+      "seconds": 221.694,
+      "summary": "OK"
+    },
+    {
+      "target": "tests/test_stabilization_boundaries.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-02-311-receipt.json",
+      "receipt_sha256": "4716a9794cb65a3a8cdf036257554d02ba0795a05659d38cbccd90f81aaa8327",
+      "tests": 48,
+      "seconds": 21.954,
+      "summary": "OK (skipped=1)"
+    },
+    {
+      "target": "tests/test_v0a_boundaries.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-03-311-receipt.json",
+      "receipt_sha256": "35d2e2d8771f2e25cda0ea52d812ecfb9c32bea870418f416a3db88c40dec0b4",
+      "tests": 18,
+      "seconds": 40.155,
+      "summary": "OK"
+    },
+    {
+      "target": "tests/test_v0a_hand_replay.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-04-311-receipt.json",
+      "receipt_sha256": "7799b99cf8589ba515b3aeea82a4028a5c0437436732c4e01779954e7d6bbd30",
+      "tests": 45,
+      "seconds": 0.049,
+      "summary": "OK"
+    },
+    {
+      "target": "tests/test_v0a_trace.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-05-311-receipt.json",
+      "receipt_sha256": "db804e8475d4d1c90b76455e968e955dcff4e5d54373610958632b58c4d8b89e",
+      "tests": 53,
+      "seconds": 3.038,
+      "summary": "OK"
+    },
+    {
+      "target": "tests/test_v0a_replay.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-06-311-receipt.json",
+      "receipt_sha256": "1485e4cdee854d6071505e4eb479ce6d24afc4bef9a809d882e03a0c74f9b2e6",
+      "tests": 62,
+      "seconds": 2.551,
+      "summary": "OK"
+    },
+    {
+      "target": "tests/test_v0a_contract_faults.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-07-311-receipt.json",
+      "receipt_sha256": "311b9a88ed6680c1a6b62e6b8a537334ce12691b2881e745d909964e88b6244c",
+      "tests": 22,
+      "seconds": 0.012,
+      "summary": "OK"
+    },
+    {
+      "target": "tools/generate_test_inventory.py",
+      "args": [
+        "--check"
+      ],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-08-311-receipt.json",
+      "receipt_sha256": "025c42b051259b5ba1a80e92f0cdf4709985a1348209294814e38840564175fe",
+      "tests": null,
+      "seconds": null,
+      "summary": "{\"identity_before_payload_import\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"implementation\": \"cpython\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"version_info\": [3, 11, 15]}}"
+    },
+    {
+      "target": "tools/check_stabilization_boundaries.py",
+      "args": [],
+      "exit": 0,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v4-focused01-09-311-receipt.json",
+      "receipt_sha256": "920264b23a5b7ab51a7a5120cfc64f044f0219df1b8649ec8df950b4db52c101",
+      "tests": null,
+      "seconds": null,
+      "summary": "{\"identity_before_payload_import\": {\"executable\": \"D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe\", \"implementation\": \"cpython\", \"version\": \"3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\", \"version_info\": [3, 11, 15]}}"
+    }
+  ]
+}

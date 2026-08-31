@@ -1,0 +1,224 @@
+{"identity_before_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "cwd": "D:\\pontius-snapshots\\abc-provenance-v4-focused01-d14585828e5b4c1599ba39f2663ea7f3\\harness"}}
+{
+  "results": [
+    {
+      "case": "kw-default-write",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 10,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 11,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "posonly-default-write",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 10,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 11,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "global-owner-write",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 10,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 11,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "closure-owner-write",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 11,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 12,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "closure-self-write",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 10,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 11,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "container-default-write",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 10,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 11,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "mutation-before-raise",
+      "pure_projection": "TypeError",
+      "blockers": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 12,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_review.py",
+          "line": 14,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "process_rows": [],
+      "expected_blocked": true,
+      "matched": true
+    },
+    {
+      "case": "overridden-default",
+      "pure_projection": "fixed",
+      "blockers": [],
+      "process_rows": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "approval_scope": "design",
+          "capability_kind": "subprocess",
+          "capability_id": "process:d6f5c33b34909f066ae93697",
+          "executable_role": "python",
+          "executable_slot": "active_worker",
+          "executable_constraints": {},
+          "argv": [
+            "-m",
+            "fixed"
+          ],
+          "argv_template": [],
+          "dynamic_program_sha256": null,
+          "cwd_class": "target",
+          "environment_additions": {
+            "SAFE": "1"
+          },
+          "environment_removals": [],
+          "timeout_ns": 5000000000,
+          "expected_return_category": "completed",
+          "read_roots": [
+            "target"
+          ],
+          "write_roots": [],
+          "fixed_descendant_permission": false
+        }
+      ],
+      "expected_blocked": false,
+      "matched": true
+    },
+    {
+      "case": "dormant-mutator",
+      "pure_projection": "fixed",
+      "blockers": [],
+      "process_rows": [
+        {
+          "item_id": "tests/test_review.py::ReviewTests::test_static",
+          "approval_scope": "design",
+          "capability_kind": "subprocess",
+          "capability_id": "process:d6f5c33b34909f066ae93697",
+          "executable_role": "python",
+          "executable_slot": "active_worker",
+          "executable_constraints": {},
+          "argv": [
+            "-m",
+            "fixed"
+          ],
+          "argv_template": [],
+          "dynamic_program_sha256": null,
+          "cwd_class": "target",
+          "environment_additions": {
+            "SAFE": "1"
+          },
+          "environment_removals": [],
+          "timeout_ns": 5000000000,
+          "expected_return_category": "completed",
+          "read_roots": [
+            "target"
+          ],
+          "write_roots": [],
+          "fixed_descendant_permission": false
+        }
+      ],
+      "expected_blocked": false,
+      "matched": true
+    }
+  ]
+}
