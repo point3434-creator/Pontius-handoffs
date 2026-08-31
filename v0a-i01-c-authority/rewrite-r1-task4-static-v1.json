@@ -1,0 +1,72 @@
+{
+  "binder_normalizes_exactly": true,
+  "binding_read_wrappers": [
+    "Compare(left=Attribute(value=Name(id='parameter', ctx=Load()), attr='arg', ctx=Load()), ops=[NotIn()], comparators=[Name(id='positional_only', ctx=Load())])",
+    "Compare(left=Attribute(value=Name(id='keyword', ctx=Load()), attr='arg', ctx=Load()), ops=[NotIn()], comparators=[Name(id='allowed_keywords', ctx=Load())])",
+    "Compare(left=Attribute(value=Name(id='keyword', ctx=Load()), attr='arg', ctx=Load()), ops=[In()], comparators=[Name(id='supplied', ctx=Load())])",
+    "Compare(left=Attribute(value=Name(id='parameter', ctx=Load()), attr='arg', ctx=Load()), ops=[In()], comparators=[Name(id='supplied', ctx=Load())])",
+    "Call(func=Attribute(value=Name(id='positional_defaults', ctx=Load()), attr='get', ctx=Load()), args=[Attribute(value=Name(id='parameter', ctx=Load()), attr='arg', ctx=Load())], keywords=[])",
+    "Compare(left=Attribute(value=Name(id='parameter', ctx=Load()), attr='arg', ctx=Load()), ops=[In()], comparators=[Name(id='supplied', ctx=Load())])"
+  ],
+  "checker_sha256": "8a0f9d18e9377b1b6366eac57dce72ecb31f2d14a6198c88bd18f2af34c19bbb",
+  "core_lines": 1579,
+  "diff_sha256": "b6fe1bcd5afdac2ade9b7914c529a9cc4c63b05d8d923bad88d26bc49ee395d1",
+  "insertion_sha256": "aa650698335073f3020fc97139fde68e9121409bd0d5fe1126accc903952dc31",
+  "kind": "Task4 AST-only engineering preservation; no candidate execution",
+  "new_helpers": [
+    {
+      "end_line": 10398,
+      "line": 10395,
+      "name": "_c_binding_read"
+    },
+    {
+      "end_line": 10479,
+      "line": 10401,
+      "name": "_c_construct_function"
+    },
+    {
+      "end_line": 10522,
+      "line": 10482,
+      "name": "_c_construct_class"
+    },
+    {
+      "end_line": 10557,
+      "line": 10525,
+      "name": "_c_call"
+    },
+    {
+      "end_line": 10653,
+      "line": 10560,
+      "name": "_c_invoke"
+    }
+  ],
+  "original_ast_exact": true,
+  "other_16_paths": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6"
+  },
+  "prior_and_original_exact": true,
+  "removed_lines": 6,
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "source_sha256": "3511f60a62fc9588f153ba3db6b05ac228a1ce235cb23a5316000ce7ba4e550c",
+  "task4_construction_lines": 261,
+  "total_added_lines": 1619
+}

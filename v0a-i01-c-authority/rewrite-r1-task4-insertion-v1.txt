@@ -1,0 +1,261 @@
+def _c_binding_read(budget: _AnalysisBudget | None, value: object) -> object:
+    if budget is not None:
+        budget.consume()
+    return value
+
+
+def _c_construct_function(
+    ctx: _CContext, state: _CState, frame: _CFrame,
+    node: ast.FunctionDef | ast.AsyncFunctionDef,
+) -> tuple[_COutcome, ...]:
+    ctx.budget.consume(2)
+    scope = ctx.program.scopes[node]
+    parameters = node.args
+    ctx.budget.consume(1 + 2 * (len(parameters.posonlyargs) + len(parameters.args) +
+                              len(parameters.kwonlyargs)))
+    all_parameters = [*parameters.posonlyargs, *parameters.args, *parameters.kwonlyargs]
+    for parameter in all_parameters:
+        ctx.budget.consume()
+        if parameter.annotation is not None:
+            return _c_one(ctx, _c_fail(ctx, state, node, "unsupported function annotation"))
+    if node.returns is not None or getattr(node, "type_params", ()):
+        return _c_one(ctx, _c_fail(ctx, state, node, "unsupported annotated or generic function"))
+    for parameter in (parameters.vararg, parameters.kwarg):
+        ctx.budget.consume()
+        if parameter is not None and parameter.annotation is not None:
+            return _c_one(ctx, _c_fail(ctx, state, node, "unsupported function annotation"))
+    ctx.budget.consume(2)
+    expressions: list[ast.expr] = []
+    default_names: list[str] = []
+    for decorator in node.decorator_list:
+        ctx.budget.consume(3)
+        expressions.append(decorator)
+    ctx.budget.consume(1 + 2 * (len(parameters.posonlyargs) + len(parameters.args)))
+    positional = [*parameters.posonlyargs, *parameters.args]
+    offset = len(positional) - len(parameters.defaults)
+    for index, default in enumerate(parameters.defaults):
+        ctx.budget.consume(5)
+        expressions.append(default)
+        default_names.append(positional[offset + index].arg)
+    for parameter, default in zip(parameters.kwonlyargs, parameters.kw_defaults, strict=True):
+        ctx.budget.consume()
+        if default is not None:
+            ctx.budget.consume(4)
+            expressions.append(default)
+            default_names.append(parameter.arg)
+    ctx.budget.consume()
+    outcomes: list[_COutcome] = []
+    for prior, values in _c_eval_many(ctx, state, frame, expressions):
+        ctx.budget.consume()
+        if prior.control != "normal":
+            ctx.budget.consume(2)
+            outcomes.append(prior)
+            continue
+        descriptor, reason = "ordinary", None
+        for index in range(len(node.decorator_list)):
+            ctx.budget.consume()
+            value = values[index]
+            if (len(node.decorator_list) != 1 or type(value) is not _CAtom or
+                    value.kind != "symbol" or value.data != "staticmethod"):
+                reason = "unsupported function decorator"
+                break
+            descriptor = "staticmethod"
+        if reason:
+            result = _c_fail(ctx, prior.state, node, reason)
+            ctx.budget.consume(2)
+            outcomes.append(_c_follow(ctx, prior, result))
+            continue
+        captured = _c_captures(ctx, prior.state, frame, scope)
+        ctx.budget.consume(1 + 5 * len(captured))
+        captures = tuple(captured.items())
+        ctx.budget.consume(1 + 5 * len(default_names))
+        defaults = tuple((name, values[len(node.decorator_list) + index])
+                         for index, name in enumerate(default_names))
+        body_kind = "unsupported-deferred" if isinstance(node, ast.AsyncFunctionDef) else "plain"
+        for site in scope.sites:
+            ctx.budget.consume()
+            if isinstance(site, (ast.Yield, ast.YieldFrom, ast.Await)):
+                body_kind = "unsupported-deferred"
+        ctx.budget.consume(6)
+        value = _c_new_object(ctx, prior.state, _CFunction(
+            scope, defaults, captures, descriptor, body_kind))
+        for result in _c_store_name(ctx, prior.state, frame, node.name, value, node):
+            ctx.budget.consume(2)
+            outcomes.append(_c_follow(ctx, prior, result))
+    return _c_join(ctx, outcomes)
+
+
+def _c_construct_class(
+    ctx: _CContext, state: _CState, frame: _CFrame, node: ast.ClassDef,
+) -> tuple[_COutcome, ...]:
+    if node.decorator_list or node.keywords or getattr(node, "type_params", ()):
+        return _c_one(ctx, _c_fail(ctx, state, node, "unsupported class construction header"))
+    ctx.budget.consume()
+    outcomes: list[_COutcome] = []
+    for prior, bases in _c_eval_many(ctx, state, frame, node.bases):
+        ctx.budget.consume()
+        if prior.control != "normal":
+            ctx.budget.consume(2)
+            outcomes.append(prior)
+            continue
+        origin = "local"
+        if bases:
+            if len(bases) != 1 or type(bases[0]) is not _CAtom or (
+                    bases[0].kind != "symbol" or bases[0].data != "unittest.TestCase"):
+                ctx.budget.consume(2)
+                outcomes.append(_c_follow(ctx, prior, _c_fail(
+                    ctx, prior.state, node, "unsupported class inheritance")))
+                continue
+            origin = "unittest.TestCase"
+        ctx.budget.consume(7)  # Empty map/proxy and namespace record.
+        owner = _c_new_object(ctx, prior.state, _CNamespace(
+            "class", MappingProxyType({}), origin))
+        ctx.budget.consume()
+        scope = ctx.program.scopes[node]
+        captures = _c_captures(ctx, prior.state, frame, scope)
+        enclosing = frame.enclosing_nonclass if frame.scope.kind == "class" else frame
+        ctx.budget.consume(7)
+        local = _CFrame(scope, None, captures, frame.module, owner, enclosing)
+        for body in _c_statements(ctx, _c_out(ctx, prior.state), local, node.body):
+            ctx.budget.consume()
+            completed = _c_follow(ctx, prior, body)
+            produced = _c_store_name(ctx, body.state, frame, node.name, owner, node) if (
+                body.control == "normal") else _c_one(ctx, body)
+            for result in produced:
+                ctx.budget.consume(2)
+                outcomes.append(_c_follow(ctx, completed, result) if (
+                    body.control == "normal") else completed)
+    return _c_join(ctx, outcomes)
+
+
+def _c_call(
+    ctx: _CContext, state: _CState, frame: _CFrame, call: ast.Call,
+    selected: _CValue, arguments: tuple[_CValue, ...],
+    keywords: tuple[tuple[str, _CValue], ...],
+) -> tuple[_COutcome, ...]:
+    entry = _c_snapshot(ctx, state)
+    receiver, defaults = None, ()
+    record = _c_object_read(ctx, state, selected) if type(selected) is _CRef else None
+    if isinstance(record, _CBound):
+        receiver = record.receiver
+        record = _c_object_read(ctx, state, record.function)
+    if isinstance(record, _CFunction):
+        defaults = record.defaults
+    outcomes = _c_invoke(ctx, state, frame, call, selected, arguments, keywords)
+    ctx.budget.consume()
+    summaries: list[tuple[str, _CValue, _CView, tuple[_CIssue, ...]]] = []
+    for outcome in outcomes:
+        ctx.budget.consume(8)  # Visit, four-field tuple and appended tuple reference.
+        summaries.append((outcome.control, outcome.result,
+                          _c_snapshot(ctx, outcome.state), outcome.issues))
+    completed = _c_fact_tuple(ctx.budget, summaries)
+    ctx.budget.consume(10)
+    observation = _CCallObservation(call, selected, receiver, arguments, keywords,
+                                   defaults, frame, entry, completed)
+    event = _c_trace(ctx, "event", (), observation)
+    ctx.budget.consume()
+    result: list[_COutcome] = []
+    for outcome in outcomes:
+        ctx.budget.consume(2)
+        trace = _c_trace_link(ctx, "sequence", outcome.trace, event)
+        result.append(_c_out(ctx, outcome.state, outcome.result, control=outcome.control,
+                             exception=outcome.exception_tag, issues=outcome.issues, trace=trace))
+    return _c_join(ctx, result)
+
+
+def _c_invoke(
+    ctx: _CContext, state: _CState, frame: _CFrame, call: ast.Call,
+    selected: _CValue, arguments: tuple[_CValue, ...],
+    keywords: tuple[tuple[str, _CValue], ...],
+) -> tuple[_COutcome, ...]:
+    ctx.budget.consume()
+    if type(selected) is _CAtom and selected.kind == "symbol":
+        if selected.data == "__import__" and not keywords and len(arguments) == 1:
+            value = arguments[0]
+            if type(value) is _CAtom and value.kind == "literal" and value.data == "os":
+                return _c_one(ctx, _c_out(ctx, state, _c_atom(ctx, "symbol", "os")))
+        if selected.data in _SUBPROCESS_FUNCTIONS:
+            return _c_sink(ctx, state, call, str(selected.data), arguments, keywords)
+        return _c_one(ctx, _c_fail(ctx, state, call, "unsupported reached symbolic call"))
+    record = _c_object_read(ctx, state, selected) if type(selected) is _CRef else None
+    receiver = None
+    if isinstance(record, _CBound):
+        receiver = record.receiver
+        record = _c_object_read(ctx, state, record.function)
+    if isinstance(record, _CNativeMethod):
+        if record.operation != "append" or len(arguments) != 1 or keywords:
+            return _c_one(ctx, _c_fail(ctx, state, call, "unsupported list method arguments"))
+        current = _c_object_read(ctx, state, record.receiver)
+        if not isinstance(current, _CSequence) or current.kind != "list":
+            return _c_one(ctx, _c_fail(ctx, state, call, "missing native list receiver"))
+        ctx.budget.container(len(current.elements) + 1)
+        ctx.budget.consume(len(current.elements) + 4)  # Copy visits and record fields.
+        updated = _CSequence("list", current.elements + arguments)
+        if not _c_object_write(ctx, state, record.receiver, updated):
+            return _c_one(ctx, _c_fail(ctx, state, call, "native list owner disappeared"))
+        return _c_one(ctx, _c_out(ctx, state))
+    if not isinstance(record, _CFunction):
+        return _c_one(ctx, _c_fail(ctx, state, call, "selected value is not a proved callable",
+                                  exception="TypeError" if type(selected) is _CAtom and (
+                                      selected.kind == "literal") else None))
+    if record.body_kind != "plain":
+        return _c_one(ctx, _c_fail(ctx, state, call, "unsupported deferred helper invocation"))
+    if len(ctx.helper_path) > MAXIMUM_ANALYSIS_HELPER_DEPTH:
+        return _c_one(ctx, _c_fail(ctx, state, call, "analysis helper recursion depth exceeds 64"))
+    ctx.budget.consume()
+    definition = ctx.program.signatures[record.template.node]
+    # All callers evaluated operands once and rejected starred/expanded syntax.
+    ctx.budget.consume(2)  # Empty alias/receiver metadata maps, never live state.
+    supplied = _bind_helper_arguments(call, definition, {}, receiver_kinds={},
+                                     proven_bound=receiver is not None, analysis_budget=ctx.budget)
+    if supplied is None:
+        return _c_one(ctx, _c_fail(ctx, state, call, "unsupported or invalid helper arguments",
+                                  exception="TypeError" if definition.node.args.vararg is None
+                                  and definition.node.args.kwarg is None else None))
+    ctx.budget.consume(1 + 5 * len(call.args))
+    actual = {id(node): value for node, value in zip(call.args, arguments, strict=True)}
+    for keyword, pair in zip(call.keywords, keywords, strict=True):
+        ctx.budget.consume(5)
+        actual[id(keyword.value)] = pair[1]
+    ctx.budget.consume(1 + 3 * len(record.defaults))
+    defaults = dict(record.defaults)
+    ctx.budget.consume(1 + 3 * len(record.captures))
+    captures = dict(record.captures)
+    ctx.budget.consume(2)
+    capture_view = MappingProxyType(captures)
+    activation = _c_new_activation(ctx, state, record.template)
+    ctx.budget.consume(7)
+    local = _CFrame(record.template, activation, capture_view, frame.module, None, None)
+    if receiver is not None:
+        if not record.template.parameters:
+            return _c_one(ctx, _c_fail(ctx, state, call, "bound helper lacks receiver parameter"))
+        ctx.budget.consume(3)
+        if not _c_cell_write(ctx, state, _CCellRef(
+                activation, record.template.parameters[0]), receiver):
+            return _c_one(ctx, _c_fail(ctx, state, call, "receiver lexical cell is missing"))
+    for name, (expression, is_default) in supplied.items():
+        ctx.budget.consume(2)
+        value = defaults.get(name) if is_default else actual.get(id(expression))
+        if value is None:
+            return _c_one(ctx, _c_fail(ctx, state, call, "bound argument observation is missing"))
+        ctx.budget.consume(3)
+        if not _c_cell_write(ctx, state, _CCellRef(activation, name), value):
+            return _c_one(ctx, _c_fail(ctx, state, call, "parameter lexical cell is missing"))
+    ctx.budget.consume(2 * len(ctx.helper_path) + 11)
+    helper_name = definition.relative_path + "::" + (
+        (definition.class_name + ".") if definition.class_name else "") + definition.node.name
+    helper_path = ctx.helper_path + ((helper_name, call.lineno if hasattr(call, "lineno") else 0),)
+    ctx.budget.consume(7)
+    entered = _CContext(ctx.program, ctx.arena, ctx.budget, ctx.item_id,
+                        record.template.path, helper_path)
+    ctx.budget.consume()
+    outcomes: list[_COutcome] = []
+    for outcome in _c_statements(entered, _c_out(entered, state), local, record.template.node.body):
+        ctx.budget.consume(2)
+        if outcome.control in {"normal", "return"}:
+            result = outcome.result if outcome.control == "return" else None
+            outcome = _c_out(ctx, outcome.state, result, issues=outcome.issues, trace=outcome.trace)
+        outcomes.append(outcome)
+    return _c_join(ctx, outcomes)
+
+
