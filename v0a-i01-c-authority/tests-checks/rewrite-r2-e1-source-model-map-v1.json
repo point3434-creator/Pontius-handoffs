@@ -1,0 +1,83 @@
+{
+  "adopted_input": {
+    "adoption": "Only byte-exact sink statement and complete public invocation envelope; no ambient ladder or helper wrapper.",
+    "case_id": "identity-scale-n8-s4-d0-normal",
+    "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\rewrite-r2-identity-cases-v1.json",
+    "sha256": "4834971b9d63aa182c1207959721b6bb65f742a106541d96975945060134d9ea",
+    "sink_line_sha256": "3666eeefde269e73dbc947419c3a441480302feed6877dda01dffd7186d2b3c5",
+    "source_sha256": "4de9d83394368d269d925206a0ff2d133a132ce0a4a2b1134f63db0dff67985f",
+    "standing": "Frozen identity input, not a passed identity analyzer case. New controls must establish clean public behavior."
+  },
+  "cases": [
+    {
+      "constructor_and_local_assignment_model_ast_exact": true,
+      "id": "E01-standard",
+      "model_context": "standard",
+      "model_executed": false,
+      "oracle_sha256": "7fdec11471feb056e44fada20530f1b2f3257b505dd4f2519d76e2d783b4914f",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "sink_ast_exact": true,
+      "sink_byte_exact": true,
+      "source_constructor_line": 4,
+      "source_sha256": "c95af8ff2b7351ced282cb35f3a4b52d6a2b31a5f4439ce8d6f021d89abbc00b",
+      "source_sink_line": 5
+    },
+    {
+      "constructor_and_local_assignment_model_ast_exact": true,
+      "id": "E02-module-empty",
+      "model_context": "module-empty",
+      "model_executed": false,
+      "oracle_sha256": "b953807a3d46610ce2c5772aa97849d5e6f01a88844fb4307ccd985a926cd38b",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "sink_ast_exact": true,
+      "sink_byte_exact": true,
+      "source_constructor_line": 5,
+      "source_sha256": "ddba228b7efe40069838fd7481c30bdcf78961a008f1630311027ebd83b67f6e",
+      "source_sink_line": 6
+    },
+    {
+      "constructor_and_local_assignment_model_ast_exact": true,
+      "id": "E03-module-empty-deleted",
+      "model_context": "module-empty-deleted",
+      "model_executed": false,
+      "oracle_sha256": "abc844601c01f1f94c7f93750d754e413b7371cc4260765e57893758f5234899",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "sink_ast_exact": true,
+      "sink_byte_exact": true,
+      "source_constructor_line": 5,
+      "source_sha256": "17f573eb8c6c0e3be7975ab395b2d4211c04361d5620e45975745631bd6798d3",
+      "source_sink_line": 6
+    },
+    {
+      "constructor_and_local_assignment_model_ast_exact": true,
+      "id": "E04-local-empty",
+      "model_context": "local-empty",
+      "model_executed": false,
+      "oracle_sha256": "b7aac4b510c9b32d2fbdd46860f244b60604e1db500025c5f5918cb9bb9055c2",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "sink_ast_exact": true,
+      "sink_byte_exact": true,
+      "source_constructor_line": 5,
+      "source_sha256": "5067bf59d7cd8be1e7c0ade137da37b1dced5f151a0069a20ebfdc0ba1f47f34",
+      "source_sink_line": 6
+    }
+  ],
+  "classifications": {
+    "clean": 2,
+    "refuse": 2
+  },
+  "finding_preparation_sha256": "effe5454d347cf2a42dbc90e913a2f2be0e5adb31acf91c2495c58b9877dc50c",
+  "pack_sha256": "59b8457a2323634d883fb2c9b0ff82a1e60cd980c5f2a4b50e627c8ca32cdb9b",
+  "planned_cases": 4,
+  "planned_projections": 4,
+  "public_envelope_byte_equivalent": true,
+  "public_envelope_canonical_sha256": "8d4cdf6e791199ae5232437832ef4a39d0076451bf2227a66f69d9c6a31eef23",
+  "runtime_evidence": false,
+  "schema": "pontius-r2-e1-static-source-model-map-v1",
+  "source_diff_sha256": "a879d595fe18fd76abf7640464d37da983579061a471ea6b23df1a2fb694c76c",
+  "spec_sha256": "4fcb92ed30a86be1664d9b1981e5e8dc8c47d5d76eaab7b08dc09db74abc9f11"
+}

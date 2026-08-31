@@ -1,0 +1,58 @@
+--- identity-scale-n8-s4-d0-normal
++++ E01-standard
+@@ -1,26 +1,5 @@
+ import subprocess, sys, unittest
+ class ReviewTests(unittest.TestCase):
+-    @staticmethod
+-    def _launch():
++    def test_static(self):
++        ValueError()
+         subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
+-    def test_static(self):
+-        ambient_0 = 0
+-        ambient_1 = 1
+-        ambient_2 = 2
+-        ambient_3 = 3
+-        ambient_4 = 4
+-        ambient_5 = 5
+-        ambient_6 = 6
+-        ambient_7 = 7
+-        work0 = 0
+-        work1 = 0
+-        selector = self.choice
+-        if selector is True:
+-            pass
+-        elif selector is False:
+-            pass
+-        elif selector is None:
+-            pass
+-        else:
+-            pass
+-        return self._launch()
+--- E01-standard
++++ E02-module-empty
+@@ -1,4 +1,5 @@
+ import subprocess, sys, unittest
++__builtins__ = {}
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+         ValueError()
+--- E01-standard
++++ E03-module-empty-deleted
+@@ -1,5 +1,7 @@
+ import subprocess, sys, unittest
++__builtins__ = {}
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+         ValueError()
+         subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++del __builtins__
+--- E01-standard
++++ E04-local-empty
+@@ -1,5 +1,6 @@
+ import subprocess, sys, unittest
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
++        __builtins__ = {}
+         ValueError()
+         subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
