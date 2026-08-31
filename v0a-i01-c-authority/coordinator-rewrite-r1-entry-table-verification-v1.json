@@ -1,0 +1,24 @@
+{
+  "kind": "coordinator AST-only table verification, no candidate or unittest import",
+  "table_sha256": "55ed71468da3c480e4805672b2b254e1bff5d6d0cf99a2c36ed0fbcfec202ceb",
+  "sources": [
+    {
+      "slot": "311",
+      "version": "3.11.15",
+      "source_sha256": "f062e82d6bcdc231865b62bd3f8fc8847e49211f4884c685ec696216e227b957",
+      "class_names": 91,
+      "lifecycle_fields": 9
+    },
+    {
+      "slot": "314",
+      "version": "3.14.6",
+      "source_sha256": "6c233f91c98b16899cb09801178c2313f48d58dce66a36d2d144facedb6bdbc4",
+      "class_names": 85,
+      "lifecycle_fields": 9
+    }
+  ],
+  "reserved_count": 111,
+  "nondunder_count": 104,
+  "passed": true,
+  "verifier_sha256": "84c5736cd832408eeb30dc38a414d3f17a69bff3c6a5af24118cb8e68936807d"
+}

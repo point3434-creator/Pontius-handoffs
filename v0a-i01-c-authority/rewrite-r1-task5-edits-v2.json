@@ -1,0 +1,46 @@
+[
+  [
+    "    return _c_one(ctx, _c_out(ctx, state, trace=_c_trace(ctx, \"event\", (), observed)))",
+    "    result = _c_atom(ctx, \"unknown\", reason=\"unproved subprocess result\")\n    return _c_one(ctx, _c_out(ctx, state, result, trace=_c_trace(ctx, \"event\", (), observed)))"
+  ],
+  [
+    "    if reason is not None or process is None:\n        return None, reason or \"canonical subprocess policy did not produce a definition\"",
+    "    if reason is not None or process is None:\n        ctx.budget.consume(3)  # Result tuple allocation and two retained references.\n        return None, reason or \"canonical subprocess policy did not produce a definition\""
+  ],
+  [
+    "    ctx.budget.consume(1 + 3 * len(process) + 12)\n    return {\"item_id\": ctx.item_id",
+    "    ctx.budget.consume(1 + 3 * len(process) + 12 + 3)\n    return {\"item_id\": ctx.item_id"
+  ],
+  [
+    "        added, refused, census, links = _c_review_outcomes(ctx, outcomes, owned=False)\n        blockers.extend(refused)\n        sites.extend(census)\n        edges.extend(links)",
+    "        added, refused, census, links = _c_review_outcomes(ctx, outcomes, owned=False)\n        _c_extend_review_rows(ctx, blockers, refused)\n        _c_extend_review_rows(ctx, sites, census)\n        _c_extend_review_rows(ctx, edges, links)"
+  ],
+  [
+    "        budget.consume(len(added) + len(refused) + len(census) + len(links))\n        rows.extend(added)\n        blockers.extend(refused)\n        sites.extend(census)\n        edges.extend(links)",
+    "        _c_extend_review_rows(ctx, rows, added)\n        _c_extend_review_rows(ctx, blockers, refused)\n        _c_extend_review_rows(ctx, sites, census)\n        _c_extend_review_rows(ctx, edges, links)"
+  ],
+  [
+    "            blockers.append(_review_blocker(item_id, path, frame.scope.node,\n                                           \"entry lacks canonical unittest class\"))",
+    "            _c_preflight_blocker(check, blockers, frame.scope.node,\n                                 \"entry lacks canonical unittest class\")"
+  ],
+  [
+    "            blockers.append(_review_blocker(item_id, path, frame.scope.node,\n                                           \"entry is not a canonical function\"))",
+    "            _c_preflight_blocker(check, blockers, frame.scope.node,\n                                 \"entry is not a canonical function\")"
+  ],
+  [
+    "            blockers.append(_review_blocker(item_id, path, definition.template.node,\n                                           \"duplicate or indirect unittest entry is unsupported\"))",
+    "            _c_preflight_blocker(check, blockers, definition.template.node,\n                                 \"duplicate or indirect unittest entry is unsupported\")"
+  ],
+  [
+    "            blockers.append(_review_blocker(item_id, path, definition.template.node,\n                                           \"unsupported unittest signature or fixture hooks\"))",
+    "            _c_preflight_blocker(check, blockers, definition.template.node,\n                                 \"unsupported unittest signature or fixture hooks\")"
+  ],
+  [
+    "        for name in (\"setUp\", \"tearDown\", \"setUpClass\", \"tearDownClass\"):\n            preflight.consume()\n            if name in namespace.members:\n                invalid = True",
+    "        if not _c_entry_namespace_supported(check, namespace):\n            _c_preflight_blocker(check, blockers, definition.template.node,\n                                 \"unsupported unittest protocol or framework member\")\n            continue"
+  ],
+  [
+    "def _process_review_rows(\n",
+    "# Frozen TestCase namespace/lifecycle union; no runtime unittest introspection.\n# Source table SHA256 55ed71468da3c480e4805672b2b254e1bff5d6d0cf99a2c36ed0fbcfec202ceb.\n_C_UNITTEST_RESERVED_NAMES = frozenset((\n    \"__call__\",\n    \"__eq__\",\n    \"__hash__\",\n    \"__init__\",\n    \"__init_subclass__\",\n    \"__repr__\",\n    \"__str__\",\n    \"_addDuration\",\n    \"_addExpectedFailure\",\n    \"_addUnexpectedSuccess\",\n    \"_assertNotWarns\",\n    \"_baseAssertEqual\",\n    \"_callCleanup\",\n    \"_callSetUp\",\n    \"_callTearDown\",\n    \"_callTestMethod\",\n    \"_classSetupFailed\",\n    \"_class_cleanups\",\n    \"_cleanups\",\n    \"_deprecate\",\n    \"_diffThreshold\",\n    \"_formatMessage\",\n    \"_getAssertEqualityFunc\",\n    \"_outcome\",\n    \"_subtest\",\n    \"_tail_type_check\",\n    \"_testMethodDoc\",\n    \"_testMethodName\",\n    \"_truncateMessage\",\n    \"_type_equality_funcs\",\n    \"addClassCleanup\",\n    \"addCleanup\",\n    \"addTypeEqualityFunc\",\n    \"assertAlmostEqual\",\n    \"assertAlmostEquals\",\n    \"assertCountEqual\",\n    \"assertDictContainsSubset\",\n    \"assertDictEqual\",\n    \"assertEndsWith\",\n    \"assertEqual\",\n    \"assertEquals\",\n    \"assertFalse\",\n    \"assertGreater\",\n    \"assertGreaterEqual\",\n    \"assertHasAttr\",\n    \"assertIn\",\n    \"assertIs\",\n    \"assertIsInstance\",\n    \"assertIsNone\",\n    \"assertIsNot\",\n    \"assertIsNotNone\",\n    \"assertIsSubclass\",\n    \"assertLess\",\n    \"assertLessEqual\",\n    \"assertListEqual\",\n    \"assertLogs\",\n    \"assertMultiLineEqual\",\n    \"assertNoLogs\",\n    \"assertNotAlmostEqual\",\n    \"assertNotAlmostEquals\",\n    \"assertNotEndsWith\",\n    \"assertNotEqual\",\n    \"assertNotEquals\",\n    \"assertNotHasAttr\",\n    \"assertNotIn\",\n    \"assertNotIsInstance\",\n    \"assertNotIsSubclass\",\n    \"assertNotRegex\",\n    \"assertNotRegexpMatches\",\n    \"assertNotStartsWith\",\n    \"assertRaises\",\n    \"assertRaisesRegex\",\n    \"assertRaisesRegexp\",\n    \"assertRegex\",\n    \"assertRegexpMatches\",\n    \"assertSequenceEqual\",\n    \"assertSetEqual\",\n    \"assertStartsWith\",\n    \"assertTrue\",\n    \"assertTupleEqual\",\n    \"assertWarns\",\n    \"assertWarnsRegex\",\n    \"assert_\",\n    \"countTestCases\",\n    \"debug\",\n    \"defaultTestResult\",\n    \"doClassCleanups\",\n    \"doCleanups\",\n    \"enterClassContext\",\n    \"enterContext\",\n    \"fail\",\n    \"failIf\",\n    \"failIfAlmostEqual\",\n    \"failIfEqual\",\n    \"failUnless\",\n    \"failUnlessAlmostEqual\",\n    \"failUnlessEqual\",\n    \"failUnlessRaises\",\n    \"failureException\",\n    \"id\",\n    \"longMessage\",\n    \"maxDiff\",\n    \"run\",\n    \"setUp\",\n    \"setUpClass\",\n    \"shortDescription\",\n    \"skipTest\",\n    \"subTest\",\n    \"tearDown\",\n    \"tearDownClass\",\n    \"tearDown_exceptions\",\n))\n\n\ndef _c_extend_review_rows(\n    ctx: _CContext, target: list[dict[str, object]], source: list[dict[str, object]],\n) -> None:\n    ctx.budget.consume(2 * len(source))  # Copied element visits and installed references.\n    target.extend(source)\n\n\ndef _c_preflight_blocker(\n    ctx: _CContext, target: list[dict[str, object]], node: ast.AST, reason: str,\n) -> None:\n    ctx.budget.consume(11)  # Four-field dictionary plus append operation/reference.\n    target.append(_review_blocker(ctx.item_id, ctx.path, node, reason))\n\n\ndef _c_entry_namespace_supported(ctx: _CContext, namespace: _CNamespace) -> bool:\n    for name in namespace.members:\n        ctx.budget.consume(2)  # Name visit and prefix check.\n        dunder = name.startswith(\"__\")\n        if dunder:\n            ctx.budget.consume()\n            dunder = name.endswith(\"__\")\n        if dunder:\n            return False\n        ctx.budget.consume()  # Reached reserved-name membership probe.\n        if name in _C_UNITTEST_RESERVED_NAMES:\n            return False\n    return True\n\n\ndef _process_review_rows(\n"
+  ]
+]
