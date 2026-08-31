@@ -18,9 +18,18 @@ case passes; helper1050 and generator70 reject at the unchanged work cap.
 [Verified result](coordinator-v22-focused-red-verification-v1.json) binds all
 1766 snapshot/payload files and the raw streams. [Assertion-scope correction](coordinator-v22-first-floor-disposition-v2.md)
 distinguishes the helper test's depth-or-budget text requirement from the
-generator test's exact depth64 requirement. Diagnosis comes next; matrix,
-dev, public24 and corpus expansion are held. W remains v20; the v22 candidate
-exists only as retained T bytes and its isolated test snapshot.
+generator test's exact depth64 requirement. Both exact-case diagnostics are
+now complete and [independently verified](coordinator-v22-depth-budget-verification-v1.json):
+helper1050 exhausts its budget while registering helper_540; generator70
+exhausts it while creating g48 during receiver preflight. No deep helper or
+deferred execution is active. The first cost is repeated growing-prefix
+publication/compaction; the second is full name-table rebuilding and ordering.
+[Disposition](coordinator-v22-depth-budget-disposition-v1.md) preserves the
+failed v1 probe and successful v2 diagnostic evidence without issuing a
+product pass. An indexed-store/bulk-builder experiment is being specified;
+no replacement source is authorized yet. Matrix, dev, public24 and corpus
+expansion remain held. W remains v20; v22 exists only as retained T bytes and
+isolated snapshots. All five caps and original assertions are unchanged.
 
 The added composition checks found an independent semantic defect on retained
 v19. Both original class cases fail on both interpreters: an unsafe case is
@@ -44,6 +53,24 @@ The two unsafe exception cases are refused; that alone does not establish
 correct exception semantics. A separate semantic repair must address captures,
 normal and exceptional class exits, and precise versus unresolved rebinding.
 All cases and issued evidence remain immutable.
+
+The [fixed twelve-case extension](tests-checks/class-semantic-extension-cases-v1.json)
+has now run on retained v19 under both actual interpreters. All twelve harmless
+models pass and all analyzer calls complete, but ten semantic requirements
+fail identically on each slot. All five required unsafe cases are incorrectly
+clean. C01 also leaks the class-local module into the outer continuation;
+C11 enters recursive review with the stale captured value and emits no row.
+[Independent verification](coordinator-class-extension-red-verification-v1.json)
+rehashes both full snapshots and compares all complete case records.
+
+The [lexical ownership API](engineer-lexical-cell-ownership-api-v1.md) and
+[class-frame plan](engineer-class-frame-api-plan-v1.md) are engineering inputs,
+not source approval. They separate capture ownership from current cell contents,
+route class exits through the existing successor model, and pair recursive
+review with the recorded callable/call-state snapshot. The uncovered class
+fallback/shadow and direct-declaration boundaries are being classified before
+implementation; no new clean-support promise or weakened expectation is made.
+No semantic source candidate has been written yet.
 
 The candidate is still not acceptable. Accepted A/B and other C paths remain
 preserved; the class defect and ordinary-generation budget failure are both

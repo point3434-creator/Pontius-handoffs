@@ -1,0 +1,49 @@
+{
+  "schema": "c-authority-depth-budget-controller-authoring-proof-v1",
+  "controller": {
+    "path": "tests-depth-budget-control-v1.py",
+    "sha256": "9df274065efc48c9bd31d208c0ac0a3d13bc6217bf3fee762ef06cf7d7a2e407",
+    "bytes": 28586,
+    "has_cr": false,
+    "ends_lf": true
+  },
+  "predecessor": {
+    "path": "engineer-chain32-budget-control-v1.py",
+    "sha256": "425aa5a008dae30fff32a6e9e1fe1c04be6b714c1e6aa5ef5785159e7a8ce2df"
+  },
+  "scope": {
+    "cases": [
+      "helper1050",
+      "generator70"
+    ],
+    "slots": [
+      "311"
+    ],
+    "payload_timeout_seconds": 60,
+    "actual_version": [
+      3,
+      11,
+      15
+    ],
+    "fresh_snapshot_each_invocation": true
+  },
+  "fixed_probe_path": "engineer-depth-budget-probe-v1.py",
+  "final_probe_sha256_pending": true,
+  "explicit_inputs": [
+    "retained source path",
+    "source SHA256",
+    "final probe SHA256",
+    "control SHA256",
+    "separate W-watch SHA256"
+  ],
+  "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "expected_snapshot_tracked_paths": 1761,
+  "expected_manifest_paths": 1765,
+  "expected_final_integrity_paths": 1766,
+  "author_executed_payloads": 0,
+  "author_executed_python_parse_or_import": false,
+  "validation": "Static authoring only; root source/probe/control review required before dispatch.",
+  "meaning_of_success": "Diagnostic completion and restored instrumentation, never a product-pass verdict.",
+  "immutable_previous_artifacts": true,
+  "no_workspace_source_or_tests_edits": true
+}

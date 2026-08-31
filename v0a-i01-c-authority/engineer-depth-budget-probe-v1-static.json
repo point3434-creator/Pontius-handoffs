@@ -1,0 +1,28 @@
+{
+  "validation": "static source/AST only; probe/candidate/cases not imported or executed",
+  "predecessor_sha256": "c37f214c65462565290e3f6eae1dce16d7e2c4adc7f343d81f5a82b087c3dbc9",
+  "probe_sha256": "41ca38516e71d29bcb95869396c08fa177edd12a0f905a472080a05d1b18fb52",
+  "source_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+  "tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "case_proof": {
+    "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "helper1050_original_function": "test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+    "helper1050_original_construction_ast_sha256": "609dcd0d4216b7d2a39275253f9135eba1b7d0ee615fd3950b9256508eedc2d4",
+    "helper1050_builder_ast_sha256": "81e22b99a8cf2af1d0ac7f1c3291fe39f45bd5d84442ce99715e1285e7a48f1a",
+    "helper1050_expected_pattern": "analysis.*(?:depth|budget)",
+    "generator70_original_function": "_fix15_frozen_review_boundary_contracts",
+    "generator70_builder_ast_sha256": "655e34130d9445bebc00d1be6ccb15d050183a56240fb832d46db85633c4febb",
+    "generator70_expected_pattern": "^analysis deferred generator depth exceeds 64$",
+    "review_envelope_original_ast_sha256": "dcee8fcb3b83cb05813f9784e247b233131e12f03e11f41e85a529b86478a63e",
+    "source_builders_execute_only_original_string_construction": true,
+    "generated_sensitive_source_never_compiled_or_executed": true
+  },
+  "original_delegate_call_proofs": {
+    "original_init": "aa74a0e7a98bea49e66802cfa0544031139a33c19ffe09c168d03d80897b7621",
+    "original_consume": "7cde87cfdea10d25ba79e520adbc23d38f433254d5df0a96e39eadd2aaa26fe5"
+  },
+  "emits_exact_complete_interface": true,
+  "floor_only": true,
+  "code0_means_diagnostic_completion_not_product_pass": true,
+  "source_worktree_test_and_cap_edits": false
+}

@@ -1,0 +1,29 @@
+{
+  "verification": "static AST and byte transformations only; no payload import or execution",
+  "predecessors_and_failed_receipt": {
+    "engineer-depth-budget-probe-v1.py": "41ca38516e71d29bcb95869396c08fa177edd12a0f905a472080a05d1b18fb52",
+    "tests-depth-budget-control-v1.py": "9df274065efc48c9bd31d208c0ac0a3d13bc6217bf3fee762ef06cf7d7a2e407",
+    "engineer-generator-v22.py": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+    "tests-checks/depth-budget-v22-cost01-helper1050-311-receipt.json": "0a18f257eef1c3aa9d4113bd91e58694f7e7a3e2524f533cb55e97d880a71df2"
+  },
+  "watch_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+  "outputs": {
+    "engineer-depth-budget-probe-v2.py": "8db7415b97750e8880b25351be76b6fdf75d767a03a3a589d739113a73b6cae0",
+    "tests-depth-budget-control-v2.py": "bbdc550c042fe62c8c19e838ffe35a9cabc09f22fdd4d941bdb0d9d0a41599a5",
+    "engineer-depth-budget-probe-v2-from-v1.diff": "b20853d6530eb9f4673d41c5a7a8972a8785ca9704eaba3696b6f3fa4e7b470a",
+    "tests-depth-budget-control-v2-from-v1.diff": "3b4fac2cd2ea137626acceb34a0a123eab0a27c9f2a0c22e1958c5c01cdc552c"
+  },
+  "probe_delta": "Only frame_info ExecutionState authority descriptor",
+  "all_other_probe_ast_equal": true,
+  "control_delta": "Exactly one PROBE fixed filename v1 to v2; schema/CLI/custody unchanged",
+  "guard_reads": "raw vars() on exact ExecutionState and AuthorityState; exact bool check; explicit missing/unexpected markers; no public Mapping/cursor access",
+  "sibling_audit": {
+    "resolver_attributes": "Already uses vars(exact resolver).get and type checks; incomplete __init__ safe.",
+    "AST_descriptors": "AST inputs come from completed ast.parse, not partially initialized execution wrappers; lineno/name getattr have defaults. Direct Call.func/Name.id/Attribute.attr belong to complete parser nodes.",
+    "budget_observer": "Original __init__ returns before fields are read; consume receiver is already initialized. Durable records retain only scalars/counters.",
+    "name_meter_observer": "charge reads its own initialized budget before original consume; successful original delegation remains unchanged.",
+    "operation_hooks": "Full input receivers/meter arguments inspected before delegation; publication plan inspected only after original commit returns. No inspection of partially built return state.",
+    "partial_state_output": "No projection keys, values, length, cursor, authority maps or metered properties are read."
+  },
+  "no_test_source_cap_or_production_changes": true
+}

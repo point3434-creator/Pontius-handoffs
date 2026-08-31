@@ -1,0 +1,29 @@
+--- engineer-depth-budget-probe-v1.py
++++ engineer-depth-budget-probe-v2.py
+@@ -190,7 +190,25 @@
+     for field in ("values", "environment", "current", "result", "class_values"):
+         supplied = local.get(field)
+         if type(supplied) is generator._ExecutionState:
+-            value[field + "_authority_enabled"] = supplied.authority.enabled
++            # Failure can interrupt copy() before authority is installed.
++            attributes = vars(supplied)
++            if "authority" not in attributes:
++                value[field + "_authority_status"] = "missing"
++                continue
++            authority = attributes["authority"]
++            if type(authority) is not generator._AuthorityState:
++                value[field + "_authority_status"] = "unexpected-type"
++                continue
++            authority_attributes = vars(authority)
++            if "enabled" not in authority_attributes:
++                value[field + "_authority_status"] = "enabled-missing"
++                continue
++            enabled = authority_attributes["enabled"]
++            if type(enabled) is not bool:
++                value[field + "_authority_status"] = "enabled-not-bool"
++                continue
++            value[field + "_authority_status"] = "present"
++            value[field + "_authority_enabled"] = enabled
+     return value
+ 
+ 

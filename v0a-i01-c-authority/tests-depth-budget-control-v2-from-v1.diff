@@ -1,0 +1,11 @@
+--- tests-depth-budget-control-v1.py
++++ tests-depth-budget-control-v2.py
+@@ -29,7 +29,7 @@
+ TEST_SHA = "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+ SOURCE_RELATIVE = "tools/generate_test_inventory.py"
+ TEST_RELATIVE = "tests/test_inventory_and_profiles.py"
+-PROBE = ROOT / "engineer-depth-budget-probe-v1.py"
++PROBE = ROOT / "engineer-depth-budget-probe-v2.py"
+ CASES = ("helper1050", "generator70")
+ TRACKED_COUNT = 1761
+ TIMEOUT = 60

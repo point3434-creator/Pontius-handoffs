@@ -1,0 +1,88 @@
+{"identity_before_payload_imports": {"case": "helper1050", "control_sha256": "9df274065efc48c9bd31d208c0ac0a3d13bc6217bf3fee762ef06cf7d7a2e407", "cwd": "D:\\pontius-snapshots\\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\\snapshot", "dont_write_bytecode": true, "environment": {"COMSPEC": "C:\\windows\\System32\\cmd.exe", "GIT_ATTR_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": "NUL", "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_SYSTEM": "NUL", "PATH": "C:\\windows\\System32", "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe", "PYTHONNOUSERSITE": "1", "PYTHONPATH": "D:\\pontius-snapshots\\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\\snapshot\\src", "SYSTEMROOT": "C:\\windows", "TEMP": "D:\\pontius-snapshots\\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\\temp", "TMP": "D:\\pontius-snapshots\\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\\temp", "WINDIR": "C:\\windows"}, "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "ignore_environment": 0, "implementation": "cpython", "isolated": 0, "manifest_count": 1765, "manifest_sha256": "a9e66f560134de54c2862ffc5fbe1247a2fbbe308f9e872205162a6b90a87c2b", "no_site": 0, "no_user_site": 1, "optimize": 0, "probe_sha256": "41ca38516e71d29bcb95869396c08fa177edd12a0f905a472080a05d1b18fb52", "safe_path": true, "schema": "c-authority-depth-budget-identity-v1", "source_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3", "tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf", "tracked_count": 1761, "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "version_info": [3, 11, 15]}}
+{"depth_budget_scope": {"case": "helper1050", "case_construction": "Original frozen construction statements only; generated sensitive source is never executed", "diagnostic_only": true, "fixture_bytes": 45283, "fixture_sha256": "148ffd41c2a5d5616a4b8d1cf8bc297f488ae8f6ddc1109d1d2842afa9183754", "original_expectation": "analysis.*(?:depth|budget)", "phase_definition": "Nearest real cursor/storage boundary; pipeline-stage sums are separate.", "review_envelope": "Original DesignReviewTests._review default child source, inventory and item universe", "source_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3", "tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"}}
+{"depth_budget_bootstrap_error": {"message": "'_ExecutionState' object has no attribute 'authority'", "type": "AttributeError"}}
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 239, in observed_consume
+    answer = original_consume(self, units)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 9061, in consume
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: analysis work units exceed 262144
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\wrapper.py", line 105, in <module>
+    main()
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\wrapper.py", line 101, in main
+    runpy.run_path(sys.argv[0], run_name="__main__")
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 382, in <module>
+    review = case._review(sources={"tests/test_review.py": fixture})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tests\test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 27574, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 27131, in _process_review_rows
+    definition_time_protocol_resolvers = {
+                                         ^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 27132, in <dictcomp>
+    relative_path: _definition_time_protocol_resolver(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 26435, in _definition_time_protocol_resolver
+    resolver.resolve(tree.body)
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 16517, in resolve
+    successors = self._flow_statements(statements, self.values)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 22320, in _flow_statements
+    result = self._coalesce_successors(result)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 22270, in _coalesce_successors
+    merged(supplied.normal),
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 22237, in merged
+    return [] if not states else [self._merge_states(states)]
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 287, in wrapped
+    result = original(*args, **keywords)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 21970, in _merge_states
+    return self._fork_values(states[0])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 15110, in _fork_values
+    return (values.copy() if isinstance(values, _ExecutionState) else
+            ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 14872, in copy
+    result._names = self._names.fork()
+                    ^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 287, in wrapped
+    result = original(*args, **keywords)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 14554, in fork
+    plan = _name_prepare_publication(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 287, in wrapped
+    result = original(*args, **keywords)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 14445, in _name_prepare_publication
+    layers = _name_compact(meter, layers, cursor._tail)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 287, in wrapped
+    result = original(*args, **keywords)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 14183, in _name_compact
+    meter.charge('compaction_reference_copies', 1 + int(old is _NAME_MISSING))
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\tools\generate_test_inventory.py", line 14095, in charge
+    self.budget.consume(units)
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 254, in observed_consume
+    stack.append(frame_info(current))
+                 ^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\depth-budget-563e8b38d06442f7bff0cc05fc3dcc2e\snapshot\.depth-budget-diagnostic\probe.py", line 193, in frame_info
+    value[field + "_authority_enabled"] = supplied.authority.enabled
+                                          ^^^^^^^^^^^^^^^^^^
+AttributeError: '_ExecutionState' object has no attribute 'authority'

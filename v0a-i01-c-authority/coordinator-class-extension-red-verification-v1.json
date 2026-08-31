@@ -1,0 +1,122 @@
+{
+  "schema": "coordinator-class-extension-red-verification-v1",
+  "pack_sha256": "925ae5b9354377a5957f0c32c8bf5b58fea01612498b835abd6392f9cc87d268",
+  "results": [
+    {
+      "slot": "311",
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-extension-v19-red01-311-receipt.json",
+      "receipt_sha256": "88467325038d7d2395c28c291daa42014f562b66f961a8d7983d6dd02cb4c2f9",
+      "log_sha256": "f851c2257e11b99b876fad131eb82d75a427566cb7f8a25af73e73b89d3de3b7",
+      "rehash_file_count_including_manifest": 1768,
+      "semantic_failures": [
+        "call-raise-unsafe",
+        "call-raise-safe",
+        "forwarded-grandparent-unsafe",
+        "define-after-change-unsafe",
+        "define-after-change-safe",
+        "if-frame-safe",
+        "try-frame-safe",
+        "nonlocal-delete-unsafe",
+        "recursive-row-safe",
+        "recursive-row-unsafe"
+      ],
+      "harmless_models_passed": 12,
+      "analyzer_errors": 0,
+      "recursive_route": {
+        "required": true,
+        "events": [
+          {
+            "case": "recursive-row-safe",
+            "ordinal": 0,
+            "function": "invoke",
+            "line": 12,
+            "closure_depth": 1,
+            "event": "entry",
+            "projected": {
+              "armed": {
+                "kind": "scalar",
+                "scalar": true
+              },
+              "module": {
+                "kind": "scalar",
+                "scalar": "outer"
+              }
+            }
+          },
+          {
+            "case": "recursive-row-safe",
+            "ordinal": 0,
+            "function": "invoke",
+            "line": 12,
+            "closure_depth": 1,
+            "event": "return",
+            "subprocess_argv": [],
+            "blocker_count": 2
+          }
+        ],
+        "coverage_ok": false,
+        "status": "entry-without-row",
+        "absence_is_coverage_failure": true
+      }
+    },
+    {
+      "slot": "314",
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\class-extension-v19-red01-314-receipt.json",
+      "receipt_sha256": "e3b19f47b0b976fa22e4294dc39dda8422021aeceab8a8a03cd201591f2b0cd8",
+      "log_sha256": "aa68f764ee96447e4b3124006d79e440361729097a4d72e16a99263c3b8cb97f",
+      "rehash_file_count_including_manifest": 1773,
+      "semantic_failures": [
+        "call-raise-unsafe",
+        "call-raise-safe",
+        "forwarded-grandparent-unsafe",
+        "define-after-change-unsafe",
+        "define-after-change-safe",
+        "if-frame-safe",
+        "try-frame-safe",
+        "nonlocal-delete-unsafe",
+        "recursive-row-safe",
+        "recursive-row-unsafe"
+      ],
+      "harmless_models_passed": 12,
+      "analyzer_errors": 0,
+      "recursive_route": {
+        "required": true,
+        "events": [
+          {
+            "case": "recursive-row-safe",
+            "ordinal": 0,
+            "function": "invoke",
+            "line": 12,
+            "closure_depth": 1,
+            "event": "entry",
+            "projected": {
+              "armed": {
+                "kind": "scalar",
+                "scalar": true
+              },
+              "module": {
+                "kind": "scalar",
+                "scalar": "outer"
+              }
+            }
+          },
+          {
+            "case": "recursive-row-safe",
+            "ordinal": 0,
+            "function": "invoke",
+            "line": 12,
+            "closure_depth": 1,
+            "event": "return",
+            "subprocess_argv": [],
+            "blocker_count": 2
+          }
+        ],
+        "coverage_ok": false,
+        "status": "entry-without-row",
+        "absence_is_coverage_failure": true
+      }
+    }
+  ],
+  "all_per_case_records_equal_across_runtimes": true,
+  "standing": "Pre-repair v19 RED. No semantic implementation or cold verdict."
+}
