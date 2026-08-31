@@ -1,0 +1,21 @@
+{
+  "reference": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "test_sha256": "af929697b3f6c8ddad823ff16bef63936f5b924cdf16992d8bc93679368ca961",
+  "existing_methods_preserved": 178,
+  "added_methods": [
+    "DesignReviewTests._provenance_case",
+    "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+    "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+    "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+    "DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+    "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+    "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+    "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+    "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+    "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+    "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation"
+  ],
+  "changed_existing_methods": [],
+  "removed_methods": [],
+  "standing": "engineering AST preservation check before census refresh; no execution or cold verdict"
+}

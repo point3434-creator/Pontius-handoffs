@@ -1,0 +1,89 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 36, "failures": 4, "errors": 0, "skipped": 0}
+test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all (binding_inventory_tests.DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all) ... ok
+test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects (binding_inventory_tests.DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects) ... ok
+test_each_referenced_process_semantic_changes_the_design_row_digest (binding_inventory_tests.DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest) ... ok
+test_declared_unconditional_skip_body_cannot_grant_capabilities (binding_inventory_tests.DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities) ... ok
+test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization (binding_inventory_tests.DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization) ... ok
+test_reaching_definitions_preserve_sensitive_reassignments_and_containers (binding_inventory_tests.DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers) ... ok
+test_environment_update_delete_alias_and_branch_state_is_call_local (binding_inventory_tests.DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local) ... ok
+test_match_exception_and_child_program_analysis_never_silently_undercounts (binding_inventory_tests.DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts) ... ok
+test_protected_results_match_captures_and_child_provenance_are_complete (binding_inventory_tests.DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete) ... ok
+test_source_order_bounds_exception_environments_and_decorators_are_exact (binding_inventory_tests.DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact) ... ok
+test_analysis_budgets_contain_deep_helpers_and_invalid_ranges (binding_inventory_tests.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges) ... ok
+test_round4_sensitive_provenance_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent) ... ok
+test_round4_match_capture_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_match_capture_red_contracts_are_independent) ... ok
+test_round4_child_and_helper_provenance_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) ... ok
+test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) ... 
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (round12_protected_namespace_mutation='unrelated-clean') ... FAIL
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix17_protected_mutation='delattr') ... FAIL
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix17_protected_mutation='clean-attribute-and-mapping') ... FAIL
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix17_protected_mutation='clean-patch-object-and-dict') ... FAIL
+test_round4_exception_environment_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent) ... ok
+test_round4_decorator_definition_point_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent) ... ok
+test_round4_analysis_budget_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent) ... ok
+test_registered_probe_and_cross_file_helpers_are_exactly_resolved (binding_inventory_tests.DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved) ... ok
+test_helper_provenance_scoped_binding_losses_remain_blocked (binding_inventory_tests.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) ... ok
+test_helper_provenance_comprehension_scope_is_source_ordered (binding_inventory_tests.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) ... ok
+test_helper_provenance_original_members_require_stability (binding_inventory_tests.DesignReviewTests.test_helper_provenance_original_members_require_stability) ... ok
+test_helper_provenance_callee_capture_and_local_admission (binding_inventory_tests.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) ... ok
+test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) ... ok
+test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) ... ok
+test_helper_provenance_unsupported_effects_and_escapes_refuse (binding_inventory_tests.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) ... ok
+test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) ... ok
+test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) ... ok
+test_helper_provenance_imported_initialization_mutation_is_owner_scoped (binding_inventory_tests.DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped) ... ok
+test_descriptor_defaults_preserve_real_python_argument_binding (binding_inventory_tests.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_receiver_descriptor_not_parameter_spelling_controls_binding (binding_inventory_tests.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) ... ok
+test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved (binding_inventory_tests.DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved) ... ok
+test_invalid_static_helper_arguments_remain_blocked (binding_inventory_tests.DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked) ... ok
+test_unproven_helper_descriptor_provenance_remains_blocked (binding_inventory_tests.DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked) ... ok
+test_helper_registry_and_argument_binding_fail_closed (binding_inventory_tests.DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed) ... ok
+test_import_time_nested_and_duplicate_sensitive_calls_fail_closed (binding_inventory_tests.DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed) ... ok
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (round12_protected_namespace_mutation='unrelated-clean')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\harness\tests\test_inventory_and_profiles.py", line 16254, in _round12_remaining_runtime_edges_fail_closed
+    self.assertFalse(blockers, "unrelated namespace mutation must remain clean")
+AssertionError: ({'item_id': 'tests/test_review.py::ReviewTests::test_denied', 'relative_path': 'tests/test_review.py', 'line': 12, 'reason': 'imported helper namespace initialization is dynamically unresolved'}, {'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 11, 'reason': 'imported helper namespace initialization is dynamically unresolved'}, {'item_id': 'unowned:import-time', 'relative_path': 'tests/test_review.py', 'line': 7, 'reason': 'import-time helper capability closure is unowned'}) is not false : unrelated namespace mutation must remain clean
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix17_protected_mutation='delattr')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\harness\tests\test_inventory_and_profiles.py", line 16825, in _fix17_indirect_runtime_edges_fail_closed
+    self.assertEqual(
+AssertionError: Tuples differ: ({'item_id': 'tests/test_review.py::ReviewTests::test_d[507 chars]ed'}) != ({'item_id': 'unowned:import-time', 'relative_path': 't[116 chars]d'},)
+
+First differing element 0:
+{'item_id': 'tests/test_review.py::ReviewTests::test_d[135 chars]ved'}
+{'item_id': 'unowned:import-time', 'relative_path': 't[114 chars]ved'}
+
+First tuple contains 2 additional elements.
+First extra element 1:
+{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 11, 'reason': 'imported helper namespace initialization is dynamically unresolved'}
+
+Diff is 805 characters long. Set self.maxDiff to None to see it. : delattr did not produce its exact source-site blocker: ({'item_id': 'tests/test_review.py::ReviewTests::test_static', 'approval_scope': 'design', 'capability_kind': 'call', 'capability_id': 'call:77141b42096eece3efde935f', 'kind': 'cuda_allocation', 'module_name': 'cupy', 'qualified_name': 'cupy.arange', 'action': 'allocate', 'maximum_calls': 2, 'return_contract': 'device_array'},)
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix17_protected_mutation='clean-attribute-and-mapping')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\harness\tests\test_inventory_and_profiles.py", line 16900, in _fix17_indirect_runtime_edges_fail_closed
+    self.assertFalse(
+AssertionError: ({'item_id': 'tests/test_review.py::ReviewTests::test_denied', 'relative_path': 'tests/test_review.py', 'line': 17, 'reason': 'imported helper namespace initialization is dynamically unresolved'}, {'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 16, 'reason': 'imported helper namespace initialization is dynamically unresolved'}) is not false : unrelated reflective mutation attribute-and-mapping must remain clean
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix17_protected_mutation='clean-patch-object-and-dict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe06-311-abd098fd5ba64183badee09b91ebe344\harness\tests\test_inventory_and_profiles.py", line 16900, in _fix17_indirect_runtime_edges_fail_closed
+    self.assertFalse(
+AssertionError: ({'item_id': 'tests/test_review.py::ReviewTests::test_denied', 'relative_path': 'tests/test_review.py', 'line': 25, 'reason': 'imported helper namespace initialization is dynamically unresolved'}, {'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 12, 'reason': 'imported helper namespace initialization is dynamically unresolved'}) is not false : unrelated reflective mutation patch-object-and-dict must remain clean
+
+----------------------------------------------------------------------
+Ran 36 tests in 9.793s
+
+FAILED (failures=4)

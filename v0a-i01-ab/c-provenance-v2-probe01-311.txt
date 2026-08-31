@@ -1,0 +1,105 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 6, "failures": 3, "errors": 1, "skipped": 0}
+test_each_referenced_process_semantic_changes_the_design_row_digest (binding_inventory_tests.DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest) ... ok
+test_protected_results_match_captures_and_child_provenance_are_complete (binding_inventory_tests.DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete) ... ok
+test_round4_sensitive_provenance_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent) ... ok
+test_round4_child_and_helper_provenance_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) ... ok
+test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) ... 
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-nonlocal-binding-is-entry-bound') ... FAIL
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='nonlocal-helper-present-uses-enclosing-identity') ... FAIL
+  test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='nonlocal-helper-absent-keeps-name-error-successor') ... FAIL
+test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) ... ERROR
+test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization (binding_inventory_tests.DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization) ... ok
+
+======================================================================
+ERROR: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 19426, in test_round4_source_order_and_branch_bounds_red_contracts_are_independent
+    self._fix15_frozen_review_boundary_contracts()
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 13899, in _fix15_frozen_review_boundary_contracts
+    exact_full_rows, exact_full_blockers = review_evidence(exact_full_body)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 13630, in review_evidence
+    review = self._review(
+             ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tools\generate_test_inventory.py", line 25037, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tools\generate_test_inventory.py", line 24811, in _process_review_rows
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tools\generate_test_inventory.py", line 23487, in _review_body
+    added, refused = _review_body(
+                     ^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tools\generate_test_inventory.py", line 23843, in _review_body
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: resolved sensitive site is absent from the independent census: tests/test_review.py:7
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='lexical-nonlocal-binding-is-entry-bound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 11697, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[21 chars]e', (0, ('helper namespace effects are dynamic[21 chars]one)) != (1, '[21 chars]e', (1, (), None))
+
+First differing element 3:
+(0, ('helper namespace effects are dynamically unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (0, ('helper namespace effects are dynamically unresolved',), None)) : lexical-nonlocal-binding-is-entry-bound must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='nonlocal-helper-present-uses-enclosing-identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 11720, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[21 chars]e', (0, ('helper namespace effects are dynamic[21 chars]one)) != (1, '[21 chars]e', (1, (), None))
+
+First differing element 3:
+(0, ('helper namespace effects are dynamically unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (0, ('helper namespace effects are dynamically unresolved',), None)) : nonlocal-helper-present-uses-enclosing-identity must catch its named production mutation
+
+======================================================================
+FAIL: test_round4_source_order_and_branch_bounds_red_contracts_are_independent (binding_inventory_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) (fix13_runtime_contract='nonlocal-helper-absent-keeps-name-error-successor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 11738, in _fix13_analyzer_review_findings_are_real_runtime_contracts
+    self._fix13_assert_analyzer_case(
+  File "D:\pontius-snapshots\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\harness\tests\test_inventory_and_profiles.py", line 10408, in _fix13_assert_analyzer_case
+    self.assertEqual(
+AssertionError: Tuples differ: (1, '[21 chars]e', (0, ('helper namespace effects are dynamic[21 chars]one)) != (1, '[21 chars]e', (1, (), None))
+
+First differing element 3:
+(0, ('helper namespace effects are dynamically unresolved',), None)
+(1, (), None)
+
++ (1, 'sensitive', 'sensitive', (1, (), None))
+- (1,
+-  'sensitive',
+-  'sensitive',
+-  (0, ('helper namespace effects are dynamically unresolved',), None)) : nonlocal-helper-absent-keeps-name-error-successor must catch its named production mutation
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.429s
+
+FAILED (failures=3, errors=1)

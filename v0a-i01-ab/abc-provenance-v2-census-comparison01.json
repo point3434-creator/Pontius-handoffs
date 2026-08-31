@@ -1,0 +1,1397 @@
+{
+  "standing": "read-only corpus comparison; refusal classification still independently under review",
+  "input_sha256": {
+    "slice-c-combined-census-311-02.json": "348224cde14a7747c81acd551380929985da5604e2241741062a50557a2bcaf7",
+    "slice-c-provenance-v2-census-311-01.json": "3523b64e5a0ad00e9625c14d0861474fb94d23e96ed1a0175bd6eaf36375a8a3"
+  },
+  "expanded_rows_identical": 141,
+  "spec_capabilities_sha256": "d303a26e373f0b173a4283dcede5735fdae6b849fdb0cb0ffcddec9017e8012a",
+  "core_census_unchanged": true,
+  "analysis_census": {
+    "analyzed_sites_sha256": "3170f99166d98d3879109a0d02ea68a096bf096ae79e1d0ab871d6ba764f6020",
+    "cross_file_helper_edge_count": 27,
+    "cupy_call_node_count": 30,
+    "string_sink_decoy_count": 598,
+    "string_sink_decoy_partitions": {
+      "design_production": 17,
+      "historical_production": 6,
+      "prior_stabilization_synthetic": 34,
+      "task2_synthetic": 541
+    },
+    "string_sink_decoy_sha256": "7c452af16ab912061c533ae06c9142f869d7500689d7bcf74a588b13f54e4b19",
+    "subprocess_direct_site_count": 45,
+    "subprocess_helper_site_count": 5
+  },
+  "blocker_reason_counts_before": {
+    "CuPy action or view is outside the approved call scope": 11,
+    "callback closure": 1,
+    "deferred generator consumption is dynamically unresolved": 50,
+    "dynamic helper arguments prevent exact sink derivation": 26,
+    "dynamic repetition prevents a finite call bound": 2,
+    "dynamic repetition prevents a finite helper call bound": 1,
+    "dynamic sensitive call result is unresolved": 16,
+    "local class decorator runtime target is dynamically unresolved": 4,
+    "max/min comparison dispatch is dynamically unresolved": 36,
+    "max/min iterable contents are dynamically unresolved": 102,
+    "mixed protected receiver is dynamically unresolved": 67,
+    "protected value store target is dynamically unresolved": 6,
+    "registered probe implementation is absent": 1,
+    "unittest instance or class binding is dynamically unresolved": 10,
+    "unregistered CuPy call is unresolved": 2,
+    "unsupported subprocess keyword: capture_output": 48,
+    "unsupported subprocess keyword: stdin": 5
+  },
+  "blocker_reason_counts_after": {
+    "CuPy action or view is outside the approved call scope": 11,
+    "callback closure": 1,
+    "deferred generator consumption is dynamically unresolved": 50,
+    "dynamic helper arguments prevent exact sink derivation": 26,
+    "dynamic repetition prevents a finite call bound": 2,
+    "dynamic repetition prevents a finite helper call bound": 1,
+    "dynamic sensitive call result is unresolved": 18,
+    "helper descriptor member identity is unresolved": 10,
+    "helper namespace escape is dynamically unresolved": 66,
+    "helper namespace identity was mutated": 91,
+    "helper namespace store is dynamically unresolved": 16,
+    "local class decorator runtime target is dynamically unresolved": 4,
+    "max/min comparison dispatch is dynamically unresolved": 36,
+    "max/min iterable contents are dynamically unresolved": 102,
+    "mixed protected receiver is dynamically unresolved": 74,
+    "protected value store target is dynamically unresolved": 3,
+    "registered probe implementation is absent": 1,
+    "unittest instance or class binding is dynamically unresolved": 10,
+    "unregistered CuPy call is unresolved": 2,
+    "unsupported subprocess keyword: capture_output": 48,
+    "unsupported subprocess keyword: stdin": 5
+  },
+  "removed_blocker_records": [
+    [
+      "fixture:tests/test_gpu_occupied_card_quotient.py::GpuOccupiedCardQuotientDeviceTests",
+      "tests/test_gpu_occupied_card_quotient.py",
+      218,
+      "protected value store target is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_legal_river_quotient_cuda_compensated_tiles.py::LegalRiverQuotientCompensatedTileDeviceTests",
+      "tests/test_legal_river_quotient_cuda_compensated_tiles.py",
+      182,
+      "protected value store target is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_legal_river_quotient_cuda_consumer.py::LegalRiverQuotientCudaConsumerDeviceTests",
+      "tests/test_legal_river_quotient_cuda_consumer.py",
+      149,
+      "protected value store target is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_baseline_counts_digests_and_materialized_partition_are_exact",
+      "tests/test_inventory_and_profiles.py",
+      29784,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_exact_declared_unconditional_skips_match_outer_literal_and_digest",
+      "tests/test_inventory_and_profiles.py",
+      30182,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_historical_payload_subgroups_have_independently_locked_ids",
+      "tests/test_inventory_and_profiles.py",
+      30112,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_exact_interpreter_slots_profiles_and_budgets_are_declared",
+      "tests/test_inventory_and_profiles.py",
+      30332,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_twelve_historical_cases_bind_exact_commits_trees_and_v7_overlays",
+      "tests/test_inventory_and_profiles.py",
+      30389,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_descriptor_defaults_preserve_real_python_argument_binding",
+      "tests/test_inventory_and_profiles.py",
+      20817,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+      "tests/test_inventory_and_profiles.py",
+      21080,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+      "tests/test_inventory_and_profiles.py",
+      21176,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_invalid_static_helper_arguments_remain_blocked",
+      "tests/test_inventory_and_profiles.py",
+      20969,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+      "tests/test_inventory_and_profiles.py",
+      20870,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+      "tests/test_inventory_and_profiles.py",
+      20879,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+      "tests/test_inventory_and_profiles.py",
+      20927,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+      "tests/test_inventory_and_profiles.py",
+      20930,
+      "mixed protected receiver is dynamically unresolved"
+    ]
+  ],
+  "added_blocker_records": [
+    [
+      "fixture:tests/test_affine_resident_leaf_adjoint_cfr.py::AffineResidentLeafAdjointCFRTests",
+      "tests/test_affine_resident_leaf_adjoint_cfr.py",
+      73,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_affine_resident_leaf_adjoint_cfr.py::AffineResidentLeafAdjointCFRTests",
+      "tests/test_affine_resident_leaf_adjoint_cfr.py",
+      98,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_affine_resident_leaf_adjoint_cfr.py::AffineResidentLeafAdjointCFRTests",
+      "tests/test_affine_resident_leaf_adjoint_cfr.py",
+      99,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_behavioral_one_seat_master.py::BehavioralOneSeatMasterTests",
+      "tests/test_behavioral_one_seat_master.py",
+      41,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_canonical_affine_resident_automaton_cache.py::CanonicalAffineResidentCacheTests",
+      "tests/test_canonical_affine_resident_automaton_cache.py",
+      101,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_canonical_affine_resident_automaton_cache.py::CanonicalAffineResidentCacheTests",
+      "tests/test_canonical_affine_resident_automaton_cache.py",
+      126,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_canonical_affine_resident_automaton_cache.py::CanonicalAffineResidentCacheTests",
+      "tests/test_canonical_affine_resident_automaton_cache.py",
+      127,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_cupy_sparse_incidence.py::CuPySparseIncidenceTests",
+      "tests/test_cupy_sparse_incidence.py",
+      35,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_device_fold_resident_paths.py::DeviceFoldResidentPathTests",
+      "tests/test_device_fold_resident_paths.py",
+      51,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_device_fold_resident_paths_v2.py::DeviceFoldResidentPathV2Tests",
+      "tests/test_device_fold_resident_paths.py",
+      51,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_device_fold_resident_paths_v2.py::DeviceFoldResidentPathV2Tests",
+      "tests/test_device_fold_resident_paths_v2.py",
+      32,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests",
+      "tests/test_fresh_action_width_nonreplay_greedy.py",
+      102,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests",
+      "tests/test_fresh_action_width_nonreplay_teacher.py",
+      80,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests",
+      "tests/test_fresh_action_width_transfer_confirmation.py",
+      122,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "fixture:tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      149,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "fixture:tests/test_h32_action_width_quality_audit.py::H32ActionWidthQualityH2OrchestrationTests",
+      "tests/test_h32_action_width_quality_audit.py",
+      68,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_h32_action_width_quality_audit.py::H32ActionWidthQualityH2OrchestrationTests",
+      "tests/test_h32_action_width_quality_audit.py",
+      69,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_multi_size_affine_cross_payoff.py::MultiSizeAffineCrossPayoffTests",
+      "tests/test_multi_size_affine_cross_payoff.py",
+      48,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_multi_size_policy_bridge_and_evaluation.py::MultiSizeAffineResidentEvaluationTests",
+      "tests/test_multi_size_policy_bridge_and_evaluation.py",
+      162,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_multi_size_policy_bridge_and_evaluation.py::MultiSizePolicyBridgeTests",
+      "tests/test_multi_size_policy_bridge_and_evaluation.py",
+      67,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_multi_size_policy_bridge_and_evaluation.py::MultiSizePolicyBridgeTests",
+      "tests/test_multi_size_policy_bridge_and_evaluation.py",
+      68,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_multi_size_resident_leaf_adjoint_cfr.py::MultiSizeResidentLeafAdjointCFRTests",
+      "tests/test_multi_size_resident_leaf_adjoint_cfr.py",
+      27,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_public_node_open_axis.py::PublicNodeOpenAxisTests",
+      "tests/test_public_node_open_axis.py",
+      36,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "fixture:tests/test_resident_leaf_adjoint_cfr.py::ResidentLeafAdjointCFRTests",
+      "tests/test_resident_leaf_adjoint_cfr.py",
+      29,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SourceTests::test_illegal_raise_sets_and_scope_claims_reject_before_backend",
+      "tests/test_certified_reduced_sizing_consumer_v2.py",
+      276,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SourceTests::test_invalid_exact_range_context_rejects_before_backend",
+      "tests/test_certified_reduced_sizing_consumer_v2.py",
+      289,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SourceTests::test_source_and_runtime_drift_reject_before_backend",
+      "tests/test_certified_reduced_sizing_consumer_v2.py",
+      331,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_certified_reduced_sizing_consumer_v2.py::CertifiedReducedSizingConsumerV2SourceTests::test_unsupported_game_shapes_reject_before_backend",
+      "tests/test_certified_reduced_sizing_consumer_v2.py",
+      237,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_factorized_dense_likelihood_update_uses_dense_path_exactly",
+      "tests/test_dependency_tape.py",
+      549,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      400,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      411,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      416,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      422,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      423,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      428,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      429,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      430,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_flat_tape_matches_full_and_specialized_river_controls",
+      "tests/test_dependency_tape.py",
+      434,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_generated_family_matrix_matches_both_exact_controls",
+      "tests/test_dependency_tape.py",
+      364,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_generated_family_matrix_matches_both_exact_controls",
+      "tests/test_dependency_tape.py",
+      365,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_generated_family_matrix_matches_both_exact_controls",
+      "tests/test_dependency_tape.py",
+      366,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_generated_family_matrix_matches_both_exact_controls",
+      "tests/test_dependency_tape.py",
+      371,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_generated_family_matrix_matches_both_exact_controls",
+      "tests/test_dependency_tape.py",
+      376,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_known_blocker_change_propagates_information_set_action_flip",
+      "tests/test_dependency_tape.py",
+      499,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_known_blocker_change_propagates_information_set_action_flip",
+      "tests/test_dependency_tape.py",
+      500,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_known_blocker_change_propagates_information_set_action_flip",
+      "tests/test_dependency_tape.py",
+      501,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_multiplayer_best_response_tape_matches_three_player_full_evaluation",
+      "tests/test_dependency_tape.py",
+      570,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_multiplayer_best_response_tape_matches_three_player_full_evaluation",
+      "tests/test_dependency_tape.py",
+      571,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_multiplayer_best_response_tape_matches_three_player_full_evaluation",
+      "tests/test_dependency_tape.py",
+      574,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_multiplayer_best_response_tape_matches_three_player_full_evaluation",
+      "tests/test_dependency_tape.py",
+      580,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_and_range_delta_can_be_recertified_together",
+      "tests/test_dependency_tape.py",
+      205,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_and_range_delta_can_be_recertified_together",
+      "tests/test_dependency_tape.py",
+      206,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_and_range_delta_can_be_recertified_together",
+      "tests/test_dependency_tape.py",
+      207,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_is_invariant_under_positive_payoff_scale",
+      "tests/test_dependency_tape.py",
+      325,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_is_invariant_under_positive_payoff_scale",
+      "tests/test_dependency_tape.py",
+      330,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_is_invariant_under_positive_payoff_scale",
+      "tests/test_dependency_tape.py",
+      331,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      155,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      156,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      157,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      158,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      162,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      163,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      169,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      170,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      172,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      173,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_modes_match_full_evaluation_and_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      174,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_multiplayer_matches_unilateral_best_responses",
+      "tests/test_dependency_tape.py",
+      258,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_multiplayer_matches_unilateral_best_responses",
+      "tests/test_dependency_tape.py",
+      259,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_multiplayer_matches_unilateral_best_responses",
+      "tests/test_dependency_tape.py",
+      262,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_policy_delta_multiplayer_matches_unilateral_best_responses",
+      "tests/test_dependency_tape.py",
+      263,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_support_changes_and_call_order_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      464,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_support_changes_and_call_order_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      465,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_support_changes_and_call_order_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      466,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_support_changes_and_call_order_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      467,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_support_changes_and_call_order_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      468,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_dependency_tape.py::DependencyTapeTests::test_support_changes_and_call_order_remain_source_relative",
+      "tests/test_dependency_tape.py",
+      469,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_exact_collision_oracle.py::ExactCollisionOracleTests::test_blocker_stress_matches_production_and_defeats_independent_marginals",
+      "tests/test_exact_collision_oracle.py",
+      77,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_exact_collision_oracle.py::ExactCollisionOracleTests::test_blocker_stress_matches_production_and_defeats_independent_marginals",
+      "tests/test_exact_collision_oracle.py",
+      84,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_exact_collision_oracle.py::ExactCollisionOracleTests::test_blocker_stress_matches_production_and_defeats_independent_marginals",
+      "tests/test_exact_collision_oracle.py",
+      98,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_exact_collision_oracle.py::ExactCollisionOracleTests::test_seeded_full_axis_projections_match_for_two_through_five_players",
+      "tests/test_exact_collision_oracle.py",
+      124,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_nonreplay_greedy.py::FreshActionWidthNonReplayGreedyTests::test_receipt_authority_append_failure_and_same_count_drift_are_typed",
+      "tests/test_fresh_action_width_nonreplay_greedy.py",
+      466,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_observation_and_terminal_append_failures_preserve_receipted_evidence",
+      "tests/test_fresh_action_width_nonreplay_qualification.py",
+      510,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_nonreplay_qualification.py::FreshActionWidthNonReplayQualificationTests::test_observation_and_terminal_append_failures_preserve_receipted_evidence",
+      "tests/test_fresh_action_width_nonreplay_qualification.py",
+      548,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_receipt_precedes_the_next_arm_and_append_failure_is_phase_typed",
+      "tests/test_fresh_action_width_nonreplay_teacher.py",
+      497,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_nonreplay_teacher.py::FreshActionWidthNonReplayTeacherTests::test_structural_reduction_error_is_not_mislabeled_as_value_reversal",
+      "tests/test_fresh_action_width_nonreplay_teacher.py",
+      347,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_qualification.py::FreshActionWidthQualificationSourceTests::test_consumer_rejection_is_retained_without_retry",
+      "tests/test_fresh_action_width_qualification.py",
+      369,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_teacher.py::FreshActionWidthTeacherSourceTests::test_consumer_and_numerical_failures_are_typed_and_failure_complete",
+      "tests/test_fresh_action_width_teacher.py",
+      383,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_observation_append_failure_and_no_clobber_preserve_authority",
+      "tests/test_fresh_action_width_transfer_confirmation.py",
+      535,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_confirmation.py::FreshActionWidthTransferConfirmationTests::test_prefix_torn_tail_wrong_mode_and_semantic_corruption_fail_closed",
+      "tests/test_fresh_action_width_transfer_confirmation.py",
+      418,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_observation_and_terminal_append_failures_preserve_receipts",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      488,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_observation_and_terminal_append_failures_preserve_receipts",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      495,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_observation_and_terminal_append_failures_preserve_receipts",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      525,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_observation_and_terminal_append_failures_preserve_receipts",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      532,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_partial_interpretation_and_panel_type_fail_closed",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      611,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_partial_interpretation_and_panel_type_fail_closed",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      618,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_prefixes_torn_suffixes_and_rehashed_semantic_corruption_fail_closed",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      408,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_fresh_action_width_transfer_qualification.py::FreshActionWidthTransferQualificationTests::test_target_requires_receipts_and_binds_only_contexts",
+      "tests/test_fresh_action_width_transfer_qualification.py",
+      323,
+      "helper descriptor member identity is unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+      "tests/test_inventory_and_profiles.py",
+      24273,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+      "tests/test_inventory_and_profiles.py",
+      24298,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_lock_set_precedes_all_destination_and_lifetime_observation",
+      "tests/test_inventory_and_profiles.py",
+      24316,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_marks_one_commit_and_never_rolls_back_after_cleanup_failure",
+      "tests/test_inventory_and_profiles.py",
+      25178,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::AtomicAndGitBoundaryTests::test_pair_marks_one_commit_and_never_rolls_back_after_cleanup_failure",
+      "tests/test_inventory_and_profiles.py",
+      25179,
+      "helper namespace store is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_baseline_counts_digests_and_materialized_partition_are_exact",
+      "tests/test_inventory_and_profiles.py",
+      30167,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_exact_declared_unconditional_skips_match_outer_literal_and_digest",
+      "tests/test_inventory_and_profiles.py",
+      30565,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInInventoryTests::test_historical_payload_subgroups_have_independently_locked_ids",
+      "tests/test_inventory_and_profiles.py",
+      30495,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_exact_interpreter_slots_profiles_and_budgets_are_declared",
+      "tests/test_inventory_and_profiles.py",
+      30715,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::CheckedInProfileTests::test_twelve_historical_cases_bind_exact_commits_trees_and_v7_overlays",
+      "tests/test_inventory_and_profiles.py",
+      30772,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_descriptor_defaults_preserve_real_python_argument_binding",
+      "tests/test_inventory_and_profiles.py",
+      21200,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+      "tests/test_inventory_and_profiles.py",
+      20781,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+      "tests/test_inventory_and_profiles.py",
+      20783,
+      "dynamic sensitive call result is unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+      "tests/test_inventory_and_profiles.py",
+      20985,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+      "tests/test_inventory_and_profiles.py",
+      21123,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+      "tests/test_inventory_and_profiles.py",
+      21125,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_module_exports_and_skip_identity_are_exact",
+      "tests/test_inventory_and_profiles.py",
+      21087,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_original_members_require_stability",
+      "tests/test_inventory_and_profiles.py",
+      20781,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_original_members_require_stability",
+      "tests/test_inventory_and_profiles.py",
+      20783,
+      "dynamic sensitive call result is unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_provenance_unsupported_effects_and_escapes_refuse",
+      "tests/test_inventory_and_profiles.py",
+      21030,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+      "tests/test_inventory_and_profiles.py",
+      21463,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_helper_registry_and_argument_binding_fail_closed",
+      "tests/test_inventory_and_profiles.py",
+      21559,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_invalid_static_helper_arguments_remain_blocked",
+      "tests/test_inventory_and_profiles.py",
+      21352,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+      "tests/test_inventory_and_profiles.py",
+      21253,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_receiver_descriptor_not_parameter_spelling_controls_binding",
+      "tests/test_inventory_and_profiles.py",
+      21262,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16390,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16395,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16520,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16596,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16611,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16612,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16620,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16667,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16668,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16673,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16674,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16675,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16788,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16790,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16801,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16818,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16819,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16824,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16825,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16894,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16896,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16898,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16899,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16900,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16961,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16963,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16969,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16970,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      16982,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      17013,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      17014,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      17019,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      17020,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+      "tests/test_inventory_and_profiles.py",
+      17021,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+      "tests/test_inventory_and_profiles.py",
+      21310,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_inventory_and_profiles.py::DesignReviewTests::test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+      "tests/test_inventory_and_profiles.py",
+      21313,
+      "mixed protected receiver is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_header_is_durable_before_dependencies_and_exclusive_replay_fails",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py",
+      761,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_reserved_actual_presence_stops_before_campaign_execution",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py",
+      783,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py::WorkPreflightOwnerReaderTests::test_synthetic_failure_and_wall_are_retained_without_retry",
+      "tests/test_legal_river_quotient_cuda_compensated_work_preflight.py",
+      959,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_fixed_width_device_preflight.py::FixedWidthDeviceSourceSealTests::test_synthetic_owner_and_independent_reader_agree",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight.py",
+      792,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v2.py::MsvcBoundFixedWidthDeviceSourceTests::test_projection_changes_exactly_one_header_field",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v2.py",
+      436,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v2.py::MsvcBoundFixedWidthDeviceSourceTests::test_reader_rejects_host_and_scientific_mutations",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v2.py",
+      413,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v2.py::MsvcBoundFixedWidthDeviceSourceTests::test_synthetic_owner_reader_projection_and_parent_restoration",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v2.py",
+      391,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v3.py::SplitRuntimeFixedWidthDeviceSourceTests::test_observed_synthetic_journal_reuses_scientific_reader",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v3.py",
+      409,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v3.py::SplitRuntimeFixedWidthDeviceSourceTests::test_reader_projection_changes_only_two_header_paths",
+      "tests/test_legal_river_quotient_fixed_width_device_preflight_v3.py",
+      425,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_literal_45_quotient_target_result.py::Literal45TargetResultTests::test_pre_observation_exception_and_oversize_are_durable_failures",
+      "tests/test_literal_45_quotient_target_result.py",
+      342,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_resident_record_to_hand_fold_v2.py::ResidentRecordToHandFoldV2InterfaceTests::test_device_copy_uses_topology_owned_indices",
+      "tests/test_resident_record_to_hand_fold_v2.py",
+      234,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_compiled_source_and_identity_recertification_match_full_tree",
+      "tests/test_river_incremental.py",
+      76,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_compiled_source_and_identity_recertification_match_full_tree",
+      "tests/test_river_incremental.py",
+      78,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_compiled_source_and_identity_recertification_match_full_tree",
+      "tests/test_river_incremental.py",
+      79,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_compiled_source_and_identity_recertification_match_full_tree",
+      "tests/test_river_incremental.py",
+      80,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_empty_policy_uses_uniform_behavior_on_added_information_sets",
+      "tests/test_river_incremental.py",
+      182,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_generated_family_differential_matches_full_tree",
+      "tests/test_river_incremental.py",
+      171,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_generated_family_differential_matches_full_tree",
+      "tests/test_river_incremental.py",
+      177,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      130,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      135,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      136,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      137,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      138,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      139,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_addition_and_removal_compile_only_new_deal",
+      "tests/test_river_incremental.py",
+      140,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      106,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      107,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      108,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      112,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      113,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      114,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_incremental.py::RiverIncrementalEvaluationTests::test_support_preserving_blocker_reweight_is_exact",
+      "tests/test_river_incremental.py",
+      115,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      279,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      293,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      296,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      297,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      301,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      305,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      306,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multi_size.py::MultiSizeRiverTests::test_unchanged_generic_tape_matches_full_wide_tree",
+      "tests/test_river_multi_size.py",
+      307,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multiway.py::MultiwayRiverEvaluationTests::test_dependency_tape_matches_full_multiplayer_evaluation",
+      "tests/test_river_multiway.py",
+      329,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_river_multiway.py::MultiwayRiverEvaluationTests::test_dependency_tape_matches_full_multiplayer_evaluation",
+      "tests/test_river_multiway.py",
+      330,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multiway.py::MultiwayRiverEvaluationTests::test_dependency_tape_matches_full_multiplayer_evaluation",
+      "tests/test_river_multiway.py",
+      333,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multiway.py::MultiwayRiverEvaluationTests::test_dependency_tape_matches_full_multiplayer_evaluation",
+      "tests/test_river_multiway.py",
+      334,
+      "helper namespace identity was mutated"
+    ],
+    [
+      "tests/test_river_multiway.py::MultiwayRiverEvaluationTests::test_policy_delta_tape_matches_full_multiplayer_evaluation",
+      "tests/test_river_multiway.py",
+      347,
+      "helper namespace escape is dynamically unresolved"
+    ],
+    [
+      "tests/test_runner_harness_v2.py::RunnerHarnessV2Tests::test_config_is_one_exact_immutable_byte_snapshot",
+      "tests/test_runner_harness_v2.py",
+      30,
+      "helper namespace escape is dynamically unresolved"
+    ]
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "label": "v2-probe02",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-v2-probe02-311-85833c34b27049ff8aa557e0c5680665\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-v2-probe02-311-85833c34b27049ff8aa557e0c5680665\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "70aeb82ac8e96b86de52f3d328c865747fa1d2e008f03b213ce98e0b8c190a64",
+    "tests/test_inventory_and_profiles.py": "8f43d88ebcb6d4e4af04b780401034e2f77383a4ddc7007fe4e1f4f1853b012b"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+    "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+    "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+    "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+    "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+    "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+    "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+    "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+    "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+    "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-v2-probe02-311-85833c34b27049ff8aa557e0c5680665\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-v2-probe02-311-85833c34b27049ff8aa557e0c5680665\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-v2-probe02-311-85833c34b27049ff8aa557e0c5680665\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v2-probe02-311.txt",
+  "sha256": "7dd68f041a6d0d7bd4eb3c56c1c8dd47b3523b3fdbdecb838939323fab0571d8",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

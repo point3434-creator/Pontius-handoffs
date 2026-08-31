@@ -1,0 +1,41 @@
+{
+  "label": "v2-probe01",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "c27d81b6482bc5d0210298b96d4429865ecca431a696ad5d333b8733d80e477d",
+    "tests/test_inventory_and_profiles.py": "8f43d88ebcb6d4e4af04b780401034e2f77383a4ddc7007fe4e1f4f1853b012b"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest",
+    "DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete",
+    "DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent",
+    "DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent",
+    "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+    "DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-v2-probe01-311-c14c3e5fce8c4818ab6e4344db46002d\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v2-probe01-311.txt",
+  "sha256": "1602773e0a4ecd8371e26aaa8e82661ac9e92131bfe6966c1a02b89b5a72692c",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

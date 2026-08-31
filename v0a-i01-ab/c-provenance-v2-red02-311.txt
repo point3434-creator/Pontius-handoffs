@@ -1,0 +1,18 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v2-red02-311-79c59208978d4672b90b16ca6ef5706d\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v2-red02-311-79c59208978d4672b90b16ca6ef5706d\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v2-red02-311-79c59208978d4672b90b16ca6ef5706d\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 2, "failures": 1, "errors": 0, "skipped": 0}
+test_helper_provenance_values_defaults_and_callable_mutation (binding_inventory_tests.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) ... ok
+test_helper_provenance_imported_initialization_mutation_is_owner_scoped (binding_inventory_tests.DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped) ... 
+  test_helper_provenance_imported_initialization_mutation_is_owner_scoped (binding_inventory_tests.DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped) (member='launch') ... FAIL
+
+======================================================================
+FAIL: test_helper_provenance_imported_initialization_mutation_is_owner_scoped (binding_inventory_tests.DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped) (member='launch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red02-311-79c59208978d4672b90b16ca6ef5706d\harness\tests\test_inventory_and_profiles.py", line 21131, in test_helper_provenance_imported_initialization_mutation_is_owner_scoped
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), expected_blocker)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.278s
+
+FAILED (failures=1)

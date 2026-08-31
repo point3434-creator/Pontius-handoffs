@@ -1,0 +1,55 @@
+{
+  "standing": "engineering checkpoint, not frozen review/acceptance",
+  "source_sha256": {
+    "tools/generate_test_inventory.py": "a57f76e38bd8e8494ab16fb878e2887854d3f59844fb1e78bd3d50c54f0b4341",
+    "tests/test_inventory_and_profiles.py": "af929697b3f6c8ddad823ff16bef63936f5b924cdf16992d8bc93679368ca961"
+  },
+  "input_sha256": {
+    "c-provenance-worker-v2-final-report.md": "e0185efc1ee81f49baea5af0cf2e2aa553391145a325e18383592098e4f6fafb",
+    "c-provenance-worker-v2-final-owned.patch": "f68c183270ba41645f2285b0982f862e405f6be51d5acfb0f0540a597486105f",
+    "c-provenance-worker-v2-final-validation.json": "5b30f59d637460f172fa80e67878ae64e514f367ac77a1dcc8b1bc4c42b19b85",
+    "c-provenance-worker-v2-final-hashes.json": "8f36b174fc9aefea7a39bbf671eba24ee92d7d6f71d59437c5ceff15353513a7",
+    "c-provenance-v2-green01-311-receipt.json": "644eb042ec793b9a2e28bd75de74caf6604a7f050da55924e328838cbaea0374",
+    "c-provenance-v2-green01-314-receipt.json": "fa6d4e49da8ba755f3accf4d3948e65062aa31117e1e6a74ea73879b7b4ae443",
+    "abc-provenance-v2-replay.json": "0c29689a171aeb924e902fffce44a72cd21bb062d7ac57d469d26dc23e05ad45",
+    "abc-provenance-v2-existing-test-preservation.json": "73b01669a7d53d01c901ee3540f95cfcda79f1dcb5927c097669fa534d41f32c",
+    "abc-provenance-v2-generated-pair01.json": "4e2f84319cfa60863bd58e07e93791acfe9b0057718e035da21302db55d17228",
+    "abc-provenance-v2-census-comparison01.json": "183485944ff627361a1a1bd9f065ac71fd59796b5a0b36c80c16305f2a256dee",
+    "slice-c-provenance-v2-census-311-01.json": "3523b64e5a0ad00e9625c14d0861474fb94d23e96ed1a0175bd6eaf36375a8a3",
+    "abc-checks/provenance-v2-inventory-precheck01-311-receipt.json": "abac9e935f5b0999dc90055c7052521d2f2b1b508818a9709d7bff6e0d71cead",
+    "abc-provenance-v2-owner-probe.py": "8083601baea0a807d4eb88d5269ec85904e7e782a9c98bec13de23fb6275da53",
+    "abc-provenance-v2-owner-probe-311.txt": "206e4084da1b760241cd4d40b002625c03303d97d940beac9462e8e230bcbb10",
+    "abc-provenance-v2-owner-probe-311-receipt.json": "c054b83def33fb67d2d80bb3689b44a1166172262b1c7ff598658a3cf28df31d"
+  },
+  "all_design_review_tests": {
+    "311": 36,
+    "314": 36,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "full_inventory_311": {
+    "tests": 102,
+    "failures": 1,
+    "errors": 0,
+    "seconds": 169.174,
+    "only_failure": "stale checked-in census assertion"
+  },
+  "corpus": {
+    "old_entries_preserved": 2641,
+    "added_current_entries": 215,
+    "total_entries": 2856,
+    "expanded_rows_identical": 141,
+    "cross_file_edges_preserved": 27,
+    "blocker_count": 577,
+    "capability_authority_changed": false
+  },
+  "root_owner_probe": {
+    "controls": 4,
+    "failures": 1,
+    "default_owner_write": "pure projection TypeError; analyzer zero blockers and stale literal subprocess row",
+    "bound_owner_write": "explicit refusal",
+    "two_lawful_controls": "accepted"
+  },
+  "decision": "No expectation refresh or freeze; correct effective helper inputs/effects category in same isolated two-file scope; preserve issued v2 artifacts."
+}

@@ -1,0 +1,130 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 2, "failures": 8, "errors": 0, "skipped": 0}
+test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) ... 
+  test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) (precision='code = self._launch.__code__\nreturn self._launch()', unrelated='') ... FAIL
+  test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) (precision='return self._launch()', unrelated='class Other:\n    def change(self): self._launch = None\n') ... FAIL
+  test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) (precision='def nested():\n    nonlocal self\n    return self._launch()\nreturn nested()', unrelated='') ... FAIL
+test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) ... FAIL
+test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) ... 
+  test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='') ... FAIL
+  test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='@unittest.skipUnless(True, "enabled")\n') ... FAIL
+  test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='@unittest.skipIf(False, "enabled")\n') ... FAIL
+  test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='@unittest.skip("disabled")\n') ... FAIL
+
+======================================================================
+FAIL: test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) (precision='code = self._launch.__code__\nreturn self._launch()', unrelated='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21041, in test_helper_provenance_precision_preserves_original_values_and_members
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) (precision='return self._launch()', unrelated='class Other:\n    def change(self): self._launch = None\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21041, in test_helper_provenance_precision_preserves_original_values_and_members
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) (precision='def nested():\n    nonlocal self\n    return self._launch()\nreturn nested()', unrelated='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21041, in test_helper_provenance_precision_preserves_original_values_and_members
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+======================================================================
+FAIL: test_helper_provenance_precision_preserves_original_values_and_members (binding_inventory_tests.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21052, in test_helper_provenance_precision_preserves_original_values_and_members
+    self.assertFalse(review['unresolved_dynamic_blockers'])
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 10, 'reason': 'helper callable provenance is unresolved'}] is not false
+
+======================================================================
+FAIL: test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21090, in test_helper_provenance_module_exports_and_skip_identity_are_exact
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'exported']])
+AssertionError: Lists differ: [] != [['-m', 'exported']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'exported']
+
+- []
++ [['-m', 'exported']]
+
+======================================================================
+FAIL: test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='@unittest.skipUnless(True, "enabled")\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21090, in test_helper_provenance_module_exports_and_skip_identity_are_exact
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'exported']])
+AssertionError: Lists differ: [] != [['-m', 'exported']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'exported']
+
+- []
++ [['-m', 'exported']]
+
+======================================================================
+FAIL: test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='@unittest.skipIf(False, "enabled")\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21090, in test_helper_provenance_module_exports_and_skip_identity_are_exact
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'exported']])
+AssertionError: Lists differ: [] != [['-m', 'exported']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'exported']
+
+- []
++ [['-m', 'exported']]
+
+======================================================================
+FAIL: test_helper_provenance_module_exports_and_skip_identity_are_exact (binding_inventory_tests.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) (decorator='@unittest.skip("disabled")\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v2-red01-311-edb0492a67264c79847f99fff7e87a95\harness\tests\test_inventory_and_profiles.py", line 21090, in test_helper_provenance_module_exports_and_skip_identity_are_exact
+    self.assertEqual([r['argv'] for r in rows], [['-m', 'exported']])
+AssertionError: Lists differ: [] != [['-m', 'exported']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'exported']
+
+- []
++ [['-m', 'exported']]
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.258s
+
+FAILED (failures=8)
