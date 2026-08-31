@@ -1,0 +1,35 @@
+{
+  "standing": "Evidence verification only; structural RED, not corpus or cold approval.",
+  "verified_slots": [
+    {
+      "slot": "311",
+      "receipt_sha256": "7e72792ac56de1ca4d3db7f544803f08bcf0ed3e636e538beadd35350c22802a",
+      "log_sha256": "0a59fb7b8c133de921b73ba55bbe8fa77fce0341c78e638b3d4fc34c3f20b131",
+      "semantic_cases": 24,
+      "oracle_projections": 58,
+      "structural_red_pairs": 4
+    },
+    {
+      "slot": "314",
+      "receipt_sha256": "1976c3156a0c38edb47e696cd344638903141a8265d6cf197ec80895b1de0e0b",
+      "log_sha256": "59a9b6bc73c5d99c4b0e3a0a1b30f5b69fe42059350b32410ca4f31285883ee1",
+      "semantic_cases": 24,
+      "oracle_projections": 58,
+      "structural_red_pairs": 4
+    }
+  ],
+  "cross_slot_counter_fields_identical": [
+    "physical_name_copy_calls",
+    "physical_name_copy_entries",
+    "physical_ambient_copy_entries",
+    "projected_merge_normalizations",
+    "projected_merge_operands",
+    "ambient_merge_normalizations",
+    "ambient_merge_operands",
+    "charged_unit_sum_across_budgets",
+    "consume_calls",
+    "largest_individual_budget_work"
+  ],
+  "case_pack_sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+  "control_sha256": "5e74f27cc8f20086655d192eb5217eb746684c3d623c024070cc304ccbe63183"
+}

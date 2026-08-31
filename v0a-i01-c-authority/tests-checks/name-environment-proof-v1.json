@@ -1,0 +1,979 @@
+{
+  "schema": "pontius-name-environment-engineering-proof-v1",
+  "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+  "expected_cases": 24,
+  "actual_cases_each_slot": 24,
+  "expected_projections": 58,
+  "actual_projections_each_slot": 58,
+  "classifications": {
+    "clean": 19,
+    "refuse": 4,
+    "permitted-refusal": 1
+  },
+  "slots": [
+    "3.11.15",
+    "3.14.6"
+  ],
+  "execution_order": "311 then 314, separate fresh snapshots",
+  "semantic_errors_each_slot": 0,
+  "oracle_errors_each_slot": 0,
+  "analysis_errors_each_slot": 0,
+  "budget_failures_each_slot": 0,
+  "structural_exit_each_slot": 1,
+  "all_tracked_paths_unchanged_each_slot": 1761,
+  "original_methods_delegated": true,
+  "caps": {
+    "MAXIMUM_ANALYSIS_HELPER_DEPTH": 64,
+    "MAXIMUM_ANALYSIS_CHILD_DEPTH": 4,
+    "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+    "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647,
+    "MAXIMUM_ANALYSIS_WORK_UNITS": 262144
+  },
+  "physical_counts_are_not_charged_units": true,
+  "numeric_metric_field_count": 10,
+  "numeric_metrics_and_public_results_equal_both_slots": true,
+  "structural_pairs": [
+    {
+      "case_ids": [
+        "scale-n8-s2-d0-normal",
+        "scale-n8-s4-d0-normal"
+      ],
+      "ambient": 8,
+      "changed": 0,
+      "exit": "normal",
+      "values": {
+        "physical_ambient_copy_entries": [
+          640,
+          960
+        ],
+        "ambient_merge_normalizations": [
+          16,
+          80
+        ],
+        "ambient_merge_operands": [
+          32,
+          160
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n8-s2-d2-normal",
+        "scale-n8-s4-d2-normal"
+      ],
+      "ambient": 8,
+      "changed": 2,
+      "exit": "normal",
+      "values": {
+        "physical_ambient_copy_entries": [
+          768,
+          1216
+        ],
+        "ambient_merge_normalizations": [
+          32,
+          96
+        ],
+        "ambient_merge_operands": [
+          80,
+          240
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n8-s2-d0-exceptional",
+        "scale-n8-s4-d0-exceptional"
+      ],
+      "ambient": 8,
+      "changed": 0,
+      "exit": "exceptional",
+      "values": {
+        "physical_ambient_copy_entries": [
+          1200,
+          2032
+        ],
+        "ambient_merge_normalizations": [
+          16,
+          48
+        ],
+        "ambient_merge_operands": [
+          48,
+          144
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n8-s2-d2-exceptional",
+        "scale-n8-s4-d2-exceptional"
+      ],
+      "ambient": 8,
+      "changed": 2,
+      "exit": "exceptional",
+      "values": {
+        "physical_ambient_copy_entries": [
+          1360,
+          2352
+        ],
+        "ambient_merge_normalizations": [
+          32,
+          64
+        ],
+        "ambient_merge_operands": [
+          96,
+          224
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n64-s2-d0-normal",
+        "scale-n64-s4-d0-normal"
+      ],
+      "ambient": 64,
+      "changed": 0,
+      "exit": "normal",
+      "values": {
+        "physical_ambient_copy_entries": [
+          19456,
+          22016
+        ],
+        "ambient_merge_normalizations": [
+          128,
+          640
+        ],
+        "ambient_merge_operands": [
+          256,
+          1280
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n64-s2-d2-normal",
+        "scale-n64-s4-d2-normal"
+      ],
+      "ambient": 64,
+      "changed": 2,
+      "exit": "normal",
+      "values": {
+        "physical_ambient_copy_entries": [
+          20480,
+          24064
+        ],
+        "ambient_merge_normalizations": [
+          256,
+          768
+        ],
+        "ambient_merge_operands": [
+          640,
+          1920
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n64-s2-d0-exceptional",
+        "scale-n64-s4-d0-exceptional"
+      ],
+      "ambient": 64,
+      "changed": 0,
+      "exit": "exceptional",
+      "values": {
+        "physical_ambient_copy_entries": [
+          23936,
+          30592
+        ],
+        "ambient_merge_normalizations": [
+          128,
+          384
+        ],
+        "ambient_merge_operands": [
+          384,
+          1152
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    },
+    {
+      "case_ids": [
+        "scale-n64-s2-d2-exceptional",
+        "scale-n64-s4-d2-exceptional"
+      ],
+      "ambient": 64,
+      "changed": 2,
+      "exit": "exceptional",
+      "values": {
+        "physical_ambient_copy_entries": [
+          25216,
+          33152
+        ],
+        "ambient_merge_normalizations": [
+          256,
+          512
+        ],
+        "ambient_merge_operands": [
+          768,
+          1792
+        ]
+      },
+      "increased_dimensions": [
+        "physical_ambient_copy_entries",
+        "ambient_merge_normalizations",
+        "ambient_merge_operands"
+      ],
+      "semantic_controls_passed": true,
+      "structural_repeated_work": true
+    }
+  ],
+  "case_results": [
+    {
+      "id": "scale-n8-s2-d0-normal",
+      "classification": "clean",
+      "source_sha256": "f639be320be70e99d1bcbb0010d76b906e31aef214241a98074caba8c8e59f8a",
+      "oracle_sha256": "66ec65203f73cdf07125e29f18160aaed57f16ac26e7f3130df35a8e81af8c21",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 104,
+        "physical_name_copy_entries": 1194,
+        "physical_ambient_copy_entries": 640,
+        "projected_merge_normalizations": 34,
+        "projected_merge_operands": 71,
+        "ambient_merge_normalizations": 16,
+        "ambient_merge_operands": 32,
+        "charged_unit_sum_across_budgets": 2547,
+        "consume_calls": 2063,
+        "largest_individual_budget_work": 1573
+      }
+    },
+    {
+      "id": "scale-n8-s2-d0-exceptional",
+      "classification": "clean",
+      "source_sha256": "b27ba3a8d231a5f5528f60fd9fd432c5bd2ff51e5fec7e9726d633d7949441ce",
+      "oracle_sha256": "a1a8fa42dfa4facc7d2c8c7c720e3822e84ef4bef919cf786b4ed1ea9b70b554",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 174,
+        "physical_name_copy_entries": 2174,
+        "physical_ambient_copy_entries": 1200,
+        "projected_merge_normalizations": 34,
+        "projected_merge_operands": 99,
+        "ambient_merge_normalizations": 16,
+        "ambient_merge_operands": 48,
+        "charged_unit_sum_across_budgets": 3495,
+        "consume_calls": 2746,
+        "largest_individual_budget_work": 2017
+      }
+    },
+    {
+      "id": "scale-n8-s2-d2-normal",
+      "classification": "clean",
+      "source_sha256": "7c64c6fa77a570ab7ddc52dae8c52344af86773d541d0baf68f2db48e1c44f1d",
+      "oracle_sha256": "27c84999b2aa98395f4f9d9b4438c6977563ddefb71e6be61b926dd7e70a3306",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 120,
+        "physical_name_copy_entries": 1418,
+        "physical_ambient_copy_entries": 768,
+        "projected_merge_normalizations": 62,
+        "projected_merge_operands": 155,
+        "ambient_merge_normalizations": 32,
+        "ambient_merge_operands": 80,
+        "charged_unit_sum_across_budgets": 3125,
+        "consume_calls": 2487,
+        "largest_individual_budget_work": 1969
+      }
+    },
+    {
+      "id": "scale-n8-s2-d2-exceptional",
+      "classification": "clean",
+      "source_sha256": "64dc0cb6fa9053a9131634118140d5dc653e7373d9c5522877c3834d1d84756c",
+      "oracle_sha256": "66e0b5179d646223d8c5fb4fcf43cc47d1bba0d07a68c8651398d99e426d2191",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 194,
+        "physical_name_copy_entries": 2454,
+        "physical_ambient_copy_entries": 1360,
+        "projected_merge_normalizations": 62,
+        "projected_merge_operands": 183,
+        "ambient_merge_normalizations": 32,
+        "ambient_merge_operands": 96,
+        "charged_unit_sum_across_budgets": 4133,
+        "consume_calls": 3206,
+        "largest_individual_budget_work": 2451
+      }
+    },
+    {
+      "id": "scale-n8-s4-d0-normal",
+      "classification": "clean",
+      "source_sha256": "7a496280160092f1389045b0d640f9871f4080b1807db988d04725730fa8b1c7",
+      "oracle_sha256": "c3085cc320db1712eb6a2ef5c4777b18d28278004235579ffd85cb29100c47fa",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 144,
+        "physical_name_copy_entries": 1754,
+        "physical_ambient_copy_entries": 960,
+        "projected_merge_normalizations": 146,
+        "projected_merge_operands": 295,
+        "ambient_merge_normalizations": 80,
+        "ambient_merge_operands": 160,
+        "charged_unit_sum_across_budgets": 3323,
+        "consume_calls": 2693,
+        "largest_individual_budget_work": 2015
+      }
+    },
+    {
+      "id": "scale-n8-s4-d0-exceptional",
+      "classification": "clean",
+      "source_sha256": "a064e3d40cd5bd26b8b94c58a149d6c231b65be187b0c3314e8df4d1bfdca633",
+      "oracle_sha256": "e08c5447cbb0c937cde2f81f2ce770decf1de847288cbc2166bbceae1b303ba1",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 278,
+        "physical_name_copy_entries": 3630,
+        "physical_ambient_copy_entries": 2032,
+        "projected_merge_normalizations": 90,
+        "projected_merge_operands": 267,
+        "ambient_merge_normalizations": 48,
+        "ambient_merge_operands": 144,
+        "charged_unit_sum_across_budgets": 5107,
+        "consume_calls": 3952,
+        "largest_individual_budget_work": 2831
+      }
+    },
+    {
+      "id": "scale-n8-s4-d2-normal",
+      "classification": "clean",
+      "source_sha256": "5728190cb6433c9fdc3709e00a8a26ec0a61d164322673ebaedf57e82d7d9966",
+      "oracle_sha256": "a4fe850fbc205855c6a000dbcc0cff6cf68d1996a7cd12d4ba938e40e72a39fa",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 176,
+        "physical_name_copy_entries": 2202,
+        "physical_ambient_copy_entries": 1216,
+        "projected_merge_normalizations": 174,
+        "projected_merge_operands": 435,
+        "ambient_merge_normalizations": 96,
+        "ambient_merge_operands": 240,
+        "charged_unit_sum_across_budgets": 4533,
+        "consume_calls": 3545,
+        "largest_individual_budget_work": 2861
+      }
+    },
+    {
+      "id": "scale-n8-s4-d2-exceptional",
+      "classification": "clean",
+      "source_sha256": "0e22e6aa9144d52d49c0c9a1a398b4fec9d7213b03e64b3af39278b92e3a2303",
+      "oracle_sha256": "335cf692d739f50143151b2429fd34d8f22328661701f95c91acc1767feac3b0",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 318,
+        "physical_name_copy_entries": 4190,
+        "physical_ambient_copy_entries": 2352,
+        "projected_merge_normalizations": 118,
+        "projected_merge_operands": 407,
+        "ambient_merge_normalizations": 64,
+        "ambient_merge_operands": 224,
+        "charged_unit_sum_across_budgets": 6391,
+        "consume_calls": 4860,
+        "largest_individual_budget_work": 3707
+      }
+    },
+    {
+      "id": "scale-n64-s2-d0-normal",
+      "classification": "clean",
+      "source_sha256": "a5323fd56ee878a973528e7e2101b8766bd537886c67bf25993d6c952fc003e6",
+      "oracle_sha256": "1b36a1aba32ddb94a193691c87ff0fd9ae033f4a0d083a13e8d818ce2ce5466b",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 328,
+        "physical_name_copy_entries": 21354,
+        "physical_ambient_copy_entries": 19456,
+        "projected_merge_normalizations": 146,
+        "projected_merge_operands": 295,
+        "ambient_merge_normalizations": 128,
+        "ambient_merge_operands": 256,
+        "charged_unit_sum_across_budgets": 12347,
+        "consume_calls": 6767,
+        "largest_individual_budget_work": 9077
+      }
+    },
+    {
+      "id": "scale-n64-s2-d0-exceptional",
+      "classification": "clean",
+      "source_sha256": "348d4bd76cb4456350ed0448de59f22c7f392fef3b15323cfaf2a3232970de76",
+      "oracle_sha256": "860cf1417c36002fa750eea9264d17be446c322b50c9aa39e54069d0c9ee4ee6",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 398,
+        "physical_name_copy_entries": 26254,
+        "physical_ambient_copy_entries": 23936,
+        "projected_merge_normalizations": 146,
+        "projected_merge_operands": 435,
+        "ambient_merge_normalizations": 128,
+        "ambient_merge_operands": 384,
+        "charged_unit_sum_across_budgets": 13295,
+        "consume_calls": 7450,
+        "largest_individual_budget_work": 9521
+      }
+    },
+    {
+      "id": "scale-n64-s2-d2-normal",
+      "classification": "clean",
+      "source_sha256": "c8a1efd2b42f75ab9511baf93f7ceb975d42ab84d3da940c02a846170e9f049d",
+      "oracle_sha256": "b93f860247e4817a44c3f7097e16fd6e105a7176e5a40f6efd0a796923fc88fb",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 344,
+        "physical_name_copy_entries": 22474,
+        "physical_ambient_copy_entries": 20480,
+        "projected_merge_normalizations": 286,
+        "projected_merge_operands": 715,
+        "ambient_merge_normalizations": 256,
+        "ambient_merge_operands": 640,
+        "charged_unit_sum_across_budgets": 13765,
+        "consume_calls": 7527,
+        "largest_individual_budget_work": 10313
+      }
+    },
+    {
+      "id": "scale-n64-s2-d2-exceptional",
+      "classification": "clean",
+      "source_sha256": "1b8609b76d6dfa7882cb2223c45ed6de4da79ae7b808ccb673c3d2f42e0c2b7e",
+      "oracle_sha256": "9c62ead15ee8998906c0df4242af185a07426f2c3e5c40b81855da9510691dad",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 418,
+        "physical_name_copy_entries": 27654,
+        "physical_ambient_copy_entries": 25216,
+        "projected_merge_normalizations": 286,
+        "projected_merge_operands": 855,
+        "ambient_merge_normalizations": 256,
+        "ambient_merge_operands": 768,
+        "charged_unit_sum_across_budgets": 14885,
+        "consume_calls": 8302,
+        "largest_individual_budget_work": 10907
+      }
+    },
+    {
+      "id": "scale-n64-s4-d0-normal",
+      "classification": "clean",
+      "source_sha256": "8cd92fb80500595801e3948c1cb9a7ac825334457139b70933307714ad09fe10",
+      "oracle_sha256": "00a3a4792a10e0279efc591401f7856bd157b580b234f6d2972246912c780ed4",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 368,
+        "physical_name_copy_entries": 24154,
+        "physical_ambient_copy_entries": 22016,
+        "projected_merge_normalizations": 706,
+        "projected_merge_operands": 1415,
+        "ambient_merge_normalizations": 640,
+        "ambient_merge_operands": 1280,
+        "charged_unit_sum_across_budgets": 13795,
+        "consume_calls": 8069,
+        "largest_individual_budget_work": 10191
+      }
+    },
+    {
+      "id": "scale-n64-s4-d0-exceptional",
+      "classification": "clean",
+      "source_sha256": "bfffa30bbd845db1497344f2a7a3cb108c43e362f8da49851175a55e27441550",
+      "oracle_sha256": "7ee8d409e8007bd90701c58f302e6a14f137308f500aa3e32719b38062e3e27f",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 502,
+        "physical_name_copy_entries": 33534,
+        "physical_ambient_copy_entries": 30592,
+        "projected_merge_normalizations": 426,
+        "projected_merge_operands": 1275,
+        "ambient_merge_normalizations": 384,
+        "ambient_merge_operands": 1152,
+        "charged_unit_sum_across_budgets": 15243,
+        "consume_calls": 8992,
+        "largest_individual_budget_work": 10671
+      }
+    },
+    {
+      "id": "scale-n64-s4-d2-normal",
+      "classification": "clean",
+      "source_sha256": "1486585429cc676b5e3049e216a28ac9d66610d6b22704b24b7eae96fe413d41",
+      "oracle_sha256": "cddfcebfd68ac45e41155d1efd378b3ba1062d6a9184ba7299a98cf8903e057e",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 400,
+        "physical_name_copy_entries": 26394,
+        "physical_ambient_copy_entries": 24064,
+        "projected_merge_normalizations": 846,
+        "projected_merge_operands": 2115,
+        "ambient_merge_normalizations": 768,
+        "ambient_merge_operands": 1920,
+        "charged_unit_sum_across_budgets": 16965,
+        "consume_calls": 9593,
+        "largest_individual_budget_work": 12997
+      }
+    },
+    {
+      "id": "scale-n64-s4-d2-exceptional",
+      "classification": "clean",
+      "source_sha256": "a67c06db53e8804496c85cf9437e5fbfa9c68a235e27e0af69b454713167b33d",
+      "oracle_sha256": "12818b59ac4dc3d9ed3768c28afef434e34b6ebf387a5c3b4bf469d44cc9740f",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 4,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 542,
+        "physical_name_copy_entries": 36334,
+        "physical_ambient_copy_entries": 33152,
+        "projected_merge_normalizations": 566,
+        "projected_merge_operands": 1975,
+        "ambient_merge_normalizations": 512,
+        "ambient_merge_operands": 1792,
+        "charged_unit_sum_across_budgets": 18487,
+        "consume_calls": 10628,
+        "largest_individual_budget_work": 13507
+      }
+    },
+    {
+      "id": "hidden-cell-joined-reached",
+      "classification": "refuse",
+      "source_sha256": "39041506be1e50fc402da03f2fe62d7ca3eb5aec51159d144147f793d2411397",
+      "oracle_sha256": "bc335d71a509b9baa2b9505d607d8fa53d502e139dadc08d3b56ccffcdd45821",
+      "semantic_passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 18,
+          "reason": "helper namespace escape is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 22,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 99,
+        "physical_name_copy_entries": 729,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 75,
+        "projected_merge_operands": 150,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 2868,
+        "consume_calls": 2383,
+        "largest_individual_budget_work": 1699
+      }
+    },
+    {
+      "id": "hidden-cell-joined-dormant",
+      "classification": "permitted-refusal",
+      "source_sha256": "d4ad9711f76ab267ce3c0cae1085b04f4f67d441eb838b3759c75e3f557cfbcc",
+      "oracle_sha256": "ad282a243d2d7bc220760589006ceff9ed153f56cf6056fed003872b878faebc",
+      "semantic_passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 18,
+          "reason": "helper namespace escape is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 21,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "projections": 2,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 87,
+        "physical_name_copy_entries": 639,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 60,
+        "projected_merge_operands": 120,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 2636,
+        "consume_calls": 2214,
+        "largest_individual_budget_work": 1560
+      }
+    },
+    {
+      "id": "delete-reinsert-unsafe",
+      "classification": "refuse",
+      "source_sha256": "80ed765378038a15ee16815a602ca1640485c9351a6e4f84f99a9e59bfe3cbca",
+      "oracle_sha256": "4a5be55122622c01757d83f747079d16ede60399aa4cf4963752f0909cf19818",
+      "semantic_passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 13,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 14,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "projections": 1,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 63,
+        "physical_name_copy_entries": 394,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 27,
+        "projected_merge_operands": 54,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 1610,
+        "consume_calls": 1358,
+        "largest_individual_budget_work": 894
+      }
+    },
+    {
+      "id": "delete-reinsert-safe",
+      "classification": "clean",
+      "source_sha256": "e29e828870916cfdc5c2db542e88a8ac071052ab633a40048e94908ba6804b0f",
+      "oracle_sha256": "32d01a3d8ef67a4a83625a99d589160d64871b345d79bdc4d679d5a3e4bc3928",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 1,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 80,
+        "physical_name_copy_entries": 446,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 33,
+        "projected_merge_operands": 69,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 2130,
+        "consume_calls": 1861,
+        "largest_individual_budget_work": 1414
+      }
+    },
+    {
+      "id": "raw-parameter-hydration-unsafe",
+      "classification": "refuse",
+      "source_sha256": "08c822fa2621c3f5095990c65a8fda5e0f79b389cc343e7d59a2926f5aba5e62",
+      "oracle_sha256": "67f7c3dc32f0248dd3b65101e656b24ff98f3e86fc4dfc6859a3951fd637f829",
+      "semantic_passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 12,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 13,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "projections": 1,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 63,
+        "physical_name_copy_entries": 392,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 35,
+        "projected_merge_operands": 70,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 1748,
+        "consume_calls": 1526,
+        "largest_individual_budget_work": 1111
+      }
+    },
+    {
+      "id": "raw-parameter-hydration-safe",
+      "classification": "clean",
+      "source_sha256": "b156c686b6d3a4fa40f40bba31312dadbe7b0c37f26eebf9ef1c64a2ccd2f91c",
+      "oracle_sha256": "c6eedc2062c469fe5578951ed3fea0e80c7722c7e7faa06c853a36cf0ff1795b",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 1,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 80,
+        "physical_name_copy_entries": 402,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 37,
+        "projected_merge_operands": 77,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 2231,
+        "consume_calls": 1995,
+        "largest_individual_budget_work": 1597
+      }
+    },
+    {
+      "id": "capture-default-rebind-none",
+      "classification": "refuse",
+      "source_sha256": "b3ab433f31f4381ecad3b3b95b138b56f0d00313cf06c0e008e5aa2102bada1b",
+      "oracle_sha256": "355f9ac979897bbc8b3420e2586c9a733ce8c73b7ef6f1ed4607363e031abc62",
+      "semantic_passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 12,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 13,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "projections": 1,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 59,
+        "physical_name_copy_entries": 368,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 27,
+        "projected_merge_operands": 54,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 1612,
+        "consume_calls": 1360,
+        "largest_individual_budget_work": 911
+      }
+    },
+    {
+      "id": "capture-cell-rebind-none",
+      "classification": "clean",
+      "source_sha256": "d5b7b4792a502795ec64852b8f1cf86acea47c2dce12ba8d748f1627f9aad17c",
+      "oracle_sha256": "7871343fb2288667728746e83209c796f00c60d72a2645f9319a2e065d5144fa",
+      "semantic_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "projections": 1,
+      "metrics_identical_both_slots": {
+        "physical_name_copy_calls": 76,
+        "physical_name_copy_entries": 420,
+        "physical_ambient_copy_entries": 0,
+        "projected_merge_normalizations": 33,
+        "projected_merge_operands": 69,
+        "ambient_merge_normalizations": 0,
+        "ambient_merge_operands": 0,
+        "charged_unit_sum_across_budgets": 2060,
+        "consume_calls": 1807,
+        "largest_individual_budget_work": 1379
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "name-environment-plan-v1.md": "969b3acb781cca11ccd10b26eddaab300a5af7a24b4199ae235136a68f4f62ef",
+    "name-environment-cases-v1.json": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+    "name-environment-probe-v1.py": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4",
+    "name-environment-control-v1.py": "b9fe1194cd8b4b32802899167f5d1724d20274dfe7f372296ee442038e9c3881",
+    "snapshot-name-env-v19-311.json": "0b15792da2f20c3a1dabe9879093e20d8b3a8351d5e213d097703a11fbd04781",
+    "snapshot-name-env-v19-314.json": "65f81e5f33f804bf957e488d080089d44bc27832fe60783d5b86ab7772183d17",
+    "red-name-env-v19-311-311.txt": "0a59fb7b8c133de921b73ba55bbe8fa77fce0341c78e638b3d4fc34c3f20b131",
+    "red-name-env-v19-314-314.txt": "59a9b6bc73c5d99c4b0e3a0a1b30f5b69fe42059350b32410ca4f31285883ee1",
+    "red-name-env-v19-311-311-receipt.json": "7e72792ac56de1ca4d3db7f544803f08bcf0ed3e636e538beadd35350c22802a",
+    "red-name-env-v19-314-314-receipt.json": "1976c3156a0c38edb47e696cd344638903141a8265d6cf197ec80895b1de0e0b"
+  }
+}

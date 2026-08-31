@@ -1,0 +1,198 @@
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        def make():\n            owner = None\n            def read():\n                _events.append(\"body\")\n                if owner is not None:\n                    owner._launch = None\n                    _events.append(\"write\")\n            def change(value):\n                nonlocal owner\n                owner = value\n            return read, change\n        read, change = make()\n        if self.choice:\n            _events.append(\"set:review\")\n            change(Model)\n        else:\n            _events.append(\"set:none\")\n            change(None)\n        read()\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "set:none",
+            "body",
+            "sink"
+          ],
+          "result": "fixed"
+        },
+        {
+          "choice": true,
+          "trace": [
+            "set:review",
+            "body",
+            "write"
+          ],
+          "result": "TypeError"
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "hidden-cell-joined-dormant",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "permitted-refusal",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        def make():\n            owner = None\n            def read():\n                if owner is not None:\n                    owner._launch = None\n            def change(value):\n                nonlocal owner\n                owner = value\n            return read, change\n        read, change = make()\n        if self.choice:\n            change(ReviewTests)\n        else:\n            change(None)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        def make():\n            owner = None\n            def read():\n                _events.append(\"body\")\n                if owner is not None:\n                    owner._launch = None\n                    _events.append(\"write\")\n            def change(value):\n                nonlocal owner\n                owner = value\n            return read, change\n        read, change = make()\n        if self.choice:\n            _events.append(\"set:review\")\n            change(Model)\n        else:\n            _events.append(\"set:none\")\n            change(None)\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "set:none",
+            "sink"
+          ],
+          "result": "fixed"
+        },
+        {
+          "choice": true,
+          "trace": [
+            "set:review",
+            "sink"
+          ],
+          "result": "fixed"
+        }
+      ],
+      "unreachable_events": [
+        "body",
+        "write"
+      ]
+    },
+    {
+      "id": "delete-reinsert-unsafe",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = None\n        def callback():\n            if owner is not None:\n                owner._launch = None\n        del owner\n        owner = ReviewTests\n        callback()\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        owner = None\n        def callback():\n            _events.append(\"body\")\n            if owner is not None:\n                owner._launch = None\n                _events.append(\"write\")\n        del owner\n        _events.append(\"delete\")\n        owner = Model\n        _events.append(\"reinsert:review\")\n        callback()\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "delete",
+            "reinsert:review",
+            "body",
+            "write"
+          ],
+          "result": "TypeError"
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "delete-reinsert-safe",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = ReviewTests\n        def callback():\n            if owner is not None:\n                owner._launch = None\n        del owner\n        owner = None\n        callback()\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        owner = Model\n        def callback():\n            _events.append(\"body\")\n            if owner is not None:\n                owner._launch = None\n                _events.append(\"write\")\n        del owner\n        _events.append(\"delete\")\n        owner = None\n        _events.append(\"reinsert:none\")\n        callback()\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "delete",
+            "reinsert:none",
+            "body",
+            "sink"
+          ],
+          "result": "fixed"
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "raw-parameter-hydration-unsafe",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        def invoke(owner):\n            def callback():\n                if owner is not None:\n                    owner._launch = None\n            callback()\n        invoke(ReviewTests)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        def invoke(owner):\n            _events.append(\"invoke:review\")\n            def callback():\n                _events.append(\"body\")\n                if owner is not None:\n                    owner._launch = None\n                    _events.append(\"write\")\n            callback()\n        invoke(Model)\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "invoke:review",
+            "body",
+            "write"
+          ],
+          "result": "TypeError"
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "raw-parameter-hydration-safe",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        def invoke(owner):\n            def callback():\n                if owner is not None:\n                    owner._launch = None\n            callback()\n        invoke(None)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        def invoke(owner):\n            _events.append(\"invoke:none\")\n            def callback():\n                _events.append(\"body\")\n                if owner is not None:\n                    owner._launch = None\n                    _events.append(\"write\")\n            callback()\n        invoke(None)\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "invoke:none",
+            "body",
+            "sink"
+          ],
+          "result": "fixed"
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "capture-default-rebind-none",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = ReviewTests\n        def callback(owner=owner):\n            if owner is not None:\n                owner._launch = None\n        owner = None\n        callback()\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        owner = Model\n        def callback(owner=owner):\n            _events.append(\"body\")\n            if owner is not None:\n                owner._launch = None\n                _events.append(\"write\")\n        owner = None\n        _events.append(\"rebind:none\")\n        callback()\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "rebind:none",
+            "body",
+            "write"
+          ],
+          "result": "TypeError"
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "capture-cell-rebind-none",
+      "family": "semantic",
+      "ambient": 0,
+      "successors": 0,
+      "changed": null,
+      "exit": "mixed",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = ReviewTests\n        def callback():\n            if owner is not None:\n                owner._launch = None\n        owner = None\n        callback()\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        owner = Model\n        def callback():\n            _events.append(\"body\")\n            if owner is not None:\n                owner._launch = None\n                _events.append(\"write\")\n        owner = None\n        _events.append(\"rebind:none\")\n        callback()\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": false,
+          "trace": [
+            "rebind:none",
+            "body",
+            "sink"
+          ],
+          "result": "fixed"
+        }
+      ],
+      "unreachable_events": []
+    }
+  ]
+}

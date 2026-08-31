@@ -1,0 +1,314 @@
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        ambient_0 = 0\n        ambient_1 = 1\n        ambient_2 = 2\n        ambient_3 = 3\n        ambient_4 = 4\n        ambient_5 = 5\n        ambient_6 = 6\n        ambient_7 = 7\n        work0 = 0\n        work1 = 0\n        if self.choice == 0:\n            _events.append(\"branch:0\")\n        elif self.choice == 1:\n            _events.append(\"branch:1\")\n        elif self.choice == 2:\n            _events.append(\"branch:2\")\n        else:\n            _events.append(\"branch:3\")\n        self.ambient_result = (ambient_0, ambient_1, ambient_2, ambient_3, ambient_4, ambient_5, ambient_6, ambient_7)\n        self.work_result = (work0, work1)\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": 0,
+          "trace": [
+            "branch:0",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        },
+        {
+          "choice": 1,
+          "trace": [
+            "branch:1",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        },
+        {
+          "choice": 2,
+          "trace": [
+            "branch:2",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        },
+        {
+          "choice": 3,
+          "trace": [
+            "branch:3",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "scale-n8-s4-d0-exceptional",
+      "family": "scaling",
+      "ambient": 8,
+      "successors": 4,
+      "changed": 0,
+      "exit": "exceptional",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        ambient_0 = 0\n        ambient_1 = 1\n        ambient_2 = 2\n        ambient_3 = 3\n        ambient_4 = 4\n        ambient_5 = 5\n        ambient_6 = 6\n        ambient_7 = 7\n        work0 = 0\n        work1 = 0\n        try:\n            if self.choice == 0:\n                pass\n                raise ValueError()\n            elif self.choice == 1:\n                pass\n                raise TypeError()\n            elif self.choice == 2:\n                pass\n                raise KeyError()\n            else:\n                pass\n                raise IndexError()\n        except (ValueError, TypeError, KeyError, IndexError):\n            pass\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        ambient_0 = 0\n        ambient_1 = 1\n        ambient_2 = 2\n        ambient_3 = 3\n        ambient_4 = 4\n        ambient_5 = 5\n        ambient_6 = 6\n        ambient_7 = 7\n        work0 = 0\n        work1 = 0\n        try:\n            if self.choice == 0:\n                _events.append(\"branch:0\")\n                _events.append(\"raise:ValueError\")\n                raise ValueError()\n            elif self.choice == 1:\n                _events.append(\"branch:1\")\n                _events.append(\"raise:TypeError\")\n                raise TypeError()\n            elif self.choice == 2:\n                _events.append(\"branch:2\")\n                _events.append(\"raise:KeyError\")\n                raise KeyError()\n            else:\n                _events.append(\"branch:3\")\n                _events.append(\"raise:IndexError\")\n                raise IndexError()\n        except (ValueError, TypeError, KeyError, IndexError):\n            _events.append(\"handled\")\n        self.ambient_result = (ambient_0, ambient_1, ambient_2, ambient_3, ambient_4, ambient_5, ambient_6, ambient_7)\n        self.work_result = (work0, work1)\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": 0,
+          "trace": [
+            "branch:0",
+            "raise:ValueError",
+            "handled",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        },
+        {
+          "choice": 1,
+          "trace": [
+            "branch:1",
+            "raise:TypeError",
+            "handled",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        },
+        {
+          "choice": 2,
+          "trace": [
+            "branch:2",
+            "raise:KeyError",
+            "handled",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        },
+        {
+          "choice": 3,
+          "trace": [
+            "branch:3",
+            "raise:IndexError",
+            "handled",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            0,
+            0
+          ]
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "scale-n8-s4-d2-normal",
+      "family": "scaling",
+      "ambient": 8,
+      "successors": 4,
+      "changed": 2,
+      "exit": "normal",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        ambient_0 = 0\n        ambient_1 = 1\n        ambient_2 = 2\n        ambient_3 = 3\n        ambient_4 = 4\n        ambient_5 = 5\n        ambient_6 = 6\n        ambient_7 = 7\n        work0 = 0\n        work1 = 0\n        if self.choice == 0:\n            work0 = 1\n            work1 = -1\n        elif self.choice == 1:\n            work0 = 2\n            work1 = -2\n        elif self.choice == 2:\n            work0 = 3\n            work1 = -3\n        else:\n            work0 = 4\n            work1 = -4\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch():\n        _events.append(\"sink\")\n        return \"fixed\"\n    def test_static(self):\n        ambient_0 = 0\n        ambient_1 = 1\n        ambient_2 = 2\n        ambient_3 = 3\n        ambient_4 = 4\n        ambient_5 = 5\n        ambient_6 = 6\n        ambient_7 = 7\n        work0 = 0\n        work1 = 0\n        if self.choice == 0:\n            _events.append(\"branch:0\")\n            work0 = 1\n            work1 = -1\n        elif self.choice == 1:\n            _events.append(\"branch:1\")\n            work0 = 2\n            work1 = -2\n        elif self.choice == 2:\n            _events.append(\"branch:2\")\n            work0 = 3\n            work1 = -3\n        else:\n            _events.append(\"branch:3\")\n            work0 = 4\n            work1 = -4\n        self.ambient_result = (ambient_0, ambient_1, ambient_2, ambient_3, ambient_4, ambient_5, ambient_6, ambient_7)\n        self.work_result = (work0, work1)\n        return self._launch()\n",
+      "witnesses": [
+        {
+          "choice": 0,
+          "trace": [
+            "branch:0",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            1,
+            -1
+          ]
+        },
+        {
+          "choice": 1,
+          "trace": [
+            "branch:1",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            2,
+            -2
+          ]
+        },
+        {
+          "choice": 2,
+          "trace": [
+            "branch:2",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            3,
+            -3
+          ]
+        },
+        {
+          "choice": 3,
+          "trace": [
+            "branch:3",
+            "sink"
+          ],
+          "result": "fixed",
+          "ambient_result": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "work_result": [
+            4,
+            -4
+          ]
+        }
+      ],
+      "unreachable_events": []
+    },
+    {
+      "id": "scale-n8-s4-d2-exceptional",
+      "family": "scaling",
+      "ambient": 8,
+      "successors": 4,
+      "changed": 2,
+      "exit": "exceptional",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch():\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        ambient_0 = 0\n        ambient_1 = 1\n        ambient_2 = 2\n        ambient_3 = 3\n        ambient_4 = 4\n        ambient_5 = 5\n        ambient_6 = 6\n        ambient_7 = 7\n        work0 = 0\n        work1 = 0\n        try:\n            if self.choice == 0:\n                work0 = 1\n                work1 = -1\n                raise ValueError()\n            elif self.choice == 1:\n                work0 = 2\n                work1 = -2\n                raise TypeError()\n            elif self.choice == 2:\n                work0 = 3\n                work1 = -3\n                raise KeyError()\n            else:\n                work0 = 4\n                work1 = -4\n                raise IndexError()\n        except (ValueError, TypeError, KeyError, IndexError):\n            pass\n        return self._launch()\n",

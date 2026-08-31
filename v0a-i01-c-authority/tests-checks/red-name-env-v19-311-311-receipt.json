@@ -1,0 +1,328 @@
+{
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "slot": "311",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys, runpy, json, importlib.util, os\nfrom pathlib import Path\nsys.stdout.reconfigure(newline=\"\\n\")\nsys.stderr.reconfigure(newline=\"\\n\")\nexe, expected = sys.argv[1:3]\nassert sys.implementation.name == \"cpython\"\nassert Path(sys.executable).resolve() == Path(exe).resolve()\nassert \".\".join(map(str, sys.version_info[:3])) == expected\nassert sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize\nprint(json.dumps({\"identity_before_import\": {\n    \"executable\": sys.executable, \"implementation\": sys.implementation.name,\n    \"version\": sys.version, \"version_info\": list(sys.version_info[:3]),\n    \"cwd\": str(Path.cwd()), \"pythonpath\": os.environ.get(\"PYTHONPATH\"),\n}}), flush=True)\nassert Path(importlib.util.find_spec(\"pontius.v0a.trace\").origin).resolve() == (\n    Path.cwd() / \"src/pontius/v0a/trace.py\").resolve()\nsys.argv = [\"D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks/name-environment-probe-v1.py\"]\nrunpy.run_path(sys.argv[0], run_name=\"__main__\")\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-authority-tests-name-env-v19-311-d0383aa71fbc428e97d559c6d66be7fb\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-authority-tests-name-env-v19-311-d0383aa71fbc428e97d559c6d66be7fb\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-tests-name-env-v19-311-d0383aa71fbc428e97d559c6d66be7fb\\snapshot\\src"
+  },
+  "identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      11,
+      15
+    ],
+    "cwd": "D:\\pontius-snapshots\\c-authority-tests-name-env-v19-311-d0383aa71fbc428e97d559c6d66be7fb\\snapshot",
+    "pythonpath": "D:\\pontius-snapshots\\c-authority-tests-name-env-v19-311-d0383aa71fbc428e97d559c6d66be7fb\\snapshot\\src"
+  },
+  "metadata_sha256": "0b15792da2f20c3a1dabe9879093e20d8b3a8351d5e213d097703a11fbd04781",
+  "tests_sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+  "generator_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+  "frozen_r010_generator_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "focus": "versioned-name-environment-structural",
+  "probe_sha256": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4",
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\red-name-env-v19-311-311.txt",
+  "log_sha256": "0a59fb7b8c133de921b73ba55bbe8fa77fce0341c78e638b3d4fc34c3f20b131",
+  "all_tracked_paths_unchanged": 1761,
+  "name_environment_summaries": [
+    {
+      "name_environment_summary": "versioned-name-environment-structural-v1",
+      "planned": 24,
+      "generated": 24,
+      "exercised": 24,
+      "planned_projections": 58,
+      "exercised_projections": 58,
+      "unreachable_cases": [],
+      "oracle_errors": [],
+      "semantic_errors": [],
+      "analysis_errors": [],
+      "classifications": {
+        "clean": 19,
+        "refuse": 4,
+        "permitted-refusal": 1
+      },
+      "structural_pairs": [
+        {
+          "case_ids": [
+            "scale-n8-s2-d0-normal",
+            "scale-n8-s4-d0-normal"
+          ],
+          "ambient": 8,
+          "changed": 0,
+          "exit": "normal",
+          "values": {
+            "physical_ambient_copy_entries": [
+              640,
+              960
+            ],
+            "ambient_merge_normalizations": [
+              16,
+              80
+            ],
+            "ambient_merge_operands": [
+              32,
+              160
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n8-s2-d2-normal",
+            "scale-n8-s4-d2-normal"
+          ],
+          "ambient": 8,
+          "changed": 2,
+          "exit": "normal",
+          "values": {
+            "physical_ambient_copy_entries": [
+              768,
+              1216
+            ],
+            "ambient_merge_normalizations": [
+              32,
+              96
+            ],
+            "ambient_merge_operands": [
+              80,
+              240
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n8-s2-d0-exceptional",
+            "scale-n8-s4-d0-exceptional"
+          ],
+          "ambient": 8,
+          "changed": 0,
+          "exit": "exceptional",
+          "values": {
+            "physical_ambient_copy_entries": [
+              1200,
+              2032
+            ],
+            "ambient_merge_normalizations": [
+              16,
+              48
+            ],
+            "ambient_merge_operands": [
+              48,
+              144
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n8-s2-d2-exceptional",
+            "scale-n8-s4-d2-exceptional"
+          ],
+          "ambient": 8,
+          "changed": 2,
+          "exit": "exceptional",
+          "values": {
+            "physical_ambient_copy_entries": [
+              1360,
+              2352
+            ],
+            "ambient_merge_normalizations": [
+              32,
+              64
+            ],
+            "ambient_merge_operands": [
+              96,
+              224
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d0-normal",
+            "scale-n64-s4-d0-normal"
+          ],
+          "ambient": 64,
+          "changed": 0,
+          "exit": "normal",
+          "values": {
+            "physical_ambient_copy_entries": [
+              19456,
+              22016
+            ],
+            "ambient_merge_normalizations": [
+              128,
+              640
+            ],
+            "ambient_merge_operands": [
+              256,
+              1280
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d2-normal",
+            "scale-n64-s4-d2-normal"
+          ],
+          "ambient": 64,
+          "changed": 2,
+          "exit": "normal",
+          "values": {
+            "physical_ambient_copy_entries": [
+              20480,
+              24064
+            ],
+            "ambient_merge_normalizations": [
+              256,
+              768
+            ],
+            "ambient_merge_operands": [
+              640,
+              1920
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d0-exceptional",
+            "scale-n64-s4-d0-exceptional"
+          ],
+          "ambient": 64,
+          "changed": 0,
+          "exit": "exceptional",
+          "values": {
+            "physical_ambient_copy_entries": [
+              23936,
+              30592
+            ],
+            "ambient_merge_normalizations": [
+              128,
+              384
+            ],
+            "ambient_merge_operands": [
+              384,
+              1152
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d2-exceptional",
+            "scale-n64-s4-d2-exceptional"
+          ],
+          "ambient": 64,
+          "changed": 2,
+          "exit": "exceptional",
+          "values": {
+            "physical_ambient_copy_entries": [
+              25216,
+              33152
+            ],
+            "ambient_merge_normalizations": [
+              256,
+              512
+            ],
+            "ambient_merge_operands": [
+              768,
+              1792
+            ]
+          },
+          "increased_dimensions": [
+            "physical_ambient_copy_entries",
+            "ambient_merge_normalizations",
+            "ambient_merge_operands"
+          ],
+          "semantic_controls_passed": true,
+          "structural_repeated_work": true
+        }
+      ],
+      "structural_red": true,
+      "caps_unchanged": {
+        "MAXIMUM_ANALYSIS_HELPER_DEPTH": 64,
+        "MAXIMUM_ANALYSIS_CHILD_DEPTH": 4,
+        "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+        "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647,
+        "MAXIMUM_ANALYSIS_WORK_UNITS": 262144
+      },
+      "original_methods_delegated": true,
+      "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+      "case_pack_sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+      "plan_sha256": "969b3acb781cca11ccd10b26eddaab300a5af7a24b4199ae235136a68f4f62ef",
+      "physical_counts_are_not_charged_units": true,
+      "no_budget_objects_or_ast_caches_retained": true,
+      "exit": 1,
+      "exit_reason": "structural-repeated-work"
+    }
+  ],
+  "control_sha256": "b9fe1194cd8b4b32802899167f5d1724d20274dfe7f372296ee442038e9c3881"
+}

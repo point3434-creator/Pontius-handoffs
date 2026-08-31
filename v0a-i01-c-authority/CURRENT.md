@@ -35,12 +35,25 @@ not a whole-corpus before/after comparison or a performance acceptance claim.
 The v19 edit preserves every transfer and cell write while batching eligible
 binding lookups. [Prerepair reasoning](engineer-merge-batch-prerepair-v19.md) and
 [exact v18 delta](engineer-generator-v19-from-v18.diff) remain engineering inputs.
-Following repeated generation failures, a [structural reassessment](engineer-environment-reassessment-v1.md)
-proposes a persistent ordered name environment and explicit normalization/adoption
-boundaries. A concrete implementation design and an independently derived structural
-RED family are being prepared before another source edit. The safety contract,
-all five caps, test contracts and accepted A/B remain fixed. No replacement is
-implemented or declared GREEN by this navigation page.
+Following repeated generation failures, the [bounded storage decision](coordinator-storage-disposition-v1.md)
+accepts an isolated prototype of persistent names with exact legacy-order recipes.
+Reuse is restricted to a proved context-independent no-work transfer; live-reference,
+rebuilt and raw entries remain pending. No store-lineage cache is included. The
+[independent proof](tests-checks/name-environment-transfer-proof-v1.md) states the
+restriction and preserves every cell write and consumer analysis.
+
+The [structural family](tests-checks/name-environment-report-v1.md) passes all 24
+semantic expectations and 58 harmless projections on each actual interpreter.
+All four zero-change comparisons demonstrate repeated ambient-name work; this is
+structural RED, with no analyzer or oracle failure. [Coordinator verification](coordinator-name-environment-verification-v1.json)
+checks the pinned evidence and identical cross-slot counters. The hidden tuple-return
+sentinel demonstrates safe refusal, not precise joined-cell resolution.
+
+The storage prototype is being checked against ordinary dictionaries and actual
+legacy set-union ordering before production integration. Full ordering costs,
+terminal reads and failure paths must be included. W remains exact v19; no new
+production replacement is implemented or declared GREEN here. All five caps,
+test contracts and accepted A/B remain fixed.
 
 Remaining order: complete the bounded repair; ordinary generation; preservation
 of all 2873 existing inventory entries and 141 canonical capability rows;
