@@ -1,0 +1,14 @@
+{"identity_before_import": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "implementation": "cpython", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v4-green01-311-3128f0d1887b49d4a9088288341ceddf\\harness", "safe_path": true, "dont_write_bytecode": true}}
+{"selected_methods": ["test_callable_authority_escape_is_independent_of_incidental_owner_loads", "test_callable_authority_preserves_dormant_and_unrelated_bodies", "test_callable_authority_implicit_execution_cannot_hide_owner_writes"], "method_count": 3}
+{"tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+test_callable_authority_escape_is_independent_of_incidental_owner_loads (v4_inventory_tests.DesignReviewTests.test_callable_authority_escape_is_independent_of_incidental_owner_loads)
+Captured helper authority survives each callable/forwarding spelling. ... ok
+test_callable_authority_preserves_dormant_and_unrelated_bodies (v4_inventory_tests.DesignReviewTests.test_callable_authority_preserves_dormant_and_unrelated_bodies)
+Proof checks cannot execute dormant bodies or invent receiver mutation. ... ok
+test_callable_authority_implicit_execution_cannot_hide_owner_writes (v4_inventory_tests.DesignReviewTests.test_callable_authority_implicit_execution_cannot_hide_owner_writes)
+Modeled dispatch must distinguish owner effects from capability-free syntax. ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.299s
+
+OK

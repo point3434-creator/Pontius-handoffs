@@ -1,0 +1,44 @@
+{
+  "base": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "phase": "red",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-c-callbacks",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-v4-class-order-red02-314-fa630270bd9a49b7ad772693c4a4aebc\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-v4-class-order-red02-314-fa630270bd9a49b7ad772693c4a4aebc\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+    "tests/test_inventory_and_profiles.py": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+  },
+  "after_sha256": {
+    "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+    "tests/test_inventory_and_profiles.py": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+  },
+  "command": [
+    "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v4-payload.py",
+    "3.14.6",
+    "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "new"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-v4-class-order-red02-314-fa630270bd9a49b7ad772693c4a4aebc\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-v4-class-order-red02-314-fa630270bd9a49b7ad772693c4a4aebc\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-v4-class-order-red02-314-fa630270bd9a49b7ad772693c4a4aebc\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v4-class-order-red02-314.txt",
+  "log_sha256": "899549b3fd63c94f56a41709f91e87a38f1d0b113383eac4978bfbe2914a3751",
+  "payload_sha256": "d4e42ae4574604aeb6feb3218a0924eec3499a208a2f77632e3f4dde537c7661",
+  "runner_sha256": "2c2b3bf10a48c8cc1210e2f13a6e67ed2b204e177baac5b46b4a2de66c0a7478"
+}

@@ -1,0 +1,41 @@
+{"identity_before_import": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "implementation": "cpython", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v4-green10-311-3694f941dc05477082eb1fd9e9cfa30f\\harness", "safe_path": true, "dont_write_bytecode": true}}
+{"selected_methods": ["test_callable_authority_escape_is_independent_of_incidental_owner_loads", "test_callable_authority_preserves_dormant_and_unrelated_bodies", "test_callable_authority_implicit_execution_cannot_hide_owner_writes", "test_callable_authority_forwarded_inputs_follow_execution_order", "test_callable_authority_async_creation_retains_only_future_effects", "test_callable_authority_protocol_forwarding_retains_effect_context", "test_callable_authority_construction_defaults_and_deferred_identity", "test_callable_authority_decorator_application_uses_the_call_context", "test_callable_authority_annotations_refuse_without_inventing_execution", "test_callable_authority_native_storage_retains_without_invoking", "test_callable_authority_missing_free_proof_is_an_obligation", "test_callable_authority_descriptor_construction_refuses_effects"], "method_count": 12}
+{"annotation_runtime_oracle": "parameter-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "parameter-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "literal", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "literal", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "method-parameter-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "method-parameter-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "method-readonly-call", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "method-readonly-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"tests_run": 12, "failures": 0, "errors": 0, "skipped": 0}
+test_callable_authority_escape_is_independent_of_incidental_owner_loads (v4_inventory_tests.DesignReviewTests.test_callable_authority_escape_is_independent_of_incidental_owner_loads)
+Captured helper authority survives each callable/forwarding spelling. ... ok
+test_callable_authority_preserves_dormant_and_unrelated_bodies (v4_inventory_tests.DesignReviewTests.test_callable_authority_preserves_dormant_and_unrelated_bodies)
+Proof checks cannot execute dormant bodies or invent receiver mutation. ... ok
+test_callable_authority_implicit_execution_cannot_hide_owner_writes (v4_inventory_tests.DesignReviewTests.test_callable_authority_implicit_execution_cannot_hide_owner_writes)
+Modeled dispatch must distinguish owner effects from capability-free syntax. ... ok
+test_callable_authority_forwarded_inputs_follow_execution_order (v4_inventory_tests.DesignReviewTests.test_callable_authority_forwarded_inputs_follow_execution_order) ... ok
+test_callable_authority_async_creation_retains_only_future_effects (v4_inventory_tests.DesignReviewTests.test_callable_authority_async_creation_retains_only_future_effects) ... ok
+test_callable_authority_protocol_forwarding_retains_effect_context (v4_inventory_tests.DesignReviewTests.test_callable_authority_protocol_forwarding_retains_effect_context) ... ok
+test_callable_authority_construction_defaults_and_deferred_identity (v4_inventory_tests.DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity) ... ok
+test_callable_authority_decorator_application_uses_the_call_context (v4_inventory_tests.DesignReviewTests.test_callable_authority_decorator_application_uses_the_call_context) ... ok
+test_callable_authority_annotations_refuse_without_inventing_execution (v4_inventory_tests.DesignReviewTests.test_callable_authority_annotations_refuse_without_inventing_execution) ... ok
+test_callable_authority_native_storage_retains_without_invoking (v4_inventory_tests.DesignReviewTests.test_callable_authority_native_storage_retains_without_invoking) ... ok
+test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) ... ok
+test_callable_authority_descriptor_construction_refuses_effects (v4_inventory_tests.DesignReviewTests.test_callable_authority_descriptor_construction_refuses_effects) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 3.772s
+
+OK

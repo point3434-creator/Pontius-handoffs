@@ -1,0 +1,1338 @@
+diff --git a/tests/test_inventory_and_profiles.py b/tests/test_inventory_and_profiles.py
+index f9036830252afe494769bf41bec3c649adf17920..7b4f58a25d904bf53c0f4d5fb9f63de515ee46fb 100644
+--- a/tests/test_inventory_and_profiles.py
++++ b/tests/test_inventory_and_profiles.py
+@@ -21134,6 +21134,447 @@ class DesignReviewTests(unittest.TestCase):
+                             if r['capability_kind'] == 'subprocess']
+                     self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
+ 
++
++    def test_callable_authority_escape_is_independent_of_incidental_owner_loads(self) -> None:
++        """Captured helper authority survives each callable/forwarding spelling."""
++        definitions = (
++            ('default', 'def mutate(_, owner=ReviewTests):\n    owner._launch = None'),
++            ('keyword-default', 'def mutate(_, *, owner=ReviewTests):\n    owner._launch = None'),
++            ('cell', 'owner = ReviewTests\ndef mutate(_):\n    owner._launch = None'),
++            ('global', 'def mutate(_):\n    ReviewTests._launch = None'),
++            ('receiver', 'def mutate(_):\n    self._launch = None'),
++            ('lambda-default', 'mutate = lambda _, owner=ReviewTests: '
++             'setattr(owner, "_launch", None)'),
++            ('lambda-cell', 'owner = ReviewTests\nmutate = lambda _: '
++             'setattr(owner, "_launch", None)'),
++            ('lambda-receiver', 'mutate = lambda _: setattr(self, "_launch", None)'),
++        )
++        forwards = (
++            ('external', 'external(mutate)'),
++            ('map-consumed', 'list(map(mutate, [None]))'),
++            ('filter-consumed', 'list(filter(mutate, [None]))'),
++            ('sorted-key', 'sorted([0], key=mutate)'),
++            ('sort-key', 'items = [0]\nitems.sort(key=mutate)'),
++            ('alias', 'saved = mutate\nexternal(saved)'),
++            ('container', 'saved = {"callback": (mutate,)}\nexternal(saved["callback"][0])'),
++            ('returned-argument', 'def forward(callback):\n    return callback\n'
++             'external(forward(mutate))'),
++            ('returned-container', 'def forward(callback):\n    return (callback,)\n'
++             'external(forward(mutate)[0])'),
++            ('returned-cell', 'def forward():\n    return mutate\nexternal(forward())'),
++        )
++        for owner_kind, definition in definitions:
++            for forwarding, invocation in forwards:
++                for incidental, prefix, target in (
++                    ('self', '', 'self'),
++                    ('inert-load', 'unused = ReviewTests\n', 'self'),
++                    ('class', '', 'ReviewTests'),
++                ):
++                    if owner_kind in {'receiver', 'lambda-receiver'} and target == 'ReviewTests':
++                        continue
++                    with self.subTest(owner=owner_kind, forwarding=forwarding,
++                                      incidental=incidental):
++                        actual, review = self._provenance_case(
++                            prefix + definition + '\n' + invocation
++                            + '\nreturn ' + target + '._launch()',
++                            module_tail='external = lambda callback: callback(None)\n',
++                        )
++                        self.assertIs(actual, TypeError)
++                        self.assertTrue(review['unresolved_dynamic_blockers'])
++                        self.assertFalse([row for row in review['receipt']['expanded_rows']
++                                          if row['capability_kind'] == 'subprocess'])
++
++    def test_callable_authority_preserves_dormant_and_unrelated_bodies(self) -> None:
++        """Proof checks cannot execute dormant bodies or invent receiver mutation."""
++        cases = (
++            'def mutate(owner=ReviewTests):\n    owner._launch = None',
++            'mutate = lambda owner=ReviewTests: setattr(owner, "_launch", None)',
++            'def delayed(owner=ReviewTests):\n    owner._launch = None\n    yield 1\ng = delayed()',
++            'def mutate():\n    self._launch = None\nif False:\n    mutate()',
++            'def mutate(owner=ReviewTests, /):\n    owner._launch = None\n'
++            'try:\n    mutate(owner=None)\nexcept TypeError:\n    pass',
++            'def mutate(owner=ReviewTests):\n    raise ValueError()\n    owner._launch = None\n'
++            'try:\n    mutate()\nexcept ValueError:\n    pass',
++            'def read(owner=ReviewTests):\n    return 1\nread()',
++            'owner = ReviewTests\ndef read(_):\n    return 1\nlist(map(read, [None]))',
++            'owner = ReviewTests\ndef read(_):\n    return 1\nsorted([0], key=read)',
++            'class Other:\n    pass\nother = Other()\n'
++            'def mutate(_):\n    other.unrelated = None\nlist(map(mutate, [None]))',
++        )
++        for body in cases:
++            with self.subTest(body=body):
++                actual, review = self._provenance_case(body + '\nreturn self._launch()')
++                self.assertEqual(actual, 'fixed')
++                self.assertFalse(review['unresolved_dynamic_blockers'])
++                self.assertEqual([row['argv'] for row in review['receipt']['expanded_rows']
++                                  if row['capability_kind'] == 'subprocess'], [['-m', 'fixed']])
++
++    def test_callable_authority_implicit_execution_cannot_hide_owner_writes(self) -> None:
++        """Modeled dispatch must distinguish owner effects from capability-free syntax."""
++        cases = (
++            ('call', 'def __call__(self):\n    ReviewTests._launch = None', 'Value()()'),
++            ('truth', 'def __bool__(self):\n    ReviewTests._launch = None\n    return True',
++             'bool(Value())'),
++            ('iteration', 'def __iter__(self):\n    ReviewTests._launch = None\n'
++             '    return iter(())',
++             'list(Value())'),
++            ('item', 'def __getitem__(self, key):\n    ReviewTests._launch = None\n    return 1',
++             'Value()[0]'),
++            ('property', '@property\ndef value(self):\n    ReviewTests._launch = None\n'
++             '    return 1',
++             'Value().value'),
++            ('constructor', 'def __init__(self):\n    ReviewTests._launch = None', 'Value()'),
++            ('hash', 'def __hash__(self):\n    ReviewTests._launch = None\n    return 1',
++             'hash(Value())'),
++            ('format', 'def __str__(self):\n    ReviewTests._launch = None\n    return "value"',
++             'str(Value())'),
++        )
++        for label, method, invocation in cases:
++            for mutates in (False, True):
++                effect = method if mutates else method.replace(
++                    'ReviewTests._launch = None', 'unused = ReviewTests',
++                )
++                body = 'class Value:\n' + textwrap.indent(effect, '    ') + '\n' + invocation
++                with self.subTest(protocol=label, mutates=mutates):
++                    actual, review = self._provenance_case(body + '\nreturn self._launch()')
++                    self.assertEqual(actual, TypeError if mutates else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutates)
++                    if not mutates:
++                        self.assertEqual([row['argv'] for row in review['receipt']['expanded_rows']
++                                          if row['capability_kind'] == 'subprocess'],
++                                         [['-m', 'fixed']])
++
++
++    def test_callable_authority_forwarded_inputs_follow_execution_order(self) -> None:
++        definitions = (
++            ('default', 'def invoke(callback=mutate):\n    callback()', 'invoke()'),
++            ('posonly', 'def invoke(callback=mutate, /):\n    callback()', 'invoke()'),
++            ('kwonly', 'def invoke(*, callback=mutate):\n    callback()', 'invoke()'),
++            ('explicit', 'def invoke(callback):\n    callback()', 'invoke(mutate)'),
++            ('container', 'def invoke(callbacks=(mutate,)):\n    callbacks[0]()', 'invoke()'),
++            ('mapping', 'def invoke(callbacks={"cb": mutate}):\n    callbacks["cb"]()',
++             'invoke()'),
++            ('nested', 'def invoke(callback):\n    callback()\n'
++             'def forward(callback=mutate):\n    invoke(callback)', 'forward()'),
++        )
++        for label, definition, invocation in definitions:
++            for owner in ('ReviewTests', 'self'):
++                for state in ('reached', 'dormant', 'before-raise', 'after-raise'):
++                    for incidental in ('', 'unused = ReviewTests\n'):
++                        mutator = 'def mutate(owner=' + owner + '):\n'
++                        if state == 'before-raise':
++                            mutator += '    raise ValueError()\n'
++                        mutator += '    owner._launch = None\n'
++                        if state == 'after-raise':
++                            mutator += '    raise ValueError()\n'
++                        body = incidental + mutator + definition + '\n'
++                        if state != 'dormant':
++                            body += 'try:\n    ' + invocation + '\nexcept ValueError:\n    pass\n'
++                        body += 'return self._launch()'
++                        with self.subTest(form=label, owner=owner, state=state,
++                                          incidental=bool(incidental)):
++                            actual, review = self._provenance_case(body)
++                            mutated = state in {'reached', 'after-raise'}
++                            self.assertEqual(actual, TypeError if mutated else 'fixed')
++                            self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
++                            rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                    if row['capability_kind'] == 'subprocess']
++                            self.assertEqual(rows, [] if mutated else [['-m', 'fixed']])
++        for owner in ('ReviewTests', 'self'):
++            actual, review = self._provenance_case(
++                'def mutate(owner):\n    owner._launch = None\n'
++                'def forward(owners=(' + owner + ',)):\n    mutate(owners[0])\n'
++                'forward()\nreturn self._launch()'
++            )
++            self.assertIs(actual, TypeError)
++            self.assertTrue(review['unresolved_dynamic_blockers'])
++        for definition, invocation in (
++            ('def invoke(callback=mutate, /):\n    callback()', 'invoke(callback=mutate)'),
++            ('def invoke(*, callback=mutate):\n    callback()', 'invoke(mutate)'),
++            ('mutate = lambda owner=ReviewTests, /: setattr(owner, "_launch", None)',
++             'mutate(owner=None)'),
++        ):
++            with self.subTest(invalid=invocation):
++                actual, review = self._provenance_case(
++                    'def mutate(owner=ReviewTests):\n    owner._launch = None\n'
++                    + definition + '\ntry:\n    ' + invocation
++                    + '\nexcept TypeError:\n    pass\nreturn self._launch()'
++                )
++                self.assertEqual(actual, 'fixed')
++                self.assertFalse(review['unresolved_dynamic_blockers'])
++
++    def test_callable_authority_async_creation_retains_only_future_effects(self) -> None:
++        for mutated in (False, True):
++            for consumed in (False, True):
++                with self.subTest(mutated=mutated, consumed=consumed):
++                    body = 'async def action(owner=ReviewTests):\n'
++                    body += ('    owner._launch = None\n' if mutated else '    return 1\n')
++                    body += ('asyncio.run(action())\n' if consumed else
++                             'pending = action()\npending.close()\n')
++                    actual, review = self._provenance_case(
++                        body + 'return self._launch()', module_tail='import asyncio\n',
++                    )
++                    effect = mutated and consumed
++                    self.assertEqual(actual, TypeError if effect else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), effect, review)
++
++
++    def test_callable_authority_protocol_forwarding_retains_effect_context(self) -> None:
++        methods = (
++            ('def __call__(self):\n    return mutate()', 'Value()()'),
++            ('@staticmethod\ndef __call__():\n    return mutate()', 'Value()()'),
++            ('@classmethod\ndef __call__(cls):\n    return mutate()', 'Value()()'),
++            ('def __bool__(self):\n    mutate()\n    return True', 'bool(Value())'),
++            ('@property\ndef value(self):\n    return mutate()', 'Value().value'),
++        )
++        for method, invocation in methods:
++            for mutated in (False, True):
++                with self.subTest(method=method, mutated=mutated):
++                    body = ('def mutate(owner=ReviewTests):\n'
++                            + ('    owner._launch = None\n' if mutated else '    return 1\n'))
++                    body += 'class Value:\n' + textwrap.indent(method, '    ') + '\n'
++                    actual, review = self._provenance_case(
++                        body + invocation + '\nreturn self._launch()'
++                    )
++                    self.assertEqual(actual, TypeError if mutated else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated, review)
++                    if not mutated:
++                        rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                if row['capability_kind'] == 'subprocess']
++                        self.assertEqual(rows, [['-m', 'fixed']])
++
++
++    def test_callable_authority_construction_defaults_and_deferred_identity(self) -> None:
++        for signature in ('self, owner=ReviewTests', 'self, owner=ReviewTests, /',
++                          'self, *, owner=ReviewTests'):
++            with self.subTest(signature=signature):
++                actual, review = self._provenance_case(
++                    'class Value:\n    def __call__(' + signature + '):\n'
++                    '        owner._launch = None\nValue()()\nreturn self._launch()'
++                )
++                self.assertIs(actual, TypeError)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++        cases = (
++            ('unstarted-alias-close', 'async def action(owner=ReviewTests):\n'
++             '    owner._launch = None\npending = action()\nalias = pending\nalias.close()',
++             False),
++            ('stored-unstarted-close', 'async def action(owner=ReviewTests):\n'
++             '    owner._launch = None\npending = action()\nstored = []\n'
++             'stored.append(pending)\npending.close()', False),
++            ('dormant-async-generator', 'async def action(owner=ReviewTests):\n'
++             '    owner._launch = None\n    yield 1\npending = action()', False),
++            ('started-coroutine-finally', 'class Pause:\n    def __await__(self):\n'
++             '        yield None\nasync def action(owner=ReviewTests):\n'
++             '    try:\n        await Pause()\n    finally:\n        owner._launch = None\n'
++             'pending = action()\npending.send(None)\npending.close()', True),
++            ('returned-object-close', 'def mutate(owner=ReviewTests):\n'
++             '    owner._launch = None\ndef outer(callback):\n    class Value:\n'
++             '        def close(self):\n            callback()\n    return Value()\n'
++             'value = outer(mutate)\nvalue.close()', True),
++        )
++        for label, body, mutation in cases:
++            with self.subTest(case=label):
++                actual, review = self._provenance_case(body + '\nreturn self._launch()')
++                self.assertEqual(actual, TypeError if mutation else 'fixed')
++                self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutation, review)
++
++    def test_callable_authority_decorator_application_uses_the_call_context(self) -> None:
++        for mutated in (False, True):
++            for default in (False, True):
++                with self.subTest(mutated=mutated, default=default):
++                    owner = 'owner' if default else 'ReviewTests'
++                    body = ('def decorate(function'
++                            + (', owner=ReviewTests' if default else '') + '):\n')
++                    body += ('    ' + owner + '._launch = None\n' if mutated else
++                             '    unused = ' + owner + '\n')
++                    body += '    return function\n@decorate\ndef read():\n    return 1\n'
++                    actual, review = self._provenance_case(body + 'return self._launch()')
++                    self.assertEqual(actual, TypeError if mutated else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated, review)
++
++
++    def test_callable_authority_annotations_refuse_without_inventing_execution(self) -> None:
++        process = (
++            'subprocess.run([sys.executable, "-m", module], cwd=".", '
++            'env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)'
++        )
++        cases = (
++            ('parameter-call', 'def annotated(value: mutate()):', True, True),
++            ('return-call', 'def annotated() -> mutate():', True, True),
++            ('retained-callback', 'def annotated(value: '
++             '(lambda owner=ReviewTests: setattr(owner, "_launch", None))):', True, False),
++            ('literal', 'def annotated(value: "ReviewTests"):', False, False),
++            ('bare-type', 'def annotated(value: int):', False, False),
++            ('bare-owner', 'def annotated(value: ReviewTests):', False, False),
++            ('readonly-call', 'def annotated(value: read()):', False, False),
++            ('method-parameter-call', 'class Holder:\n    def annotated(value: mutate()):',
++             True, True),
++            ('method-readonly-call', 'class Holder:\n    def annotated(value: read()):',
++             False, False),
++        )
++        for label, signature, refusal, eager_mutation in cases:
++            for future in (False, True):
++                with self.subTest(annotation=label, future=future):
++                    body = (
++                        'def mutate(owner=ReviewTests):\n    owner._launch = None\n'
++                        'def read(owner=ReviewTests):\n    return 1\n'
++                        + signature + '\n'
++                        + ('        ' if signature.startswith('class ') else '    ')
++                        + 'return 1\nreturn self._launch()'
++                    )
++                    source = ('from __future__ import annotations\n' if future else '')
++                    source += (
++                        'import subprocess, sys, unittest\n'
++                        'class ReviewTests(unittest.TestCase):\n'
++                        '    @staticmethod\n'
++                        '    def _launch(ignored=None, module="fixed"):\n'
++                        '        ' + process + '\n'
++                        '    def test_static(self):\n' + textwrap.indent(body, '        ')
++                        + '\n    def test_denied(self): pass\n'
++                    )
++                    projection = source.replace(process, 'return module')
++                    self.assertNotIn('subprocess.run(', projection)
++                    namespace = {}
++                    # Explicitly avoid this test module's future-annotations flag.
++                    exec(compile(projection, '<annotation-projection>', 'exec',
++                                 dont_inherit=True), namespace)
++                    actual = 'fixed'
++                    try:
++                        actual = namespace['ReviewTests']('test_static').test_static()
++                    except TypeError:
++                        actual = 'TypeError'
++                    eager = sys.version_info < (3, 14) and not future
++                    self.assertEqual(actual, 'TypeError' if eager and eager_mutation else 'fixed')
++                    print(json.dumps({'annotation_runtime_oracle': label, 'future': future,
++                                      'version': sys.version.split()[0], 'actual': actual,
++                                      'expected_refusal': refusal}), flush=True)
++                    review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), refusal)
++                    if not refusal:
++                        rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                if row['capability_kind'] == 'subprocess']
++                        self.assertEqual(rows, [['-m', 'fixed']])
++
++
++    def test_callable_authority_native_storage_retains_without_invoking(self) -> None:
++        stores = (
++            ('list', 'pending = [callback]', 'pending[0]()'),
++            ('tuple', 'pending = (callback,)', 'pending[0]()'),
++            ('mapping', 'pending = {"cb": callback}', 'pending["cb"]()'),
++            ('append', 'pending = []\npending.append(callback)', 'pending[0]()'),
++            ('extend', 'pending = []\npending.extend((callback,))', 'pending[0]()'),
++            ('insert', 'pending = []\npending.insert(0, callback)', 'pending[0]()'),
++            ('list-store', 'pending = [None]\npending[0] = callback', 'pending[0]()'),
++            ('mapping-store', 'pending = {}\npending["cb"] = callback', 'pending["cb"]()'),
++        )
++        callbacks = (
++            'def callback(owner=ReviewTests):\n    owner._launch = None',
++            'def callback():\n    ReviewTests._launch = None',
++            'callback = lambda owner=ReviewTests: setattr(owner, "_launch", None)',
++        )
++        for label, storage, invocation in stores:
++            for callback in callbacks:
++                for consumed in (False, True):
++                    with self.subTest(storage=label, callback=callback, consumed=consumed):
++                        body = callback + '\n' + storage + '\n'
++                        if consumed:
++                            body += invocation + '\n'
++                        actual, review = self._provenance_case(body + 'return self._launch()')
++                        self.assertEqual(actual, TypeError if consumed else 'fixed')
++                        self.assertEqual(bool(review['unresolved_dynamic_blockers']), consumed)
++                        rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                if row['capability_kind'] == 'subprocess']
++                        self.assertEqual(rows, [] if consumed else [['-m', 'fixed']])
++
++
++    def test_callable_authority_missing_free_proof_is_an_obligation(self) -> None:
++        callbacks = (
++            ('def callback(_):\n    __class__._launch = None', True),
++            ('def callback(_, owner=__class__):\n    owner._launch = None', True),
++            ('callback = lambda _: setattr(__class__, "_launch", None)', True),
++            ('callback = lambda _, owner=__class__: setattr(owner, "_launch", None)', True),
++            ('def callback(_):\n    return __class__.__name__', False),
++            ('callback = lambda _: __class__.__name__', False),
++        )
++        for callback, mutated in callbacks:
++            for invocation in ('list(map(callback, [None]))', 'sorted([None], key=callback)'):
++                with self.subTest(callback=callback, invocation=invocation):
++                    actual, review = self._provenance_case(
++                        callback + '\n' + invocation + '\nreturn self._launch()'
++                    )
++                    self.assertEqual(actual, TypeError if mutated else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
++                    if not mutated:
++                        rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                if row['capability_kind'] == 'subprocess']
++                        self.assertEqual(rows, [['-m', 'fixed']])
++
++
++    def test_callable_authority_descriptor_construction_refuses_effects(self) -> None:
++        for kind in ('default', 'decorator'):
++            for mutated in (False, True):
++                with self.subTest(construction=kind, mutated=mutated):
++                    body = ('def mutate(owner=ReviewTests):\n'
++                            + ('    owner._launch = None\n' if mutated else '    return 1\n'))
++                    if kind == 'default':
++                        body += 'class Holder:\n    def method(self, value=mutate()):\n'
++                    else:
++                        body += ('def decorate(function):\n    mutate()\n    return function\n'
++                                 'class Holder:\n    @decorate\n    def method(self):\n')
++                    body += '        return 1\nreturn self._launch()'
++                    actual, review = self._provenance_case(body)
++                    self.assertEqual(actual, TypeError if mutated else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
++                    if not mutated:
++                        rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                if row['capability_kind'] == 'subprocess']
++                        self.assertEqual(rows, [['-m', 'fixed']])
++
++
++    def test_callable_authority_class_construction_uses_source_point_bindings(self) -> None:
++        orders = (
++            ('early-mutator', 'alias = read\n', '    alias = mutate\n',
++             '    alias = read\n', True),
++            ('early-reader', 'alias = mutate\n', '    alias = read\n',
++             '    alias = mutate\n', False),
++            ('class-only-mutator', '', '    alias = mutate\n', '    alias = read\n', True),
++            ('outer-mutator', 'alias = mutate\n', '', '', True),
++            ('class-only-reader', '', '    alias = read\n', '    alias = mutate\n', False),
++            ('outer-reader', 'alias = read\n', '', '', False),
++        )
++        for kind in ('default', 'decorator'):
++            for label, outer, before, after, mutated in orders:
++                with self.subTest(construction=kind, order=label):
++                    parameters = 'function=None, owner=ReviewTests'
++                    body = (f'def mutate({parameters}):\n    owner._launch = None\n'
++                            '    return function\n'
++                            f'def read({parameters}):\n    return function\n'
++                            + outer + 'class Holder:\n' + before)
++                    body += ('    def method(self, value=alias()):\n' if kind == 'default'
++                             else '    @alias\n    def method(self):\n')
++                    body += '        return 1\n' + after + 'return self._launch()'
++                    actual, review = self._provenance_case(body)
++                    self.assertEqual(actual, TypeError if mutated else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
++                    if not mutated:
++                        rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                                if row['capability_kind'] == 'subprocess']
++                        self.assertEqual(rows, [['-m', 'fixed']])
++        for captured in (False, True):
++            with self.subTest(default_captured=captured):
++                initial, later = ('ReviewTests', 'None') if captured else ('None', 'ReviewTests')
++                body = ('class Holder:\n    owner = ' + initial + '\n'
++                        '    def __call__(self, target=owner):\n'
++                        '        if target is not None:\n            target._launch = None\n'
++                        '    owner = ' + later + '\nHolder()()\nreturn self._launch()')
++                actual, review = self._provenance_case(body)
++                self.assertEqual(actual, TypeError if captured else 'fixed')
++                self.assertEqual(bool(review['unresolved_dynamic_blockers']), captured)
++                if not captured:
++                    rows = [row['argv'] for row in review['receipt']['expanded_rows']
++                            if row['capability_kind'] == 'subprocess']
++                    self.assertEqual(rows, [['-m', 'fixed']])
++
+     def test_helper_effective_inputs_preserve_reached_owner_mutations(self) -> None:
+         cases = (
+             ('positional-default', 'def mutate(owner=ReviewTests):\n    owner._launch = None\nmutate()'),
+diff --git a/tools/generate_test_inventory.py b/tools/generate_test_inventory.py
+index 2b11a9a10987d73f5b17799e59f80d851667e7b9..3b5a9678f3a0e5542edbf633309580ded8a04139 100644
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -9029,6 +9029,11 @@ class _FlowValue:
+     namespace_effects: frozenset[str] = frozenset()
+     helper_refusal: str | None = None
+     helper_receiver: _FlowValue | None = None
++    callable_definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda | None = None
++    callable_scope: _LexicalBindingScope | None = None
++    callable_free_values: tuple[tuple[str, _FlowValue], ...] = ()
++    helper_obligations: tuple[_FlowValue, ...] = ()
++    native_unstarted_coroutine: bool = False
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+@@ -9339,6 +9344,22 @@ def _bounded_local_generator_dependencies(
+     return result
+ 
+ 
++def _has_yield_in_lexical_body(
++    definition: ast.AsyncFunctionDef, budget: _AnalysisBudget,
++) -> bool:
++    pending: list[ast.AST] = list(definition.body)
++    while pending:
++        candidate = pending.pop()
++        budget.consume()
++        if isinstance(candidate, (ast.Yield, ast.YieldFrom)):
++            return True
++        if not isinstance(candidate, (
++            ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda, ast.ClassDef,
++        )):
++            pending.extend(ast.iter_child_nodes(candidate))
++    return False
++
++
+ def _helper_body_is_deferred(
+     definition: ast.FunctionDef | ast.AsyncFunctionDef, budget: _AnalysisBudget,
+ ) -> bool:
+@@ -13400,7 +13421,9 @@ def _flow_assignments(values: Mapping[str, _FlowValue]) -> dict[str, ast.expr]:
+ 
+ def _flow_without_helper_proof(value: _FlowValue) -> _FlowValue:
+     return replace(value, helper_provenance=None, callable_defaults=(),
+-                   namespace_effects=frozenset(), helper_refusal=None, helper_receiver=None)
++                   namespace_effects=frozenset(), helper_refusal=None, helper_receiver=None,
++                   callable_definition=None, callable_scope=None, callable_free_values=(),
++                   helper_obligations=(), native_unstarted_coroutine=False)
+ 
+ 
+ def _merge_flow_values(
+@@ -13409,7 +13432,9 @@ def _merge_flow_values(
+     if not any(value is not None and (
+         value.helper_provenance is not None or value.callable_defaults
+         or value.namespace_effects or value.helper_refusal is not None
+-        or value.helper_receiver is not None
++        or value.helper_receiver is not None or value.callable_definition is not None
++        or value.callable_free_values or value.helper_obligations
++        or value.native_unstarted_coroutine
+     ) for value in values):
+         return _merge_legacy_flow_values(name, values)
+     merged = _merge_legacy_flow_values(
+@@ -13427,6 +13452,22 @@ def _merge_flow_values(
+         common.intersection_update(supplied)
+     return replace(
+         merged, helper_provenance=proof,
++        native_unstarted_coroutine=complete and all(
++            value.native_unstarted_coroutine for value in present
++        ),
++        callable_definition=(present[0].callable_definition if complete and all(
++            value.callable_definition is present[0].callable_definition for value in present
++        ) else None),
++        callable_scope=(present[0].callable_scope if complete and all(
++            value.callable_scope is present[0].callable_scope for value in present
++        ) else None),
++        callable_free_values=present[0].callable_free_values if complete and all(
++            value.callable_free_values == present[0].callable_free_values for value in present
++        ) else (),
++        helper_obligations=tuple(value for value in present if (
++            value.callable_definition is not None or value.helper_obligations
++            or value.callable_free_values
++        )),
+         helper_receiver=(
+             _merge_flow_values("captured helper receiver", tuple(
+                 value.helper_receiver for value in present
+@@ -13856,6 +13897,12 @@ class _SourceOrderedResolver:
+         self.helper_relative_path = helper_relative_path
+         self.active_helper_effects = active_helper_effects
+         self._helper_rebound_names: set[str] = set()
++        self._helper_return_obligations: dict[int, tuple[_FlowValue, ...]] = {}
++        self._projected_helper_bodies: frozenset[int] = frozenset()
++        self._native_coroutine_calls: set[int] = set()
++        self._annotation_effect_definitions: list[ast.FunctionDef] = []
++        self._evaluated_authority_values: dict[int, _FlowValue] = {}
++        self._current_effect_values: dict[str, _FlowValue] | None = None
+         self._helper_effect_shapes: dict[int, tuple[frozenset[str], bool]] = {}
+         self.invalid_helper_owners = set(invalid_helper_owners) | set(
+             getattr(self.helper_registry, "initial_member_mutations", ())
+@@ -14939,6 +14986,7 @@ class _SourceOrderedResolver:
+         method_names: frozenset[str],
+         reason: str,
+     ) -> None:
++        self._record_implicit_helper_effects(node, value, method_names)
+         descriptors = tuple(
+             (
+                 descriptor,
+@@ -17157,6 +17205,225 @@ class _SourceOrderedResolver:
+             self._active_local_helper_returns.discard(marker)
+         return returned if _flow_contains_deferred_generator(returned) else None
+ 
++    def _callable_free_names(
++        self, definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda,
++    ) -> frozenset[str]:
++        if isinstance(definition, ast.Lambda):
++            arguments = definition.args
++            bound = {argument.arg for argument in (
++                *arguments.posonlyargs, *arguments.args, *arguments.kwonlyargs,
++            )}
++            bound.update(argument.arg for argument in (arguments.vararg, arguments.kwarg)
++                         if argument is not None)
++            body: Sequence[ast.AST] = (definition.body,)
++        else:
++            bound = set(_lexical_binding_scope(definition).local_names)
++            body = definition.body
++        return frozenset(candidate.id for statement in body
++                         for candidate in _metered_ast_walk(statement, self.budget)
++                         if isinstance(candidate, ast.Name)
++                         and isinstance(candidate.ctx, ast.Load) and candidate.id not in bound)
++
++    def _with_callable_authority(
++        self, value: _FlowValue,
++        definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda,
++        values: Mapping[str, _FlowValue], *,
++        default_values: Mapping[str, _FlowValue] | None = None,
++    ) -> _FlowValue:
++        if not self.helper_registry:
++            return value
++        default_scope = values if default_values is None else default_values
++        defaults = value.callable_defaults
++        if not defaults:
++            arguments = definition.args
++            positional = (*arguments.posonlyargs, *arguments.args)
++            defaults = tuple((argument.arg, self._evaluate(expression, dict(default_scope), False))
++                             for argument, expression in zip(
++                                 positional[len(positional) - len(arguments.defaults):],
++                                 arguments.defaults, strict=True,
++                             ))
++            defaults += tuple((argument.arg, self._evaluate(expression, dict(default_scope), False))
++                              for argument, expression in zip(
++                                  arguments.kwonlyargs, arguments.kw_defaults, strict=True,
++                              ) if expression is not None)
++        return replace(
++            value, callable_defaults=defaults,
++            callable_definition=definition, callable_scope=self.lexical_scope,
++            callable_free_values=tuple((name, values[name])
++                                       for name in sorted(self._callable_free_names(definition))
++                                       if name in values),
++        )
++
++    def _reachable_helper_authorities(
++        self, value: _FlowValue, values: Mapping[str, _FlowValue],
++    ) -> tuple[_FlowValue, ...]:
++        """Follow retained authority without executing a callback or changing its value."""
++        pending = [value]
++        seen: set[int] = set()
++        owners: dict[str, _FlowValue] = {}
++        callables: list[_FlowValue] = []
++        while pending:
++            self.budget.consume()
++            current = pending.pop()
++            if id(current) in seen:
++                continue
++            seen.add(id(current))
++            if current.helper_provenance is not None:
++                owners.setdefault(current.helper_provenance.key, current)
++            elif current.kind == "helper_deferred_refusal":
++                owners.setdefault(current.reason or "deferred effect", current)
++            if current.helper_receiver is not None:
++                pending.append(current.helper_receiver)
++            pending.extend(item for _name, item in current.callable_defaults)
++            pending.extend(current.helper_obligations)
++            captured = dict(current.callable_free_values)
++            if current.callable_definition is not None:
++                callables.append(current)
++                names = self._callable_free_names(current.callable_definition)
++                if current.callable_scope is self.lexical_scope:
++                    captured.update((name, values[name]) for name in names if name in values)
++                pending.extend(captured.values())
++            if current.kind in {'sequence', 'slice', 'maybe_unbound'}:
++                pending.extend(item for item in current.value if isinstance(item, _FlowValue))
++            elif current.kind in {'mapping', 'mapping_keys'}:
++                pending.extend(item for pair in current.value for item in pair
++                               if isinstance(item, _FlowValue))
++            elif current.kind == 'starred_argument' and isinstance(current.value, _FlowValue):
++                pending.append(current.value)
++        if not owners:
++            for candidate in callables:
++                for obligation in self._unproved_callable_effects(candidate, values):
++                    owners.setdefault(obligation.reason or str(id(obligation)), obligation)
++        return tuple(owners.values())
++
++    def _unproved_callable_effects(
++        self, value: _FlowValue, values: Mapping[str, _FlowValue],
++    ) -> tuple[_FlowValue, ...]:
++        definition = value.callable_definition
++        if definition is None:
++            return ()
++        body = (definition.body if not isinstance(definition, ast.Lambda)
++                else (ast.Return(value=definition.body),))
++        if all(isinstance(statement, ast.Pass) or (
++            isinstance(statement, ast.Return)
++            and (statement.value is None or isinstance(statement.value, ast.Constant))
++        ) or (isinstance(statement, ast.Expr) and isinstance(statement.value, ast.Constant))
++               for statement in body):
++            # A literal-only body cannot write or invoke anything, independent
++            # of unsupported variadic binding (for example a safe __exit__).
++            return ()
++        if (id(definition) in self.active_helper_effects
++                or len(self.active_helper_effects) >= MAXIMUM_ANALYSIS_HELPER_DEPTH):
++            return (_FlowValue(
++                "helper_deferred_refusal",
++                reason="helper namespace callable effects are unresolved",
++            ),)
++        if isinstance(definition, ast.Lambda):
++            definition = ast.copy_location(ast.FunctionDef(
++                name="lambda_obligation", args=definition.args,
++                body=[ast.copy_location(ast.Return(value=definition.body), definition.body)],
++                decorator_list=[], type_params=[],
++            ), definition)
++            self._annotation_effect_definitions.append(definition)
++            value = replace(value, callable_definition=definition)
++        positional = (*definition.args.posonlyargs, *definition.args.args)
++        required = len(positional) - len(definition.args.defaults)
++        arguments = tuple(_flow_unknown("callback argument is dynamically unresolved")
++                          for _ in range(required))
++        required_keywords = tuple(argument.arg for argument, default in zip(
++            definition.args.kwonlyargs, definition.args.kw_defaults, strict=True,
++        ) if default is None)
++        keywords = tuple(_flow_unknown("callback keyword is dynamically unresolved")
++                         for _ in required_keywords)
++        call = ast.copy_location(ast.Call(
++            func=ast.Name(id=definition.name),
++            args=[ast.Name(id="callback_argument") for _ in arguments],
++            keywords=[ast.keyword(arg=name, value=ast.Name(id="callback_keyword"))
++                      for name in required_keywords],
++        ), definition)
++        return self._project_helper_call_effects(call, value, arguments, keywords, dict(values))
++
++    def _refuse_helper_authority(
++        self, site: ast.AST, owners: Sequence[_FlowValue], reason: str,
++    ) -> None:
++        if not owners:
++            return
++        self.flow.standalone_blockers.append((site, reason))
++        for owner in owners:
++            self._invalidate_helper_identities(owner)
++
++    def _retained_implicit_callable(
++        self, value: _FlowValue, definition: ast.FunctionDef | ast.AsyncFunctionDef,
++        values: Mapping[str, _FlowValue],
++    ) -> _FlowValue:
++        pending = [value]
++        seen: set[int] = set()
++        while pending:
++            self.budget.consume()
++            candidate = pending.pop()
++            if id(candidate) in seen:
++                continue
++            seen.add(id(candidate))
++            if candidate.callable_definition is definition:
++                return candidate
++            pending.extend(candidate.helper_obligations)
++        return self._with_callable_authority(_flow_qname(definition.name), definition, values)
++
++    def _record_implicit_helper_effects(
++        self, site: ast.AST, value: _FlowValue, method_names: frozenset[str],
++    ) -> None:
++        if not self.helper_registry:
++            return
++        values = self._current_effect_values or self.values
++        for descriptor in self._implicit_protocol_descriptors(value):
++            active = self._effective_implicit_protocol_methods(descriptor, method_names)
++            if value.kind == 'implicit_class':
++                active = active - {'__call__'}
++            for name, definition in descriptor.method_slots:
++                if name not in active:
++                    continue
++                callable_value = self._retained_implicit_callable(value, definition, values)
++                owners = self._reachable_helper_authorities(callable_value, values)
++                if not owners:
++                    continue
++                positional = (*definition.args.posonlyargs, *definition.args.args)
++                decorators = tuple(_resolved_qualified_name(decorator, _flow_aliases(values))
++                                   for decorator in definition.decorator_list)
++                if decorators not in {(), ("staticmethod",), ("classmethod",), ("property",)}:
++                    self._refuse_helper_authority(
++                        site, owners, "helper namespace descriptor binding is unresolved",
++                    )
++                    continue
++                arguments = ([] if decorators == ("staticmethod",) else
++                             [_flow_unknown("implicit receiver context is unresolved")])
++                keywords: list[_FlowValue] = []
++                if name in {"__call__", "__init__", "__new__"} and isinstance(site, ast.Call):
++                    arguments.extend(self._evaluated_authority_values.get(
++                        id(argument), _flow_unknown("implicit argument context is unresolved"),
++                    ) for argument in site.args)
++                    keywords.extend(self._evaluated_authority_values.get(
++                        id(keyword.value), _flow_unknown("implicit keyword context is unresolved"),
++                    ) for keyword in site.keywords)
++                    call_keywords = site.keywords
++                else:
++                    # Unsupported protocol argument values remain unknown. Defaults
++                    # and captured cells retain their actual definition-time proof.
++                    required = max(1, len(positional) - len(definition.args.defaults))
++                    arguments.extend(_flow_unknown("implicit argument context is unresolved")
++                                     for _ in range(required - 1))
++                    call_keywords = []
++                synthetic = ast.copy_location(ast.Call(
++                    func=ast.Name(id=name),
++                    args=[ast.Name(id="implicit_argument") for _ in arguments],
++                    keywords=call_keywords,
++                ), site)
++                effects = self._project_helper_call_effects(
++                    synthetic, callable_value, arguments, keywords, values,
++                )
++                self._refuse_helper_authority(
++                    site, effects, 'helper namespace effects are dynamically unresolved',
++                )
++
+     def _invalidate_helper_identities(self, value: _FlowValue) -> None:
+         pending = [value]
+         while pending:
+@@ -17307,6 +17574,179 @@ class _SourceOrderedResolver:
+             captured.append((name, value))
+         return tuple(captured)
+ 
++    def _project_helper_call_effects(
++        self, node: ast.Call, callable_value: _FlowValue,
++        arguments: Sequence[_FlowValue], keywords: Sequence[_FlowValue],
++        values: dict[str, _FlowValue], *, retain_callable_results: bool = False,
++    ) -> tuple[_FlowValue, ...]:
++        """Use the existing bounded call context without adopting its live effects."""
++        definition = callable_value.callable_definition
++        assert isinstance(definition, (ast.FunctionDef, ast.AsyncFunctionDef))
++        marker = _definition_point_marker(definition)
++        environment = dict(values)
++        if callable_value.callable_scope is not self.lexical_scope:
++            environment.update(callable_value.callable_free_values)
++        probe = _SourceOrderedResolver(
++            {}, {}, {}, budget=self.budget,
++            exception_scope=self.exception_scope, lexical_scope=self.lexical_scope,
++            module_bound_names=self.module_bound_names,
++            enclosing_bound_names=self.enclosing_bound_names, entry_values=environment,
++            helper_registry=self.helper_registry,
++            invalid_helper_owners=self.invalid_helper_owners,
++            helper_relative_path=self.helper_relative_path,
++            active_helper_effects=self.active_helper_effects,
++        )
++        # This resolver continues a call-site environment, not a fresh function
++        # entry; its constructor has initialized lexical locals as unbound.
++        probe.values.update(environment)
++        probe._helper_effect_shapes = self._helper_effect_shapes
++        probe._local_function_definitions.update(self._local_function_definitions)
++        probe._deferred_local_generator_definitions.update(
++            self._deferred_local_generator_definitions,
++        )
++        probe._local_function_definitions[marker] = (
++            definition, callable_value.callable_defaults,
++        )
++        probe._projected_helper_bodies = self._projected_helper_bodies | {id(definition)}
++        probe._apply_helper_call_effects(
++            node, replace(callable_value, kind="qname", value=marker),
++            arguments, keywords, probe.values,
++        )
++        effects = tuple(_FlowValue(
++            "helper_deferred_effect", helper_provenance=_HelperProvenance("effect", key),
++        ) for key in sorted(probe.invalid_helper_owners - self.invalid_helper_owners))
++        if retain_callable_results:
++            effects += tuple(owner
++                             for returned in probe._helper_return_obligations.get(id(node), ())
++                             if returned.callable_definition is not None
++                             for owner in probe._reachable_helper_authorities(
++                                 returned, probe.values,
++                             ))
++        if not effects and any(reason.startswith("helper namespace")
++                               for _site, reason in probe.flow.standalone_blockers):
++            effects = (_FlowValue(
++                "helper_deferred_refusal",
++                reason="helper namespace deferred effects are unresolved",
++            ),)
++        return effects
++
++    def _project_expression_helper_obligations(
++        self, expression: ast.expr, values: dict[str, _FlowValue],
++        *, retain_callable_results: bool,
++    ) -> tuple[_FlowValue, ...]:
++        projected = ast.copy_location(ast.FunctionDef(
++            name="construction_obligation",
++            args=ast.arguments(posonlyargs=[], args=[], kwonlyargs=[],
++                               kw_defaults=[], defaults=[]),
++            body=[ast.copy_location(ast.Return(value=expression), expression)],
++            decorator_list=[], type_params=[],
++        ), expression)
++        self._annotation_effect_definitions.append(projected)
++        callable_value = self._with_callable_authority(
++            _flow_qname(projected.name), projected, values,
++        )
++        call = ast.copy_location(ast.Call(
++            func=ast.Name(id=projected.name), args=[], keywords=[],
++        ), expression)
++        return self._project_helper_call_effects(
++            call, callable_value, (), (), values, retain_callable_results=retain_callable_results,
++        )
++
++    def _record_callable_construction_obligations(
++        self, definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda,
++        values: dict[str, _FlowValue], *, descriptor_metadata: bool = False,
++    ) -> None:
++        if not self.helper_registry:
++            return
++        arguments = definition.args
++        annotations = tuple(argument.annotation for argument in (
++            *arguments.posonlyargs, *arguments.args, *arguments.kwonlyargs,
++            *((arguments.vararg,) if arguments.vararg is not None else ()),
++            *((arguments.kwarg,) if arguments.kwarg is not None else ()),
++        )) + (getattr(definition, "returns", None),)
++        expressions = [(annotation, True, "annotation") for annotation in annotations
++                       if annotation is not None]
++        if descriptor_metadata:
++            # Descriptor admission has no general class-body interpreter. Its
++            # construction expressions retain obligations without live mutation.
++            expressions.extend((expression, False, "definition-time default")
++                               for expression in (*arguments.defaults, *arguments.kw_defaults)
++                               if expression is not None)
++            constructed = self._with_callable_authority(
++                _flow_qname(definition.name), definition, values,
++            )
++            construction_values = dict(values)
++            construction_values["__construction_argument__"] = constructed
++            for decorator in reversed(definition.decorator_list):
++                if _resolved_qualified_name(decorator, _flow_aliases(values)) in {
++                    "staticmethod", "classmethod", "property",
++                }:
++                    # These supported descriptor wrappers retain the function;
++                    # constructing them does not invoke its body.
++                    continue
++                application = ast.copy_location(ast.Call(
++                    func=decorator,
++                    args=[ast.Name(id="__construction_argument__", ctx=ast.Load())], keywords=[],
++                ), decorator)
++                if self._project_expression_helper_obligations(
++                    application, construction_values, retain_callable_results=False,
++                ):
++                    self.flow.standalone_blockers.append((
++                        decorator, "helper namespace decorator effects are dynamically unresolved",
++                    ))
++        for expression, retain, kind in expressions:
++            # Annotation timing differs across supported interpreters. Project
++            # only the obligation, including for deferred annotations.
++            if self._project_expression_helper_obligations(
++                expression, values, retain_callable_results=retain,
++            ):
++                self.flow.standalone_blockers.append((
++                    expression, f"helper namespace {kind} effects are dynamically unresolved",
++                ))
++
++    def _retain_native_collection_authority(
++        self, owner: _FlowValue, supplied: Sequence[_FlowValue],
++        values: dict[str, _FlowValue],
++    ) -> None:
++        retained = tuple(value for value in supplied
++                         if self._reachable_helper_authorities(value, values))
++        if not retained:
++            return
++        for name, candidate in tuple(values.items()):
++            if candidate.mutable_collection_identity == owner.mutable_collection_identity:
++                values[name] = replace(candidate, helper_obligations=(
++                    *candidate.helper_obligations, *retained,
++                ))
++
++    def _retain_native_list_call(
++        self, node: ast.Call, arguments: Sequence[_FlowValue],
++        keywords: Sequence[_FlowValue], values: dict[str, _FlowValue],
++    ) -> bool:
++        if not isinstance(node.func, ast.Attribute):
++            return False
++        owner = self._evaluated_authority_values.get(id(node.func.value))
++        if (owner is None or owner.container_kind != "list" or not owner.mutable_collection
++                or owner.mutable_collection_identity is None):
++            return False
++        method = node.func.attr
++        if method not in {"append", "extend", "insert"}:
++            return False
++        expected = 2 if method == "insert" else 1
++        if len(arguments) != expected or keywords or any(
++            isinstance(argument, ast.Starred) for argument in node.args
++        ):
++            return False
++        if method == "extend" and arguments[0].kind != "sequence":
++            return False
++        if method == "insert" and not (
++            arguments[0].kind == "scalar" and type(arguments[0].value) is int
++        ):
++            return False
++        # Only builtin retention is discharged here. The legacy collection path
++        # still owns shape invalidation and exceptions; no callback body runs.
++        self._retain_native_collection_authority(owner, arguments, values)
++        return True
++
+     def _apply_helper_call_effects(
+         self, node: ast.Call, callable_value: _FlowValue,
+         arguments: Sequence[_FlowValue], keywords: Sequence[_FlowValue],
+@@ -17323,6 +17763,19 @@ class _SourceOrderedResolver:
+         registered = (self.helper_registry.get(proof.key)
+                       if proof is not None and proof.kind == "callable" else None)
+         explicit = (*arguments, *keywords)
++        if (local is None and registered is None
++                and self._retain_native_list_call(node, arguments, keywords, values)):
++            return
++        progressed = list(explicit)
++        if isinstance(node.func, ast.Attribute) and node.func.attr != "close":
++            receiver = self._evaluated_authority_values.get(id(node.func.value))
++            if receiver is not None:
++                progressed.append(receiver)
++        progressed_ids = {id(value) for value in progressed if value.native_unstarted_coroutine}
++        if progressed_ids:
++            for name, value in tuple(values.items()):
++                if id(value) in progressed_ids:
++                    values[name] = replace(value, native_unstarted_coroutine=False)
+ 
+         def refuse(reason: str, affected: Iterable[_FlowValue]) -> None:
+             self.flow.standalone_blockers.append((node, reason))
+@@ -17330,14 +17783,45 @@ class _SourceOrderedResolver:
+                 self._invalidate_helper_identities(value)
+ 
+         if local is None and registered is None:
++            definition = callable_value.callable_definition
++            if isinstance(definition, (ast.Lambda, ast.AsyncFunctionDef)):
++                status, _bindings = _bind_deferred_local_generator_call(
++                    node, _DeferredLocalGeneratorFactory(
++                        marker or "callback", definition, callable_value.callable_defaults,
++                    ), arguments, keywords,
++                )
++                if status == "invalid":
++                    self._record_throw_state(values, "TypeError", True)
++                    if self._throw_states is not None:
++                        raise _ExpressionDoesNotComplete
++                    return
++            if isinstance(definition, ast.AsyncFunctionDef):
++                self._helper_return_obligations[id(node)] = self._project_helper_call_effects(
++                    node, callable_value, arguments, keywords, values,
++                )
++                if not _has_yield_in_lexical_body(definition, self.budget):
++                    self._native_coroutine_calls.add(id(node))
++                return
++            modeled_protocol = str(callable_value.value) in _BUILTIN_IMPLICIT_PROTOCOLS
++            retained = tuple(owner for value in explicit
++                             if not (modeled_protocol
++                                     and self._implicit_protocol_descriptors(value))
++                             for owner in self._reachable_helper_authorities(value, values))
++            if (callable_value.helper_obligations
++                    and not self._implicit_protocol_descriptors(callable_value)) or (
++                callable_value.callable_definition is not None
++                and callable_value.kind != "callable_constant"
++            ):
++                retained += self._reachable_helper_authorities(callable_value, values)
+             # Creating a deferred generator does not execute its body.
+             if callable_value.kind == "deferred_local_generator_factory":
+                 return
+-            if any(_flow_contains_helper_identity(value, self.budget) for value in explicit):
+-                refuse("helper namespace escape is dynamically unresolved", explicit)
++            if retained:
++                refuse("helper namespace escape is dynamically unresolved", retained)
+             return
+         definition = local[0] if local is not None else registered.node
+-        deferred = _helper_body_is_deferred(definition, self.budget)
++        deferred = (_helper_body_is_deferred(definition, self.budget)
++                    and id(definition) not in self._projected_helper_bodies)
+         loaded, has_stores = self._helper_effect_shape(definition)
+         if local is not None:
+             environment = dict(values)
+@@ -17375,8 +17859,10 @@ class _SourceOrderedResolver:
+                        if name not in scope.local_names}
+         environment.update(bindings)
+         input_names = loaded | {name for name, _value in bindings}
+-        relevant = tuple(environment[name] for name in input_names if name in environment
+-                         and _flow_contains_helper_identity(environment[name], self.budget))
++        relevant = tuple(owner for name in input_names if name in environment
++                         for owner in self._reachable_helper_authorities(
++                             environment[name], environment,
++                         ))
+         if deferred and not relevant and not has_stores:
+             return None
+         if deferred:
+@@ -17389,7 +17875,8 @@ class _SourceOrderedResolver:
+                 _DeferredLocalGeneratorFactory(marker or proof.key, definition, defaults),
+                 identity, id(node), bindings, supported=False, exact_full_review=False,
+             ))
+-        if not relevant and not has_stores and not self.active_helper_effects:
++        if (not relevant and not has_stores and not self.active_helper_effects
++                and id(definition) not in self._projected_helper_bodies):
+             return
+         if (status != "valid" or callable_value.helper_refusal is not None
+                 or id(definition) in self.active_helper_effects
+@@ -17410,6 +17897,10 @@ class _SourceOrderedResolver:
+         probe._local_function_definitions.update(self._local_function_definitions)
+         probe._deferred_local_generator_definitions.update(self._deferred_local_generator_definitions)
+         successors = probe._flow_statements(definition.body, probe.values)
++        self._helper_return_obligations[id(node)] = tuple(
++            returned for returned in probe.return_values
++            if probe._reachable_helper_authorities(returned, probe.values)
++        )
+         self.invalid_helper_owners.update(probe.invalid_helper_owners)
+         for name in probe._helper_rebound_names:
+             # A cell/global binding changes, not the object retained by another
+@@ -17464,6 +17955,39 @@ class _SourceOrderedResolver:
+                        helper_receiver=receiver)
+ 
+     def _evaluate(
++        self, node: ast.AST | None, values: dict[str, _FlowValue], record: bool = True,
++    ) -> _FlowValue:
++        previous = self._current_effect_values
++        self._current_effect_values = values
++        if isinstance(node, ast.Call):
++            self._helper_return_obligations.pop(id(node), None)
++            self._native_coroutine_calls.discard(id(node))
++        try:
++            result = self._evaluate_value(node, values, record)
++            obligations = self._helper_return_obligations.pop(id(node), ())
++            if id(node) in self._native_coroutine_calls:
++                result = replace(result, native_unstarted_coroutine=True)
++                self._native_coroutine_calls.discard(id(node))
++            if isinstance(node, (ast.Subscript, ast.Attribute)) and result.kind == "unknown":
++                owner = self._evaluated_authority_values.get(id(node.value))
++                if owner is not None:
++                    retained = owner.helper_obligations
++                    if (isinstance(node, ast.Attribute) and node.attr == "close"
++                            and owner.native_unstarted_coroutine):
++                        # This proof belongs only to a newly created native coroutine.
++                        # An arbitrary returned object's close gets no such exemption.
++                        retained = ()
++                    obligations += retained
++            if obligations:
++                result = replace(result, helper_obligations=(
++                    *result.helper_obligations, *obligations,
++                ))
++            self._evaluated_authority_values[id(node)] = result
++            return result
++        finally:
++            self._current_effect_values = previous
++
++    def _evaluate_value(
+         self,
+         node: ast.AST | None,
+         values: dict[str, _FlowValue],
+@@ -17556,6 +18080,7 @@ class _SourceOrderedResolver:
+                             _FlowValue(
+                                 "implicit_class_instance",
+                                 descriptor_member,
++                                helper_obligations=base.helper_obligations,
+                             ),
+                             frozenset({"__get__"}),
+                             "implicit descriptor access is dynamically unresolved",
+@@ -18040,16 +18565,24 @@ class _SourceOrderedResolver:
+             self._assign(node.target, value, values)
+             return value
+         if isinstance(node, ast.Lambda):
+-            for default in (*node.args.defaults, *node.args.kw_defaults):
+-                if default is not None:
+-                    self._evaluate(default, values, record)
+-            if isinstance(node.body, ast.Constant):
+-                return _FlowValue("callable_constant", node.body.value)
+-            return _FlowValue(
+-                "callback",
+-                node,
+-                _contains_sensitive_runtime(node.body, self.budget),
+-                "callback closure",
++            positional = (*node.args.posonlyargs, *node.args.args)
++            defaults = tuple((argument.arg, self._evaluate(default, values, record))
++                             for argument, default in zip(
++                                 positional[len(positional) - len(node.args.defaults):],
++                                 node.args.defaults, strict=True,
++                             ))
++            defaults += tuple((argument.arg, self._evaluate(default, values, record))
++                              for argument, default in zip(
++                                  node.args.kwonlyargs, node.args.kw_defaults, strict=True,
++                              ) if default is not None)
++            self._record_callable_construction_obligations(node, values)
++            result = (_FlowValue("callable_constant", node.body.value)
++                      if isinstance(node.body, ast.Constant) else _FlowValue(
++                          "callback", node, _contains_sensitive_runtime(node.body, self.budget),
++                          "callback closure",
++                      ))
++            return self._with_callable_authority(
++                replace(result, callable_defaults=defaults), node, values,
+             )
+         if isinstance(node, ast.Call):
+             callable_value = self._evaluate(node.func, values, record)
+@@ -18341,6 +18874,10 @@ class _SourceOrderedResolver:
+             ):
+                 descriptor = callable_value.value
+                 callable_name = descriptor.name
++                if record:
++                    self._record_implicit_helper_effects(
++                        node, callable_value, frozenset({"__new__", "__init__"}),
++                    )
+                 constructor_is_unresolved = (
+                     "__new__" in descriptor.sensitive_methods
+                     or (
+@@ -18381,6 +18918,7 @@ class _SourceOrderedResolver:
+                     descriptor,
+                     bool(descriptor.sensitive_methods),
+                     "implicit class protocol execution is dynamically unresolved",
++                    helper_obligations=callable_value.helper_obligations,
+                 )
+             if (
+                 callable_value.kind == "deferred_local_generator_factory"
+@@ -18785,6 +19323,17 @@ class _SourceOrderedResolver:
+                 and len(argument_values) >= 2
+             ):
+                 base, attribute = argument_values[:2]
++                if (record and self.active_helper_effects and base.helper_provenance is None
++                        and base.kind not in {"scalar", "unbound"}
++                        and attribute.kind == "scalar" and type(attribute.value) is str
++                        and isinstance(self.helper_registry, _ReviewRegistry)
++                        and (attribute.value in self.helper_registry.by_name
++                             or attribute.value in {"__class__", "__bases__", "__mro__",
++                                                    "__dict__", "__code__", "__defaults__",
++                                                    "__kwdefaults__", "__globals__"})):
++                    self.flow.standalone_blockers.append((
++                        node, "helper namespace owner needed for mutation is unresolved",
++                    ))
+                 if (
+                     base.kind == "qname"
+                     and attribute.kind == "scalar"
+@@ -19215,6 +19764,11 @@ class _SourceOrderedResolver:
+         if isinstance(node, (ast.Await, ast.Yield, ast.YieldFrom)):
+             supplied = self._evaluate(node.value, values, record)
+             if record and isinstance(node, ast.Await):
++                if supplied.helper_obligations:
++                    self._refuse_helper_authority(
++                        node, self._reachable_helper_authorities(supplied, values),
++                        "helper namespace deferred execution is dynamically unresolved",
++                    )
+                 self._record_implicit_protocol_blocker(
+                     node,
+                     supplied,
+@@ -19637,7 +20191,18 @@ class _SourceOrderedResolver:
+                     )
+             values[target.id] = value
+             return
+-        if isinstance(target, (ast.Attribute, ast.Subscript)) and (
++        native_storage = False
++        if isinstance(target, ast.Subscript):
++            owner = self._evaluate(target.value, values, False)
++            index = self._evaluate(target.slice, values, False)
++            native_storage = bool(
++                owner.mutable_collection and owner.mutable_collection_identity is not None
++                and owner.container_kind in {"list", "dict"}
++                and index.kind == "scalar" and type(index.value) in {str, int, bool, type(None)}
++            )
++            if native_storage:
++                self._retain_native_collection_authority(owner, (value,), values)
++        if not native_storage and isinstance(target, (ast.Attribute, ast.Subscript)) and (
+             _flow_contains_helper_identity(value, self.budget)
+         ):
+             self.flow.standalone_blockers.append((
+@@ -20400,6 +20965,16 @@ class _SourceOrderedResolver:
+         return _FlowSuccessors([current], [], [], [], raised)
+ 
+     def _flow_statement(
++        self, statement: ast.stmt, values: dict[str, _FlowValue],
++    ) -> _FlowSuccessors:
++        previous = self._current_effect_values
++        self._current_effect_values = values
++        try:
++            return self._flow_statement_value(statement, values)
++        finally:
++            self._current_effect_values = previous
++
++    def _flow_statement_value(
+         self,
+         statement: ast.stmt,
+         values: dict[str, _FlowValue],
+@@ -20411,6 +20986,11 @@ class _SourceOrderedResolver:
+                 values,
+             )
+             if completed:
++                owners = self._reachable_helper_authorities(returned, current)
++                if owners:
++                    returned = replace(returned, helper_obligations=(
++                        *returned.helper_obligations, *owners,
++                    ))
+                 self.return_values.append(returned)
+                 if _flow_contains_deferred_generator(
+                     returned
+@@ -21555,6 +22135,7 @@ class _SourceOrderedResolver:
+                             argument.arg,
+                             self._evaluate(expression, values),
+                         ))
++                self._record_callable_construction_obligations(statement, values)
+                 generator_shape = (
+                     _bounded_local_generator_dependencies(
+                         statement,
+@@ -21609,7 +22190,19 @@ class _SourceOrderedResolver:
+                         ),
+                     )
+                 )
++                installed = self._with_callable_authority(replace(
++                    installed, callable_defaults=tuple(captured_defaults),
++                    namespace_effects=_helper_local_namespace_effects(statement, self.budget),
++                ), statement, values)
+                 for decorator_value in reversed(decorator_values):
++                    application = ast.copy_location(ast.Call(
++                        func=ast.Name(id="decorator"),
++                        args=[ast.Name(id=statement.name)], keywords=[],
++                    ), statement)
++                    self._apply_helper_call_effects(
++                        application, decorator_value, (installed,), (), values,
++                    )
++                    obligations = self._helper_return_obligations.pop(id(application), ())
+                     decorator_name: str | None = None
+                     decorator_summary: _BoundedCallableSummary | None = None
+                     if decorator_value.kind == "qname":
+@@ -21670,13 +22263,10 @@ class _SourceOrderedResolver:
+                         )
+                     else:
+                         installed = returned
+-                if not statement.decorator_list:
+-                    installed = replace(
+-                        installed, callable_defaults=tuple(captured_defaults),
+-                        namespace_effects=_helper_local_namespace_effects(
+-                            statement, self.budget,
+-                        ),
+-                    )
++                    if obligations:
++                        installed = replace(installed, helper_obligations=(
++                            *installed.helper_obligations, *obligations,
++                        ))
+                 values[statement.name] = installed
+                 continue
+             if isinstance(statement, ast.ClassDef):
+@@ -21744,10 +22334,20 @@ class _SourceOrderedResolver:
+                         (ast.FunctionDef, ast.AsyncFunctionDef),
+                     )
+                 ]
+-                class_values = self._statements(
+-                    class_statements,
+-                    dict(values),
+-                )
++                class_values = dict(values)
++                method_authorities: list[_FlowValue] = []
++                for item in statement.body:
++                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
++                        self._record_callable_construction_obligations(
++                            item, class_values, descriptor_metadata=True,
++                        )
++                        # Defaults see the class namespace at this source point;
++                        # a method body's free names still see its enclosing scope.
++                        method_authorities.append(self._with_callable_authority(
++                            _flow_qname(item.name), item, values, default_values=class_values,
++                        ))
++                    else:
++                        class_values = self._statements((item,), class_values)
+                 for member_name in _class_namespace_assignment_names(
+                     class_statements
+                 ):
+@@ -21820,6 +22420,7 @@ class _SourceOrderedResolver:
+                     descriptor,
+                     bool(descriptor.sensitive_methods),
+                     "implicit class protocol execution is dynamically unresolved",
++                    helper_obligations=tuple(method_authorities),
+                 )
+                 for decorator, decorator_value in reversed(decorator_values):
+                     if self._flow_decorator_preserves_identity(decorator_value):
+@@ -23589,6 +24190,11 @@ def _review_body(
+         if isinstance(candidate, ast.Name)
+         and isinstance(candidate.ctx, ast.Load)
+     )
++    # A relevant binding load is a root even when it occurs only in a default
++    # or deferred closure. Lexical/source ordering still decides its actual proof.
++    referenced_names.update(candidate.id for candidate in _metered_ast_walk(node, analysis_budget)
++                            if isinstance(candidate, ast.Name)
++                            and isinstance(candidate.ctx, ast.Load))
+     sensitive_helper_names: set[str] = set()
+     helper_returns: dict[str, _FlowValue] = {}
+     sensitive_definition_markers: set[str] = set()

@@ -1,0 +1,44 @@
+{
+  "base": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "phase": "green",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-c-callbacks",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-v4-final03-311-ce66be50e3814ae683871c65fd40b258\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-v4-final03-311-ce66be50e3814ae683871c65fd40b258\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "tests/test_inventory_and_profiles.py": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+  },
+  "after_sha256": {
+    "tools/generate_test_inventory.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "tests/test_inventory_and_profiles.py": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v4-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "all"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-v4-final03-311-ce66be50e3814ae683871c65fd40b258\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-v4-final03-311-ce66be50e3814ae683871c65fd40b258\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-v4-final03-311-ce66be50e3814ae683871c65fd40b258\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1"
+  },
+  "exit": 0,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v4-final03-311.txt",
+  "log_sha256": "8bb6e07256aee7a3048375482a236f4cfb91ad234a923cf6fa6f842e9c2550d1",
+  "payload_sha256": "d4e42ae4574604aeb6feb3218a0924eec3499a208a2f77632e3f4dde537c7661",
+  "runner_sha256": "2c2b3bf10a48c8cc1210e2f13a6e67ed2b204e177baac5b46b4a2de66c0a7478"
+}

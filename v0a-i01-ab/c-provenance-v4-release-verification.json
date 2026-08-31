@@ -1,0 +1,60 @@
+{
+  "base": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-c-callbacks",
+  "branch": "codex/v0a-i01-c-callbacks",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "tests/test_inventory_and_profiles.py": "7367404a7b8bd6a2c15049a5a9a88b9863efa2c7cd6bca5c0fdfef008553c8a8"
+  },
+  "unchanged_existing_test_methods": 193,
+  "added_methods": [
+    "DesignReviewTests.test_callable_authority_annotations_refuse_without_inventing_execution",
+    "DesignReviewTests.test_callable_authority_async_creation_retains_only_future_effects",
+    "DesignReviewTests.test_callable_authority_class_construction_uses_source_point_bindings",
+    "DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity",
+    "DesignReviewTests.test_callable_authority_decorator_application_uses_the_call_context",
+    "DesignReviewTests.test_callable_authority_descriptor_construction_refuses_effects",
+    "DesignReviewTests.test_callable_authority_escape_is_independent_of_incidental_owner_loads",
+    "DesignReviewTests.test_callable_authority_forwarded_inputs_follow_execution_order",
+    "DesignReviewTests.test_callable_authority_implicit_execution_cannot_hide_owner_writes",
+    "DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation",
+    "DesignReviewTests.test_callable_authority_native_storage_retains_without_invoking",
+    "DesignReviewTests.test_callable_authority_preserves_dormant_and_unrelated_bodies",
+    "DesignReviewTests.test_callable_authority_protocol_forwarding_retains_effect_context"
+  ],
+  "entire_test_ast_preserved_after_removing_added_methods": true,
+  "module_constants_assignments_unchanged": true,
+  "design_review_tests_per_slot": 53,
+  "green_receipts": [
+    "c-provenance-v4-final03-311-receipt.json",
+    "c-provenance-v4-final03-314-receipt.json"
+  ],
+  "red_tests_per_slot": 13,
+  "red_failures_per_slot": 277,
+  "red_production": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "red_receipts": [
+    "c-provenance-v4-class-order-red02-311-receipt.json",
+    "c-provenance-v4-class-order-red02-314-receipt.json"
+  ],
+  "construction_guard_call_sites": [
+    {
+      "method": "_evaluate_value",
+      "line": 18578,
+      "call": "self._record_callable_construction_obligations(node, values)"
+    },
+    {
+      "method": "_statements",
+      "line": 22138,
+      "call": "self._record_callable_construction_obligations(statement, values)"
+    },
+    {
+      "method": "_statements",
+      "line": 22341,
+      "call": "self._record_callable_construction_obligations(item, class_values, descriptor_metadata=True)"
+    }
+  ],
+  "patch": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v4-owned.patch",
+  "patch_sha256": "f58ffe353cf159fc747a741f84a156f6a04e74d1db9e7fe24453a1647b31e348",
+  "scope_lifetime": "callable_scope retains _LexicalBindingScope; comparisons use object identity",
+  "corpus_and_full_affected_suites": "parent-owned; not performed by this worker"
+}

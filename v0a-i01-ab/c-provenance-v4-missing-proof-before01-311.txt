@@ -1,0 +1,117 @@
+{"identity_before_import": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "implementation": "cpython", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\\harness", "safe_path": true, "dont_write_bytecode": true}}
+{"selected_methods": ["test_callable_authority_escape_is_independent_of_incidental_owner_loads", "test_callable_authority_preserves_dormant_and_unrelated_bodies", "test_callable_authority_implicit_execution_cannot_hide_owner_writes", "test_callable_authority_forwarded_inputs_follow_execution_order", "test_callable_authority_async_creation_retains_only_future_effects", "test_callable_authority_protocol_forwarding_retains_effect_context", "test_callable_authority_construction_defaults_and_deferred_identity", "test_callable_authority_decorator_application_uses_the_call_context", "test_callable_authority_annotations_refuse_without_inventing_execution", "test_callable_authority_native_storage_retains_without_invoking", "test_callable_authority_missing_free_proof_is_an_obligation"], "method_count": 11}
+{"annotation_runtime_oracle": "parameter-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "parameter-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "literal", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "literal", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"tests_run": 11, "failures": 9, "errors": 0, "skipped": 0}
+test_callable_authority_escape_is_independent_of_incidental_owner_loads (v4_inventory_tests.DesignReviewTests.test_callable_authority_escape_is_independent_of_incidental_owner_loads)
+Captured helper authority survives each callable/forwarding spelling. ... ok
+test_callable_authority_preserves_dormant_and_unrelated_bodies (v4_inventory_tests.DesignReviewTests.test_callable_authority_preserves_dormant_and_unrelated_bodies)
+Proof checks cannot execute dormant bodies or invent receiver mutation. ... ok
+test_callable_authority_implicit_execution_cannot_hide_owner_writes (v4_inventory_tests.DesignReviewTests.test_callable_authority_implicit_execution_cannot_hide_owner_writes)
+Modeled dispatch must distinguish owner effects from capability-free syntax. ... ok
+test_callable_authority_forwarded_inputs_follow_execution_order (v4_inventory_tests.DesignReviewTests.test_callable_authority_forwarded_inputs_follow_execution_order) ... ok
+test_callable_authority_async_creation_retains_only_future_effects (v4_inventory_tests.DesignReviewTests.test_callable_authority_async_creation_retains_only_future_effects) ... ok
+test_callable_authority_protocol_forwarding_retains_effect_context (v4_inventory_tests.DesignReviewTests.test_callable_authority_protocol_forwarding_retains_effect_context) ... ok
+test_callable_authority_construction_defaults_and_deferred_identity (v4_inventory_tests.DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity) ... 
+  test_callable_authority_construction_defaults_and_deferred_identity (v4_inventory_tests.DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity) (case='stored-unstarted-close') ... FAIL
+test_callable_authority_decorator_application_uses_the_call_context (v4_inventory_tests.DesignReviewTests.test_callable_authority_decorator_application_uses_the_call_context) ... ok
+test_callable_authority_annotations_refuse_without_inventing_execution (v4_inventory_tests.DesignReviewTests.test_callable_authority_annotations_refuse_without_inventing_execution) ... ok
+test_callable_authority_native_storage_retains_without_invoking (v4_inventory_tests.DesignReviewTests.test_callable_authority_native_storage_retains_without_invoking) ... ok
+test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) ... 
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_):\n    __class__._launch = None', invocation='list(map(callback, [None]))') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_):\n    __class__._launch = None', invocation='sorted([None], key=callback)') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_, owner=__class__):\n    owner._launch = None', invocation='list(map(callback, [None]))') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_, owner=__class__):\n    owner._launch = None', invocation='sorted([None], key=callback)') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _: setattr(__class__, "_launch", None)', invocation='list(map(callback, [None]))') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _: setattr(__class__, "_launch", None)', invocation='sorted([None], key=callback)') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _, owner=__class__: setattr(owner, "_launch", None)', invocation='list(map(callback, [None]))') ... FAIL
+  test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _, owner=__class__: setattr(owner, "_launch", None)', invocation='sorted([None], key=callback)') ... FAIL
+
+======================================================================
+FAIL: test_callable_authority_construction_defaults_and_deferred_identity (v4_inventory_tests.DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity) (case='stored-unstarted-close')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21379, in test_callable_authority_construction_defaults_and_deferred_identity
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutation, review)
+AssertionError: True != False : {'schema_version': 'pontius-design-capability-review-v1', 'receipt': {'schema_version': 'pontius-design-capability-review-receipt-v1', 'approval_scope': 'design', 'baseline_commit': '1111111111111111111111111111111111111111', 'baseline_root_tree_oid': '2222222222222222222222222222222222222222', 'inventory_semantic_sha256': '79c417f43614f093fec269e31b9cd7fc5de1a3acb32691dab57be8677a8b2046', 'inventory_document_sha256': 'c4940beb0bc1cf4bf4885265e52229bad21a0b2a241f98266906f560b233b25c', 'derivation_sources': [{'relative_path': 'tests/test_review.py', 'byte_length': 575, 'canonical_lf_sha256': '0c6a0db8458dfbef1382fb2c9247cb3b7271322ccf1f6d785c287ca0464ed0d8'}, {'relative_path': 'tools/test_child.py', 'byte_length': 38, 'canonical_lf_sha256': '4b56fb3a51e17bb2b0612c758b193e6644a21af3ea113ac72201b399e9f2346c'}], 'spec_capabilities_sha256': '0000000000000000000000000000000000000000000000000000000000000000', 'expanded_rows': [], 'deny_all': [{'item_kind': 'fixture', 'item_id': 'fixture:tests/test_review.py'}, {'item_kind': 'fixture', 'item_id': 'fixture:tests/test_review.py::ReviewTests'}, {'item_kind': 'probe', 'item_id': 'probe:gpu-availability'}, {'item_kind': 'stable_id', 'item_id': 'tests/test_review.py::ReviewTests::test_denied'}, {'item_kind': 'stable_id', 'item_id': 'tests/test_review.py::ReviewTests::test_static'}]}, 'spec_capabilities_sha256': '0000000000000000000000000000000000000000000000000000000000000000', 'unresolved_dynamic_blockers': [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 13, 'reason': 'helper namespace escape is dynamically unresolved'}, {'item_id': 'tests/test_review.py::ReviewTests::test_static', 'relative_path': 'tests/test_review.py', 'line': 14, 'reason': 'helper namespace identity was mutated'}], 'design_review_receipt_sha256': 'c2af8fb4780913f3d873cd0f93b550a242ea2306c1d13ac5788638d802814be1', 'host_diagnostics': {}, 'analysis_census': {'subprocess_direct_site_count': 0, 'subprocess_helper_site_count': 0, 'cross_file_helper_edge_count': 0, 'cupy_call_node_count': 0, 'analyzed_sites_sha256': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'string_sink_decoy_count': 0, 'string_sink_decoy_sha256': '37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570', 'string_sink_decoy_partitions': {'design_production': 0, 'historical_production': 0, 'prior_stabilization_synthetic': 0, 'task2_synthetic': 0}}}
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_):\n    __class__._launch = None', invocation='list(map(callback, [None]))')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_):\n    __class__._launch = None', invocation='sorted([None], key=callback)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_, owner=__class__):\n    owner._launch = None', invocation='list(map(callback, [None]))')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='def callback(_, owner=__class__):\n    owner._launch = None', invocation='sorted([None], key=callback)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _: setattr(__class__, "_launch", None)', invocation='list(map(callback, [None]))')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _: setattr(__class__, "_launch", None)', invocation='sorted([None], key=callback)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _, owner=__class__: setattr(owner, "_launch", None)', invocation='list(map(callback, [None]))')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+======================================================================
+FAIL: test_callable_authority_missing_free_proof_is_an_obligation (v4_inventory_tests.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) (callback='callback = lambda _, owner=__class__: setattr(owner, "_launch", None)', invocation='sorted([None], key=callback)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v4-missing-proof-before01-311-d8d00740414d41aaab91d50f3ca80c8d\harness\tests\test_inventory_and_profiles.py", line 21500, in test_callable_authority_missing_free_proof_is_an_obligation
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), mutated)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 11 tests in 3.326s
+
+FAILED (failures=9)
