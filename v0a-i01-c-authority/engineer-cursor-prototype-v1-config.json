@@ -1,0 +1,29 @@
+{
+  "control_sha256": "882016384c6b9bc4e6a4d9d81e829dee9eb95120942650f63006fea8f0ad1cbf",
+  "cursor_cases": {
+    "path": "tests-checks/cursor-oracle-cases-v1.json",
+    "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61"
+  },
+  "cursor_expected": {
+    "planned_cases": 16,
+    "planned_runs": 28
+  },
+  "cursor_oracle": {
+    "path": "tests-checks/cursor-oracle-v1.py",
+    "sha256": "15a4741e2532a755fd45f01d4d999dd5d293846b8ae4e9d4e7abedf84c0a8d1e"
+  },
+  "disposition_sha256": "973191b8b26c71132185d42203a720bdc5b28d4fd23fc1bc4b9c9ec4da46a7b7",
+  "old_cases": {
+    "path": "tests-checks/storage-oracle-cases-v2.json",
+    "sha256": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f"
+  },
+  "old_oracle": {
+    "path": "tests-checks/storage-oracle-v2.py",
+    "sha256": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba"
+  },
+  "prototype": {
+    "path": "engineer-name-cursor-prototype-v1.py",
+    "sha256": "67acb279510924311266b985e15e95e53ae9d0a11d64a50d108f254a690deb2a"
+  },
+  "schema": "owned-name-cursor-control-v3"
+}

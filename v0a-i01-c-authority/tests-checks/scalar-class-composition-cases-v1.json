@@ -1,0 +1,154 @@
+{
+  "schema": "pontius-scalar-class-composition-cases-v1",
+  "planned_cases": 6,
+  "planned_projections": 6,
+  "classifications": {
+    "clean": 3,
+    "refuse": 3
+  },
+  "cases": [
+    {
+      "id": "scalar-class-normal-unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = False\n        module = \"outer\"\n        def read():\n            if armed:\n                ReviewTests._launch = None\n        def change(value):\n            nonlocal armed\n            armed = value\n        class Local:\n            module = \"inner\"\n            change(True)\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = False\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if armed:\n                Model._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        class Local:\n            module = \"inner\"\n            change(True)\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "change",
+          "read",
+          "write"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "source_sha256": "3f609693217aa1f5e2afcd4cc3b48c8dfe9b49f720417c3d103173ad97131070",
+      "oracle_sha256": "29616964ab2dd4c77f285548893a54100d13403c27dd17b1cb0a4261256e39b8"
+    },
+    {
+      "id": "scalar-class-normal-safe",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        module = \"outer\"\n        def read():\n            if armed:\n                ReviewTests._launch = None\n        def change(value):\n            nonlocal armed\n            armed = value\n        class Local:\n            module = \"inner\"\n            change(False)\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if armed:\n                Model._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        class Local:\n            module = \"inner\"\n            change(False)\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "change",
+          "read",
+          "sink"
+        ],
+        "result": "outer"
+      },
+      "unreachable_events": [
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "source_sha256": "d92cf506e55be0463a9e2015a0cb61b354fccc86808fd8834f2d05161458fee6",
+      "oracle_sha256": "b39db24e85b4264e9c6e900d8a563c015e6e87497bdb8420564f1845fb1539c0"
+    },
+    {
+      "id": "scalar-class-change-then-raise-unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = False\n        module = \"outer\"\n        def read():\n            if armed:\n                ReviewTests._launch = None\n        def change(value):\n            nonlocal armed\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                change(True)\n                raise ValueError()\n        except ValueError:\n            pass\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = False\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if armed:\n                Model._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                change(True)\n                _events.append(\"raise\")\n                raise ValueError()\n        except ValueError:\n            _events.append(\"caught\")\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "change",
+          "raise",
+          "caught",
+          "read",
+          "write"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "source_sha256": "cdc8f7e5e552d8e815a11e03bc7307f5397b299d908eb369edeb55da57858082",
+      "oracle_sha256": "c344cddd966f8ccc0d693f5d1cdacf306a96bf47c70005e5e78b854edca40bb7"
+    },
+    {
+      "id": "scalar-class-change-then-raise-safe",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        module = \"outer\"\n        def read():\n            if armed:\n                ReviewTests._launch = None\n        def change(value):\n            nonlocal armed\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                change(False)\n                raise ValueError()\n        except ValueError:\n            pass\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if armed:\n                Model._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                change(False)\n                _events.append(\"raise\")\n                raise ValueError()\n        except ValueError:\n            _events.append(\"caught\")\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "change",
+          "raise",
+          "caught",
+          "read",
+          "sink"
+        ],
+        "result": "outer"
+      },
+      "unreachable_events": [
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "source_sha256": "86be43fb654c52f9aada85fe18e4631ef8679860124ad59aafbe920f69723755",
+      "oracle_sha256": "2396ab98272e169a97e6bfd337b7498338820c32ee3321a7fc1bb0eb282f2526"
+    },
+    {
+      "id": "scalar-class-raise-before-change-unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        module = \"outer\"\n        def read():\n            if armed:\n                ReviewTests._launch = None\n        def change(value):\n            nonlocal armed\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                raise ValueError()\n                change(False)\n        except ValueError:\n            pass\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if armed:\n                Model._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                _events.append(\"raise\")\n                raise ValueError()\n                change(False)\n        except ValueError:\n            _events.append(\"caught\")\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "raise",
+          "caught",
+          "read",
+          "write"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "change",
+        "sink"
+      ],
+      "required_argv": null,
+      "source_sha256": "9ce6b2902e27878185f21ffcd623274e777f78ffdba1f67c10895932e158cf35",
+      "oracle_sha256": "52cbce54e6b6f4fcbaa8d57803cfd01d37a8b6023bd3af17c2ca9588f189042e"
+    },
+    {
+      "id": "scalar-class-raise-before-change-safe",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = False\n        module = \"outer\"\n        def read():\n            if armed:\n                ReviewTests._launch = None\n        def change(value):\n            nonlocal armed\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                raise ValueError()\n                change(True)\n        except ValueError:\n            pass\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = False\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if armed:\n                Model._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal armed\n            _events.append(\"change\")\n            armed = value\n        try:\n            class Local:\n                module = \"inner\"\n                _events.append(\"raise\")\n                raise ValueError()\n                change(True)\n        except ValueError:\n            _events.append(\"caught\")\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "raise",
+          "caught",
+          "read",
+          "sink"
+        ],
+        "result": "outer"
+      },
+      "unreachable_events": [
+        "change",
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "source_sha256": "508414a9e31e888fcb6aa9f719d1d4709e4feeb8289879ef0e4ed4432d14bbbb",
+      "oracle_sha256": "c935558d1e0cd0999382e1d0df35b4aa167b8e45390bd513d419858110b6582f"
+    }
+  ]
+}

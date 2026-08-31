@@ -1,0 +1,94 @@
+{
+  "schema": "coordinator-cursor-prototype-verification-v1",
+  "config_sha256": "afb9d33f3ec5110e822a0a7e44710fbe025940985ecf82ce7ffc533c084ab958",
+  "slots": [
+    {
+      "slot": "311",
+      "seed": "0",
+      "receipt_sha256": "68bb5e2a0c4a3249dd2d0cd1674208af46d3f6c1b58049699e569adaab3cbf28",
+      "log_sha256": "f333d58770964b9264d8af2cae0d751d81ea74f8ee815a20a651030d6b3e852c",
+      "snapshot": "D:\\pontius-snapshots\\cursor-prototype-fed39fd809ae4cc9a072086254efe2d7\\snapshot",
+      "rehashed_files": 1770,
+      "manifest_sha256": "3dd964050ea807561ada823861e7c942d698238d9873862ecf5a2905a81bfa08",
+      "old_runs": 34,
+      "cursor_runs": 28,
+      "maximum_case_units": 54540
+    },
+    {
+      "slot": "311",
+      "seed": "1",
+      "receipt_sha256": "f03d92ad6466c8a20a2fde75956306909686db45ddbce3e2f3260db39fa677f1",
+      "log_sha256": "0d259edf6017563899b28e8c072e50841fe8ccf332c59d19577c7b054d2ac1e7",
+      "snapshot": "D:\\pontius-snapshots\\cursor-prototype-b708b798945542429625fbd74dc56be7\\snapshot",
+      "rehashed_files": 1770,
+      "manifest_sha256": "3dd964050ea807561ada823861e7c942d698238d9873862ecf5a2905a81bfa08",
+      "old_runs": 34,
+      "cursor_runs": 28,
+      "maximum_case_units": 54540
+    },
+    {
+      "slot": "311",
+      "seed": "17",
+      "receipt_sha256": "dbb52820e80ba5973c5ce26fe1b39d058ce414cfd247ca907b5d0219fe873b0c",
+      "log_sha256": "4582ef6868772cdefaf2e167e7e8ddaa836e2e56eb698efff8daa6d574e09631",
+      "snapshot": "D:\\pontius-snapshots\\cursor-prototype-12af2251963a4b2d953afd2fce63219a\\snapshot",
+      "rehashed_files": 1770,
+      "manifest_sha256": "3dd964050ea807561ada823861e7c942d698238d9873862ecf5a2905a81bfa08",
+      "old_runs": 34,
+      "cursor_runs": 28,
+      "maximum_case_units": 54540
+    },
+    {
+      "slot": "314",
+      "seed": "0",
+      "receipt_sha256": "7be6e976d27f5bcf3d0eb25d5a6c59790dd5ef7c4678edd06b594d3a3683db62",
+      "log_sha256": "92f5705aa2a9fc9bf9aa51c284aa55cd1d6cff09535ae9468735d5d312214d4d",
+      "snapshot": "D:\\pontius-snapshots\\cursor-prototype-32f5af87ff2948828a3384321c87fc08\\snapshot",
+      "rehashed_files": 1771,
+      "manifest_sha256": "60c7c4fbdde86f16dbc2c963e360a4114fb04b8ae31f54e1d4d4d7937301ad76",
+      "old_runs": 34,
+      "cursor_runs": 28,
+      "maximum_case_units": 54540
+    },
+    {
+      "slot": "314",
+      "seed": "1",
+      "receipt_sha256": "8464020e0e5f9f0f70b4e21bd7a722cb3999339111f46a892202b8346f04cc60",
+      "log_sha256": "ae10a7bc0f7cb23270b25e4d2d333ce46b6a32e92ea672856eb2e7d2c5437b5b",
+      "snapshot": "D:\\pontius-snapshots\\cursor-prototype-3a1e2b7d78694e968e9936ddadff8078\\snapshot",
+      "rehashed_files": 1771,
+      "manifest_sha256": "fe7733247e054c0517e9f227d7cbfbd7f0d897d030a836df7e526350c8224907",
+      "old_runs": 34,
+      "cursor_runs": 28,
+      "maximum_case_units": 54540
+    },
+    {
+      "slot": "314",
+      "seed": "17",
+      "receipt_sha256": "9f3509f6d33397c7fb67fecf06e21877ea114626fbdec43e435c2f20ac078519",
+      "log_sha256": "4cd24a9ab3df342136b0972d2750a4f31a91f21f4339a75e9e8d319681112b26",
+      "snapshot": "D:\\pontius-snapshots\\cursor-prototype-7c98c29ea8f547e8af241f2b3f2d3ac8\\snapshot",
+      "rehashed_files": 1771,
+      "manifest_sha256": "429dde4b71b6173a6cf9334317f6dfdb9990473653718085cbb7740d5d25ae25",
+      "old_runs": 34,
+      "cursor_runs": 28,
+      "maximum_case_units": 54540
+    }
+  ],
+  "completed_runs": 372,
+  "old_runs": 204,
+  "cursor_runs": 168,
+  "same_seed_cross_slot_records_equal": true,
+  "operation_retry_and_continuation_equal_to_pristine": true,
+  "preserved": {
+    "D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1\\tools\\generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+    "D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1\\tests\\test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "D:\\Pontius\\CLAUDE.md": "af06aad6ec36b91a4e942d7cfc1d3560555ae60e50b023270a0807f247b32b76",
+    "D:\\Pontius\\docs\\workflow.md": "d9de38ede87fb619b3045a60ee7fab137ae23ba3b580c0a6d6b3ca14e567a170"
+  },
+  "limits": [
+    "Pure storage experiment, not production fit or authority-transfer verification.",
+    "No production write lease, cold approval, integration or commit is implied.",
+    "Meter units compare charged operations, not runtime or physical work."
+  ]
+}

@@ -1,0 +1,569 @@
+{
+  "prototype": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-name-cursor-prototype-v1.py",
+  "prototype_sha256": "67acb279510924311266b985e15e95e53ae9d0a11d64a50d108f254a690deb2a",
+  "validation": "AST parse and static inventory only; prototype never imported or executed",
+  "unchanged_original_api_ast": {
+    "Meter": true,
+    "BudgetExceeded": true,
+    "Entry": true,
+    "_check_name": true
+  },
+  "production_source_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+  "imports": [
+    "from __future__ import annotations",
+    "from dataclasses import dataclass",
+    "from types import MappingProxyType"
+  ],
+  "classes": {
+    "BudgetExceeded": {
+      "line": 13,
+      "methods": {}
+    },
+    "Meter": {
+      "line": 17,
+      "methods": {
+        "__init__": 19,
+        "limit": 29,
+        "charge": 34
+      }
+    },
+    "Entry": {
+      "line": 44,
+      "methods": {}
+    },
+    "_History": {
+      "line": 55,
+      "methods": {}
+    },
+    "_Layer": {
+      "line": 69,
+      "methods": {}
+    },
+    "_Order": {
+      "line": 139,
+      "methods": {
+        "__init__": 142
+      }
+    },
+    "NameVersion": {
+      "line": 329,
+      "methods": {
+        "__init__": 332,
+        "empty": 339,
+        "__len__": 345,
+        "_entry": 349,
+        "get": 352,
+        "set": 357,
+        "delete": 362,
+        "fork": 367,
+        "keys": 371,
+        "ordered_items": 374
+      }
+    },
+    "_Publication": {
+      "line": 379,
+      "methods": {}
+    },
+    "NameCursor": {
+      "line": 437,
+      "methods": {
+        "__init__": 440,
+        "__len__": 451,
+        "_entry": 455,
+        "get": 465,
+        "_replace_entry": 470,
+        "set": 496,
+        "delete": 504,
+        "snapshot": 508,
+        "fork": 517,
+        "keys": 527,
+        "ordered_items": 530
+      }
+    }
+  },
+  "functions": {
+    "_check_name": 49,
+    "_history": 61,
+    "_seal_layer": 74,
+    "_lookup_layers": 97,
+    "_compact": 109,
+    "_order": 146,
+    "_known_order": 155,
+    "_seal_order_table": 163,
+    "_realize_order": 169,
+    "_charge_cache_commit": 279,
+    "_commit_order": 284,
+    "_keys": 290,
+    "_ordered_items": 301,
+    "_prepare_publication": 386,
+    "_charge_publication_commit": 421,
+    "_commit_publication": 429,
+    "_common_history": 534,
+    "_pending_names": 553,
+    "join": 574
+  },
+  "charged_categories": {
+    "cache_publication_visits": [
+      280
+    ],
+    "cache_publication_writes": [
+      281
+    ],
+    "candidate_dictionary_attempts": [
+      590
+    ],
+    "candidate_dictionary_writes": [
+      592
+    ],
+    "candidate_iteration": [
+      616
+    ],
+    "candidate_reference_copies": [
+      593
+    ],
+    "compaction_dictionary_allocation": [
+      111
+    ],
+    "compaction_dictionary_attempts": [
+      123
+    ],
+    "compaction_dictionary_deletes": [
+      127
+    ],
+    "compaction_dictionary_writes": [
+      130
+    ],
+    "compaction_entry_visits": [
+      122
+    ],
+    "compaction_input_reference_copies": [
+      114
+    ],
+    "compaction_input_tuple_allocation": [
+      113
+    ],
+    "compaction_layer_reference_copies": [
+      118
+    ],
+    "compaction_layer_reference_tuple_allocation": [
+      117
+    ],
+    "compaction_layer_reference_visits": [
+      116
+    ],
+    "compaction_layer_visits": [
+      120
+    ],
+    "compaction_publication_charge": [
+      425
+    ],
+    "compaction_reference_copies": [
+      131
+    ],
+    "compaction_result_reference_copies": [
+      135
+    ],
+    "compaction_result_tuple_allocation": [
+      134
+    ],
+    "cursor_allocation": [
+      444
+    ],
+    "cursor_fork_requests": [
+      519
+    ],
+    "cursor_fork_return_reference": [
+      522
+    ],
+    "cursor_publication_reference_copies": [
+      426
+    ],
+    "cursor_reference_copies": [
+      445
+    ],
+    "cursor_tail_dictionary_allocation": [
+      446
+    ],
+    "cursor_write_field_copies": [
+      492
+    ],
+    "empty_order_dictionary_allocation": [
+      340
+    ],
+    "entry_allocation": [
+      500
+    ],
+    "entry_reference_copies": [
+      501
+    ],
+    "fork_reference_copies": [
+      368
+    ],
+    "history_allocation": [
+      62
+    ],
+    "history_change_token_visits": [
+      606
+    ],
+    "history_changed_name_visits": [
+      608
+    ],
+    "history_depth_reads": [
+      543
+    ],
+    "history_identity_comparisons": [
+      540
+    ],
+    "history_input_visits": [
+      537
+    ],
+    "history_parent_depth_read": [
+      64
+    ],
+    "history_parent_reads": [
+      545,
+      548,
+      610
+    ],
+    "history_reference_copies": [
+      63
+    ],
+    "items_cache_reads": [
+      303
+    ],
+    "items_cached_return_reference": [
+      305
+    ],
+    "items_entry_value_reads": [
+      316
+    ],
+    "items_key_visits": [
+      312
+    ],
+    "items_pair_allocation": [
+      317
+    ],
+    "items_pair_generator_allocation": [
+      309
+    ],
+    "items_pair_reference_copies": [
+      318
+    ],
+    "items_result_reference_copies": [
+      319
+    ],
+    "items_result_tuple_allocation": [
+      308
+    ],
+    "items_return_reference": [
+      322
+    ],
+    "join_candidate_dictionary_allocation": [
+      587
+    ],
+    "join_input_reference_copies": [
+      577
+    ],
+    "join_input_tuple_allocation": [
+      575
+    ],
+    "join_input_validation": [
+      579
+    ],
+    "join_order_override_reference": [
+      643
+    ],
+    "join_state_visits": [
+      596
+    ],
+    "join_unrelated_layer_visits": [
+      599
+    ],
+    "join_unrelated_name_visits": [
+      601
+    ],
+    "keys_return_reference": [
+      295
+    ],
+    "keys_view_allocation": [
+      293
+    ],
+    "layer_allocation": [
+      92
+    ],
+    "layer_reference_copies": [
+      93
+    ],
+    "lookup_dictionary_attempts": [
+      100
+    ],
+    "lookup_layer_visits": [
+      99
+    ],
+    "lookup_private_tail_attempts": [
+      457
+    ],
+    "merge_argument_generator_allocation": [
+      618
+    ],
+    "merge_argument_reference_copies": [
+      623
+    ],
+    "merge_argument_tuple_allocation": [
+      617
+    ],
+    "merge_callback_invocation": [
+      636
+    ],
+    "merge_input_visits": [
+      621
+    ],
+    "merge_missing_visits": [
+      628
+    ],
+    "order_allocation": [
+      147
+    ],
+    "order_cache_reads": [
+      156,
+      171,
+      184,
+      195
+    ],
+    "order_dictionary_allocation": [
+      229,
+      220
+    ],
+    "order_dictionary_deletes": [
+      245
+    ],
+    "order_dictionary_key_visits": [
+      234
+    ],
+    "order_dictionary_reference_copies": [
+      236,
+      270,
+      242
+    ],
+    "order_dictionary_writes": [
+      235,
+      269,
+      241
+    ],
+    "order_edit_application_visits": [
+      239
+    ],
+    "order_edit_list_allocation": [
+      191
+    ],
+    "order_edit_reference_copies": [
+      202
+    ],
+    "order_edit_visits": [
+      201
+    ],
+    "order_field_reference_copies": [
+      148
+    ],
+    "order_keys_view_allocation": [
+      256
+    ],
+    "order_parent_reads": [
+      204
+    ],
+    "order_parent_reference_copies": [
+      151
+    ],
+    "order_parent_tuple_allocation": [
+      150
+    ],
+    "order_parent_visits": [
+      641,
+      252,
+      215
+    ],
+    "order_proxy_allocation": [
+      164
+    ],
+    "order_proxy_reference_copies": [
+      165
+    ],
+    "order_recipe_visits": [
+      182
+    ],
+    "order_stack_pops": [
+      180
+    ],
+    "order_stack_record_allocations": [
+      177,
+      206,
+      211,
+      216
+    ],
+    "order_stack_reference_copies": [
+      178,
+      207,
+      212,
+      217
+    ],
+    "order_staging_lookup": [
+      159,
+      187,
+      198
+    ],
+    "order_staging_reference_copies": [
+      274,
+      224
+    ],
+    "order_staging_write": [
+      273,
+      223
+    ],
+    "order_temporary_allocations": [
+      174
+    ],
+    "order_union_argument_reference_copies": [
+      261
+    ],
+    "order_union_argument_tuple_allocation": [
+      260
+    ],
+    "order_union_input_attempts": [
+      264
+    ],
+    "order_union_input_size_reads": [
+      254
+    ],
+    "order_union_input_visits": [
+      263
+    ],
+    "order_union_output_visits": [
+      268
+    ],
+    "order_union_set_allocations": [
+      262
+    ],
+    "order_union_unique_references": [
+      266
+    ],
+    "order_union_view_list_allocation": [
+      248
+    ],
+    "order_union_view_reference_copies": [
+      258
+    ],
+    "pending_certificate_reads": [
+      81
+    ],
+    "pending_effective_certificate_reads": [
+      569
+    ],
+    "pending_layer_visits": [
+      558
+    ],
+    "pending_list_allocation": [
+      76
+    ],
+    "pending_list_reference_copies": [
+      83
+    ],
+    "pending_name_visits": [
+      560
+    ],
+    "pending_seen_attempts": [
+      561
+    ],
+    "pending_seen_dictionary_allocation": [
+      555
+    ],
+    "pending_seen_reference_copies": [
+      565
+    ],
+    "pending_seen_writes": [
+      564
+    ],
+    "pending_tuple_allocation": [
+      85
+    ],
+    "pending_tuple_entry_visits": [
+      86
+    ],
+    "pending_tuple_reference_copies": [
+      87
+    ],
+    "private_dictionary_reference_copies": [
+      491
+    ],
+    "private_dictionary_writes": [
+      490
+    ],
+    "publication_change_entry_visits": [
+      396
+    ],
+    "publication_change_reference_copies": [
+      397
+    ],
+    "publication_change_tuple_allocation": [
+      395
+    ],
+    "publication_fresh_tail_allocation": [
+      414
+    ],
+    "publication_layer_count_read": [
+      403
+    ],
+    "publication_layer_reference_copies": [
+      410
+    ],
+    "publication_layer_tuple_allocation": [
+      409
+    ],
+    "publication_plan_allocation": [
+      416,
+      392
+    ],
+    "publication_plan_reference_copies": [
+      417,
+      393
+    ],
+    "publication_tail_entry_visits": [
+      79
+    ],
+    "publication_tail_size_read": [
+      389
+    ],
+    "sealed_dictionary_proxy_allocation": [
+      89
+    ],
+    "sealed_dictionary_proxy_reference_copies": [
+      90
+    ],
+    "size_read": [
+      346,
+      452
+    ],
+    "snapshot_publications": [
+      423
+    ],
+    "snapshot_requests": [
+      510
+    ],
+    "snapshot_return_reference": [
+      512
+    ],
+    "version_allocation": [
+      333
+    ],
+    "version_reference_copies": [
+      334
+    ],
+    "write_private_tail_attempts": [
+      473
+    ],
+    "write_size_read": [
+      488
+    ]
+  },
+  "frozen_spec_sha256": "29c0238aa24e0c6d4a9f3834d6f94b46c4bd6ed29f263f0c57511e1ee1b0bfd1",
+  "frozen_cases_sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61"
+}

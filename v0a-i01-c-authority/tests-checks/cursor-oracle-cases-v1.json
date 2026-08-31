@@ -1,0 +1,877 @@
+{
+  "version": 1,
+  "scope": "independent NameCursor extension; old storage-oracle-v2.py and 28-case pack remain byte-identical",
+  "contract_sha256": "973191b8b26c71132185d42203a720bdc5b28d4fd23fc1bc4b9c9ec4da46a7b7",
+  "planned_cases": 16,
+  "planned_runs": 28,
+  "maximum_meter_limit": 262144,
+  "keys": "All scheduled keys are exact built-in str. No colliding-string-subclass coverage is claimed.",
+  "fault_offsets": [
+    "first",
+    "middle",
+    "last"
+  ],
+  "cases": [
+    {
+      "id": "cursor-empty-boundaries",
+      "kind": "operations",
+      "basis": "empty reads, missing defaults and absent delete; no implicit names",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": []
+        },
+        {
+          "op": "keys",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "get",
+          "target": "c",
+          "keys": [
+            "absent"
+          ],
+          "default": "sentinel"
+        },
+        {
+          "op": "delete",
+          "target": "c",
+          "key": "absent",
+          "expect_error": true
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v"
+        },
+        {
+          "op": "fork",
+          "target": "c",
+          "id": "f"
+        },
+        {
+          "op": "set",
+          "target": "f",
+          "key": "one",
+          "value": "one",
+          "no_work": true
+        },
+        {
+          "op": "keys",
+          "target": "v",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "cursor-dense-private-64",
+      "kind": "operations",
+      "basis": "64 private writes before one publication; terminal and repeated read costs retained",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": []
+        },
+        {
+          "op": "repeat",
+          "count": 64,
+          "body": [
+            {
+              "op": "set",
+              "target": "c",
+              "key": "k{i:02d}",
+              "value": "v{i:02d}",
+              "no_work": true
+            }
+          ]
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 3
+        },
+        {
+          "op": "keys",
+          "target": "c",
+          "repeats": 3
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v"
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "k00",
+          "value": "changed",
+          "no_work": true
+        },
+        {
+          "op": "items",
+          "target": "v",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "cursor-fork-per-write-64",
+      "kind": "operations",
+      "basis": "same64 distinct writes with a fork after every write; all cursors retained",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c0",
+          "entries": []
+        },
+        {
+          "op": "repeat",
+          "count": 64,
+          "body": [
+            {
+              "op": "set",
+              "target": "c{i}",
+              "key": "k{i:02d}",
+              "value": "v{i:02d}",
+              "no_work": true
+            },
+            {
+              "op": "fork",
+              "target": "c{i}",
+              "id": "c{next}"
+            }
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "c64",
+          "id": "v"
+        },
+        {
+          "op": "items",
+          "target": "c64",
+          "repeats": 3
+        },
+        {
+          "op": "keys",
+          "target": "v",
+          "repeats": 3
+        }
+      ]
+    },
+    {
+      "id": "cursor-retained-sibling-isolation",
+      "kind": "operations",
+      "basis": "snapshots and both siblings survive independent overwrites/deletes/reinsertions",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": [
+            [
+              "alpha",
+              "A",
+              true
+            ],
+            [
+              "beta",
+              "B",
+              true
+            ],
+            [
+              "gamma",
+              "G",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v0"
+        },
+        {
+          "op": "fork",
+          "target": "c",
+          "id": "f"
+        },
+        {
+          "op": "keys",
+          "target": "c",
+          "repeats": 1
+        },
+        {
+          "op": "items",
+          "target": "f",
+          "repeats": 1
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "alpha",
+          "value": "P",
+          "no_work": true
+        },
+        {
+          "op": "delete",
+          "target": "f",
+          "key": "beta"
+        },
+        {
+          "op": "set",
+          "target": "f",
+          "key": "beta",
+          "value": "Q",
+          "no_work": false
+        },
+        {
+          "op": "snapshot",
+          "target": "f",
+          "id": "vf"
+        },
+        {
+          "op": "cursor_from",
+          "target": "v0",
+          "id": "g"
+        },
+        {
+          "op": "delete",
+          "target": "g",
+          "key": "gamma"
+        },
+        {
+          "op": "set",
+          "target": "g",
+          "key": "delta",
+          "value": "D",
+          "no_work": true
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "vc"
+        }
+      ]
+    },
+    {
+      "id": "cursor-view-and-value-memo",
+      "kind": "operations",
+      "basis": "real dict_keys and returned tuples remain snapshots; value-only edits cannot return stale items",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": [
+            [
+              "alpha",
+              "A",
+              true
+            ],
+            [
+              "beta",
+              "B",
+              true
+            ],
+            [
+              "gamma",
+              "G",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "keys",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v0"
+        },
+        {
+          "op": "keys",
+          "target": "v0",
+          "repeats": 2
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "beta",
+          "value": "B2",
+          "no_work": true
+        },
+        {
+          "op": "keys",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "delete",
+          "target": "c",
+          "key": "alpha"
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "alpha",
+          "value": "A2",
+          "no_work": false
+        },
+        {
+          "op": "keys",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 2
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v1"
+        }
+      ]
+    },
+    {
+      "id": "cursor-tombstones-through-publication",
+      "kind": "operations",
+      "basis": "deleted older entry cannot resurrect across18 dirty publications; reinsertion appends; retained originals unchanged",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": [
+            [
+              "alpha",
+              "A",
+              true
+            ],
+            [
+              "victim",
+              "V",
+              false
+            ],
+            [
+              "omega",
+              "O",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "original"
+        },
+        {
+          "op": "delete",
+          "target": "c",
+          "key": "victim"
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "deleted"
+        },
+        {
+          "op": "repeat",
+          "count": 18,
+          "body": [
+            {
+              "op": "set",
+              "target": "c",
+              "key": "bump",
+              "value": "b{i}",
+              "no_work": true
+            },
+            {
+              "op": "snapshot",
+              "target": "c",
+              "id": "s{i}"
+            },
+            {
+              "op": "get",
+              "target": "c",
+              "keys": [
+                "victim"
+              ],
+              "default": "absent"
+            }
+          ]
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "victim",
+          "value": "V2",
+          "no_work": true
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "reinserted"
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 3
+        }
+      ]
+    },
+    {
+      "id": "cursor-newest-effective-pending",
+      "kind": "operations",
+      "basis": "old pending entries replaced/deleted use newest arguments only; absent keys stay absent; optional certified callbacks allowed",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": [
+            [
+              "x",
+              "X0",
+              false
+            ],
+            [
+              "gone",
+              "G0",
+              false
+            ],
+            [
+              "stable",
+              "S",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v0"
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "x",
+          "value": "X1",
+          "no_work": true
+        },
+        {
+          "op": "delete",
+          "target": "c",
+          "key": "gone"
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v1"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "v1",
+            "v1"
+          ],
+          "id": "j1"
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "x",
+          "value": "X2",
+          "no_work": false
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v2"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "v2",
+            "v2"
+          ],
+          "id": "j2"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "j1",
+            "j2"
+          ],
+          "id": "j3"
+        }
+      ]
+    },
+    {
+      "id": "cursor-raw-identical-clears-certificate",
+      "kind": "operations",
+      "basis": "same-object raw set remains pending, including metadata-only differences and later raw rebuild",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": [
+            [
+              "x",
+              "X",
+              true
+            ],
+            [
+              "y",
+              "Y",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "certified"
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "x",
+          "value": "X",
+          "no_work": false
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "raw"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "raw",
+            "raw"
+          ],
+          "id": "j1"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "certified",
+            "raw"
+          ],
+          "id": "j2"
+        },
+        {
+          "op": "cursor_from",
+          "target": "j1",
+          "id": "rebuild"
+        },
+        {
+          "op": "set",
+          "target": "rebuild",
+          "key": "x",
+          "value": "X",
+          "no_work": false
+        },
+        {
+          "op": "fork",
+          "target": "rebuild",
+          "id": "forked"
+        },
+        {
+          "op": "snapshot",
+          "target": "forked",
+          "id": "again"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "again",
+            "again"
+          ],
+          "id": "j3"
+        }
+      ]
+    },
+    {
+      "id": "cursor-branch-and-unrelated-joins",
+      "kind": "operations",
+      "basis": "published inputs, callback tuple order and final actual legacy set-union order across related/unrelated roots",
+      "operations": [
+        {
+          "op": "new",
+          "id": "a",
+          "entries": [
+            [
+              "alpha",
+              "A",
+              true
+            ],
+            [
+              "beta",
+              "B",
+              true
+            ],
+            [
+              "gamma",
+              "G",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "fork",
+          "target": "a",
+          "id": "b"
+        },
+        {
+          "op": "set",
+          "target": "a",
+          "key": "alpha",
+          "value": "AA",
+          "no_work": true
+        },
+        {
+          "op": "delete",
+          "target": "b",
+          "key": "beta"
+        },
+        {
+          "op": "set",
+          "target": "b",
+          "key": "beta",
+          "value": "B",
+          "no_work": false
+        },
+        {
+          "op": "snapshot",
+          "target": "a",
+          "id": "va"
+        },
+        {
+          "op": "snapshot",
+          "target": "b",
+          "id": "vb"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "va",
+            "vb"
+          ],
+          "id": "j1"
+        },
+        {
+          "op": "new",
+          "id": "u",
+          "entries": [
+            [
+              "other",
+              "O",
+              true
+            ],
+            [
+              "alpha",
+              "AU",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "u",
+          "id": "vu"
+        },
+        {
+          "op": "cursor_from",
+          "target": "j1",
+          "id": "jc"
+        },
+        {
+          "op": "delete",
+          "target": "jc",
+          "key": "gamma"
+        },
+        {
+          "op": "set",
+          "target": "jc",
+          "key": "gamma",
+          "value": "G2",
+          "no_work": true
+        },
+        {
+          "op": "snapshot",
+          "target": "jc",
+          "id": "edited"
+        },
+        {
+          "op": "join",
+          "inputs": [
+            "edited",
+            "vu"
+          ],
+          "id": "j2"
+        },
+        {
+          "op": "items",
+          "target": "j2",
+          "repeats": 3
+        },
+        {
+          "op": "keys",
+          "target": "j2",
+          "repeats": 3
+        }
+      ]
+    },
+    {
+      "id": "cursor-invalid-join-boundaries",
+      "kind": "operations",
+      "basis": "mutable cursors and cross-meter versions refused without callbacks or input mutation; exception spelling not specified",
+      "operations": [
+        {
+          "op": "new",
+          "id": "c",
+          "entries": [
+            [
+              "alpha",
+              "A",
+              true
+            ]
+          ]
+        },
+        {
+          "op": "snapshot",
+          "target": "c",
+          "id": "v"
+        },
+        {
+          "op": "reject_cursor_join",
+          "inputs": [
+            "v",
+            "c"
+          ]
+        },
+        {
+          "op": "reject_foreign_join",
+          "target": "v"
+        },
+        {
+          "op": "set",
+          "target": "c",
+          "key": "beta",
+          "value": "B",
+          "no_work": true
+        },
+        {
+          "op": "items",
+          "target": "v",
+          "repeats": 2
+        },
+        {
+          "op": "items",
+          "target": "c",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "cursor-private-tail-retention",
+      "kind": "retention_private",
+      "basis": "a never-published overwritten private value has no retained snapshot owner; metadata/history must not retain it",
+      "writes": 12
+    },
+    {
+      "id": "cursor-history-retention-after-compaction",
+      "kind": "retention_history",
+      "basis": "retained old snapshot keeps old value alive;24 dirty publications force full-compaction opportunity beyond8layers; dropping sole old snapshot releases obsolete value",
+      "publications": 24
+    },
+    {
+      "id": "cursor-atomic-snapshot",
+      "kind": "atomic",
+      "operation": "snapshot",
+      "prepared_publications": 7,
+      "tail_changes": [
+        "overwrite-alpha",
+        "delete-beta",
+        "insert-tail"
+      ],
+      "offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "basis": "primitive-only pristine calibration; same-cursor failure/retry exact units and count deltas; unchanged returned snapshots and exact later fork/write/read continuation"
+    },
+    {
+      "id": "cursor-atomic-fork",
+      "kind": "atomic",
+      "operation": "fork",
+      "prepared_publications": 7,
+      "tail_changes": [
+        "overwrite-alpha",
+        "delete-beta",
+        "insert-tail"
+      ],
+      "offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "basis": "primitive-only pristine calibration; same-cursor failure/retry exact units and count deltas; unchanged returned snapshots and exact later fork/write/read continuation"
+    },
+    {
+      "id": "cursor-atomic-keys",
+      "kind": "atomic",
+      "operation": "keys",
+      "prepared_publications": 7,
+      "tail_changes": [
+        "overwrite-alpha",
+        "delete-beta",
+        "insert-tail"
+      ],
+      "offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "basis": "primitive-only pristine calibration; same-cursor failure/retry exact units and count deltas; unchanged returned snapshots and exact later fork/write/read continuation"
+    },
+    {
+      "id": "cursor-atomic-ordered-items",
+      "kind": "atomic",
+      "operation": "ordered_items",
+      "prepared_publications": 7,
+      "tail_changes": [
+        "overwrite-alpha",
+        "delete-beta",
+        "insert-tail"
+      ],
+      "offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "basis": "primitive-only pristine calibration; same-cursor failure/retry exact units and count deltas; unchanged returned snapshots and exact later fork/write/read continuation"
+    }
+  ]
+}

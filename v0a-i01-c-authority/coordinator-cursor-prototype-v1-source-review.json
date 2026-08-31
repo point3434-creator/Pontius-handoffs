@@ -1,0 +1,41 @@
+{
+  "config_sha256": "afb9d33f3ec5110e822a0a7e44710fbe025940985ecf82ce7ffc533c084ab958",
+  "kind": "coordinator-engineering-source-review",
+  "limits": [
+    "No production fit, complete cost proof, authority-transfer correctness or cold approval is claimed.",
+    "Run floor seed0 first; a mechanism failure stops further runtime/seed expansion.",
+    "W remains exact rejected v20; no production write lease is opened."
+  ],
+  "payload_executed_by_this_control": false,
+  "pins": {
+    "coordinator-name-cursor-prototype-disposition-v1.md": "973191b8b26c71132185d42203a720bdc5b28d4fd23fc1bc4b9c9ec4da46a7b7",
+    "engineer-name-cursor-prototype-v1.py": "67acb279510924311266b985e15e95e53ae9d0a11d64a50d108f254a690deb2a",
+    "engineer-storage-control-v3.py": "882016384c6b9bc4e6a4d9d81e829dee9eb95120942650f63006fea8f0ad1cbf",
+    "tests-checks/cursor-oracle-cases-v1.json": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61",
+    "tests-checks/cursor-oracle-release-v1.md": "e95e4a155e6e843c2f99ee66e5fbc4201c3a2624b790b00837fec2ce5628e943",
+    "tests-checks/cursor-oracle-spec-v1.md": "29c0238aa24e0c6d4a9f3834d6f94b46c4bd6ed29f263f0c57511e1ee1b0bfd1",
+    "tests-checks/cursor-oracle-v1.py": "15a4741e2532a755fd45f01d4d999dd5d293846b8ae4e9d4e7abedf84c0a8d1e",
+    "tests-checks/storage-oracle-cases-v2.json": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f",
+    "tests-checks/storage-oracle-v2.py": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba"
+  },
+  "review": [
+    "Private tail ownership moves only after whole publication charges succeed.",
+    "History and key-order recipes retain names and parent metadata, not data snapshots or values.",
+    "Order/item memo commits follow all public-operation charges; writes invalidate content memo.",
+    "Newest-effective pending entries, tombstones, immutable input validation and legacy union order are explicit.",
+    "Oracle expects ordinary dictionary semantics independently and preserves original 28/34 pack.",
+    "Fault cases retry the same object without refunds and compare both operation and continuation costs.",
+    "Fresh snapshots, scrubbed environment, real interpreter identity and before/after manifests gate results."
+  ],
+  "source_read_in_full": [
+    "engineer-name-cursor-prototype-v1.py",
+    "tests-checks/cursor-oracle-v1.py",
+    "engineer-storage-control-v3.py"
+  ],
+  "syntax_only_parsed": [
+    "engineer-name-cursor-prototype-v1.py",
+    "engineer-storage-control-v3.py",
+    "tests-checks/storage-oracle-v2.py",
+    "tests-checks/cursor-oracle-v1.py"
+  ]
+}

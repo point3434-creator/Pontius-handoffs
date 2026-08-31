@@ -1,0 +1,285 @@
+{
+  "artifact": "cursor oracle authoring proof v1",
+  "status": "issued; unexecuted; no prototype source inspection",
+  "requirements": {
+    "root_disposition": "973191b8b26c71132185d42203a720bdc5b28d4fd23fc1bc4b9c9ec4da46a7b7",
+    "challenged_design": "1307b0c2b10ab8fce5de974b26fdce5721969e599f6f121bf9b4ffe36747decb"
+  },
+  "pins": [
+    {
+      "path": "tests-checks/cursor-oracle-cases-v1.json",
+      "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61",
+      "bytes": 18959
+    },
+    {
+      "path": "tests-checks/cursor-oracle-spec-v1.md",
+      "sha256": "29c0238aa24e0c6d4a9f3834d6f94b46c4bd6ed29f263f0c57511e1ee1b0bfd1",
+      "bytes": 9613
+    },
+    {
+      "path": "tests-checks/cursor-oracle-v1.py",
+      "sha256": "15a4741e2532a755fd45f01d4d999dd5d293846b8ae4e9d4e7abedf84c0a8d1e",
+      "bytes": 26351
+    }
+  ],
+  "old_byte_preservation": [
+    {
+      "path": "tests-checks/storage-oracle-v2.py",
+      "sha256": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba",
+      "bytes": 16157,
+      "modified": false
+    },
+    {
+      "path": "tests-checks/storage-oracle-cases-v2.json",
+      "sha256": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f",
+      "bytes": 34304,
+      "modified": false
+    }
+  ],
+  "entrypoint": "verify_cursor(api, case_path=CASE_PATH)",
+  "summary_fields": [
+    "all_completed",
+    "failures",
+    "planned_cases",
+    "planned_runs",
+    "completed_runs",
+    "case_pack_sha256",
+    "runtime",
+    "hash_seed",
+    "maximum_meter_limit"
+  ],
+  "counts": {
+    "planned_cases": 16,
+    "planned_runs": 28,
+    "ordinary_cases": 10,
+    "retention_cases": 2,
+    "atomicity_cases": 4,
+    "baseline_runs": 16,
+    "fault_replays": 12,
+    "expanded_ordinary_schedule_operations": 343,
+    "ordinary_expansion_count_excludes_initial_entry_setters_repeats_of_reads_and_final_audits": true,
+    "executed_runs": 0,
+    "unreachable_declared": 0,
+    "old_cases": 28,
+    "old_runs": 34,
+    "combined_cases": 44,
+    "combined_runs_per_child": 62,
+    "possible_six_child_runs": 372
+  },
+  "matrix": [
+    {
+      "case": "cursor-empty-boundaries",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 9,
+      "expanded_operations": 9,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-dense-private-64",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 7,
+      "expanded_operations": 70,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-fork-per-write-64",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 5,
+      "expanded_operations": 132,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-retained-sibling-isolation",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 13,
+      "expanded_operations": 13,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-view-and-value-memo",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 13,
+      "expanded_operations": 13,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-tombstones-through-publication",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 8,
+      "expanded_operations": 61,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-newest-effective-pending",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 10,
+      "expanded_operations": 10,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-raw-identical-clears-certificate",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 11,
+      "expanded_operations": 11,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-branch-and-unrelated-joins",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 17,
+      "expanded_operations": 17,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-invalid-join-boundaries",
+      "kind": "operations",
+      "runs": 1,
+      "explicit_operations": 7,
+      "expanded_operations": 7,
+      "fault_offsets": []
+    },
+    {
+      "case": "cursor-private-tail-retention",
+      "kind": "retention_private",
+      "runs": 1,
+      "explicit_operations": null,
+      "expanded_operations": null,
+      "fault_offsets": [],
+      "parameters": {
+        "writes": 12
+      }
+    },
+    {
+      "case": "cursor-history-retention-after-compaction",
+      "kind": "retention_history",
+      "runs": 1,
+      "explicit_operations": null,
+      "expanded_operations": null,
+      "fault_offsets": [],
+      "parameters": {
+        "publications": 24
+      }
+    },
+    {
+      "case": "cursor-atomic-snapshot",
+      "kind": "atomic",
+      "runs": 4,
+      "explicit_operations": null,
+      "expanded_operations": null,
+      "fault_offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "parameters": {
+        "prepared_publications": 7,
+        "operation": "snapshot"
+      }
+    },
+    {
+      "case": "cursor-atomic-fork",
+      "kind": "atomic",
+      "runs": 4,
+      "explicit_operations": null,
+      "expanded_operations": null,
+      "fault_offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "parameters": {
+        "prepared_publications": 7,
+        "operation": "fork"
+      }
+    },
+    {
+      "case": "cursor-atomic-keys",
+      "kind": "atomic",
+      "runs": 4,
+      "explicit_operations": null,
+      "expanded_operations": null,
+      "fault_offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "parameters": {
+        "prepared_publications": 7,
+        "operation": "keys"
+      }
+    },
+    {
+      "case": "cursor-atomic-ordered-items",
+      "kind": "atomic",
+      "runs": 4,
+      "explicit_operations": null,
+      "expanded_operations": null,
+      "fault_offsets": [
+        "first",
+        "middle",
+        "last"
+      ],
+      "parameters": {
+        "prepared_publications": 7,
+        "operation": "ordered_items"
+      }
+    }
+  ],
+  "oracle_independence": {
+    "expected_values": "independently interned harmless tokens; per-state ordinary builtin dict + certificate metadata",
+    "expected_order": "child builtin set().union of reference dict_keys, never a frozen hash-dependent sequence",
+    "callbacks": "input tuple identity/order and required changed/pending subset; optional certified callbacks allowed",
+    "keys": "real builtin dict_keys; retained returned view/order never changes",
+    "prototype_private_state_read": false,
+    "prototype_payload_executed": false,
+    "protected_source_executed": false,
+    "syntax_or_import_probe_executed": false
+  },
+  "fault_contract": {
+    "operations": [
+      "snapshot",
+      "fork",
+      "keys",
+      "ordered_items"
+    ],
+    "offsets": [
+      "first",
+      "middle",
+      "last"
+    ],
+    "calibration": "primitive-only used/count delta",
+    "retry": "same cursor; restore maximum only; no refunds; exact units/categories",
+    "continuation": "exact subsequent validation/fork/write/snapshot/read cost sequence and outputs versus pristine",
+    "failed_compaction_coverage": "claim only if actual recorded operation counters establish it; not asserted from shape"
+  },
+  "retention": {
+    "private": "never-published weak sentinel absent from intern/reference/retained-return registries",
+    "published": "positive retained old snapshot,24 successful dirty publications, successful compaction_entry_visits required, then drop old snapshot",
+    "unmet_compaction_class": "UnmetStructuralPrecondition; do not classify as history leak"
+  },
+  "bindings": {
+    "raw_no_work_false": "alternate omitted default and explicit False, deterministically per harness; identical logical schedule",
+    "maximum_meter_limit": 262144,
+    "auxiliary_foreign_meter": "recorded separately; no cap aggregation",
+    "prototype_compaction_categories_declared_without_source_read": [
+      "compaction_entry_visits",
+      "compaction_layer_visits",
+      "compaction_publication_charge"
+    ]
+  },
+  "limits": [
+    "No payload or runtime result exists for this extension.",
+    "No production integration, runtime/physical-work ratio, authority-consumption safety or admission proof.",
+    "No arbitrary callback effects, semantic-write rollback, concurrency or colliding-str-subclass coverage.",
+    "Public operation costs cannot alone prove every internal physical visit is honestly charged; root source review remains necessary."
+  ]
+}

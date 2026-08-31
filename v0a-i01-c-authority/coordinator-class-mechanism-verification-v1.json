@@ -1,0 +1,70 @@
+{
+  "schema": "coordinator-class-mechanism-verification-v1",
+  "results": [
+    {
+      "scope": "original-class2",
+      "slot": "311",
+      "receipt_sha256": "9c26c08e8fab39c11e0c49ccd952274b0a31eb98899b51d2bd3f419cf9ad0f32",
+      "log_sha256": "e33010b37137e38bc7eb969501ffe2c66c08921a9f165fd5f38d3e572f6f501a",
+      "snapshot_rehashed_files": 1761,
+      "failures": [
+        "class-adoption-unsafe",
+        "class-adoption-safe"
+      ],
+      "events": 60
+    },
+    {
+      "scope": "original-class2",
+      "slot": "314",
+      "receipt_sha256": "b8429565b8179962c00e3207c6669d294ceb678bf255b9f09250d1cb26e31314",
+      "log_sha256": "2235228af384caf4f4f8538ea23df3d586493a01bd1ae1b93ffaed096aa86e7c",
+      "snapshot_rehashed_files": 1761,
+      "failures": [
+        "class-adoption-unsafe",
+        "class-adoption-safe"
+      ],
+      "events": 60
+    },
+    {
+      "scope": "scalar-class6",
+      "slot": "311",
+      "receipt_sha256": "9c86569d53b6664bf5a6f1912607255c253412dac70d2bd74bfb1dda454b6be9",
+      "log_sha256": "778b795f2e5bb48dfa24dad28929f87e641dc31f2280e1c7df2a7b67da1593d5",
+      "snapshot_rehashed_files": 1761,
+      "failures": [
+        "scalar-class-normal-unsafe",
+        "scalar-class-normal-safe",
+        "scalar-class-change-then-raise-safe",
+        "scalar-class-raise-before-change-safe"
+      ],
+      "events": 196
+    },
+    {
+      "scope": "scalar-class6",
+      "slot": "314",
+      "receipt_sha256": "97ff9ac31ad8a1eb3f75f3dcde461e1c2ff392ed1d705481cd5e9b45f156ff2d",
+      "log_sha256": "840a93ae339f77f52b3487f843a5a99d2e8cb883394351bb97e08ee330e5cc1c",
+      "snapshot_rehashed_files": 1761,
+      "failures": [
+        "scalar-class-normal-unsafe",
+        "scalar-class-normal-safe",
+        "scalar-class-change-then-raise-safe",
+        "scalar-class-raise-before-change-safe"
+      ],
+      "events": 196
+    }
+  ],
+  "same_scope_cross_slot_cases_equal": true,
+  "same_scope_cross_slot_traces_equal_except_budget_units": true,
+  "supported_mechanisms": [
+    "Write-only nonlocal setter lacks a captured destination; assignment changes its private projection while outer cell stays original.",
+    "Explicit class raise returns normally to the item loop, which subsequently invokes an unreachable setter."
+  ],
+  "correction": "Updated-cell/stale-projection was an initial lead, not the first cause demonstrated by these normal cases.",
+  "limits": [
+    "Protected namespace guard and any post-capture projection consequences require a coherent semantic repair.",
+    "Refusal of two unsafe exception cases does not establish correct exception analysis.",
+    "Source fixtures were not executed by this verifier or the diagnostic; only independent harmless models were executed.",
+    "No production source change, cold verdict, integration or acceptance is implied."
+  ]
+}

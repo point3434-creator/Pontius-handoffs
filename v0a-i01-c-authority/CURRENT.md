@@ -4,6 +4,44 @@
 acceptance result, or reviewer verdict. New reviews require a git snapshot ref
 and its manifest SHA-256; no successor pair has been frozen yet.
 
+## Latest checkpoint: two separate repairs, no integration
+
+The replacement owned-cursor prototype passed all 372 checks: 204 unchanged
+immutable-storage runs and 168 new cursor runs, across actual Python 3.11.15
+and 3.14.6 with seeds 0, 1 and 17. [Coordinator verification](coordinator-cursor-verification-v1.json)
+rehashes all six snapshots, the input artifacts and same-seed public records.
+This verifies storage semantics, retention and whole-operation retry staging;
+it does not establish production fit. A [bounded T-only adapter draft](coordinator-name-cursor-candidate-disposition-v1.md)
+is being prepared from exact v20. W remains unchanged; no installation or
+payload execution is authorized by that drafting disposition.
+
+The added composition checks found an independent semantic defect on retained
+v19. Both original class cases fail on both interpreters: an unsafe case is
+approved and its safe counterpart is refused. The original shared-list pair
+passes. [Initial finding](coordinator-class-adoption-finding-v1.md) preserves
+the unchanged expectations and the initial, explicitly provisional diagnosis.
+
+The subsequent [two-case trace](tests-checks/class-composition-original-class2-v19-mechanism01-311-receipt.json)
+and [six-case extension](tests-checks/class-composition-scalar-class6-v19-mechanism01-311-receipt.json)
+correct that initial lead: write-only nonlocal setters omit their captured
+destination because discovery considers only Name loads. The setter changes
+its private projection while the caller's cell retains the old value.
+Class-body execution also continues past an explicit raise. Earlier protected
+namespace rebinding guards cause additional safe-case refusals. A projection
+refresh alone therefore cannot close this category.
+
+Both trace scopes completed on both interpreters with intact infrastructure
+and correct harmless oracles. The scalar extension fails four of its six
+requirements on each slot (both normal cases and both safe exception cases).
+The two unsafe exception cases are refused; that alone does not establish
+correct exception semantics. A separate semantic repair must address captures,
+normal and exceptional class exits, and precise versus unresolved rebinding.
+All cases and issued evidence remain immutable.
+
+The candidate is still not acceptable. Accepted A/B and other C paths remain
+preserved; the class defect and ordinary-generation budget failure are both
+open. The detailed prior engineering evidence follows.
+
 Accepted A/B remains byte-identical to r007. The other three C integration paths
 (CI, boundary checker, boundary tests) are unchanged. Main remains d1ed3cb;
 no source integration, ceremonial commit, or main push has happened.
