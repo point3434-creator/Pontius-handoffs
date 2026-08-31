@@ -1,0 +1,76 @@
+--- v18/tools/generate_test_inventory.py
++++ v19/tools/generate_test_inventory.py
+@@ -14125,10 +14125,13 @@
+         # allocated for this activation at entry, including not-yet-bound ones.
+         if self.authority.enabled:
+             identities = self.bindings.get(name, ())
+-            for identity in identities:
+-                self.authority.cells[identity] = (value if len(identities) == 1 else
+-                    _merge_flow_values("alternative cell write", (
+-                        self.authority.cells.get(identity), value)))
++            self._write_cells(value, identities)
++
++    def _write_cells(self, value: _FlowValue, identities: tuple[int, ...]) -> None:
++        for identity in identities:
++            self.authority.cells[identity] = (value if len(identities) == 1 else
++                _merge_flow_values("alternative cell write", (
++                    self.authority.cells.get(identity), value)))
+ 
+     def __delitem__(self, name: str) -> None:
+         dict.__delitem__(self, name)
+@@ -21280,10 +21283,52 @@
+                         result.bindings[name] = tuple(dict.fromkeys((
+                             *result.bindings.get(name, ()), *cells)))
+         names = set().union(*(state.keys() for state in states))
++        binding_plan: dict[str, tuple[int, ...]] | None = None
++        if result.authority.enabled:
++            self.budget.consume()  # Decide whether charged sparse planning can save work.
++            planned_cost = 3 + 2 * len(result.bindings)
++            if planned_cost < len(names):
++                self.budget.consume(2)  # Temporary plan dictionary and identity set.
++                candidate: dict[str, tuple[int, ...]] = {}
++                seen: set[int] = set()
++                for name, cells in result.bindings.items():
++                    self.budget.consume()  # Membership in the projected-name set.
++                    if name not in names:
++                        continue
++                    # Plan write, later plan visit/value lookup, and four units per cell.
++                    planned_cost += 3 + 4 * len(cells)
++                    if planned_cost >= len(names):
++                        break
++                    valid = True
++                    for identity in cells:
++                        self.budget.consume(2)  # Cell visit and overlap lookup.
++                        if identity in seen or identity not in result.authority.cells:
++                            valid = False
++                            break
++                        self.budget.consume()  # Remember the already-existing distinct cell.
++                        seen.add(identity)
++                    if not valid:
++                        break
++                    self.budget.consume()  # Store references to the name and immutable tuple.
++                    candidate[name] = cells
++                else:
++                    binding_plan = candidate
+         dict.clear(result)
+-        for name in names:
+-            result[name] = _merge_flow_values(
+-                name, tuple(state.get(name) for state in states))
++        if binding_plan is None:
++            for name in names:
++                result[name] = _merge_flow_values(
++                    name, tuple(state.get(name) for state in states))
++        else:
++            # Keep every transfer and its original order. Transfers do not read cells.
++            for name in names:
++                value = _transfer_authority(_merge_flow_values(
++                    name, tuple(state.get(name) for state in states)), result)
++                dict.__setitem__(result, name, value)
++            # Existing distinct cell writes commute; every strong/weak write remains.
++            self.budget.consume(len(binding_plan))
++            for name, cells in binding_plan.items():
++                self.budget.consume()  # Read the already-transferred projected value.
++                result._write_cells(result[name], cells)
+         return result
+ 
+     def _capture_auxiliary_state(self) -> tuple[

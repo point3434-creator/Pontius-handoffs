@@ -1,0 +1,52 @@
+{
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "slot": "311",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys, runpy, json, importlib.util, os\nfrom pathlib import Path\nsys.stdout.reconfigure(newline=\"\\n\")\nsys.stderr.reconfigure(newline=\"\\n\")\nexe, expected = sys.argv[1:3]\nassert sys.implementation.name == \"cpython\"\nassert Path(sys.executable).resolve() == Path(exe).resolve()\nassert \".\".join(map(str, sys.version_info[:3])) == expected\nassert sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize\nprint(json.dumps({\"identity_before_import\": {\n    \"executable\": sys.executable, \"implementation\": sys.implementation.name,\n    \"version\": sys.version, \"version_info\": list(sys.version_info[:3]),\n    \"cwd\": str(Path.cwd()), \"pythonpath\": os.environ.get(\"PYTHONPATH\"),\n}}), flush=True)\nassert Path(importlib.util.find_spec(\"pontius.v0a.trace\").origin).resolve() == (\n    Path.cwd() / \"src/pontius/v0a/trace.py\").resolve()\nsys.argv = [\"D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks/budget-gen06-probe-v2.py\"]\nrunpy.run_path(sys.argv[0], run_name=\"__main__\")\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-authority-tests-budget-gen06-v4-df936ccc398e4cafaad19af179b03f47\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-authority-tests-budget-gen06-v4-df936ccc398e4cafaad19af179b03f47\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-tests-budget-gen06-v4-df936ccc398e4cafaad19af179b03f47\\snapshot\\src"
+  },
+  "identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      11,
+      15
+    ],
+    "cwd": "D:\\pontius-snapshots\\c-authority-tests-budget-gen06-v4-df936ccc398e4cafaad19af179b03f47\\snapshot",
+    "pythonpath": "D:\\pontius-snapshots\\c-authority-tests-budget-gen06-v4-df936ccc398e4cafaad19af179b03f47\\snapshot\\src"
+  },
+  "metadata_sha256": "6a9a21a5eea1ed21ec63a85a4f0c3b7ee2f9c2db5d90cc511c3e5df5ffa8e2a4",
+  "tests_sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+  "generator_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+  "frozen_r010_generator_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "focus": "ordinary-corpus-budget",
+  "probe_sha256": "072177a0322115c3aab9eb2c4e5623a2f827780d67c3fbb6d9760b44d7cf3c4e",
+  "exit": 2,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\red-budget-gen06-v4-311.txt",
+  "log_sha256": "f4a4090b0ccffabed401dd5bf59e952585f5b3d56b3784d2b2a0c782949a5c74",
+  "all_tracked_paths_unchanged": 1761,
+  "matrix_summaries": [],
+  "control_sha256": "d484e10f16e7f38623399219ae84a82b5af530dbfe31462a08193e3219bcad0b"
+}

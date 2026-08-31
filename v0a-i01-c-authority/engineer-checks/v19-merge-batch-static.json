@@ -1,0 +1,25 @@
+{
+  "added_method": "_ExecutionState::_write_cells",
+  "all_other_source_bytes_preserved": true,
+  "artifacts": {
+    "engineer-generator-v19-from-v18.diff": "2b4a6db7b2969f328d541d4fd6ea39779afe3f721bce31ff3f0a9c0331c91016",
+    "engineer-generator-v19.diff": "ddbe4e76ff36bd646701a4563cab81e2de887f0331a24716319c64636b40fcee",
+    "engineer-generator-v19.py": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1"
+  },
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "cell_loop_ast_identical": true,
+  "changed_methods": [
+    "_ExecutionState::__setitem__ (cell-loop extraction only)",
+    "_SourceOrderedResolver::_merge_states"
+  ],
+  "inverse_text_equals_predecessor": true,
+  "payloads_run": [],
+  "planner_success_cost": "3 + 2*K + 3*B + 4*E < N binding lookups avoided",
+  "predecessor_sha256": "d97ea66ef606144bb635f522856af3a5cd08819368af981a0a408c84c1e6cc99",
+  "prerepair_note": "engineer-merge-batch-prerepair-v19.md",
+  "prerepair_note_sha256": "f5ca1c47ce5d7efe1bd0115136707588f706e1b481a52299331b628c58385ecf",
+  "python_control": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "schema": "pontius-engineering-merge-batch-static-v1",
+  "setter_inline_helper_ast_equals_predecessor": true,
+  "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1"
+}

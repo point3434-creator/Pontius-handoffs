@@ -1,0 +1,87 @@
+{
+  "entries": [
+    {
+      "all_17_packet_paths_unchanged": true,
+      "exit": 0,
+      "label": "release19-design-311",
+      "log_sha256": "a0edb75664644a400f52dd7a02c48efd81342c7e3e69254f5940620862311d5f",
+      "projection_count": null,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-checks\\release19-design-311-receipt.json",
+      "receipt_sha256": "0a1ada135b8976ebdb41ed44889cfc9b119825adecb7293792dbd57e7bd91461",
+      "schedule_count": null,
+      "snapshot": "D:\\Pontius\\engineer-authority-adf06b581a29496892d60dd7b98130cb\\harness",
+      "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+      "test_methods": 53,
+      "version_info": [
+        3,
+        11,
+        15
+      ]
+    },
+    {
+      "all_17_packet_paths_unchanged": true,
+      "exit": 0,
+      "label": "release19-matrix-311",
+      "log_sha256": "cbd6c5ffcad526d38b9f2dd06e503f2a0f58c1359bbf17da14fda85299d0df70",
+      "projection_count": 212,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-checks\\release19-matrix-311-receipt.json",
+      "receipt_sha256": "1199934a6a42f7eb5ff2673f4469f04b4457db533ceb2b4676ad76f5f7a5841a",
+      "schedule_count": 192,
+      "snapshot": "D:\\Pontius\\engineer-authority-0e1d46861a8f446abe21a8843a7179fe\\harness",
+      "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+      "test_methods": 8,
+      "version_info": [
+        3,
+        11,
+        15
+      ]
+    },
+    {
+      "all_17_packet_paths_unchanged": true,
+      "exit": 0,
+      "label": "release19-design-314",
+      "log_sha256": "515ccd2fa607426656f901afc0dce733d53338adb547e5f3a593f4c8ef16e1c6",
+      "projection_count": null,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-checks\\release19-design-314-receipt.json",
+      "receipt_sha256": "6d2ea8c604fdaabc89cdc2201e88d19d2b752c4a62021e61531e2e3cc5993f49",
+      "schedule_count": null,
+      "snapshot": "D:\\Pontius\\engineer-authority-b32fb2d3b13a40f2b55e6d7e5da31850\\harness",
+      "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+      "test_methods": 53,
+      "version_info": [
+        3,
+        14,
+        6
+      ]
+    },
+    {
+      "all_17_packet_paths_unchanged": true,
+      "exit": 0,
+      "label": "release19-matrix-314",
+      "log_sha256": "d62e52ffc05ef70586a34812240e986ea19bb287082efac9c951646ef245ccfb",
+      "projection_count": 212,
+      "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-checks\\release19-matrix-314-receipt.json",
+      "receipt_sha256": "4a435a886ac75769b755dac8e6d6d0c7e639219c78c7a2f13b82527cb6d13894",
+      "schedule_count": 192,
+      "snapshot": "D:\\Pontius\\engineer-authority-9fa48a066c5b4d0e86d0f9ef9370fabf\\harness",
+      "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+      "test_methods": 8,
+      "version_info": [
+        3,
+        14,
+        6
+      ]
+    }
+  ],
+  "matrix_counts_basis": "Hash-bound released v4 matrix; eight executed methods contain192 schedules and212 harmless projections.",
+  "run_order": [
+    "release19-design-311",
+    "release19-matrix-311",
+    "release19-design-314",
+    "release19-matrix-314"
+  ],
+  "schema": "pontius-v19-focused-design-matrix-v1",
+  "scope": "Existing design53 and v4 matrix only; no other focused checks, ordinary corpus pass or broad acceptance claimed.",
+  "source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+  "source_unchanged_after_all": true
+}
