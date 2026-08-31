@@ -1,0 +1,2789 @@
+--- 29c02f6fbd5eb0b7ddc9e816ef28f570b9839358/tools/generate_test_inventory.py
++++ engineer-generator-v24-storage.py
+@@ -6,7 +6,7 @@
+ import ast
+ import atexit
+ import builtins
+-from collections.abc import Iterable, Mapping, Sequence
++from collections.abc import Iterable, Mapping, MutableMapping, Sequence
+ from dataclasses import dataclass, field, replace
+ import errno
+ from hashlib import sha1, sha256
+@@ -9034,6 +9034,7 @@
+     callable_free_values: tuple[tuple[str, _FlowValue], ...] = ()
+     helper_obligations: tuple[_FlowValue, ...] = ()
+     native_unstarted_coroutine: bool = False
++    authority_refs: tuple[int, ...] = ()
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+@@ -9047,6 +9048,7 @@
+ @dataclass(slots=True)
+ class _AnalysisBudget:
+     work_units: int = 0
++    next_authority_identity: int = 0
+     deferred_helper_bodies: dict[ast.AST, bool] = field(default_factory=dict)
+     local_generator_dependencies: dict[
+         ast.FunctionDef | ast.AsyncFunctionDef,
+@@ -13423,18 +13425,20 @@
+     return replace(value, helper_provenance=None, callable_defaults=(),
+                    namespace_effects=frozenset(), helper_refusal=None, helper_receiver=None,
+                    callable_definition=None, callable_scope=None, callable_free_values=(),
+-                   helper_obligations=(), native_unstarted_coroutine=False)
++                   helper_obligations=(), native_unstarted_coroutine=False, authority_refs=())
+ 
+ 
+ def _merge_flow_values(
+     name: str, values: Sequence[_FlowValue | None],
+ ) -> _FlowValue:
++    if values and all(value == values[0] for value in values):
++        return values[0] or _flow_unknown(f"{name} is unbound")
+     if not any(value is not None and (
+         value.helper_provenance is not None or value.callable_defaults
+         or value.namespace_effects or value.helper_refusal is not None
+         or value.helper_receiver is not None or value.callable_definition is not None
+         or value.callable_free_values or value.helper_obligations
+-        or value.native_unstarted_coroutine
++        or value.native_unstarted_coroutine or value.authority_refs
+     ) for value in values):
+         return _merge_legacy_flow_values(name, values)
+     merged = _merge_legacy_flow_values(
+@@ -13452,6 +13456,8 @@
+         common.intersection_update(supplied)
+     return replace(
+         merged, helper_provenance=proof,
++        authority_refs=tuple(dict.fromkeys(identity for value in present
++                                           for identity in value.authority_refs)),
+         native_unstarted_coroutine=complete and all(
+             value.native_unstarted_coroutine for value in present
+         ),
+@@ -13843,6 +13849,1323 @@
+     return frozenset(outcomes)
+ 
+ 
++@dataclass(frozen=True, slots=True)
++class _AuthorityRecord:
++    """An object in one execution state, never a mutable historical observation."""
++
++    value: _FlowValue
++    cells: tuple[tuple[str, tuple[int, ...]], ...] = ()
++    retained: tuple[_FlowValue, ...] = ()
++
++
++class _AuthorityMap(MutableMapping[Any, Any]):
++    """Copy-on-write table: forks share bytes, the first actual write pays for copying."""
++
++    def __init__(self, budget: _AnalysisBudget) -> None:
++        self.budget = budget
++        self.data: dict[Any, Any] = {}
++        self.shared = False
++
++    def fork(self) -> "_AuthorityMap":
++        self.budget.consume()
++        result = _AuthorityMap(self.budget)
++        self.shared = result.shared = True
++        result.data = self.data
++        return result
++
++    def __getitem__(self, key: Any) -> Any:
++        self.budget.consume()
++        return self.data[key]
++
++    def __setitem__(self, key: Any, value: Any) -> None:
++        self.budget.consume()
++        if key in self.data and self.data[key] == value:
++            return
++        if self.shared:
++            self.budget.consume(len(self.data))
++            self.data = dict(self.data)
++            self.shared = False
++        self.data[key] = value
++
++    def __delitem__(self, key: Any) -> None:
++        if self.shared:
++            self.budget.consume(len(self.data))
++            self.data = dict(self.data)
++            self.shared = False
++        self.budget.consume()
++        del self.data[key]
++
++    def __iter__(self):
++        self.budget.consume(len(self.data))
++        return iter(self.data)
++
++    def __len__(self) -> int:
++        return len(self.data)
++
++    def items(self):
++        self.budget.consume(len(self.data))
++        return self.data.items()
++
++    def values(self):
++        self.budget.consume(len(self.data))
++        return self.data.values()
++
++    def clear(self) -> None:
++        self.budget.consume()
++        self.data = {}
++        self.shared = False
++
++
++class _ObservedAuthorityMap:
++    """Layered observations: published dictionaries stay immutable after a fork."""
++
++    # This is a storage compaction threshold, not an analysis admission cap.
++    _COMPACT_AT_LAYERS = 8
++
++    def __init__(self, budget: _AnalysisBudget) -> None:
++        budget.consume(3)  # Map wrapper, empty dictionary and layer tuple.
++        self.budget = budget
++        self.layers: tuple[dict[int, _FlowValue], ...] = ({},)
++        self.shared = False
++
++    def fork(self) -> "_ObservedAuthorityMap":
++        self.budget.consume()  # New wrapper; the layer tuple is shared unchanged.
++        result = object.__new__(_ObservedAuthorityMap)
++        result.budget = self.budget
++        result.layers = self.layers
++        self.shared = result.shared = True
++        return result
++
++    def get(self, key: int, default: _FlowValue | None = None) -> _FlowValue | None:
++        for layer in reversed(self.layers):
++            self.budget.consume()  # Each attempted dictionary lookup.
++            value = layer.get(key)
++            if value is not None:
++                return value
++        return default
++
++    def __setitem__(self, key: int, value: _FlowValue) -> None:
++        previous = self.get(key)
++        if previous is value or previous == value:
++            return
++        if self.shared:
++            if len(self.layers) >= self._COMPACT_AT_LAYERS:
++                self.budget.consume()  # Fresh compaction dictionary.
++                combined: dict[int, _FlowValue] = {}
++                for layer in self.layers:
++                    self.budget.consume(len(layer) + 1)  # Layer and every visited entry.
++                    combined.update(layer)
++                self.budget.consume()  # Fresh one-layer tuple.
++                self.layers = (combined,)
++            else:
++                # Copy layer references, then allocate the new dictionary and tuple.
++                self.budget.consume(len(self.layers) + 2)
++                self.layers = (*self.layers, {})
++            self.shared = False
++        self.budget.consume()  # The actual write is to this branch's owned last layer.
++        self.layers[-1][key] = value
++
++    def clear(self) -> None:
++        self.budget.consume(2)  # Replacement dictionary and tuple; siblings retain theirs.
++        self.layers = ({},)
++        self.shared = False
++
++
++class _AuthorityState:
++    """Bounded object/cell store. Forks own maps; records and values are immutable."""
++
++    def __init__(self, budget: _AnalysisBudget, enabled: bool = True) -> None:
++        self.budget = budget
++        self.enabled = enabled
++        self.objects = _AuthorityMap(budget)
++        self.cells = _AuthorityMap(budget)
++        self.results = _AuthorityMap(budget)
++        self.observed = _ObservedAuthorityMap(budget)
++
++    def identity(self) -> int:
++        self.budget.consume()
++        self.budget.next_authority_identity += 1
++        return self.budget.next_authority_identity
++
++    def fork(self) -> "_AuthorityState":
++        self.budget.consume()  # Allocate only the state wrapper before actual table forks.
++        result = object.__new__(_AuthorityState)
++        result.budget = self.budget
++        result.enabled = self.enabled
++        if self.enabled:
++            result.objects = self.objects.fork()
++            result.cells = self.cells.fork()
++            result.results = self.results.fork()
++            result.observed = self.observed.fork()
++        else:
++            self.budget.consume(6)  # Three empty ordinary map wrappers and dictionaries.
++            result.objects = _AuthorityMap(self.budget)
++            result.cells = _AuthorityMap(self.budget)
++            result.results = _AuthorityMap(self.budget)
++            result.observed = _ObservedAuthorityMap(self.budget)
++        return result
++
++    def join(self, supplied: "_AuthorityState") -> None:
++        # Shared unchanged tables need no walk. Only actual divergent records
++        # and cells are copied/merged, and that work remains fully metered.
++        if self.objects.data is not supplied.objects.data:
++            self.budget.consume()
++            for identity, record in supplied.objects.items():
++                previous = self.objects.get(identity)
++                if previous is None:
++                    self.objects[identity] = record
++                elif previous != record:
++                    self.objects[identity] = _AuthorityRecord(
++                        _merge_flow_values("authority object", (previous.value, record.value)),
++                        tuple(dict.fromkeys((*previous.cells, *record.cells))),
++                        (*previous.retained, *record.retained),
++                    )
++        if self.cells.data is not supplied.cells.data:
++            self.budget.consume()
++            for identity, value in supplied.cells.items():
++                previous = self.cells.get(identity)
++                if previous != value:
++                    self.cells[identity] = (value if previous is None else
++                                           _merge_flow_values("authority cell", (previous, value)))
++        self.observed.clear()
++        self.results.clear()
++
++
++def _transfer_authority(value: _FlowValue, state: "_ExecutionState",
++                        *, retained: bool = False) -> _FlowValue:
++    """The only registration/forwarding boundary for live helper authority.
++
++    Legacy fields describe captured values. Once registered, mutable retained
++    edges and lexical cells are read only from this successor's identity store.
++    Unknown legacy precision does not erase its authority references.
++    """
++    store = state.authority
++    if not store.enabled:
++        return value
++    store.budget.consume()
++    if value.authority_refs:
++        if all(identity in store.objects for identity in value.authority_refs):
++            return value
++        # A legacy summary/entry boundary may not reconstruct live cells from
++        # a value snapshot. Retain an explicit obligation until consumption.
++        reason = "helper namespace authority state is unresolved"
++        value = replace(value, authority_refs=(), helper_refusal=reason,
++                        helper_obligations=(*value.helper_obligations, _FlowValue(
++                            "helper_deferred_refusal", reason=reason)))
++    updates: dict[str, object] = {}
++    if value.kind in {"sequence", "slice", "maybe_unbound"}:
++        updates["value"] = tuple(_transfer_authority(item, state, retained=True)
++                                 if isinstance(item, _FlowValue) else item
++                                 for item in value.value)
++    elif value.kind in {"mapping", "mapping_keys"}:
++        updates["value"] = tuple(tuple(_transfer_authority(item, state, retained=True)
++                                       if isinstance(item, _FlowValue) else item
++                                       for item in pair) for pair in value.value)
++    elif value.kind == "starred_argument" and isinstance(value.value, _FlowValue):
++        updates["value"] = _transfer_authority(value.value, state, retained=True)
++    if value.callable_defaults:
++        updates["callable_defaults"] = tuple((name, _transfer_authority(item, state, retained=True))
++                                            for name, item in value.callable_defaults)
++    if value.helper_receiver is not None:
++        updates["helper_receiver"] = _transfer_authority(value.helper_receiver, state, retained=True)
++    if value.helper_obligations:
++        updates["helper_obligations"] = tuple(_transfer_authority(item, state, retained=True)
++                                              for item in value.helper_obligations)
++    value = replace(value, **updates) if updates else value
++    if (value.mutable_collection or retained and value.helper_provenance is not None
++            or value.callable_definition is not None or value.helper_obligations
++            or value.helper_receiver is not None or value.callable_defaults
++            or value.namespace_effects or value.helper_refusal is not None
++            or value.kind in {"sequence", "mapping", "mapping_keys", "slice"}):
++        identity = store.identity()
++        store.objects[identity] = _AuthorityRecord(replace(value, authority_refs=()))
++        value = replace(value, authority_refs=(identity,))
++    return value
++
++
++class _NameMeter:
++    """Charge semantic name-storage work through the original analysis budget."""
++    __slots__ = ("budget",)
++
++    def __init__(self, budget):
++        budget.consume(2)  # _NameMeter wrapper plus its retained budget reference.
++        self.budget = budget
++
++    def charge(self, kind, units=1):
++        self.budget.consume(units)
++
++
++_NAME_RADIX_BITS = 4
++
++_NAME_LEAF_SIZE = 16  # Fixed structural split threshold, never an admission limit.
++
++_NAME_HASH_WIDTH = sys.hash_info.width
++
++_NAME_HASH_MASK = (1 << _NAME_HASH_WIDTH) - 1
++
++_NAME_MISSING = object()
++
++_NAME_DELETED = object()
++
++@dataclass(frozen=True, slots=True)
++class _NameEntry:
++    value: object
++    no_work: bool = False
++
++def _name_check_name(name):
++    if not isinstance(name, str):
++        raise TypeError("name must be str with ordinary string equality/ordering")
++
++@dataclass(frozen=True, slots=True)
++class _NameHistory:
++    parent: _NameHistory | None
++    changes: tuple
++    depth: int
++
++def _name_history(meter, parent, changes):
++    meter.charge("history_allocation")
++    meter.charge("history_reference_copies", 3)
++    meter.charge("history_parent_depth_read", int(parent is not None))
++    return _NameHistory(parent, changes, 0 if parent is None else parent.depth + 1)
++
++@dataclass(frozen=True, slots=True)
++class _NameRadixLeaf:
++    data: object
++    pending: tuple
++
++@dataclass(frozen=True, slots=True)
++class _NameRadixBranch:
++    bitmap: int
++    children: tuple
++    pending_count: int
++
++class _NameLeafEdit:
++    __slots__ = ("data",)
++
++    def __init__(self, meter, data):
++        meter.charge("radix_leaf_editor_allocation")
++        meter.charge("radix_editor_field_reference_copies")
++        self.data = data
++
++class _NameBranchEdit:
++    __slots__ = ("base", "changes")
++
++    def __init__(self, meter, base):
++        meter.charge("radix_branch_editor_allocation")
++        meter.charge("radix_editor_change_dictionary_allocation")
++        meter.charge("radix_editor_field_reference_copies", 2)
++        self.base, self.changes = base, {}
++
++def _name_radix_hash(meter, name):
++    meter.charge("radix_hash_requests")
++    meter.charge("radix_hash_normalizations")
++    return hash(name) & _NAME_HASH_MASK
++
++def _name_radix_slot(meter, hashed, shift):
++    meter.charge("radix_route_steps")
++    return (hashed >> shift) & 15
++
++def _name_radix_child(meter, branch, slot):
++    if branch is None:
++        return None
++    meter.charge("radix_bitmap_reads")
++    bit = 1 << slot
++    if not branch.bitmap & bit:
++        return None
++    meter.charge("radix_child_index_operations")
++    index = (branch.bitmap & (bit - 1)).bit_count()
++    meter.charge("radix_child_reference_visits")
++    return branch.children[index]
++
++def _name_radix_lookup(meter, root, name):
++    meter.charge("radix_root_reads")
++    if root is None:
++        return _NAME_MISSING
++    hashed = _name_radix_hash(meter, name)
++    node, shift = root, 0
++    while isinstance(node, _NameRadixBranch):
++        meter.charge("radix_lookup_node_visits")
++        node = _name_radix_child(meter, node, _name_radix_slot(meter, hashed, shift))
++        if node is None:
++            return _NAME_MISSING
++        shift += _NAME_RADIX_BITS
++    meter.charge("radix_lookup_node_visits")
++    if shift >= _NAME_HASH_WIDTH:
++        meter.charge("radix_terminal_collision_lookup_operations")
++    meter.charge("radix_leaf_dictionary_attempts")
++    return node.data.get(name, _NAME_MISSING)
++
++def _name_radix_pending_count(meter, node):
++    if node is None:
++        return 0
++    meter.charge("radix_pending_count_reads")
++    return len(node.pending) if isinstance(node, _NameRadixLeaf) else node.pending_count
++
++def _name_radix_leaf(meter, data, pending):
++    """Own data/pending: no caller may mutate them after successful publication."""
++    meter.charge("radix_pending_tuple_allocation")
++    meter.charge("radix_pending_tuple_reference_copies", len(pending))
++    names = tuple(pending)
++    meter.charge("radix_leaf_proxy_allocation")
++    meter.charge("radix_leaf_proxy_reference_copies")
++    proxy = MappingProxyType(data)
++    meter.charge("radix_leaf_allocation")
++    meter.charge("radix_leaf_field_reference_copies", 2)
++    return _NameRadixLeaf(proxy, names)
++
++def _name_radix_seal_leaf(meter, data):
++    meter.charge("radix_pending_list_allocation")
++    pending = []
++    for name, entry in data.items():
++        meter.charge("radix_pending_entry_visits")
++        meter.charge("radix_pending_certificate_reads")
++        if not entry.no_work:
++            meter.charge("radix_pending_list_reference_copies")
++            pending.append(name)
++    return _name_radix_leaf(meter, data, pending)
++
++def _name_radix_copy_leaf(meter, leaf):
++    meter.charge("radix_leaf_copy_dictionary_allocation")
++    data = {}
++    for name, entry in leaf.data.items():
++        meter.charge("radix_leaf_copy_entry_visits")
++        meter.charge("radix_leaf_copy_dictionary_writes")
++        meter.charge("radix_leaf_copy_reference_copies", 2)
++        data[name] = entry
++    return _NameLeafEdit(meter, data)
++
++def _name_radix_records(meter, data):
++    meter.charge("radix_record_list_allocation")
++    records = []
++    for name, entry in data.items():
++        meter.charge("radix_split_input_visits")
++        hashed = _name_radix_hash(meter, name)
++        meter.charge("radix_record_allocation")
++        meter.charge("radix_record_reference_copies", 3)
++        meter.charge("radix_record_list_reference_copies")
++        records.append((name, entry, hashed))
++    return records
++
++def _name_radix_group(meter, records, shift):
++    """One owned bucket list per occupied nibble; explicit record routing."""
++    meter.charge("radix_group_dictionary_allocation")
++    groups = {}
++    for record in records:
++        meter.charge("radix_group_record_visits")
++        slot = _name_radix_slot(meter, record[2], shift)
++        meter.charge("radix_group_dictionary_attempts")
++        group = groups.get(slot)
++        if group is None:
++            meter.charge("radix_group_list_allocation")
++            group = []
++            meter.charge("radix_group_dictionary_writes")
++            meter.charge("radix_group_reference_copies", 2)
++            groups[slot] = group
++        meter.charge("radix_group_list_reference_copies")
++        group.append(record)
++    return groups
++
++def _name_radix_edit_records(meter, records, shift):
++    """Build private paths for a split; no immutable root is yet published."""
++    meter.charge("radix_record_size_reads")
++    if len(records) <= _NAME_LEAF_SIZE or shift >= _NAME_HASH_WIDTH:
++        if shift >= _NAME_HASH_WIDTH:
++            meter.charge("radix_terminal_collision_edit_operations")
++        meter.charge("radix_new_leaf_dictionary_allocation")
++        data = {}
++        for name, entry, _hashed in records:
++            meter.charge("radix_split_leaf_entry_visits")
++            meter.charge("radix_split_leaf_dictionary_writes")
++            meter.charge("radix_split_leaf_reference_copies", 2)
++            data[name] = entry
++        return _NameLeafEdit(meter, data)
++    groups = _name_radix_group(meter, records, shift)
++    result = _NameBranchEdit(meter, None)
++    for slot, group in groups.items():
++        meter.charge("radix_group_child_visits")
++        child = _name_radix_edit_records(meter, group, shift + _NAME_RADIX_BITS)
++        meter.charge("radix_editor_dictionary_writes")
++        meter.charge("radix_editor_child_reference_copies", 2)
++        result.changes[slot] = child
++    return result
++
++def _name_radix_edit(meter, node, name, replacement, hashed, shift=0):
++    """All mutations belong to an unpublished editor, never to the base root."""
++    meter.charge("radix_edit_node_visits")
++    if node is None:
++        if replacement is _NAME_DELETED:
++            return None
++        meter.charge("radix_new_leaf_dictionary_allocation")
++        node = _NameLeafEdit(meter, {})
++    elif isinstance(node, _NameRadixLeaf):
++        node = _name_radix_copy_leaf(meter, node)
++    if isinstance(node, _NameLeafEdit):
++        if shift >= _NAME_HASH_WIDTH:
++            meter.charge("radix_terminal_collision_edit_operations")
++        meter.charge("radix_leaf_edit_dictionary_attempts")
++        present = name in node.data
++        if replacement is _NAME_DELETED:
++            if present:
++                meter.charge("radix_leaf_edit_dictionary_deletes")
++                del node.data[name]
++        else:
++            meter.charge("radix_leaf_edit_dictionary_writes")
++            meter.charge("radix_leaf_edit_reference_copies", 1 + int(not present))
++            node.data[name] = replacement
++        meter.charge("radix_leaf_size_reads")
++        if not node.data:
++            return None
++        if len(node.data) > _NAME_LEAF_SIZE and shift < _NAME_HASH_WIDTH:
++            return _name_radix_edit_records(meter, _name_radix_records(meter, node.data), shift)
++        return node
++    if isinstance(node, _NameRadixBranch):
++        node = _NameBranchEdit(meter, node)
++    slot = _name_radix_slot(meter, hashed, shift)
++    meter.charge("radix_editor_dictionary_attempts")
++    old = node.changes.get(slot, _NAME_MISSING)
++    if old is _NAME_MISSING:
++        old = _name_radix_child(meter, node.base, slot)
++        fresh_slot = True
++    else:
++        fresh_slot = False
++    child = _name_radix_edit(meter, old, name, replacement, hashed, shift + _NAME_RADIX_BITS)
++    meter.charge("radix_editor_dictionary_writes")
++    meter.charge("radix_editor_child_reference_copies", 1 + int(fresh_slot))
++    node.changes[slot] = child
++    return node
++
++def _name_radix_freeze(meter, node):
++    """Freeze owned paths only; unchanged immutable siblings remain shared."""
++    meter.charge("radix_freeze_node_visits")
++    if node is None or isinstance(node, (_NameRadixLeaf, _NameRadixBranch)):
++        return node
++    if isinstance(node, _NameLeafEdit):
++        return _name_radix_seal_leaf(meter, node.data)
++    meter.charge("radix_child_list_allocation")
++    children, bitmap, pending_count = [], 0, 0
++    for slot in range(16):
++        meter.charge("radix_freeze_slot_visits")
++        meter.charge("radix_editor_dictionary_attempts")
++        child = node.changes.get(slot, _NAME_MISSING)
++        if child is _NAME_MISSING:
++            child = _name_radix_child(meter, node.base, slot)
++        else:
++            child = _name_radix_freeze(meter, child)
++        if child is not None:
++            bitmap |= 1 << slot
++            pending_count += _name_radix_pending_count(meter, child)
++            meter.charge("radix_child_list_reference_copies")
++            children.append(child)
++    if not children:
++        return None
++    meter.charge("radix_child_tuple_allocation")
++    meter.charge("radix_child_tuple_reference_copies", len(children))
++    frozen = tuple(children)
++    meter.charge("radix_branch_allocation")
++    meter.charge("radix_branch_field_reference_copies", 3)
++    return _NameRadixBranch(bitmap, frozen, pending_count)
++
++def _name_radix_bulk(meter, records, shift=0):
++    """Complete unique inputs build once; no predecessor lookup or immutable set."""
++    meter.charge("bulk_record_size_reads")
++    if not records:
++        return None
++    if len(records) <= _NAME_LEAF_SIZE or shift >= _NAME_HASH_WIDTH:
++        if shift >= _NAME_HASH_WIDTH:
++            meter.charge("radix_terminal_collision_bulk_operations")
++        meter.charge("bulk_leaf_dictionary_allocation")
++        meter.charge("radix_pending_list_allocation")
++        data, pending = {}, []
++        for name, entry, _hashed in records:
++            meter.charge("bulk_leaf_entry_visits")
++            meter.charge("bulk_leaf_dictionary_writes")
++            meter.charge("bulk_leaf_reference_copies", 2)
++            data[name] = entry
++            meter.charge("radix_pending_certificate_reads")
++            if not entry.no_work:
++                meter.charge("radix_pending_list_reference_copies")
++                pending.append(name)
++        return _name_radix_leaf(meter, data, pending)
++    groups = _name_radix_group(meter, records, shift)
++    meter.charge("radix_child_list_allocation")
++    children, bitmap, pending_count = [], 0, 0
++    for slot in range(16):
++        meter.charge("bulk_slot_visits")
++        meter.charge("bulk_group_dictionary_attempts")
++        group = groups.get(slot)
++        if group is None:
++            continue
++        child = _name_radix_bulk(meter, group, shift + _NAME_RADIX_BITS)
++        bitmap |= 1 << slot
++        pending_count += _name_radix_pending_count(meter, child)
++        meter.charge("radix_child_list_reference_copies")
++        children.append(child)
++    meter.charge("radix_child_tuple_allocation")
++    meter.charge("radix_child_tuple_reference_copies", len(children))
++    frozen = tuple(children)
++    meter.charge("radix_branch_allocation")
++    meter.charge("radix_branch_field_reference_copies", 3)
++    return _NameRadixBranch(bitmap, frozen, pending_count)
++
++def _name_radix_names(meter, root, pending_only=False):
++    """Enumerate effective names; history contains no value-bearing roots."""
++    meter.charge("radix_walk_node_visits")
++    if root is None:
++        return
++    if pending_only and not _name_radix_pending_count(meter, root):
++        return
++    if isinstance(root, _NameRadixLeaf):
++        names = root.pending if pending_only else root.data
++        for name in names:
++            meter.charge("radix_walk_name_visits")
++            yield name
++    else:
++        for child in root.children:
++            meter.charge("radix_walk_child_reference_visits")
++            yield from _name_radix_names(meter, child, pending_only)
++
++class _NameOrder:
++    __slots__ = ("kind", "parents", "name", "cache")
++
++    def __init__(self, kind, parents=(), name=None, cache=None):
++        self.kind, self.parents, self.name, self.cache = kind, parents, name, cache
++
++def _name_order(meter, kind, parents=(), name=None, cache=None):
++    meter.charge("order_allocation")
++    meter.charge("order_field_reference_copies", 4)
++    if parents:
++        meter.charge("order_parent_tuple_allocation")
++        meter.charge("order_parent_reference_copies", len(parents))
++    return _NameOrder(kind, parents, name, cache)
++
++def _name_known_order(meter, order, staged):
++    meter.charge("order_cache_reads")
++    if order.cache is not None:
++        return order.cache
++    meter.charge("order_staging_lookup")
++    return staged[order]
++
++def _name_seal_order_table(meter, table):
++    meter.charge("order_proxy_allocation")
++    meter.charge("order_proxy_reference_copies")
++    return MappingProxyType(table)
++
++def _name_realize_order(meter, root):
++    """Build name-only order memos; publish none inside this preparation."""
++    meter.charge("order_cache_reads")
++    if root.cache is not None:
++        return root.cache, ()
++    meter.charge("order_temporary_allocations", 2)
++    staged = {}
++    stack = [("visit", root, None)]
++    meter.charge("order_stack_record_allocations")
++    meter.charge("order_stack_reference_copies", 4)
++    while stack:
++        meter.charge("order_stack_pops")
++        action, order, detail = stack.pop()
++        meter.charge("order_recipe_visits")
++        if action == "visit":
++            meter.charge("order_cache_reads")
++            if order.cache is not None:
++                continue
++            meter.charge("order_staging_lookup")
++            if order in staged:
++                continue
++            if order.kind in {"insert", "delete"}:
++                meter.charge("order_edit_list_allocation")
++                edits = []
++                base = order
++                while base.kind in {"insert", "delete"}:
++                    meter.charge("order_cache_reads")
++                    if base.cache is not None:
++                        break
++                    meter.charge("order_staging_lookup")
++                    if base in staged:
++                        break
++                    meter.charge("order_edit_visits")
++                    meter.charge("order_edit_reference_copies")
++                    edits.append(base)
++                    meter.charge("order_parent_reads")
++                    base = base.parents[0]
++                meter.charge("order_stack_record_allocations", 3)
++                meter.charge("order_stack_reference_copies", 10)
++                stack.append(("edit", order, (base, edits)))
++                stack.append(("visit", base, None))
++            elif order.kind == "union":
++                meter.charge("order_stack_record_allocations")
++                meter.charge("order_stack_reference_copies", 4)
++                stack.append(("union", order, None))
++                for parent in reversed(order.parents):
++                    meter.charge("order_parent_visits")
++                    meter.charge("order_stack_record_allocations")
++                    meter.charge("order_stack_reference_copies", 4)
++                    stack.append(("visit", parent, None))
++            elif order.kind == "empty":
++                meter.charge("order_dictionary_allocation")
++                table = {}
++                memo = _name_seal_order_table(meter, table)
++                meter.charge("order_staging_write")
++                meter.charge("order_staging_reference_copies", 2)
++                staged[order] = memo
++            else:
++                raise AssertionError("unknown order recipe")
++            continue
++        meter.charge("order_dictionary_allocation")
++        table = {}
++        if action == "edit":
++            base, edits = detail
++            for name in _name_known_order(meter, base, staged):
++                meter.charge("order_dictionary_key_visits")
++                meter.charge("order_dictionary_writes")
++                meter.charge("order_dictionary_reference_copies", 2)
++                table[name] = None
++            for edit in reversed(edits):
++                meter.charge("order_edit_application_visits")
++                if edit.kind == "insert":
++                    meter.charge("order_dictionary_writes")
++                    meter.charge("order_dictionary_reference_copies", 2)
++                    table[edit.name] = None
++                else:
++                    meter.charge("order_dictionary_deletes")
++                    del table[edit.name]
++        else:
++            meter.charge("order_union_view_list_allocation")
++            views = []
++            input_size = 0
++            for parent in order.parents:
++                meter.charge("order_parent_visits")
++                supplied = _name_known_order(meter, parent, staged)
++                meter.charge("order_union_input_size_reads")
++                input_size += len(supplied)
++                meter.charge("order_keys_view_allocation")
++                view = supplied.keys()
++                meter.charge("order_union_view_reference_copies")
++                views.append(view)
++            meter.charge("order_union_argument_tuple_allocation")
++            meter.charge("order_union_argument_reference_copies", len(views))
++            meter.charge("order_union_set_allocations", 2)
++            meter.charge("order_union_input_visits", input_size)
++            meter.charge("order_union_input_attempts", input_size)
++            union = set().union(*views)
++            meter.charge("order_union_unique_references", len(union))
++            for name in union:
++                meter.charge("order_union_output_visits")
++                meter.charge("order_dictionary_writes")
++                meter.charge("order_dictionary_reference_copies", 2)
++                table[name] = None
++        memo = _name_seal_order_table(meter, table)
++        meter.charge("order_staging_write")
++        meter.charge("order_staging_reference_copies", 2)
++        staged[order] = memo
++    return _name_known_order(meter, root, staged), staged
++
++def _name_charge_cache_commit(meter, staged, extra_writes=0):
++    meter.charge("cache_publication_visits", len(staged))
++    meter.charge("cache_publication_writes", len(staged) + extra_writes)
++
++def _name_commit_order(staged):
++    if staged:
++        for order, memo in staged.items():
++            order.cache = memo
++
++def _name_keys(owner):
++    meter = owner._meter
++    table, staged = _name_realize_order(meter, owner._name_order)
++    meter.charge("keys_view_allocation")
++    result = table.keys()
++    meter.charge("keys_return_reference")
++    _name_charge_cache_commit(meter, staged)
++    _name_commit_order(staged)
++    return result
++
++def _name_ordered_items(owner):
++    meter = owner._meter
++    meter.charge("items_cache_reads")
++    if owner._items_cache is not None:
++        meter.charge("items_cached_return_reference")
++        return owner._items_cache
++    table, staged = _name_realize_order(meter, owner._name_order)
++    meter.charge("items_result_tuple_allocation")
++    meter.charge("items_pair_generator_allocation")
++    def pairs():
++        for name in table:
++            meter.charge("items_key_visits")
++            entry = owner._entry(name)
++            if entry is _NAME_MISSING:
++                raise AssertionError("order contains an absent name")
++            meter.charge("items_entry_value_reads")
++            meter.charge("items_pair_allocation")
++            meter.charge("items_pair_reference_copies", 2)
++            meter.charge("items_result_reference_copies")
++            yield name, entry.value
++    result = tuple(pairs())
++    meter.charge("items_return_reference")
++    _name_charge_cache_commit(meter, staged, 1)
++    _name_commit_order(staged)
++    owner._items_cache = result
++    return result
++
++class _NameVersion:
++    __slots__ = ("_meter", "_root", "_history", "_order", "_size", "_items_cache")
++
++    def __init__(self, meter, root, history, order, size, items_cache=None):
++        meter.charge("version_allocation")
++        meter.charge("version_reference_copies", 6)
++        self._meter, self._root, self._name_history = meter, root, history
++        self._name_order, self._size, self._items_cache = order, size, items_cache
++
++    @classmethod
++    def empty(cls, meter):
++        meter.charge("empty_order_dictionary_allocation")
++        memo = _name_seal_order_table(meter, {})
++        return cls(meter, None, _name_history(meter, None, ()),
++                   _name_order(meter, "empty", cache=memo), 0)
++
++
++    @classmethod
++    def from_unique_entries(cls, meter, entries):
++        """One staged detached build; input iteration itself is not rolled back."""
++        meter.charge("bulk_input_iterator_requests")
++        meter.charge("bulk_record_list_allocation")
++        meter.charge("bulk_order_dictionary_allocation")
++        records, order = [], {}
++        for pair in entries:
++            meter.charge("bulk_input_visits")
++            meter.charge("bulk_pair_validation")
++            if type(pair) is not tuple or len(pair) != 2:
++                raise TypeError("bulk entries must be two-element tuples")
++            name, entry = pair
++            meter.charge("bulk_key_validation")
++            _name_check_name(name)
++            meter.charge("bulk_entry_validation")
++            if type(entry) is not _NameEntry or type(entry.no_work) is not bool:
++                raise TypeError("bulk entries require exact Entry(value, bool)")
++            meter.charge("bulk_uniqueness_attempts")
++            if name in order:
++                raise ValueError("bulk input contains a duplicate name")
++            meter.charge("bulk_order_writes")
++            meter.charge("bulk_order_reference_copies", 2)
++            order[name] = None
++            hashed = _name_radix_hash(meter, name)
++            meter.charge("bulk_record_allocation")
++            meter.charge("bulk_record_reference_copies", 3)
++            meter.charge("bulk_record_list_reference_copies")
++            records.append((name, entry, hashed))
++        root = _name_radix_bulk(meter, records)
++        memo = _name_seal_order_table(meter, order)
++        history = _name_history(meter, None, ())
++        recipe = _name_order(meter, "known", cache=memo)
++        meter.charge("bulk_size_reads")
++        result = cls(meter, root, history, recipe, len(order))
++        meter.charge("bulk_return_reference")
++        return result
++
++
++    def __len__(self):
++        self._meter.charge("size_read")
++        return self._size
++
++    def _entry(self, name):
++        return _name_radix_lookup(self._meter, self._root, name)
++
++    def get(self, name, default=None):
++        _name_check_name(name)
++        entry = self._entry(name)
++        return default if entry is _NAME_MISSING else entry.value
++
++    def set(self, name, value, *, no_work=False):
++        cursor = _NameCursor(self)
++        cursor.set(name, value, no_work=no_work)
++        return cursor.snapshot()
++
++    def delete(self, name):
++        cursor = _NameCursor(self)
++        cursor.delete(name)
++        return cursor.snapshot()
++
++    def fork(self):
++        self._meter.charge("fork_reference_copies")
++        return self
++
++    def keys(self):
++        return _name_keys(self)
++
++    def ordered_items(self):
++        return _name_ordered_items(self)
++
++@dataclass(frozen=True, slots=True)
++class _NamePublication:
++    version: _NameVersion
++    empty_tail: object
++    changed: bool
++
++def _name_prepare_publication(cursor):
++    """Stage private index paths/history; no owner or order-cache mutation."""
++    meter = cursor._meter
++    meter.charge("publication_tail_size_read")
++    dirty = bool(cursor._tail) or cursor._name_order is not cursor._base._name_order
++    if not dirty:
++        meter.charge("publication_plan_allocation")
++        meter.charge("publication_plan_reference_copies", 3)
++        return _NamePublication(cursor._base, None, False)
++    meter.charge("publication_change_tuple_allocation")
++    meter.charge("publication_change_entry_visits", len(cursor._tail))
++    meter.charge("publication_change_reference_copies", len(cursor._tail))
++    changes = tuple(cursor._tail)
++    history = _name_history(meter, cursor._base._name_history, changes)
++    root = cursor._base._root
++    for name, replacement in cursor._tail.items():
++        meter.charge("publication_private_entry_visits")
++        root = _name_radix_edit(meter, root, name, replacement, _name_radix_hash(meter, name))
++    if cursor._tail:
++        root = _name_radix_freeze(meter, root)
++    version = _NameVersion(meter, root, history, cursor._name_order,
++                          cursor._size, cursor._items_cache)
++    meter.charge("publication_fresh_tail_allocation")
++    empty_tail = {}
++    meter.charge("publication_plan_allocation")
++    meter.charge("publication_plan_reference_copies", 3)
++    return _NamePublication(version, empty_tail, True)
++
++def _name_charge_publication_commit(meter, plan):
++    if plan.changed:
++        meter.charge("snapshot_publications")
++        meter.charge("cursor_publication_reference_copies", 2)
++
++def _name_commit_publication(cursor, plan):
++    if plan.changed:
++        cursor._base = plan.version
++        cursor._tail = plan.empty_tail
++
++class _NameCursor:
++    __slots__ = ("_meter", "_base", "_tail", "_order", "_size", "_items_cache")
++
++    def __init__(self, version):
++        if not isinstance(version, _NameVersion):
++            raise TypeError("NameCursor requires an immutable NameVersion")
++        meter = version._meter
++        meter.charge("cursor_allocation")
++        meter.charge("cursor_reference_copies", 6)
++        meter.charge("cursor_tail_dictionary_allocation")
++        self._meter, self._base, self._tail = meter, version, {}
++        self._name_order, self._size = version._name_order, version._size
++        self._items_cache = version._items_cache
++
++    def __len__(self):
++        self._meter.charge("size_read")
++        return self._size
++
++    def _entry(self, name):
++        meter = self._meter
++        meter.charge("lookup_private_tail_attempts")
++        entry = self._tail.get(name, _NAME_MISSING)
++        if entry is _NAME_DELETED:
++            return _NAME_MISSING
++        if entry is not _NAME_MISSING:
++            return entry
++        return _name_radix_lookup(meter, self._base._root, name)
++
++    def get(self, name, default=None):
++        _name_check_name(name)
++        entry = self._entry(name)
++        return default if entry is _NAME_MISSING else entry.value
++
++    def _replace_entry(self, name, replacement):
++        """Private write. Compute/charge all new metadata before mutation."""
++        meter = self._meter
++        meter.charge("write_private_tail_attempts")
++        tail_entry = self._tail.get(name, _NAME_MISSING)
++        if tail_entry is _NAME_MISSING:
++            old = _name_radix_lookup(meter, self._base._root, name)
++        else:
++            old = _NAME_MISSING if tail_entry is _NAME_DELETED else tail_entry
++        if replacement is _NAME_DELETED and old is _NAME_MISSING:
++            raise KeyError(name)
++        inserted = old is _NAME_MISSING
++        deleted = replacement is _NAME_DELETED
++        order = self._name_order
++        if inserted:
++            order = _name_order(meter, "insert", (order,), name)
++        elif deleted:
++            order = _name_order(meter, "delete", (order,), name)
++        meter.charge("write_size_read")
++        size = self._size + int(inserted) - int(deleted)
++        meter.charge("private_dictionary_writes")
++        meter.charge("private_dictionary_reference_copies", 1 + int(tail_entry is _NAME_MISSING))
++        meter.charge("cursor_write_field_copies", 3)
++        self._tail[name] = replacement
++        self._name_order, self._size, self._items_cache = order, size, None
++
++    def set(self, name, value, *, no_work=False):
++        _name_check_name(name)
++        if type(no_work) is not bool:
++            raise TypeError("no_work must be bool")
++        self._meter.charge("entry_allocation")
++        self._meter.charge("entry_reference_copies", 2)
++        self._replace_entry(name, _NameEntry(value, no_work))
++
++    def delete(self, name):
++        _name_check_name(name)
++        self._replace_entry(name, _NAME_DELETED)
++
++    def snapshot(self):
++        meter = self._meter
++        meter.charge("snapshot_requests")
++        plan = _name_prepare_publication(self)
++        meter.charge("snapshot_return_reference")
++        _name_charge_publication_commit(meter, plan)
++        _name_commit_publication(self, plan)
++        return plan.version
++
++    def fork(self):
++        meter = self._meter
++        meter.charge("cursor_fork_requests")
++        plan = _name_prepare_publication(self)
++        result = _NameCursor(plan.version)
++        meter.charge("cursor_fork_return_reference")
++        _name_charge_publication_commit(meter, plan)
++        _name_commit_publication(self, plan)
++        return result
++
++    def keys(self):
++        return _name_keys(self)
++
++    def ordered_items(self):
++        return _name_ordered_items(self)
++
++def _name_common_history(meter, states):
++    base = states[0]._name_history
++    for index in range(1, len(states)):
++        meter.charge("history_input_visits")
++        other = states[index]._name_history
++        while base is not other:
++            meter.charge("history_identity_comparisons")
++            if base is None or other is None:
++                return None
++            meter.charge("history_depth_reads", 2)
++            if base.depth >= other.depth:
++                meter.charge("history_parent_reads")
++                base = base.parent
++            else:
++                meter.charge("history_parent_reads")
++                other = other.parent
++    return base
++
++def _name_pending_names(meter, state):
++    """Only effective pending entries exist in the current immutable root."""
++    yield from _name_radix_names(meter, state._root, pending_only=True)
++
++def _join_name_versions(meter, states, merge):
++    meter.charge("join_input_tuple_allocation")
++    states = tuple(state for state in states)
++    meter.charge("join_input_reference_copies", len(states))
++    for state in states:
++        meter.charge("join_input_validation")
++        if not isinstance(state, _NameVersion) or state._meter is not meter:
++            raise ValueError("all inputs must be immutable versions on the supplied meter")
++    if not states:
++        return _NameVersion.empty(meter)
++    if len(states) == 1:
++        return states[0].fork()
++    base = _name_common_history(meter, states)
++    meter.charge("join_candidate_dictionary_allocation")
++    candidates = {}
++    def remember(name):
++        meter.charge("candidate_dictionary_attempts")
++        if name not in candidates:
++            meter.charge("candidate_dictionary_writes")
++            meter.charge("candidate_reference_copies", 2)
++            candidates[name] = None
++    for state in states:
++        meter.charge("join_state_visits")
++        if base is None:
++            for name in _name_radix_names(meter, state._root):
++                remember(name)
++        else:
++            token = state._name_history
++            while token is not base:
++                meter.charge("history_change_token_visits")
++                for name in token.changes:
++                    meter.charge("history_changed_name_visits")
++                    remember(name)
++                meter.charge("history_parent_reads")
++                token = token.parent
++        for name in _name_pending_names(meter, state):
++            remember(name)
++    cursor = _NameCursor(states[0])
++    for name in candidates:
++        meter.charge("candidate_iteration")
++        meter.charge("merge_argument_tuple_allocation")
++        meter.charge("merge_argument_generator_allocation")
++        def arguments():
++            for state in states:
++                meter.charge("merge_input_visits")
++                entry = state._entry(name)
++                meter.charge("merge_argument_reference_copies")
++                yield _NAME_MISSING if entry is _NAME_MISSING else entry.value
++        supplied = tuple(arguments())
++        all_missing = True
++        for value in supplied:
++            meter.charge("merge_missing_visits")
++            if value is not _NAME_MISSING:
++                all_missing = False
++                break
++        if all_missing:
++            if cursor._entry(name) is not _NAME_MISSING:
++                cursor.delete(name)
++            continue
++        meter.charge("merge_callback_invocation")
++        entry = merge(name, supplied)
++        if not isinstance(entry, _NameEntry) or type(entry.no_work) is not bool:
++            raise TypeError("merge must return Entry(value, bool)")
++        cursor._replace_entry(name, entry)
++    meter.charge("order_parent_visits", len(states))
++    order = _name_order(meter, "union", tuple(state._name_order for state in states))
++    meter.charge("join_order_override_reference")
++    cursor._name_order = order
++    cursor._items_cache = None
++    return cursor.snapshot()
++
++
++class _ExecutionState(MutableMapping[str, _FlowValue]):
++    """Execution wrapper owning one private name cursor and branch authority."""
++
++    def __init__(self, values: Mapping[str, _FlowValue], budget: _AnalysisBudget,
++                 *, parent: Mapping[str, _FlowValue] | None = None,
++                 local_names: Iterable[str] = (), enabled: bool = True) -> None:
++        self.authority = (parent.authority.fork() if isinstance(parent, _ExecutionState)
++                          else _AuthorityState(budget, enabled))
++        self.bindings = (parent.bindings.fork() if isinstance(parent, _ExecutionState)
++                         else _AuthorityMap(budget))
++        meter = (parent._names._meter if isinstance(parent, _ExecutionState)
++                 else _NameMeter(budget))
++        # Capture the caller's iterable once. Keep duplicate/order semantics for
++        # local-cell allocation, with a separate membership index for inheritance.
++        meter.charge("adapter_local_order_allocation")
++        local_order = []
++        for name in local_names:
++            meter.charge("adapter_local_input_visits")
++            meter.charge("adapter_local_order_reference_copies")
++            local_order.append(name)
++        meter.charge("adapter_local_membership_allocation")
++        meter.charge("adapter_local_membership_input_visits", len(local_order))
++        meter.charge("adapter_local_membership_attempts", len(local_order))
++        local_set = frozenset(local_order)
++        meter.charge("adapter_local_membership_reference_copies", len(local_set))
++        for name in local_order if self.authority.enabled else ():
++            self.bindings[name] = (self.authority.identity(),)
++        if isinstance(parent, _ExecutionState) and values is parent and not local_order:
++            self._names = parent._names.fork()
++            return
++        self._names = _NameCursor(_NameVersion.empty(meter))
++        meter.charge("adapter_constructor_unique_guard")
++        if type(values) is dict or type(values) is _ExecutionState:
++            if type(values) is dict:
++                meter.charge("adapter_constructor_source_size_read")
++            if not values:
++                return
++            meter.charge("adapter_bulk_producer_function_allocation")
++            meter.charge("adapter_bulk_producer_closure_references", 5)
++
++            def constructor_entries():
++                if type(values) is dict:
++                    meter.charge("adapter_constructor_dict_items_allocation")
++                meter.charge("adapter_bulk_source_iterator_allocation")
++                for name, value in values.items():
++                    meter.charge("adapter_constructor_input_visits")
++                    inherited = _NAME_MISSING
++                    if isinstance(parent, _ExecutionState):
++                        meter.charge("adapter_local_membership_lookup")
++                        if name not in local_set:
++                            inherited = parent._names._entry(name)
++                    if inherited is not _NAME_MISSING and inherited.value is value:
++                        # Preserve the exact parent's proof OR pending debt.
++                        _name_check_name(name)
++                        entry = inherited
++                    else:
++                        entry = self._transferred_name_entry(value)
++                        _name_check_name(name)
++                        if self.authority.enabled:
++                            identities = self.bindings.get(name, ())
++                            self._write_cells(entry.value, identities)
++                    meter.charge("adapter_bulk_pair_allocation")
++                    meter.charge("adapter_bulk_pair_reference_copies", 2)
++                    yield name, entry
++
++            # No source observes partial self names in transfer/cell helpers.
++            # Only a completed detached build becomes the new name cursor.
++            meter.charge("adapter_bulk_producer_generator_allocation")
++            meter.charge("adapter_bulk_producer_generator_references", 5)
++            version = _NameVersion.from_unique_entries(meter, constructor_entries())
++            cursor = _NameCursor(version)
++            meter.charge("adapter_bulk_cursor_install_reference")
++            self._names = cursor
++            return
++        for name, value in values.items():
++            meter.charge("adapter_constructor_input_visits")
++            inherited = _NAME_MISSING
++            if isinstance(parent, _ExecutionState):
++                meter.charge("adapter_local_membership_lookup")
++                if name not in local_set:
++                    inherited = parent._names._entry(name)
++            if inherited is not _NAME_MISSING and inherited.value is value:
++                # Retain the exact parent's proof OR pending debt, without transfer.
++                _name_check_name(name)
++                self._names._replace_entry(name, inherited)
++            else:
++                self[name] = value
++
++    def __getitem__(self, name: str) -> _FlowValue:
++        _name_check_name(name)
++        entry = self._names._entry(name)
++        if entry is _NAME_MISSING:
++            raise KeyError(name)
++        return entry.value
++
++    def __len__(self) -> int:
++        return len(self._names)
++
++    def __iter__(self):
++        return iter(self.keys())
++
++    def __contains__(self, name: object) -> bool:
++        _name_check_name(name)
++        return self._names._entry(name) is not _NAME_MISSING
++
++    def get(self, name: str, default=None):
++        return self._names.get(name, default)
++
++    def items(self):
++        return self._names.ordered_items()
++
++    def keys(self):
++        return self._names.keys()
++
++    def values(self):
++        items = self._names.ordered_items()
++        meter = self._names._meter
++        meter.charge("adapter_values_tuple_allocation")
++        def values():
++            for _name, value in items:
++                meter.charge("adapter_values_item_visits")
++                meter.charge("adapter_values_reference_copies")
++                yield value
++        return tuple(values())
++
++    def cell(self, name: str) -> tuple[int, ...]:
++        if name not in self.bindings:
++            identity = self.authority.identity()
++            self.bindings[name] = (identity,)
++            self.authority.cells[identity] = self.get(
++                name, _flow_unknown("captured global binding is dynamically unresolved"))
++        return self.bindings[name]
++
++    def _transferred_name_entry(self, original: _FlowValue) -> _NameEntry:
++        enabled = self.authority.enabled
++        value = _transfer_authority(original, self)
++        meter = self._names._meter
++        no_work = False
++        meter.charge("certificate_enabled_check")
++        if enabled:
++            meter.charge("certificate_identity_check")
++            if value is original:
++                meter.charge("certificate_reference_check")
++                if not value.authority_refs:
++                    meter.charge("certificate_provenance_check")
++                    no_work = value.helper_provenance is None
++        meter.charge("entry_allocation")
++        meter.charge("entry_reference_copies", 2)
++        return _NameEntry(value, no_work)
++
++    def _project(self, name: str, value: _FlowValue) -> None:
++        # Raw installation always clears certification, including identical values.
++        self._names.set(name, value)
++
++    def _project_pop(self, name: str, default=None):
++        entry = self._names._entry(name)
++        if entry is _NAME_MISSING:
++            return default
++        self._names.delete(name)
++        return entry.value
++
++    def __setitem__(self, name: str, value: _FlowValue) -> None:
++        entry = self._transferred_name_entry(value)
++        _name_check_name(name)
++        self._names._replace_entry(name, entry)
++        # Uncaptured module globals retain immutable provenance in the value
++        # map. A cell is allocated only by actual lexical capture; locals were
++        # allocated for this activation at entry, including not-yet-bound ones.
++        if self.authority.enabled:
++            identities = self.bindings.get(name, ())
++            self._write_cells(entry.value, identities)
++
++    def _write_cells(self, value: _FlowValue, identities: tuple[int, ...]) -> None:
++        for identity in identities:
++            self.authority.cells[identity] = (value if len(identities) == 1 else
++                _merge_flow_values("alternative cell write", (
++                    self.authority.cells.get(identity), value)))
++
++    def __delitem__(self, name: str) -> None:
++        self._names.delete(name)
++        if self.authority.enabled:
++            identities = self.bindings.get(name, ())
++            for identity in identities:
++                deleted = _FlowValue("unbound", reason="deleted cell")
++                self.authority.cells[identity] = (deleted if len(identities) == 1 else
++                    _merge_flow_values("alternative cell delete", (
++                        self.authority.cells.get(identity), deleted)))
++
++    def pop(self, name: str, default: object = None) -> object:
++        if name not in self:
++            return default
++        value = self[name]
++        del self[name]
++        return value
++
++    def setdefault(self, name: str, default: _FlowValue) -> _FlowValue:
++        if name not in self:
++            self[name] = default
++        return self[name]
++
++    def update(self, supplied: object = (), **keywords: _FlowValue) -> None:
++        if isinstance(supplied, _ExecutionState):
++            # Seal before adoption or destination mutation, including update(self).
++            captured = supplied._names.snapshot()
++            previous = self._names
++            self.authority = supplied.authority.fork()
++            self.bindings = supplied.bindings.fork()
++            if not len(previous):
++                self._names = _NameCursor(captured)
++            else:
++                if previous._meter is not captured._meter:
++                    # Foreign history stays with its original meter.
++                    self._names = _NameCursor(_NameVersion.empty(captured._meter))
++                    for name, value in previous.ordered_items():
++                        self._project(name, value)
++                for name, value in captured.ordered_items():
++                    self._project(name, value)
++            for name, value in keywords.items():
++                self[name] = value
++            return
++        items = supplied.items() if isinstance(supplied, Mapping) else supplied
++        for name, value in items:
++            self[name] = value
++        for name, value in keywords.items():
++            self[name] = value
++
++    def clear(self) -> None:
++        # Detach names/history only; this is not a sequence of captured-cell deletes.
++        self._names = _NameCursor(_NameVersion.empty(self._names._meter))
++
++    def copy(self) -> "_ExecutionState":
++        self.authority.budget.consume(4)  # Wrapper allocation and its three field references.
++        result = object.__new__(_ExecutionState)
++        result._names = self._names.fork()
++        result.authority = self.authority.fork()
++        result.bindings = self.bindings.fork()
++        return result
++
++
+ @dataclass(slots=True)
+ class _FlowExceptionalState:
+     state: dict[str, _FlowValue]
+@@ -13896,13 +15219,13 @@
+         self.helper_registry = helper_registry or {}
+         self.helper_relative_path = helper_relative_path
+         self.active_helper_effects = active_helper_effects
++        self._definition_enclosing_values: Mapping[str, _FlowValue] | None = None
+         self._helper_rebound_names: set[str] = set()
+-        self._helper_return_obligations: dict[int, tuple[_FlowValue, ...]] = {}
+         self._projected_helper_bodies: frozenset[int] = frozenset()
+         self._native_coroutine_calls: set[int] = set()
+         self._annotation_effect_definitions: list[ast.FunctionDef] = []
+-        self._evaluated_authority_values: dict[int, _FlowValue] = {}
+         self._current_effect_values: dict[str, _FlowValue] | None = None
++        self._evaluation_depth = 0
+         self._helper_effect_shapes: dict[int, tuple[frozenset[str], bool]] = {}
+         self.invalid_helper_owners = set(invalid_helper_owners) | set(
+             getattr(self.helper_registry, "initial_member_mutations", ())
+@@ -14069,6 +15392,53 @@
+                     )
+                 )
+ 
++        self.values = _ExecutionState(
++            self.values, self.budget, parent=entry_values,
++            local_names=self.lexical_scope.local_names, enabled=bool(self.helper_registry),
++        )
++
++    def _fork_values(self, values: Mapping[str, _FlowValue]) -> _ExecutionState:
++        return (values.copy() if isinstance(values, _ExecutionState) else
++                _ExecutionState(values, self.budget, enabled=bool(self.helper_registry)))
++
++    def _authority(self, values: Mapping[str, _FlowValue]) -> _AuthorityState:
++        if isinstance(values, _ExecutionState):
++            return values.authority
++        # Only constructor/module seed evaluation precedes execution-state entry.
++        return _AuthorityState(self.budget, enabled=False)
++
++    def _transfer(self, value: _FlowValue, values: Mapping[str, _FlowValue],
++                  retained: Sequence[_FlowValue] = ()) -> _FlowValue:
++        if retained:
++            exact = tuple(item for item in retained if item.callable_definition is not None)
++            if value.kind == "unknown" and len(retained) == len(exact) == 1:
++                value = exact[0]
++            else:
++                value = replace(value, authority_refs=(), helper_obligations=(
++                    *value.helper_obligations, *retained))
++        return (_transfer_authority(value, values)
++                if isinstance(values, _ExecutionState) else value)
++
++    def _call_environment(self, value: _FlowValue,
++                          values: Mapping[str, _FlowValue]) -> _ExecutionState:
++        environment = self._fork_values(values)
++        alternatives: dict[str, tuple[int, ...]] = {}
++        for identity in value.authority_refs:
++            record = environment.authority.objects.get(identity)
++            if record is None:
++                continue
++            for name, cells in record.cells:
++                self.budget.consume(len(cells))
++                alternatives[name] = tuple(dict.fromkeys((*alternatives.get(name, ()), *cells)))
++        for name, cells in alternatives.items():
++            environment.bindings[name] = cells
++            captured = tuple(environment.authority.cells.get(cell) for cell in cells)
++            if any(item is not None and item.reason !=
++                   "captured global binding is dynamically unresolved" for item in captured):
++                environment._project(name, _merge_flow_values(
++                    f"captured cell {name}", captured))
++        return environment
++
+     def _flow_decorator_preserves_identity(self, value: _FlowValue) -> bool:
+         marker: str | None = None
+         if (
+@@ -14704,7 +16074,7 @@
+             )
+             return None
+ 
+-        local = dict(values)
++        local = self._fork_values(values)
+         local[positional[0].arg] = element
+         if marker is not None:
+             if marker in self._active_local_helper_returns:
+@@ -15752,7 +17122,7 @@
+         arguments: Mapping[int, _FlowValue] | None = None,
+     ) -> None:
+         key = id(node)
+-        self._call_states.setdefault(key, []).append(dict(values))
++        self._call_states.setdefault(key, []).append(self._fork_values(values))
+         self._call_values.setdefault(key, []).append(callable_value)
+         merged_values = self._merge_states(self._call_states[key])
+         merged_callable = _merge_flow_values(
+@@ -15843,7 +17213,7 @@
+     ) -> tuple[dict[str, str], list[str], str | None]:
+         if node is None:
+             return {}, [], None
+-        value = self._evaluate(node, dict(values), False)
++        value = self._evaluate(node, self._fork_values(values), False)
+         if value.kind == "environment":
+             environment = value.value
+             if not isinstance(environment, _FlowEnvironment):
+@@ -15944,7 +17314,7 @@
+         if self._throw_states is not None:
+             self._throw_states.append(
+                 _FlowExceptionalState(
+-                    dict(values),
++                    self._fork_values(values),
+                     exception_tag,
+                     explicit,
+                 )
+@@ -15957,7 +17327,7 @@
+         *,
+         record: bool = True,
+     ) -> tuple[bool, _FlowValue, dict[str, _FlowValue], list[_FlowExceptionalState]]:
+-        current = dict(values)
++        current = self._fork_values(values)
+         outer = self._throw_states
+         thrown: list[_FlowExceptionalState] = []
+         self._throw_states = thrown
+@@ -16058,7 +17428,7 @@
+     ) -> bool:
+         resume = self._resume_deferred_local_generator_value(
+             value,
+-            dict(values),
++            self._fork_values(values),
+             mode="full",
+             publish=False,
+         )
+@@ -16303,7 +17673,7 @@
+             self.exception_scope.shadowed_names,
+             self.exception_scope.enclosing_names,
+         )
+-        local = dict(values)
++        local = self._fork_values(values)
+         for name in definition_scope.local_names - definition_scope.parameter_names:
+             local[name] = _FlowValue(
+                 "unbound",
+@@ -16312,7 +17682,7 @@
+         refreshed_bindings: list[tuple[str, _FlowValue]] = []
+         for name, binding in state.bindings:
+             identity = binding.mutable_collection_identity
+-            refreshed = next(
++            refreshed = binding if identity is None else next(
+                 (
+                     candidate
+                     for candidate in values.values()
+@@ -16326,7 +17696,7 @@
+         refreshed_frame: list[tuple[str, _FlowValue]] = []
+         for name, frame_value in state.frame:
+             identity = frame_value.mutable_collection_identity
+-            refreshed = next(
++            refreshed = frame_value if identity is None else next(
+                 (
+                     candidate
+                     for candidate in values.values()
+@@ -16372,7 +17742,7 @@
+                         supported = False
+                         break
+                     if successors.normal:
+-                        local = dict(successors.normal[0])
++                        local = self._fork_values(successors.normal[0])
+                         index += 1
+                         continue
+                     exhausted = True
+@@ -16821,7 +18191,7 @@
+         self._throw_states = []
+         try:
+             try:
+-                supplied = self._evaluate(node, dict(values), False)
++                supplied = self._evaluate(node, self._fork_values(values), False)
+             except _ExpressionDoesNotComplete:
+                 return False
+         finally:
+@@ -16919,7 +18289,7 @@
+             )
+ 
+         try:
+-            local = dict(values)
++            local = self._fork_values(values)
+             node = state.expression
+             first = node.generators[0]
+             self._assign(
+@@ -17027,7 +18397,7 @@
+             state.identity,
+             replace(state, remaining=0),
+         )
+-        local = dict(values)
++        local = self._fork_values(values)
+         first = node.generators[0]
+         self._assign(
+             first.target,
+@@ -17119,7 +18489,7 @@
+         reconciled_bindings: list[tuple[str, _FlowValue]] = []
+         for name, binding in bindings:
+             identity = binding.mutable_collection_identity
+-            current = next(
++            current = binding if identity is None else next(
+                 (
+                     candidate
+                     for candidate in values.values()
+@@ -17177,11 +18547,11 @@
+         )
+         if status != "valid":
+             return None
+-        local = dict(values)
++        local = self._fork_values(values)
+         local.update(
+             (
+                 name,
+-                next(
++                value if value.mutable_collection_identity is None else next(
+                     (
+                         candidate
+                         for candidate in values.values()
+@@ -17237,22 +18607,31 @@
+         if not defaults:
+             arguments = definition.args
+             positional = (*arguments.posonlyargs, *arguments.args)
+-            defaults = tuple((argument.arg, self._evaluate(expression, dict(default_scope), False))
++            defaults = tuple((argument.arg, self._evaluate(expression, self._fork_values(default_scope), False))
+                              for argument, expression in zip(
+                                  positional[len(positional) - len(arguments.defaults):],
+                                  arguments.defaults, strict=True,
+                              ))
+-            defaults += tuple((argument.arg, self._evaluate(expression, dict(default_scope), False))
++            defaults += tuple((argument.arg, self._evaluate(expression, self._fork_values(default_scope), False))
+                               for argument, expression in zip(
+                                   arguments.kwonlyargs, arguments.kw_defaults, strict=True,
+                               ) if expression is not None)
+-        return replace(
+-            value, callable_defaults=defaults,
+-            callable_definition=definition, callable_scope=self.lexical_scope,
+-            callable_free_values=tuple((name, values[name])
+-                                       for name in sorted(self._callable_free_names(definition))
+-                                       if name in values),
+-        )
++        enclosing_values = (self._definition_enclosing_values
++                            if self._definition_enclosing_values is not None else values)
++        value = self._transfer(replace(
++            value, authority_refs=(), callable_defaults=defaults,
++            callable_definition=definition, callable_scope=None, callable_free_values=(),
++        ), values)
++        if isinstance(values, _ExecutionState) and isinstance(enclosing_values, _ExecutionState):
++            cells = tuple((name, enclosing_values.cell(name))
++                          for name in sorted(self._callable_free_names(definition)))
++            for _name, alternatives in cells:
++                for cell in alternatives:
++                    values.authority.cells[cell] = enclosing_values.authority.cells[cell]
++            for identity in value.authority_refs:
++                record = values.authority.objects[identity]
++                values.authority.objects[identity] = replace(record, cells=cells)
++        return value
+ 
+     def _reachable_helper_authorities(
+         self, value: _FlowValue, values: Mapping[str, _FlowValue],
+@@ -17260,6 +18639,8 @@
+         """Follow retained authority without executing a callback or changing its value."""
+         pending = [value]
+         seen: set[int] = set()
++        seen_authority: set[int] = set()
++        store = self._authority(values)
+         owners: dict[str, _FlowValue] = {}
+         callables: list[_FlowValue] = []
+         while pending:
+@@ -17268,6 +18649,16 @@
+             if id(current) in seen:
+                 continue
+             seen.add(id(current))
++            for identity in current.authority_refs:
++                if identity in seen_authority:
++                    continue
++                seen_authority.add(identity)
++                record = store.objects.get(identity)
++                if record is not None:
++                    pending.extend((replace(record.value, authority_refs=(identity,)), *record.retained))
++                    pending.extend(store.cells.get(cell, _FlowValue(
++                        "unbound", reason="captured cell is unbound"))
++                                   for _name, cells in record.cells for cell in cells)
+             if current.helper_provenance is not None:
+                 owners.setdefault(current.helper_provenance.key, current)
+             elif current.kind == "helper_deferred_refusal":
+@@ -17276,13 +18667,8 @@
+                 pending.append(current.helper_receiver)
+             pending.extend(item for _name, item in current.callable_defaults)
+             pending.extend(current.helper_obligations)
+-            captured = dict(current.callable_free_values)
+             if current.callable_definition is not None:
+                 callables.append(current)
+-                names = self._callable_free_names(current.callable_definition)
+-                if current.callable_scope is self.lexical_scope:
+-                    captured.update((name, values[name]) for name in names if name in values)
+-                pending.extend(captured.values())
+             if current.kind in {'sequence', 'slice', 'maybe_unbound'}:
+                 pending.extend(item for item in current.value if isinstance(item, _FlowValue))
+             elif current.kind in {'mapping', 'mapping_keys'}:
+@@ -17341,7 +18727,7 @@
+             keywords=[ast.keyword(arg=name, value=ast.Name(id="callback_keyword"))
+                       for name in required_keywords],
+         ), definition)
+-        return self._project_helper_call_effects(call, value, arguments, keywords, dict(values))
++        return self._project_helper_call_effects(call, value, arguments, keywords, self._fork_values(values))
+ 
+     def _refuse_helper_authority(
+         self, site: ast.AST, owners: Sequence[_FlowValue], reason: str,
+@@ -17398,10 +18784,10 @@
+                              [_flow_unknown("implicit receiver context is unresolved")])
+                 keywords: list[_FlowValue] = []
+                 if name in {"__call__", "__init__", "__new__"} and isinstance(site, ast.Call):
+-                    arguments.extend(self._evaluated_authority_values.get(
++                    arguments.extend(self._authority(values).observed.get(
+                         id(argument), _flow_unknown("implicit argument context is unresolved"),
+                     ) for argument in site.args)
+-                    keywords.extend(self._evaluated_authority_values.get(
++                    keywords.extend(self._authority(values).observed.get(
+                         id(keyword.value), _flow_unknown("implicit keyword context is unresolved"),
+                     ) for keyword in site.keywords)
+                     call_keywords = site.keywords
+@@ -17515,10 +18901,14 @@
+             definition.stable_imports, self.budget,
+         )
+         # Global names use the defining module, never a caller's unrelated locals.
+-        environment = {
+-            name: _flow_qname(qualified) for name, qualified in definition.aliases.items()
+-        }
+-        environment.update(seeds)
++        environment = _ExecutionState({}, self.budget, parent=values)
++        for name, qualified in definition.aliases.items():
++            environment[name] = _flow_qname(qualified)
++        for name, seed in seeds.items():
++            previous = values.get(name)
++            environment[name] = (previous if previous is not None
++                                 and previous.helper_provenance == seed.helper_provenance
++                                 and name not in self.lexical_scope.local_names else seed)
+         for name, expression in definition.module_assignments.items():
+             if name not in seeds:
+                 environment[name] = self._evaluate(expression, environment, False)
+@@ -17583,9 +18973,7 @@
+         definition = callable_value.callable_definition
+         assert isinstance(definition, (ast.FunctionDef, ast.AsyncFunctionDef))
+         marker = _definition_point_marker(definition)
+-        environment = dict(values)
+-        if callable_value.callable_scope is not self.lexical_scope:
+-            environment.update(callable_value.callable_free_values)
++        environment = self._call_environment(callable_value, values)
+         probe = _SourceOrderedResolver(
+             {}, {}, {}, budget=self.budget,
+             exception_scope=self.exception_scope, lexical_scope=self.lexical_scope,
+@@ -17617,7 +19005,7 @@
+         ) for key in sorted(probe.invalid_helper_owners - self.invalid_helper_owners))
+         if retain_callable_results:
+             effects += tuple(owner
+-                             for returned in probe._helper_return_obligations.get(id(node), ())
++                             for returned in probe._authority(probe.values).results.get(id(node), ())
+                              if returned.callable_definition is not None
+                              for owner in probe._reachable_helper_authorities(
+                                  returned, probe.values,
+@@ -17675,7 +19063,7 @@
+             constructed = self._with_callable_authority(
+                 _flow_qname(definition.name), definition, values,
+             )
+-            construction_values = dict(values)
++            construction_values = self._fork_values(values)
+             construction_values["__construction_argument__"] = constructed
+             for decorator in reversed(definition.decorator_list):
+                 if _resolved_qualified_name(decorator, _flow_aliases(values)) in {
+@@ -17704,19 +19092,124 @@
+                     expression, f"helper namespace {kind} effects are dynamically unresolved",
+                 ))
+ 
++    def _has_callable_authority(self, value: _FlowValue,
++                                values: Mapping[str, _FlowValue]) -> bool:
++        pending = [value]
++        seen: set[int] = set()
++        store = self._authority(values)
++        while pending:
++            self.budget.consume()
++            item = pending.pop()
++            if item.callable_definition is not None or item.helper_provenance is not None:
++                return True
++            for identity in item.authority_refs:
++                if identity not in seen and identity in store.objects:
++                    seen.add(identity)
++                    record = store.objects[identity]
++                    pending.extend((record.value, *record.retained))
++            pending.extend(item.helper_obligations)
++            if item.kind == "sequence":
++                pending.extend(item.value)
++            elif item.kind in {"mapping", "mapping_keys"}:
++                pending.extend(child for _key, child in item.value)
++        return False
++
++    def _authority_object_value(self, value: _FlowValue,
++                                values: Mapping[str, _FlowValue]) -> _FlowValue:
++        store = self._authority(values)
++        records = tuple(store.objects[identity].value for identity in value.authority_refs
++                        if identity in store.objects)
++        if len(records) == 1:
++            return replace(records[0], authority_refs=value.authority_refs)
++        return value
++
++    def _collection_authority_result(
++        self, node: ast.Call, owner: _FlowValue, arguments: Sequence[_FlowValue],
++        keywords: Sequence[_FlowValue], values: dict[str, _FlowValue],
++    ) -> _FlowValue | None:
++        if not isinstance(node.func, ast.Attribute) or keywords:
++            return None
++        current = self._authority_object_value(owner, values)
++        method = node.func.attr
++        if len(owner.authority_refs) > 1 and method in {"pop", "popitem", "clear", "setdefault"}:
++            self._refuse_helper_authority(node, self._reachable_helper_authorities(owner, values),
++                                          "helper namespace collection aliases are dynamically unresolved")
++            return self._transfer(_flow_unknown("alternative collection mutation is unresolved"),
++                                  values, (owner,))
++        if (not self.helper_registry or _flow_is_sensitive(current)
++                or current.kind not in {"sequence", "mapping"} or not owner.authority_refs
++                or not self._has_callable_authority(current, values)):
++            return None
++        result = None
++        updated = current
++        if current.kind == "mapping":
++            items = dict(current.value)
++            if method in {"get", "pop", "setdefault"} and 1 <= len(arguments) <= 2:
++                key = arguments[0]
++                if key.kind != "scalar" or type(key.value) not in {str, int, bool, type(None)}:
++                    return self._transfer(_flow_unknown(
++                        "collection result authority is unresolved"), values, (owner,))
++                if key.value in items:
++                    result = items[key.value]
++                    if method == "pop":
++                        del items[key.value]
++                elif method in {"get", "setdefault"} or len(arguments) == 2:
++                    result = arguments[1] if len(arguments) == 2 else _FlowValue("scalar", None)
++                    if method == "setdefault":
++                        items[key.value] = result
++                else:
++                    self._record_throw_state(values, "KeyError", True)
++                    if self._throw_states is not None:
++                        raise _ExpressionDoesNotComplete
++                    return None
++                updated = replace(current, value=tuple(items.items()))
++            elif method == "popitem" and not arguments:
++                if not items:
++                    self._record_throw_state(values, "KeyError", True)
++                    if self._throw_states is not None:
++                        raise _ExpressionDoesNotComplete
++                    return None
++                key, item = items.popitem()
++                result = _FlowValue("sequence", (_FlowValue("scalar", key), item))
++                updated = replace(current, value=tuple(items.items()))
++        elif method == "pop" and len(arguments) <= 1:
++            index = arguments[0] if arguments else _FlowValue("scalar", -1)
++            if index.kind == "scalar" and type(index.value) is int:
++                items = list(current.value)
++                if not -len(items) <= index.value < len(items):
++                    self._record_throw_state(values, "IndexError", True)
++                    if self._throw_states is not None:
++                        raise _ExpressionDoesNotComplete
++                    return None
++                result = items.pop(index.value)
++                updated = replace(current, value=tuple(items))
++        if method == "clear" and not arguments:
++            result = _FlowValue("scalar", None)
++            updated = replace(current, value=())
++        if result is None:
++            return None
++        # Capture the extracted object's references before removing any edge.
++        result = self._transfer(result, values)
++        if updated is not current:
++            store = self._authority(values)
++            for identity in owner.authority_refs:
++                record = store.objects[identity]
++                self.budget.consume(1 + len(updated.value))
++                store.objects[identity] = replace(
++                    record, value=replace(updated, authority_refs=()), retained=())
++        return result
++
+     def _retain_native_collection_authority(
+         self, owner: _FlowValue, supplied: Sequence[_FlowValue],
+         values: dict[str, _FlowValue],
+     ) -> None:
+-        retained = tuple(value for value in supplied
+-                         if self._reachable_helper_authorities(value, values))
+-        if not retained:
+-            return
+-        for name, candidate in tuple(values.items()):
+-            if candidate.mutable_collection_identity == owner.mutable_collection_identity:
+-                values[name] = replace(candidate, helper_obligations=(
+-                    *candidate.helper_obligations, *retained,
+-                ))
++        store = self._authority(values)
++        retained = tuple(self._transfer(value, values) for value in supplied)
++        for identity in owner.authority_refs:
++            record = store.objects.get(identity)
++            if record is not None:
++                self.budget.consume(len(retained) + 1)
++                store.objects[identity] = replace(record, retained=(*record.retained, *retained))
+ 
+     def _retain_native_list_call(
+         self, node: ast.Call, arguments: Sequence[_FlowValue],
+@@ -17724,7 +19217,21 @@
+     ) -> bool:
+         if not isinstance(node.func, ast.Attribute):
+             return False
+-        owner = self._evaluated_authority_values.get(id(node.func.value))
++        owner = self._authority(values).observed.get(id(node.func.value))
++        if owner is not None and owner.mutable_collection and not keywords:
++            current = self._authority_object_value(owner, values)
++            arity = len(arguments)
++            if current.kind == "mapping" and (
++                node.func.attr in {"get", "pop", "setdefault"} and 1 <= arity <= 2
++                or node.func.attr in {"popitem", "clear", "items", "keys", "values", "copy"}
++                and not arity
++            ):
++                return True
++            if current.kind == "sequence" and (
++                node.func.attr == "pop" and arity <= 1
++                or node.func.attr in {"clear", "copy"} and not arity
++            ):
++                return True
+         if (owner is None or owner.container_kind != "list" or not owner.mutable_collection
+                 or owner.mutable_collection_identity is None):
+             return False
+@@ -17744,7 +19251,25 @@
+             return False
+         # Only builtin retention is discharged here. The legacy collection path
+         # still owns shape invalidation and exceptions; no callback body runs.
+-        self._retain_native_collection_authority(owner, arguments, values)
++        current = self._authority_object_value(owner, values)
++        if current.kind == "sequence":
++            items = list(current.value)
++            if method == "append":
++                items.append(arguments[0])
++            elif method == "extend":
++                items.extend(arguments[0].value)
++            else:
++                items.insert(arguments[0].value, arguments[1])
++            self.budget.container(len(items))
++            updated = self._transfer(replace(current, authority_refs=(), value=tuple(items)), values)
++            store = self._authority(values)
++            for identity in owner.authority_refs:
++                record = store.objects.get(identity)
++                if record is not None:
++                    store.objects[identity] = replace(record, value=replace(
++                        updated, authority_refs=()))
++        else:
++            self._retain_native_collection_authority(owner, arguments, values)
+         return True
+ 
+     def _apply_helper_call_effects(
+@@ -17759,6 +19284,10 @@
+                   and isinstance(callable_value.value, tuple)
+                   else str(callable_value.value) if callable_value.kind == "qname" else None)
+         local = self._local_function_definitions.get(marker or "")
++        if (isinstance(callable_value.callable_definition, ast.FunctionDef)
++                and callable_value.kind != "deferred_local_generator_factory"):
++            local = (callable_value.callable_definition, callable_value.callable_defaults)
++            marker = _definition_point_marker(callable_value.callable_definition)
+         proof = callable_value.helper_provenance
+         registered = (self.helper_registry.get(proof.key)
+                       if proof is not None and proof.kind == "callable" else None)
+@@ -17768,7 +19297,7 @@
+             return
+         progressed = list(explicit)
+         if isinstance(node.func, ast.Attribute) and node.func.attr != "close":
+-            receiver = self._evaluated_authority_values.get(id(node.func.value))
++            receiver = self._authority(values).observed.get(id(node.func.value))
+             if receiver is not None:
+                 progressed.append(receiver)
+         progressed_ids = {id(value) for value in progressed if value.native_unstarted_coroutine}
+@@ -17796,7 +19325,7 @@
+                         raise _ExpressionDoesNotComplete
+                     return
+             if isinstance(definition, ast.AsyncFunctionDef):
+-                self._helper_return_obligations[id(node)] = self._project_helper_call_effects(
++                self._authority(values).results[id(node)] = self._project_helper_call_effects(
+                     node, callable_value, arguments, keywords, values,
+                 )
+                 if not _has_yield_in_lexical_body(definition, self.budget):
+@@ -17824,7 +19353,7 @@
+                     and id(definition) not in self._projected_helper_bodies)
+         loaded, has_stores = self._helper_effect_shape(definition)
+         if local is not None:
+-            environment = dict(values)
++            environment = self._call_environment(callable_value, values)
+             defaults = callable_value.callable_defaults
+             module_names = self.module_bound_names
+             enclosing = self.exception_scope.enclosing_names | self.lexical_scope.local_names
+@@ -17855,9 +19384,12 @@
+                     raise _ExpressionDoesNotComplete
+             return
+         scope = _lexical_binding_scope(definition)
+-        environment = {name: value for name, value in environment.items()
+-                       if name not in scope.local_names}
+-        environment.update(bindings)
++        environment = self._fork_values(environment)
++        for name in scope.local_names:
++            environment._project_pop(name, None)
++        # Parameter binding belongs to the fresh activation, not a caller cell.
++        for name, value in bindings:
++            environment._project(name, value)
+         input_names = loaded | {name for name, _value in bindings}
+         relevant = tuple(owner for name in input_names if name in environment
+                          for owner in self._reachable_helper_authorities(
+@@ -17875,9 +19407,19 @@
+                 _DeferredLocalGeneratorFactory(marker or proof.key, definition, defaults),
+                 identity, id(node), bindings, supported=False, exact_full_review=False,
+             ))
+-        if (not relevant and not has_stores and not self.active_helper_effects
++        if (not relevant and not has_stores and not any(
++                value.authority_refs or value.callable_definition is not None
++                for _name, value in bindings) and not self.active_helper_effects
+                 and id(definition) not in self._projected_helper_bodies):
+             return
++        if (registered is not None and status == "valid"
++                and callable_value.helper_refusal is None
++                and id(definition) not in self.active_helper_effects
++                and len(self.active_helper_effects) >= MAXIMUM_ANALYSIS_HELPER_DEPTH):
++            # This proved activation already reaches the existing helper-depth
++            # limit. Do not replace the depth refusal with an effect blocker and
++            # expand the same helper closure again in the legacy review pass.
++            raise InventoryError("analysis helper depth exceeds 64")
+         if (status != "valid" or callable_value.helper_refusal is not None
+                 or id(definition) in self.active_helper_effects
+                 or len(self.active_helper_effects) >= MAXIMUM_ANALYSIS_HELPER_DEPTH):
+@@ -17897,10 +19439,23 @@
+         probe._local_function_definitions.update(self._local_function_definitions)
+         probe._deferred_local_generator_definitions.update(self._deferred_local_generator_definitions)
+         successors = probe._flow_statements(definition.body, probe.values)
+-        self._helper_return_obligations[id(node)] = tuple(
+-            returned for returned in probe.return_values
+-            if probe._reachable_helper_authorities(returned, probe.values)
+-        )
++        completed_states = [*successors.normal, *successors.returns,
++                            *(item.state for item in successors.raises)]
++        if completed_states and isinstance(values, _ExecutionState):
++            merged = probe._merge_states(completed_states)
++            observed = values.authority.observed
++            results = values.authority.results
++            values.authority = merged.authority.fork()
++            # Only live object/cell changes leave an activation. Expression
++            # observations/results belong to the caller's evaluation stack.
++            values.authority.observed = observed.fork()
++            values.authority.results = results.fork()
++            for name, cells in values.bindings.items():
++                if name in values:
++                    current = tuple(values.authority.cells.get(cell) for cell in cells)
++                    values._project(name, _merge_flow_values(
++                        f"current cell {name}", current))
++        self._authority(values).results[id(node)] = tuple(probe.return_values)
+         self.invalid_helper_owners.update(probe.invalid_helper_owners)
+         for name in probe._helper_rebound_names:
+             # A cell/global binding changes, not the object retained by another
+@@ -17959,32 +19514,55 @@
+     ) -> _FlowValue:
+         previous = self._current_effect_values
+         self._current_effect_values = values
+-        if isinstance(node, ast.Call):
+-            self._helper_return_obligations.pop(id(node), None)
+-            self._native_coroutine_calls.discard(id(node))
++        self._evaluation_depth += 1
+         try:
++            if (self._evaluation_depth == 1 and isinstance(values, _ExecutionState)
++                    and values.authority.enabled):
++                # Operand observations belong to one outer expression. Keep all
++                # nested callee/argument/member observations until it completes,
++                # then start the next expression without obsolete scratch history.
++                # Existing call snapshots keep their own frozen table; live
++                # objects, cells and pending return results are not cleared.
++                values.authority.observed.clear()
++            if isinstance(node, ast.Call):
++                self._authority(values).results.pop(id(node), None)
++                self._native_coroutine_calls.discard(id(node))
+             result = self._evaluate_value(node, values, record)
+-            obligations = self._helper_return_obligations.pop(id(node), ())
++            obligations = self._authority(values).results.pop(id(node), ())
+             if id(node) in self._native_coroutine_calls:
+                 result = replace(result, native_unstarted_coroutine=True)
+                 self._native_coroutine_calls.discard(id(node))
++            if isinstance(node, ast.Subscript) and not _flow_is_sensitive(result):
++                owner = self._authority(values).observed.get(id(node.value))
++                index = self._authority(values).observed.get(id(node.slice))
++                if (owner is not None and index is not None and index.kind == "scalar"
++                        and self._has_callable_authority(owner, values)):
++                    current = self._authority_object_value(owner, values)
++                    if current.kind == "sequence" and type(index.value) is int:
++                        if -len(current.value) <= index.value < len(current.value):
++                            result = current.value[index.value]
++                    elif current.kind == "mapping":
++                        result = next((item for key, item in current.value
++                                       if key == index.value), result)
+             if isinstance(node, (ast.Subscript, ast.Attribute)) and result.kind == "unknown":
+-                owner = self._evaluated_authority_values.get(id(node.value))
++                owner = self._authority(values).observed.get(id(node.value))
+                 if owner is not None:
+                     retained = owner.helper_obligations
++                    if (isinstance(node, ast.Subscript) or owner.callable_definition is not None
++                            or owner.kind in {"sequence", "mapping", "mapping_keys"}):
++                        retained = (owner,) if owner.authority_refs else retained
+                     if (isinstance(node, ast.Attribute) and node.attr == "close"
+                             and owner.native_unstarted_coroutine):
+                         # This proof belongs only to a newly created native coroutine.
+                         # An arbitrary returned object's close gets no such exemption.
+                         retained = ()
+                     obligations += retained
+-            if obligations:
+-                result = replace(result, helper_obligations=(
+-                    *result.helper_obligations, *obligations,
+-                ))
+-            self._evaluated_authority_values[id(node)] = result
++            result = self._transfer(result, values, obligations)
++            if self._authority(values).enabled:
++                self._authority(values).observed[id(node)] = result
+             return result
+         finally:
++            self._evaluation_depth -= 1
+             self._current_effect_values = previous
+ 
+     def _evaluate_value(
+@@ -18426,7 +20004,7 @@
+             )
+         if isinstance(node, ast.BoolOp):
+             outer = self._throw_states
+-            active: list[dict[str, _FlowValue]] = [dict(values)]
++            active: list[dict[str, _FlowValue]] = [self._fork_values(values)]
+             finished: list[tuple[dict[str, _FlowValue], _FlowValue]] = []
+             for index, item in enumerate(node.values):
+                 following: list[dict[str, _FlowValue]] = []
+@@ -18468,7 +20046,7 @@
+                     # Unknown truthiness has both the short-circuit and the
+                     # continue successor; only the latter evaluates later
+                     # operands and commits their side effects.
+-                    finished.append((dict(current), supplied))
++                    finished.append((self._fork_values(current), supplied))
+                     following.append(current)
+                 active = following
+                 if not active and index < len(node.values) - 1:
+@@ -19535,6 +21113,11 @@
+                             direct_owner.mutable_collection_identity
+                         ),
+                     )
++                authority_result = self._collection_authority_result(
++                    node, direct_owner, argument_values, keyword_values, values,
++                )
++                if authority_result is not None:
++                    return authority_result
+                 mutation_methods = {
+                     "__delitem__",
+                     "__iadd__",
+@@ -19876,7 +21459,7 @@
+                 )
+                 return _FlowValue("generator", state)
+             repeated: int | None = 1
+-            local_values = dict(values)
++            local_values = self._fork_values(values)
+             may_skip_evaluation = False
+             skipped_states: list[dict[str, _FlowValue]] = []
+             for generator in node.generators:
+@@ -19977,7 +21560,7 @@
+                     ):
+                         repeated = None
+                         may_skip_evaluation = True
+-                        skipped_states.append(dict(local_values))
++                        skipped_states.append(self._fork_values(local_values))
+                 if repeated == 0:
+                     break
+             expressions = (
+@@ -20200,8 +21783,23 @@
+                 and owner.container_kind in {"list", "dict"}
+                 and index.kind == "scalar" and type(index.value) in {str, int, bool, type(None)}
+             )
+-            if native_storage:
++            if native_storage and len(owner.authority_refs) > 1:
++                self._refuse_helper_authority(target, self._reachable_helper_authorities(owner, values),
++                                              "helper namespace collection aliases are dynamically unresolved")
+                 self._retain_native_collection_authority(owner, (value,), values)
++            elif native_storage:
++                current = self._authority_object_value(owner, values)
++                if current.kind == "sequence" and type(index.value) is int and (
++                    -len(current.value) <= index.value < len(current.value)
++                ):
++                    items = list(current.value)
++                    items[index.value] = self._transfer(value, values)
++                    for identity in owner.authority_refs:
++                        record = self._authority(values).objects[identity]
++                        self._authority(values).objects[identity] = replace(
++                            record, value=replace(current, authority_refs=(), value=tuple(items)))
++                else:
++                    self._retain_native_collection_authority(owner, (value,), values)
+         if not native_storage and isinstance(target, (ast.Attribute, ast.Subscript)) and (
+             _flow_contains_helper_identity(value, self.budget)
+         ):
+@@ -20657,14 +22255,109 @@
+         self,
+         states: Sequence[Mapping[str, _FlowValue]],
+     ) -> dict[str, _FlowValue]:
+-        names = set().union(*(state.keys() for state in states))
+-        return {
+-            name: _merge_flow_values(
+-                name,
+-                tuple(state.get(name) for state in states),
+-            )
+-            for name in names
+-        }
++        if not states:
++            return _ExecutionState({}, self.budget, enabled=bool(self.helper_registry))
++        if len(states) == 1:
++            return self._fork_values(states[0])
++        result = self._fork_values(states[0])
++        for state in states[1:]:
++            if isinstance(state, _ExecutionState):
++                result.authority.join(state.authority)
++                if result.bindings.data is not state.bindings.data:
++                    for name, cells in state.bindings.items():
++                        result.bindings[name] = tuple(dict.fromkeys((
++                            *result.bindings.get(name, ()), *cells)))
++        compatible = result.authority.enabled
++        if compatible:
++            for state in states:
++                self.budget.consume()  # Actual compatibility input visit.
++                if (not isinstance(state, _ExecutionState)
++                        or not state.authority.enabled
++                        or state._names._meter is not result._names._meter
++                        or state.authority.budget is not result.authority.budget):
++                    compatible = False
++                    break
++        binding_plan: list[tuple[str, tuple[int, ...]]] = []
++        if compatible:
++            self.budget.consume(2)  # Plan list and overlap set.
++            seen: set[int] = set()
++            for name, cells in result.bindings.items():
++                participating = False
++                for state in states:
++                    self.budget.consume()  # Actual input visit; lookup charges its backing.
++                    if name in state:
++                        participating = True
++                        break
++                if not participating:
++                    continue
++                for identity in cells:
++                    self.budget.consume(2)  # Cell visit plus seen-identity lookup.
++                    if identity in seen or identity not in result.authority.cells:
++                        compatible = False
++                        break
++                    self.budget.consume()  # Remember this distinct existing cell.
++                    seen.add(identity)
++                if not compatible:
++                    break
++                self.budget.consume(4)  # Pair allocation, two fields and list reference.
++                binding_plan.append((name, cells))
++        # Capture all state names before callbacks or result projection changes.
++        # Plain Mapping inputs remain plain; no extra state conversion/transfer.
++        self.budget.consume(1 + 2 * len(states))  # Tuple, input visits and references.
++        name_inputs = tuple(
++            state._names.snapshot() if isinstance(state, _ExecutionState) else state
++            for state in states
++        )
++        if not compatible:
++            self.budget.consume(1 + len(states))  # Key-view argument tuple and references.
++            key_views = tuple(state.keys() for state in name_inputs)
++            self.budget.consume(2 + 2 * sum(len(state) for state in name_inputs))
++            names = set().union(*key_views)
++            self.budget.consume(len(names))  # Unique set references.
++            result.clear()
++            meter = result._names._meter
++            meter.charge("adapter_bulk_producer_function_allocation")
++            meter.charge("adapter_bulk_producer_closure_references", 5)
++
++            def merged_entries():
++                meter.charge("adapter_bulk_source_iterator_allocation")
++                for name in names:
++                    self.budget.consume()  # Actual legacy union-name iteration.
++                    meter.charge("adapter_merge_values_generator_allocation")
++                    meter.charge("adapter_merge_values_iterator_allocation")
++                    meter.charge("adapter_merge_values_generator_references", 2)
++                    self.budget.consume(1 + 2 * len(name_inputs))
++                    supplied = tuple(state.get(name) for state in name_inputs)
++                    entry = result._transferred_name_entry(_merge_flow_values(name, supplied))
++                    _name_check_name(name)
++                    if result.authority.enabled:
++                        identities = result.bindings.get(name, ())
++                        result._write_cells(entry.value, identities)
++                    meter.charge("adapter_bulk_pair_allocation")
++                    meter.charge("adapter_bulk_pair_reference_copies", 2)
++                    yield name, entry
++
++            # Preserve every ordered transfer/cell effect; build names once.
++            meter.charge("adapter_bulk_producer_generator_allocation")
++            meter.charge("adapter_bulk_producer_generator_references", 5)
++            version = _NameVersion.from_unique_entries(meter, merged_entries())
++            cursor = _NameCursor(version)
++            meter.charge("adapter_bulk_cursor_install_reference")
++            result._names = cursor
++            return result
++
++        def merge_name(name: str, supplied: tuple[object, ...]) -> _NameEntry:
++            self.budget.consume(1 + 2 * len(supplied))  # Missing-value translation tuple.
++            values = tuple(None if value is _NAME_MISSING else value for value in supplied)
++            return result._transferred_name_entry(_merge_flow_values(name, values))
++
++        result._names = _NameCursor(_join_name_versions(
++            result._names._meter, name_inputs, merge_name))
++        # Distinct existing cells commute; every strong/weak write still occurs.
++        for name, cells in binding_plan:
++            self.budget.consume()  # Plan iteration; projected lookup charges its backing.
++            result._write_cells(result[name], cells)
++        return result
+ 
+     def _capture_auxiliary_state(self) -> tuple[
+         dict[str, _FlowValue],
+@@ -20929,7 +22622,7 @@
+         statements: Sequence[ast.stmt],
+         values: Mapping[str, _FlowValue],
+     ) -> _FlowSuccessors:
+-        result = _FlowSuccessors([dict(values)], [], [], [], [])
++        result = _FlowSuccessors([self._fork_values(values)], [], [], [], [])
+         for statement in statements:
+             next_normal: list[dict[str, _FlowValue]] = []
+             for current in result.normal:
+@@ -20951,7 +22644,7 @@
+         values: dict[str, _FlowValue],
+         expressions: Sequence[ast.AST | None],
+     ) -> _FlowSuccessors:
+-        current = dict(values)
++        current = self._fork_values(values)
+         outer = self._throw_states
+         raised: list[_FlowExceptionalState] = []
+         self._throw_states = raised
+@@ -20986,12 +22679,7 @@
+                 values,
+             )
+             if completed:
+-                owners = self._reachable_helper_authorities(returned, current)
+-                if owners:
+-                    returned = replace(returned, helper_obligations=(
+-                        *returned.helper_obligations, *owners,
+-                    ))
+-                self.return_values.append(returned)
++                self.return_values.append(self._transfer(returned, current))
+                 if _flow_contains_deferred_generator(
+                     returned
+                 ) and self._deferred_generator_value_is_sensitive(
+@@ -21018,7 +22706,7 @@
+                     [],
+                     [
+                         _FlowExceptionalState(
+-                            dict(values),
++                            self._fork_values(values),
+                             self._active_exception_tag,
+                             True,
+                         )
+@@ -21042,7 +22730,7 @@
+             cause_validation = self._cause_validation(statement.cause, current)
+             if cause_validation in {"invalid", "unknown"}:
+                 raised.append(
+-                    _FlowExceptionalState(dict(current), "TypeError", True)
++                    _FlowExceptionalState(self._fork_values(current), "TypeError", True)
+                 )
+             raise_success, raise_error, _raise_unknown = (
+                 _builtin_exception_constructor_outcome(
+@@ -21052,7 +22740,7 @@
+             )
+             if raise_error is not None and raise_success is None:
+                 raised.append(
+-                    _FlowExceptionalState(dict(current), raise_error, True)
++                    _FlowExceptionalState(self._fork_values(current), raise_error, True)
+                 )
+             elif cause_validation != "invalid":
+                 exception_expression = statement.exc
+@@ -21080,9 +22768,9 @@
+                 raised,
+             )
+         if isinstance(statement, ast.Break):
+-            return _FlowSuccessors([], [dict(values)], [], [], [])
++            return _FlowSuccessors([], [self._fork_values(values)], [], [], [])
+         if isinstance(statement, ast.Continue):
+-            return _FlowSuccessors([], [], [dict(values)], [], [])
++            return _FlowSuccessors([], [], [self._fork_values(values)], [], [])
+         if isinstance(statement, ast.If):
+             completed, test, current, thrown = self._evaluate_with_successors(
+                 statement.test,
+@@ -21115,7 +22803,7 @@
+             self._merge_auxiliary_states(branch_auxiliary)
+             return self._coalesce_successors(result)
+         if isinstance(statement, (ast.With, ast.AsyncWith)):
+-            current = dict(values)
++            current = self._fork_values(values)
+             result = _FlowSuccessors.empty()
+             suppress_arguments: list[tuple[ast.expr, ...]] = []
+             for item in statement.items:
+@@ -21182,7 +22870,7 @@
+                     if "invalid" in outcomes:
+                         result.raises.append(
+                             _FlowExceptionalState(
+-                                dict(exceptional.state),
++                                self._fork_values(exceptional.state),
+                                 "TypeError",
+                                 True,
+                             )
+@@ -21218,7 +22906,7 @@
+             setattr(statement.iter, "_pontius_iteration_bound", bound)
+             completed: list[dict[str, _FlowValue]] = []
+             if bound != 0:
+-                entered = dict(current)
++                entered = self._fork_values(current)
+                 if iterator.kind == "sequence" and iterator.value:
+                     iteration_value = _merge_flow_values(
+                         "loop target",
+@@ -21237,7 +22925,7 @@
+                 result.returns.extend(body.returns)
+                 result.raises.extend(body.raises)
+             if bound in {0, None}:
+-                completed.append(dict(current))
++                completed.append(self._fork_values(current))
+             for state in completed:
+                 self._extend_successors(
+                     result,
+@@ -21310,7 +22998,7 @@
+                 )
+             exhausted = after_states if finite else []
+             if truth is None:
+-                exhausted.append(dict(current))
++                exhausted.append(self._fork_values(current))
+             if bound is None:
+                 result.normal.extend(after_states)
+             for state in exhausted:
+@@ -21327,11 +23015,11 @@
+             result = _FlowSuccessors([], [], [], [], thrown)
+             if not completed:
+                 return self._coalesce_successors(result)
+-            residual = [dict(current)]
++            residual = [self._fork_values(current)]
+             for case in statement.cases:
+                 next_residual: list[dict[str, _FlowValue]] = []
+                 for incoming in residual:
+-                    case_state = dict(incoming)
++                    case_state = self._fork_values(incoming)
+                     self._bind_match_pattern(
+                         case.pattern,
+                         subject,
+@@ -21400,7 +23088,7 @@
+                     residual: _FlowExceptionalState | None = exceptional
+                     for handler in statement.handlers:
+                         initial_handler_state = self._exceptional_environment_state(
+-                            dict(residual.state)
++                            self._fork_values(residual.state)
+                         )
+                         completed, _handler_value, handler_state, handler_throws = (
+                             self._evaluate_with_successors(
+@@ -21435,7 +23123,7 @@
+                         ) and not handler_throws:
+                             result.raises.append(
+                                 _FlowExceptionalState(
+-                                    dict(handler_state),
++                                    self._fork_values(handler_state),
+                                     None,
+                                     True,
+                                 )
+@@ -21443,7 +23131,7 @@
+                         if validation in {"invalid", "unknown"}:
+                             result.raises.append(
+                                 _FlowExceptionalState(
+-                                    dict(handler_state),
++                                    self._fork_values(handler_state),
+                                     "TypeError",
+                                     True,
+                                 )
+@@ -21563,7 +23251,7 @@
+         dict[str, _FlowValue] | None,
+         dict[str, _FlowValue] | None,
+     ]:
+-        normal_states: list[dict[str, _FlowValue]] = [dict(values)]
++        normal_states: list[dict[str, _FlowValue]] = [self._fork_values(values)]
+         exceptional_states: list[dict[str, _FlowValue]] = []
+         for statement in statements:
+             next_normal: list[dict[str, _FlowValue]] = []
+@@ -21598,7 +23286,7 @@
+         if isinstance(statement, ast.Raise):
+             self._evaluate(statement.exc, values)
+             self._evaluate(statement.cause, values)
+-            return [], [dict(values)]
++            return [], [self._fork_values(values)]
+         if isinstance(statement, ast.If):
+             test = self._evaluate(statement.test, values)
+             branches: tuple[Sequence[ast.stmt], ...]
+@@ -21613,7 +23301,7 @@
+             for branch in branches:
+                 branch_normal, branch_exceptional = self._try_body_states(
+                     branch,
+-                    dict(values),
++                    self._fork_values(values),
+                 )
+                 if branch_normal is not None:
+                     normal.append(branch_normal)
+@@ -21621,7 +23309,7 @@
+                     exceptional.append(branch_exceptional)
+             return normal, exceptional
+         if isinstance(statement, (ast.With, ast.AsyncWith)):
+-            current = dict(values)
++            current = self._fork_values(values)
+             for item in statement.items:
+                 supplied = self._evaluate(item.context_expr, current)
+                 if item.optional_vars is not None:
+@@ -21635,13 +23323,13 @@
+                 [] if exceptional is None else [exceptional],
+             )
+         if isinstance(statement, (ast.For, ast.AsyncFor)):
+-            current = dict(values)
++            current = self._fork_values(values)
+             iterator = self._evaluate(statement.iter, current)
+             bound = self._iteration_bound_value(iterator)
+             normal: list[dict[str, _FlowValue]] = []
+             exceptional: list[dict[str, _FlowValue]] = []
+             if bound != 0:
+-                entered = dict(current)
++                entered = self._fork_values(current)
+                 if iterator.kind == "sequence" and iterator.value:
+                     iteration_value = _merge_flow_values(
+                         "loop target",
+@@ -21675,7 +23363,7 @@
+                     exceptional.append(else_raised)
+             return completed, exceptional
+         if isinstance(statement, ast.While):
+-            current = dict(values)
++            current = self._fork_values(values)
+             test = self._evaluate(statement.test, current)
+             truth = bool(test.value) if test.kind == "scalar" else None
+             normal: list[dict[str, _FlowValue]] = []
+@@ -21683,7 +23371,7 @@
+             if truth is not False:
+                 body, raised = self._try_body_states(
+                     statement.body,
+-                    dict(current),
++                    self._fork_values(current),
+                 )
+                 if body is not None:
+                     normal.append(body)
+@@ -21704,13 +23392,13 @@
+             return completed, exceptional
+         if isinstance(statement, ast.Match):
+             subject = self._evaluate(statement.subject, values)
+-            residual = [dict(values)]
++            residual = [self._fork_values(values)]
+             normal: list[dict[str, _FlowValue]] = []
+             exceptional: list[dict[str, _FlowValue]] = []
+             for case in statement.cases:
+                 next_residual: list[dict[str, _FlowValue]] = []
+                 for incoming in residual:
+-                    case_state = dict(incoming)
++                    case_state = self._fork_values(incoming)
+                     self._bind_match_pattern(case.pattern, subject, case_state)
+                     guard = self._evaluate(case.guard, case_state)
+                     guard_true = guard.kind == "scalar" and guard.value is True
+@@ -21718,7 +23406,7 @@
+                     if not guard_false:
+                         body, raised = self._try_body_states(
+                             case.body,
+-                            dict(case_state),
++                            self._fork_values(case_state),
+                         )
+                         if body is not None:
+                             normal.append(body)
+@@ -21733,9 +23421,9 @@
+                     break
+             normal.extend(residual)
+             return normal, exceptional
+-        current = self._statements((statement,), dict(values))
++        current = self._statements((statement,), self._fork_values(values))
+         exceptional = (
+-            [dict(current)]
++            [self._fork_values(current)]
+             if any(
+                 isinstance(candidate, (ast.Call, ast.Await))
+                 for candidate in _metered_ast_walk(statement, self.budget)
+@@ -21744,11 +23432,10 @@
+         )
+         return [current], exceptional
+ 
+-    @staticmethod
+     def _exceptional_environment_state(
+-        values: dict[str, _FlowValue],
++        self, values: dict[str, _FlowValue],
+     ) -> dict[str, _FlowValue]:
+-        result = dict(values)
++        result = self._fork_values(values)
+         for name, value in tuple(result.items()):
+             if value.kind != "environment":
+                 continue
+@@ -21893,15 +23580,15 @@
+                 )
+                 if test.kind == "scalar" and type(test.value) is bool:
+                     chosen = statement.body if test.value else statement.orelse
+-                    chosen_state = self._statements(chosen, dict(values))
++                    chosen_state = self._statements(chosen, self._fork_values(values))
+                     values.clear()
+                     values.update(chosen_state)
+                     continue
+                 incoming_auxiliary = self._capture_auxiliary_state()
+-                first = self._statements(statement.body, dict(values))
++                first = self._statements(statement.body, self._fork_values(values))
+                 first_auxiliary = self._capture_auxiliary_state()
+                 self._restore_auxiliary_state(incoming_auxiliary)
+-                second = self._statements(statement.orelse, dict(values))
++                second = self._statements(statement.orelse, self._fork_values(values))
+                 second_auxiliary = self._capture_auxiliary_state()
+                 self._merge_auxiliary_states((
+                     first_auxiliary,
+@@ -21925,7 +23612,7 @@
+                 bound = self._iteration_bound_value(iterator)
+                 self.flow.iterator_bounds[id(statement.iter)] = bound
+                 setattr(statement.iter, "_pontius_iteration_bound", bound)
+-                body_state = dict(values)
++                body_state = self._fork_values(values)
+                 if iterator.kind == "sequence" and iterator.value:
+                     iteration_value = _merge_flow_values(
+                         "loop target",
+@@ -21939,7 +23626,7 @@
+                 self._assign(statement.target, iteration_value, body_state)
+                 body_state = self._statements(statement.body, body_state)
+                 if bound == 0:
+-                    merged = dict(values)
++                    merged = self._fork_values(values)
+                 elif bound is not None:
+                     merged = body_state
+                 else:
+@@ -21962,13 +23649,13 @@
+                 if test_truth is False:
+                     setattr(statement, "_pontius_iteration_bound", 0)
+                     setattr(statement, "_pontius_condition_evaluations", 1)
+-                    merged = dict(values)
++                    merged = self._fork_values(values)
+                 else:
+                     control = _outer_loop_control_outcomes(statement.body)
+-                    body = self._statements(statement.body, dict(values))
++                    body = self._statements(statement.body, self._fork_values(values))
+                     after = self._evaluate(
+                         statement.test,
+-                        dict(body),
++                        self._fork_values(body),
+                         False,
+                     )
+                     after_truth = (
+@@ -22020,17 +23707,17 @@
+             if isinstance(statement, try_types):
+                 body, raised = self._try_body_states(
+                     statement.body,
+-                    dict(values),
++                    self._fork_values(values),
+                 )
+                 alternatives: list[dict[str, _FlowValue]] = []
+                 if body is not None:
+                     alternatives.append(
+-                        self._statements(statement.orelse, dict(body))
++                        self._statements(statement.orelse, self._fork_values(body))
+                     )
+                 if raised is not None:
+                     for handler in statement.handlers:
+                         handler_state = self._exceptional_environment_state(
+-                            dict(raised)
++                            self._fork_values(raised)
+                         )
+                         self._evaluate(handler.type, handler_state)
+                         alternatives.append(
+@@ -22041,7 +23728,7 @@
+                         raise RuntimeError(
+                             "try analysis produced no successor state"
+                         )
+-                    alternatives.append(dict(raised))
++                    alternatives.append(self._fork_values(raised))
+                 merged = self._merge_states(alternatives)
+                 merged = self._statements(statement.finalbody, merged)
+                 values.clear()
+@@ -22050,11 +23737,11 @@
+             if isinstance(statement, ast.Match):
+                 subject = self._evaluate(statement.subject, values)
+                 alternatives: list[dict[str, _FlowValue]] = []
+-                residual_states: list[dict[str, _FlowValue]] = [dict(values)]
++                residual_states: list[dict[str, _FlowValue]] = [self._fork_values(values)]
+                 for case in statement.cases:
+                     next_residual: list[dict[str, _FlowValue]] = []
+                     for residual in residual_states:
+-                        case_state = dict(residual)
++                        case_state = self._fork_values(residual)
+                         self._bind_match_pattern(
+                             case.pattern,
+                             subject,
+@@ -22076,12 +23763,12 @@
+                         )
+                         if not guard_false:
+                             alternatives.append(
+-                                self._statements(case.body, dict(case_state))
++                                self._statements(case.body, self._fork_values(case_state))
+                             )
+                         if case.guard is not None and not guard_true:
+                             next_residual.append(case_state)
+                         if not _pattern_is_irrefutable(case.pattern):
+-                            next_residual.append(dict(residual))
++                            next_residual.append(self._fork_values(residual))
+                     residual_states = next_residual
+                     if not residual_states:
+                         break
+@@ -22195,6 +23882,10 @@
+                     namespace_effects=_helper_local_namespace_effects(statement, self.budget),
+                 ), statement, values)
+                 for decorator_value in reversed(decorator_values):
++                    if (self._definition_enclosing_values is not None
++                            and decorator_value.kind == "qname"
++                            and decorator_value.value in {"staticmethod", "classmethod", "property"}):
++                        continue
+                     application = ast.copy_location(ast.Call(
+                         func=ast.Name(id="decorator"),
+                         args=[ast.Name(id=statement.name)], keywords=[],
+@@ -22202,7 +23893,7 @@
+                     self._apply_helper_call_effects(
+                         application, decorator_value, (installed,), (), values,
+                     )
+-                    obligations = self._helper_return_obligations.pop(id(application), ())
++                    obligations = self._authority(values).results.pop(id(application), ())
+                     decorator_name: str | None = None
+                     decorator_summary: _BoundedCallableSummary | None = None
+                     if decorator_value.kind == "qname":
+@@ -22267,7 +23958,7 @@
+                         installed = replace(installed, helper_obligations=(
+                             *installed.helper_obligations, *obligations,
+                         ))
+-                values[statement.name] = installed
++                values[statement.name] = self._transfer(installed, values)
+                 continue
+             if isinstance(statement, ast.ClassDef):
+                 decorator_values = tuple(
+@@ -22334,20 +24025,33 @@
+                         (ast.FunctionDef, ast.AsyncFunctionDef),
+                     )
+                 ]
+-                class_values = dict(values)
++                class_values = self._fork_values(values)
++                # Class locals are a separate namespace; method free cells belong
++                # to the enclosing activation, not this source-point name map.
++                class_values.bindings = _AuthorityMap(self.budget)
+                 method_authorities: list[_FlowValue] = []
+                 for item in statement.body:
++                    if (not self.helper_registry
++                            and isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))):
++                        # The helper-disabled protocol prepass retains its original
++                        # dormant method metadata. The dedicated definition-time
++                        # visitor checks eager construction expressions, and the
++                        # descriptor analysis below owns implicit method protocols.
++                        # Full method installation belongs to helper-enabled flow;
++                        # repeating it here would rescan every dormant method body.
++                        method_authorities.append(_flow_qname(item.name))
++                        continue
++                    previous_enclosing = self._definition_enclosing_values
+                     if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
+-                        self._record_callable_construction_obligations(
+-                            item, class_values, descriptor_metadata=True,
+-                        )
+-                        # Defaults see the class namespace at this source point;
+-                        # a method body's free names still see its enclosing scope.
+-                        method_authorities.append(self._with_callable_authority(
+-                            _flow_qname(item.name), item, values, default_values=class_values,
+-                        ))
+-                    else:
++                        self._definition_enclosing_values = values
++                    try:
+                         class_values = self._statements((item,), class_values)
++                    finally:
++                        self._definition_enclosing_values = previous_enclosing
++                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
++                        method_authorities.append(class_values[item.name])
++                if isinstance(values, _ExecutionState):
++                    values.authority = class_values.authority.fork()
+                 for member_name in _class_namespace_assignment_names(
+                     class_statements
+                 ):
+@@ -22433,7 +24137,7 @@
+                         "decorated local class identity is dynamically unresolved"
+                     )
+                     break
+-                values[statement.name] = installed
++                values[statement.name] = self._transfer(installed, values)
+                 continue
+             for child in ast.iter_child_nodes(statement):
+                 self._evaluate(child, values)
+@@ -24139,7 +25843,10 @@
+             caller if caller is not None and caller.node is node else None
+         )
+     body_receiver_kinds = dict(receiver_kinds)
+-    provenance_entries = dict(entry_values or {})
++    provenance_entries = _ExecutionState(
++        entry_values or {}, analysis_budget, parent=entry_values,
++        enabled=bool(helper_registry),
++    )
+     if class_name is not None:
+         for name, kind in receiver_kinds.items():
+             # A recursive caller supplies source-point values, including lost proof.
+@@ -24643,10 +26350,11 @@
+                 analysis_budget=analysis_budget,
+                 invalid_helper_owners=source_flow.invalid_helper_owners_by_call.get(id(call), ()),
+                 receiver_kinds={},
+-                entry_values={
+-                    name: value for name, value in source_flow.values_by_call[id(call)].items()
+-                    if name not in _lexical_binding_scope(local_node).local_names
+-                },
++                entry_values=_ExecutionState(
++                    {name: value for name, value in source_flow.values_by_call[id(call)].items()
++                     if name not in _lexical_binding_scope(local_node).local_names},
++                    analysis_budget, parent=source_flow.values_by_call[id(call)],
++                ),
+             )
+             site_key = site_keys[id(call)]
+             scaled, scale_blockers = _scale_nested_review_rows(

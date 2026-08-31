@@ -1,0 +1,27 @@
+{
+  "schema": "coordinator-v24-port-red-verification-v1",
+  "receipt_sha256": "c9e6cb1e958bc6a8e15f0989841e5a1562dc3682286c07e7a6b44b95ee9339e1",
+  "source_sha256": "156ee88a99abb26edeaaf178841c72e89f2bdc15696c37ef91f4dcc54b767431",
+  "files_rehashed": 1766,
+  "interpreter": [
+    3,
+    11,
+    15
+  ],
+  "completed_test_methods": 53,
+  "subtest_failures": 137,
+  "subtest_errors": 742,
+  "slot_assignment_mismatches": {
+    "_NameVersion": [
+      "_name_history",
+      "_name_order"
+    ],
+    "_NameCursor": [
+      "_name_order"
+    ]
+  },
+  "payload_executed_by_verifier": false,
+  "interpretation": "Port construction fails before analyzer fitness can be evaluated. Counts are cascading subtest outcomes, not879 independent defects.",
+  "root_review_correction": "Root's namespaced-AST comparison repeated the author's token conversion and therefore was not independent evidence of binding-preserving renaming. It missed attributes sharing spelling with module functions while string slots stayed unchanged.",
+  "disposition": "Retain v24 rejected. v26 may correct member names only, preserving all adapter effects/costs/algorithms. Recheck slot/member symmetry and symbol-aware prototype equivalence, then rerun unchanged design53 on311. No314/matrix/corpus expansion yet."
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "coordinator-original-ten-inspection-v1",
+  "payload_executed": false,
+  "input_pins": {
+    "original-composition-ten-control-v1.py": "20f196243e078ef542628b6a400ab2266443c1b1d918327ee14004f98e564bb4",
+    "original-composition-ten-probe-v1.py": "e2564b1d1d61c0a92e449f80eb5118eb72141b3fabd9022cf2b2881d1c56927e",
+    "original-composition-ten-plan-v1.md": "3b330b732d99bdf02bae7b270a57f1d9cc0352fe1db573f5148c751084ad3f1a",
+    "storage-composition-cases-v1.json": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709",
+    "scalar-class-composition-cases-v1.json": "50e88cedf77f902012237ccd88700c911fa8f3681c8dada380cca6c3142659ac",
+    "class-semantic-extension-control-v2.py": "d76b3d07b1b5f855a58050c876ddce57b60929302745fd8116eca109a77b2149",
+    "class-semantic-extension-probe-v2.py": "40240ceb30d676a71182c68d03a09970296b604d6d3d136b4b2b9952aec25084"
+  },
+  "classifications": {
+    "clean": 5,
+    "refuse": 5
+  },
+  "both_original_model_runners_and_public_review_ast_equal": true,
+  "controller_changed_functions": [
+    "main",
+    "validate_result"
+  ],
+  "manual_review": [
+    "Read complete probe and controller deltas; both frozen case packs and original harmless runners preserved.",
+    "No route observer/private-state reads; real public analyzer output determines semantic expectations.",
+    "Exact identity+10cases+summary stream, all source pins, exact Boolean/integer completion types.",
+    "Floor raw setup/stream/manifest/HEAD/status replay binds same candidate before developer comparison.",
+    "Fresh1768/1773 manifests plus separately hashed manifest, scrubbed environment,60s directchildwatchdog."
+  ],
+  "disposition": "No blocker found in bounded static review. Root may dispatch only after reviewing the named retained source.",
+  "limits": "No execution yet. Completed intact semantic RED can replicate to314; incomplete/oracle/infrastructure failure cannot. Not a cold verdict."
+}

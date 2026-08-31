@@ -1,0 +1,119 @@
+{
+  "schema": "coordinator-v23-semantic-verification-v2",
+  "runs": [
+    {
+      "group": "original-composition-ten",
+      "slot": "311",
+      "receipt_sha256": "57b0e9a5478f4f7f7c94ff46cc28f45ab0ca7b38b474149e124da3bdf900e5cd",
+      "manifest_sha256": "d390a669a2978de60c1f8a1ce522582e8511d35de167f70d6451702fa595e559",
+      "snapshot": "D:\\pontius-snapshots\\original-composition-ten-c079733caf1c47f4be2b764537946c3b\\snapshot",
+      "rehashed_files": 1769,
+      "cases": 10,
+      "passed": 10,
+      "semantic_failures": [],
+      "same_case_records_across_interpreters": false
+    },
+    {
+      "group": "original-composition-ten",
+      "slot": "314",
+      "receipt_sha256": "e74caa55ac367b5442ed34bb0e52b7a56ead23cfeaafeda24f5a202b8e90e63f",
+      "manifest_sha256": "a6ba08fab697ff35a973871e271a6c0e570a59fbe3644ed9887d7f88eec6855d",
+      "snapshot": "D:\\pontius-snapshots\\original-composition-ten-820b6c687ca141d7878ada1bd48d292e\\snapshot",
+      "rehashed_files": 1774,
+      "cases": 10,
+      "passed": 10,
+      "semantic_failures": [],
+      "same_case_records_across_interpreters": true
+    },
+    {
+      "group": "class-extension",
+      "slot": "311",
+      "receipt_sha256": "7536482e030cb2d31267c06bd4ad537e1a82c9bdd3dfb427887d27af023f1e1a",
+      "manifest_sha256": "9e2539f5e6e20ed634a82ec554d471deb3a941906ddfa63d463d5be2270696ac",
+      "snapshot": "D:\\pontius-snapshots\\class-extension-5d5038c5d664402a877092cd9a178298\\snapshot",
+      "rehashed_files": 1768,
+      "cases": 12,
+      "passed": 11,
+      "semantic_failures": [
+        "forwarded-grandparent-unsafe"
+      ],
+      "same_case_records_across_interpreters": false
+    },
+    {
+      "group": "class-extension",
+      "slot": "314",
+      "receipt_sha256": "cd19e112b59cdc77c21c7144111eb4e36e44dfc3d2dc9020c6868b94978c21f5",
+      "manifest_sha256": "5d96e7c5370c07862d3a68b98954bbc6b9e3550792981b6227aff63445fbd17c",
+      "snapshot": "D:\\pontius-snapshots\\class-extension-35c32b7fed724e41a04f36b99f4aa563\\snapshot",
+      "rehashed_files": 1773,
+      "cases": 12,
+      "passed": 11,
+      "semantic_failures": [
+        "forwarded-grandparent-unsafe"
+      ],
+      "same_case_records_across_interpreters": true
+    },
+    {
+      "group": "class-name-boundary",
+      "slot": "311",
+      "receipt_sha256": "e296229f1aa8b5ac84fe74cd38f36e0fffd1665b6a061b3e7fabb0ea44da9a51",
+      "manifest_sha256": "2de09704eb7c3aefea9f729d22d34b2635295bdf3a1bd4428e01781fb35c9f2a",
+      "snapshot": "D:\\pontius-snapshots\\class-name-boundary-8fe502aa1ae345d997afd633b266750e\\snapshot",
+      "rehashed_files": 1768,
+      "cases": 8,
+      "passed": 8,
+      "semantic_failures": [],
+      "same_case_records_across_interpreters": false
+    },
+    {
+      "group": "class-name-boundary",
+      "slot": "314",
+      "receipt_sha256": "0787e1f253921ed230a9928d027f521233a31da193b27d37da4249bb0246f164",
+      "manifest_sha256": "176f2ee1904c9d86b5ccdc82766b99b8ce229f834cfc1af4a237ba61cbfd37dd",
+      "snapshot": "D:\\pontius-snapshots\\class-name-boundary-907d3b3bb0414bae94bc30fc1fc69418\\snapshot",
+      "rehashed_files": 1773,
+      "cases": 8,
+      "passed": 8,
+      "semantic_failures": [],
+      "same_case_records_across_interpreters": true
+    },
+    {
+      "group": "class-comprehension-boundary",
+      "slot": "311",
+      "receipt_sha256": "dc63d862c17135c03d3907e27c0343dd7da3db0f392ec7d58bd876c79abad3b9",
+      "manifest_sha256": "c90519ae3f959a1943d74221c0b81330ef931eae979bf67fb74152b083d54fad",
+      "snapshot": "D:\\pontius-snapshots\\class-comprehension-boundary-6cb1e7ca63a24f9dbaed2df415ed6210\\snapshot",
+      "rehashed_files": 1768,
+      "cases": 6,
+      "passed": 5,
+      "semantic_failures": [
+        "Q05-deferred-cell-unsafe"
+      ],
+      "same_case_records_across_interpreters": false
+    },
+    {
+      "group": "class-comprehension-boundary",
+      "slot": "314",
+      "receipt_sha256": "78307562073d44cdd4f89afe8383b45febc0915b70b4c502f5f2ad16c16cb534",
+      "manifest_sha256": "5228a2d303ad9f44f9c7a9785e5217eb65848a51e10e94df20f5f7de0fa86da1",
+      "snapshot": "D:\\pontius-snapshots\\class-comprehension-boundary-04677c6ac79c45b7905256ca3e6e8315\\snapshot",
+      "rehashed_files": 1773,
+      "cases": 6,
+      "passed": 5,
+      "semantic_failures": [
+        "Q05-deferred-cell-unsafe"
+      ],
+      "same_case_records_across_interpreters": true
+    }
+  ],
+  "source_sha256": "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
+  "payload_executed_by_verifier": false,
+  "cases_each_interpreter": 36,
+  "passed_each_interpreter": 34,
+  "wrong_clean_cases": [
+    "forwarded-grandparent-unsafe",
+    "Q05-deferred-cell-unsafe"
+  ],
+  "verifier_correction": "Unissued v1 wrongly assumed class12 emitted only identity+cases+summary, omitting its two predeclared recursive route records. v1 stopped before report creation. v2 validates those two records separately against the retained receipt; no payload rerun or changed case expectations.",
+  "disposition": "v23 remains rejected. Preserve 34 passing requirements, repair the two demonstrated transport/activation residuals plus source-proved related paths in a new candidate. No main integration."
+}

@@ -1,0 +1,304 @@
+{
+  "added_alias": "_CellIdentity",
+  "added_top_level": [
+    "_CallableCaptureVisitor",
+    "_callable_capture_scope",
+    "_LexicalCellId",
+    "_proved_nonlocal_destination",
+    "_record_capture_refusal",
+    "_captured_bindings",
+    "_callable_nonlocal_is_proved",
+    "_callable_capture_refusal",
+    "_captured_call_environment",
+    "_historical_review_environment",
+    "_ClassFrame"
+  ],
+  "analysis_budget_exact": true,
+  "base_v22_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+  "candidate_executed": false,
+  "candidate_imported": false,
+  "changed_or_added_methods": {
+    "_AuthorityRecord": [],
+    "_AuthorityState": [
+      "join"
+    ],
+    "_DeferredGeneratorState": [],
+    "_ExceptionBindingVisitor": [
+      "__init__",
+      "visit"
+    ],
+    "_ExecutionState": [
+      "__init__",
+      "cell",
+      "_write_cells"
+    ],
+    "_ReviewFlow": [],
+    "_SourceOrderedResolver": [
+      "__init__",
+      "_call_environment",
+      "_refresh_bound_projection",
+      "_class_name_route",
+      "_class_read_name",
+      "_name_write_guard",
+      "_bind_name",
+      "_class_merge_local_projection",
+      "_adopt_effect_authority",
+      "_project_namespace_exit",
+      "_project_class_exit",
+      "_evaluate_class_comprehension",
+      "_name_is_bound",
+      "_lookup_error_tag",
+      "_snapshot_call",
+      "_deferred_generator_state_is_sensitive",
+      "_consume_generator_expression",
+      "_callable_free_names",
+      "_with_callable_authority",
+      "_registered_helper_environment",
+      "_project_expression_helper_obligations",
+      "_apply_helper_call_effects",
+      "_evaluate_comprehension",
+      "_evaluate_value",
+      "_assign",
+      "_delete_target",
+      "_merge_states",
+      "_bind_match_pattern",
+      "_delete_handler_alias",
+      "_flow_statement_value",
+      "_flow_class_statement",
+      "_finish_class_definition",
+      "_statements"
+    ]
+  },
+  "changed_top_level": [
+    "_DeferredGeneratorState",
+    "_ExceptionBindingVisitor",
+    "_lexical_binding_scope",
+    "_ReviewFlow",
+    "_AuthorityRecord",
+    "_AuthorityState",
+    "_ExecutionState",
+    "_SourceOrderedResolver",
+    "_review_body"
+  ],
+  "disposition_and_design_pins": {
+    "coordinator-class-extension-red-verification-v1.json": "e00ca0a8d01b1812420a1fb345c702b4650549fc1f3853cf5d3da130996bb5e0",
+    "coordinator-class-name-boundary-red-verification-v1.json": "74f243ebf84c11a38ecb66b5f3ff61f4e5a36eb2c9166bb91ce155c18642ff22",
+    "coordinator-class-semantic-v23-disposition-v1.md": "d5b1d838a1d5bbbf591dff8974c7c8d7fb8e0a033477573b9c8143d92d1dd72a",
+    "engineer-class-frame-api-plan-v1.md": "3d57a76a1224db8312fcb614b218c58084753172f1f75aeb10df722033d56536",
+    "engineer-class-name-boundary-addendum-v2.md": "de7b5417b2cc899710af0a32332360f31546b6264d1cb58896104a362568e93f",
+    "engineer-lexical-cell-ownership-api-v1.md": "bf5cf20ac2174707e70eb73d73126a489d68b4c316467517aaf8b071a81b383b"
+  },
+  "exact_name_storage_nodes": [
+    "_NameMeter",
+    "_NameEntry",
+    "_name_check_name",
+    "_NameHistory",
+    "_name_history",
+    "_NameLayer",
+    "_name_seal_layer",
+    "_name_lookup_layers",
+    "_name_compact",
+    "_NameOrder",
+    "_name_order",
+    "_name_known_order",
+    "_name_seal_order_table",
+    "_name_realize_order",
+    "_name_charge_cache_commit",
+    "_name_commit_order",
+    "_name_keys",
+    "_name_ordered_items",
+    "_NameVersion",
+    "_NamePublication",
+    "_name_prepare_publication",
+    "_name_charge_publication_commit",
+    "_name_commit_publication",
+    "_NameCursor",
+    "_name_common_history",
+    "_name_pending_names",
+    "_join_name_versions"
+  ],
+  "exact_name_storage_region": true,
+  "execution_state_certification_and_mutation_bodies_exact": true,
+  "fixture_or_payload_executed": false,
+  "flags": {
+    "dont_write_bytecode": true,
+    "isolated": 1,
+    "no_site": 1,
+    "safe_path": true
+  },
+  "frozen_case_expectations_changed": false,
+  "maximum_constants_exact": true,
+  "node_inventory": {
+    "_AuthorityRecord": {
+      "ast_sha256": "323f541bd36262c0fb6f15b4514f9c6f9eaca79e03f0c275379c5872a8535ed1",
+      "first_line": 13955,
+      "last_line": 13961,
+      "source_sha256": "d9302ca48c5a6db7a2fec2a83d55e96a5f4874f4253844e37b3d505327498900"
+    },
+    "_AuthorityState": {
+      "ast_sha256": "c1816df5da6eb11f08831ae2bcacc001770e2dffab466787915d5334432a559e",
+      "first_line": 14077,
+      "last_line": 14140,
+      "source_sha256": "295711061430628eb30afffca3faa8bf259a2285a48508bfaff1bc7927c98cf7"
+    },
+    "_CallableCaptureVisitor": {
+      "ast_sha256": "c80fc847539301959c91f01bf9f9c508c2eed4459114950f797025399c84dde2",
+      "first_line": 9840,
+      "last_line": 9911,
+      "source_sha256": "151f3242ea3919f1688959a64acdfec342306d0ab38f5ff828dd49e97523f479"
+    },
+    "_ClassFrame": {
+      "ast_sha256": "da5b804608ed1810ee0f69a961e7c49f89644c2593214948aceda9e566e2e36d",
+      "first_line": 15131,
+      "last_line": 15137,
+      "source_sha256": "d1223a9dce69e72ca188d29ca337235f596f2fce3fbbce02a3a804e49a67a3d6"
+    },
+    "_DeferredGeneratorState": {
+      "ast_sha256": "fb0507a93958965d163ba9356a7c2b9d70c9f25226644917521f37cca0ca3f6f",
+      "first_line": 9242,
+      "last_line": 9251,
+      "source_sha256": "f465d9fb2ad49a6d7bcde7fee315cdc34d71b6d12c0ee78e73d3eb6796fc4b5a"
+    },
+    "_ExceptionBindingVisitor": {
+      "ast_sha256": "3c28be260f637afd458c1298938b554e274fba830e23db130c4bdd9c2461d701",
+      "first_line": 9701,
+      "last_line": 9804,
+      "source_sha256": "bda8d23cac9949badfaece18c823c0cba23c3a782f664d443247d0a2149ba1e5"
+    },
+    "_ExecutionState": {
+      "ast_sha256": "82c9f501d7cdea0114eb5b9806f96e93566af98c26c6ae426f4f9caddbdfcf79",
+      "first_line": 14791,
+      "last_line": 14986,
+      "source_sha256": "e40a6e9b8098a7e4c259fed7042cef168bfdec8b40dfc597842407fa7a5d7655"
+    },
+    "_LexicalCellId": {
+      "ast_sha256": "96df841b768f9da5801e2fcdcbe7275b5f775d3007bff759113f7c2040fb5e57",
+      "first_line": 13947,
+      "last_line": 13950,
+      "source_sha256": "4cf3699c9a1d95e35fa52b2b4471b316013bdff596c9ec14b4a52180a5043f66"
+    },
+    "_ReviewFlow": {
+      "ast_sha256": "c21032ec2884438cb61fbdfda656d491d84cc767352632436a0ea54b473990f1",
+      "first_line": 12433,
+      "last_line": 12465,
+      "source_sha256": "c5fc1ca8e9b2b99bc9e0f31ade03e580b9e07a889758192285ecd19c4e03228e"
+    },
+    "_SourceOrderedResolver": {
+      "ast_sha256": "745f8f2fa31d750c5b99606fc2c9a8f558255d4289fa8c7239b74e10ba0b84e0",
+      "first_line": 15164,
+      "last_line": 24414,
+      "source_sha256": "63854b4137f6ad0c0009644e84442cabc58221f0afa81d5be890d063dbd76765"
+    },
+    "_callable_capture_refusal": {
+      "ast_sha256": "e7c337f0a6799e094e1ffd59bd8a37d5aa6404cb6b5cf14269e79db3034a1e9c",
+      "first_line": 15075,
+      "last_line": 15087,
+      "source_sha256": "1caea926c45f80ab91ce3010c6a7ba6cee6da06bbd1871426dccd0e28d0bb005"
+    },
+    "_callable_capture_scope": {
+      "ast_sha256": "5daf95a6a7362d32d0d116b2e1ce75759adc7881a0c57717a39a6a3ccdd24c69",
+      "first_line": 9914,
+      "last_line": 9928,
+      "source_sha256": "9056ba3c5a825be9518131a0c809ba945f597ae14b9edadfe93d1f4b4e8d08cd"
+    },
+    "_callable_nonlocal_is_proved": {
+      "ast_sha256": "20bc9d981db0fd403e4e3eab2d069076a11de378c2a8238af9e4df9d7360b99c",
+      "first_line": 15057,
+      "last_line": 15072,
+      "source_sha256": "6ca75ce76355ad277b10476db4b05d43ebbc6b9d015ca4a0d4deef56bce3b4f2"
+    },
+    "_captured_bindings": {
+      "ast_sha256": "6fd926ded26c15deae290ac08c6e23829d4915d648e81edbeb0853195787e6bd",
+      "first_line": 15024,
+      "last_line": 15054,
+      "source_sha256": "5ed19d7f3373b3a042e9927cd77baa61a289d2956e6873c1d8d0dfe4cd28a5ce"
+    },
+    "_captured_call_environment": {
+      "ast_sha256": "be4ed5ca624ec2f0a5f0f5b62214f71e6ceda75d92b231742357e37a89346024",
+      "first_line": 15090,
+      "last_line": 15116,
+      "source_sha256": "74112b8fd77da2ac0446b77c606bdb9d566b173550d40ee5f6c7bc9fa29c8479"
+    },
+    "_historical_review_environment": {
+      "ast_sha256": "3b922b0e2bc23a5c1635bda9ce2a8e18d8068112d3eaf225af7901839fb5e074",
+      "first_line": 15119,
+      "last_line": 15128,
+      "source_sha256": "0086b3a28cb1e8d3865645a7832dced5c50f9aa36e4eacfdbacb1516c1d44fb5"
+    },
+    "_lexical_binding_scope": {
+      "ast_sha256": "0115984b435c08267c832281aa54964ccee25d42708e6313aaaed4520a06a532",
+      "first_line": 9807,
+      "last_line": 9837,
+      "source_sha256": "31d306532af2a9fd305a2bf327e7f6e2a688a210694cbbf0f30ad561f6ff0f6e"
+    },
+    "_proved_nonlocal_destination": {
+      "ast_sha256": "fc3dc12cd8255c656165b1fe4bccef571c66e4c53472215de30c5c369b263e8f",
+      "first_line": 14989,
+      "last_line": 14998,
+      "source_sha256": "e2ba52ca109d8eb7707561835fe7c76221228dd36c127b5ed92b0d55f6b6cce2"
+    },
+    "_record_capture_refusal": {
+      "ast_sha256": "d9430996784d29048ea4bffa2f519d3d51c6baf47a6721652470d9d49938d228",
+      "first_line": 15001,
+      "last_line": 15021,
+      "source_sha256": "4b15539142a4394002aca63ecb75cbafa5082abe3c6f9e7e6aeecddd78605053"
+    },
+    "_review_body": {
+      "ast_sha256": "1b9e9d099932426657261f46ecc74183e8afb2e62f21126619b2c8566ce5b93b",
+      "first_line": 26080,
+      "last_line": 26988,
+      "source_sha256": "fb4f905e7f6132ade7cac4ab1fadca13f08b40309a80a5f5f301f7bb631f2976"
+    }
+  },
+  "ops_sha256": "65f3fdfccc16992aba9ce8fbc254b92c0fe3042d8e72cd759e099d0caf7d995a",
+  "ordinary_comprehension_body_ast_restored_exact": true,
+  "other_path_count": 16,
+  "python_executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "r010": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "r010_source_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "runtime": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "schema": "pontius-v23-semantic-static-preservation-v1",
+  "source_bytes": 1163343,
+  "source_path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-generator-v23-semantic.py",
+  "source_sha256": "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
+  "status": "engineering-authoring-only-not-cold-not-runtime",
+  "unchanged_top_level_nodes": 338,
+  "w_watch_after": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  },
+  "w_watch_before": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  }
+}

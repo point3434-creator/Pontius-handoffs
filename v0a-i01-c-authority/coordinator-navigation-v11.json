@@ -1,0 +1,14 @@
+{
+  "schema": "coordinator-navigation-v11",
+  "before_sha256": "59d53d2e83188a9c3d9d2a48dce12ef5695a30d588393e2aff7a0eaaba0bee5e",
+  "after_sha256": "65ffc56c09408ce5cb4714084aa40a57f1fdbf6d913a9bbaf99fab5dd13f654f",
+  "evidence_pins": {
+    "coordinator-v23-semantic-verification-v2.json": "33a2257f5ec5ac31ec3f4b59342dc46e86bcab6451df1656ca7fd1931aa1d1a7",
+    "coordinator-v24-port-red-verification-v1.json": "a6d29d7391f048f353bca409c37ec8342901a25ac2612a5be2f8a27b894c091b",
+    "coordinator-class-comprehension-red-verification-v1.json": "29753b2f8ee8c413ad050b692a91db85055d088b252a16fb1a0f86c811bfbf8d"
+  },
+  "production_source_changed": false,
+  "v23_passed_each_slot": 34,
+  "v23_total_each_slot": 36,
+  "v24_status": "rejected port construction error; production cost unmeasured"
+}

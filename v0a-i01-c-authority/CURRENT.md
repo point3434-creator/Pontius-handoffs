@@ -24,6 +24,22 @@ fitness or wall-time speed**. The adapter must preserve full authority transfer,
 cell writes and real input-preparation costs, then pass the original analyzer
 gates. No radix implementation is installed in W or main.
 
+The first production adapter, v24, is rejected for a porting error. Its
+unchanged design suite completed53 methods on actual3.11 with137 failing and
+742 error subtest outcomes. Those are cascading outcomes, not879 separate
+defects: token namespacing renamed member attributes shared with global helper
+names while their string-valued slots stayed unchanged. Object construction
+fails before the intended cost comparison. [Root verification](coordinator-v24-port-red-verification-v1.json)
+rehashes1766 files and records that the earlier root AST comparison repeated
+the author's flawed conversion. The558 prototype passes did not test that port.
+
+A bounded v26 correction is authorized for member naming only, with an
+independent symbol-role and slot/member check before the same original suite.
+No adapter production-fit claim follows, and no caps or tests may change.
+This adapter is internal analyzer implementation work introduced during C's
+repair, not an original v0a product feature. Its justification remains passing
+the existing real analyzer/corpus gates within their existing limits.
+
 The previous v22 cursor adapter remains RED:51/53 original design tests pass,
 with helper1050 and generator70 exhausting the unchanged work budget. Both
 [exact-case diagnostics](coordinator-v22-depth-budget-verification-v1.json)
@@ -72,19 +88,31 @@ the safe module-write case misses its required conservative refusal.
 [Independent verification](coordinator-class-name-boundary-red-verification-v1.json)
 retains the exact per-case results and3541 rehashed files.
 
-A semantic-only v23 candidate is being authored under the
-[coordinator disposition](coordinator-class-semantic-v23-disposition-v1.md).
-It addresses lexical ownership/current-cell separation, normal and exceptional
-class exits, Name routing, and historical callable/call-state pairing. The
-class-only eager comprehension boundary is within that scope; unproved deferred
-class-generator consumption must explicitly refuse. Six additional independent
-[comprehension witnesses](tests-checks/class-comprehension-boundary-spec-v1.md)
-are preregistered but unexecuted. No semantic candidate payload has run.
+The six [comprehension witnesses](tests-checks/class-comprehension-boundary-spec-v1.md)
+completed on v22 under both interpreters: all Models pass, with one wrong
+safe refusal and two unsafe approvals. [Independent verification](coordinator-class-comprehension-red-verification-v1.json)
+retains identical complete records and3541 rehashed files.
 
-The storage and semantic edits remain separate until independently inspected
-and checked. Original10 composition, class12, Name8 and comprehension6 checks
-will precede focused analyzer/corpus gates. Only a coherent verified candidate
-can be frozen for two new mutually blind cold reviewers and later integration.
+The frozen semantic-only v23 now passes34/36 fixed cases on each actual
+interpreter: original10 all pass, class12 has one residual, Name8 all pass,
+comprehension6 has one residual. [Root verification](coordinator-v23-semantic-verification-v2.json)
+rehashes14166 files and confirms identical complete case records across slots.
+The remaining unsafe approvals are C03 forwarded-grandparent-unsafe (factory
+activation skipped before its returned closure is built) and Q05 deferred-cell-unsafe
+(class completion drops the deferred member before attribute consumption).
+Neither result is green or permission to integrate.
+
+The [engineering inspection](tests-checks/class-comprehension-v23-engineering-review-codex-a-v1.md)
+also identifies target receiver/index loads, merged deferred alternatives and
+changed-empty-iterator guard paths. A fixed R01–R08 extension is frozen but has
+not yet executed; those source concerns are not extra demonstrated failures.
+A v25 semantic successor plan is being prepared; no source edit authorized yet.
+The two existing wrong approvals already have replicated RED evidence.
+
+The storage and semantic candidates stay separate. Only a coherent verified
+candidate can be frozen for two new mutually blind cold reviewers and later
+acceptance/integration. No combined source, new cold packet, main commit or main
+push exists. W remains rejected v20; accepted A/B and other C are preserved.
 
 The candidate is still not acceptable. Accepted A/B and other C paths remain
 preserved; the class defect and ordinary-generation budget failure are both

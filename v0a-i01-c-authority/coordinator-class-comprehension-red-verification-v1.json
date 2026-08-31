@@ -1,0 +1,43 @@
+{
+  "schema": "coordinator-class-comprehension-red-verification-v1",
+  "runs": [
+    {
+      "slot": "311",
+      "receipt_sha256": "7f778350c5d338917a1c980455ba27e3fb0418f3ee1a213615e5d5cfd8d7a296",
+      "manifest_sha256": "a76844aa0265ac4df04100e1dc7737800e2edf0b71efc3c410bc279cae4fb395",
+      "snapshot": "D:\\pontius-snapshots\\class-comprehension-boundary-95c3942f9fb647c988b23833b6d9a32c\\snapshot",
+      "rehashed_files": 1768,
+      "semantic_failures": [
+        "Q02-eager-cell-safe",
+        "Q03-class-first-iterable-unsafe",
+        "Q05-deferred-cell-unsafe"
+      ],
+      "models_passed": 6,
+      "analyzer_calls_completed": 6
+    },
+    {
+      "slot": "314",
+      "receipt_sha256": "7b56396209611527bbb39ca01f0a3890f5d5817a97e845b509ee8f0933be20b0",
+      "manifest_sha256": "1f82e7df99a285d74fc1f9e34be0e43befc4ea79409b41264255cceb530a1e01",
+      "snapshot": "D:\\pontius-snapshots\\class-comprehension-boundary-d019c5b91f594c57b6685a62a5631b35\\snapshot",
+      "rehashed_files": 1773,
+      "semantic_failures": [
+        "Q02-eager-cell-safe",
+        "Q03-class-first-iterable-unsafe",
+        "Q05-deferred-cell-unsafe"
+      ],
+      "models_passed": 6,
+      "analyzer_calls_completed": 6
+    }
+  ],
+  "same_case_records_across_interpreters": true,
+  "source_sha256": "61a0ce3bc3ea59bc09a7b14d45da843fb3c3a8614feb4c913132b67028916da3",
+  "pack_sha256": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+  "wrong_clean_cases": [
+    "Q03-class-first-iterable-unsafe",
+    "Q05-deferred-cell-unsafe"
+  ],
+  "wrong_refused_case": "Q02-eager-cell-safe",
+  "payload_executed_by_verifier": false,
+  "disposition": "Existing v22 semantic RED at the already enumerated implicit class-scope boundary; preserve expectations and repair shared mechanism."
+}

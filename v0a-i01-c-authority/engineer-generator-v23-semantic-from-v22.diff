@@ -1,0 +1,2110 @@
+--- engineer-generator-v22.py
++++ engineer-generator-v23-semantic.py
+@@ -9248,6 +9248,7 @@
+     outer_iterator_sensitive: bool = False
+     outer_iterator_identity: int | None = None
+     outer_iterator_version: int = 0
++    class_scope_unresolved: bool = False
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+@@ -9698,10 +9699,16 @@
+ 
+ 
+ class _ExceptionBindingVisitor(ast.NodeVisitor):
+-    def __init__(self) -> None:
++    def __init__(self, budget: _AnalysisBudget | None = None) -> None:
++        self._scope_budget = budget
+         self.bound_names: set[str] = set()
+         self.global_names: set[str] = set()
+         self.nonlocal_names: set[str] = set()
++
++    def visit(self, node: ast.AST) -> None:
++        if self._scope_budget is not None:
++            self._scope_budget.consume()
++        return super().visit(node)
+ 
+     def visit_Name(self, node: ast.Name) -> None:
+         if isinstance(node.ctx, (ast.Store, ast.Del)):
+@@ -9798,40 +9805,127 @@
+ 
+ 
+ def _lexical_binding_scope(
+-    node: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda | None,
++    node: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda | ast.ClassDef | None,
++    budget: _AnalysisBudget | None = None,
+ ) -> _LexicalBindingScope:
+     if node is None:
+         return _LexicalBindingScope()
+-    visitor = _ExceptionBindingVisitor()
+-    parameters = {
+-        argument.arg
+-        for argument in (
+-            *node.args.posonlyargs,
+-            *node.args.args,
+-            *node.args.kwonlyargs,
+-        )
+-    }
+-    if node.args.vararg is not None:
+-        parameters.add(node.args.vararg.arg)
+-    if node.args.kwarg is not None:
+-        parameters.add(node.args.kwarg.arg)
++    visitor = _ExceptionBindingVisitor(budget)
++    parameters: set[str] = set()
++    if not isinstance(node, ast.ClassDef):
++        parameters.update(argument.arg for argument in (
++            *node.args.posonlyargs, *node.args.args, *node.args.kwonlyargs,
++        ))
++        if node.args.vararg is not None:
++            parameters.add(node.args.vararg.arg)
++        if node.args.kwarg is not None:
++            parameters.add(node.args.kwarg.arg)
+     visitor.bound_names.update(parameters)
+     if isinstance(node, ast.Lambda):
+         visitor.visit(node.body)
+     else:
+         for statement in node.body:
+             visitor.visit(statement)
++    if budget is not None:
++        budget.consume(5 + len(parameters) + len(visitor.bound_names)
++                       + len(visitor.global_names) + len(visitor.nonlocal_names))
+     return _LexicalBindingScope(
+-        frozenset(
+-            visitor.bound_names
+-            - visitor.global_names
+-            - visitor.nonlocal_names
+-        ),
++        frozenset(visitor.bound_names - visitor.global_names - visitor.nonlocal_names),
+         frozenset(visitor.global_names),
+         frozenset(visitor.nonlocal_names),
+         frozenset(parameters),
+     )
+ 
++
++class _CallableCaptureVisitor(ast.NodeVisitor):
++    """Use lexical barriers, including forwarding through nested definitions."""
++
++    def __init__(self, scope: _LexicalBindingScope, budget: _AnalysisBudget,
++                 *, class_body: bool = False) -> None:
++        self.scope = scope
++        self.budget = budget
++        self.class_body = class_body
++        self.loaded: set[str] = set()
++        self.forwarded: set[str] = set()
++        self.hidden: frozenset[str] = frozenset()
++        budget.consume(5)
++
++    def visit(self, node: ast.AST) -> None:
++        self.budget.consume()
++        return super().visit(node)
++
++    def visit_Name(self, node: ast.Name) -> None:
++        if isinstance(node.ctx, ast.Load) and node.id not in self.hidden:
++            self.loaded.add(node.id)
++
++    def _function(self, node: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda) -> None:
++        for expression in (*getattr(node, "decorator_list", ()),
++                           *node.args.defaults, *node.args.kw_defaults):
++            if expression is not None:
++                self.visit(expression)
++        child_scope, free = _callable_capture_scope(node, self.budget)
++        forwarded = free - child_scope.global_names - self.hidden
++        if not self.class_body:
++            forwarded -= self.scope.global_names
++        self.budget.consume(len(forwarded))
++        self.forwarded.update(forwarded)
++
++    visit_FunctionDef = _function
++    visit_AsyncFunctionDef = _function
++    visit_Lambda = _function
++
++    def visit_ClassDef(self, node: ast.ClassDef) -> None:
++        for expression in (*node.decorator_list, *node.bases,
++                           *(keyword.value for keyword in node.keywords)):
++            self.visit(expression)
++        _scope, free = _callable_capture_scope(node, self.budget)
++        forwarded = free - self.hidden
++        if not self.class_body:
++            forwarded -= self.scope.global_names
++        self.budget.consume(len(forwarded))
++        self.forwarded.update(forwarded)
++
++    def _comprehension(self, node: ast.ListComp | ast.SetComp |
++                       ast.DictComp | ast.GeneratorExp) -> None:
++        self.visit(node.generators[0].iter)
++        hidden = self.hidden
++        targets = frozenset(name for generator in node.generators
++                            for name in _python_bound_names(generator.target))
++        self.budget.consume(1 + len(targets) + len(node.generators))
++        self.hidden = hidden | targets
++        try:
++            for index, generator in enumerate(node.generators):
++                if index:
++                    self.visit(generator.iter)
++                for condition in generator.ifs:
++                    self.visit(condition)
++            for expression in ((node.key, node.value) if isinstance(node, ast.DictComp)
++                               else (node.elt,)):
++                self.visit(expression)
++        finally:
++            self.hidden = hidden
++
++    visit_ListComp = _comprehension
++    visit_SetComp = _comprehension
++    visit_DictComp = _comprehension
++    visit_GeneratorExp = _comprehension
++
++
++def _callable_capture_scope(
++    definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda | ast.ClassDef,
++    budget: _AnalysisBudget,
++) -> tuple[_LexicalBindingScope, frozenset[str]]:
++    scope = _lexical_binding_scope(definition, budget)
++    visitor = _CallableCaptureVisitor(scope, budget,
++                                      class_body=isinstance(definition, ast.ClassDef))
++    for statement in ((definition.body,) if isinstance(definition, ast.Lambda)
++                      else definition.body):
++        visitor.visit(statement)
++    own = (visitor.loaded | scope.nonlocal_names) - scope.local_names
++    free = (own | visitor.forwarded if isinstance(definition, ast.ClassDef)
++            else (own | visitor.forwarded) - scope.local_names)
++    budget.consume(2 + len(own) + len(free))
++    return scope, frozenset(free)
+ 
+ def _derived_enclosing_binding_markers(
+     node: ast.FunctionDef | ast.AsyncFunctionDef,
+@@ -12352,6 +12446,7 @@
+     helper_calls: dict[int, _HelperProvenance] = field(default_factory=dict)
+     defaults_by_call: dict[int, dict[str, _FlowValue]] = field(default_factory=dict)
+     values_by_call: dict[int, dict[str, _FlowValue]] = field(default_factory=dict)
++    callable_values_by_call: dict[int, _FlowValue] = field(default_factory=dict)
+     arguments_by_call: dict[int, dict[int, _FlowValue]] = field(default_factory=dict)
+     invalid_helper_owners_by_call: dict[int, frozenset[str]] = field(default_factory=dict)
+     consumed_local_generator_calls: set[int] = field(default_factory=set)
+@@ -13850,11 +13945,19 @@
+ 
+ 
+ @dataclass(frozen=True, slots=True)
++class _LexicalCellId:
++    """Allocated only for an actual function activation's declared local."""
++    serial: int
++
++
++_CellIdentity = int | _LexicalCellId
++
++@dataclass(frozen=True, slots=True)
+ class _AuthorityRecord:
+     """An object in one execution state, never a mutable historical observation."""
+ 
+     value: _FlowValue
+-    cells: tuple[tuple[str, tuple[int, ...]], ...] = ()
++    cells: tuple[tuple[str, tuple[_CellIdentity, ...]], ...] = ()
+     retained: tuple[_FlowValue, ...] = ()
+ 
+ 
+@@ -14015,8 +14118,14 @@
+                 if previous is None:
+                     self.objects[identity] = record
+                 elif previous != record:
++                    previous_refusal = _record_capture_refusal(previous, self)
++                    supplied_refusal = _record_capture_refusal(record, supplied)
++                    self.budget.consume(2)  # Two immutable proof-preserving value copies.
+                     self.objects[identity] = _AuthorityRecord(
+-                        _merge_flow_values("authority object", (previous.value, record.value)),
++                        _merge_flow_values("authority object", (
++                            replace(previous.value, helper_refusal=previous_refusal),
++                            replace(record.value, helper_refusal=supplied_refusal),
++                        )),
+                         tuple(dict.fromkeys((*previous.cells, *record.cells))),
+                         (*previous.retained, *record.retained),
+                     )
+@@ -14705,7 +14814,9 @@
+         local_set = frozenset(local_order)
+         meter.charge("adapter_local_membership_reference_copies", len(local_set))
+         for name in local_order if self.authority.enabled else ():
+-            self.bindings[name] = (self.authority.identity(),)
++            serial = self.authority.identity()
++            budget.consume(2)  # Lexical token allocation and its serial reference.
++            self.bindings[name] = (_LexicalCellId(serial),)
+         if isinstance(parent, _ExecutionState) and values is parent and not local_order:
+             self._names = parent._names.fork()
+             return
+@@ -14761,7 +14872,7 @@
+                 yield value
+         return tuple(values())
+ 
+-    def cell(self, name: str) -> tuple[int, ...]:
++    def cell(self, name: str) -> tuple[_CellIdentity, ...]:
+         if name not in self.bindings:
+             identity = self.authority.identity()
+             self.bindings[name] = (identity,)
+@@ -14808,7 +14919,7 @@
+             identities = self.bindings.get(name, ())
+             self._write_cells(entry.value, identities)
+ 
+-    def _write_cells(self, value: _FlowValue, identities: tuple[int, ...]) -> None:
++    def _write_cells(self, value: _FlowValue, identities: tuple[_CellIdentity, ...]) -> None:
+         for identity in identities:
+             self.authority.cells[identity] = (value if len(identities) == 1 else
+                 _merge_flow_values("alternative cell write", (
+@@ -14874,6 +14985,156 @@
+         result.bindings = self.bindings.fork()
+         return result
+ 
++
++def _proved_nonlocal_destination(
++    name: str, scope: _LexicalBindingScope | None,
++    bindings: Mapping[str, tuple[_CellIdentity, ...]], state: _ExecutionState,
++) -> bool:
++    if scope is None or name not in scope.nonlocal_names or name in scope.global_names:
++        return False
++    cells = bindings.get(name, ())
++    state.authority.budget.consume(1 + len(cells))
++    return bool(cells) and all(type(cell) is _LexicalCellId
++                               and cell in state.authority.cells for cell in cells)
++
++
++def _record_capture_refusal(record: _AuthorityRecord, state: _AuthorityState) -> str | None:
++    scope = record.value.callable_scope
++    if scope is None:
++        return (record.value.helper_refusal or (
++            "helper namespace capture scope is unresolved"
++            if record.value.callable_definition is not None and record.value.namespace_effects
++            else None
++        ))
++    state.budget.consume(1 + len(record.cells))
++    bindings = dict(record.cells)
++    for _name, cells in record.cells:
++        state.budget.consume(1 + len(cells))
++        if any(type(cell) is _LexicalCellId and cell not in state.cells for cell in cells):
++            return "helper namespace retained lexical cell is unresolved"
++    for name in record.value.namespace_effects & scope.nonlocal_names:
++        cells = bindings.get(name, ())
++        state.budget.consume(1 + len(cells))
++        if not cells or any(type(cell) is not _LexicalCellId or cell not in state.cells
++                            for cell in cells):
++            return "helper namespace nonlocal destination is unresolved"
++    return record.value.helper_refusal
++
++
++def _captured_bindings(
++    value: _FlowValue, state: _ExecutionState,
++) -> dict[str, tuple[_CellIdentity, ...]]:
++    budget = state.authority.budget
++    alternatives: dict[str, tuple[_CellIdentity, ...]] = {}
++    unresolved: set[str] = set()
++    budget.consume(2)
++    for identity in value.authority_refs:
++        record = state.authority.objects.get(identity)
++        budget.consume()
++        if record is None:
++            unresolved.update(value.namespace_effects)
++            continue
++        scope = record.value.callable_scope
++        binding_view = dict(record.cells)
++        budget.consume(1 + len(record.cells))
++        if scope is None and record.value.namespace_effects:
++            unresolved.update(record.value.namespace_effects)
++        if scope is not None:
++            for name in record.value.namespace_effects & scope.nonlocal_names:
++                if not _proved_nonlocal_destination(name, scope, binding_view, state):
++                    unresolved.add(name)
++        for name, cells in record.cells:
++            budget.consume(2 + len(cells) + len(alternatives.get(name, ())))
++            alternatives[name] = tuple(dict.fromkeys((*alternatives.get(name, ()), *cells)))
++    # Missing alternatives cannot become proved after union with a complete operand.
++    # The consuming callable retains an explicit refusal; ordinary globals stay intact.
++    for name in unresolved:
++        budget.consume()
++        alternatives[name] = ()
++    return alternatives
++
++
++def _callable_nonlocal_is_proved(
++    name: str, value: _FlowValue, state: Mapping[str, _FlowValue],
++) -> bool:
++    if not isinstance(state, _ExecutionState) or not value.authority_refs:
++        return False
++    for identity in value.authority_refs:
++        state.authority.budget.consume()
++        record = state.authority.objects.get(identity)
++        if record is None or record.value.helper_refusal is not None:
++            return False
++        state.authority.budget.consume(1 + len(record.cells))
++        if not _proved_nonlocal_destination(
++            name, record.value.callable_scope, dict(record.cells), state,
++        ):
++            return False
++    return True
++
++
++def _callable_capture_refusal(
++    value: _FlowValue, state: Mapping[str, _FlowValue],
++) -> str | None:
++    if not isinstance(state, _ExecutionState):
++        return None
++    for identity in value.authority_refs:
++        state.authority.budget.consume()
++        record = state.authority.objects.get(identity)
++        if record is not None:
++            refusal = _record_capture_refusal(record, state.authority)
++            if refusal is not None:
++                return refusal
++    return None
++
++
++def _captured_call_environment(
++    value: _FlowValue, values: Mapping[str, _FlowValue], budget: _AnalysisBudget,
++) -> _ExecutionState:
++    environment = (values.copy() if isinstance(values, _ExecutionState)
++                   else _ExecutionState(values, budget))
++    alternatives = _captured_bindings(value, environment)
++    scope = value.callable_scope
++    if scope is not None and isinstance(values, _ExecutionState):
++        for name in scope.global_names:
++            cells = values.bindings.get(name, ())
++            budget.consume(1 + len(cells))
++            if any(type(cell) is _LexicalCellId for cell in cells):
++                environment._project(name, _flow_unknown(
++                    "captured global binding is dynamically unresolved"))
++    environment.bindings = _AuthorityMap(budget)
++    budget.consume(2)  # The fresh capture-only binding wrapper and dictionary.
++    for name, cells in alternatives.items():
++        environment.bindings[name] = cells
++        budget.consume(1 + len(cells))
++        captured = tuple(environment.authority.cells.get(cell) for cell in cells)
++        if any(item is not None and item.reason !=
++               "captured global binding is dynamically unresolved" for item in captured):
++            environment._project(name, _merge_flow_values(f"captured cell {name}", captured))
++        elif value.callable_scope is not None and name in value.callable_scope.global_names:
++            environment._project(name, _flow_unknown(
++                "captured global binding is dynamically unresolved"))
++    return environment
++
++
++def _historical_review_environment(
++    values: Mapping[str, _FlowValue], callable_value: _FlowValue,
++    definition: ast.FunctionDef | ast.AsyncFunctionDef, budget: _AnalysisBudget,
++) -> _ExecutionState:
++    environment = _captured_call_environment(callable_value, values, budget)
++    scope = callable_value.callable_scope or _lexical_binding_scope(definition, budget)
++    for name in scope.local_names:
++        budget.consume()
++        environment._project_pop(name, None)
++    return environment
++
++
++@dataclass(frozen=True, slots=True)
++class _ClassFrame:
++    outer: _ExecutionState
++    enclosing: _ExecutionState
++    scope: _LexicalBindingScope
++    free_names: frozenset[str]
++    parent: "_ClassFrame | None"
+ 
+ @dataclass(slots=True)
+ class _FlowExceptionalState:
+@@ -14928,7 +15189,7 @@
+         self.helper_registry = helper_registry or {}
+         self.helper_relative_path = helper_relative_path
+         self.active_helper_effects = active_helper_effects
+-        self._definition_enclosing_values: Mapping[str, _FlowValue] | None = None
++        self._class_frame: _ClassFrame | None = None
+         self._helper_rebound_names: set[str] = set()
+         self._projected_helper_bodies: frozenset[int] = frozenset()
+         self._native_coroutine_calls: set[int] = set()
+@@ -15039,6 +15300,11 @@
+                 self.values.get(name, seed), helper_provenance=seed.helper_provenance,
+                 namespace_effects=seed.namespace_effects,
+             )
++        self.budget.consume(1 + len(self.values))
++        self._class_module_values = {
++            name: value for name, value in self.values.items()
++            if name in self.module_bound_names
++        }
+         self.values.update(entry_values or {})
+         for name in self.lexical_scope.local_names:
+             if name in self.lexical_scope.parameter_names:
+@@ -15130,23 +15396,221 @@
+ 
+     def _call_environment(self, value: _FlowValue,
+                           values: Mapping[str, _FlowValue]) -> _ExecutionState:
+-        environment = self._fork_values(values)
+-        alternatives: dict[str, tuple[int, ...]] = {}
+-        for identity in value.authority_refs:
+-            record = environment.authority.objects.get(identity)
+-            if record is None:
++        return _captured_call_environment(value, values, self.budget)
++
++    def _refresh_bound_projection(self, values: Mapping[str, _FlowValue]) -> None:
++        if not isinstance(values, _ExecutionState):
++            return
++        for name, cells in values.bindings.items():
++            self.budget.consume(1 + len(cells))
++            if not cells:
+                 continue
+-            for name, cells in record.cells:
+-                self.budget.consume(len(cells))
+-                alternatives[name] = tuple(dict.fromkeys((*alternatives.get(name, ()), *cells)))
+-        for name, cells in alternatives.items():
+-            environment.bindings[name] = cells
+-            captured = tuple(environment.authority.cells.get(cell) for cell in cells)
+-            if any(item is not None and item.reason !=
+-                   "captured global binding is dynamically unresolved" for item in captured):
+-                environment._project(name, _merge_flow_values(
+-                    f"captured cell {name}", captured))
+-        return environment
++            current = tuple(values.authority.cells.get(cell) for cell in cells)
++            if any(item is not None for item in current):
++                values._project(name, _merge_flow_values(f"current cell {name}", current))
++
++    def _class_name_route(self, name: str) -> str | None:
++        frame = self._class_frame
++        if frame is None:
++            return None
++        if name in frame.scope.local_names:
++            return "local"
++        if name in frame.scope.nonlocal_names:
++            return "nonlocal"
++        if name in frame.scope.global_names:
++            return "global"
++        return "free"
++
++    def _class_read_name(
++        self, node: ast.Name, values: dict[str, _FlowValue],
++    ) -> _FlowValue | None:
++        frame = self._class_frame
++        if frame is None:
++            return values.get(node.id)
++        name = node.id
++        route = self._class_name_route(name)
++        if route == "local":
++            local = values.get(name)
++            if local is not None and local.kind not in {"unbound", "maybe_unbound"}:
++                return local
++            fallback = self._class_module_values.get(name)
++            if fallback is None and name not in self.module_bound_names and name in vars(builtins):
++                fallback = _flow_qname(name)
++            if fallback is None:
++                self.flow.standalone_blockers.append((
++                    node, "class-local module fallback is dynamically unresolved",
++                ))
++                self._record_throw_state(values, "NameError", True)
++                fallback = _flow_unknown("class-local module fallback is dynamically unresolved")
++            if local is not None and local.kind == "maybe_unbound":
++                alternatives = tuple(value for value in local.value
++                                     if isinstance(value, _FlowValue))
++                self.budget.consume(1 + len(alternatives))
++                return _merge_flow_values(name, (*alternatives, fallback))
++            return fallback
++        if route == "nonlocal" and (
++            not isinstance(values, _ExecutionState)
++            or not _proved_nonlocal_destination(name, frame.scope, values.bindings, values)
++        ):
++            self.flow.standalone_blockers.append((
++                node, "helper namespace class nonlocal binding is unresolved",
++            ))
++        if route == "global" and name in frame.enclosing.bindings:
++            # A same-spelled enclosing function local is not a defining-module value.
++            module_value = self._class_module_values.get(name)
++            if module_value is None:
++                self.flow.standalone_blockers.append((
++                    node, "class global lookup is dynamically unresolved",
++                ))
++                return _flow_unknown("class global lookup is dynamically unresolved")
++            return module_value
++        self._refresh_bound_projection(values)
++        return values.get(name)
++
++    def _name_write_guard(
++        self, name: str, site: ast.AST, values: dict[str, _FlowValue],
++    ) -> None:
++        frame = self._class_frame
++        if frame is None and not self.active_helper_effects:
++            return
++        scope = frame.scope if frame is not None else self.lexical_scope
++        self.budget.consume(2)
++        if name not in scope.global_names and name not in scope.nonlocal_names:
++            return
++        proved = (isinstance(values, _ExecutionState)
++                  and _proved_nonlocal_destination(name, scope, values.bindings, values))
++        if proved:
++            return
++        if frame is not None:
++            self.flow.standalone_blockers.append((
++                site, "helper namespace class binding change is dynamically unresolved",
++            ))
++        if self.active_helper_effects:
++            self._helper_rebound_names.add(name)
++            previous = values.get(name)
++            if previous is not None and _flow_contains_helper_identity(previous, self.budget):
++                self.flow.standalone_blockers.append((
++                    site, "helper namespace binding change is dynamically unresolved",
++                ))
++
++    def _bind_name(
++        self, name: str, value: _FlowValue, values: dict[str, _FlowValue], site: ast.AST,
++    ) -> None:
++        self.budget.consume(3)  # Store node, context and source-position references.
++        target = ast.copy_location(ast.Name(id=name, ctx=ast.Store()), site)
++        self._assign(target, value, values)
++
++    def _class_merge_local_projection(
++        self, name: str, values: Sequence[_FlowValue | None],
++    ) -> _FlowValue:
++        frame = self._class_frame
++        if frame is None or (name not in frame.scope.local_names and name not in frame.free_names):
++            return _merge_flow_values(name, values)
++        pending = list(values)
++        present: list[_FlowValue] = []
++        absent = False
++        self.budget.consume(2 + len(pending))
++        while pending:
++            self.budget.consume()
++            value = pending.pop()
++            if value is None or value.kind == "unbound":
++                absent = True
++            elif value.kind == "maybe_unbound":
++                absent = True
++                self.budget.consume(len(value.value))
++                pending.extend(item for item in value.value if isinstance(item, _FlowValue))
++            else:
++                present.append(value)
++        if not present:
++            return _FlowValue("unbound", reason="class local is absent")
++        present.reverse()
++        merged = _merge_flow_values(name, present)
++        if not absent:
++            return merged
++        envelopes = tuple(value for value in values if value is not None
++                          and value.kind == "maybe_unbound")
++        self.budget.consume(3 + len(envelopes))
++        merged = replace(merged, helper_obligations=(
++            *merged.helper_obligations, *envelopes,
++        )) if any(value.helper_obligations or value.authority_refs
++                  or value.helper_refusal for value in envelopes) else merged
++        return replace(merged, kind="maybe_unbound", value=(merged,),
++                       reason=f"{name} is only conditionally bound")
++
++    def _adopt_effect_authority(
++        self, destination: Mapping[str, _FlowValue], supplied: Mapping[str, _FlowValue],
++    ) -> None:
++        if isinstance(destination, _ExecutionState) and isinstance(supplied, _ExecutionState):
++            observed = destination.authority.observed
++            results = destination.authority.results
++            destination.authority = supplied.authority.fork()
++            destination.authority.observed = observed.fork()
++            destination.authority.results = results.fork()
++            self._refresh_bound_projection(destination)
++
++    def _project_namespace_exit(
++        self, template: Mapping[str, _FlowValue], supplied: Mapping[str, _FlowValue],
++    ) -> _ExecutionState:
++        result = self._fork_values(template)
++        self._adopt_effect_authority(result, supplied)
++        return result
++
++    def _project_class_exit(
++        self, frame: _ClassFrame, supplied: Mapping[str, _FlowValue],
++    ) -> _ExecutionState:
++        return self._project_namespace_exit(frame.outer, supplied)
++
++    def _evaluate_class_comprehension(
++        self, node: ast.ListComp | ast.SetComp | ast.DictComp | ast.GeneratorExp,
++        values: dict[str, _FlowValue], record: bool,
++    ) -> _FlowValue:
++        frame = self._class_frame
++        assert frame is not None
++        # Python evaluates only this iterable in the class namespace.
++        first = self._evaluate(node.generators[0].iter, values, record)
++        if isinstance(node, ast.GeneratorExp):
++            result = self._evaluate_comprehension(node, values, record, first_iterator=first)
++            if result.kind == "generator" and isinstance(result.value, _DeferredGeneratorState):
++                result = replace(result, value=replace(
++                    result.value, class_scope_unresolved=True,
++                ))
++            return result
++        implicit = self._project_namespace_exit(frame.enclosing, values)
++        targets: set[str] = set()
++        for generator in node.generators:
++            for candidate in _metered_ast_walk(generator.target, self.budget):
++                if isinstance(candidate, ast.Name):
++                    targets.add(candidate.id)
++        self.budget.consume(2 + len(targets))
++        for name in targets:
++            implicit._project(name, _FlowValue("unbound", reason="comprehension local is unbound"))
++        implicit = _ExecutionState(implicit, self.budget, parent=implicit, local_names=targets)
++        old_scope = self.lexical_scope
++        old_effect_values = self._current_effect_values
++        self._current_effect_values = implicit
++        outer_throws = self._throw_states
++        raised: list[_FlowExceptionalState] = []
++        self._class_frame = None
++        self.lexical_scope = _LexicalBindingScope(local_names=frozenset(targets))
++        self._throw_states = raised
++        try:
++            return self._evaluate_comprehension(
++                node, implicit, record, first_iterator=first, class_effects=True,
++            )
++        finally:
++            self._class_frame = frame
++            self.lexical_scope = old_scope
++            self._current_effect_values = old_effect_values
++            self._throw_states = outer_throws
++            self._adopt_effect_authority(values, implicit)
++            if outer_throws is not None:
++                for exceptional in raised:
++                    self.budget.consume(5)
++                    outer_throws.append(_FlowExceptionalState(
++                        self._project_namespace_exit(values, exceptional.state),
++                        exceptional.exception_tag, exceptional.explicit,
++                        exceptional.excluded_handlers,
++                    ))
+ 
+     def _flow_decorator_preserves_identity(self, value: _FlowValue) -> bool:
+         marker: str | None = None
+@@ -16331,12 +16795,14 @@
+         name: str,
+         values: Mapping[str, _FlowValue],
+     ) -> bool:
++        if self._class_frame is not None:
++            self._refresh_bound_projection(values)
+         return name in values and values[name].kind not in {"maybe_unbound", "unbound"}
+ 
+     def _lookup_error_tag(self, name: str) -> str:
+         return (
+             "UnboundLocalError"
+-            if name in self.lexical_scope.local_names
++            if self._class_frame is None and name in self.lexical_scope.local_names
+             else "NameError"
+         )
+ 
+@@ -16830,6 +17296,8 @@
+         callable_value: _FlowValue,
+         arguments: Mapping[int, _FlowValue] | None = None,
+     ) -> None:
++        if self._class_frame is not None:
++            self._refresh_bound_projection(values)
+         key = id(node)
+         self._call_states.setdefault(key, []).append(self._fork_values(values))
+         self._call_values.setdefault(key, []).append(callable_value)
+@@ -16839,6 +17307,8 @@
+             self._call_values[key],
+         )
+         self.flow.values_by_call[key] = merged_values
++        self.budget.consume()  # Retain the actual callable paired with its historical state.
++        self.flow.callable_values_by_call[key] = merged_callable
+         self.flow.invalid_helper_owners_by_call[key] = frozenset(
+             self.invalid_helper_owners
+         ) | self.flow.invalid_helper_owners_by_call.get(key, frozenset())
+@@ -16866,13 +17336,15 @@
+                 merged_callable.reason
+                 or "dynamic sensitive call target is unresolved"
+             )
+-        refusal = merged_callable.helper_refusal
++        refusal = (merged_callable.helper_refusal
++                   or _callable_capture_refusal(merged_callable, merged_values))
+         if (merged_callable.helper_provenance is not None
+                 and merged_callable.helper_provenance.key in self.invalid_helper_owners):
+             refusal = "helper callable identity was mutated"
+         if any(name in merged_values and _flow_contains_helper_identity(
+             merged_values[name], self.budget,
+-        ) for name in merged_callable.namespace_effects):
++        ) and not _callable_nonlocal_is_proved(name, merged_callable, merged_values)
++           for name in merged_callable.namespace_effects):
+             refusal = "helper namespace effects are dynamically unresolved"
+         if (merged_callable.helper_provenance is None
+                 and merged_callable.kind != "callable_constant"
+@@ -17920,6 +18392,8 @@
+     ) -> bool:
+         """Probe reachable delayed expressions without publishing probe state."""
+ 
++        if state.class_scope_unresolved and state.remaining != 0:
++            return True
+         outer_iterator_changed = (
+             self._deferred_generator_outer_iterator_changed(state)
+         )
+@@ -18056,6 +18530,12 @@
+         outer_iterator_changed = (
+             self._deferred_generator_outer_iterator_changed(state)
+         )
++        if state.class_scope_unresolved and (state.remaining != 0 or outer_iterator_changed):
++            self.flow.standalone_blockers.append((
++                state.expression, "class generator lexical view is dynamically unresolved",
++            ))
++            self._record_throw_state(values, None, True)
++            return _flow_unknown("class generator lexical view is dynamically unresolved")
+         if outer_iterator_changed:
+             state = replace(state, remaining=None, supported=False)
+         if not state.supported:
+@@ -18287,27 +18767,14 @@
+     def _callable_free_names(
+         self, definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda,
+     ) -> frozenset[str]:
+-        if isinstance(definition, ast.Lambda):
+-            arguments = definition.args
+-            bound = {argument.arg for argument in (
+-                *arguments.posonlyargs, *arguments.args, *arguments.kwonlyargs,
+-            )}
+-            bound.update(argument.arg for argument in (arguments.vararg, arguments.kwarg)
+-                         if argument is not None)
+-            body: Sequence[ast.AST] = (definition.body,)
+-        else:
+-            bound = set(_lexical_binding_scope(definition).local_names)
+-            body = definition.body
+-        return frozenset(candidate.id for statement in body
+-                         for candidate in _metered_ast_walk(statement, self.budget)
+-                         if isinstance(candidate, ast.Name)
+-                         and isinstance(candidate.ctx, ast.Load) and candidate.id not in bound)
++        return _callable_capture_scope(definition, self.budget)[1]
+ 
+     def _with_callable_authority(
+         self, value: _FlowValue,
+         definition: ast.FunctionDef | ast.AsyncFunctionDef | ast.Lambda,
+         values: Mapping[str, _FlowValue], *,
+         default_values: Mapping[str, _FlowValue] | None = None,
++        capture_values: Mapping[str, _FlowValue] | None = None,
+     ) -> _FlowValue:
+         if not self.helper_registry:
+             return value
+@@ -18325,18 +18792,43 @@
+                               for argument, expression in zip(
+                                   arguments.kwonlyargs, arguments.kw_defaults, strict=True,
+                               ) if expression is not None)
+-        enclosing_values = (self._definition_enclosing_values
+-                            if self._definition_enclosing_values is not None else values)
++        scope, free_names = _callable_capture_scope(definition, self.budget)
++        class_capture = self._class_frame is not None and capture_values is None
++        enclosing = (capture_values if capture_values is not None else
++                     self._class_frame.enclosing if class_capture else values)
+         value = self._transfer(replace(
+             value, authority_refs=(), callable_defaults=defaults,
+-            callable_definition=definition, callable_scope=None, callable_free_values=(),
++            callable_definition=definition, callable_scope=scope, callable_free_values=(),
+         ), values)
+-        if isinstance(values, _ExecutionState) and isinstance(enclosing_values, _ExecutionState):
+-            cells = tuple((name, enclosing_values.cell(name))
+-                          for name in sorted(self._callable_free_names(definition)))
+-            for _name, alternatives in cells:
+-                for cell in alternatives:
+-                    values.authority.cells[cell] = enclosing_values.authority.cells[cell]
++        if isinstance(values, _ExecutionState) and isinstance(enclosing, _ExecutionState):
++            captured: list[tuple[str, tuple[_CellIdentity, ...]]] = []
++            self.budget.consume(1 + len(free_names))
++            for name in sorted(free_names):
++                self.budget.consume()
++                cells = enclosing.bindings.get(name, ())
++                if name in scope.global_names:
++                    # A defining-module declaration never inherits a caller's local proof.
++                    cells = tuple(cell for cell in cells if type(cell) is int)
++                if not cells and name not in scope.nonlocal_names:
++                    # New ordinary/global capture uses the current projection only.
++                    # A saved class frame supplies ownership, never old cell contents.
++                    if not class_capture and name not in scope.global_names:
++                        cells = values.cell(name)
++                    else:
++                        identity = values.authority.identity()
++                        cells = (identity,)
++                        values.authority.cells[identity] = (
++                            (self._class_module_values.get(name, enclosing.get(name,
++                                _flow_unknown("captured global binding is dynamically unresolved")))
++                             if class_capture else values.get(name, _flow_unknown(
++                                "captured global binding is dynamically unresolved")))
++                            if name not in enclosing.bindings else _flow_unknown(
++                                "captured global binding is dynamically unresolved")
++                        )
++                self.budget.consume(2 + len(cells))
++                captured.append((name, cells))
++            cells = tuple(captured)
++            self.budget.consume(1 + len(cells))
+             for identity in value.authority_refs:
+                 record = values.authority.objects[identity]
+                 values.authority.objects[identity] = replace(record, cells=cells)
+@@ -18611,6 +19103,8 @@
+         )
+         # Global names use the defining module, never a caller's unrelated locals.
+         environment = _ExecutionState({}, self.budget, parent=values)
++        self.budget.consume(2)
++        environment.bindings = _AuthorityMap(self.budget)
+         for name, qualified in definition.aliases.items():
+             environment[name] = _flow_qname(qualified)
+         for name, seed in seeds.items():
+@@ -18740,7 +19234,7 @@
+         ), expression)
+         self._annotation_effect_definitions.append(projected)
+         callable_value = self._with_callable_authority(
+-            _flow_qname(projected.name), projected, values,
++            _flow_qname(projected.name), projected, values, capture_values=values,
+         )
+         call = ast.copy_location(ast.Call(
+             func=ast.Name(id=projected.name), args=[], keywords=[],
+@@ -19130,6 +19624,7 @@
+             # expand the same helper closure again in the legacy review pass.
+             raise InventoryError("analysis helper depth exceeds 64")
+         if (status != "valid" or callable_value.helper_refusal is not None
++                or _callable_capture_refusal(callable_value, values) is not None
+                 or id(definition) in self.active_helper_effects
+                 or len(self.active_helper_effects) >= MAXIMUM_ANALYSIS_HELPER_DEPTH):
+             refuse("helper namespace effects are dynamically unresolved", (*relevant, *explicit))
+@@ -19159,11 +19654,7 @@
+             # observations/results belong to the caller's evaluation stack.
+             values.authority.observed = observed.fork()
+             values.authority.results = results.fork()
+-            for name, cells in values.bindings.items():
+-                if name in values:
+-                    current = tuple(values.authority.cells.get(cell) for cell in cells)
+-                    values._project(name, _merge_flow_values(
+-                        f"current cell {name}", current))
++            self._refresh_bound_projection(values)
+         self._authority(values).results[id(node)] = tuple(probe.return_values)
+         self.invalid_helper_owners.update(probe.invalid_helper_owners)
+         for name in probe._helper_rebound_names:
+@@ -19274,6 +19765,300 @@
+             self._evaluation_depth -= 1
+             self._current_effect_values = previous
+ 
++    def _evaluate_comprehension(
++        self, node: ast.ListComp | ast.SetComp | ast.DictComp | ast.GeneratorExp,
++        values: dict[str, _FlowValue], record: bool, *,
++        first_iterator: _FlowValue | None = None, class_effects: bool = False,
++    ) -> _FlowValue:
++        local_values: dict[str, _FlowValue] | None = None
++        try:
++            if isinstance(node, ast.GeneratorExp):
++                # Only the outermost iterable is evaluated at creation.
++                iterator = (first_iterator if first_iterator is not None else self._evaluate(
++                    node.generators[0].iter,
++                    values,
++                    record,
++                ))
++                if record:
++                    self._record_implicit_protocol_blocker(
++                        node.generators[0].iter,
++                        iterator,
++                        _IMPLICIT_PROTOCOL_METHODS["iteration"],
++                        "implicit iterator protocol execution is dynamically unresolved",
++                    )
++                remaining = self._iteration_bound_value(iterator)
++                outer_iterator_identity = iterator.mutable_collection_identity
++                outer_iterator_version = self._mutable_collection_versions.get(
++                    outer_iterator_identity,
++                    0,
++                )
++                outer_deferred_sensitive = bool(
++                    iterator.kind in {"generator", "deferred_generator_merged"}
++                    and self._deferred_generator_value_is_sensitive(
++                        iterator,
++                        values,
++                        include_value_sensitivity=False,
++                    )
++                )
++                proven_empty_filter = any(
++                    isinstance(condition, ast.Constant)
++                    and not bool(condition.value)
++                    for condition in node.generators[0].ifs
++                )
++                if proven_empty_filter:
++                    remaining = 0
++                elif outer_iterator_version:
++                    remaining = None
++                self.flow.iterator_bounds[id(node.generators[0].iter)] = remaining
++                setattr(
++                    node.generators[0].iter,
++                    "_pontius_iteration_bound",
++                    remaining,
++                )
++                supported = bool(
++                    remaining is not None
++                    and not outer_deferred_sensitive
++                    and len(node.generators) == 1
++                    and all(
++                        isinstance(condition, ast.Constant)
++                        or (
++                            isinstance(condition, ast.Call)
++                            and isinstance(condition.func, ast.Name)
++                            and (
++                                filter_value := values.get(condition.func.id)
++                            ) is not None
++                            and filter_value.kind == "callable_summary"
++                            and isinstance(filter_value.value, tuple)
++                            and len(filter_value.value) == 2
++                            and isinstance(
++                                filter_value.value[1],
++                                _BoundedCallableSummary,
++                            )
++                            and filter_value.value[1].exception_tag is not None
++                            and _bounded_call_shape(
++                                condition,
++                                filter_value.value[1],
++                            ) == "valid"
++                        )
++                        for condition in node.generators[0].ifs
++                    )
++                )
++                state = _DeferredGeneratorState(
++                    node,
++                    id(node),
++                    remaining,
++                    supported,
++                    _flow_is_sensitive(iterator) or outer_deferred_sensitive,
++                    outer_iterator_identity,
++                    outer_iterator_version,
++                )
++                return _FlowValue("generator", state)
++            repeated: int | None = 1
++            local_values = self._fork_values(values)
++            may_skip_evaluation = False
++            skipped_states: list[dict[str, _FlowValue]] = []
++            for generator in node.generators:
++                if repeated == 0:
++                    break
++                try:
++                    iterator = (first_iterator if generator is node.generators[0]
++                                and first_iterator is not None else self._evaluate(
++                        generator.iter,
++                        local_values,
++                        record,
++                    ))
++                    if record:
++                        self._record_implicit_protocol_blocker(
++                            generator.iter,
++                            iterator,
++                            (
++                                _IMPLICIT_PROTOCOL_METHODS["async_iteration"]
++                                if generator.is_async
++                                else _IMPLICIT_PROTOCOL_METHODS["iteration"]
++                            ),
++                            "implicit iterator protocol execution is dynamically unresolved",
++                        )
++                    self._record_deferred_generator_consumption(
++                        iterator,
++                        local_values,
++                        generator.iter,
++                    )
++                except _ExpressionDoesNotComplete:
++                    if not skipped_states:
++                        raise
++                    local_values = self._merge_states(skipped_states)
++                    repeated = 0
++                    break
++                bound = self._iteration_bound_value(iterator)
++                self.flow.iterator_bounds[id(generator.iter)] = bound
++                setattr(generator.iter, "_pontius_iteration_bound", bound)
++                if bound is None:
++                    repeated = None
++                    may_skip_evaluation = True
++                else:
++                    repeated = (
++                        None
++                        if repeated is None
++                        else self.budget.cardinality(
++                            _checked_cardinality_multiply(repeated, bound)
++                        )
++                    )
++                if bound == 0:
++                    break
++                if iterator.kind == "sequence" and iterator.value:
++                    iteration_value = _merge_flow_values(
++                        "comprehension target",
++                        tuple(iterator.value),
++                    )
++                else:
++                    iteration_value = _flow_unknown(
++                        "comprehension target is dynamically unresolved",
++                        sensitive=_flow_is_sensitive(iterator),
++                    )
++                if (
++                    isinstance(generator.target, (ast.Tuple, ast.List))
++                    and iteration_value.kind == "sequence"
++                    and len(generator.target.elts) != len(iteration_value.value)
++                ):
++                    self._record_throw_state(
++                        local_values,
++                        "ValueError",
++                        True,
++                    )
++                    if self._throw_states is not None:
++                        raise _ExpressionDoesNotComplete
++                    return _flow_unknown(
++                        "comprehension target unpack does not complete"
++                    )
++                self._assign(generator.target, iteration_value, local_values)
++                for condition in generator.ifs:
++                    condition_value = self._evaluate(
++                        condition,
++                        local_values,
++                        record,
++                    )
++                    if record:
++                        self._record_implicit_protocol_blocker(
++                            condition,
++                            condition_value,
++                            _IMPLICIT_PROTOCOL_METHODS["truth"],
++                            "implicit truth-value protocol execution is dynamically unresolved",
++                        )
++                    if (
++                        condition_value.kind == "scalar"
++                        and not bool(condition_value.value)
++                    ):
++                        repeated = 0
++                        break
++                    if not (
++                        condition_value.kind == "scalar"
++                        and bool(condition_value.value)
++                    ):
++                        repeated = None
++                        may_skip_evaluation = True
++                        skipped_states.append(self._fork_values(local_values))
++                if repeated == 0:
++                    break
++            expressions = (
++                (node.key, node.value)
++                if isinstance(node, ast.DictComp)
++                else (node.elt,)
++            )
++            values_out: list[_FlowValue] = []
++            body_completed = repeated == 0
++            if repeated != 0:
++                try:
++                    for expression in expressions:
++                        values_out.append(
++                            self._evaluate(expression, local_values, record)
++                        )
++                    body_completed = True
++                except _ExpressionDoesNotComplete:
++                    if not skipped_states:
++                        raise
++            if skipped_states:
++                reaching = [*skipped_states]
++                if body_completed and repeated != 0:
++                    reaching.append(local_values)
++                local_values = self._merge_states(reaching)
++            comprehension_targets = {
++                candidate.target.id
++                for candidate in _metered_ast_walk(node, self.budget)
++                if isinstance(candidate, ast.NamedExpr)
++                and isinstance(candidate.target, ast.Name)
++            }
++            for name in comprehension_targets:
++                if name in local_values:
++                    if may_skip_evaluation and (
++                        values.get(name) is not None
++                        and values[name].kind == "qname"
++                        and (
++                            local_values[name].kind != "qname"
++                            or values[name] != local_values[name]
++                        )
++                        and (
++                            _flow_is_sensitive(values[name])
++                            or _flow_is_sensitive(local_values[name])
++                        )
++                    ):
++                        values[name] = _flow_unknown(
++                            "callable alias is dynamically unresolved",
++                            sensitive=True,
++                        )
++                    else:
++                        values[name] = (
++                            _merge_flow_values(
++                                name,
++                                (values.get(name), local_values[name]),
++                            )
++                            if may_skip_evaluation
++                            else local_values[name]
++                        )
++            sensitive_result = any(
++                _flow_is_sensitive(value) for value in values_out
++            )
++            self._record_throw_state(values, None, True)
++            if repeated is None:
++                return _flow_unknown(
++                    (
++                        "mixed protected receiver is dynamically unresolved"
++                        if sensitive_result
++                        else "comprehension result is not materialized"
++                    ),
++                    sensitive=sensitive_result,
++                )
++            storage_width = 2 if isinstance(node, ast.DictComp) else 1
++            expanded_storage = _checked_cardinality_multiply(
++                repeated,
++                storage_width,
++            )
++            if expanded_storage > MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS:
++                return _flow_unknown(
++                    (
++                        "mixed protected receiver is dynamically unresolved"
++                        if sensitive_result
++                        else "comprehension result is not materialized"
++                    ),
++                    sensitive=sensitive_result,
++                )
++            mutable_collection_identity = (
++                id(node) if isinstance(node, ast.ListComp) else None
++            )
++            if mutable_collection_identity is not None:
++                self._mutable_collection_versions.setdefault(
++                    mutable_collection_identity,
++                    0,
++                )
++            return _FlowValue(
++                "sequence",
++                tuple(values_out) * repeated,
++                mutable_collection=isinstance(node, ast.ListComp),
++                mutable_collection_identity=mutable_collection_identity,
++            )
++        finally:
++            if class_effects and local_values is not None:
++                self._adopt_effect_authority(values, local_values)
++
+     def _evaluate_value(
+         self,
+         node: ast.AST | None,
+@@ -19286,7 +20071,7 @@
+         if isinstance(node, ast.Constant):
+             return _FlowValue("scalar", node.value)
+         if isinstance(node, ast.Name):
+-            value = values.get(node.id)
++            value = self._class_read_name(node, values)
+             if value is not None and value.kind not in {"maybe_unbound", "unbound"}:
+                 return value
+             if value is not None or node.id in self.exception_scope.shadowed_names:
+@@ -21086,288 +21871,9 @@
+             node,
+             (ast.ListComp, ast.SetComp, ast.GeneratorExp, ast.DictComp),
+         ):
+-            if isinstance(node, ast.GeneratorExp):
+-                # Only the outermost iterable is evaluated at creation.
+-                iterator = self._evaluate(
+-                    node.generators[0].iter,
+-                    values,
+-                    record,
+-                )
+-                if record:
+-                    self._record_implicit_protocol_blocker(
+-                        node.generators[0].iter,
+-                        iterator,
+-                        _IMPLICIT_PROTOCOL_METHODS["iteration"],
+-                        "implicit iterator protocol execution is dynamically unresolved",
+-                    )
+-                remaining = self._iteration_bound_value(iterator)
+-                outer_iterator_identity = iterator.mutable_collection_identity
+-                outer_iterator_version = self._mutable_collection_versions.get(
+-                    outer_iterator_identity,
+-                    0,
+-                )
+-                outer_deferred_sensitive = bool(
+-                    iterator.kind in {"generator", "deferred_generator_merged"}
+-                    and self._deferred_generator_value_is_sensitive(
+-                        iterator,
+-                        values,
+-                        include_value_sensitivity=False,
+-                    )
+-                )
+-                proven_empty_filter = any(
+-                    isinstance(condition, ast.Constant)
+-                    and not bool(condition.value)
+-                    for condition in node.generators[0].ifs
+-                )
+-                if proven_empty_filter:
+-                    remaining = 0
+-                elif outer_iterator_version:
+-                    remaining = None
+-                self.flow.iterator_bounds[id(node.generators[0].iter)] = remaining
+-                setattr(
+-                    node.generators[0].iter,
+-                    "_pontius_iteration_bound",
+-                    remaining,
+-                )
+-                supported = bool(
+-                    remaining is not None
+-                    and not outer_deferred_sensitive
+-                    and len(node.generators) == 1
+-                    and all(
+-                        isinstance(condition, ast.Constant)
+-                        or (
+-                            isinstance(condition, ast.Call)
+-                            and isinstance(condition.func, ast.Name)
+-                            and (
+-                                filter_value := values.get(condition.func.id)
+-                            ) is not None
+-                            and filter_value.kind == "callable_summary"
+-                            and isinstance(filter_value.value, tuple)
+-                            and len(filter_value.value) == 2
+-                            and isinstance(
+-                                filter_value.value[1],
+-                                _BoundedCallableSummary,
+-                            )
+-                            and filter_value.value[1].exception_tag is not None
+-                            and _bounded_call_shape(
+-                                condition,
+-                                filter_value.value[1],
+-                            ) == "valid"
+-                        )
+-                        for condition in node.generators[0].ifs
+-                    )
+-                )
+-                state = _DeferredGeneratorState(
+-                    node,
+-                    id(node),
+-                    remaining,
+-                    supported,
+-                    _flow_is_sensitive(iterator) or outer_deferred_sensitive,
+-                    outer_iterator_identity,
+-                    outer_iterator_version,
+-                )
+-                return _FlowValue("generator", state)
+-            repeated: int | None = 1
+-            local_values = self._fork_values(values)
+-            may_skip_evaluation = False
+-            skipped_states: list[dict[str, _FlowValue]] = []
+-            for generator in node.generators:
+-                if repeated == 0:
+-                    break
+-                try:
+-                    iterator = self._evaluate(
+-                        generator.iter,
+-                        local_values,
+-                        record,
+-                    )
+-                    if record:
+-                        self._record_implicit_protocol_blocker(
+-                            generator.iter,
+-                            iterator,
+-                            (
+-                                _IMPLICIT_PROTOCOL_METHODS["async_iteration"]
+-                                if generator.is_async
+-                                else _IMPLICIT_PROTOCOL_METHODS["iteration"]
+-                            ),
+-                            "implicit iterator protocol execution is dynamically unresolved",
+-                        )
+-                    self._record_deferred_generator_consumption(
+-                        iterator,
+-                        local_values,
+-                        generator.iter,
+-                    )
+-                except _ExpressionDoesNotComplete:
+-                    if not skipped_states:
+-                        raise
+-                    local_values = self._merge_states(skipped_states)
+-                    repeated = 0
+-                    break
+-                bound = self._iteration_bound_value(iterator)
+-                self.flow.iterator_bounds[id(generator.iter)] = bound
+-                setattr(generator.iter, "_pontius_iteration_bound", bound)
+-                if bound is None:
+-                    repeated = None
+-                    may_skip_evaluation = True
+-                else:
+-                    repeated = (
+-                        None
+-                        if repeated is None
+-                        else self.budget.cardinality(
+-                            _checked_cardinality_multiply(repeated, bound)
+-                        )
+-                    )
+-                if bound == 0:
+-                    break
+-                if iterator.kind == "sequence" and iterator.value:
+-                    iteration_value = _merge_flow_values(
+-                        "comprehension target",
+-                        tuple(iterator.value),
+-                    )
+-                else:
+-                    iteration_value = _flow_unknown(
+-                        "comprehension target is dynamically unresolved",
+-                        sensitive=_flow_is_sensitive(iterator),
+-                    )
+-                if (
+-                    isinstance(generator.target, (ast.Tuple, ast.List))
+-                    and iteration_value.kind == "sequence"
+-                    and len(generator.target.elts) != len(iteration_value.value)
+-                ):
+-                    self._record_throw_state(
+-                        local_values,
+-                        "ValueError",
+-                        True,
+-                    )
+-                    if self._throw_states is not None:
+-                        raise _ExpressionDoesNotComplete
+-                    return _flow_unknown(
+-                        "comprehension target unpack does not complete"
+-                    )
+-                self._assign(generator.target, iteration_value, local_values)
+-                for condition in generator.ifs:
+-                    condition_value = self._evaluate(
+-                        condition,
+-                        local_values,
+-                        record,
+-                    )
+-                    if record:
+-                        self._record_implicit_protocol_blocker(
+-                            condition,
+-                            condition_value,
+-                            _IMPLICIT_PROTOCOL_METHODS["truth"],
+-                            "implicit truth-value protocol execution is dynamically unresolved",
+-                        )
+-                    if (
+-                        condition_value.kind == "scalar"
+-                        and not bool(condition_value.value)
+-                    ):
+-                        repeated = 0
+-                        break
+-                    if not (
+-                        condition_value.kind == "scalar"
+-                        and bool(condition_value.value)
+-                    ):
+-                        repeated = None
+-                        may_skip_evaluation = True
+-                        skipped_states.append(self._fork_values(local_values))
+-                if repeated == 0:
+-                    break
+-            expressions = (
+-                (node.key, node.value)
+-                if isinstance(node, ast.DictComp)
+-                else (node.elt,)
+-            )
+-            values_out: list[_FlowValue] = []
+-            body_completed = repeated == 0
+-            if repeated != 0:
+-                try:
+-                    for expression in expressions:
+-                        values_out.append(
+-                            self._evaluate(expression, local_values, record)
+-                        )
+-                    body_completed = True
+-                except _ExpressionDoesNotComplete:
+-                    if not skipped_states:
+-                        raise
+-            if skipped_states:
+-                reaching = [*skipped_states]
+-                if body_completed and repeated != 0:
+-                    reaching.append(local_values)
+-                local_values = self._merge_states(reaching)
+-            comprehension_targets = {
+-                candidate.target.id
+-                for candidate in _metered_ast_walk(node, self.budget)
+-                if isinstance(candidate, ast.NamedExpr)
+-                and isinstance(candidate.target, ast.Name)
+-            }
+-            for name in comprehension_targets:
+-                if name in local_values:
+-                    if may_skip_evaluation and (
+-                        values.get(name) is not None
+-                        and values[name].kind == "qname"
+-                        and (
+-                            local_values[name].kind != "qname"
+-                            or values[name] != local_values[name]
+-                        )
+-                        and (
+-                            _flow_is_sensitive(values[name])
+-                            or _flow_is_sensitive(local_values[name])
+-                        )
+-                    ):
+-                        values[name] = _flow_unknown(
+-                            "callable alias is dynamically unresolved",
+-                            sensitive=True,
+-                        )
+-                    else:
+-                        values[name] = (
+-                            _merge_flow_values(
+-                                name,
+-                                (values.get(name), local_values[name]),
+-                            )
+-                            if may_skip_evaluation
+-                            else local_values[name]
+-                        )
+-            sensitive_result = any(
+-                _flow_is_sensitive(value) for value in values_out
+-            )
+-            self._record_throw_state(values, None, True)
+-            if repeated is None:
+-                return _flow_unknown(
+-                    (
+-                        "mixed protected receiver is dynamically unresolved"
+-                        if sensitive_result
+-                        else "comprehension result is not materialized"
+-                    ),
+-                    sensitive=sensitive_result,
+-                )
+-            storage_width = 2 if isinstance(node, ast.DictComp) else 1
+-            expanded_storage = _checked_cardinality_multiply(
+-                repeated,
+-                storage_width,
+-            )
+-            if expanded_storage > MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS:
+-                return _flow_unknown(
+-                    (
+-                        "mixed protected receiver is dynamically unresolved"
+-                        if sensitive_result
+-                        else "comprehension result is not materialized"
+-                    ),
+-                    sensitive=sensitive_result,
+-                )
+-            mutable_collection_identity = (
+-                id(node) if isinstance(node, ast.ListComp) else None
+-            )
+-            if mutable_collection_identity is not None:
+-                self._mutable_collection_versions.setdefault(
+-                    mutable_collection_identity,
+-                    0,
+-                )
+-            return _FlowValue(
+-                "sequence",
+-                tuple(values_out) * repeated,
+-                mutable_collection=isinstance(node, ast.ListComp),
+-                mutable_collection_identity=mutable_collection_identity,
+-            )
++            if self._class_frame is not None:
++                return self._evaluate_class_comprehension(node, values, record)
++            return self._evaluate_comprehension(node, values, record)
+         if isinstance(node, ast.Compare):
+             compared_values = [self._evaluate(node.left, values, record)]
+             for operator, comparator in zip(
+@@ -21455,14 +21961,7 @@
+             self._assign(target.value, _flow_unknown("starred assignment is dynamically unresolved"), values)
+             return
+         if isinstance(target, ast.Name):
+-            if (self.active_helper_effects
+-                    and target.id in self.lexical_scope.global_names | self.lexical_scope.nonlocal_names):
+-                self._helper_rebound_names.add(target.id)
+-                previous = values.get(target.id)
+-                if previous is not None and _flow_contains_helper_identity(previous, self.budget):
+-                    self.flow.standalone_blockers.append((
+-                        target, "helper namespace binding change is dynamically unresolved",
+-                    ))
++            self._name_write_guard(target.id, target, values)
+             if value.helper_provenance is not None and value.helper_provenance.kind == "callable":
+                 self._helper_alias_candidates.add(target.id)
+             if value.kind == "environment":
+@@ -21815,14 +22314,7 @@
+                 self._delete_target(item, values)
+             return
+         if isinstance(target, ast.Name):
+-            if (self.active_helper_effects
+-                    and target.id in self.lexical_scope.global_names | self.lexical_scope.nonlocal_names):
+-                self._helper_rebound_names.add(target.id)
+-                previous = values.get(target.id)
+-                if previous is not None and _flow_contains_helper_identity(previous, self.budget):
+-                    self.flow.standalone_blockers.append((
+-                        target, "helper namespace binding change is dynamically unresolved",
+-                    ))
++            self._name_write_guard(target.id, target, values)
+             current = values.get(target.id)
+             if current is None or current.kind == "unbound":
+                 self._record_throw_state(
+@@ -21986,10 +22478,10 @@
+                         or state.authority.budget is not result.authority.budget):
+                     compatible = False
+                     break
+-        binding_plan: list[tuple[str, tuple[int, ...]]] = []
++        binding_plan: list[tuple[str, tuple[_CellIdentity, ...]]] = []
+         if compatible:
+             self.budget.consume(2)  # Plan list and overlap set.
+-            seen: set[int] = set()
++            seen: set[_CellIdentity] = set()
+             for name, cells in result.bindings.items():
+                 participating = False
+                 for state in states:
+@@ -22026,14 +22518,14 @@
+             result.clear()
+             for name in names:
+                 self.budget.consume()  # Actual name iteration.
+-                result[name] = _merge_flow_values(
++                result[name] = self._class_merge_local_projection(
+                     name, tuple(state.get(name) for state in name_inputs))
+             return result
+ 
+         def merge_name(name: str, supplied: tuple[object, ...]) -> _NameEntry:
+             self.budget.consume(1 + 2 * len(supplied))  # Missing-value translation tuple.
+             values = tuple(None if value is _NAME_MISSING else value for value in supplied)
+-            return result._transferred_name_entry(_merge_flow_values(name, values))
++            return result._transferred_name_entry(self._class_merge_local_projection(name, values))
+ 
+         result._names = _NameCursor(_join_name_versions(
+             result._names._meter, name_inputs, merge_name))
+@@ -22192,7 +22684,7 @@
+     ) -> None:
+         if isinstance(pattern, ast.MatchAs) and pattern.pattern is None:
+             if pattern.name is not None:
+-                values[pattern.name] = subject
++                self._bind_name(pattern.name, subject, values, pattern)
+             return
+         names = _python_bound_names(pattern)
+         if _flow_is_sensitive(subject):
+@@ -22201,12 +22693,12 @@
+                 sensitive=True,
+             )
+             for name in names:
+-                values[name] = ambiguous
++                self._bind_name(name, ambiguous, values, pattern)
+             return
+         for name in names:
+-            values[name] = _flow_unknown(
++            self._bind_name(name, _flow_unknown(
+                 "match capture is dynamically unresolved"
+-            )
++            ), values, pattern)
+ 
+     def _expression_may_raise(self, node: ast.AST | None) -> bool:
+         if node is None:
+@@ -22285,10 +22777,10 @@
+         target.returns.extend(supplied.returns)
+         target.raises.extend(supplied.raises)
+ 
+-    @staticmethod
+     def _delete_handler_alias(
+-        supplied: _FlowSuccessors,
++        self, supplied: _FlowSuccessors,
+         name: str,
++        site: ast.AST,
+     ) -> None:
+         for states in (
+             supplied.normal,
+@@ -22297,9 +22789,17 @@
+             supplied.returns,
+         ):
+             for state in states:
+-                state.pop(name, None)
++                if self._class_frame is not None:
++                    self._name_write_guard(name, site, state)
++                    state[name] = _FlowValue("unbound", reason="exception alias was deleted")
++                else:
++                    state.pop(name, None)
+         for exceptional in supplied.raises:
+-            exceptional.state.pop(name, None)
++            if self._class_frame is not None:
++                self._name_write_guard(name, site, exceptional.state)
++                exceptional.state[name] = _FlowValue("unbound", reason="exception alias was deleted")
++            else:
++                exceptional.state.pop(name, None)
+ 
+     def _flow_statements(
+         self,
+@@ -22357,6 +22857,8 @@
+         values: dict[str, _FlowValue],
+     ) -> _FlowSuccessors:
+         self.budget.consume()
++        if isinstance(statement, ast.ClassDef):
++            return self._flow_class_statement(statement, values)
+         if isinstance(statement, ast.Return):
+             completed, returned, current, raised = self._evaluate_with_successors(
+                 statement.value,
+@@ -22825,10 +23327,10 @@
+                             break
+                         if match != "nonmatch":
+                             if handler.name is not None:
+-                                handler_state[handler.name] = _FlowValue(
++                                self._bind_name(handler.name, _FlowValue(
+                                     "exception_instance",
+                                     residual.exception_tag,
+-                                )
++                                ), handler_state, handler)
+                             previous_active = self._active_exception_tag
+                             self._active_exception_tag = residual.exception_tag
+                             try:
+@@ -22842,6 +23344,7 @@
+                                 self._delete_handler_alias(
+                                     handler_flow,
+                                     handler.name,
++                                    handler,
+                                 )
+                             self._extend_successors(result, handler_flow)
+                         if match == "match":
+@@ -23141,6 +23644,260 @@
+             )
+         return result
+ 
++    def _flow_class_statement(
++        self, statement: ast.ClassDef, incoming: dict[str, _FlowValue],
++    ) -> _FlowSuccessors:
++        values = self._fork_values(incoming)
++        self.budget.consume()  # Class-header exception list.
++        header_raises: list[_FlowExceptionalState] = []
++        outer_throws = self._throw_states
++        outer_effect_values = self._current_effect_values
++        self._throw_states = header_raises
++        self._current_effect_values = values
++        try:
++            try:
++                decorator_values = tuple(
++                    (expression, self._evaluate(expression, values))
++                    for expression in statement.decorator_list
++                )
++                base_values = tuple(
++                    (expression, self._evaluate(expression, values))
++                    for expression in statement.bases
++                )
++                keyword_values = tuple(
++                    (keyword, self._evaluate(keyword.value, values))
++                    for keyword in statement.keywords
++                )
++                for expression, base_value in base_values:
++                    if base_value.kind == "implicit_class_instance":
++                        self._record_implicit_protocol_blocker(
++                            expression,
++                            base_value,
++                            frozenset({"__mro_entries__"}),
++                            "implicit class-base adaptation is dynamically unresolved",
++                        )
++                    elif base_value.kind == "implicit_class":
++                        self._record_implicit_protocol_blocker(
++                            expression,
++                            base_value,
++                            frozenset({"__init_subclass__"}),
++                            "implicit subclass initialization is dynamically unresolved",
++                        )
++                    elif base_value.kind == "implicit_protocol_merged":
++                        self._record_implicit_protocol_blocker(
++                            expression,
++                            base_value,
++                            frozenset({"__mro_entries__", "__init_subclass__"}),
++                            "implicit merged class ancestry is dynamically unresolved",
++                        )
++                        if (
++                            _flow_is_sensitive(base_value)
++                            and not self._implicit_protocol_is_sensitive(
++                                base_value,
++                                frozenset({
++                                    "__mro_entries__",
++                                    "__init_subclass__",
++                                }),
++                            )
++                        ):
++                            self.flow.standalone_blockers.append((
++                                expression,
++                                "implicit merged class ancestry is dynamically unresolved",
++                            ))
++                for keyword, keyword_value in keyword_values:
++                    if keyword.arg == "metaclass":
++                        self._record_implicit_protocol_blocker(
++                            keyword.value,
++                            keyword_value,
++                            frozenset({"__prepare__", "__new__", "__init__"}),
++                            "implicit metaclass construction is dynamically unresolved",
++                        )
++            except _ExpressionDoesNotComplete:
++                return _FlowSuccessors([], [], [], [], header_raises)
++        finally:
++            self._throw_states = outer_throws
++            self._current_effect_values = outer_effect_values
++        parent = self._class_frame
++        scope = _lexical_binding_scope(statement, self.budget)
++        enclosing = parent.enclosing if parent is not None else values
++        excluded = scope.local_names | scope.global_names
++        self.budget.consume(1 + len(scope.local_names) + len(scope.global_names))
++        free_names = frozenset(name for name in enclosing.bindings if name not in excluded)
++        self.budget.consume(7 + len(enclosing.bindings) + len(free_names))
++        frame = _ClassFrame(self._fork_values(values), enclosing, scope, free_names, parent)
++        class_values = self._fork_values(values)
++        self.budget.consume(2)
++        class_values.bindings = _AuthorityMap(self.budget)
++        for name in free_names:
++            self.budget.consume()
++            class_values.bindings[name] = enclosing.bindings[name]
++        for name in scope.local_names:
++            self.budget.consume()
++            class_values._project(name, _FlowValue("unbound", reason="class local is absent"))
++        self._refresh_bound_projection(class_values)
++        self.budget.consume(7)  # Method list, successor wrapper and five kind lists.
++        method_authorities: list[_FlowValue] = []
++        body = _FlowSuccessors([class_values], [], [], [], [])
++        self._class_frame = frame
++        try:
++            for item in statement.body:
++                if (not self.helper_registry
++                        and isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))):
++                    # Preserve the direct dormant-method shortcut in the disabled prepass.
++                    method_authorities.append(_flow_qname(item.name))
++                    continue
++                next_normal: list[dict[str, _FlowValue]] = []
++                for current in body.normal:
++                    supplied = self._flow_statement(item, current)
++                    next_normal.extend(supplied.normal)
++                    body.breaks.extend(supplied.breaks)
++                    body.continues.extend(supplied.continues)
++                    body.returns.extend(supplied.returns)
++                    body.raises.extend(supplied.raises)
++                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
++                        for normal in supplied.normal:
++                            self.budget.consume()
++                            method_authorities.append(normal.get(item.name, _flow_unknown(
++                                "class method construction is unresolved")))
++                body.normal = next_normal
++                body = self._coalesce_successors(body)
++                if not body.normal:
++                    break
++        finally:
++            self._class_frame = parent
++        self.budget.consume(6 + len(header_raises) + len(body.breaks)
++                            + len(body.continues) + len(body.returns) + 6 * len(body.raises))
++        result = _FlowSuccessors(
++            [],
++            [self._project_class_exit(frame, state) for state in body.breaks],
++            [self._project_class_exit(frame, state) for state in body.continues],
++            [self._project_class_exit(frame, state) for state in body.returns],
++            [*header_raises, *(
++                _FlowExceptionalState(self._project_class_exit(frame, exceptional.state),
++                                      exceptional.exception_tag, exceptional.explicit,
++                                      exceptional.excluded_handlers)
++                for exceptional in body.raises
++            )],
++        )
++        for class_values in body.normal:
++            outer = self._project_class_exit(frame, class_values)
++            raised: list[_FlowExceptionalState] = []
++            previous_throws = self._throw_states
++            previous_effect = self._current_effect_values
++            self._throw_states = raised
++            self._current_effect_values = outer
++            try:
++                try:
++                    self._finish_class_definition(
++                        statement, outer, class_values, decorator_values, base_values,
++                        method_authorities,
++                    )
++                except _ExpressionDoesNotComplete:
++                    pass
++                else:
++                    result.normal.append(outer)
++            finally:
++                self._throw_states = previous_throws
++                self._current_effect_values = previous_effect
++            result.raises.extend(raised)
++        return self._coalesce_successors(result)
++
++    def _finish_class_definition(
++        self, statement: ast.ClassDef, values: dict[str, _FlowValue],
++        class_values: dict[str, _FlowValue],
++        decorator_values: tuple[tuple[ast.expr, _FlowValue], ...],
++        base_values: tuple[tuple[ast.expr, _FlowValue], ...],
++        method_authorities: Sequence[_FlowValue],
++    ) -> None:
++        class_statements = [item for item in statement.body
++                            if not isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))]
++        for member_name in _class_namespace_assignment_names(
++            class_statements
++        ):
++            member_value = class_values.get(member_name)
++            if member_value is not None:
++                self._record_implicit_protocol_blocker(
++                    statement,
++                    member_value,
++                    frozenset({"__set_name__"}),
++                    "implicit descriptor installation is dynamically unresolved",
++                )
++        methods = tuple(
++            item
++            for item in statement.body
++            if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))
++        )
++        overridden_names = (
++            _class_namespace_assignment_names(class_statements)
++            | frozenset(
++                item.name
++                for item in statement.body
++                if isinstance(
++                    item,
++                    (
++                        ast.FunctionDef,
++                        ast.AsyncFunctionDef,
++                        ast.ClassDef,
++                    ),
++                )
++            )
++        )
++        descriptor_members = tuple(
++            (member_name, member_value.value)
++            for member_name in _class_namespace_assignment_names(
++                class_statements
++            )
++            for member_value in (class_values.get(member_name),)
++            if member_value is not None
++            and member_value.kind == "implicit_class_instance"
++            and isinstance(
++                member_value.value,
++                _ImplicitClassDescriptor,
++            )
++        )
++        descriptor = _implicit_class_descriptor(
++            statement.name,
++            methods,
++            _flow_aliases(values),
++            self.module_assignments,
++            self.budget,
++            sensitive_names=frozenset(
++                name
++                for name, value in values.items()
++                if _flow_is_sensitive(value)
++            ),
++            descriptor_members=descriptor_members,
++            inherited_descriptors=tuple(
++                base_value.value
++                for _expression, base_value in base_values
++                if base_value.kind == "implicit_class"
++                and isinstance(
++                    base_value.value,
++                    _ImplicitClassDescriptor,
++                )
++            ),
++            overridden_names=overridden_names,
++        )
++        installed = _FlowValue(
++            "implicit_class",
++            descriptor,
++            bool(descriptor.sensitive_methods),
++            "implicit class protocol execution is dynamically unresolved",
++            helper_obligations=tuple(method_authorities),
++        )
++        for decorator, decorator_value in reversed(decorator_values):
++            if self._flow_decorator_preserves_identity(decorator_value):
++                continue
++            self.flow.standalone_blockers.append((
++                decorator,
++                "local class decorator runtime target is dynamically unresolved",
++            ))
++            installed = _flow_unknown(
++                "decorated local class identity is dynamically unresolved"
++            )
++            break
++        self._bind_name(statement.name, self._transfer(installed, values), values, statement)
++
+     def _statements(
+         self,
+         statements: Sequence[ast.stmt],
+@@ -23152,14 +23909,14 @@
+                 for imported in statement.names:
+                     local = imported.asname or imported.name.split(".", 1)[0]
+                     qualified = imported.name if imported.asname else local
+-                    values[local] = _flow_qname(qualified)
++                    self._bind_name(local, _flow_qname(qualified), values, statement)
+                 continue
+             if isinstance(statement, ast.ImportFrom) and statement.module:
+                 for imported in statement.names:
+                     local = imported.asname or imported.name
+-                    values[local] = _flow_qname(
++                    self._bind_name(local, _flow_qname(
+                         f"{statement.module}.{imported.name}"
+-                    )
++                    ), values, statement)
+                 continue
+             if isinstance(statement, ast.Assign):
+                 value = self._evaluate(statement.value, values)
+@@ -23566,7 +24323,7 @@
+                     namespace_effects=_helper_local_namespace_effects(statement, self.budget),
+                 ), statement, values)
+                 for decorator_value in reversed(decorator_values):
+-                    if (self._definition_enclosing_values is not None
++                    if (self._class_frame is not None
+                             and decorator_value.kind == "qname"
+                             and decorator_value.value in {"staticmethod", "classmethod", "property"}):
+                         continue
+@@ -23642,186 +24399,15 @@
+                         installed = replace(installed, helper_obligations=(
+                             *installed.helper_obligations, *obligations,
+                         ))
+-                values[statement.name] = self._transfer(installed, values)
++                self._bind_name(statement.name, self._transfer(installed, values), values, statement)
+                 continue
+             if isinstance(statement, ast.ClassDef):
+-                decorator_values = tuple(
+-                    (expression, self._evaluate(expression, values))
+-                    for expression in statement.decorator_list
+-                )
+-                base_values = tuple(
+-                    (expression, self._evaluate(expression, values))
+-                    for expression in statement.bases
+-                )
+-                keyword_values = tuple(
+-                    (keyword, self._evaluate(keyword.value, values))
+-                    for keyword in statement.keywords
+-                )
+-                for expression, base_value in base_values:
+-                    if base_value.kind == "implicit_class_instance":
+-                        self._record_implicit_protocol_blocker(
+-                            expression,
+-                            base_value,
+-                            frozenset({"__mro_entries__"}),
+-                            "implicit class-base adaptation is dynamically unresolved",
+-                        )
+-                    elif base_value.kind == "implicit_class":
+-                        self._record_implicit_protocol_blocker(
+-                            expression,
+-                            base_value,
+-                            frozenset({"__init_subclass__"}),
+-                            "implicit subclass initialization is dynamically unresolved",
+-                        )
+-                    elif base_value.kind == "implicit_protocol_merged":
+-                        self._record_implicit_protocol_blocker(
+-                            expression,
+-                            base_value,
+-                            frozenset({"__mro_entries__", "__init_subclass__"}),
+-                            "implicit merged class ancestry is dynamically unresolved",
+-                        )
+-                        if (
+-                            _flow_is_sensitive(base_value)
+-                            and not self._implicit_protocol_is_sensitive(
+-                                base_value,
+-                                frozenset({
+-                                    "__mro_entries__",
+-                                    "__init_subclass__",
+-                                }),
+-                            )
+-                        ):
+-                            self.flow.standalone_blockers.append((
+-                                expression,
+-                                "implicit merged class ancestry is dynamically unresolved",
+-                            ))
+-                for keyword, keyword_value in keyword_values:
+-                    if keyword.arg == "metaclass":
+-                        self._record_implicit_protocol_blocker(
+-                            keyword.value,
+-                            keyword_value,
+-                            frozenset({"__prepare__", "__new__", "__init__"}),
+-                            "implicit metaclass construction is dynamically unresolved",
+-                        )
+-                class_statements = [
+-                    item
+-                    for item in statement.body
+-                    if not isinstance(
+-                        item,
+-                        (ast.FunctionDef, ast.AsyncFunctionDef),
+-                    )
+-                ]
+-                class_values = self._fork_values(values)
+-                # Class locals are a separate namespace; method free cells belong
+-                # to the enclosing activation, not this source-point name map.
+-                class_values.bindings = _AuthorityMap(self.budget)
+-                method_authorities: list[_FlowValue] = []
+-                for item in statement.body:
+-                    if (not self.helper_registry
+-                            and isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))):
+-                        # The helper-disabled protocol prepass retains its original
+-                        # dormant method metadata. The dedicated definition-time
+-                        # visitor checks eager construction expressions, and the
+-                        # descriptor analysis below owns implicit method protocols.
+-                        # Full method installation belongs to helper-enabled flow;
+-                        # repeating it here would rescan every dormant method body.
+-                        method_authorities.append(_flow_qname(item.name))
+-                        continue
+-                    previous_enclosing = self._definition_enclosing_values
+-                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
+-                        self._definition_enclosing_values = values
+-                    try:
+-                        class_values = self._statements((item,), class_values)
+-                    finally:
+-                        self._definition_enclosing_values = previous_enclosing
+-                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
+-                        method_authorities.append(class_values[item.name])
+-                if isinstance(values, _ExecutionState):
+-                    values.authority = class_values.authority.fork()
+-                for member_name in _class_namespace_assignment_names(
+-                    class_statements
+-                ):
+-                    member_value = class_values.get(member_name)
+-                    if member_value is not None:
+-                        self._record_implicit_protocol_blocker(
+-                            statement,
+-                            member_value,
+-                            frozenset({"__set_name__"}),
+-                            "implicit descriptor installation is dynamically unresolved",
+-                        )
+-                methods = tuple(
+-                    item
+-                    for item in statement.body
+-                    if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))
+-                )
+-                overridden_names = (
+-                    _class_namespace_assignment_names(class_statements)
+-                    | frozenset(
+-                        item.name
+-                        for item in statement.body
+-                        if isinstance(
+-                            item,
+-                            (
+-                                ast.FunctionDef,
+-                                ast.AsyncFunctionDef,
+-                                ast.ClassDef,
+-                            ),
+-                        )
+-                    )
+-                )
+-                descriptor_members = tuple(
+-                    (member_name, member_value.value)
+-                    for member_name in _class_namespace_assignment_names(
+-                        class_statements
+-                    )
+-                    for member_value in (class_values.get(member_name),)
+-                    if member_value is not None
+-                    and member_value.kind == "implicit_class_instance"
+-                    and isinstance(
+-                        member_value.value,
+-                        _ImplicitClassDescriptor,
+-                    )
+-                )
+-                descriptor = _implicit_class_descriptor(
+-                    statement.name,
+-                    methods,
+-                    _flow_aliases(values),
+-                    self.module_assignments,
+-                    self.budget,
+-                    sensitive_names=frozenset(
+-                        name
+-                        for name, value in values.items()
+-                        if _flow_is_sensitive(value)
+-                    ),
+-                    descriptor_members=descriptor_members,
+-                    inherited_descriptors=tuple(
+-                        base_value.value
+-                        for _expression, base_value in base_values
+-                        if base_value.kind == "implicit_class"
+-                        and isinstance(
+-                            base_value.value,
+-                            _ImplicitClassDescriptor,
+-                        )
+-                    ),
+-                    overridden_names=overridden_names,
+-                )
+-                installed = _FlowValue(
+-                    "implicit_class",
+-                    descriptor,
+-                    bool(descriptor.sensitive_methods),
+-                    "implicit class protocol execution is dynamically unresolved",
+-                    helper_obligations=tuple(method_authorities),
+-                )
+-                for decorator, decorator_value in reversed(decorator_values):
+-                    if self._flow_decorator_preserves_identity(decorator_value):
+-                        continue
+-                    self.flow.standalone_blockers.append((
+-                        decorator,
+-                        "local class decorator runtime target is dynamically unresolved",
+-                    ))
+-                    installed = _flow_unknown(
+-                        "decorated local class identity is dynamically unresolved"
+-                    )
+-                    break
+-                values[statement.name] = self._transfer(installed, values)
++                supplied = self._flow_class_statement(statement, values)
++                if self._throw_states is not None:
++                    self._throw_states.extend(supplied.raises)
++                if not supplied.normal:
++                    raise _ExpressionDoesNotComplete
++                values = self._merge_states(supplied.normal)
+                 continue
+             for child in ast.iter_child_nodes(statement):
+                 self._evaluate(child, values)
+@@ -26034,10 +26620,10 @@
+                 analysis_budget=analysis_budget,
+                 invalid_helper_owners=source_flow.invalid_helper_owners_by_call.get(id(call), ()),
+                 receiver_kinds={},
+-                entry_values=_ExecutionState(
+-                    {name: value for name, value in source_flow.values_by_call[id(call)].items()
+-                     if name not in _lexical_binding_scope(local_node).local_names},
+-                    analysis_budget, parent=source_flow.values_by_call[id(call)],
++                entry_values=_historical_review_environment(
++                    source_flow.values_by_call[id(call)],
++                    source_flow.callable_values_by_call[id(call)],
++                    local_node, analysis_budget,
+                 ),
+             )
+             site_key = site_keys[id(call)]
