@@ -1,0 +1,630 @@
+--- Task2-v1
++++ Task3-v1
+@@ -9276,8 +9276,8 @@
+ @dataclass(frozen=True, slots=True, eq=False)
+ class _CProgram:
+     modules: Mapping[str, _CScope]
+-    scopes: Mapping[int, _CScope]
+-    signatures: Mapping[int, _ReviewFunction]
++    scopes: Mapping[ast.AST, _CScope]
++    signatures: Mapping[ast.AST, _ReviewFunction]
+ 
+ 
+ @dataclass(slots=True, eq=False)
+@@ -9525,7 +9525,9 @@
+     return tuple(outcomes)
+ 
+ 
+-def _c_fact_tuple(budget: _AnalysisBudget, values: Sequence[object]) -> tuple:
++def _c_fact_tuple(
++    budget: _AnalysisBudget, values: Sequence[object] | Mapping[object, object],
++) -> tuple:
+     budget.consume(1 + 2 * len(values))  # Tuple, visits and retained references.
+     return tuple(values)
+ 
+@@ -9551,6 +9553,31 @@
+         if value not in table:
+             budget.consume(3)  # Insertion and retained key/value.
+             table[value] = None
++
++    def bindings(current: ast.AST) -> None:
++        budget.consume()  # Binding-only walk; implicit-frame reads/targets are excluded.
++        if isinstance(current, ast.Name):
++            if isinstance(current.ctx, (ast.Store, ast.Del)):
++                name(local, current.id)
++            return
++        if isinstance(current, ast.Lambda):
++            for expression in current.args.defaults:
++                budget.consume()
++                bindings(expression)
++            for expression in current.args.kw_defaults:
++                budget.consume()
++                if expression is not None:
++                    bindings(expression)
++            return
++        if isinstance(current, ast.comprehension):
++            bindings(current.iter)
++            for condition in current.ifs:
++                budget.consume()
++                bindings(condition)
++            return
++        for child_node in ast.iter_child_nodes(current):
++            budget.consume()
++            bindings(child_node)
+ 
+     def visit(current: ast.AST) -> None:
+         budget.consume()  # This scope's syntax visit.
+@@ -9592,9 +9619,21 @@
+                     visit(expression)
+             return
+         if isinstance(current, (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)):
+-            # R1 refuses reached comprehension execution; only its eager header is outer.
++            # Only the first iterable has outer free reads; walrus stores still bind here.
+             if current.generators:
+                 visit(current.generators[0].iter)
++            for index, generator in enumerate(current.generators):
++                budget.consume()
++                if index:
++                    bindings(generator.iter)
++                for condition in generator.ifs:
++                    budget.consume()
++                    bindings(condition)
++            if isinstance(current, ast.DictComp):
++                bindings(current.key)
++                bindings(current.value)
++            else:
++                bindings(current.elt)
+             return
+         if isinstance(current, ast.Name):
+             name(loads if isinstance(current.ctx, ast.Load) else local, current.id)
+@@ -9609,6 +9648,10 @@
+             return
+         elif isinstance(current, ast.ExceptHandler) and current.name:
+             name(local, current.name)
++        elif isinstance(current, (ast.MatchAs, ast.MatchStar)) and current.name:
++            name(local, current.name)
++        elif isinstance(current, ast.MatchMapping) and current.rest:
++            name(local, current.rest)
+         for child_node in ast.iter_child_nodes(current):
+             budget.consume()  # Traversed syntax edge.
+             visit(child_node)
+@@ -9809,6 +9852,539 @@
+                 return route
+     ctx.budget.consume(6)
+     return _CCapture("module", None, frame.module, name)
++
++
++def _c_atom(ctx: _CContext, kind: str, data: object = None, reason: str | None = None) -> _CAtom:
++    ctx.budget.consume(4)
++    return _CAtom(kind, data, reason)
++
++
++def _c_out(
++    ctx: _CContext, state: _CState, value: _CValue | None = None, *,
++    control: str = "normal", exception: str | None = None,
++    issues: tuple[_CIssue, ...] = (), trace: _CTrace | None = None,
++) -> _COutcome:
++    if value is None:
++        value = _c_atom(ctx, "literal")
++    if trace is None:
++        trace = _c_trace(ctx, "empty", ())
++    ctx.budget.consume(10)  # Outcome, eight fields and empty exclusion set.
++    return _COutcome(state, value, control, exception, False, frozenset(), issues, trace)
++
++
++def _c_fail(
++    ctx: _CContext, state: _CState, site: ast.AST, reason: str, *,
++    exception: str | None = None,
++) -> _COutcome:
++    ctx.budget.consume(7)  # Issue and four fields; singleton tuple and reference.
++    issue = _CIssue(site, ctx.path, reason, "unsupported" if exception is None else "exception")
++    trace = _c_trace(ctx, "event", (), issue)
++    return _c_out(ctx, state, control="refused" if exception is None else "raise",
++                  exception=exception, issues=(issue,), trace=trace)
++
++
++def _c_follow(ctx: _CContext, prior: _COutcome, result: _COutcome) -> _COutcome:
++    ctx.budget.consume(1 + 2 * (len(prior.issues) + len(result.issues)))
++    issues = prior.issues + result.issues
++    trace = _c_trace_link(ctx, "sequence", prior.trace, result.trace)
++    return _c_out(ctx, result.state, result.result, control=result.control,
++                  exception=result.exception_tag, issues=issues, trace=trace)
++
++
++def _c_one(ctx: _CContext, outcome: _COutcome) -> tuple[_COutcome, ...]:
++    ctx.budget.consume(2)
++    return (outcome,)
++
++
++def _c_read_name(
++    ctx: _CContext, state: _CState, frame: _CFrame, name: str, site: ast.AST,
++) -> tuple[_COutcome, ...]:
++    route = _c_name_route(ctx, state, frame, name)
++    value = None
++    if route.kind == "cell":
++        value = _c_cell_read(ctx, state, route.cell)
++    elif route.kind in {"class", "module"}:
++        namespace = _c_namespace(ctx, state, route.module)
++        ctx.budget.consume()
++        value = namespace.members.get(name)
++        if value is None and route.kind == "module" and name in {
++            "staticmethod", "__import__", "None", "True", "False",
++        }:
++            value = _c_atom(ctx, "symbol", name)
++    if value is None or (type(value) is _CAtom and value.kind == "unbound"):
++        return _c_one(ctx, _c_fail(ctx, state, site, "unresolved or unbound name: " + name,
++                                  exception="NameError"))
++    return _c_one(ctx, _c_out(ctx, state, value))
++
++
++def _c_read_member(
++    ctx: _CContext, state: _CState, receiver: _CValue, name: str, site: ast.AST,
++) -> tuple[_COutcome, ...]:
++    if type(receiver) is _CAtom and receiver.kind == "symbol":
++        if receiver.data == "os" and name == "environ":
++            ctx.budget.consume(5)
++            value = _c_new_object(ctx, state, _CEnvironment(True, (), (), None))
++        else:
++            ctx.budget.consume()  # Qualified symbol construction.
++            value = _c_atom(ctx, "symbol", str(receiver.data) + "." + name)
++        return _c_one(ctx, _c_out(ctx, state, value))
++    record = _c_object_read(ctx, state, receiver) if type(receiver) is _CRef else None
++    instance = record if isinstance(record, _CInstance) else None
++    if instance is not None:
++        record = _c_namespace(ctx, state, instance.class_ref)
++    if isinstance(record, _CNamespace):
++        ctx.budget.consume()
++        value = record.members.get(name)
++        if value is not None:
++            function = _c_object_read(ctx, state, value) if type(value) is _CRef else None
++            if instance is not None and isinstance(function, _CFunction):
++                if function.descriptor_kind == "ordinary":
++                    ctx.budget.consume(3)
++                    value = _c_new_object(ctx, state, _CBound(value, receiver))
++            return _c_one(ctx, _c_out(ctx, state, value))
++        if instance is not None and instance.open_entry:
++            return _c_one(ctx, _c_out(ctx, state, _c_atom(
++                ctx, "unknown", reason="open unittest receiver attribute")))
++    if isinstance(record, _CSequence) and record.kind == "list" and name == "append":
++        ctx.budget.consume(3)
++        value = _c_new_object(ctx, state, _CNativeMethod(receiver, name))
++        return _c_one(ctx, _c_out(ctx, state, value))
++    return _c_one(ctx, _c_fail(ctx, state, site, "unsupported or missing member: " + name))
++
++
++def _c_read_element(
++    ctx: _CContext, state: _CState, receiver: _CValue, index: _CValue, site: ast.AST,
++) -> tuple[_COutcome, ...]:
++    record = _c_object_read(ctx, state, receiver) if type(receiver) is _CRef else None
++    if isinstance(record, _CSequence) and type(index) is _CAtom and index.kind == "literal" and type(index.data) is int:
++        ctx.budget.consume()
++        if -len(record.elements) <= index.data < len(record.elements):
++            return _c_one(ctx, _c_out(ctx, state, record.elements[index.data]))
++        return _c_one(ctx, _c_fail(ctx, state, site, "sequence index out of range",
++                                  exception="IndexError"))
++    return _c_one(ctx, _c_fail(ctx, state, site, "unsupported canonical subscript"))
++
++
++def _c_eval_many(
++    ctx: _CContext, state: _CState, frame: _CFrame, expressions: Sequence[ast.expr],
++) -> tuple[tuple[_COutcome, tuple[_CValue, ...]], ...]:
++    ctx.budget.consume(5)  # Outer tuple, pair and retained references.
++    pending = ((_c_out(ctx, state), ()),)
++    for expression in expressions:
++        ctx.budget.consume(2)
++        following: list[tuple[_COutcome, tuple[_CValue, ...]]] = []
++        for prior, values in pending:
++            ctx.budget.consume()
++            if prior.control != "normal":
++                ctx.budget.consume(5)
++                following.append((prior, values))
++                continue
++            for result in _c_eval(ctx, prior.state, frame, expression):
++                ctx.budget.consume()
++                joined = _c_follow(ctx, prior, result)
++                ctx.budget.container(len(values) + 1)
++                ctx.budget.consume(len(values) + 3)  # Copy visits and temporary singleton.
++                appended = values + (result.result,)
++                ctx.budget.consume(5)
++                following.append((joined, appended))
++        pending = _c_fact_tuple(ctx.budget, following)
++    return pending
++
++
++def _c_store_name(
++    ctx: _CContext, state: _CState, frame: _CFrame, name: str,
++    value: _CValue | None, site: ast.AST,
++) -> tuple[_COutcome, ...]:
++    route = _c_name_route(ctx, state, frame, name, writing=True)
++    if route.kind == "cell":
++        installed = value if value is not None else _c_atom(ctx, "unbound")
++        if _c_cell_write(ctx, state, route.cell, installed):
++            return _c_one(ctx, _c_out(ctx, state, installed))
++    elif route.kind in {"module", "class"}:
++        if route.kind == "module" and frame.scope.kind != "module":
++            return _c_one(ctx, _c_fail(ctx, state, site, "unsupported declared module write"))
++        _c_namespace_write(ctx, state, route.module, name, value)
++        return _c_one(ctx, _c_out(ctx, state, value))
++    return _c_one(ctx, _c_fail(ctx, state, site, "unproved lexical write destination"))
++
++
++def _c_store(
++    ctx: _CContext, state: _CState, frame: _CFrame, target: ast.expr,
++    value: _CValue | None,
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume()
++    if isinstance(target, ast.Name):
++        return _c_store_name(ctx, state, frame, target.id, value, target)
++    if isinstance(target, (ast.Tuple, ast.List)) and value is not None:
++        record = _c_object_read(ctx, state, value) if type(value) is _CRef else None
++        if not isinstance(record, _CSequence) or len(record.elements) != len(target.elts):
++            return _c_one(ctx, _c_fail(ctx, state, target, "unsupported unpacking or arity"))
++        # Capture these references once, before any target store.
++        elements = record.elements
++        outcomes = _c_one(ctx, _c_out(ctx, state, value))
++        for index, child in enumerate(target.elts):
++            ctx.budget.consume(2)
++            next_outcomes: list[_COutcome] = []
++            for prior in outcomes:
++                ctx.budget.consume()
++                produced = _c_store(ctx, prior.state, frame, child, elements[index]) if (
++                    prior.control == "normal") else _c_one(ctx, prior)
++                for result in produced:
++                    ctx.budget.consume(2)
++                    next_outcomes.append(_c_follow(ctx, prior, result) if (
++                        prior.control == "normal") else result)
++            outcomes = _c_join(ctx, next_outcomes)
++        ctx.budget.consume()
++        restored: list[_COutcome] = []
++        for result in outcomes:
++            ctx.budget.consume(2)
++            restored.append(_c_out(ctx, result.state, value, issues=result.issues,
++                                    trace=result.trace) if result.control == "normal" else result)
++        return _c_join(ctx, restored)
++    if isinstance(target, ast.Attribute):
++        ctx.budget.consume()
++        outcomes: list[_COutcome] = []
++        for prior in _c_eval(ctx, state, frame, target.value):
++            ctx.budget.consume()
++            result = prior
++            if prior.control == "normal":
++                record = _c_object_read(ctx, prior.state, prior.result) if (
++                    type(prior.result) is _CRef) else None
++                if isinstance(record, _CNamespace) and record.kind == "class":
++                    _c_namespace_write(ctx, prior.state, prior.result, target.attr, value)
++                    result = _c_follow(ctx, prior, _c_fail(
++                        ctx, prior.state, target, "reached protected class namespace write"))
++                else:
++                    result = _c_follow(ctx, prior, _c_fail(
++                        ctx, prior.state, target, "unsupported attribute write"))
++            ctx.budget.consume(2)
++            outcomes.append(result)
++        return _c_join(ctx, outcomes)
++    return _c_one(ctx, _c_fail(ctx, state, target, "unsupported canonical assignment target"))
++
++
++def _c_delete(
++    ctx: _CContext, state: _CState, frame: _CFrame, target: ast.expr,
++) -> tuple[_COutcome, ...]:
++    return _c_store(ctx, state, frame, target, None)
++
++
++def _c_truth(ctx: _CContext, value: _CValue) -> bool | None:
++    ctx.budget.consume()
++    if type(value) is _CAtom and value.kind == "literal":
++        data = value.data
++        if data is None or type(data) is str or type(data) is int or (
++                type(data) is float or type(data) is bool):
++            return bool(data)
++    return None
++
++
++def _c_eval_dict(
++    ctx: _CContext, state: _CState, frame: _CFrame, node: ast.Dict,
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume()
++    expressions: list[ast.expr] = []
++    for key, value in zip(node.keys, node.values, strict=True):
++        ctx.budget.consume()
++        if key is not None:
++            ctx.budget.consume(2)
++            expressions.append(key)
++        ctx.budget.consume(2)
++        expressions.append(value)
++    ctx.budget.consume()
++    outcomes: list[_COutcome] = []
++    for prior, values in _c_eval_many(ctx, state, frame, expressions):
++        ctx.budget.consume()
++        if prior.control != "normal":
++            ctx.budget.consume(2)
++            outcomes.append(prior)
++            continue
++        ctx.budget.consume()
++        additions: dict[str, str] = {}
++        inherited, reason, index = False, None, 0
++        for key in node.keys:
++            ctx.budget.consume()
++            if key is None:
++                source = values[index]
++                index += 1
++                record = _c_object_read(ctx, prior.state, source) if type(source) is _CRef else None
++                if not isinstance(record, _CEnvironment) or record.removals or record.unresolved_reason:
++                    reason = "unsupported environment mapping expansion"
++                    break
++                inherited = inherited or record.inherited
++                for name, value in record.additions:
++                    ctx.budget.consume(4)
++                    additions[name] = value
++            else:
++                key_value, value = values[index], values[index + 1]
++                index += 2
++                if not (type(key_value) is _CAtom and key_value.kind == "literal"
++                        and type(key_value.data) is str and type(value) is _CAtom
++                        and value.kind == "literal" and type(value.data) is str):
++                    reason = "environment keys and values must be exact strings"
++                    break
++                ctx.budget.consume(3)
++                additions[key_value.data] = value.data
++        if reason:
++            result = _c_fail(ctx, prior.state, node, reason)
++        else:
++            ctx.budget.consume(1 + 5 * len(additions))  # Ordered items tuple and pair refs.
++            items = tuple(additions.items())
++            ctx.budget.consume(5)
++            result = _c_out(ctx, prior.state, _c_new_object(
++                ctx, prior.state, _CEnvironment(inherited, items, (), None)))
++        ctx.budget.consume(2)
++        outcomes.append(_c_follow(ctx, prior, result))
++    return _c_join(ctx, outcomes)
++
++
++def _c_eval(
++    ctx: _CContext, state: _CState, frame: _CFrame, node: ast.expr,
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume()
++    if isinstance(node, ast.Constant) and (node.value is None or type(node.value) is str
++            or type(node.value) is int or type(node.value) is float or type(node.value) is bool):
++        return _c_one(ctx, _c_out(ctx, state, _c_atom(ctx, "literal", node.value)))
++    if isinstance(node, ast.Name):
++        return _c_read_name(ctx, state, frame, node.id, node)
++    if isinstance(node, ast.Dict):
++        return _c_eval_dict(ctx, state, frame, node)
++    if isinstance(node, (ast.List, ast.Tuple)):
++        ctx.budget.consume()
++        outcomes: list[_COutcome] = []
++        for prior, values in _c_eval_many(ctx, state, frame, node.elts):
++            ctx.budget.consume()
++            if prior.control == "normal":
++                ctx.budget.consume(3)
++                value = _c_new_object(ctx, prior.state, _CSequence(
++                    "list" if isinstance(node, ast.List) else "tuple", values))
++                prior = _c_follow(ctx, prior, _c_out(ctx, prior.state, value))
++            ctx.budget.consume(2)
++            outcomes.append(prior)
++        return _c_join(ctx, outcomes)
++    if isinstance(node, (ast.Attribute, ast.Subscript)):
++        ctx.budget.consume()
++        outcomes = []
++        for prior in _c_eval(ctx, state, frame, node.value):
++            ctx.budget.consume()
++            if prior.control != "normal":
++                ctx.budget.consume(2)
++                outcomes.append(prior)
++                continue
++            if isinstance(node, ast.Attribute):
++                produced = _c_read_member(ctx, prior.state, prior.result, node.attr, node)
++                for result in produced:
++                    ctx.budget.consume(2)
++                    outcomes.append(_c_follow(ctx, prior, result))
++            else:
++                for index in _c_eval(ctx, prior.state, frame, node.slice):
++                    ctx.budget.consume()
++                    entered = _c_follow(ctx, prior, index)
++                    produced = _c_read_element(ctx, index.state, prior.result, index.result, node) if (
++                        index.control == "normal") else _c_one(ctx, index)
++                    for result in produced:
++                        ctx.budget.consume(2)
++                        outcomes.append(_c_follow(ctx, entered, result) if (
++                            index.control == "normal") else entered)
++        return _c_join(ctx, outcomes)
++    if isinstance(node, ast.Call):
++        ctx.budget.consume()
++        outcomes = []
++        for selected in _c_eval(ctx, state, frame, node.func):
++            ctx.budget.consume()
++            if selected.control != "normal":
++                ctx.budget.consume(2)
++                outcomes.append(selected)
++                continue
++            ctx.budget.consume(1 + 2 * (len(node.args) + len(node.keywords)))
++            operands = [*node.args, *(keyword.value for keyword in node.keywords)]
++            for operands_done, values in _c_eval_many(ctx, selected.state, frame, operands):
++                ctx.budget.consume()
++                entered = _c_follow(ctx, selected, operands_done)
++                if entered.control != "normal":
++                    ctx.budget.consume(2)
++                    outcomes.append(entered)
++                    continue
++                expanded = False
++                for keyword in node.keywords:
++                    ctx.budget.consume()
++                    if keyword.arg is None:
++                        expanded = True
++                        break
++                if expanded:
++                    produced = _c_one(ctx, _c_fail(ctx, entered.state, node,
++                                                 "unsupported expanded keyword call"))
++                else:
++                    ctx.budget.consume(1 + 2 * len(node.args))
++                    arguments = values[:len(node.args)]
++                    ctx.budget.consume(1 + 5 * len(node.keywords))
++                    keywords = tuple((keyword.arg, values[len(node.args) + index])
++                                     for index, keyword in enumerate(node.keywords))
++                    produced = _c_call(ctx, entered.state, frame, node,
++                                       selected.result, arguments, keywords)
++                for result in produced:
++                    ctx.budget.consume(2)
++                    outcomes.append(_c_follow(ctx, entered, result))
++        return _c_join(ctx, outcomes)
++    if isinstance(node, ast.Compare) and len(node.ops) == 1 and isinstance(
++            node.ops[0], (ast.Is, ast.IsNot)):
++        ctx.budget.consume()
++        outcomes = []
++        ctx.budget.consume(3)
++        for prior, values in _c_eval_many(ctx, state, frame, (node.left, node.comparators[0])):
++            ctx.budget.consume()
++            if prior.control == "normal":
++                left, right = values
++                answer = None
++                if isinstance(node.ops[0], (ast.Is, ast.IsNot)):
++                    if type(left) is _CAtom and left.kind == "literal" and left.data is None:
++                        answer = type(right) is _CAtom and right.kind == "literal" and right.data is None
++                        if type(right) is _CAtom and right.kind in {"unknown", "unbound"}:
++                            answer = None
++                    elif type(right) is _CAtom and right.kind == "literal" and right.data is None:
++                        answer = type(left) is _CAtom and left.kind == "literal" and left.data is None
++                        if type(left) is _CAtom and left.kind in {"unknown", "unbound"}:
++                            answer = None
++                    elif type(left) is _CRef and type(right) is _CRef:
++                        answer = left.object_id == right.object_id
++                    if answer is not None and isinstance(node.ops[0], ast.IsNot):
++                        answer = not answer
++                if answer is None:
++                    value = _c_atom(ctx, "unknown", reason="unresolved comparison")
++                else:
++                    value = _c_atom(ctx, "literal", answer)
++                prior = _c_follow(ctx, prior, _c_out(ctx, prior.state, value))
++            ctx.budget.consume(2)
++            outcomes.append(prior)
++        return _c_join(ctx, outcomes)
++    if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
++        ctx.budget.consume()
++        outcomes = []
++        for prior in _c_eval(ctx, state, frame, node.operand):
++            ctx.budget.consume()
++            if prior.control == "normal":
++                truth = _c_truth(ctx, prior.result)
++                value = _c_atom(ctx, "unknown") if truth is None else _c_atom(ctx, "literal", not truth)
++                prior = _c_follow(ctx, prior, _c_out(ctx, prior.state, value))
++            ctx.budget.consume(2)
++            outcomes.append(prior)
++        return _c_join(ctx, outcomes)
++    return _c_one(ctx, _c_fail(ctx, state, node, "unsupported reached expression: " +
++                              type(node).__name__))
++
++
++def _c_statements(
++    ctx: _CContext, initial: _COutcome, frame: _CFrame, statements: Sequence[ast.stmt],
++) -> tuple[_COutcome, ...]:
++    outcomes = _c_one(ctx, initial)
++    for statement in statements:
++        ctx.budget.consume(2)
++        following: list[_COutcome] = []
++        for prior in outcomes:
++            ctx.budget.consume()
++            produced = _c_statement(ctx, prior.state, frame, statement) if (
++                prior.control == "normal") else _c_one(ctx, prior)
++            for result in produced:
++                ctx.budget.consume(2)
++                following.append(_c_follow(ctx, prior, result) if prior.control == "normal" else result)
++        outcomes = _c_join(ctx, following)
++    return outcomes
++
++
++def _c_statement(
++    ctx: _CContext, state: _CState, frame: _CFrame, node: ast.stmt,
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume()
++    if isinstance(node, (ast.Pass, ast.Global, ast.Nonlocal)):
++        return _c_one(ctx, _c_out(ctx, state))
++    if isinstance(node, (ast.Import, ast.ImportFrom)):
++        outcomes = _c_one(ctx, _c_out(ctx, state))
++        for alias in node.names:
++            ctx.budget.consume(2)
++            following: list[_COutcome] = []
++            if alias.name == "*" or (isinstance(node, ast.ImportFrom) and node.level):
++                return _c_one(ctx, _c_fail(ctx, state, node, "unsupported import binding"))
++            qualified = alias.name if isinstance(node, ast.Import) else (
++                (node.module or "") + "." + alias.name)
++            bound = alias.asname or alias.name.split(".", 1)[0]
++            if isinstance(node, ast.Import) and alias.asname is None:
++                qualified = alias.name.split(".", 1)[0]
++            value = _c_atom(ctx, "symbol", qualified)
++            for prior in outcomes:
++                ctx.budget.consume()
++                for result in _c_store_name(ctx, prior.state, frame, bound, value, node):
++                    ctx.budget.consume(2)
++                    following.append(_c_follow(ctx, prior, result))
++            outcomes = _c_join(ctx, following)
++        return outcomes
++    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
++        return _c_construct_function(ctx, state, frame, node)
++    if isinstance(node, ast.ClassDef):
++        return _c_construct_class(ctx, state, frame, node)
++    if isinstance(node, ast.If):
++        ctx.budget.consume()
++        outcomes: list[_COutcome] = []
++        for prior in _c_eval(ctx, state, frame, node.test):
++            ctx.budget.consume()
++            if prior.control != "normal":
++                ctx.budget.consume(2)
++                outcomes.append(prior)
++                continue
++            truth = _c_truth(ctx, prior.result)
++            ctx.budget.consume(3 if truth is None else 2)
++            choices = (True, False) if truth is None else (truth,)
++            for choice in choices:
++                ctx.budget.consume()
++                branch = _c_fork(ctx, prior.state) if truth is None else prior.state
++                entered = _c_out(ctx, branch, prior.result)
++                for result in _c_statements(ctx, entered, frame, node.body if choice else node.orelse):
++                    ctx.budget.consume(2)
++                    outcomes.append(_c_follow(ctx, prior, result))
++        return _c_join(ctx, outcomes)
++    if isinstance(node, ast.Delete):
++        outcomes = _c_one(ctx, _c_out(ctx, state))
++        for target in node.targets:
++            ctx.budget.consume(2)
++            following = []
++            for prior in outcomes:
++                ctx.budget.consume()
++                produced = _c_delete(ctx, prior.state, frame, target) if (
++                    prior.control == "normal") else _c_one(ctx, prior)
++                for result in produced:
++                    ctx.budget.consume(2)
++                    following.append(_c_follow(ctx, prior, result) if (
++                        prior.control == "normal") else result)
++            outcomes = _c_join(ctx, following)
++        return outcomes
++    if isinstance(node, (ast.Assign, ast.Expr, ast.Return)):
++        values = _c_eval(ctx, state, frame, node.value) if node.value is not None else (
++            _c_one(ctx, _c_out(ctx, state)))
++        if isinstance(node, ast.Expr):
++            return values
++        if isinstance(node, ast.Return):
++            ctx.budget.consume()
++            returned: list[_COutcome] = []
++            for prior in values:
++                ctx.budget.consume(2)
++                returned.append(_c_out(ctx, prior.state, prior.result, control="return",
++                                       issues=prior.issues, trace=prior.trace) if (
++                    prior.control == "normal") else prior)
++            return _c_join(ctx, returned)
++        for target in node.targets:
++            ctx.budget.consume(2)
++            following = []
++            for prior in values:
++                ctx.budget.consume()
++                produced = _c_store(ctx, prior.state, frame, target, prior.result) if (
++                    prior.control == "normal") else _c_one(ctx, prior)
++                for result in produced:
++                    ctx.budget.consume(2)
++                    following.append(_c_follow(ctx, prior, result) if (
++                        prior.control == "normal") else result)
++            values = _c_join(ctx, following)
++        return values
++    return _c_one(ctx, _c_fail(ctx, state, node, "unsupported reached statement: " +
++                              type(node).__name__))
+ 
+ 
+ @dataclass(slots=True)

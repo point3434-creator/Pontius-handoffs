@@ -1,0 +1,466 @@
+--- rewrite-r1-control-v1.py
++++ rewrite-r2-control-v1.py
+@@ -1,4 +1,4 @@
+-"""Rewrite R1 Gate A snapshot control; authoring is not run permission.
++"""Rewrite R2 Gate B snapshot control; authoring is not run permission.
+ 
+ Run this controller with exact floor Python 3.11.15 and -I -S -B -P.
+ Arguments: LABEL SLOT RETAINED_SOURCE_ABSOLUTE SOURCE_SHA --control-sha256 SHA --worktree-sha256 SHA
+@@ -28,8 +28,8 @@
+ BASE_GENERATOR_SHA = "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+ WATCH = Path(r"D:\Pontius-worktrees\codex-v0a-i01-c-authority-v1\tools\generate_test_inventory.py")
+ WATCH_SHA = "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+-PROBE = CHECKS / "rewrite-r1-probe-v1.py"
+-PROBE_SHA = 'c0672ac61fa19b5dd3d46fc6c0dbbdaae4565c610e7e658619c738559fb27395'
++PROBE = CHECKS / "rewrite-r2-probe-v1.py"
++PROBE_SHA = 'abc1a22b76691ab8881e5301f532fad32171183abb11221debc93e7428e48310'
+ 
+ PACKS = {
+     "storage": {
+@@ -45,18 +45,25 @@
+         "sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+         "schema": "pontius-engineering-name-environment-family-v1",
+         "planned_cases": 24, "planned_projections": 58,
+-        "ids": ("hidden-cell-joined-reached", "hidden-cell-joined-dormant"),
++        "ids": ("hidden-cell-joined-reached", "hidden-cell-joined-dormant",
++                "scale-n8-s4-d0-normal", "scale-n64-s4-d0-normal",
++                "scale-n8-s4-d2-exceptional", "scale-n64-s4-d2-exceptional"),
+     },
+ }
+ PACK_HASHES = {scope: metadata["sha256"] for scope, metadata in PACKS.items()}
+-GATE_A_IDS = tuple(name for metadata in PACKS.values() for name in metadata["ids"])
++GATE_B_IDS = ('shared-list-consumed', 'shared-list-dormant', 'class-adoption-unsafe', 'class-adoption-safe', 'hidden-cell-joined-reached', 'hidden-cell-joined-dormant', 'helper65', 'generator70', 'scale-n8-s4-d0-normal', 'scale-n64-s4-d0-normal', 'scale-n8-s4-d2-exceptional', 'scale-n64-s4-d2-exceptional')
++CONTINUATION_MAXIMUM = 196608
++TESTS_SHA = 'c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf'
++DEPTH_PROVENANCE_SHA = '7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae'
++DEPTH_CASES = {'helper65': {'method': 'test_round4_analysis_budget_red_contracts_are_independent', 'fixture_sha256': '94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6', 'regex': '^analysis helper depth exceeds 64$'}, 'generator70': {'method': 'test_round4_source_order_and_branch_bounds_red_contracts_are_independent', 'fixture_sha256': '635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3', 'regex': '^analysis deferred generator depth exceeds 64$'}}
+ POPULATION_SHA = "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce"
+ 
+-PLAN = CHECKS / "rewrite-r1-plan-v1.md"
+-PLAN_SHA = '8cec0f3af002f04b20c82dee62d29f0601a87047249ab2dfcde5a164ca73826d'
+-OBSERVER_MAP_SHA = 'af8df00ceb6b02bb5730eee56754ce78badcab6102ce861d726eed704522bfbd'
+-OBSERVER_MAP = CHECKS / "rewrite-r1-observer-map-v1.json"
++PLAN = CHECKS / "rewrite-r2-plan-v1.md"
++PLAN_SHA = 'ea2ca1217f133a708c763568cc7494a2ac600b4db351e00a696600836d53f5f7'
++OBSERVER_MAP_SHA = '1dfd899dc7c7a1c9bbf1ff0ee17bc8b4fd4be1eadf3c81f759eb1b0176630228'
++OBSERVER_MAP = CHECKS / "rewrite-r2-observer-map-v1.json"
+ POPULATION = ROOT / "rewrite-early-population-v1.json"
++DEPTH_PROVENANCE = ROOT / "engineer-depth-budget-probe-v3.py"
+ CORE_WATCH = Path(r"D:\Pontius-worktrees\codex-v0a-i01-c-core-v1\tools\generate_test_inventory.py")
+ SLOTS = {
+     "311": (Path(r"D:\Pontius-tools\py311\Scripts\python.exe"), (3, 11, 15)),
+@@ -67,8 +74,8 @@
+     "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+     "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647, "MAXIMUM_ANALYSIS_WORK_UNITS": 262144,
+ }
+-SCHEMA = "pontius-rewrite-r1-gate-a-v1"
+-PAYLOAD = ".rewrite-r1-gate-a"
++SCHEMA = "pontius-rewrite-r2-gate-b-v1"
++PAYLOAD = ".rewrite-r2-gate-b"
+ GENERATOR = "tools/generate_test_inventory.py"
+ TIMEOUT = 60  # Infrastructure watchdog, not a new analyzer admission cap.
+ 
+@@ -160,16 +167,20 @@
+                       separators=(",", ":"), allow_nan=False).encode("utf-8")
+ 
+ 
++
+ def load_cases(raw_by_scope, population_raw):
+     require(hashlib.sha256(population_raw).hexdigest() == POPULATION_SHA, "frozen population")
+     population = json.loads(population_raw)
+-    require(tuple(population["gates"]["A"]["ordered_case_ids"]) == GATE_A_IDS,
+-            "exact Gate A selection")
+-    require(population["gates"]["A"]["public_analysis_count"] == 6
+-            and population["gates"]["A"]["independent_model_projections"] == 8,
+-            "frozen Gate A counts")
++    require(tuple(population["gates"]["A"]["ordered_case_ids"]) == GATE_B_IDS[:6],
++            "unchanged Gate A prefix")
++    gate = population["gates"]["B"]
++    require(tuple(gate["ordered_case_ids"]) == GATE_B_IDS
++            and gate["public_analysis_count"] == 12 and gate["independent_model_projections"] == 24
++            and gate["depth_assertions"] == 2
++            and gate["engineering_continuation_work_maximum"] == CONTINUATION_MAXIMUM
++            and gate["production_work_cap_unchanged"] == 262144, "exact frozen Gate B")
+     require(set(raw_by_scope) == set(PACKS), "exact original pack set")
+-    combined = []
++    selected = {}
+     for scope, metadata in PACKS.items():
+         raw = raw_by_scope[scope]
+         require(hashlib.sha256(raw).hexdigest() == metadata["sha256"], "original pack pin")
+@@ -188,22 +199,36 @@
+             case = by_id[identifier]
+             binding = population["cases"][identifier]
+             require(hashlib.sha256(case_canonical(case)).hexdigest()
+-                    == binding["case_record_canonical_sha256"], "selected record binding")
++                    == binding["case_record_canonical_sha256"], "selected original record")
+             for field, target in (("source", "source"), ("oracle_source", "model")):
+                 value = case[field]
+                 require(type(value) is str and value.endswith("\n") and "\r" not in value,
+                         "original source format")
+                 require(hashlib.sha256(value.encode("utf-8")).hexdigest()
+-                        == binding[target]["sha256"], "original source/model binding")
+-                ast.parse(value, filename="<GateA-unexecuted-source-or-Model>")
+-            require(case["classification"] == binding["classification"], "classification binding")
+-            combined.append((scope, case))
+-    require(tuple(case["id"] for scope, case in combined) == GATE_A_IDS, "exact Gate A order")
+-    require(dict(Counter(case["classification"] for scope, case in combined))
+-            == {"clean": 2, "refuse": 3, "permitted-refusal": 1}, "Gate A classifications")
++                        == binding[target]["sha256"], "original source/model identity")
++                ast.parse(value, filename="<GateB-unexecuted-source-or-Model>")
++            require(case["classification"] == binding["classification"], "original classification")
++            selected[identifier] = (scope, case)
++    require(len(selected) == 10, "ten original Model cases")
+     require(sum(1 if scope == "storage" else len(case["witnesses"])
+-                for scope, case in combined) == 8, "Gate A exact eight Models")
+-    return combined
++                for scope, case in selected.values()) == 24, "exact24 Models")
++    for identifier, expected in DEPTH_CASES.items():
++        binding = population["cases"][identifier]
++        require(binding["classification"] == "exact-depth-error"
++                and binding["model"] is None and binding["model_projection_count"] == 0
++                and binding["envelope_ref"] == "original_design_review", "original depth kind")
++        require(binding["source"]["sha256"] == expected["fixture_sha256"]
++                and binding["oracle"]["exception"] == "InventoryError"
++                and binding["oracle"]["regex"] == expected["regex"], "original depth expectation")
++        require(binding["original_method"]["symbol"].split(".")[-1] == expected["method"],
++                "original depth owner method")
++        selected[identifier] = ("depth", binding)
++    require(set(selected) == set(GATE_B_IDS), "no extra cases")
++    result = [selected[identifier] for identifier in GATE_B_IDS]
++    require(dict(Counter(case["classification"] for scope, case in result))
++            == {"clean": 6, "refuse": 3, "permitted-refusal": 1, "exact-depth-error": 2},
++            "Gate B classifications")
++    return result
+ 
+ 
+ def public_verdict(scope, case, argv, blockers):
+@@ -271,12 +296,20 @@
+ 
+ 
+ 
++
++def reserve_violations(metrics, identifier):
++    """Post-execution engineering predicate; never modifies or calls a budget."""
++    return [{"case": identifier, "epoch": entry["epoch"],
++             "observed_work": entry["last_observed_work"], "maximum": CONTINUATION_MAXIMUM}
++            for entry in metrics["epochs"]
++            if entry["last_observed_work"] > CONTINUATION_MAXIMUM]
++
+ def validate_result(stdout, exit_code, setup, cases):
+     require(type(exit_code) is int, "child exit exact integer")
+     require(b"\r" not in stdout and stdout.endswith(b"\n"), "stdout complete LF")
+     lines = stdout.splitlines()
+-    require(len(lines) == 8 and all(line.startswith(b"{") for line in lines),
+-            "exact identity/six-case/summary stream")
++    require(len(lines) == 14 and all(line.startswith(b"{") for line in lines),
++            "exact identity/twelve-case/summary stream")
+     records = [json.loads(line) for line in lines]
+     require(all(type(record) is dict for record in records), "JSON record types")
+     require(set(records[0]) == {"identity_before_imports"}, "first pre-import identity")
+@@ -301,67 +334,95 @@
+     for flag in ("dont_write_bytecode=1", "no_user_site=1", "optimize=0", "isolated=0",
+                  "ignore_environment=0", "no_site=0", "safe_path=True"):
+         require(flag in identity["flags"], "child flag: " + flag)
++
+     observed = records[1:-1]
+-    require(tuple(record.get("rewrite_gate_a_case") for record in observed) == GATE_A_IDS,
+-            "exact frozen Gate A case order")
++    require(tuple(record.get("rewrite_gate_b_case") for record in observed) == GATE_B_IDS,
++            "exact frozen Gate B order")
+     semantic_failures, oracle_errors, analyzer_errors, accounting_errors = [], [], [], []
+-    analyzed, projections = 0, 0
++    continuation_failures = []
++    attempted, returned_receipts, expected_depth_errors, projections = 0, 0, 0, 0
+     for actual, (scope, expected) in zip(observed, cases, strict=True):
+-        require(actual["original_pack"] == scope, "original pack attribution")
+-        require(actual["classification"] == expected["classification"]
+-                and actual["unreachable_events"] == expected["unreachable_events"],
+-                "original expectations drift")
+-        for field, key in (("source", "source_sha256"), ("oracle_source", "oracle_sha256")):
+-            require(actual[key] == sha(expected[field].encode("utf-8")), "original source/model identity")
+-        expected_projections = [expected["expected"]] if scope == "storage" else expected["witnesses"]
+-        required_argv = expected["required_argv"] if scope == "storage" else [["-m", "fixed"]]
++        identifier, is_depth = expected["id"], scope == "depth"
++        require(actual["original_pack"] == scope and actual["classification"] == expected["classification"],
++                "original case attribution")
++        source_digest = expected["source"]["sha256"] if is_depth else sha(expected["source"].encode("utf-8"))
++        model_digest = None if is_depth else sha(expected["oracle_source"].encode("utf-8"))
++        expected_projections = [] if is_depth else [expected["expected"]] if scope == "storage" else expected["witnesses"]
++        required_argv = None if is_depth else expected["required_argv"] if scope == "storage" else [["-m", "fixed"]]
++        unreachable = [] if is_depth else expected["unreachable_events"]
++        require(actual["source_sha256"] == source_digest and actual["oracle_sha256"] == model_digest,
++                "original source/Model identity")
+         require(actual["expected_projections"] == expected_projections
+-                and actual["required_argv"] == required_argv, "original expected projection/argv")
++                and actual["required_argv"] == required_argv and actual["unreachable_events"] == unreachable,
++                "unchanged expected projections/argv")
+         require(type(actual["oracle_actuals"]) is list, "Model actual container")
+         projections += len(actual["oracle_actuals"])
+         oracle_ok = (actual["oracle_error"] is None and actual["oracle_actuals"] == expected_projections
+                      and not any(event in witness["trace"] for witness in actual["oracle_actuals"]
+-                                 for event in expected["unreachable_events"]))
+-        require(actual["oracle_passed"] is oracle_ok, "oracle result inconsistency")
++                                 for event in unreachable))
++        require(actual["oracle_passed"] is oracle_ok, "Model result inconsistency")
+         if not oracle_ok:
+-            oracle_errors.append(expected["id"])
+-        if actual["analyzer_error"] is not None:
+-            analyzer_errors.append(expected["id"])
++            oracle_errors.append(identifier)
++        else:
++            attempted += 1
++        error = actual["public_exception"]
++        if error is not None:
++            require(type(error) is dict and type(error["type"]) is str and type(error["message"]) is str
++                    and type(error["is_inventory_error"]) is bool, "actual exception record")
++        depth_match = bool(is_depth and error is not None and error["is_inventory_error"]
++                           and re.search(DEPTH_CASES[identifier]["regex"], error["message"]))
++        require(actual["expected_depth_error"] is depth_match
++                and actual["depth_expectation"] == (DEPTH_CASES[identifier]["regex"] if is_depth else None),
++                "original exact depth assertion")
++        if depth_match:
++            expected_depth_errors += 1
++        expected_analyzer_error = None if depth_match else error
++        require(actual["analyzer_error"] == expected_analyzer_error, "analysis exception attribution")
++        if expected_analyzer_error is not None:
++            analyzer_errors.append(identifier)
+         has_receipt = actual["receipt_sha256"] is not None
+         require(not has_receipt or valid_digest(actual["receipt_sha256"]), "public receipt digest")
+-        require(not has_receipt or (oracle_ok and actual["analyzer_error"] is None),
+-                "receipt despite skipped/failed analyzer")
++        require(not has_receipt or (oracle_ok and error is None), "receipt despite failed/skipped analysis")
+         if has_receipt:
+-            analyzed += 1
++            returned_receipts += 1
+         require(type(actual["expanded_rows"]) is list and type(actual["blockers"]) is list,
+                 "public result containers")
++        require(has_receipt or not actual["expanded_rows"] and not actual["blockers"],
++                "rows/blockers without returned review")
+         argv = [row["argv"] for row in actual["expanded_rows"] if row["capability_kind"] == "subprocess"]
+-        require(actual["argv"] == argv, "argv differs from original public rows")
+-        semantic_ok = bool(oracle_ok and actual["analyzer_error"] is None and has_receipt
+-                           and public_verdict(scope, expected, argv, actual["blockers"]))
+-        require(actual["semantic_passed"] is semantic_ok, "semantic inconsistency")
++        require(actual["argv"] == argv, "argv differs from public rows")
++        semantic_ok = bool(oracle_ok and (depth_match if is_depth else
++                           has_receipt and error is None and public_verdict(scope, expected, argv, actual["blockers"])))
++        require(actual["semantic_passed"] is semantic_ok, "semantic result inconsistency")
+         if not semantic_ok:
+-            semantic_failures.append(expected["id"])
++            semantic_failures.append(identifier)
++        require(actual["original_methods_restored"] is True, "budget methods not restored")
+         if actual["accounting_error"] is not None:
+-            accounting_errors.append(expected["id"])
++            accounting_errors.append(identifier)
++            require(actual["reserve_violations"] == [], "reserve verdict despite failed accounting")
+         elif oracle_ok:
+-            validate_budget_metrics(actual["budget_metrics"], expected["id"])
++            validate_budget_metrics(actual["budget_metrics"], identifier)
++            violations = reserve_violations(actual["budget_metrics"], identifier)
++            require(actual["reserve_violations"] == violations, "postexecution reserve mismatch")
++            continuation_failures.extend(violations)
+         else:
+-            require(actual["budget_metrics"] is None, "budget scope despite skipped Model")
++            require(actual["budget_metrics"] is None and actual["reserve_violations"] == [],
++                    "budget scope despite skipped Model")
+     summary = records[-1]
+-    require(summary.get("rewrite_gate_a_summary") is True, "final Gate A summary")
++    require(summary.get("rewrite_gate_b_summary") is True, "final Gate B summary")
+     require(summary["schema"] == SCHEMA and summary["slot"] == setup["slot"]
+             and summary["generator_sha256"] == setup["generator_sha256"]
+             and summary["pack_sha256"] == PACK_HASHES and summary["probe_sha256"] == PROBE_SHA
+             and summary["plan_sha256"] == PLAN_SHA and summary["population_sha256"] == POPULATION_SHA
+-            and summary["observer_map_sha256"] == OBSERVER_MAP_SHA, "summary pins")
++            and summary["observer_map_sha256"] == OBSERVER_MAP_SHA
++            and summary["tests_sha256"] == TESTS_SHA
++            and summary["depth_provenance_sha256"] == DEPTH_PROVENANCE_SHA, "summary input pins")
+     for key in ("planned_cases", "case_count"):
+-        require(type(summary[key]) is int and summary[key] == 6, "summary exact scope")
+-    require(type(summary["projections"]) is int and summary["projections"] == projections,
+-            "Model projection count")
+-    require(type(summary["analyzed_cases"]) is int and summary["analyzed_cases"] == analyzed,
+-            "analyzed count disagrees with public receipts")
+-    require(summary["classifications"] == {"clean": 2, "refuse": 3, "permitted-refusal": 1}
++        require(type(summary[key]) is int and summary[key] == 12, "summary exact scope")
++    for key, value in (("projections", projections), ("attempted_analyses", attempted),
++                       ("returned_receipts", returned_receipts), ("expected_depth_errors", expected_depth_errors)):
++        require(type(summary[key]) is int and summary[key] == value, "summary count: " + key)
++    require(summary["classifications"] == {"clean": 6, "refuse": 3, "permitted-refusal": 1, "exact-depth-error": 2}
+             and all(type(value) is int for value in summary["classifications"].values())
+             and summary["caps"] == CAPS and all(type(value) is int for value in summary["caps"].values()),
+             "classifications/caps")
+@@ -370,15 +431,21 @@
+             "summary/case consistency")
+     require(summary["original_methods_restored"] is True
+             and summary["observer_overhead_is_not_original_charged_work"] is True
+-            and summary["gate"] == "A" and summary["GateB_not_run"] is True, "scope/observer restoration")
+-    completed = (analyzed == 6 and projections == 8 and not oracle_errors
+-                 and not analyzer_errors and not accounting_errors)
+-    require(summary["completed"] is completed, "completion mismatch")
+-    require(exit_code == int(bool(semantic_failures or oracle_errors or analyzer_errors or accounting_errors)),
+-            "child exit mismatch")
++            and summary["gate"] == "B" and summary["no_wider_population_run"] is True,
++            "scope/observer restoration")
++    require(type(summary["continuation_work_maximum"]) is int
++            and summary["continuation_work_maximum"] == CONTINUATION_MAXIMUM
++            and summary["reserve_is_postexecution_only"] is True
++            and summary["reserve_violations"] == continuation_failures
++            and summary["reserve_ok"] is (not continuation_failures), "continuation reserve consistency")
++    completed = (attempted == 12 and returned_receipts == 10 and expected_depth_errors == 2
++                 and projections == 24 and not oracle_errors and not analyzer_errors and not accounting_errors)
++    require(summary["completed"] is completed, "Gate B completion mismatch")
++    require(exit_code == int(bool(semantic_failures or oracle_errors or analyzer_errors
++                                  or accounting_errors or continuation_failures)), "child exit mismatch")
+     return {"identity": identity, "summary": summary, "cases_observed": len(observed),
+             "completed": completed, "semantic_ok": not semantic_failures,
+-            "accounting_ok": not accounting_errors}
++            "accounting_ok": not accounting_errors, "reserve_ok": not continuation_failures}
+ 
+ 
+ def main():
+@@ -402,7 +469,7 @@
+     require(re.fullmatch("[a-z0-9][a-z0-9-]{0,60}", args.label), "label")
+     checked(ROOT, True)
+     checked(CHECKS, True)
+-    prefix = "rewrite-r1-gate-a-" + args.label + "-" + args.slot
++    prefix = "rewrite-r2-gate-b-" + args.label + "-" + args.slot
+     outputs = {key: CHECKS / (prefix + suffix) for key, suffix in (
+         ("setup", "-setup.json"), ("receipt", "-receipt.json"),
+         ("stdout", ".stdout.txt"), ("stderr", ".stderr.txt"), ("log", ".txt"))}
+@@ -413,7 +480,9 @@
+              "watch_source": str(WATCH), "watch_sha256": WATCH_SHA,
+              "probe_sha256": PROBE_SHA, "pack_sha256": PACK_HASHES, "plan_sha256": PLAN_SHA,
+              "population_sha256": POPULATION_SHA, "observer_map_sha256": OBSERVER_MAP_SHA,
+-             "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256}
++             "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256,
++             "tests_sha256": TESTS_SHA, "depth_provenance_sha256": DEPTH_PROVENANCE_SHA,
++             "continuation_work_maximum": CONTINUATION_MAXIMUM}
+     receipt = {**setup, "completed": False, "integrity_ok": False, "success": False, "payload_started": False}
+     process, snapshot, temp, manifest_sha, exit_code = None, None, None, None, None
+     before, input_paths, input_hashes, files = {}, {}, {}, {}
+@@ -428,11 +497,12 @@
+         input_paths = {"overlay": overlay, "watch": WATCH, "probe": PROBE,
+                        **{scope: CHECKS / metadata["file"] for scope, metadata in PACKS.items()},
+                        "plan": PLAN, "control": control, "population": POPULATION,
+-                       "observer_map": OBSERVER_MAP, "core_watch": CORE_WATCH}
++                       "observer_map": OBSERVER_MAP, "core_watch": CORE_WATCH,
++                       "depth_provenance": DEPTH_PROVENANCE}
+         input_hashes = {"overlay": source_sha, "watch": WATCH_SHA, "probe": PROBE_SHA,
+                         **PACK_HASHES, "plan": PLAN_SHA, "control": args.control_sha256,
+                         "population": POPULATION_SHA, "observer_map": OBSERVER_MAP_SHA,
+-                        "core_watch": args.worktree_sha256}
++                        "core_watch": args.worktree_sha256, "depth_provenance": DEPTH_PROVENANCE_SHA}
+         inputs = {key: checked(p).read_bytes() for key, p in input_paths.items()}
+         require({key: sha(raw) for key, raw in inputs.items()} == input_hashes, "original input pin mismatch")
+         cases = load_cases({scope: inputs[scope] for scope in PACKS}, inputs["population"])
+@@ -447,13 +517,14 @@
+             floor = json.loads(floor_raw)
+             require(floor["schema"] == SCHEMA and floor["slot"] == "311", "floor schema/slot")
+             for key in ("base", "overlay_source", "generator_sha256", "watch_source", "watch_sha256", "core_watch_source", "core_watch_sha256",
+-                        "population_sha256", "observer_map_sha256",
++                        "population_sha256", "observer_map_sha256", "tests_sha256", "depth_provenance_sha256",
++                        "continuation_work_maximum",
+                         "probe_sha256", "pack_sha256", "plan_sha256", "control_sha256"):
+                 require(floor[key] == setup[key], "floor context mismatch: " + key)
+             require(floor["integrity_ok"] is True and floor["completed"] is True
+                     and floor["payload_started"] is True and type(floor["exit"]) is int
+                     and floor["exit"] == 0 and floor["success"] is True and floor["semantic_ok"] is True
+-                    and floor["accounting_ok"] is True and "error" not in floor
++                    and floor["accounting_ok"] is True and floor["reserve_ok"] is True and "error" not in floor
+                     and "cleanup_error" not in floor,
+                     "floor incomplete/integrity failed")
+             require(floor["before"] == floor["after"] and floor["tracked_file_count"] == 1761
+@@ -478,14 +549,15 @@
+             floor_setup = json.loads(pinned_outputs["setup"])
+             for key in ("schema", "slot", "label", "base", "overlay_source", "generator_sha256",
+                         "watch_source", "watch_sha256", "core_watch_source", "core_watch_sha256",
+-                        "population_sha256", "observer_map_sha256", "probe_sha256", "pack_sha256", "plan_sha256",
++                        "population_sha256", "observer_map_sha256", "tests_sha256", "depth_provenance_sha256",
++                        "continuation_work_maximum", "probe_sha256", "pack_sha256", "plan_sha256",
+                         "control_sha256", "snapshot", "temp", "before", "manifest_sha256", "environment",
+                         "command", "timeout_seconds", "tracked_file_count", "payload_file_count",
+                         "input_hashes_before", "input_paths"):
+                 require(floor_setup[key] == floor[key], "floor raw setup mismatch: " + key)
+             require(type(floor["tracked_file_count"]) is int and floor["tracked_file_count"] == 1761
+-                    and type(floor["payload_file_count"]) is int and floor["payload_file_count"] == 9
+-                    and len(floor["before"]) == 1770, "floor exact manifest scope")
++                    and type(floor["payload_file_count"]) is int and floor["payload_file_count"] == 10
++                    and len(floor["before"]) == 1771, "floor exact manifest scope")
+             require(pinned_outputs["log"] == pinned_outputs["stdout"] + b"\nCONTROL STDERR\n"
+                     + pinned_outputs["stderr"], "floor combined log replay")
+             proof = validate_result(pinned_outputs["stdout"], floor["exit"], floor_setup, cases)
+@@ -493,6 +565,7 @@
+                     and proof["identity"] == floor["identity"]
+                     and proof["semantic_ok"] is floor["semantic_ok"]
+                     and proof["accounting_ok"] is True and floor["accounting_ok"] is True
++                    and proof["reserve_ok"] is True and floor["reserve_ok"] is True
+                     and floor["success"] is True, "floor output completion")
+             floor_snapshot = checked(Path(floor["snapshot"]), True)
+             require(floor_snapshot.name == "snapshot" and floor_snapshot.parent.parent == SNAPSHOTS
+@@ -501,7 +574,7 @@
+                                 "--name-only", BASE).decode().split("\0")[:-1]
+             floor_payload_names = {"probe.py", *(metadata["file"] for metadata in PACKS.values()),
+                                    "control.py", "plan.md", "retained-source.py", "run.json",
+-                                   "population.json", "observer-map.json"}
++                                   "population.json", "observer-map.json", "depth-provenance.py"}
+             require(len(floor_tracked) == len(set(floor_tracked)) == 1761
+                     and set(floor["before"]) == set(floor_tracked) |
+                         {PAYLOAD + "/" + name for name in floor_payload_names}, "floor exact manifest keys")
+@@ -514,6 +587,8 @@
+                     {"?? " + PAYLOAD + "/" + name for name in (*floor_payload_names, "manifest.json")},
+                     "floor status now changed")
+             require(file_hashes(floor_snapshot, floor["before"]) == floor["before"], "floor snapshot now changed")
++            require(floor["before"]["tests/test_inventory_and_profiles.py"] == TESTS_SHA,
++                    "floor original tests identity")
+             floor_manifest_raw = checked(floor_snapshot / PAYLOAD / "manifest.json").read_bytes()
+             require(sha(floor_manifest_raw) == floor["manifest_sha256"]
+                     and json.loads(floor_manifest_raw) == floor["before"], "floor manifest now changed")
+@@ -525,7 +600,7 @@
+         phase = "clone"
+         checked(SNAPSHOTS, True)
+         checked(REPOSITORY, True)
+-        parent = SNAPSHOTS / ("rewrite-r1-gate-a-" + uuid.uuid4().hex)
++        parent = SNAPSHOTS / ("rewrite-r2-gate-b-" + uuid.uuid4().hex)
+         parent.mkdir()
+         checked(parent, True)
+         temp = parent / "temp"
+@@ -546,17 +621,21 @@
+         require(len(tracked) == len(set(tracked)) == 1761, "tracked count")
+         before = file_hashes(snapshot, tracked)
+         require(before[GENERATOR] == source_sha, "copied overlay pin")
++        require(before["tests/test_inventory_and_profiles.py"] == TESTS_SHA, "original test blob")
+         run = {"schema": SCHEMA, "slot": args.slot, "generator_sha256": source_sha,
+                "probe_sha256": PROBE_SHA, "pack_sha256": PACK_HASHES, "plan_sha256": PLAN_SHA,
+                "control_sha256": args.control_sha256, "overlay_source": str(overlay),
+                "watch_source": str(WATCH), "watch_sha256": WATCH_SHA,
+                "population_sha256": POPULATION_SHA, "observer_map_sha256": OBSERVER_MAP_SHA,
+-               "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256}
++               "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256,
++               "tests_sha256": TESTS_SHA, "depth_provenance_sha256": DEPTH_PROVENANCE_SHA,
++               "continuation_work_maximum": CONTINUATION_MAXIMUM}
+         files = {"probe.py": inputs["probe"],
+                  **{metadata["file"]: inputs[scope] for scope, metadata in PACKS.items()},
+                  "control.py": inputs["control"], "plan.md": inputs["plan"],
+                  "retained-source.py": inputs["overlay"], "run.json": canonical(run),
+                  "population.json": inputs["population"], "observer-map.json": inputs["observer_map"],
++                 "depth-provenance.py": inputs["depth_provenance"],
+                  **floor_files}
+         payload = snapshot / PAYLOAD
+         payload.mkdir()
+@@ -564,7 +643,7 @@
+         for name, raw in files.items():
+             create(payload / name, raw)
+             before[PAYLOAD + "/" + name] = sha(raw)
+-        require(len(before) == 1770 + (5 if args.slot == "314" else 0), "complete manifest count")
++        require(len(before) == 1771 + (5 if args.slot == "314" else 0), "complete manifest count")
+         manifest_raw = canonical(before)
+         manifest_sha = sha(manifest_raw)
+         create(payload / "manifest.json", manifest_raw)
+@@ -665,6 +744,7 @@
+                               for key in ("setup", "stdout", "stderr", "log")}
+         receipt["success"] = (receipt["completed"] is True and receipt["integrity_ok"]
+                               and receipt.get("semantic_ok") is True and receipt.get("accounting_ok") is True
++                              and receipt.get("reserve_ok") is True
+                               and "error" not in receipt and "cleanup_error" not in receipt
+                               and type(exit_code) is int and exit_code == 0)
+         write_json(streams["receipt"], receipt)

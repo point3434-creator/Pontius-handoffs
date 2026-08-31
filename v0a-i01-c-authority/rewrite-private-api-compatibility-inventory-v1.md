@@ -1,0 +1,55 @@
+# Original private-API compatibility inventory v1
+
+Engineering preparation by codex/r010_cold_a; static inspection only, not a cold review or runtime result.
+
+Finding: R3 has a real compatibility decision to make. The frozen original 119 methods include mandatory direct calls to the old private evaluators. Keeping these test bodies byte-identical while removing every old API/compatibility surface cannot both be assumed. This does not block R1 and does not justify retaining the old live engine as a fallback.
+
+## Inputs and population
+
+- Frozen r010 commit: 29c02f6fbd5eb0b7ddc9e816ef28f570b9839358.
+- tests/test_inventory_and_profiles.py Git blob: a62562fbba5969e33cc04786d91064afad30e580.
+- Test raw SHA-256: c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf; 1265190 bytes.
+- rewrite-design-v1.md: 701552c177840e4c5c0dd9c5985776256af5b31e7e997067dd662638a67c3ca8.
+- stage0-design.md: 78bebca5279bf81e30181787f962d40c73826259d0bb3ffb1c7804804c1211e8.
+- Small supporting r010 source reads used rewrite-r1-base-generator.py, already pinned at 29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692.
+
+I re-read the r010 test Git blob with absolute validated Git and compared it to the inspected test bytes. The design preserves Stage 0 behavioral/test requirements while requiring R3 to delete superseded live state and compatibility paths. No in-progress generator source was read.
+
+The original direct unittest method population is 2 GeneratorBootstrap + 3 AstDiscovery + 5 MaterializedOwnership + 53 DesignReview + 38 AtomicAndGitBoundary + 10 CheckedInInventory + 8 CheckedInProfile = 119. Nested helper methods and subtests are not additional discovered methods. Fifty-one DesignReview roots syntactically reach _review (line1977), which calls public derive_design_review at1989; the skip-body test calls derive directly, and the decorator test uses discovery/build_inventory. This does not make those roots exclusively public-boundary tests.
+
+The retired standalone storage prototype oracles (34 + 28 + 31 runs) are not these 119 methods. NameVersion/NameCursor/radix/history/no_work representation APIs are explicitly not product requirements in the rewrite design. Retiring those APIs does not remove the original private dependencies listed below. This inventory does not retire the separately binding temporal matrix or public semantic packs.
+
+## Exact dependency map
+
+All line anchors below refer to the frozen test file.
+
+| Private surface | Inputs and observations actually required | Original test ownership |
+| --- | --- | --- |
+| _source_ordered_review_flow: 10 direct call sites | Takes a function AST, alias map, assignment-AST map and function-AST map; budget and lexical module/enclosing-name keyword inputs are supplied. Reads callables_by_call[id(original_call)] as qualified-name strings, blockers_by_call as reasons, standalone_blockers as original AST/reason pairs; at18236–18251 also implicit_protocol_events, original site identity, descriptor.name and method frozenset. Lines7213–7219 inspect __code__.co_varnames to decide whether to send module_bound_names/enclosing_names. | test_round4_source_order_and_branch_bounds_red_contracts_are_independent, line19419, explicitly invokes the retained helper suites at19422–19441. Flow call sites:6386,6535,6740,7086,7220,9719,10308,12421,12767,18236. |
+| _preclassified_sensitive_calls: 14 direct call sites | Takes statement ASTs, aliases, caller budget, function map; several calls additionally supply scope_node, module_bound_names, enclosing_names and enclosing_names_by_node. Returns membership by id(original_call), including negative membership after overwrite/throw/irrefutable match. Lines7198–7202 inspect co_varnames for enclosing_names. Several fixtures require exact typed routing or cardinality refusal, not merely some public blocker. | Source-order root above, plus test_round4_analysis_budget_red_contracts_are_independent, line20406. Representative calls5784,5817,7203,9706,10289,12755,20613. |
+| _SourceOrderedResolver: 2 constructions; _SensitivePreclassifier: 1 construction | At10018, resolver is constructed from aliases/assignment ASTs/functions plus budget/exception_scope. _flow_statement(stmt, dict(resolver.values)) produces created.normal[0], fed into a second _flow_statement; consumed.raises must include exception_tag StopIteration. At10057–10083, preclassifier._statements mutates bindings; resolver._flow_statements takes resolver.values, then _merge_states(state_flow.normal) produces a mapping. Tests require preclassifier.bindings['Exception'] == '__builtin_exception__:ValueError' and the merged resolver value == _flow_qname('ValueError'). Empty/false-filter deferred bodies must not overwrite the existing binding. | _round11_typed_routing_and_suppress_constraints, reached by source-order root19419. These are stateful private contracts, not terminal report-only assertions. |
+| _runtime_call_bounds: 2 calls; _execution_scope: 1 call; _AnalysisBudget | At19855, statements and id(call)->b'sink' map plus empty assignments/aliases/registry and relative path must return ({}, set()) after with-return/break/continue. At20578–20596, a positional seeded budget is shared by _execution_scope(definition,budget) and _runtime_call_bounds(...,analysis_budget=budget). Discovery must complete with32 calls before the second operation raises exactly 'analysis work units exceed 262144'. The same root checks all five caps and exact cardinality errors. | Source-order root19419 and budget root20406. |
+| Static scope/name preparation | _module_import_aliases, _static_assignments, _module_exception_provenance and _exception_name_scope supply alias/AST/lexical inputs. Required provenance fields are module_bound_names and enclosing_names_by_node keyed by original AST identity. The getattr fallback at7177 does not make provenance universally optional: later sites call it directly. | Source-order root19419. These can be canonical immutable facts; their current implementation must not be presumed wholly reusable merely from the names. |
+| _review_function_registry: 2 calls | Input path->module AST mapping. Duplicate shorthand helper keys must raise an exception matching ambiguous.*registry; a tools/test_child.py helper must register tools.test_child._run_gpu_probe and not tests.test_child._run_gpu_probe. Tests inspect membership, not the returned descriptor's implementation fields. | test_helper_registry_and_argument_binding_fail_closed, line22061; calls22067/22069. Remaining binder assertions in this method go through public _review. |
+
+No direct reference to _FlowValue, _ExecutionState, _AuthorityState, _review_body, _source_ordered_helper_return, _definition_time_protocol_resolver or _unittest_receiver_attributes occurs in the frozen file. _flow_qname at10083 is nevertheless an indirect value-equality contract. There is no direct argument-binder call. Public tests still constrain recursive/helper/preflight behavior even without naming those implementations.
+
+Other private references in the 119 methods concern discovery, approval rendering/digests, Git identity and governance publication/cleanup. They are outside the requested live-core retirement boundary; an underscore does not make them disposable. Examples are _item_universe and _capability_id/_semantic_bytes/profile rendering, plus the separate AtomicAndGitBoundary APIs.
+
+## Budget-owner constraint
+
+The seeded test is stronger than 'eventually reject excess work.' It computes visitor_units from ast.walk, initializes the original budget to262144 - visitor_units -1, requires _execution_scope to finish, then gives that same object to the next stage. In r010, _ExecutionScopeVisitor.visit charges each visited node; _runtime_call_bounds uses a supplied budget rather than allocating another owner (source7868,8070,8372–8432,9048). The fixture binds sharing, ordering and enough charging granularity to leave the refusal in the second operation.
+
+A canonical implementation must not reset, replace, refund or split that supplied owner, synthesize an otherwise nonexistent charge just to pass, or run a redundant legacy production pass to recreate the old cost. If the new architecture validly eliminates that second pass, preserving this exact private fixture needs an explicit compatibility/test disposition. Its public caps, honest measured work and refusal intent remain binding.
+
+## Minimal R3 choices requiring explicit disposition
+
+1. A canonical-backed observation facade can preserve most names/signatures and exact test bytes if approved. Static inputs are converted once into canonical facts/state; every step delegates to the single canonical evaluator. ID-keyed call observations, blocker strings and descriptor summaries can be immutable output views. Expose the lexical keyword names inspected by co_varnames explicitly rather than hiding them only in **kwargs. Registry key checks can use canonical definition facts, without old _ReviewFunction live projections.
+
+2. The stateful resolver tests require more than a data-only shim. dict(resolver.values) is fed back into execution; normal successors are advanced again. Such a facade is sound only if those entries are canonical references governed by the same canonical store/frame and successor objects remain canonical states. A legacy FlowValue/report projection must never be rehydrated into executable state. Preclassifier.bindings and _flow_qname equality can be terminal/canonical atom views; they must not imply a second independently authoritative value map. This is a substantive API boundary to prove and meter, not an assertion that a facade is already implemented or trivially safe.
+
+3. If R3's deletion rule excludes even that narrow canonical-backed facade, explicitly authorize migration of these private test call sites to canonical step/observation APIs. Keep the original bytes and map every existing source fixture, harmless runtime oracle, exact expected observation, exception successor, cardinality/cap assertion and shared-budget obligation. Preserve the119 discovered behavioral method identities/count where practicable; refresh only mechanically justified source census. Migrating the private invocation is not permission to drop cases or weaken behavior. Replacing everything by 'some public refusal' would lose exact state/routing evidence.
+
+The first option retains API spellings, not the old engine. The second is an authorized test-interface migration, not silent preservation. Neither may retain/call the old resolver, preclassifier, bounds engine or projection reconstruction as a rescue path. Root should decide and freeze this boundary before R3 source deletion; current R1 work need not widen to solve it.
+
+Verification was read-only source review plus isolated stdlib AST/call-reference counts and raw Git/SHA comparison. No test, Model, sensitive fixture, generator or prototype was executed; no source/test/candidate or existing artifact was edited. This note is the only create-only output.

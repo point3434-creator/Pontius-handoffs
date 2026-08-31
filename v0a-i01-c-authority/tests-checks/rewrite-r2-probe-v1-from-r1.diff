@@ -1,0 +1,409 @@
+--- rewrite-r1-probe-v1.py
++++ rewrite-r2-probe-v1.py
+@@ -1,4 +1,4 @@
+-"""Frozen rewrite R1 Gate A: six original public cases/eight Models; no work on import."""
++"""Frozen rewrite R2 Gate B:12 original public cases/24 Models; no work on import."""
+ import ast
+ import builtins
+ from collections import Counter
+@@ -6,6 +6,8 @@
+ import importlib.util
+ import json
+ import os
++import re
++import textwrap
+ from pathlib import Path
+ import stat
+ import sys
+@@ -25,18 +27,24 @@
+         "sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+         "schema": "pontius-engineering-name-environment-family-v1",
+         "planned_cases": 24, "planned_projections": 58,
+-        "ids": ("hidden-cell-joined-reached", "hidden-cell-joined-dormant"),
++        "ids": ("hidden-cell-joined-reached", "hidden-cell-joined-dormant",
++                "scale-n8-s4-d0-normal", "scale-n64-s4-d0-normal",
++                "scale-n8-s4-d2-exceptional", "scale-n64-s4-d2-exceptional"),
+     },
+ }
+ PACK_HASHES = {scope: metadata["sha256"] for scope, metadata in PACKS.items()}
+-GATE_A_IDS = tuple(name for metadata in PACKS.values() for name in metadata["ids"])
++GATE_B_IDS = ('shared-list-consumed', 'shared-list-dormant', 'class-adoption-unsafe', 'class-adoption-safe', 'hidden-cell-joined-reached', 'hidden-cell-joined-dormant', 'helper65', 'generator70', 'scale-n8-s4-d0-normal', 'scale-n64-s4-d0-normal', 'scale-n8-s4-d2-exceptional', 'scale-n64-s4-d2-exceptional')
++CONTINUATION_MAXIMUM = 196608
++TESTS_SHA = 'c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf'
++DEPTH_PROVENANCE_SHA = '7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae'
++DEPTH_CASES = {'helper65': {'method': 'test_round4_analysis_budget_red_contracts_are_independent', 'fixture_sha256': '94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6', 'regex': '^analysis helper depth exceeds 64$'}, 'generator70': {'method': 'test_round4_source_order_and_branch_bounds_red_contracts_are_independent', 'fixture_sha256': '635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3', 'regex': '^analysis deferred generator depth exceeds 64$'}}
+ POPULATION_SHA = "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce"
+ 
+-PLAN_SHA = '8cec0f3af002f04b20c82dee62d29f0601a87047249ab2dfcde5a164ca73826d'
+-OBSERVER_MAP_SHA = 'af8df00ceb6b02bb5730eee56754ce78badcab6102ce861d726eed704522bfbd'
++PLAN_SHA = 'ea2ca1217f133a708c763568cc7494a2ac600b4db351e00a696600836d53f5f7'
++OBSERVER_MAP_SHA = '1dfd899dc7c7a1c9bbf1ff0ee17bc8b4fd4be1eadf3c81f759eb1b0176630228'
+ CONSUME_SEGMENT_SHA = 'd910a8af42711e5130b93af9e55b8917dbd8b48433e29e1ab3cd51df63b7af5c'
+-PAYLOAD = ".rewrite-r1-gate-a"
+-SCHEMA = "pontius-rewrite-r1-gate-a-v1"
++PAYLOAD = ".rewrite-r2-gate-b"
++SCHEMA = "pontius-rewrite-r2-gate-b-v1"
+ SLOTS = {
+     "311": (r"D:\Pontius-tools\py311\Scripts\python.exe", (3, 11, 15)),
+     "314": (r"D:\Pontius\.venv\Scripts\python.exe", (3, 14, 6)),
+@@ -90,16 +98,20 @@
+                       separators=(",", ":"), allow_nan=False).encode("utf-8")
+ 
+ 
++
+ def load_cases(raw_by_scope, population_raw):
+     require(hashlib.sha256(population_raw).hexdigest() == POPULATION_SHA, "frozen population")
+     population = json.loads(population_raw)
+-    require(tuple(population["gates"]["A"]["ordered_case_ids"]) == GATE_A_IDS,
+-            "exact Gate A selection")
+-    require(population["gates"]["A"]["public_analysis_count"] == 6
+-            and population["gates"]["A"]["independent_model_projections"] == 8,
+-            "frozen Gate A counts")
++    require(tuple(population["gates"]["A"]["ordered_case_ids"]) == GATE_B_IDS[:6],
++            "unchanged Gate A prefix")
++    gate = population["gates"]["B"]
++    require(tuple(gate["ordered_case_ids"]) == GATE_B_IDS
++            and gate["public_analysis_count"] == 12 and gate["independent_model_projections"] == 24
++            and gate["depth_assertions"] == 2
++            and gate["engineering_continuation_work_maximum"] == CONTINUATION_MAXIMUM
++            and gate["production_work_cap_unchanged"] == 262144, "exact frozen Gate B")
+     require(set(raw_by_scope) == set(PACKS), "exact original pack set")
+-    combined = []
++    selected = {}
+     for scope, metadata in PACKS.items():
+         raw = raw_by_scope[scope]
+         require(hashlib.sha256(raw).hexdigest() == metadata["sha256"], "original pack pin")
+@@ -118,22 +130,36 @@
+             case = by_id[identifier]
+             binding = population["cases"][identifier]
+             require(hashlib.sha256(case_canonical(case)).hexdigest()
+-                    == binding["case_record_canonical_sha256"], "selected record binding")
++                    == binding["case_record_canonical_sha256"], "selected original record")
+             for field, target in (("source", "source"), ("oracle_source", "model")):
+                 value = case[field]
+                 require(type(value) is str and value.endswith("\n") and "\r" not in value,
+                         "original source format")
+                 require(hashlib.sha256(value.encode("utf-8")).hexdigest()
+-                        == binding[target]["sha256"], "original source/model binding")
+-                ast.parse(value, filename="<GateA-unexecuted-source-or-Model>")
+-            require(case["classification"] == binding["classification"], "classification binding")
+-            combined.append((scope, case))
+-    require(tuple(case["id"] for scope, case in combined) == GATE_A_IDS, "exact Gate A order")
+-    require(dict(Counter(case["classification"] for scope, case in combined))
+-            == {"clean": 2, "refuse": 3, "permitted-refusal": 1}, "Gate A classifications")
++                        == binding[target]["sha256"], "original source/model identity")
++                ast.parse(value, filename="<GateB-unexecuted-source-or-Model>")
++            require(case["classification"] == binding["classification"], "original classification")
++            selected[identifier] = (scope, case)
++    require(len(selected) == 10, "ten original Model cases")
+     require(sum(1 if scope == "storage" else len(case["witnesses"])
+-                for scope, case in combined) == 8, "Gate A exact eight Models")
+-    return combined
++                for scope, case in selected.values()) == 24, "exact24 Models")
++    for identifier, expected in DEPTH_CASES.items():
++        binding = population["cases"][identifier]
++        require(binding["classification"] == "exact-depth-error"
++                and binding["model"] is None and binding["model_projection_count"] == 0
++                and binding["envelope_ref"] == "original_design_review", "original depth kind")
++        require(binding["source"]["sha256"] == expected["fixture_sha256"]
++                and binding["oracle"]["exception"] == "InventoryError"
++                and binding["oracle"]["regex"] == expected["regex"], "original depth expectation")
++        require(binding["original_method"]["symbol"].split(".")[-1] == expected["method"],
++                "original depth owner method")
++        selected[identifier] = ("depth", binding)
++    require(set(selected) == set(GATE_B_IDS), "no extra cases")
++    result = [selected[identifier] for identifier in GATE_B_IDS]
++    require(dict(Counter(case["classification"] for scope, case in result))
++            == {"clean": 6, "refuse": 3, "permitted-refusal": 1, "exact-depth-error": 2},
++            "Gate B classifications")
++    return result
+ 
+ 
+ def public_verdict(scope, case, argv, blockers):
+@@ -441,6 +467,70 @@
+             "maximum epoch observed work")
+     return True
+ 
++def helper65_source():
++    helper_lines = ['import subprocess', 'import sys', 'import unittest', '']
++    for index in range(65):
++        helper_lines.append(f'def helper_{index}():')
++        if index == 64:
++            helper_lines.extend(('    subprocess.run(', "        [sys.executable, '-m', 'deep-helper'],", '        timeout=5, check=False,', '    )'))
++        else:
++            helper_lines.append(f'    return helper_{index + 1}()')
++        helper_lines.append('')
++    helper_lines.extend(('class ReviewTests(unittest.TestCase):', '    def test_static(self): helper_0()', '    def test_denied(self): pass'))
++    return '\n'.join(helper_lines).encode('utf-8') + b'\n'
++
++def generator70_source():
++
++    def chained_source(depth: int) -> str:
++        lines = ['g0 = (cp.arange(1) for _ in range(1))']
++        lines.extend((f'g{index} = (sum(g{index - 1}) for _ in range(1))' for index in range(1, depth)))
++        lines.append(f'sum(g{depth - 1})')
++        return '\n'.join(lines)
++    deep_source = f"import cupy as cp\nimport unittest\nclass ReviewTests(unittest.TestCase):\n    def test_static(self):\n{textwrap.indent(chained_source(70), '        ')}\n    def test_denied(self): pass\n"
++    return fixtures._source(deep_source)
++
++
++fixtures = None
++
++
++def prepare_depth_case(identifier, snapshot, source_sha):
++    """Original setup and builder only; never invokes the multi-subtest method."""
++    global fixtures
++    test_path = snapshot / "tests/test_inventory_and_profiles.py"
++    require(digest(checked(test_path).read_bytes()) == TESTS_SHA, "original c467 tests")
++    if fixtures is None:
++        spec = importlib.util.spec_from_file_location("rewrite_r2_original_depth_fixtures", test_path)
++        require(spec is not None and spec.loader is not None, "original test import spec")
++        fixtures = importlib.util.module_from_spec(spec)
++        sys.modules[spec.name] = fixtures
++        spec.loader.exec_module(fixtures)
++    require(Path(fixtures.__file__).resolve() == test_path.resolve()
++            and Path(fixtures.SNAPSHOT_ROOT).resolve() == snapshot.resolve()
++            and Path(fixtures.GENERATOR_PATH).resolve()
++                == (snapshot / "tools/generate_test_inventory.py").resolve(), "original fixture paths")
++    case = fixtures.DesignReviewTests(DEPTH_CASES[identifier]["method"])
++    case.setUp()
++    module = case.generator
++    require(Path(module.__file__).resolve() == (snapshot / "tools/generate_test_inventory.py").resolve()
++            and digest(checked(Path(module.__file__)).read_bytes()) == source_sha,
++            "fresh original setup candidate")
++    require({name: getattr(module, name) for name in CAPS} == CAPS
++            and all(type(getattr(module, name)) is int for name in CAPS), "fresh candidate caps")
++    source = helper65_source() if identifier == "helper65" else generator70_source()
++    require(type(source) is bytes and digest(source) == DEPTH_CASES[identifier]["fixture_sha256"],
++            "original frozen depth source bytes")
++    ast.parse(source, filename="<unexecuted-original-depth-source>")
++    return case, module, source
++
++
++def reserve_violations(metrics, identifier):
++    """Post-execution engineering predicate; never modifies or calls a budget."""
++    return [{"case": identifier, "epoch": entry["epoch"],
++             "observed_work": entry["last_observed_work"], "maximum": CONTINUATION_MAXIMUM}
++            for entry in metrics["epochs"]
++            if entry["last_observed_work"] > CONTINUATION_MAXIMUM]
++
++
+ def main():
+     global generator
+     require(len(sys.argv) == 4, "usage: probe SLOT MANIFEST_SHA ENVIRONMENT_SHA")
+@@ -464,7 +554,7 @@
+     manifest_raw = checked(payload / "manifest.json").read_bytes()
+     require(digest(manifest_raw) == manifest_sha, "manifest pin")
+     manifest = json.loads(manifest_raw)
+-    require(len(manifest) == 1770 + (5 if slot == "314" else 0), "manifest count")
++    require(len(manifest) == 1771 + (5 if slot == "314" else 0), "manifest count")
+     hashes(snapshot, manifest)
+     run = json.loads(checked(payload / "run.json").read_bytes())
+     require(run["schema"] == SCHEMA and run["slot"] == slot, "run config")
+@@ -473,13 +563,20 @@
+             and all(c in "0123456789abcdef" for c in source_sha), "candidate digest")
+     require(run["pack_sha256"] == PACK_HASHES
+             and run["plan_sha256"] == PLAN_SHA and run["population_sha256"] == POPULATION_SHA
+-            and run["observer_map_sha256"] == OBSERVER_MAP_SHA, "run input identity")
++            and run["observer_map_sha256"] == OBSERVER_MAP_SHA
++            and run["tests_sha256"] == TESTS_SHA
++            and run["depth_provenance_sha256"] == DEPTH_PROVENANCE_SHA
++            and run["continuation_work_maximum"] == CONTINUATION_MAXIMUM, "run input identity")
+     probe_sha = digest(checked(Path(__file__).absolute()).read_bytes())
+     require(probe_sha == run["probe_sha256"], "probe pin")
+     require(digest(checked(payload / "control.py").read_bytes()) == run["control_sha256"], "control pin")
+     require(digest(checked(payload / "plan.md").read_bytes()) == PLAN_SHA, "plan bytes")
+     require(digest(checked(payload / "observer-map.json").read_bytes()) == OBSERVER_MAP_SHA,
+             "observer map bytes")
++    require(digest(checked(payload / "depth-provenance.py").read_bytes()) == DEPTH_PROVENANCE_SHA,
++            "depth provenance source bytes")
++    require(digest(checked(snapshot / "tests/test_inventory_and_profiles.py").read_bytes()) == TESTS_SHA,
++            "original depth test module bytes")
+     population_raw = checked(payload / "population.json").read_bytes()
+     require(digest(population_raw) == POPULATION_SHA, "frozen population bytes")
+     source_path = snapshot / "tools/generate_test_inventory.py"
+@@ -509,21 +606,27 @@
+             "wrong read-only package resolution")
+     cases = load_cases({scope: checked(payload / metadata["file"]).read_bytes()
+                         for scope, metadata in PACKS.items()}, population_raw)
+-    spec = importlib.util.spec_from_file_location("rewrite_r1_gate_a_generator", source_path)
++    spec = importlib.util.spec_from_file_location("rewrite_r2_gate_b_generator", source_path)
+     require(spec is not None and spec.loader is not None, "generator import spec")
+     generator = importlib.util.module_from_spec(spec)
+     sys.modules[spec.name] = generator
+     spec.loader.exec_module(generator)
+ 
++
+     require({name: getattr(generator, name) for name in CAPS} == CAPS
+             and all(type(getattr(generator, name)) is int for name in CAPS), "caps changed")
+     semantic_failures, oracle_errors, analyzer_errors, accounting_errors = [], [], [], []
+-    analyzed, projections = 0, 0
+-    observer = BudgetObserver(generator)
+-    observer.install()
+-    methods_restored = False
+-    try:
+-        for scope, case in cases:
++    continuation_failures = []
++    attempted, returned_receipts, expected_depth_errors, projections = 0, 0, 0, 0
++    for scope, case in cases:
++        identifier = case["id"]
++        is_depth = scope == "depth"
++        depth_case, active_generator = None, generator
++        if is_depth:
++            depth_case, active_generator, source = prepare_depth_case(identifier, snapshot, source_sha)
++            actuals, oracle_passed, oracle_error = [], True, None
++        else:
++            source = case["source"].encode("utf-8")
+             actuals, oracle_passed, oracle_error = [], False, None
+             try:
+                 if scope == "storage":
+@@ -535,69 +638,102 @@
+                 projections += len(actuals)
+             except Exception as error:
+                 oracle_error = {"type": type(error).__name__, "message": str(error)}
+-            review, analyzer_error, metrics, accounting_error = None, None, None, None
+-            if not oracle_passed:
+-                oracle_errors.append(case["id"])
+-            else:
+-                observer.begin(case["id"])
++        review, analyzer_error, metrics, accounting_error = None, None, None, None
++        public_exception, depth_match, methods_restored = None, False, True
++        violations = []
++        if not oracle_passed:
++            oracle_errors.append(identifier)
++        else:
++            observer = BudgetObserver(active_generator)
++            observer.install()
++            observer.begin(identifier)
++            try:
++                attempted += 1
+                 try:
+-                    review = (storage_public_review(generator, case["source"].encode("utf-8"))
+-                              if scope == "storage" else public_review(case["source"].encode("utf-8")))
+-                    analyzed += 1
++                    if is_depth:
++                        review = depth_case._review(sources={"tests/test_review.py": source})
++                    else:
++                        review = (storage_public_review(generator, source) if scope == "storage"
++                                  else public_review(source))
+                 except Exception as error:
+-                    analyzer_error = {"type": type(error).__name__, "message": str(error)}
+-                    analyzer_errors.append(case["id"])
++                    public_exception = {"type": type(error).__name__, "message": str(error),
++                                        "is_inventory_error": isinstance(error, active_generator.InventoryError)}
++                    depth_match = bool(is_depth and public_exception["is_inventory_error"]
++                                       and re.search(DEPTH_CASES[identifier]["regex"], str(error)))
++                    if depth_match:
++                        expected_depth_errors += 1
++                    else:
++                        analyzer_error = public_exception
++                        analyzer_errors.append(identifier)
+                 finally:
+                     metrics = observer.end()
+-                try:
+-                    validate_budget_metrics(metrics, case["id"])
+-                except Exception as error:
+-                    accounting_error = {"type": type(error).__name__, "message": str(error)}
+-                    accounting_errors.append(case["id"])
+-            rows = review["receipt"]["expanded_rows"] if review is not None else []
+-            argv = [row["argv"] for row in rows if row["capability_kind"] == "subprocess"]
+-            blockers = review["unresolved_dynamic_blockers"] if review is not None else []
+-            semantic_ok = bool(oracle_passed and review is not None
+-                               and public_verdict(scope, case, argv, blockers))
+-            if not semantic_ok:
+-                semantic_failures.append(case["id"])
+-            print(json.dumps({
+-                "rewrite_gate_a_case": case["id"], "original_pack": scope,
+-                "classification": case["classification"],
+-                "source_sha256": digest(case["source"].encode("utf-8")),
+-                "oracle_sha256": digest(case["oracle_source"].encode("utf-8")),
+-                "unreachable_events": case["unreachable_events"],
+-                "expected_projections": ([case["expected"]] if scope == "storage" else case["witnesses"]),
+-                "required_argv": case["required_argv"] if scope == "storage" else [["-m", "fixed"]],
+-                "oracle_actuals": actuals, "oracle_passed": oracle_passed, "oracle_error": oracle_error,
+-                "analyzer_error": analyzer_error, "argv": argv, "expanded_rows": rows,
+-                "blockers": blockers, "semantic_passed": semantic_ok,
+-                "receipt_sha256": digest(canonical(review["receipt"])) if review is not None else None,
+-                "budget_metrics": metrics, "accounting_error": accounting_error,
+-            }, allow_nan=False), flush=True)
+-    finally:
+-        methods_restored = observer.restore()
+-    require(methods_restored, "original budget methods not restored")
++            finally:
++                methods_restored = observer.restore()
++            require(methods_restored, "original budget methods not restored")
++            require({name: getattr(active_generator, name) for name in CAPS} == CAPS
++                    and all(type(getattr(active_generator, name)) is int for name in CAPS),
++                    "active candidate caps changed")
++            try:
++                validate_budget_metrics(metrics, identifier)
++                violations = reserve_violations(metrics, identifier)
++                continuation_failures.extend(violations)
++            except Exception as error:
++                accounting_error = {"type": type(error).__name__, "message": str(error)}
++                accounting_errors.append(identifier)
++        rows = review["receipt"]["expanded_rows"] if review is not None else []
++        argv = [row["argv"] for row in rows if row["capability_kind"] == "subprocess"]
++        blockers = review["unresolved_dynamic_blockers"] if review is not None else []
++        if review is not None:
++            returned_receipts += 1
++        semantic_ok = bool(oracle_passed and
++                           (depth_match if is_depth else
++                            review is not None and public_verdict(scope, case, argv, blockers)))
++        if not semantic_ok:
++            semantic_failures.append(identifier)
++        print(json.dumps({
++            "rewrite_gate_b_case": identifier, "original_pack": scope,
++            "classification": case["classification"], "source_sha256": digest(source),
++            "oracle_sha256": None if is_depth else digest(case["oracle_source"].encode("utf-8")),
++            "unreachable_events": [] if is_depth else case["unreachable_events"],
++            "expected_projections": ([] if is_depth else
++                                     [case["expected"]] if scope == "storage" else case["witnesses"]),
++            "required_argv": None if is_depth else case["required_argv"] if scope == "storage" else [["-m", "fixed"]],
++            "oracle_actuals": actuals, "oracle_passed": oracle_passed, "oracle_error": oracle_error,
++            "depth_expectation": DEPTH_CASES[identifier]["regex"] if is_depth else None,
++            "expected_depth_error": depth_match, "public_exception": public_exception,
++            "analyzer_error": analyzer_error, "argv": argv, "expanded_rows": rows,
++            "blockers": blockers, "semantic_passed": semantic_ok,
++            "receipt_sha256": digest(canonical(review["receipt"])) if review is not None else None,
++            "budget_metrics": metrics, "accounting_error": accounting_error,
++            "original_methods_restored": methods_restored, "reserve_violations": violations,
++        }, allow_nan=False), flush=True)
+     require({name: getattr(generator, name) for name in CAPS} == CAPS
+             and all(type(getattr(generator, name)) is int for name in CAPS), "caps changed during run")
+     hashes(snapshot, manifest)
+     require(digest(checked(payload / "manifest.json").read_bytes()) == manifest_sha, "manifest changed")
+-    summary = {"rewrite_gate_a_summary": True, "schema": SCHEMA, "slot": slot,
++    summary = {"rewrite_gate_b_summary": True, "schema": SCHEMA, "slot": slot,
+                "generator_sha256": source_sha, "pack_sha256": PACK_HASHES, "probe_sha256": probe_sha,
+                "plan_sha256": PLAN_SHA, "population_sha256": POPULATION_SHA,
+-               "observer_map_sha256": OBSERVER_MAP_SHA, "planned_cases": 6, "case_count": 6,
+-               "projections": projections, "analyzed_cases": analyzed,
++               "observer_map_sha256": OBSERVER_MAP_SHA, "tests_sha256": TESTS_SHA,
++               "depth_provenance_sha256": DEPTH_PROVENANCE_SHA,
++               "planned_cases": 12, "case_count": 12, "projections": projections,
++               "attempted_analyses": attempted, "returned_receipts": returned_receipts,
++               "expected_depth_errors": expected_depth_errors,
+                "semantic_failures": semantic_failures, "oracle_errors": oracle_errors,
+                "analyzer_errors": analyzer_errors, "accounting_errors": accounting_errors,
+-               "completed": analyzed == 6 and projections == 8 and not oracle_errors
++               "completed": attempted == 12 and returned_receipts == 10 and expected_depth_errors == 2
++                            and projections == 24 and not oracle_errors
+                             and not analyzer_errors and not accounting_errors,
+-               "classifications": {"clean": 2, "refuse": 3, "permitted-refusal": 1}, "caps": CAPS,
+-               "original_methods_restored": methods_restored,
++               "classifications": {"clean": 6, "refuse": 3, "permitted-refusal": 1, "exact-depth-error": 2},
++               "caps": CAPS, "original_methods_restored": True,
+                "budget_scope": "all original creations/requests inside every complete public envelope",
+                "observer_overhead_is_not_original_charged_work": True,
+-               "gate": "A", "GateB_not_run": True}
++               "gate": "B", "continuation_work_maximum": CONTINUATION_MAXIMUM,
++               "reserve_violations": continuation_failures, "reserve_ok": not continuation_failures,
++               "reserve_is_postexecution_only": True, "no_wider_population_run": True}
+     print(json.dumps(summary, allow_nan=False), flush=True)
+-    return int(bool(semantic_failures or oracle_errors or analyzer_errors or accounting_errors))
++    return int(bool(semantic_failures or oracle_errors or analyzer_errors
++                    or accounting_errors or continuation_failures))
+ 
+ 
+ if __name__ == "__main__":

@@ -1,0 +1,69 @@
+{
+  "Model_projections": 24,
+  "budget_reconciliation_source_sha256": "2e8bc49b2aecf7696c6ad829dcd18cee1a985c10b39d0d03bb6b951aaf86636f",
+  "continuation_work_maximum": 196608,
+  "coverage_limits": [
+    "candidate import/original test setup/source construction are harness work before public-call observation",
+    "all production semantic preparation inside derive_design_review is observed; no epoch or mode filter",
+    "no physical operation categories inferred; production accounting source review remains required",
+    "unrecognized stage remains other with original caller/parent/creation context",
+    "observer overhead is outside original charged units; no timing comparison"
+  ],
+  "depth_provenance_sha256": "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae",
+  "depth_runtime": "original DesignReviewTests.setUp imports fresh generator; observer installed on each case.generator and restored after that original _review call",
+  "disjoint_views": {
+    "origins": "immediate caller and parent; sum units/calls",
+    "phase_units": "nearest definition_time_protocol/unittest_preflight/source_ordered_helper_return/review_flow, otherwise other"
+  },
+  "execution_authorized": false,
+  "expected_depth_errors": 2,
+  "expected_normal_receipts": 10,
+  "gate": "B",
+  "hooks": [
+    {
+      "delegation": "original exactly once, original args/kwargs/return/exception",
+      "observations": "successful creation scalar work, full scalar creation context, per-case monotonic epoch; failed attempts visible",
+      "target": "_AnalysisBudget.__init__"
+    },
+    {
+      "delegation": "original exactly once, same units/default, return and exception",
+      "observations": "original requested units, before/after scalar work, nearest caller/parent, nearest semantic stage, throwing request context",
+      "target": "_AnalysisBudget.consume"
+    }
+  ],
+  "inclusive_views": [
+    "creation_stack",
+    "throwing consume stack"
+  ],
+  "last_observed_work": "initial value for zero-request epoch, otherwise after final observed consume; not a retained budget finalization read",
+  "no_production_changes": [
+    "no raised caps",
+    "no omitted or refunded original charge",
+    "no cache or budget objects retained",
+    "no reset/split",
+    "no semantic fallbacks or fixture-keyed dispatch"
+  ],
+  "object_id_reuse": "each original successful initialization replaces id lookup with new epoch; historical scalar records retained",
+  "observer_class_source_sha256": "a686ac14f297a228b9357a75215f6320697995d85ec3cf25f2ab70e8e13fa585",
+  "original_caps": {
+    "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647,
+    "MAXIMUM_ANALYSIS_CHILD_DEPTH": 4,
+    "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+    "MAXIMUM_ANALYSIS_HELPER_DEPTH": 64,
+    "MAXIMUM_ANALYSIS_WORK_UNITS": 262144
+  },
+  "original_consume_source_segment_sha256": "d910a8af42711e5130b93af9e55b8917dbd8b48433e29e1ab3cd51df63b7af5c",
+  "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "population_sha256": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce",
+  "public_attempts": 12,
+  "reserve_is_postexecution_only": true,
+  "reserve_source_sha256": "1b8b6d86a9e45faf42556eeb99995dad858f4b0d4409af354fd141b58ac9ebbc",
+  "retention": "scalars/strings/counters only; no budget, AST, state, object, frame, exception or cache retained",
+  "schema": "pontius-rewrite-r2-budget-observer-map-v1",
+  "scope": "all original budgets/requests inside12 complete public invocations, including original2 depth envelopes",
+  "source_hash_conventions": {
+    "budget_reconciliation_source_sha256": "UTF8 LF + validate_budget_metrics source segment + LF; same block as R1",
+    "observer_class_source_sha256": "UTF8 verbatim emitted observer block, leading/trailing LF included: budget_context, budget_origin, budget_phase, BudgetObserver; same block as R1",
+    "reserve_source_sha256": "UTF8 verbatim RESERVE emitted block including leading/trailing LF"
+  }
+}

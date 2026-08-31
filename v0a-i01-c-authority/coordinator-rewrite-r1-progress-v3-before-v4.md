@@ -46,32 +46,3 @@ class-adoption case is wrongly clean; the safe case is wrongly refused. Other
 four cases retain their expected results. See rewrite-r1-baseline-disposition-v1.md.
 Source GO is issued for Task1 under the frozen plan and size limit; root inspects
 state ownership/accounting before evaluator wiring. No replacement result yet.
-
-
-## Task3 retained; construction and public wiring in progress
-
-Task1 v2 source844b2d01a5854f1c8494dfc56877d17557a67cf53fef554445e4c20491351862
-retains the state ownership design with explicit empty-choice refusal and
-container-before-copy charging. Root's exact-delta/static preservation proof is
-coordinator-rewrite-r1-task1-v2-verification.json; no primitive runtime is claimed.
-Task2 source83418c6b172ca0699ca01caed5f78d401e4ec21317806bbf83dba6b466b6be01
-is frozen at Haa7b6f38ad8972727410b708291090297376681c, manifest
-1c2da3e7ecea72e4af41842727a1fee93704c4c2c7ad972f0a503b8580d84ad4.
-
-Task3 source1ecbde73fcd2159aef2a96538850a93fc4ec2bfa590352bc33d95581d12ccc45
-adds ordered expression/statement outcomes and corrects the Task2 review's
-pattern-capture and comprehension-walrus binding omissions. Its static check
-reports1313 added lines, zero original deletions and all16 other protected paths
-unchanged. This is an engineering checkpoint awaiting review, not a runtime pass.
-The sole source writer continues Tasks4-5 within the first-attempt2500-line limit.
-
-Root approved a scalar conditional inside the binder's removable budget guard,
-using only existing bound/argument-list truth and len. Removing the keyword-only
-budget parameter and approved consume guards must reproduce the exact original
-matcher AST; no extra scan, semantic branch or new budget owner is authorized.
-
-Gate B12/24 harness is authored only, held for independent review and a separate
-post-Gate-A source disposition. The private-API compatibility inventory identifies
-three original test roots that constrain later removal; neither test migration
-nor keeping an alternate old engine has been authorized. No new population,
-changed cap, runtime claim, broad suite or main integration at this checkpoint.

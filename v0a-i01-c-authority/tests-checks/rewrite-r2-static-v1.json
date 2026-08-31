@@ -1,0 +1,225 @@
+{
+  "Model_projections": 24,
+  "candidate_Model_builder_test_module_imported": false,
+  "classifications": {
+    "clean": 6,
+    "exact-depth-error": 2,
+    "permitted-refusal": 1,
+    "refuse": 3
+  },
+  "continuation_maximum": 196608,
+  "control_sha256": "54c4e61fd07173fbf2f52441ae1dbb94d6dbfcaf3f7d9ee0e385509ac73bd7ba",
+  "deltas": {
+    "control": "9794d57c6098d0feb3c54f476eb2d36f09c8da49685ff2c6b1561aeb6518dfb6",
+    "probe": "beff6c63b7e6c509e17ad21b2543c9703d650a30fc156ce81a7bbbac10971668"
+  },
+  "depth_original_spans_verified": [
+    {
+      "bytes": 9945,
+      "sha256": "bd43e01bce5dde611cc294dba19b083d560f366885bb67486df912b06480b442",
+      "symbol": "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent"
+    },
+    {
+      "bytes": 9945,
+      "sha256": "bd43e01bce5dde611cc294dba19b083d560f366885bb67486df912b06480b442",
+      "symbol": "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent"
+    },
+    {
+      "bytes": 409,
+      "sha256": "c3f0d3fc992ce70d630b779c2c67eda9bc19c33f0c2bbe3cce009ac1d759e4d4",
+      "symbol": "helper65 exact assertion"
+    },
+    {
+      "bytes": 252,
+      "sha256": "dbdcf99b15a1b51a7a0a4aa3a561a841e2f9971c90c2deb706395aee5fe048eb",
+      "symbol": "helper65 _review invocation"
+    },
+    {
+      "bytes": 165,
+      "sha256": "51147d1d3cc2dea7dc6406532ebcdae1868bad2c56f0c760bec554803fd07a88",
+      "symbol": "helper65 construction 0"
+    },
+    {
+      "bytes": 612,
+      "sha256": "5af2756c09d7ce9eae62e6f0ab05c7039239cb83b2104cee004c77423abd4edd",
+      "symbol": "helper65 construction 1"
+    },
+    {
+      "bytes": 260,
+      "sha256": "6e29560a80df9669241e09457814332091493da86b1d66a81a3f71db34df42d7",
+      "symbol": "helper65 construction 2"
+    },
+    {
+      "bytes": 76,
+      "sha256": "4995131ca7b8fed86b43e77937f030f522083c73725f171032e8d04f1e8696ab",
+      "symbol": "helper65 source expression"
+    },
+    {
+      "bytes": 35172,
+      "sha256": "cfe079962b34fac82554b8ffe42013011f39ad820ce2efc91f1f99ccd50fb3d6",
+      "symbol": "DesignReviewTests._fix15_frozen_review_boundary_contracts"
+    },
+    {
+      "bytes": 19217,
+      "sha256": "4a486c325b519cc56dd14192c3f794816ba95aea569d9595d01ca414aad9f468",
+      "symbol": "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+    },
+    {
+      "bytes": 264,
+      "sha256": "ee90c7b72bdbc19656d51e03b577d1bcfd735855253b7beca174a9fe3fcc97ea",
+      "symbol": "generator70 exact assertion"
+    },
+    {
+      "bytes": 111,
+      "sha256": "7bd949a440ff0394a95bf737428f5b94a81d79f9294d6eb0dcac84650a60e5d4",
+      "symbol": "generator70 _review invocation"
+    },
+    {
+      "bytes": 345,
+      "sha256": "a7a712847aa5498e1b0d0966491a38a7b05437539c6ad065c637c00aa922b286",
+      "symbol": "chained_source"
+    },
+    {
+      "bytes": 312,
+      "sha256": "049e1956e94a0bd12e97527da9a6b2a672f681ca53e74f8630b39841dc95216e",
+      "symbol": "generator70 deep_source"
+    },
+    {
+      "bytes": 72,
+      "sha256": "9069e8d768c3f5a5dfa6f4a740e407f922f5e1199c82509678f43dbe62db7d02",
+      "symbol": "GENERATOR_PATH"
+    },
+    {
+      "bytes": 52,
+      "sha256": "60d31d7db56505f7c29c68204721bde2c6ce332ea200a0c1f3335a136355de6c",
+      "symbol": "SNAPSHOT_ROOT"
+    },
+    {
+      "bytes": 193,
+      "sha256": "060c4c71b540c4bfd47754147205a37d0c144deac5162a31a79a7f5599cf47db",
+      "symbol": "_canonical_json_bytes"
+    },
+    {
+      "bytes": 196,
+      "sha256": "85698c26059afb0f76a47216ced921dab4d92e8d9065fc6ab0217c55f8369913",
+      "symbol": "_ids_digest"
+    },
+    {
+      "bytes": 712,
+      "sha256": "9f8e2d840471389806f4beb8df6b0917fec31d569043c010379cbf28399bdd93",
+      "symbol": "DesignReviewTests._inventory_entry"
+    },
+    {
+      "bytes": 633,
+      "sha256": "d370901791b2add1fbba727d97df43c53d10be70ea97fed46bef586a8b923603",
+      "symbol": "_load_generator"
+    },
+    {
+      "bytes": 752,
+      "sha256": "f30e2e2cdab360d8c061cdd28ab02c4da84df4c918e54ff25cff841cf1038424",
+      "symbol": "DesignReviewTests._review"
+    },
+    {
+      "bytes": 98,
+      "sha256": "bcb7ab0320928d404906fbf866be12db2b9d79adf9ba907ca6ce89c35d0f4a72",
+      "symbol": "_source"
+    },
+    {
+      "bytes": 3710,
+      "sha256": "7f176d58850c01aeac22d3ee9864224af65287f14f99380ce48a298bff983173",
+      "symbol": "DesignReviewTests.setUp"
+    },
+    {
+      "bytes": 2061,
+      "sha256": "5986f34cb0803ff12a94fb518de26d7706dddf8f85c8a699f286085ce59ce327",
+      "symbol": "setUp literal tests/test_review.py"
+    },
+    {
+      "bytes": 110,
+      "sha256": "8086b9a196f765e5ec9b130d01d3966c6dfb4b7f0e2443c39bcf76ca9cbcb075",
+      "symbol": "setUp literal tools/test_child.py"
+    }
+  ],
+  "depth_provenance_sha256": "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae",
+  "expected_depth_errors": 2,
+  "limits": [
+    "static source proofs only; not runtime harness approval",
+    "independent R2 candidate/operation-accounting and GateA disposition required before any GateB dispatch",
+    "original budget observer measures production requests, not physical-work or runtime ratios"
+  ],
+  "normal_receipts": 10,
+  "observer_map_sha256": "1dfd899dc7c7a1c9bbf1ff0ee17bc8b4fd4be1eadf3c81f759eb1b0176630228",
+  "ordered_case_ids": [
+    "shared-list-consumed",
+    "shared-list-dormant",
+    "class-adoption-unsafe",
+    "class-adoption-safe",
+    "hidden-cell-joined-reached",
+    "hidden-cell-joined-dormant",
+    "helper65",
+    "generator70",
+    "scale-n8-s4-d0-normal",
+    "scale-n64-s4-d0-normal",
+    "scale-n8-s4-d2-exceptional",
+    "scale-n64-s4-d2-exceptional"
+  ],
+  "original_inputs": {
+    "engineer-depth-budget-probe-v3.py": "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae",
+    "rewrite-early-population-v1.json": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce",
+    "tests-checks/rewrite-r1-control-v1.py": "9310da3cecabaae0127fb6562a15b388355f722c35dcd5abbd2b039fd0f4d48c",
+    "tests-checks/rewrite-r1-probe-v1.py": "c0672ac61fa19b5dd3d46fc6c0dbbdaae4565c610e7e658619c738559fb27395",
+    "tests/test_inventory_and_profiles.py@r010": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+  },
+  "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "payload_executed": false,
+  "plan_sha256": "ea2ca1217f133a708c763568cc7494a2ac600b4db351e00a696600836d53f5f7",
+  "population_sha256": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce",
+  "preservation": {
+    "builder_generator70_source": true,
+    "builder_helper65_source": true,
+    "control_canonical": true,
+    "control_case_canonical": true,
+    "control_checked": true,
+    "control_create": true,
+    "control_environment": true,
+    "control_file_hashes": true,
+    "control_git": true,
+    "control_public_verdict": true,
+    "control_require": true,
+    "control_sha": true,
+    "control_valid_digest": true,
+    "control_validate_budget_metrics": true,
+    "control_write_json": true,
+    "probe_BudgetObserver": true,
+    "probe_budget_context": true,
+    "probe_budget_origin": true,
+    "probe_budget_phase": true,
+    "probe_canonical": true,
+    "probe_checked": true,
+    "probe_digest": true,
+    "probe_hashes": true,
+    "probe_project_oracles": true,
+    "probe_public_review": true,
+    "probe_require": true,
+    "probe_storage_oracle": true,
+    "probe_storage_public_review": true,
+    "probe_validate_budget_metrics": true,
+    "shared_case_canonical": true,
+    "shared_load_cases": true,
+    "shared_public_verdict": true,
+    "shared_reserve_violations": true,
+    "shared_validate_budget_metrics": true
+  },
+  "probe_sha256": "abc1a22b76691ab8881e5301f532fad32171183abb11221debc93e7428e48310",
+  "production_work_cap": 262144,
+  "public_attempts": 12,
+  "reserve_has_no_budget_calls": true,
+  "schema": "pontius-rewrite-r2-harness-static-v1",
+  "source_fixtures_regenerated": false,
+  "static_runtime": [
+    3,
+    11,
+    15
+  ],
+  "status": "unexecuted authoring, root held"
+}

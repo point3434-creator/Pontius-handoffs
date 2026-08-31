@@ -98,21 +98,3 @@ the exact plan/harness/baseline inputs. Independent harness review and root
 baseline dispatch still precede source GO. No replacement source or payload
 has been executed at this entry; it does not imply implementation acceptance.
 See [R1 progress](rewrite-r1-progress.md); [prior navigation](coordinator-navigation-v17-before-v18.md).
-
-
-## Canonical core engineering checkpoint
-
-The original Gate A baseline is RED with intact evidence. State primitives have
-completed the bounded ownership/cost review and its two prewiring corrections;
-scope facts and the source-order evaluator are now retained as Task3. The Task2
-review identified missing compile-time bindings in dormant pattern/comprehension
-syntax; Task3 includes that category correction, pending independent rereview.
-Construction, invocation and public-path replacement are in progress. No
-replacement candidate has executed, and no acceptance verdict follows.
-
-[R1 progress](rewrite-r1-progress.md) records current checkpoints. The prepared
-[Gate B harness](tests-checks/rewrite-r2-handoff-v1.md) is unexecuted and held;
-Gate A and a separate source/harness disposition precede its use. The
-[private-API inventory](rewrite-private-api-compatibility-inventory-v1.md)
-records a later migration decision; no original test or legacy-engine exception
-has been authorized. [Prior navigation](coordinator-navigation-v18-before-v19.md).

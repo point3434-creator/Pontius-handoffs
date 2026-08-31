@@ -1,0 +1,13 @@
+--- author-v1
++++ author-v2
+@@ -113,8 +113,8 @@
+ validation=validation.replace("len(lines) == 8","len(lines) == 14").replace("identity/six-case/summary","identity/twelve-case/summary")
+ validation+=VALIDATION_TAIL
+ control=replace_top(control,"validate_result",RESERVE+"\n"+validation)
+-control=once(control,'             "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256}',
+- '             "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256,\n'
++control=once(control,'\n             "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256}',
++ '\n             "core_watch_source": str(CORE_WATCH), "core_watch_sha256": args.worktree_sha256,\n'
+  '             "tests_sha256": TESTS_SHA, "depth_provenance_sha256": DEPTH_PROVENANCE_SHA,\n'
+  '             "continuation_work_maximum": CONTINUATION_MAXIMUM}')
+ control=once(control,'                       "observer_map": OBSERVER_MAP, "core_watch": CORE_WATCH}',
