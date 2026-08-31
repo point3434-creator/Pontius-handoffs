@@ -1,0 +1,16 @@
+{
+  "standing": "exploratory only; no combined source replay",
+  "metadata_sha256": "213b8d2c9c860efcdd2a34ba51b1ce71e13da3590095158150eab3a8e427900f",
+  "ordinary_writer_receipt_sha256": "42ab30225ece96c6b21d08d075d6c5521979c7b37983bbde92a0577b1c3caa81",
+  "prior_entries_unchanged": 2860,
+  "new_total": 2866,
+  "added_ids": [
+    "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_async_creation_retains_only_future_effects",
+    "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_escape_is_independent_of_incidental_owner_loads",
+    "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_forwarded_inputs_follow_execution_order",
+    "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_implicit_execution_cannot_hide_owner_writes",
+    "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_preserves_dormant_and_unrelated_bodies",
+    "tests/test_inventory_and_profiles.py::DesignReviewTests::test_callable_authority_protocol_forwarding_retains_effect_context"
+  ],
+  "profile_bytes_unchanged": true
+}

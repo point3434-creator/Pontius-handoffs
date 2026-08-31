@@ -1,0 +1,92 @@
+{
+  "schema_version": "pontius-r009-independent-red-v1",
+  "candidate": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "manifest": "4f91aa7ce728c3eff6a7ad30a7c131985d5b86b615875df978d30ac39386aa51",
+  "cases_per_slot": 33,
+  "failed_observations_per_slot": 13,
+  "note": "Overlapping contract members, not thirteen independent bugs; lawful controls remain admitted. These are expected RED observations, not passing acceptance.",
+  "runtime_order": [
+    "3.11.15",
+    "3.14.6"
+  ],
+  "results": {
+    "311": [
+      {
+        "kind": "closure",
+        "receipt": "abc-provenance-v4-independent-red01-closure-311-receipt.json",
+        "sha256": "d12c1074d7cb5f1640bb3c4681aa028d9c7bec2e8738d99f10161f7d8b256004",
+        "cases": 10,
+        "failed_cases": [
+          "map-consumed/local-cell",
+          "map-consumed/global-owner",
+          "map-consumed/receiver-cell",
+          "map-consumed/default-owner",
+          "sorted-key/local-cell",
+          "sorted-key/global-owner",
+          "sorted-key/receiver-cell",
+          "sorted-key/default-owner"
+        ]
+      },
+      {
+        "kind": "metamorphic",
+        "receipt": "abc-provenance-v4-independent-red01-metamorphic-311-receipt.json",
+        "sha256": "6b275e91e78a1709b8de112d157476e2542ff9caeb0bbb3b678bb68afd77bf40",
+        "cases": 3,
+        "failed_cases": [
+          "self-only"
+        ]
+      },
+      {
+        "kind": "forwarding",
+        "receipt": "abc-provenance-v4-independent-red01-forwarding-311-receipt.json",
+        "sha256": "f7b5f6643432a0ce22453929eea2ebe666065dd032f9f0cd0960cafd55fab21f",
+        "cases": 20,
+        "failed_cases": [
+          "callback-default-none",
+          "callback-keyword-none",
+          "explicit-callback-none",
+          "forwarded-owner-none"
+        ]
+      }
+    ],
+    "314": [
+      {
+        "kind": "closure",
+        "receipt": "abc-provenance-v4-independent-red01-closure-314-receipt.json",
+        "sha256": "2d420393d4b68047f16ada22fef92395ce9764d52b993a0d00ad6bb8ed64aa4a",
+        "cases": 10,
+        "failed_cases": [
+          "map-consumed/local-cell",
+          "map-consumed/global-owner",
+          "map-consumed/receiver-cell",
+          "map-consumed/default-owner",
+          "sorted-key/local-cell",
+          "sorted-key/global-owner",
+          "sorted-key/receiver-cell",
+          "sorted-key/default-owner"
+        ]
+      },
+      {
+        "kind": "metamorphic",
+        "receipt": "abc-provenance-v4-independent-red01-metamorphic-314-receipt.json",
+        "sha256": "a2350e485f5d9ebee1dbc710047424fc96f28770909933563f07a036bae2571d",
+        "cases": 3,
+        "failed_cases": [
+          "self-only"
+        ]
+      },
+      {
+        "kind": "forwarding",
+        "receipt": "abc-provenance-v4-independent-red01-forwarding-314-receipt.json",
+        "sha256": "582afccc6dfed4e687b33407963c6a8a2deb6cb2260ca725cca71aaf70868588",
+        "cases": 20,
+        "failed_cases": [
+          "callback-default-none",
+          "callback-keyword-none",
+          "explicit-callback-none",
+          "forwarded-owner-none"
+        ]
+      }
+    ]
+  }
+}
