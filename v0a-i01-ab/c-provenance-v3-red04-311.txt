@@ -1,0 +1,79 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 2, "failures": 2, "errors": 2, "skipped": 0}
+test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) ... 
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (reached_name_effect='ReviewTests') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (reached_name_effect='owner') ... FAIL
+test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) ... 
+  test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) (unresolved_definition_default='owner._launch = None') ... ERROR
+  test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) (unresolved_definition_default='unused = owner') ... ERROR
+
+======================================================================
+ERROR: test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) (unresolved_definition_default='owner._launch = None')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 21286, in test_helper_effective_inputs_cover_registered_defaults_and_class_receivers
+    actual, review = self._provenance_case(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 20786, in _provenance_case
+    review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 25478, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 25141, in _process_review_rows
+    for case in _supported_unittest_case_nodes(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 866, in _supported_unittest_case_nodes
+    visit_statements(tree.body, bindings, conditional=False)
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 845, in visit_statements
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: module alias duplicates unittest class discovery: tests/test_review.py:11
+
+======================================================================
+ERROR: test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) (unresolved_definition_default='unused = owner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 21286, in test_helper_effective_inputs_cover_registered_defaults_and_class_receivers
+    actual, review = self._provenance_case(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 20786, in _provenance_case
+    review = self._review(sources={'tests/test_review.py': source.encode('utf-8')})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 1989, in _review
+    return self.generator.derive_design_review(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 25478, in derive_design_review
+    expanded_rows, blockers, analyzed_sites, helper_edges = _process_review_rows(
+                                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 25141, in _process_review_rows
+    for case in _supported_unittest_case_nodes(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 866, in _supported_unittest_case_nodes
+    visit_statements(tree.body, bindings, conditional=False)
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tools\generate_test_inventory.py", line 845, in visit_statements
+    raise InventoryError(
+pontius_test_inventory_generator.InventoryError: module alias duplicates unittest class discovery: tests/test_review.py:11
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (reached_name_effect='ReviewTests')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 21182, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertFalse([row for row in review['receipt']['expanded_rows']
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'approval_scope': 'design', 'capability_kind': 'subprocess', 'capability_id': 'process:d6f5c33b34909f066ae93697', 'executable_role': 'python', 'executable_slot': 'active_worker', 'executable_constraints': {}, 'argv': ['-m', 'fixed'], 'argv_template': [], 'dynamic_program_sha256': None, 'cwd_class': 'target', 'environment_additions': {'SAFE': '1'}, 'environment_removals': [], 'timeout_ns': 5000000000, 'expected_return_category': 'completed', 'read_roots': ['target'], 'write_roots': [], 'fixed_descendant_permission': False}] is not false
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (reached_name_effect='owner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\harness\tests\test_inventory_and_profiles.py", line 21182, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertFalse([row for row in review['receipt']['expanded_rows']
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'approval_scope': 'design', 'capability_kind': 'subprocess', 'capability_id': 'process:d6f5c33b34909f066ae93697', 'executable_role': 'python', 'executable_slot': 'active_worker', 'executable_constraints': {}, 'argv': ['-m', 'fixed'], 'argv_template': [], 'dynamic_program_sha256': None, 'cwd_class': 'target', 'environment_additions': {'SAFE': '1'}, 'environment_removals': [], 'timeout_ns': 5000000000, 'expected_return_category': 'completed', 'read_roots': ['target'], 'write_roots': [], 'fixed_descendant_permission': False}] is not false
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.322s
+
+FAILED (failures=2, errors=2)

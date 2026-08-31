@@ -1,0 +1,17 @@
+{"identity_before_payload_import": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "implementation": "cpython", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "version_info": [3, 11, 15]}}
+...........................................test inventory generation failed: design review destination must be an absolute OS-temp child
+test inventory generation failed: design write requires both approval tokens
+.......F.......................................................
+======================================================================
+FAIL: test_working_discovery_binds_every_entry_and_introduced_id (__main__.CheckedInInventoryTests.test_working_discovery_binds_every_entry_and_introduced_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_inventory_and_profiles.py", line 30456, in test_working_discovery_binds_every_entry_and_introduced_id
+    self.assertEqual(
+AssertionError: {'sub[127 chars]30, 'analyzed_sites_sha256': '3170f99166d98d38[321 chars]542}} != {'sub[127 chars]30, 'string_sink_decoy_count': 599, 'string_si[321 chars]020'}
+Diff is 735 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 106 tests in 211.414s
+
+FAILED (failures=1)

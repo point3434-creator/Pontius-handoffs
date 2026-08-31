@@ -1,0 +1,39 @@
+{
+  "label": "v3-probe01",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-v3-probe01-311-5d193b0468784b9893d517e06338928b\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-v3-probe01-311-5d193b0468784b9893d517e06338928b\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+    "tests/test_inventory_and_profiles.py": "594aca1d3c0591d4b1f2b99419487e1ef1c5865736b84eae10efb8f60a71148f"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+    "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+    "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+    "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-v3-probe01-311-5d193b0468784b9893d517e06338928b\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-v3-probe01-311-5d193b0468784b9893d517e06338928b\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-v3-probe01-311-5d193b0468784b9893d517e06338928b\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 0,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v3-probe01-311.txt",
+  "sha256": "0539a826b973e612557ef8822447293dfb11510eb949403ffb3b6688ff9a4f4e",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

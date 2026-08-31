@@ -1,0 +1,680 @@
+{
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "v2_snapshot": "D:\\pontius-snapshots\\c-provenance-v2-green01-311-440e3e4124e4449fb42ee59232cd11ce\\harness",
+  "owned_sha256": {
+    "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+    "tests/test_inventory_and_profiles.py": "526bab49b2a57e2f9237b28707dbfd03821f1132f1fa63bf3b9c2a561b69d0eb"
+  },
+  "git_status": " M tests/test_inventory_and_profiles.py\n M tools/generate_test_inventory.py\n",
+  "diff_check_exit": 0,
+  "v2_existing_class_methods_ast_identical": 189,
+  "removed_or_changed_existing_methods": [],
+  "new_class_methods": [
+    "DesignReviewTests::test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+    "DesignReviewTests::test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+    "DesignReviewTests::test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+    "DesignReviewTests::test_helper_effective_inputs_preserve_reached_owner_mutations"
+  ],
+  "owned_patch_sha256": "c14421be5d5e8520512ea54b1c6ec138b8a8cbe86c6a25e9c1a2e241f44be982",
+  "increment_patch_sha256": "3c082853944e53cf74ed92d221f456432ae55f6e9b9558925433ad964d442681",
+  "test_module_ast_identical_after_removing_four_new_methods": true,
+  "runs": [
+    {
+      "label": "v3-red01",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red01-311-receipt.json",
+      "receipt_sha256": "d434cd8c910c757a1fba0e7200a2844f59a005a508772bdc09aec91a40caab78",
+      "summary": {
+        "tests_run": 2,
+        "failures": 14,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.325",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "a57f76e38bd8e8494ab16fb878e2887854d3f59844fb1e78bd3d50c54f0b4341",
+        "tests/test_inventory_and_profiles.py": "e927f4016f7042d994f4bb0fb7a9adde839bc0ea387d1ec8a6dd92c0c79a49fc"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution"
+      ],
+      "log_sha256": "69b3bc035f55e999c355d7c84d6bd999e9a798e551c6a622825dfd57f28c877a"
+    },
+    {
+      "label": "v3-red02",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red02-311-receipt.json",
+      "receipt_sha256": "5e525f485e6d15d1f139a8094b6ab2e194506e45ffd6a7caea71ea03f605032e",
+      "summary": {
+        "tests_run": 3,
+        "failures": 28,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.560",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "a57f76e38bd8e8494ab16fb878e2887854d3f59844fb1e78bd3d50c54f0b4341",
+        "tests/test_inventory_and_profiles.py": "fc4972cee43ac76eed1e4db56b5e6fd38deaa9b68dbdfca5eb6503f76900831f"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects"
+      ],
+      "log_sha256": "989c1742140e096a535071752208be76ed11d34a9e6e7494e8ee7354a4a501d4"
+    },
+    {
+      "label": "v3-red03",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red03-311-receipt.json",
+      "receipt_sha256": "ce65c13716186d3581b061b5662a1d3c7173c83a0966ac6a82d2b9ecec5cbbed",
+      "summary": {
+        "tests_run": 1,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.147",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "a57f76e38bd8e8494ab16fb878e2887854d3f59844fb1e78bd3d50c54f0b4341",
+        "tests/test_inventory_and_profiles.py": "594aca1d3c0591d4b1f2b99419487e1ef1c5865736b84eae10efb8f60a71148f"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "72998cf3a68128ad85a7a7930f22c2e878b36fdb628094b2935ba5ac5dc71aad"
+    },
+    {
+      "label": "v3-red04",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red04-311-receipt.json",
+      "receipt_sha256": "1dbed642fb6ff9574088073a61754cd5a2709202fd694593c55004f570e0e15c",
+      "summary": {
+        "tests_run": 2,
+        "failures": 2,
+        "errors": 2,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.322",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+        "tests/test_inventory_and_profiles.py": "2401534491fa2b3c17ce5a63efa2b4393e3ddffa1767b762e678d0153c38007a"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "9db2a0c119aa9ec2f6afecb3a0b970bfbe90b7807b8347e257054cddfb6f5d04"
+    },
+    {
+      "label": "v3-red05",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red05-311-receipt.json",
+      "receipt_sha256": "da92c67ba9b8b6d20cab9364edff9fd6ccaac1aaea7e89da008d32554f76f72e",
+      "summary": {
+        "tests_run": 2,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.323",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+        "tests/test_inventory_and_profiles.py": "1697f5bf4e66ee28d26c4897ef2ed9da59285e03bbdda9ee62d7275aaa838040"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "426458e0938b6921e1a351697d75bc0ff98e5456a5589e13c0cbb092411b6c89"
+    },
+    {
+      "label": "v3-red06",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red06-311-receipt.json",
+      "receipt_sha256": "bb2af7a2d5f06f56811893d98618618f62b0e22bcbbec90cfa439a6c8904b3f6",
+      "summary": {
+        "tests_run": 1,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.165",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+        "tests/test_inventory_and_profiles.py": "46f259f5a6476aee8d6977a1a01192a10d9f060bee6d86c1698b24ed8c41fdf5"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "084af725d4c301385117fd9b815064131d5bd78013368b4d493b82faa18bb392"
+    },
+    {
+      "label": "v3-red07",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red07-311-receipt.json",
+      "receipt_sha256": "f08d2b8f98121079ba993ac83b166c2b2d65f0468aa415a080666701031a042d",
+      "summary": {
+        "tests_run": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.169",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "3aea95b690449898a484bb430a3bdc8e2479499c1854d2d2ff31db4609bc766f",
+        "tests/test_inventory_and_profiles.py": "36ead4134e8048c4b01ce44dfc341fc5d3342c8eaf0bb4d4bbaaf714a92b377f"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "9c8e21aa87b0fb4cc174080e81ac2a0380e7d588e9c1a01eca3782f5e718f515"
+    },
+    {
+      "label": "v3-red08",
+      "slot": "311",
+      "receipt": "c-provenance-v3-red08-311-receipt.json",
+      "receipt_sha256": "1374716d4c2aa7da4e532b265139b3993d7a35770ad11b3e58266effa4c1ca14",
+      "summary": {
+        "tests_run": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.182",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "3aea95b690449898a484bb430a3bdc8e2479499c1854d2d2ff31db4609bc766f",
+        "tests/test_inventory_and_profiles.py": "526bab49b2a57e2f9237b28707dbfd03821f1132f1fa63bf3b9c2a561b69d0eb"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations"
+      ],
+      "log_sha256": "2e29157ee9175663a8a18b0d8152251acb565a2bd52948ba3bfd6eca3ffa234b"
+    },
+    {
+      "label": "v3-probe01",
+      "slot": "311",
+      "receipt": "c-provenance-v3-probe01-311-receipt.json",
+      "receipt_sha256": "b0102deee4800d64a9d0a8fa76b83f28d9b66da41fa243fba138ad2d6eeca4a3",
+      "summary": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.704",
+      "exit": 0,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+        "tests/test_inventory_and_profiles.py": "594aca1d3c0591d4b1f2b99419487e1ef1c5865736b84eae10efb8f60a71148f"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "0539a826b973e612557ef8822447293dfb11510eb949403ffb3b6688ff9a4f4e"
+    },
+    {
+      "label": "v3-probe02",
+      "slot": "311",
+      "receipt": "c-provenance-v3-probe02-311-receipt.json",
+      "receipt_sha256": "90b53771d7461c24c8c8731ac70aa9b230bd73d0498fa4d597912da6d22aa802",
+      "summary": {
+        "tests_run": 40,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "11.892",
+      "exit": 0,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+        "tests/test_inventory_and_profiles.py": "594aca1d3c0591d4b1f2b99419487e1ef1c5865736b84eae10efb8f60a71148f"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all",
+        "DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+        "DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest",
+        "DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities",
+        "DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization",
+        "DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers",
+        "DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local",
+        "DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts",
+        "DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete",
+        "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+        "DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+        "DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_match_capture_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent",
+        "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+        "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+        "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+        "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+        "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+        "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+        "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+        "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+        "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+        "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+        "DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+        "DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+        "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+        "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+        "DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed"
+      ],
+      "log_sha256": "7d7e90bb56ca6be1d9af99109e32a795808113b9ca0a5349be594d569e082e5e"
+    },
+    {
+      "label": "v3-probe03",
+      "slot": "311",
+      "receipt": "c-provenance-v3-probe03-311-receipt.json",
+      "receipt_sha256": "1f0fe183d8417022ae95f8950d1a839ab7d1d067dc8bbbb45fc8d4567e1f12af",
+      "summary": {
+        "tests_run": 4,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.732",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "91ee66146d442d9810534c2d7e3b0743e802ca3178bf98d5fdbbd438f0f6e24c",
+        "tests/test_inventory_and_profiles.py": "46f259f5a6476aee8d6977a1a01192a10d9f060bee6d86c1698b24ed8c41fdf5"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "6f67819e3b163e65090fc8dc0a88640ba5463e52bcba045477dd2df40463fc61"
+    },
+    {
+      "label": "v3-probe04",
+      "slot": "311",
+      "receipt": "c-provenance-v3-probe04-311-receipt.json",
+      "receipt_sha256": "7ff821cc5597941f1a18ae62f528f711dc94ec6261232d02b904e6903eb4ec79",
+      "summary": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "0.739",
+      "exit": 0,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "b2295f9c7d6d644c8779522ee3a7b0d91a9a2fbb2babdebd6b0d64c8c4209d00",
+        "tests/test_inventory_and_profiles.py": "46f259f5a6476aee8d6977a1a01192a10d9f060bee6d86c1698b24ed8c41fdf5"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+      ],
+      "log_sha256": "4d7592ac5abe4e9b27876269f2f0288900b431d1c0bfbbd1391af138da48c481"
+    },
+    {
+      "label": "v3-probe05",
+      "slot": "311",
+      "receipt": "c-provenance-v3-probe05-311-receipt.json",
+      "receipt_sha256": "27d0c89a24a2c2476ccc6f7346e70a9d48c366f0e8b82da1e610803d19a29ab6",
+      "summary": {
+        "tests_run": 40,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "12.060",
+      "exit": 1,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "b2295f9c7d6d644c8779522ee3a7b0d91a9a2fbb2babdebd6b0d64c8c4209d00",
+        "tests/test_inventory_and_profiles.py": "46f259f5a6476aee8d6977a1a01192a10d9f060bee6d86c1698b24ed8c41fdf5"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all",
+        "DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+        "DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest",
+        "DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities",
+        "DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization",
+        "DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers",
+        "DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local",
+        "DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts",
+        "DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete",
+        "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+        "DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+        "DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_match_capture_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent",
+        "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+        "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+        "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+        "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+        "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+        "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+        "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+        "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+        "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+        "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+        "DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+        "DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+        "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+        "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+        "DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed"
+      ],
+      "log_sha256": "c035885fe591c397ee7c8d9dbd445e71f0968db8c39cabbba9554110a506d068"
+    },
+    {
+      "label": "v3-probe06",
+      "slot": "311",
+      "receipt": "c-provenance-v3-probe06-311-receipt.json",
+      "receipt_sha256": "a4ad9c7ba5b2d863cfd67202574af323fb5986c4efe5c450a14a4edd9f771a2a",
+      "summary": {
+        "tests_run": 40,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "11.863",
+      "exit": 0,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "3aea95b690449898a484bb430a3bdc8e2479499c1854d2d2ff31db4609bc766f",
+        "tests/test_inventory_and_profiles.py": "46f259f5a6476aee8d6977a1a01192a10d9f060bee6d86c1698b24ed8c41fdf5"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all",
+        "DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+        "DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest",
+        "DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities",
+        "DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization",
+        "DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers",
+        "DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local",
+        "DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts",
+        "DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete",
+        "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+        "DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+        "DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_match_capture_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent",
+        "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+        "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+        "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+        "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+        "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+        "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+        "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+        "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+        "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+        "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+        "DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+        "DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+        "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+        "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+        "DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed"
+      ],
+      "log_sha256": "d0774cf00e8718271fe7293ccbd4d567519ed26014bba2982b31847f5ae3452e"
+    },
+    {
+      "label": "v3-green01",
+      "slot": "311",
+      "receipt": "c-provenance-v3-green01-311-receipt.json",
+      "receipt_sha256": "17f2211031c29fc9f976b882f15b20f820b2253ceac4527a052d411b925731fc",
+      "summary": {
+        "tests_run": 40,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "11.984",
+      "exit": 0,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+        "tests/test_inventory_and_profiles.py": "526bab49b2a57e2f9237b28707dbfd03821f1132f1fa63bf3b9c2a561b69d0eb"
+      },
+      "command": [
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.11.15",
+        "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all",
+        "DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+        "DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest",
+        "DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities",
+        "DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization",
+        "DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers",
+        "DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local",
+        "DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts",
+        "DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete",
+        "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+        "DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+        "DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_match_capture_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent",
+        "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+        "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+        "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+        "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+        "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+        "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+        "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+        "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+        "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+        "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+        "DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+        "DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+        "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+        "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+        "DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed"
+      ],
+      "log_sha256": "201db00907ba1caa6c4edadcb62f4f026e8a72da5760e7c7841831cefc84fbfc"
+    },
+    {
+      "label": "v3-green01",
+      "slot": "314",
+      "receipt": "c-provenance-v3-green01-314-receipt.json",
+      "receipt_sha256": "825e15c72fc00faeef1d675cf797da99f22b0443e4dd20d4377bd683c3b37985",
+      "summary": {
+        "tests_run": 40,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsed_seconds": "21.217",
+      "exit": 0,
+      "owned_sha256": {
+        "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+        "tests/test_inventory_and_profiles.py": "526bab49b2a57e2f9237b28707dbfd03821f1132f1fa63bf3b9c2a561b69d0eb"
+      },
+      "command": [
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-P",
+        "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+        "3.14.6",
+        "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all",
+        "DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects",
+        "DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest",
+        "DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities",
+        "DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization",
+        "DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers",
+        "DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local",
+        "DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts",
+        "DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete",
+        "DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact",
+        "DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+        "DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_match_capture_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent",
+        "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent",
+        "DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved",
+        "DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked",
+        "DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered",
+        "DesignReviewTests.test_helper_provenance_original_members_require_stability",
+        "DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission",
+        "DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation",
+        "DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse",
+        "DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse",
+        "DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members",
+        "DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact",
+        "DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+        "DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+        "DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+        "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+        "DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding",
+        "DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding",
+        "DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved",
+        "DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked",
+        "DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked",
+        "DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed",
+        "DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed"
+      ],
+      "log_sha256": "b98278a0f2a7b3afc3e83f90be2719196de0faeba40f31d767810fa9dcc2784f"
+    }
+  ]
+}

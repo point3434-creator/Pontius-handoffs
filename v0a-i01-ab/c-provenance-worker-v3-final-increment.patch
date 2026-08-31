@@ -1,0 +1,744 @@
+--- v2/tools/generate_test_inventory.py
++++ v3/tools/generate_test_inventory.py
+@@ -9028,6 +9028,7 @@
+     callable_defaults: tuple[tuple[str, _FlowValue], ...] = ()
+     namespace_effects: frozenset[str] = frozenset()
+     helper_refusal: str | None = None
++    helper_receiver: _FlowValue | None = None
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+@@ -9041,6 +9042,7 @@
+ @dataclass(slots=True)
+ class _AnalysisBudget:
+     work_units: int = 0
++    deferred_helper_bodies: dict[ast.AST, bool] = field(default_factory=dict)
+     local_generator_dependencies: dict[
+         ast.FunctionDef | ast.AsyncFunctionDef,
+         tuple[str, ...] | None,
+@@ -9335,6 +9337,26 @@
+     result = tuple(sorted(dependencies)) if yielded else None
+     budget.local_generator_dependencies[definition] = result
+     return result
++
++
++def _helper_body_is_deferred(
++    definition: ast.FunctionDef | ast.AsyncFunctionDef, budget: _AnalysisBudget,
++) -> bool:
++    if definition in budget.deferred_helper_bodies:
++        return budget.deferred_helper_bodies[definition]
++    deferred = isinstance(definition, ast.AsyncFunctionDef)
++    pending: list[ast.AST] = list(definition.body)
++    while pending and not deferred:
++        candidate = pending.pop()
++        budget.consume()
++        if isinstance(candidate, (ast.Yield, ast.YieldFrom)):
++            deferred = True
++        elif not isinstance(candidate, (
++            ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda, ast.ClassDef,
++        )):
++            pending.extend(ast.iter_child_nodes(candidate))
++    budget.deferred_helper_bodies[definition] = deferred
++    return deferred
+ 
+ 
+ def _bind_deferred_local_generator_call(
+@@ -12431,6 +12453,9 @@
+         seen.add(id(current))
+         if current.helper_provenance is not None:
+             return True
++        if current.helper_receiver is not None:
++            pending.append(current.helper_receiver)
++        pending.extend(value for _name, value in current.callable_defaults)
+         if current.kind in {"sequence", "slice", "maybe_unbound"}:
+             pending.extend(item for item in current.value if isinstance(item, _FlowValue))
+         elif current.kind == "mapping":
+@@ -13375,7 +13400,7 @@
+ 
+ def _flow_without_helper_proof(value: _FlowValue) -> _FlowValue:
+     return replace(value, helper_provenance=None, callable_defaults=(),
+-                   namespace_effects=frozenset(), helper_refusal=None)
++                   namespace_effects=frozenset(), helper_refusal=None, helper_receiver=None)
+ 
+ 
+ def _merge_flow_values(
+@@ -13384,6 +13409,7 @@
+     if not any(value is not None and (
+         value.helper_provenance is not None or value.callable_defaults
+         or value.namespace_effects or value.helper_refusal is not None
++        or value.helper_receiver is not None
+     ) for value in values):
+         return _merge_legacy_flow_values(name, values)
+     merged = _merge_legacy_flow_values(
+@@ -13401,6 +13427,12 @@
+         common.intersection_update(supplied)
+     return replace(
+         merged, helper_provenance=proof,
++        helper_receiver=(
++            _merge_flow_values("captured helper receiver", tuple(
++                value.helper_receiver for value in present
++            )) if complete and all(value.helper_receiver is not None for value in present)
++            else None
++        ),
+         callable_defaults=tuple((key, _merge_flow_values(
+             key, tuple(supplied[key] for supplied in defaults),
+         )) for key in sorted(common)),
+@@ -13816,9 +13848,15 @@
+         helper_registry: Mapping[str, _ReviewFunction] | None = None,
+         helper_seeds: Mapping[str, _FlowValue] | None = None,
+         invalid_helper_owners: Iterable[str] = (),
++        helper_relative_path: str | None = None,
++        active_helper_effects: frozenset[int] = frozenset(),
+     ) -> None:
+         self.budget = budget or _AnalysisBudget()
+         self.helper_registry = helper_registry or {}
++        self.helper_relative_path = helper_relative_path
++        self.active_helper_effects = active_helper_effects
++        self._helper_rebound_names: set[str] = set()
++        self._helper_effect_shapes: dict[int, tuple[frozenset[str], bool]] = {}
+         self.invalid_helper_owners = set(invalid_helper_owners) | set(
+             getattr(self.helper_registry, "initial_member_mutations", ())
+         )
+@@ -17126,6 +17164,9 @@
+             current = pending.pop()
+             if current.helper_provenance is not None:
+                 self.invalid_helper_owners.add(current.helper_provenance.key)
++            if current.helper_receiver is not None:
++                pending.append(current.helper_receiver)
++            pending.extend(value for _name, value in current.callable_defaults)
+             if current.kind in {"sequence", "maybe_unbound"}:
+                 pending.extend(item for item in current.value if isinstance(item, _FlowValue))
+             elif current.kind in {"mapping", "mapping_keys"}:
+@@ -17149,6 +17190,13 @@
+             or f"{proof.key}::{target.attr}" in self.helper_registry
+         )
+         if not reflective and not changed_member:
++            if (self.active_helper_effects and isinstance(target, ast.Attribute)
++                    and proof is None and owner.kind not in {"scalar", "unbound"}
++                    and isinstance(self.helper_registry, _ReviewRegistry)
++                    and target.attr in self.helper_registry.by_name):
++                self.flow.standalone_blockers.append((
++                    target, "helper namespace owner needed for mutation is unresolved",
++                ))
+             return
+         self.flow.standalone_blockers.append((
+             target, "helper namespace mutation is dynamically unresolved",
+@@ -17159,60 +17207,233 @@
+         else:
+             self._invalidate_helper_identities(owner)
+ 
+-    def _helper_call_preserves_arguments(
++    def _helper_effect_shape(
++        self, definition: ast.FunctionDef | ast.AsyncFunctionDef,
++    ) -> tuple[frozenset[str], bool]:
++        cached = self._helper_effect_shapes.get(id(definition))
++        if cached is not None:
++            return cached
++        loaded: set[str] = set()
++        stores = False
++        scope = _lexical_binding_scope(definition)
++        for statement in definition.body:
++            for candidate in _metered_ast_walk(statement, self.budget):
++                if isinstance(candidate, ast.Name) and isinstance(candidate.ctx, ast.Load):
++                    loaded.add(candidate.id)
++                elif isinstance(candidate, (ast.Attribute, ast.Subscript)) and isinstance(
++                    candidate.ctx, (ast.Store, ast.Del),
++                ):
++                    stores = True
++                elif isinstance(candidate, ast.Name) and isinstance(candidate.ctx, (ast.Store, ast.Del)):
++                    stores |= candidate.id in scope.global_names | scope.nonlocal_names
++        result = frozenset(loaded), stores
++        self._helper_effect_shapes[id(definition)] = result
++        return result
++
++    def _registered_helper_environment(
++        self, definition: _ReviewFunction, values: Mapping[str, _FlowValue],
++        names: Iterable[str],
++    ) -> dict[str, _FlowValue]:
++        default_names = {
++            candidate.id
++            for expression in (*definition.node.args.defaults,
++                               *(value for value in definition.node.args.kw_defaults
++                                 if value is not None))
++            for candidate in _metered_ast_walk(expression, self.budget)
++            if isinstance(candidate, ast.Name)
++        }
++        seeds = _helper_provenance_seeds(
++            definition.relative_path, definition.aliases, self.helper_registry,
++            set(names) | default_names | definition.namespace_effects,
++            definition.stable_imports, self.budget,
++        )
++        # Global names use the defining module, never a caller's unrelated locals.
++        environment = {
++            name: _flow_qname(qualified) for name, qualified in definition.aliases.items()
++        }
++        environment.update(seeds)
++        for name, expression in definition.module_assignments.items():
++            if name not in seeds:
++                environment[name] = self._evaluate(expression, environment, False)
++        if definition.relative_path == self.helper_relative_path:
++            environment.update(
++                (name, value) for name, value in values.items()
++                if name not in self.lexical_scope.local_names
++            )
++        return environment
++
++    def _registered_helper_defaults(
++        self, definition: _ReviewFunction, environment: Mapping[str, _FlowValue],
++    ) -> tuple[tuple[str, _FlowValue], ...]:
++        arguments = definition.node.args
++        positional = (*arguments.posonlyargs, *arguments.args)
++        defaults = [
++            (argument.arg, expression)
++            for argument, expression in zip(
++                positional[len(positional) - len(arguments.defaults):],
++                arguments.defaults, strict=True,
++            )
++        ]
++        defaults.extend((argument.arg, expression) for argument, expression in zip(
++            arguments.kwonlyargs, arguments.kw_defaults, strict=True,
++        ) if expression is not None)
++        captured: list[tuple[str, _FlowValue]] = []
++        for name, expression in defaults:
++            # Only closed literals and stable, earlier module definitions can be
++            # projected without evaluating the module's definition-time code.
++            literal = _static_value(expression, {})
++            if literal is not _STATIC_UNRESOLVED:
++                value = self._evaluate(expression, {}, False)
++            else:
++                referenced = {candidate.id for candidate in _metered_ast_walk(
++                    expression, self.budget,
++                ) if isinstance(candidate, ast.Name)}
++                stable: dict[str, _FlowValue] = {}
++                for referenced_name in referenced:
++                    supplied = environment.get(referenced_name)
++                    proof = supplied.helper_provenance if supplied is not None else None
++                    original = self.helper_registry.get(proof.key) if proof is not None else None
++                    if (proof is not None and original is not None and original.binding_stable
++                            and original.relative_path == definition.relative_path
++                            and original.node.lineno < definition.node.lineno):
++                        stable[referenced_name] = supplied
++                if referenced and referenced <= stable.keys() and not any(
++                    isinstance(candidate, (ast.Call, ast.NamedExpr, ast.Lambda))
++                    for candidate in _metered_ast_walk(expression, self.budget)
++                ):
++                    value = self._evaluate(expression, stable, False)
++                else:
++                    value = _flow_unknown("helper definition-time default is unresolved")
++            captured.append((name, value))
++        return tuple(captured)
++
++    def _apply_helper_call_effects(
+         self, node: ast.Call, callable_value: _FlowValue,
+         arguments: Sequence[_FlowValue], keywords: Sequence[_FlowValue],
+-    ) -> bool:
++        values: dict[str, _FlowValue],
++    ) -> _FlowValue | None:
++        if not self.helper_registry:
++            return
++        marker = (str(callable_value.value[0])
++                  if callable_value.kind == "callable_summary"
++                  and isinstance(callable_value.value, tuple)
++                  else str(callable_value.value) if callable_value.kind == "qname" else None)
++        local = self._local_function_definitions.get(marker or "")
+         proof = callable_value.helper_provenance
+-        if proof is None or proof.kind != "callable" or callable_value.helper_refusal:
+-            return False
+-        definition = self.helper_registry.get(proof.key)
+-        if definition is None:
+-            return False
+-        supplied = _bind_helper_arguments(
+-            node, definition, {}, receiver_kinds={}, proven_bound=proof.bound,
+-        )
+-        if supplied is None:
+-            return False
+-        by_expression = dict(zip(
+-            (id(arg) for arg in (*node.args, *(kw.value for kw in node.keywords))),
+-            (*arguments, *keywords), strict=True,
+-        ))
+-        tainted = {name for name, (expression, default) in supplied.items()
+-                   if not default and id(expression) in by_expression
+-                   and _flow_contains_helper_identity(by_expression[id(expression)], self.budget)}
+-        if not tainted:
+-            return True
+-        # A finite syntactic read-only certificate. Forwarding, storage or calling
+-        # through an owner is refused; no general object heap is inferred.
+-        candidates = tuple(_metered_ast_walk(definition.node, self.budget))
+-        for candidate in candidates:
+-            if isinstance(candidate, (ast.Assign, ast.AnnAssign, ast.NamedExpr)):
+-                value = candidate.value
+-                if value is not None and any(isinstance(part, ast.Name) and part.id in tainted
+-                                             for part in _metered_ast_walk(value, self.budget)):
+-                    targets = candidate.targets if isinstance(candidate, ast.Assign) else (
+-                        candidate.target,
+-                    )
+-                    for target in targets:
+-                        if not isinstance(target, ast.Name):
+-                            return False
+-                        tainted.add(target.id)
+-        for candidate in candidates:
+-            if isinstance(candidate, ast.Attribute) and isinstance(candidate.ctx, (ast.Store, ast.Del)):
+-                if any(isinstance(part, ast.Name) and part.id in tainted
+-                       for part in _metered_ast_walk(candidate.value, self.budget)):
+-                    return False
+-            if isinstance(candidate, (ast.Call, ast.Return)):
+-                inspected = ([*candidate.args, *(kw.value for kw in candidate.keywords)]
+-                             if isinstance(candidate, ast.Call) else [candidate.value])
+-                if isinstance(candidate, ast.Call) and isinstance(candidate.func, ast.Attribute):
+-                    inspected.append(candidate.func.value)
+-                if any(isinstance(part, ast.Name) and part.id in tainted
+-                       for expression in inspected if expression is not None
+-                       for part in _metered_ast_walk(expression, self.budget)):
+-                    return False
+-        return True
++        registered = (self.helper_registry.get(proof.key)
++                      if proof is not None and proof.kind == "callable" else None)
++        explicit = (*arguments, *keywords)
++
++        def refuse(reason: str, affected: Iterable[_FlowValue]) -> None:
++            self.flow.standalone_blockers.append((node, reason))
++            for value in affected:
++                self._invalidate_helper_identities(value)
++
++        if local is None and registered is None:
++            # Creating a deferred generator does not execute its body.
++            if callable_value.kind == "deferred_local_generator_factory":
++                return
++            if any(_flow_contains_helper_identity(value, self.budget) for value in explicit):
++                refuse("helper namespace escape is dynamically unresolved", explicit)
++            return
++        definition = local[0] if local is not None else registered.node
++        deferred = _helper_body_is_deferred(definition, self.budget)
++        loaded, has_stores = self._helper_effect_shape(definition)
++        if local is not None:
++            environment = dict(values)
++            defaults = callable_value.callable_defaults
++            module_names = self.module_bound_names
++            enclosing = self.exception_scope.enclosing_names | self.lexical_scope.local_names
++            path = self.helper_relative_path
++        else:
++            environment = self._registered_helper_environment(registered, values, loaded)
++            defaults = self._registered_helper_defaults(registered, environment)
++            module_names = registered.module_bound_names
++            enclosing = registered.enclosing_exception_names
++            path = registered.relative_path
++        supplied_arguments = tuple(arguments)
++        if proof is not None and proof.bound:
++            supplied_arguments = (
++                callable_value.helper_receiver
++                or _flow_unknown("captured helper receiver is unresolved"),
++                *supplied_arguments,
++            )
++        status, bindings = _bind_deferred_local_generator_call(
++            node, _DeferredLocalGeneratorFactory(marker or proof.key, definition, defaults),
++            supplied_arguments, keywords,
++        )
++        if status == "invalid":
++            # A binding TypeError cannot execute any body effect. The existing
++            # callable summary path retains the exact exception successor.
++            if self.active_helper_effects:
++                self._record_throw_state(values, "TypeError", True)
++                if self._throw_states is not None:
++                    raise _ExpressionDoesNotComplete
++            return
++        scope = _lexical_binding_scope(definition)
++        environment = {name: value for name, value in environment.items()
++                       if name not in scope.local_names}
++        environment.update(bindings)
++        input_names = loaded | {name for name, _value in bindings}
++        relevant = tuple(environment[name] for name in input_names if name in environment
++                         and _flow_contains_helper_identity(environment[name], self.budget))
++        if deferred and not relevant and not has_stores:
++            return None
++        if deferred:
++            # Registered generators/coroutines are not a newly supported heap.
++            # Creation stays deferred; existing consumption machinery explicitly
++            # refuses this unsupported state rather than executing the body now.
++            identity = self._next_deferred_local_generator_identity
++            self._next_deferred_local_generator_identity += 1
++            return _FlowValue("deferred_local_generator", _DeferredLocalGeneratorState(
++                _DeferredLocalGeneratorFactory(marker or proof.key, definition, defaults),
++                identity, id(node), bindings, supported=False, exact_full_review=False,
++            ))
++        if not relevant and not has_stores and not self.active_helper_effects:
++            return
++        if (status != "valid" or callable_value.helper_refusal is not None
++                or id(definition) in self.active_helper_effects
++                or len(self.active_helper_effects) >= MAXIMUM_ANALYSIS_HELPER_DEPTH):
++            refuse("helper namespace effects are dynamically unresolved", (*relevant, *explicit))
++            return
++        probe = _SourceOrderedResolver(
++            {}, {}, {}, budget=self.budget,
++            exception_scope=_exception_name_scope(definition, module_names, enclosing),
++            lexical_scope=scope, module_bound_names=module_names,
++            enclosing_bound_names=enclosing, entry_values=environment,
++            helper_registry=self.helper_registry,
++            invalid_helper_owners=self.invalid_helper_owners,
++            helper_relative_path=path,
++            active_helper_effects=self.active_helper_effects | {id(definition)},
++        )
++        probe._helper_effect_shapes = self._helper_effect_shapes
++        probe._local_function_definitions.update(self._local_function_definitions)
++        probe._deferred_local_generator_definitions.update(self._deferred_local_generator_definitions)
++        successors = probe._flow_statements(definition.body, probe.values)
++        self.invalid_helper_owners.update(probe.invalid_helper_owners)
++        for name in probe._helper_rebound_names:
++            # A cell/global binding changes, not the object retained by another
++            # alias or by a previously captured bound method.
++            if local is not None or (
++                path == self.helper_relative_path and name not in self.lexical_scope.local_names
++            ):
++                values[name] = _flow_unknown("helper namespace binding was changed")
++            if name in self.lexical_scope.global_names | self.lexical_scope.nonlocal_names:
++                self._helper_rebound_names.add(name)
++        for _site, reason in probe.flow.standalone_blockers:
++            if reason.startswith("helper namespace"):
++                self.flow.standalone_blockers.append((node, reason))
++        for reason in probe.flow.blockers_by_call.values():
++            if reason.startswith(("helper namespace", "helper callable", "helper descriptor")):
++                self.flow.standalone_blockers.append((node, reason))
++        if not (successors.normal or successors.returns):
++            tags = {exceptional.exception_tag for exceptional in successors.raises}
++            if tags:
++                for tag in tags:
++                    self._record_throw_state(values, tag, True)
++                if self._throw_states is not None:
++                    raise _ExpressionDoesNotComplete
++        return None
+ 
+     def _helper_member_value(
+         self, node: ast.Attribute, base: _FlowValue, value: _FlowValue,
+@@ -17234,8 +17455,13 @@
+         bound = definition.descriptor_kind == "classmethod" or (
+             definition.descriptor_kind == "ordinary" and provenance.kind == "instance"
+         )
++        receiver = None
++        if bound:
++            receiver = (replace(base, helper_provenance=replace(provenance, kind="class"))
++                        if definition.descriptor_kind == "classmethod" else base)
+         return replace(value, helper_provenance=_HelperProvenance("callable", key, bound),
+-                       namespace_effects=definition.namespace_effects)
++                       namespace_effects=definition.namespace_effects,
++                       helper_receiver=receiver)
+ 
+     def _evaluate(
+         self,
+@@ -17844,16 +18070,6 @@
+             for keyword in node.keywords:
+                 keyword_values.append(self._evaluate(keyword.value, values, record))
+             if record:
+-                if (any(_flow_contains_helper_identity(value, self.budget)
+-                        for value in (*argument_values, *keyword_values))
+-                        and not self._helper_call_preserves_arguments(
+-                            node, callable_value, argument_values, keyword_values,
+-                        )):
+-                    self.flow.standalone_blockers.append((
+-                        node, "helper namespace escape is dynamically unresolved",
+-                    ))
+-                    for value in (*argument_values, *keyword_values):
+-                        self._invalidate_helper_identities(value)
+                 self._record_implicit_protocol_blocker(
+                     node,
+                     callable_value,
+@@ -17867,6 +18083,11 @@
+                         (*argument_values, *keyword_values), strict=True,
+                     )},
+                 )
++                deferred_helper = self._apply_helper_call_effects(
++                    node, callable_value, argument_values, keyword_values, values,
++                )
++                if deferred_helper is not None:
++                    return deferred_helper
+                 if any(
+                     value.kind == "callback" and value.sensitive
+                     for value in (*argument_values, *keyword_values)
+@@ -19388,6 +19609,14 @@
+             self._assign(target.value, _flow_unknown("starred assignment is dynamically unresolved"), values)
+             return
+         if isinstance(target, ast.Name):
++            if (self.active_helper_effects
++                    and target.id in self.lexical_scope.global_names | self.lexical_scope.nonlocal_names):
++                self._helper_rebound_names.add(target.id)
++                previous = values.get(target.id)
++                if previous is not None and _flow_contains_helper_identity(previous, self.budget):
++                    self.flow.standalone_blockers.append((
++                        target, "helper namespace binding change is dynamically unresolved",
++                    ))
+             if value.helper_provenance is not None and value.helper_provenance.kind == "callable":
+                 self._helper_alias_candidates.add(target.id)
+             if value.kind == "environment":
+@@ -19714,6 +19943,14 @@
+                 self._delete_target(item, values)
+             return
+         if isinstance(target, ast.Name):
++            if (self.active_helper_effects
++                    and target.id in self.lexical_scope.global_names | self.lexical_scope.nonlocal_names):
++                self._helper_rebound_names.add(target.id)
++                previous = values.get(target.id)
++                if previous is not None and _flow_contains_helper_identity(previous, self.budget):
++                    self.flow.standalone_blockers.append((
++                        target, "helper namespace binding change is dynamically unresolved",
++                    ))
+             current = values.get(target.id)
+             if current is None or current.kind == "unbound":
+                 self._record_throw_state(
+@@ -21722,6 +21959,7 @@
+     helper_registry: Mapping[str, _ReviewFunction] | None = None,
+     helper_seeds: Mapping[str, _FlowValue] | None = None,
+     invalid_helper_owners: Iterable[str] = (),
++    helper_relative_path: str | None = None,
+ ) -> _ReviewFlow:
+     enclosing_names = frozenset(
+         set(enclosing_names)
+@@ -21786,6 +22024,7 @@
+         helper_registry,
+         helper_seeds,
+         invalid_helper_owners,
++        helper_relative_path,
+     )
+     for name in resolver.exception_scope.entry_bound_names:
+         resolver.values.setdefault(
+@@ -23481,6 +23720,7 @@
+         entry_values=provenance_entries,
+         helper_registry=helper_registry,
+         invalid_helper_owners=invalid_helper_owners,
++        helper_relative_path=relative_path,
+         helper_seeds=_helper_provenance_seeds(
+             relative_path, aliases, helper_registry, referenced_names,
+             (helper_registry.get(f"{relative_path}::{class_name or node.name}") or
+@@ -23837,6 +24077,10 @@
+                         item_id, relative_path, call,
+                         "helper callable provenance is unresolved",
+                     ))
++                continue
++            if _helper_body_is_deferred(definition.node, analysis_budget):
++                # The call creates a deferred object. Its unsupported consumption
++                # is handled by flow, never by expanding its body at creation.
+                 continue
+             helper_edges.append(
+                 {
+--- v2/tests/test_inventory_and_profiles.py
++++ v3/tests/test_inventory_and_profiles.py
+@@ -21133,6 +21133,222 @@
+                     rows = [r for r in review['receipt']['expanded_rows']
+                             if r['capability_kind'] == 'subprocess']
+                     self.assertEqual([r['argv'] for r in rows], [['-m', 'fixed']])
++
++    def test_helper_effective_inputs_preserve_reached_owner_mutations(self) -> None:
++        cases = (
++            ('positional-default', 'def mutate(owner=ReviewTests):\n    owner._launch = None\nmutate()'),
++            ('posonly-default', 'def mutate(owner=ReviewTests, /):\n    owner._launch = None\nmutate()'),
++            ('kwonly-default', 'def mutate(*, owner=ReviewTests):\n    owner._launch = None\nmutate()'),
++            ('explicit-positional', 'def mutate(owner):\n    owner._launch = None\nmutate(ReviewTests)'),
++            ('explicit-keyword', 'def mutate(*, owner):\n    owner._launch = None\nmutate(owner=ReviewTests)'),
++            ('global-owner', 'def mutate():\n    ReviewTests._launch = None\nmutate()'),
++            ('local-owner', 'owner = ReviewTests\ndef mutate():\n    owner._launch = None\nmutate()'),
++            ('self-owner', 'def mutate():\n    self._launch = None\nmutate()'),
++            ('container-default', 'def mutate(owners=(ReviewTests,)):\n    owners[0]._launch = None\nmutate()'),
++            ('saved-default', 'owner = ReviewTests\ndef mutate(target=owner):\n    target._launch = None\nsaved = mutate\nowner = None\nsaved()'),
++            ('late-cell', 'owner = None\ndef mutate():\n    owner._launch = None\nowner = ReviewTests\nmutate()'),
++            ('nested-invocation', 'def outer(owner=ReviewTests):\n    def mutate():\n        owner._launch = None\n    mutate()\nouter()'),
++            ('before-raise', 'def mutate(owner=ReviewTests):\n    owner._launch = None\n    raise ValueError()\ntry:\n    mutate()\nexcept ValueError:\n    pass'),
++        )
++        for label, body in cases:
++            with self.subTest(effective_input=label):
++                target = 'self' if label == 'self-owner' else 'ReviewTests'
++                actual, review = self._provenance_case(body + '\nreturn ' + target + '._launch()')
++                self.assertIs(actual, TypeError)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++                self.assertFalse([row for row in review['receipt']['expanded_rows']
++                                  if row['capability_kind'] == 'subprocess'])
++        for body in (
++            'self._mutate()\nreturn self._launch()',
++            'old = self\nsaved = self._mutate\nself = None\nsaved()\nreturn old._launch()',
++        ):
++            with self.subTest(captured_receiver=body):
++                actual, review = self._provenance_case(
++                    body, helper='    def _mutate(self):\n        self._launch = None\n',
++                )
++                self.assertIs(actual, TypeError)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++                self.assertFalse([row for row in review['receipt']['expanded_rows']
++                                  if row['capability_kind'] == 'subprocess'])
++
++        for body, target in (
++            ('def mutate():\n    global ReviewTests\n    ReviewTests = None\nmutate()', 'ReviewTests'),
++            ('owner = ReviewTests\ndef mutate():\n    nonlocal owner\n    owner = None\nmutate()', 'owner'),
++        ):
++            with self.subTest(reached_name_effect=target):
++                actual, review = self._provenance_case(body + '\nreturn ' + target + '._launch()')
++                self.assertIs(actual, AttributeError)
++                self.assertTrue(review['unresolved_dynamic_blockers'])
++                self.assertFalse([row for row in review['receipt']['expanded_rows']
++                                  if row['capability_kind'] == 'subprocess'])
++
++        actual, review = self._provenance_case(
++            'def mutate(owner=ReviewTests):\n    owner._launch = None\n'
++            'external(mutate)\nreturn ReviewTests._launch()',
++            module_tail='external = lambda callback: callback()\n',
++        )
++        self.assertIs(actual, TypeError)
++        self.assertTrue(review['unresolved_dynamic_blockers'])
++
++    def test_helper_effective_inputs_preserve_overrides_and_nonexecution(self) -> None:
++        cases = (
++            ('unused-default', 'def read(owner=ReviewTests):\n    return 1\nread()'),
++            ('unused-keyword-default', 'def read(*, owner=ReviewTests):\n    return 1\nread()'),
++            ('override', 'def mutate(owner=ReviewTests):\n    if owner is not None:\n        owner._launch = None\nmutate(None)'),
++            ('keyword-override', 'def mutate(*, owner=ReviewTests):\n    if owner is not None:\n        owner._launch = None\nmutate(owner=None)'),
++            ('captured-unrelated', 'owner = None\ndef mutate(target=owner):\n    if target is not None:\n        target._launch = None\nowner = ReviewTests\nmutate()'),
++            ('late-unrelated', 'owner = ReviewTests\ndef mutate():\n    if owner is not None:\n        owner._launch = None\nowner = None\nmutate()'),
++            ('dormant', 'def outer(owner=ReviewTests):\n    def mutate():\n        owner._launch = None\n    return 1\nouter()'),
++            ('raise-before', 'def mutate(owner=ReviewTests):\n    raise ValueError()\n    owner._launch = None\ntry:\n    mutate()\nexcept ValueError:\n    pass'),
++            ('invalid-posonly-keyword', 'def mutate(owner=ReviewTests, /):\n    owner._launch = None\ntry:\n    mutate(owner=None)\nexcept TypeError:\n    pass'),
++            ('invalid-duplicate', 'def mutate(owner):\n    owner._launch = None\ntry:\n    mutate(ReviewTests, owner=None)\nexcept TypeError:\n    pass'),
++        )
++        for label, body in cases:
++            with self.subTest(nonexecution=label):
++                actual, review = self._provenance_case(body + '\nreturn ReviewTests._launch()')
++                self.assertEqual(actual, 'fixed')
++                rows = [row for row in review['receipt']['expanded_rows']
++                        if row['capability_kind'] == 'subprocess']
++                self.assertEqual([row['argv'] for row in rows], [['-m', 'fixed']])
++                self.assertFalse(review['unresolved_dynamic_blockers'])
++        actual, review = self._provenance_case(
++            'self._mutate()\nreturn self._launch()',
++            helper='    def _mutate(self):\n        self.unrelated = None\n',
++        )
++        self.assertEqual(actual, 'fixed')
++        self.assertFalse(review['unresolved_dynamic_blockers'])
++
++    def test_helper_effective_input_matrix_distinguishes_execution_and_effects(self) -> None:
++        channels = (
++            ('positional', 'def operate(owner):', 'operate(ReviewTests)', '', 'owner'),
++            ('keyword', 'def operate(*, owner):', 'operate(owner=ReviewTests)', '', 'owner'),
++            ('positional-default', 'def operate(owner=ReviewTests):', 'operate()', '', 'owner'),
++            ('keyword-default', 'def operate(*, owner=ReviewTests):', 'operate()', '', 'owner'),
++            ('closure', 'def operate():', 'operate()', 'owner = ReviewTests\n', 'owner'),
++            ('global', 'def operate():', 'operate()', '', 'ReviewTests'),
++            ('receiver', 'def _operate(self):', 'self._operate()', '', 'self'),
++        )
++        for channel, signature, invocation, prefix, owner in channels:
++            for mode in ('write', 'read', 'dormant-write', 'write-then-raise', 'raise-then-write'):
++                with self.subTest(binding_channel=channel, effect_mode=mode):
++                    mutation = owner + '._launch = None'
++                    effect = 'unused = ' + owner if mode == 'read' else mutation
++                    if mode == 'write-then-raise':
++                        effect += '\nraise ValueError()'
++                    elif mode == 'raise-then-write':
++                        effect = 'raise ValueError()\n' + effect
++                    invoked = mode != 'dormant-write'
++                    call = invocation if invoked else 'pass'
++                    if 'raise' in mode:
++                        call = 'try:\n    ' + call + '\nexcept ValueError:\n    pass'
++                    helper = ''
++                    if channel == 'receiver':
++                        helper = '    ' + signature + '\n' + textwrap.indent(effect, '        ') + '\n'
++                        body = call + '\nreturn self._launch()'
++                    else:
++                        body = prefix + signature + '\n' + textwrap.indent(effect, '    ')
++                        body += '\n' + call + '\nreturn ReviewTests._launch()'
++                    actual, review = self._provenance_case(body, helper=helper)
++                    refused = mode in {'write', 'write-then-raise'}
++                    self.assertEqual(actual, TypeError if refused else 'fixed')
++                    self.assertEqual(bool(review['unresolved_dynamic_blockers']), refused)
++                    rows = [row for row in review['receipt']['expanded_rows']
++                            if row['capability_kind'] == 'subprocess']
++                    self.assertEqual([row['argv'] for row in rows],
++                                     [] if refused else [['-m', 'fixed']])
++
++    def test_helper_effective_inputs_cover_registered_defaults_and_class_receivers(self) -> None:
++        for signature, effect, refused in (
++            ('def mutate(owner=ReviewTests):', 'owner._launch = None', True),
++            ('def mutate(*, owner=ReviewTests):', 'owner._launch = None', True),
++            ('def mutate():', 'ReviewTests._launch = None', True),
++            ('def mutate(owner=ReviewTests):', 'unused = owner', False),
++        ):
++            with self.subTest(registered=signature, effect=effect):
++                actual, review = self._provenance_case(
++                    'mutate()\nreturn ReviewTests._launch()',
++                    module_tail=signature + '\n    ' + effect + '\n',
++                )
++                self.assertEqual(actual, TypeError if refused else 'fixed')
++                self.assertEqual(bool(review['unresolved_dynamic_blockers']), refused)
++                rows = [row for row in review['receipt']['expanded_rows']
++                        if row['capability_kind'] == 'subprocess']
++                self.assertEqual([row['argv'] for row in rows],
++                                 [] if refused else [['-m', 'fixed']])
++        for effect, refused in (('receiver._launch = None', True),
++                                ('receiver.unrelated = None', False)):
++            with self.subTest(class_receiver=effect):
++                actual, review = self._provenance_case(
++                    'saved = self._mutate\nself = None\nsaved()\nreturn ReviewTests._launch()',
++                    helper='    @classmethod\n    def _mutate(receiver):\n        ' + effect + '\n',
++                )
++                self.assertEqual(actual, TypeError if refused else 'fixed')
++                self.assertEqual(bool(review['unresolved_dynamic_blockers']), refused)
++                rows = [row for row in review['receipt']['expanded_rows']
++                        if row['capability_kind'] == 'subprocess']
++                self.assertEqual([row['argv'] for row in rows],
++                                 [] if refused else [['-m', 'fixed']])
++
++        for effect, refused in (('owner._launch = None', True), ('unused = owner', False)):
++            with self.subTest(unresolved_definition_default=effect):
++                actual, review = self._provenance_case(
++                    'mutate()\nreturn ReviewTests._launch()',
++                    module_tail='captured_owner = (ReviewTests,)\ndef mutate(owner=captured_owner[0]):\n'
++                                '    ' + effect + '\ncaptured_owner = None\n',
++                )
++                self.assertEqual(actual, TypeError if refused else 'fixed')
++                # This unstable module alias default is explicitly unsupported.
++                # It cannot silently grant authority after an unknown owner write.
++                self.assertEqual(bool(review['unresolved_dynamic_blockers']), refused)
++
++        with self.subTest(deferred_classmethod=True):
++            actual, review = self._provenance_case(
++                'self._mutate()\nreturn self._launch()',
++                helper='    @classmethod\n    def _mutate(owner):\n'
++                       '        owner._launch = None\n        yield None\n',
++            )
++            self.assertEqual(actual, 'fixed')
++            self.assertFalse(review['unresolved_dynamic_blockers'])
++            self.assertEqual([row['argv'] for row in review['receipt']['expanded_rows']
++                              if row['capability_kind'] == 'subprocess'], [['-m', 'fixed']])
++        for first, refused in (('raise', False), ('write', True)):
++            with self.subTest(nested_registered_order=first):
++                body = ('owner._abort()\nowner._launch = None' if first == 'raise'
++                        else 'owner._launch = None\nowner._abort()')
++                actual, review = self._provenance_case(
++                    'try:\n    self._mutate()\nexcept ValueError:\n    pass\nreturn self._launch()',
++                    helper='    @classmethod\n    def _abort(owner):\n        raise ValueError()\n'
++                           '    @classmethod\n    def _mutate(owner):\n'
++                           + textwrap.indent(body, '        ') + '\n',
++                )
++                self.assertEqual(actual, TypeError if refused else 'fixed')
++                self.assertEqual(bool(review['unresolved_dynamic_blockers']), refused)
++                self.assertEqual([row['argv'] for row in review['receipt']['expanded_rows']
++                                  if row['capability_kind'] == 'subprocess'],
++                                 [] if refused else [['-m', 'fixed']])
++
++        support = (
++            'import subprocess, sys\n'
++            'class Owner:\n    @staticmethod\n    def launch():\n        BODY\n'
++            'def mutate():\n    global Owner\n    Owner = None\n'
++        )
++        pure: dict[str, object] = {}
++        exec(compile(support.replace('BODY', 'return "fixed"'), '<owner-effect>', 'exec'), pure)
++        pure['mutate']()
++        with self.assertRaises(AttributeError):
++            pure['Owner'].launch()
++        process = 'subprocess.run([sys.executable, "-m", "fixed"], cwd=".", '
++        process += 'env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)'
++        review = self._review(sources={
++            'tests/owner_test_support.py': support.replace('BODY', process).encode(),
++            'tests/test_review.py': (
++                'import unittest\nimport owner_test_support as support\n'
++                'class ReviewTests(unittest.TestCase):\n    def test_static(self):\n'
++                '        support.mutate()\n        support.Owner.launch()\n'
++                '    def test_denied(self): pass\n'
++            ).encode(),
++        })
++        self.assertTrue(review['unresolved_dynamic_blockers'])
+ 
+     def test_descriptor_defaults_preserve_real_python_argument_binding(self) -> None:
+         cases = (

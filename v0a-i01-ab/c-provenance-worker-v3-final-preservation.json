@@ -1,0 +1,20 @@
+{
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "v2_snapshot": "D:\\pontius-snapshots\\c-provenance-v2-green01-311-440e3e4124e4449fb42ee59232cd11ce\\harness",
+  "owned_sha256": {
+    "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+    "tests/test_inventory_and_profiles.py": "526bab49b2a57e2f9237b28707dbfd03821f1132f1fa63bf3b9c2a561b69d0eb"
+  },
+  "git_status": " M tests/test_inventory_and_profiles.py\n M tools/generate_test_inventory.py\n",
+  "diff_check_exit": 0,
+  "v2_existing_class_methods_ast_identical": 189,
+  "removed_or_changed_existing_methods": [],
+  "new_class_methods": [
+    "DesignReviewTests::test_helper_effective_input_matrix_distinguishes_execution_and_effects",
+    "DesignReviewTests::test_helper_effective_inputs_cover_registered_defaults_and_class_receivers",
+    "DesignReviewTests::test_helper_effective_inputs_preserve_overrides_and_nonexecution",
+    "DesignReviewTests::test_helper_effective_inputs_preserve_reached_owner_mutations"
+  ],
+  "owned_patch_sha256": "c14421be5d5e8520512ea54b1c6ec138b8a8cbe86c6a25e9c1a2e241f44be982",
+  "increment_patch_sha256": "3c082853944e53cf74ed92d221f456432ae55f6e9b9558925433ad964d442681"
+}

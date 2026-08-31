@@ -1,0 +1,185 @@
+{
+  "candidate": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "manifest": "4f91aa7ce728c3eff6a7ad30a7c131985d5b86b615875df978d30ac39386aa51",
+  "all_17_blob_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "9031a42ded45bbd8af3afb3044c683be40ed45121c375b3de04e5bdf05b8c924",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "a3b580a72851ca2d4dd359259c1897326a3c8048119fc6169a65a2fc50c8b102",
+    "tests/test-inventory.json": "5dc7c91bb6f99f7a70d6c93159336d07db04555103048106878d7dea047ee46d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "metadata_sha256": "ae61377fb9a1555cf10e40b0b0e14bcec9e9ba83ca1123242f3f14247e42a02b",
+  "summaries": {
+    "311": {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-focused02-311-summary.json",
+      "sha256": "9bd66579729a68b836128c258030401265e9516449aca1255f16175adef65b62",
+      "tests": 354,
+      "skips": 1
+    },
+    "314": {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-focused02-314-summary.json",
+      "sha256": "b4a220e02e2fde2d2739d6904967361c800caeef3cccd65f17cf6f400d0cde32",
+      "tests": 354,
+      "skips": 1
+    }
+  },
+  "receipts": [
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-01-311-receipt.json",
+      "sha256": "a2bbc22032c9111424a5ee4a6ca7bf0c96c0d8d93c51d44090768a7b38e71fe5",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-01-311.txt",
+      "log_sha256": "cb7c4a1c7d4fe38673b832b7e9b516fc056c17200178ef2b8b7eb7ae0c8eb8f4"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-02-311-receipt.json",
+      "sha256": "ced90234efd3bf865ec30a6bfb83e9e13efd279169263c914fc5d5a348551cc0",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-02-311.txt",
+      "log_sha256": "759c12539ac9348b7a19a5887a20a054f696259741e27c69091b5ef0b41dc3c4"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-03-311-receipt.json",
+      "sha256": "ebd66a30b2d37413e0bee049d40b5d26fb66d95c46a5966dcb94fec42e436720",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-03-311.txt",
+      "log_sha256": "a3540613b4eef03035914b44eb5d705487ecdaa8489f32b00e4382cdbf5ce23c"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-04-311-receipt.json",
+      "sha256": "94fb8cfcbd8070595a3999a7bfd1f66ddeb64cfaa33572d27901ff40b1c76509",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-04-311.txt",
+      "log_sha256": "861409ca3e1ca5f07c0c58469b8466bdae475e2bef1f6c54e1587955e5cf3805"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-05-311-receipt.json",
+      "sha256": "d0add031f33551c7968a481d20e3003622f3f0345710ac5802770401a65f1a34",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-05-311.txt",
+      "log_sha256": "16d2b6c57682492afb152f7f692e4fc8ad80f8bb46c6f34a4826b8f9085486ff"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-06-311-receipt.json",
+      "sha256": "3add79e9d16333ddfab5c23b340cbbb18591621cc3cd8ebeed16f9b5958abc85",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-06-311.txt",
+      "log_sha256": "3a868c63ea27626ee643ff19364b76344fcddb9e15c0f1beb427942b5c83e2a9"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-07-311-receipt.json",
+      "sha256": "219c8a19417b9101a447cf7499cc1b162cc3ce2ad3ef3a15c28c81146f59e6be",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-07-311.txt",
+      "log_sha256": "be6d4af37610518e363d54ef962daa05b46b3265c6f3baeafc0878721a9169a3"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-08-311-receipt.json",
+      "sha256": "ab186880a2d0c373ebede2a4b368e38a06651acdc9d7433949bfd43febb81c63",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-08-311.txt",
+      "log_sha256": "bf64e7b32e2639d0433847abcc4702a2e940c2368e5932dbec1812053c41130f"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-09-311-receipt.json",
+      "sha256": "3c687ec6aa3d3dd90fc71c6880fcd58d20e91705d073d79c234d58740e4d60eb",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-09-311.txt",
+      "log_sha256": "bf64e7b32e2639d0433847abcc4702a2e940c2368e5932dbec1812053c41130f"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-owner-311-receipt.json",
+      "sha256": "0e64d2ead1989319742d9e91528f547a14b59f83998c3629ec60ada6372955ea",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-owner-311.txt",
+      "log_sha256": "1e5f5f764f8760cfcba4b906804d10542dc382ff52d1e26e9a87ed91361291ee"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-effective-input-311-receipt.json",
+      "sha256": "e646f19c16f87f5f5eb5cbe145e681f37db2a40070f2a538ff12af64982fbb15",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-effective-input-311.txt",
+      "log_sha256": "dfe1653434f26441156454d758499c347a3e88d72c53a7cd34c0d6e268750a45"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-01-314-receipt.json",
+      "sha256": "9e6b8692bc5a081eca616378f502d9fdf6ad7f3ffc4c957d55fb7191b42062a4",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-01-314.txt",
+      "log_sha256": "ce95bbe37d32fcf52b36fd319842e563c400c800b9c7fb9c7e533a9bd2b0f779"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-02-314-receipt.json",
+      "sha256": "b1d8d21d0feb789e1e55875502c734a74cf6b8c897fe9fe381226b5c2f85c140",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-02-314.txt",
+      "log_sha256": "6eea50e48fdb782ae06951a276b77d5cb32ab25d25b63621323d42585983eb30"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-03-314-receipt.json",
+      "sha256": "94e6392042a4f56e43cc9f589dd0c4fecb016a8ad21f091e043ec2cd400eea4d",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-03-314.txt",
+      "log_sha256": "e436668559a2b971e2a1658e2c854a2ab97dfa942c9f336a4b9c1bfbea821185"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-04-314-receipt.json",
+      "sha256": "ef2fb3b9e71ff320d78377474e345d5644464c5e5e9611935ede4b68e8bf4915",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-04-314.txt",
+      "log_sha256": "88147096452a680aea8cb9432dc89f356aa88476c727580abca334edc481ec47"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-05-314-receipt.json",
+      "sha256": "513d1b6c814005b7d22ff7490aec7d4035d20da23c63a14f82d6906d4f0950ea",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-05-314.txt",
+      "log_sha256": "a6d75bb46502f295b97e15da03f2f067c2f88dca25bf68ab17b2cbaa31bd5f24"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-06-314-receipt.json",
+      "sha256": "5d6e27f1fd1e79ba2eac81953951ca62927d7e1cd189abf2d4c89e579fd0a941",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-06-314.txt",
+      "log_sha256": "91ea5b634dcf161149a04d1fe5b247a0b04a3e50ea7927824ee07504578472b4"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-07-314-receipt.json",
+      "sha256": "4bcf5826ffae9d217b70feee15611d0ece9df1c836c920213b4abd9a30eb634c",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-07-314.txt",
+      "log_sha256": "cbb830f009dce2d4e63996a764a54c1916155c8cc87a4dbbf67eba17ad55a54a"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-08-314-receipt.json",
+      "sha256": "d951a98210c4a53eab5b2ffb150f8c3e5b49c25db8d5174ddabb9f3c9384a8b6",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-08-314.txt",
+      "log_sha256": "2fb2b6ddfbab246049838263a660cbb76a3b8ff278b426ba95ce69e4c776baac"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-09-314-receipt.json",
+      "sha256": "58ca6821d60e4928bbe52e6323eedb425cf2a05f547f21acc95080fc65abcc43",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-checks\\abc-provenance-v3-focused02-09-314.txt",
+      "log_sha256": "2fb2b6ddfbab246049838263a660cbb76a3b8ff278b426ba95ce69e4c776baac"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-owner-314-receipt.json",
+      "sha256": "3bb5018c7fed692a6eba8893d6f65077e71bb2d9dfd2c6ef608d24effd67bfef",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-owner-314.txt",
+      "log_sha256": "23c3dcd2d0db07ac2675fe7d67008a73ed89731be2000c2e6352da912523f035"
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-effective-input-314-receipt.json",
+      "sha256": "640d572cd4fa8bc062adf7e9032dff06dc046e79112c940444a68f680457e934",
+      "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\abc-provenance-v3-final02-effective-input-314.txt",
+      "log_sha256": "85473aba60d959ab0dc08cb6bc804b9142fb87d63784f966031ea779030b014d"
+    }
+  ],
+  "frozen_blob_bytes_equal_executed_source": true,
+  "fix_delta_from": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "fix_changed_paths": [
+    "tests/test-inventory.json",
+    "tests/test_inventory_and_profiles.py",
+    "tools/generate_test_inventory.py"
+  ],
+  "fix_allowed_paths": [
+    "tests/test-inventory.json",
+    "tests/test-profiles.toml",
+    "tests/test_inventory_and_profiles.py",
+    "tools/generate_test_inventory.py"
+  ]
+}

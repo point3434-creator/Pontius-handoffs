@@ -1,0 +1,142 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 2, "failures": 14, "errors": 0, "skipped": 0}
+test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) ... 
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='positional-default') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='posonly-default') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='kwonly-default') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='global-owner') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='local-owner') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='self-owner') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='container-default') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='saved-default') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='late-cell') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='nested-invocation') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='before-raise') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (captured_receiver='self._mutate()\nreturn self._launch()') ... FAIL
+  test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (captured_receiver='old = self\nsaved = self._mutate\nself = None\nsaved()\nreturn old._launch()') ... FAIL
+test_helper_effective_inputs_preserve_overrides_and_nonexecution (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution) ... 
+  test_helper_effective_inputs_preserve_overrides_and_nonexecution (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution) (nonexecution='invalid-duplicate') ... FAIL
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='positional-default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='posonly-default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='kwonly-default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='global-owner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='local-owner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='self-owner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='container-default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='saved-default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='late-cell')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='nested-invocation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (effective_input='before-raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21158, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertTrue(review['unresolved_dynamic_blockers'])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (captured_receiver='self._mutate()\nreturn self._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21171, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertFalse([row for row in review['receipt']['expanded_rows']
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'approval_scope': 'design', 'capability_kind': 'subprocess', 'capability_id': 'process:d6f5c33b34909f066ae93697', 'executable_role': 'python', 'executable_slot': 'active_worker', 'executable_constraints': {}, 'argv': ['-m', 'fixed'], 'argv_template': [], 'dynamic_program_sha256': None, 'cwd_class': 'target', 'environment_additions': {'SAFE': '1'}, 'environment_removals': [], 'timeout_ns': 5000000000, 'expected_return_category': 'completed', 'read_roots': ['target'], 'write_roots': [], 'fixed_descendant_permission': False}] is not false
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) (captured_receiver='old = self\nsaved = self._mutate\nself = None\nsaved()\nreturn old._launch()')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21171, in test_helper_effective_inputs_preserve_reached_owner_mutations
+    self.assertFalse([row for row in review['receipt']['expanded_rows']
+AssertionError: [{'item_id': 'tests/test_review.py::ReviewTests::test_static', 'approval_scope': 'design', 'capability_kind': 'subprocess', 'capability_id': 'process:d6f5c33b34909f066ae93697', 'executable_role': 'python', 'executable_slot': 'active_worker', 'executable_constraints': {}, 'argv': ['-m', 'fixed'], 'argv_template': [], 'dynamic_program_sha256': None, 'cwd_class': 'target', 'environment_additions': {'SAFE': '1'}, 'environment_removals': [], 'timeout_ns': 5000000000, 'expected_return_category': 'completed', 'read_roots': ['target'], 'write_roots': [], 'fixed_descendant_permission': False}] is not false
+
+======================================================================
+FAIL: test_helper_effective_inputs_preserve_overrides_and_nonexecution (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution) (nonexecution='invalid-duplicate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-red01-311-f34bdf6ea8b74be7b2a16f055f42b568\harness\tests\test_inventory_and_profiles.py", line 21193, in test_helper_effective_inputs_preserve_overrides_and_nonexecution
+    self.assertEqual([row['argv'] for row in rows], [['-m', 'fixed']])
+AssertionError: Lists differ: [] != [['-m', 'fixed']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['-m', 'fixed']
+
+- []
++ [['-m', 'fixed']]
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.325s
+
+FAILED (failures=14)

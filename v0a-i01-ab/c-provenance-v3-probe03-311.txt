@@ -1,0 +1,20 @@
+{"identity_before_test_payload": {"version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "cwd": "D:\\pontius-snapshots\\c-provenance-v3-probe03-311-0cad5dda906044968914fe357fc02ef8\\harness", "test_origin": "D:\\pontius-snapshots\\c-provenance-v3-probe03-311-0cad5dda906044968914fe357fc02ef8\\harness\\tests\\test_inventory_and_profiles.py", "generator_origin": "D:\\pontius-snapshots\\c-provenance-v3-probe03-311-0cad5dda906044968914fe357fc02ef8\\harness\\tools\\generate_test_inventory.py", "safe_path": true, "dont_write_bytecode": true}}
+{"tests_run": 4, "failures": 1, "errors": 0, "skipped": 0}
+test_helper_effective_inputs_preserve_reached_owner_mutations (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) ... ok
+test_helper_effective_inputs_preserve_overrides_and_nonexecution (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution) ... ok
+test_helper_effective_input_matrix_distinguishes_execution_and_effects (binding_inventory_tests.DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects) ... ok
+test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) ... 
+  test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) (nested_registered_order='raise') ... FAIL
+
+======================================================================
+FAIL: test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (binding_inventory_tests.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) (nested_registered_order='raise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\pontius-snapshots\c-provenance-v3-probe03-311-0cad5dda906044968914fe357fc02ef8\harness\tests\test_inventory_and_profiles.py", line 21317, in test_helper_effective_inputs_cover_registered_defaults_and_class_receivers
+    self.assertEqual(bool(review['unresolved_dynamic_blockers']), refused)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.732s
+
+FAILED (failures=1)

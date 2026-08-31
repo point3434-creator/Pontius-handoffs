@@ -1,0 +1,656 @@
+{
+  "input_census_sha256": "9e1b49d238b083188c3289aa0a0e0760f03cb58380230002246ebbac15ac705c",
+  "before_sha256": "526bab49b2a57e2f9237b28707dbfd03821f1132f1fa63bf3b9c2a561b69d0eb",
+  "after_sha256": "e3078cacb4eaf3beaf0261311e025ba0e472def6b50f54861643d1cc062dab28",
+  "only_method": "test_working_discovery_binds_every_entry_and_introduced_id",
+  "all_other_module_ast_unchanged": true,
+  "changes": [
+    {
+      "field": "analysis_census",
+      "before": {
+        "subprocess_direct_site_count": 45,
+        "subprocess_helper_site_count": 5,
+        "cross_file_helper_edge_count": 27,
+        "cupy_call_node_count": 30,
+        "string_sink_decoy_count": 592,
+        "string_sink_decoy_sha256": "cf3edbe709d07a230974c762e29400ed6e2c6c5bc9730eed472f03933041ee47",
+        "string_sink_decoy_partitions": {
+          "design_production": 17,
+          "historical_production": 6,
+          "prior_stabilization_synthetic": 34,
+          "task2_synthetic": 535
+        },
+        "analyzed_sites_sha256": "6beec1b64eed80b39fe32bba100c618de8608e43663d480fcdec4db1c8b9adb2"
+      },
+      "after": {
+        "subprocess_direct_site_count": 45,
+        "subprocess_helper_site_count": 5,
+        "cross_file_helper_edge_count": 27,
+        "cupy_call_node_count": 30,
+        "string_sink_decoy_count": 599,
+        "string_sink_decoy_sha256": "107b388a7dd25778048c6e26d9f67b848a28f07dc846d060cbeb819540844ad6",
+        "string_sink_decoy_partitions": {
+          "design_production": 17,
+          "historical_production": 6,
+          "prior_stabilization_synthetic": 34,
+          "task2_synthetic": 542
+        },
+        "analyzed_sites_sha256": "3170f99166d98d3879109a0d02ea68a096bf096ae79e1d0ab871d6ba764f6020"
+      }
+    },
+    {
+      "field": "blocker_count",
+      "before": 388,
+      "after": 895
+    },
+    {
+      "field": "blocker_reasons",
+      "before": {
+        "unsupported subprocess keyword: capture_output": 48,
+        "dynamic helper arguments prevent exact sink derivation": 26,
+        "CuPy action or view is outside the approved call scope": 11,
+        "dynamic repetition prevents a finite call bound": 2,
+        "dynamic repetition prevents a finite helper call bound": 1,
+        "mixed protected receiver is dynamically unresolved": 67,
+        "unsupported subprocess keyword: stdin": 5,
+        "registered probe implementation is absent": 1,
+        "dynamic sensitive call result is unresolved": 16,
+        "unregistered CuPy call is unresolved": 2,
+        "deferred generator consumption is dynamically unresolved": 50,
+        "protected value store target is dynamically unresolved": 6,
+        "local class decorator runtime target is dynamically unresolved": 4,
+        "max/min iterable contents are dynamically unresolved": 102,
+        "max/min comparison dispatch is dynamically unresolved": 36,
+        "callback closure": 1,
+        "unittest instance or class binding is dynamically unresolved": 10
+      },
+      "after": {
+        "CuPy action or view is outside the approved call scope": 11,
+        "callback closure": 1,
+        "deferred generator consumption is dynamically unresolved": 44,
+        "dynamic helper arguments prevent exact sink derivation": 26,
+        "dynamic repetition prevents a finite call bound": 2,
+        "dynamic repetition prevents a finite helper call bound": 1,
+        "dynamic sensitive call result is unresolved": 21,
+        "helper callable identity was mutated": 43,
+        "helper callable provenance is unresolved": 2,
+        "helper descriptor member identity is unresolved": 16,
+        "helper namespace effects are dynamically unresolved": 392,
+        "helper namespace escape is dynamically unresolved": 35,
+        "helper namespace identity was mutated": 12,
+        "helper namespace store is dynamically unresolved": 17,
+        "local class decorator runtime target is dynamically unresolved": 4,
+        "max/min comparison dispatch is dynamically unresolved": 36,
+        "max/min iterable contents are dynamically unresolved": 102,
+        "mixed protected receiver is dynamically unresolved": 61,
+        "protected value store target is dynamically unresolved": 3,
+        "registered probe implementation is absent": 1,
+        "unittest instance or class binding is dynamically unresolved": 10,
+        "unregistered CuPy call is unresolved": 2,
+        "unsupported subprocess keyword: capture_output": 48,
+        "unsupported subprocess keyword: stdin": 5
+      }
+    },
+    {
+      "field": "dynamic sensitive call result is unresolved",
+      "before": [
+        [
+          "tests/test_dependency_tape.py",
+          650
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          652
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          654
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          656
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          479
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          488
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          106
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          108
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          111
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          119
+        ],
+        [
+          "tests/test_exact_collision_oracle.py",
+          98
+        ],
+        [
+          "tests/test_multi_size_affine_cross_payoff.py",
+          134
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          411
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          66
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          81
+        ],
+        [
+          "tests/test_v0a_replay.py",
+          600
+        ]
+      ],
+      "after": [
+        [
+          "tests/test_dependency_tape.py",
+          650
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          652
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          654
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          656
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          479
+        ],
+        [
+          "tests/test_dependency_tape.py",
+          488
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          106
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          108
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          111
+        ],
+        [
+          "tests/test_device_fold_resident_paths_v2.py",
+          119
+        ],
+        [
+          "tests/test_exact_collision_oracle.py",
+          98
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          20783
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          20783
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          20783
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          20783
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          20783
+        ],
+        [
+          "tests/test_multi_size_affine_cross_payoff.py",
+          134
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          411
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          66
+        ],
+        [
+          "tests/test_one_seat_convex_generation.py",
+          81
+        ],
+        [
+          "tests/test_v0a_replay.py",
+          600
+        ]
+      ]
+    },
+    {
+      "field": "unregistered CuPy call is unresolved",
+      "before": [
+        [
+          "tests/test_resident_record_to_hand_fold_v2.py",
+          312
+        ],
+        [
+          "tests/test_resident_record_to_hand_fold_v2.py",
+          313
+        ]
+      ],
+      "after": [
+        [
+          "tests/test_resident_record_to_hand_fold_v2.py",
+          312
+        ],
+        [
+          "tests/test_resident_record_to_hand_fold_v2.py",
+          313
+        ]
+      ]
+    },
+    {
+      "field": "deferred generator consumption is dynamically unresolved",
+      "before": [
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          33
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          44
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          49
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          54
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          65
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          33
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          44
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          49
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          54
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_complete_factorized_affine_evidence.py",
+          102
+        ],
+        [
+          "tests/test_device_fold_resident_paths.py",
+          280
+        ],
+        [
+          "tests/test_device_fold_resident_paths.py",
+          293
+        ],
+        [
+          "tests/test_exact_collision_oracle.py",
+          93
+        ],
+        [
+          "tests/test_exact_directional_face_oracle.py",
+          547
+        ],
+        [
+          "tests/test_factorized_belief.py",
+          34
+        ],
+        [
+          "tests/test_factorized_belief.py",
+          34
+        ],
+        [
+          "tests/test_factorized_belief.py",
+          34
+        ],
+        [
+          "tests/test_fresh_action_width_greedy.py",
+          229
+        ],
+        [
+          "tests/test_fresh_action_width_transfer_structures.py",
+          288
+        ],
+        [
+          "tests/test_fresh_action_width_transfer_structures.py",
+          292
+        ],
+        [
+          "tests/test_full_width_river_capacity_preflight.py",
+          54
+        ],
+        [
+          "tests/test_full_width_river_capacity_preflight_v2_result.py",
+          150
+        ],
+        [
+          "tests/test_h32_selector_stable_affine_certificate_audit.py",
+          110
+        ],
+        [
+          "tests/test_incremental_leaf_adjoint_response.py",
+          276
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          1459
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          1466
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          2954
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          4166
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          4428
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          5661
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          12477
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          12477
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          12486
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          16217
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          18243
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          18243
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          4795
+        ],
+        [
+          "tests/test_linear_program_certificate.py",
+          157
+        ],
+        [
+          "tests/test_linear_program_certificate.py",
+          193
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          404
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          386
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          298
+        ],
+        [
+          "tests/test_river_selective_screen.py",
+          320
+        ],
+        [
+          "tests/test_shared_resident_response_context.py",
+          71
+        ]
+      ],
+      "after": [
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          33
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          44
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          49
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          54
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          65
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          33
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          44
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          49
+        ],
+        [
+          "tests/test_canonical_affine_resident_automaton_cache.py",
+          54
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_coalition.py",
+          56
+        ],
+        [
+          "tests/test_complete_factorized_affine_evidence.py",
+          102
+        ],
+        [
+          "tests/test_device_fold_resident_paths.py",
+          280
+        ],
+        [
+          "tests/test_device_fold_resident_paths.py",
+          293
+        ],
+        [
+          "tests/test_exact_collision_oracle.py",
+          93
+        ],
+        [
+          "tests/test_exact_directional_face_oracle.py",
+          547
+        ],
+        [
+          "tests/test_factorized_belief.py",
+          34
+        ],
+        [
+          "tests/test_factorized_belief.py",
+          34
+        ],
+        [
+          "tests/test_factorized_belief.py",
+          34
+        ],
+        [
+          "tests/test_fresh_action_width_greedy.py",
+          229
+        ],
+        [
+          "tests/test_fresh_action_width_transfer_structures.py",
+          288
+        ],
+        [
+          "tests/test_fresh_action_width_transfer_structures.py",
+          292
+        ],
+        [
+          "tests/test_full_width_river_capacity_preflight.py",
+          54
+        ],
+        [
+          "tests/test_full_width_river_capacity_preflight_v2_result.py",
+          150
+        ],
+        [
+          "tests/test_h32_selector_stable_affine_certificate_audit.py",
+          110
+        ],
+        [
+          "tests/test_incremental_leaf_adjoint_response.py",
+          276
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          1459
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          1466
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          2954
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          4166
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          4428
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          5661
+        ],
+        [
+          "tests/test_inventory_and_profiles.py",
+          4795
+        ],
+        [
+          "tests/test_linear_program_certificate.py",
+          157
+        ],
+        [
+          "tests/test_linear_program_certificate.py",
+          193
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          404
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          386
+        ],
+        [
+          "tests/test_native_simplex_audit_reanalysis.py",
+          298
+        ],
+        [
+          "tests/test_river_selective_screen.py",
+          320
+        ],
+        [
+          "tests/test_shared_resident_response_context.py",
+          71
+        ]
+      ]
+    }
+  ]
+}

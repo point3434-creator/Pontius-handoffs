@@ -1,0 +1,37 @@
+{
+  "label": "v3-red04",
+  "slot": "311",
+  "base": "00db06624ab25f10cd181badccf92c87a78f17ee",
+  "snapshot": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\harness",
+  "temporary": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\temp",
+  "overlay_sha256": {
+    "tools/generate_test_inventory.py": "89d6605b1777dd060b40c4a200b3a6b2c8ddd30610b761d8c7145f17dea2a6f3",
+    "tests/test_inventory_and_profiles.py": "2401534491fa2b3c17ce5a63efa2b4393e3ddffa1767b762e678d0153c38007a"
+  },
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\c-binding-payload.py",
+    "3.11.15",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations",
+    "DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\temp",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-provenance-v3-red04-311-59eaa748a1ae4cf9a8e7e672b0dff89e\\harness\\src",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL"
+  },
+  "exit": 1,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-ab\\c-provenance-v3-red04-311.txt",
+  "sha256": "9db2a0c119aa9ec2f6afecb3a0b970bfbe90b7807b8347e257054cddfb6f5d04",
+  "payload_sha256": "1cb3a782196af1535269c40fbcdb6cf7655e7a5adaa9637e7ab1b97ca22bc3ac"
+}

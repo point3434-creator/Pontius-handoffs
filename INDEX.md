@@ -29,6 +29,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-ab | r008 | [Handoff](v0a-i01-ab/r008/handoff.md) | NOT CLEAN/STRAINED: helper receiver/class qualifier provenance; Codex correcting locally, A/B unchanged |
 | coverage-guidance | r001 | [Disposition](coverage-guidance/r001/disposition.md) | NOT CLEAN: coverage-only closure loop; corrected in r002 |
 | coverage-guidance | r002 | [Disposition](coverage-guidance/r002/disposition.md) | CLEAN: category/discovery guidance and templates; independent evidence closure; source uncommitted, pending design edits excluded |
+| v0a-i01-ab | r009 | [Handoff](v0a-i01-ab/r009/handoff.md) | Frozen A/B/C FIX; 354 focused tests per slot GREEN, one expected skip; two fresh cold reviews pending |
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |
 | review-guidance | r002 | [Disposition](review-guidance/r002/disposition.md) | CLEAN; exact reviewed workflow committed and pushed as d1ed3cb; concurrent edits preserved; refs archived |
 
