@@ -1,0 +1,35 @@
+{
+  "candidate": "8d240db477b8c141e6142e055dbfbedc75c6a2f8",
+  "manifest_sha256": "4f91aa7ce728c3eff6a7ad30a7c131985d5b86b615875df978d30ac39386aa51",
+  "command": [
+    "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys,runpy,json,importlib.util\nfrom pathlib import Path\nexe,version,target,*args=sys.argv[1:]\nassert sys.implementation.name=='cpython'\nassert Path(sys.executable).resolve()==Path(exe).resolve()\nassert '.'.join(map(str,sys.version_info[:3]))==version\nassert sys.flags.safe_path and sys.dont_write_bytecode and not sys.flags.optimize\nprint(json.dumps({'identity_before_payload_import':{'executable':sys.executable,'version':sys.version,'version_info':list(sys.version_info[:3])}}),flush=True)\nassert Path(importlib.util.find_spec('pontius').origin).resolve()==(Path.cwd()/'src/pontius/__init__.py').resolve()\nsys.argv=[target,*args]\nrunpy.run_path(target,run_name='__main__')\n",
+    "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "3.14.6",
+    "D:\\Pontius-handoffs\\v0a-i01-ab\\r009\\checks\\codex-a-probe-structure.py"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\cold-r009-a-56b2a4a4e9d546edb90aedb516039e8b\\temp",
+    "TMP": "D:\\pontius-snapshots\\cold-r009-a-56b2a4a4e9d546edb90aedb516039e8b\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\cold-r009-a-56b2a4a4e9d546edb90aedb516039e8b\\harness\\src"
+  },
+  "exit": 0,
+  "log_sha256": "9f84028e7a7c7b0d59a8e44544beccc9e3257851b25aec94c943c431bc75b117",
+  "source_unchanged": true,
+  "snapshot": "D:\\pontius-snapshots\\cold-r009-a-56b2a4a4e9d546edb90aedb516039e8b\\harness",
+  "control_executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "control_version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"
+}

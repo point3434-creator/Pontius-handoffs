@@ -1,0 +1,13 @@
+import subprocess, sys, unittest
+class ReviewTests(unittest.TestCase):
+    @staticmethod
+    def _launch(ignored=None, module="fixed"):
+        subprocess.run([sys.executable, "-m", module], cwd=".", env={**__import__("os").environ, "SAFE":"1"}, timeout=5, check=False)
+    def test_static(self):
+        def mutate(owner=ReviewTests):
+            owner._launch=None
+        def invoke(callback=mutate):
+            callback()
+        invoke()
+        self._launch()
+    def test_denied(self): pass
