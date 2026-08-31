@@ -1,0 +1,1122 @@
+{
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "slot": "311",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys, runpy, json, importlib.util, os\nfrom pathlib import Path\nsys.stdout.reconfigure(newline=\"\\n\")\nsys.stderr.reconfigure(newline=\"\\n\")\nexe, expected = sys.argv[1:3]\nassert sys.implementation.name == \"cpython\"\nassert Path(sys.executable).resolve() == Path(exe).resolve()\nassert \".\".join(map(str, sys.version_info[:3])) == expected\nassert sys.dont_write_bytecode and sys.flags.safe_path and not sys.flags.optimize\nprint(json.dumps({\"identity_before_import\": {\n    \"executable\": sys.executable, \"implementation\": sys.implementation.name,\n    \"version\": sys.version, \"version_info\": list(sys.version_info[:3]),\n    \"cwd\": str(Path.cwd()), \"pythonpath\": os.environ.get(\"PYTHONPATH\"),\n    \"flags\": str(sys.flags), \"environment\": dict(os.environ),\n}}), flush=True)\nassert os.environ[\"PYTHONPATH\"] == str(Path.cwd() / \"src\")\nassert Path(os.environ[\"PONTIUS_GIT\"]) == Path(\"C:/Program Files/Git/cmd/git.exe\")\nassert Path(importlib.util.find_spec(\"pontius.v0a.trace\").origin).resolve() == (\n    Path.cwd() / \"src/pontius/v0a/trace.py\").resolve()\nsys.argv = [\"D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks/name-environment-probe-v20-v1.py\"]\nrunpy.run_path(sys.argv[0], run_name=\"__main__\")\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\snapshot\\src"
+  },
+  "identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      11,
+      15
+    ],
+    "cwd": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\snapshot",
+    "pythonpath": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\snapshot\\src",
+    "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=1, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0, warn_default_encoding=0, safe_path=True, int_max_str_digits=-1)",
+    "environment": {
+      "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+      "GIT_ATTR_NOSYSTEM": "1",
+      "GIT_CONFIG_GLOBAL": "NUL",
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "GIT_CONFIG_SYSTEM": "NUL",
+      "PATH": "C:\\windows\\System32",
+      "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\snapshot\\src",
+      "SYSTEMROOT": "C:\\windows",
+      "TEMP": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\temp",
+      "TMP": "D:\\pontius-snapshots\\c-authority-tests-name-environment-v20-01-53ccd9f03dc0405797322a82abad3dea\\temp",
+      "WINDIR": "C:\\windows"
+    }
+  },
+  "metadata_sha256": "69776f3ddd31d2d6c2ad49dcfc11f3bef190537aaa219dcbe4a7f8412dc7681b",
+  "tests_sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+  "generator_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+  "frozen_r010_generator_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "focus": "versioned-name-environment-v20-measurement",
+  "probe_sha256": "a45f9818129daabeed96ef5e8cfb1844df6a50bf128a17af9b654bb730c15691",
+  "exit": 0,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\red-name-environment-v20-01-311.txt",
+  "log_sha256": "43d76a321846089bfc6b8ff5cb9b7f4ad97c2c9f019470287cab27ed1c882a81",
+  "all_tracked_paths_unchanged": 1761,
+  "name_environment_summaries": [
+    {
+      "name_environment_summary": "versioned-name-environment-v20-measurement-v1",
+      "planned": 24,
+      "generated": 24,
+      "exercised": 24,
+      "planned_projections": 58,
+      "exercised_projections": 58,
+      "unreachable_cases": [],
+      "oracle_errors": [],
+      "semantic_errors": [],
+      "analysis_errors": [],
+      "instrumentation_errors": [],
+      "classifications": {
+        "clean": 19,
+        "refuse": 4,
+        "permitted-refusal": 1
+      },
+      "structural_pairs": [
+        {
+          "case_ids": [
+            "scale-n8-s2-d0-normal",
+            "scale-n8-s4-d0-normal"
+          ],
+          "ambient": 8,
+          "changed": 0,
+          "exit": "normal",
+          "values": {
+            "ambient_merge_normalizations": [
+              8,
+              40
+            ],
+            "ambient_merge_operands": [
+              16,
+              80
+            ],
+            "charged_unit_sum_across_budgets": [
+              14093,
+              26009
+            ],
+            "largest_individual_budget_work": [
+              6545,
+              15206
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 2149,
+              "ambient_node_field_reference_initializations": 924,
+              "name_version_field_reference_initializations": 665,
+              "execution_state_wrapper_field_references": 312,
+              "name_node_allocations": 307,
+              "name_order_field_reference_initializations": 272,
+              "name_entry_field_reference_initializations": 162,
+              "ambient_name_node_allocations": 132,
+              "completed_items_result_tuple_references": 120,
+              "execution_state_wrapper_allocations": 104,
+              "completed_items_index_field_references": 98,
+              "completed_items_pair_tuple_references": 98,
+              "name_version_allocations": 95,
+              "name_entry_allocations": 81,
+              "name_order_allocations": 68,
+              "completed_materialized_key_tuple_references": 63,
+              "completed_order_parent_tuple_references": 60,
+              "completed_adapter_key_dictionary_references": 58,
+              "completed_order_parent_tuple_allocations": 56,
+              "ambient_items_result_tuple_entries": 56,
+              "completed_items_index_name_entries": 49,
+              "completed_items_pair_tuple_allocations": 49,
+              "ambient_materialized_key_tuple_references": 32,
+              "completed_adapter_key_dictionary_entries": 29,
+              "ambient_items_index_name_entries": 24,
+              "ambient_order_name_reference_initializations": 24,
+              "ambient_adapter_key_dictionary_entries": 16,
+              "completed_items_result_tuple_allocations": 15,
+              "completed_materialized_key_tuple_allocations": 7,
+              "completed_items_index_dictionary_allocations": 6,
+              "completed_adapter_key_dictionary_allocations": 3
+            },
+            {
+              "name_node_field_reference_initializations": 3941,
+              "ambient_node_field_reference_initializations": 1820,
+              "name_version_field_reference_initializations": 1113,
+              "name_node_allocations": 563,
+              "name_order_field_reference_initializations": 528,
+              "execution_state_wrapper_field_references": 432,
+              "name_entry_field_reference_initializations": 282,
+              "completed_adapter_key_dictionary_references": 282,
+              "ambient_name_node_allocations": 260,
+              "completed_items_result_tuple_references": 232,
+              "completed_items_index_field_references": 182,
+              "completed_items_pair_tuple_references": 182,
+              "name_version_allocations": 159,
+              "execution_state_wrapper_allocations": 144,
+              "name_entry_allocations": 141,
+              "completed_adapter_key_dictionary_entries": 141,
+              "completed_materialized_key_tuple_references": 133,
+              "name_order_allocations": 132,
+              "completed_order_parent_tuple_references": 124,
+              "ambient_items_result_tuple_entries": 120,
+              "completed_order_parent_tuple_allocations": 116,
+              "completed_items_index_name_entries": 91,
+              "completed_items_pair_tuple_allocations": 91,
+              "ambient_adapter_key_dictionary_entries": 80,
+              "ambient_materialized_key_tuple_references": 72,
+              "ambient_order_name_reference_initializations": 56,
+              "ambient_items_index_name_entries": 48,
+              "completed_items_result_tuple_allocations": 23,
+              "completed_materialized_key_tuple_allocations": 12,
+              "completed_adapter_key_dictionary_allocations": 11,
+              "completed_items_index_dictionary_allocations": 9
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 28,
+              "ambient/legacy-direct/operands": 16,
+              "legacy-direct/calls": 14,
+              "ambient/legacy-direct/calls": 8,
+              "version/common-base/operands": 2,
+              "version/common-base/calls": 1
+            },
+            {
+              "legacy-direct/operands": 140,
+              "ambient/legacy-direct/operands": 80,
+              "legacy-direct/calls": 70,
+              "ambient/legacy-direct/calls": 40,
+              "version/common-base/operands": 10,
+              "version/common-base/calls": 5
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 45,
+              "version/common-base": 3,
+              "legacy-disabled-authority": 1
+            },
+            {
+              "singleton": 57,
+              "version/common-base": 7,
+              "legacy-disabled-authority": 5
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n8-s2-d2-normal",
+            "scale-n8-s4-d2-normal"
+          ],
+          "ambient": 8,
+          "changed": 2,
+          "exit": "normal",
+          "values": {
+            "ambient_merge_normalizations": [
+              16,
+              48
+            ],
+            "ambient_merge_operands": [
+              40,
+              120
+            ],
+            "charged_unit_sum_across_budgets": [
+              19272,
+              35144
+            ],
+            "largest_individual_budget_work": [
+              9518,
+              20932
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 2863,
+              "ambient_node_field_reference_initializations": 1148,
+              "name_version_field_reference_initializations": 833,
+              "name_node_allocations": 409,
+              "execution_state_wrapper_field_references": 360,
+              "name_order_field_reference_initializations": 336,
+              "name_entry_field_reference_initializations": 214,
+              "completed_items_index_field_references": 210,
+              "completed_items_pair_tuple_references": 210,
+              "ambient_name_node_allocations": 164,
+              "completed_items_result_tuple_references": 162,
+              "completed_adapter_key_dictionary_references": 142,
+              "execution_state_wrapper_allocations": 120,
+              "name_version_allocations": 119,
+              "name_entry_allocations": 107,
+              "completed_items_index_name_entries": 105,
+              "completed_items_pair_tuple_allocations": 105,
+              "name_order_allocations": 84,
+              "ambient_items_result_tuple_entries": 80,
+              "completed_order_parent_tuple_references": 77,
+              "completed_order_parent_tuple_allocations": 71,
+              "completed_adapter_key_dictionary_entries": 71,
+              "completed_materialized_key_tuple_references": 63,
+              "ambient_items_index_name_entries": 56,
+              "ambient_adapter_key_dictionary_entries": 40,
+              "ambient_materialized_key_tuple_references": 32,
+              "ambient_order_name_reference_initializations": 32,
+              "completed_items_result_tuple_allocations": 18,
+              "completed_items_index_dictionary_allocations": 10,
+              "completed_materialized_key_tuple_allocations": 7,
+              "completed_adapter_key_dictionary_allocations": 6
+            },
+            {
+              "name_node_field_reference_initializations": 4991,
+              "ambient_node_field_reference_initializations": 2044,
+              "name_version_field_reference_initializations": 1337,
+              "name_node_allocations": 713,
+              "name_order_field_reference_initializations": 592,
+              "execution_state_wrapper_field_references": 528,
+              "completed_items_index_field_references": 434,
+              "completed_items_pair_tuple_references": 434,
+              "completed_adapter_key_dictionary_references": 422,
+              "name_entry_field_reference_initializations": 362,
+              "completed_items_result_tuple_references": 302,
+              "ambient_name_node_allocations": 292,
+              "completed_items_index_name_entries": 217,
+              "completed_items_pair_tuple_allocations": 217,
+              "completed_adapter_key_dictionary_entries": 211,
+              "name_version_allocations": 191,
+              "name_entry_allocations": 181,
+              "execution_state_wrapper_allocations": 176,
+              "ambient_items_result_tuple_entries": 160,
+              "name_order_allocations": 148,
+              "completed_materialized_key_tuple_references": 147,
+              "completed_order_parent_tuple_references": 143,
+              "completed_order_parent_tuple_allocations": 131,
+              "ambient_items_index_name_entries": 120,
+              "ambient_adapter_key_dictionary_entries": 120,
+              "ambient_materialized_key_tuple_references": 80,
+              "ambient_order_name_reference_initializations": 64,
+              "completed_items_result_tuple_allocations": 28,
+              "completed_items_index_dictionary_allocations": 18,
+              "completed_adapter_key_dictionary_allocations": 16,
+              "completed_materialized_key_tuple_allocations": 13
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 70,
+              "ambient/legacy-direct/operands": 40,
+              "legacy-direct/calls": 28,
+              "ambient/legacy-direct/calls": 16,
+              "version/common-base/operands": 12,
+              "version/common-base/calls": 5
+            },
+            {
+              "legacy-direct/operands": 210,
+              "ambient/legacy-direct/operands": 120,
+              "legacy-direct/calls": 84,
+              "ambient/legacy-direct/calls": 48,
+              "version/common-base/operands": 36,
+              "version/common-base/calls": 15
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 51,
+              "version/common-base": 4,
+              "legacy-disabled-authority": 2
+            },
+            {
+              "singleton": 71,
+              "version/common-base": 8,
+              "legacy-disabled-authority": 6
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n8-s2-d0-exceptional",
+            "scale-n8-s4-d0-exceptional"
+          ],
+          "ambient": 8,
+          "changed": 0,
+          "exit": "exceptional",
+          "values": {
+            "ambient_merge_normalizations": [
+              8,
+              24
+            ],
+            "ambient_merge_operands": [
+              24,
+              72
+            ],
+            "charged_unit_sum_across_budgets": [
+              16555,
+              26227
+            ],
+            "largest_individual_budget_work": [
+              7794,
+              13609
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 2149,
+              "ambient_node_field_reference_initializations": 924,
+              "name_version_field_reference_initializations": 665,
+              "execution_state_wrapper_field_references": 522,
+              "completed_items_result_tuple_references": 330,
+              "name_node_allocations": 307,
+              "name_order_field_reference_initializations": 272,
+              "ambient_items_result_tuple_entries": 176,
+              "execution_state_wrapper_allocations": 174,
+              "name_entry_field_reference_initializations": 162,
+              "ambient_name_node_allocations": 132,
+              "completed_items_index_field_references": 126,
+              "completed_items_pair_tuple_references": 126,
+              "name_version_allocations": 95,
+              "completed_adapter_key_dictionary_references": 86,
+              "name_entry_allocations": 81,
+              "name_order_allocations": 68,
+              "completed_materialized_key_tuple_references": 63,
+              "completed_items_index_name_entries": 63,
+              "completed_items_pair_tuple_allocations": 63,
+              "completed_order_parent_tuple_references": 61,
+              "completed_order_parent_tuple_allocations": 56,
+              "completed_adapter_key_dictionary_entries": 43,
+              "ambient_materialized_key_tuple_references": 32,
+              "ambient_items_index_name_entries": 32,
+              "completed_items_result_tuple_allocations": 30,
+              "ambient_order_name_reference_initializations": 24,
+              "ambient_adapter_key_dictionary_entries": 24,
+              "completed_materialized_key_tuple_allocations": 7,
+              "completed_items_index_dictionary_allocations": 7,
+              "completed_adapter_key_dictionary_allocations": 4
+            },
+            {
+              "name_node_field_reference_initializations": 3045,
+              "ambient_node_field_reference_initializations": 1372,
+              "name_version_field_reference_initializations": 889,
+              "execution_state_wrapper_field_references": 834,
+              "completed_items_result_tuple_references": 582,
+              "name_node_allocations": 435,
+              "name_order_field_reference_initializations": 400,
+              "ambient_items_result_tuple_entries": 320,
+              "execution_state_wrapper_allocations": 278,
+              "completed_adapter_key_dictionary_references": 254,
+              "name_entry_field_reference_initializations": 222,
+              "completed_items_index_field_references": 210,
+              "completed_items_pair_tuple_references": 210,
+              "ambient_name_node_allocations": 196,
+              "name_version_allocations": 127,
+              "completed_adapter_key_dictionary_entries": 127,
+              "completed_materialized_key_tuple_references": 119,
+              "name_entry_allocations": 111,
+              "completed_items_index_name_entries": 105,
+              "completed_items_pair_tuple_allocations": 105,
+              "name_order_allocations": 100,
+              "completed_order_parent_tuple_references": 95,
+              "completed_order_parent_tuple_allocations": 86,
+              "ambient_adapter_key_dictionary_entries": 72,
+              "ambient_materialized_key_tuple_references": 64,
+              "ambient_items_index_name_entries": 56,
+              "completed_items_result_tuple_allocations": 48,
+              "ambient_order_name_reference_initializations": 40,
+              "completed_materialized_key_tuple_allocations": 11,
+              "completed_items_index_dictionary_allocations": 10,
+              "completed_adapter_key_dictionary_allocations": 10
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 42,
+              "ambient/legacy-direct/operands": 24,
+              "legacy-direct/calls": 14,
+              "ambient/legacy-direct/calls": 8,
+              "version/common-base/operands": 3,
+              "version/common-base/calls": 1
+            },
+            {
+              "legacy-direct/operands": 126,
+              "ambient/legacy-direct/operands": 72,
+              "legacy-direct/calls": 42,
+              "ambient/legacy-direct/calls": 24,
+              "version/common-base/operands": 9,
+              "version/common-base/calls": 3
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 71,
+              "version/common-base": 3,
+              "legacy-disabled-authority": 1
+            },
+            {
+              "singleton": 119,
+              "version/common-base": 5,
+              "legacy-disabled-authority": 3
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n8-s2-d2-exceptional",
+            "scale-n8-s4-d2-exceptional"
+          ],
+          "ambient": 8,
+          "changed": 2,
+          "exit": "exceptional",
+          "values": {
+            "ambient_merge_normalizations": [
+              16,
+              32
+            ],
+            "ambient_merge_operands": [
+              48,
+              112
+            ],
+            "charged_unit_sum_across_budgets": [
+              22952,
+              36156
+            ],
+            "largest_individual_budget_work": [
+              11107,
+              19399
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 2863,
+              "ambient_node_field_reference_initializations": 1148,
+              "name_version_field_reference_initializations": 833,
+              "execution_state_wrapper_field_references": 582,
+              "name_node_allocations": 409,
+              "completed_items_result_tuple_references": 372,
+              "name_order_field_reference_initializations": 336,
+              "completed_items_index_field_references": 322,
+              "completed_items_pair_tuple_references": 322,
+              "name_entry_field_reference_initializations": 214,
+              "ambient_items_result_tuple_entries": 200,
+              "execution_state_wrapper_allocations": 194,
+              "completed_adapter_key_dictionary_references": 170,
+              "ambient_name_node_allocations": 164,
+              "completed_items_index_name_entries": 161,
+              "completed_items_pair_tuple_allocations": 161,
+              "name_version_allocations": 119,
+              "name_entry_allocations": 107,
+              "completed_materialized_key_tuple_references": 91,
+              "ambient_items_index_name_entries": 88,
+              "completed_adapter_key_dictionary_entries": 85,
+              "name_order_allocations": 84,
+              "completed_order_parent_tuple_references": 78,
+              "completed_order_parent_tuple_allocations": 71,
+              "ambient_materialized_key_tuple_references": 48,
+              "ambient_adapter_key_dictionary_entries": 48,
+              "completed_items_result_tuple_allocations": 33,
+              "ambient_order_name_reference_initializations": 32,
+              "completed_items_index_dictionary_allocations": 14,
+              "completed_materialized_key_tuple_allocations": 9,
+              "completed_adapter_key_dictionary_allocations": 7
+            },
+            {
+              "name_node_field_reference_initializations": 3997,
+              "ambient_node_field_reference_initializations": 1596,
+              "name_version_field_reference_initializations": 1113,
+              "execution_state_wrapper_field_references": 954,
+              "completed_items_result_tuple_references": 652,
+              "name_node_allocations": 571,
+              "completed_items_index_field_references": 546,
+              "completed_items_pair_tuple_references": 546,
+              "name_order_field_reference_initializations": 464,
+              "completed_adapter_key_dictionary_references": 394,
+              "ambient_items_result_tuple_entries": 360,
+              "execution_state_wrapper_allocations": 318,
+              "name_entry_field_reference_initializations": 294,
+              "completed_items_index_name_entries": 273,
+              "completed_items_pair_tuple_allocations": 273,
+              "ambient_name_node_allocations": 228,
+              "completed_adapter_key_dictionary_entries": 197,
+              "name_version_allocations": 159,
+              "ambient_items_index_name_entries": 152,
+              "name_entry_allocations": 147,
+              "completed_materialized_key_tuple_references": 147,
+              "name_order_allocations": 116,
+              "completed_order_parent_tuple_references": 114,
+              "ambient_adapter_key_dictionary_entries": 112,
+              "completed_order_parent_tuple_allocations": 101,
+              "ambient_materialized_key_tuple_references": 80,
+              "completed_items_result_tuple_allocations": 53,
+              "ambient_order_name_reference_initializations": 48,
+              "completed_items_index_dictionary_allocations": 22,
+              "completed_adapter_key_dictionary_allocations": 15,
+              "completed_materialized_key_tuple_allocations": 13
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 84,
+              "ambient/legacy-direct/operands": 48,
+              "legacy-direct/calls": 28,
+              "ambient/legacy-direct/calls": 16,
+              "version/common-base/operands": 15,
+              "version/common-base/calls": 5
+            },
+            {
+              "legacy-direct/operands": 196,
+              "ambient/legacy-direct/operands": 112,
+              "legacy-direct/calls": 56,
+              "version/common-base/operands": 33,
+              "ambient/legacy-direct/calls": 32,
+              "version/common-base/calls": 9
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 81,
+              "version/common-base": 4,
+              "legacy-disabled-authority": 2
+            },
+            {
+              "singleton": 141,
+              "version/common-base": 6,
+              "legacy-disabled-authority": 4
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d0-normal",
+            "scale-n64-s4-d0-normal"
+          ],
+          "ambient": 64,
+          "changed": 0,
+          "exit": "normal",
+          "values": {
+            "ambient_merge_normalizations": [
+              64,
+              320
+            ],
+            "ambient_merge_operands": [
+              128,
+              640
+            ],
+            "charged_unit_sum_across_budgets": [
+              80293,
+              158566
+            ],
+            "largest_individual_budget_work": [
+              41243,
+              104874
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 15778,
+              "ambient_node_field_reference_initializations": 14455,
+              "name_version_field_reference_initializations": 2625,
+              "name_node_allocations": 2254,
+              "ambient_name_node_allocations": 2065,
+              "execution_state_wrapper_field_references": 984,
+              "name_order_field_reference_initializations": 944,
+              "name_entry_field_reference_initializations": 722,
+              "completed_items_result_tuple_references": 512,
+              "ambient_items_result_tuple_entries": 448,
+              "completed_items_index_field_references": 434,
+              "completed_items_pair_tuple_references": 434,
+              "name_version_allocations": 375,
+              "name_entry_allocations": 361,
+              "execution_state_wrapper_allocations": 328,
+              "completed_materialized_key_tuple_references": 287,
+              "completed_adapter_key_dictionary_references": 282,
+              "ambient_materialized_key_tuple_references": 256,
+              "name_order_allocations": 236,
+              "completed_order_parent_tuple_references": 228,
+              "completed_order_parent_tuple_allocations": 224,
+              "completed_items_index_name_entries": 217,
+              "completed_items_pair_tuple_allocations": 217,
+              "ambient_items_index_name_entries": 192,
+              "ambient_order_name_reference_initializations": 192,
+              "completed_adapter_key_dictionary_entries": 141,
+              "ambient_adapter_key_dictionary_entries": 128,
+              "completed_items_result_tuple_allocations": 15,
+              "completed_materialized_key_tuple_allocations": 7,
+              "completed_items_index_dictionary_allocations": 6,
+              "completed_adapter_key_dictionary_allocations": 3
+            },
+            {
+              "name_node_field_reference_initializations": 30142,
+              "ambient_node_field_reference_initializations": 27867,
+              "name_version_field_reference_initializations": 4641,
+              "name_node_allocations": 4306,
+              "ambient_name_node_allocations": 3981,
+              "name_order_field_reference_initializations": 2096,
+              "completed_adapter_key_dictionary_references": 1402,
+              "name_entry_field_reference_initializations": 1290,
+              "execution_state_wrapper_field_references": 1104,
+              "completed_items_result_tuple_references": 1072,
+              "ambient_items_result_tuple_entries": 960,
+              "completed_items_index_field_references": 854,
+              "completed_items_pair_tuple_references": 854,
+              "completed_adapter_key_dictionary_entries": 701,
+              "name_version_allocations": 663,
+              "name_entry_allocations": 645,
+              "ambient_adapter_key_dictionary_entries": 640,
+              "completed_materialized_key_tuple_references": 637,
+              "ambient_materialized_key_tuple_references": 576,
+              "name_order_allocations": 524,
+              "completed_order_parent_tuple_references": 516,
+              "completed_order_parent_tuple_allocations": 508,
+              "ambient_order_name_reference_initializations": 448,
+              "completed_items_index_name_entries": 427,
+              "completed_items_pair_tuple_allocations": 427,
+              "ambient_items_index_name_entries": 384,
+              "execution_state_wrapper_allocations": 368,
+              "completed_items_result_tuple_allocations": 23,
+              "completed_materialized_key_tuple_allocations": 12,
+              "completed_adapter_key_dictionary_allocations": 11,
+              "completed_items_index_dictionary_allocations": 9
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 140,
+              "ambient/legacy-direct/operands": 128,
+              "legacy-direct/calls": 70,
+              "ambient/legacy-direct/calls": 64,
+              "version/common-base/operands": 2,
+              "version/common-base/calls": 1
+            },
+            {
+              "legacy-direct/operands": 700,
+              "ambient/legacy-direct/operands": 640,
+              "legacy-direct/calls": 350,
+              "ambient/legacy-direct/calls": 320,
+              "version/common-base/operands": 10,
+              "version/common-base/calls": 5
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 157,
+              "version/common-base": 3,
+              "legacy-disabled-authority": 1
+            },
+            {
+              "singleton": 169,
+              "version/common-base": 7,
+              "legacy-disabled-authority": 5
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d2-normal",
+            "scale-n64-s4-d2-normal"
+          ],
+          "ambient": 64,
+          "changed": 2,
+          "exit": "normal",
+          "values": {
+            "ambient_merge_normalizations": [
+              128,
+              384
+            ],
+            "ambient_merge_operands": [
+              320,
+              960
+            ],
+            "charged_unit_sum_across_budgets": [
+              106388,
+              197662
+            ],
+            "largest_individual_budget_work": [
+              61997,
+              135165
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 19789,
+              "ambient_node_field_reference_initializations": 17962,
+              "name_version_field_reference_initializations": 3185,
+              "name_node_allocations": 2827,
+              "ambient_name_node_allocations": 2566,
+              "name_order_field_reference_initializations": 1232,
+              "execution_state_wrapper_field_references": 1032,
+              "completed_items_index_field_references": 994,
+              "completed_items_pair_tuple_references": 994,
+              "name_entry_field_reference_initializations": 886,
+              "completed_items_result_tuple_references": 722,
+              "completed_adapter_key_dictionary_references": 702,
+              "ambient_items_result_tuple_entries": 640,
+              "completed_items_index_name_entries": 497,
+              "completed_items_pair_tuple_allocations": 497,
+              "name_version_allocations": 455,
+              "ambient_items_index_name_entries": 448,
+              "name_entry_allocations": 443,
+              "completed_adapter_key_dictionary_entries": 351,
+              "execution_state_wrapper_allocations": 344,
+              "ambient_adapter_key_dictionary_entries": 320,
+              "name_order_allocations": 308,
+              "completed_order_parent_tuple_references": 301,
+              "completed_order_parent_tuple_allocations": 295,
+              "completed_materialized_key_tuple_references": 287,
+              "ambient_materialized_key_tuple_references": 256,
+              "ambient_order_name_reference_initializations": 256,
+              "completed_items_result_tuple_allocations": 18,
+              "completed_items_index_dictionary_allocations": 10,
+              "completed_materialized_key_tuple_allocations": 7,
+              "completed_adapter_key_dictionary_allocations": 6
+            },
+            {
+              "name_node_field_reference_initializations": 34685,
+              "ambient_node_field_reference_initializations": 31570,
+              "name_version_field_reference_initializations": 5257,
+              "name_node_allocations": 4955,
+              "ambient_name_node_allocations": 4510,
+              "name_order_field_reference_initializations": 2384,
+              "completed_items_index_field_references": 2114,
+              "completed_items_pair_tuple_references": 2114,
+              "completed_adapter_key_dictionary_references": 2102,
+              "name_entry_field_reference_initializations": 1482,
+              "completed_items_result_tuple_references": 1422,
+              "ambient_items_result_tuple_entries": 1280,
+              "execution_state_wrapper_field_references": 1200,
+              "completed_items_index_name_entries": 1057,
+              "completed_items_pair_tuple_allocations": 1057,
+              "completed_adapter_key_dictionary_entries": 1051,
+              "ambient_items_index_name_entries": 960,
+              "ambient_adapter_key_dictionary_entries": 960,
+              "name_version_allocations": 751,
+              "name_entry_allocations": 741,
+              "completed_materialized_key_tuple_references": 707,
+              "ambient_materialized_key_tuple_references": 640,
+              "name_order_allocations": 596,
+              "completed_order_parent_tuple_references": 591,
+              "completed_order_parent_tuple_allocations": 579,
+              "ambient_order_name_reference_initializations": 512,
+              "execution_state_wrapper_allocations": 400,
+              "completed_items_result_tuple_allocations": 28,
+              "completed_items_index_dictionary_allocations": 18,
+              "completed_adapter_key_dictionary_allocations": 16,
+              "completed_materialized_key_tuple_allocations": 13
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 350,
+              "ambient/legacy-direct/operands": 320,
+              "legacy-direct/calls": 140,
+              "ambient/legacy-direct/calls": 128,
+              "version/common-base/operands": 12,
+              "version/common-base/calls": 5
+            },
+            {
+              "legacy-direct/operands": 1050,
+              "ambient/legacy-direct/operands": 960,
+              "legacy-direct/calls": 420,
+              "ambient/legacy-direct/calls": 384,
+              "version/common-base/operands": 36,
+              "version/common-base/calls": 15
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 163,
+              "version/common-base": 4,
+              "legacy-disabled-authority": 2
+            },
+            {
+              "singleton": 183,
+              "version/common-base": 8,
+              "legacy-disabled-authority": 6
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d0-exceptional",
+            "scale-n64-s4-d0-exceptional"
+          ],
+          "ambient": 64,
+          "changed": 0,
+          "exit": "exceptional",
+          "values": {
+            "ambient_merge_normalizations": [
+              64,
+              192
+            ],
+            "ambient_merge_operands": [
+              192,
+              576
+            ],
+            "charged_unit_sum_across_budgets": [
+              86888,
+              136748
+            ],
+            "largest_individual_budget_work": [
+              44611,
+              82301
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 15778,
+              "ambient_node_field_reference_initializations": 14455,
+              "name_version_field_reference_initializations": 2625,
+              "name_node_allocations": 2254,
+              "ambient_name_node_allocations": 2065,
+              "completed_items_result_tuple_references": 1562,
+              "ambient_items_result_tuple_entries": 1408,
+              "execution_state_wrapper_field_references": 1194,
+              "name_order_field_reference_initializations": 944,
+              "name_entry_field_reference_initializations": 722,
+              "completed_items_index_field_references": 574,
+              "completed_items_pair_tuple_references": 574,
+              "completed_adapter_key_dictionary_references": 422,
+              "execution_state_wrapper_allocations": 398,
+              "name_version_allocations": 375,
+              "name_entry_allocations": 361,
+              "completed_materialized_key_tuple_references": 287,
+              "completed_items_index_name_entries": 287,
+              "completed_items_pair_tuple_allocations": 287,
+              "ambient_materialized_key_tuple_references": 256,
+              "ambient_items_index_name_entries": 256,
+              "name_order_allocations": 236,
+              "completed_order_parent_tuple_references": 229,
+              "completed_order_parent_tuple_allocations": 224,
+              "completed_adapter_key_dictionary_entries": 211,
+              "ambient_order_name_reference_initializations": 192,
+              "ambient_adapter_key_dictionary_entries": 192,
+              "completed_items_result_tuple_allocations": 30,
+              "completed_materialized_key_tuple_allocations": 7,
+              "completed_items_index_dictionary_allocations": 7,
+              "completed_adapter_key_dictionary_allocations": 4
+            },
+            {
+              "name_node_field_reference_initializations": 22911,
+              "ambient_node_field_reference_initializations": 21112,
+              "name_version_field_reference_initializations": 3633,
+              "name_node_allocations": 3273,
+              "ambient_name_node_allocations": 3016,
+              "completed_items_result_tuple_references": 2822,
+              "ambient_items_result_tuple_entries": 2560,
+              "name_order_field_reference_initializations": 1520,
+              "execution_state_wrapper_field_references": 1506,
+              "completed_adapter_key_dictionary_references": 1262,
+              "name_entry_field_reference_initializations": 1006,
+              "completed_items_index_field_references": 994,
+              "completed_items_pair_tuple_references": 994,
+              "completed_adapter_key_dictionary_entries": 631,
+              "ambient_adapter_key_dictionary_entries": 576,
+              "completed_materialized_key_tuple_references": 567,
+              "name_version_allocations": 519,
+              "ambient_materialized_key_tuple_references": 512,
+              "name_entry_allocations": 503,
+              "execution_state_wrapper_allocations": 502,
+              "completed_items_index_name_entries": 497,
+              "completed_items_pair_tuple_allocations": 497,
+              "ambient_items_index_name_entries": 448,
+              "name_order_allocations": 380,
+              "completed_order_parent_tuple_references": 375,
+              "completed_order_parent_tuple_allocations": 366,
+              "ambient_order_name_reference_initializations": 320,
+              "completed_items_result_tuple_allocations": 48,
+              "completed_materialized_key_tuple_allocations": 11,
+              "completed_items_index_dictionary_allocations": 10,
+              "completed_adapter_key_dictionary_allocations": 10
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 210,
+              "ambient/legacy-direct/operands": 192,
+              "legacy-direct/calls": 70,
+              "ambient/legacy-direct/calls": 64,
+              "version/common-base/operands": 3,
+              "version/common-base/calls": 1
+            },
+            {
+              "legacy-direct/operands": 630,
+              "ambient/legacy-direct/operands": 576,
+              "legacy-direct/calls": 210,
+              "ambient/legacy-direct/calls": 192,
+              "version/common-base/operands": 9,
+              "version/common-base/calls": 3
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 183,
+              "version/common-base": 3,
+              "legacy-disabled-authority": 1
+            },
+            {
+              "singleton": 231,
+              "version/common-base": 5,
+              "legacy-disabled-authority": 3
+            }
+          ]
+        },
+        {
+          "case_ids": [
+            "scale-n64-s2-d2-exceptional",
+            "scale-n64-s4-d2-exceptional"
+          ],
+          "ambient": 64,
+          "changed": 2,
+          "exit": "exceptional",
+          "values": {
+            "ambient_merge_normalizations": [
+              128,
+              256
+            ],
+            "ambient_merge_operands": [
+              384,
+              896
+            ],
+            "charged_unit_sum_across_budgets": [
+              118148,
+              180362
+            ],
+            "largest_individual_budget_work": [
+              67018,
+              112656
+            ]
+          },
+          "semantic_controls_passed": true,
+          "physical_completed": [
+            {
+              "name_node_field_reference_initializations": 19740,
+              "ambient_node_field_reference_initializations": 17913,
+              "name_version_field_reference_initializations": 3185,
+              "name_node_allocations": 2820,
+              "ambient_name_node_allocations": 2559,
+              "completed_items_result_tuple_references": 1772,
+              "ambient_items_result_tuple_entries": 1600,
+              "completed_items_index_field_references": 1554,
+              "completed_items_pair_tuple_references": 1554,
+              "execution_state_wrapper_field_references": 1254,
+              "name_order_field_reference_initializations": 1232,
+              "name_entry_field_reference_initializations": 886,
+              "completed_adapter_key_dictionary_references": 842,
+              "completed_items_index_name_entries": 777,
+              "completed_items_pair_tuple_allocations": 777,
+              "ambient_items_index_name_entries": 704,
+              "name_version_allocations": 455,
+              "name_entry_allocations": 443,
+              "completed_materialized_key_tuple_references": 427,
+              "completed_adapter_key_dictionary_entries": 421,
+              "execution_state_wrapper_allocations": 418,
+              "ambient_materialized_key_tuple_references": 384,
+              "ambient_adapter_key_dictionary_entries": 384,
+              "name_order_allocations": 308,
+              "completed_order_parent_tuple_references": 302,
+              "completed_order_parent_tuple_allocations": 295,
+              "ambient_order_name_reference_initializations": 256,
+              "completed_items_result_tuple_allocations": 33,
+              "completed_items_index_dictionary_allocations": 14,
+              "completed_materialized_key_tuple_allocations": 9,
+              "completed_adapter_key_dictionary_allocations": 7
+            },
+            {
+              "name_node_field_reference_initializations": 27300,
+              "ambient_node_field_reference_initializations": 24759,
+              "name_version_field_reference_initializations": 4249,
+              "name_node_allocations": 3900,
+              "ambient_name_node_allocations": 3537,
+              "completed_items_result_tuple_references": 3172,
+              "ambient_items_result_tuple_entries": 2880,
+              "completed_items_index_field_references": 2674,
+              "completed_items_pair_tuple_references": 2674,
+              "completed_adapter_key_dictionary_references": 1962,
+              "name_order_field_reference_initializations": 1808,
+              "execution_state_wrapper_field_references": 1626,
+              "completed_items_index_name_entries": 1337,
+              "completed_items_pair_tuple_allocations": 1337,
+              "ambient_items_index_name_entries": 1216,
+              "name_entry_field_reference_initializations": 1190,
+              "completed_adapter_key_dictionary_entries": 981,
+              "ambient_adapter_key_dictionary_entries": 896,
+              "completed_materialized_key_tuple_references": 707,
+              "ambient_materialized_key_tuple_references": 640,
+              "name_version_allocations": 607,
+              "name_entry_allocations": 595,
+              "execution_state_wrapper_allocations": 542,
+              "name_order_allocations": 452,
+              "completed_order_parent_tuple_references": 450,
+              "completed_order_parent_tuple_allocations": 437,
+              "ambient_order_name_reference_initializations": 384,
+              "completed_items_result_tuple_allocations": 53,
+              "completed_items_index_dictionary_allocations": 22,
+              "completed_adapter_key_dictionary_allocations": 15,
+              "completed_materialized_key_tuple_allocations": 13
+            }
+          ],
+          "normalization_paths": [
+            {
+              "legacy-direct/operands": 420,
+              "ambient/legacy-direct/operands": 384,
+              "legacy-direct/calls": 140,
+              "ambient/legacy-direct/calls": 128,
+              "version/common-base/operands": 15,
+              "version/common-base/calls": 5
+            },
+            {
+              "legacy-direct/operands": 980,
+              "ambient/legacy-direct/operands": 896,
+              "legacy-direct/calls": 280,
+              "ambient/legacy-direct/calls": 256,
+              "version/common-base/operands": 33,
+              "version/common-base/calls": 9
+            }
+          ],
+          "merge_paths": [
+            {
+              "singleton": 193,
+              "version/common-base": 4,
+              "legacy-disabled-authority": 2
+            },
+            {
+              "singleton": 253,
+              "version/common-base": 6,
+              "legacy-disabled-authority": 4
+            }
+          ]
+        }
+      ],
+      "structural_verdict": "reported-by-path-with-frozen-criteria",
+      "caps_unchanged": {
+        "MAXIMUM_ANALYSIS_HELPER_DEPTH": 64,
+        "MAXIMUM_ANALYSIS_CHILD_DEPTH": 4,
+        "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+        "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647,
+        "MAXIMUM_ANALYSIS_WORK_UNITS": 262144
+      },
+      "original_methods_delegated": true,
+      "source_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+      "baseline_source_sha256": "3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1",
+      "case_pack_sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+      "semantic_plan_sha256": "969b3acb781cca11ccd10b26eddaab300a5af7a24b4199ae235136a68f4f62ef",
+      "measurement_plan_sha256": "e6191d4f764aadde2daefb678baebcfa076bc9bb4f5a8bd01a82526b65871649",
+      "criteria_sha256": "5ed54466f7b646afa6982bc2778018a5bf00a171d7379ee3c5a64cbaea92e2ba",
+      "state_copy_full_name_entries": 0,
+      "state_copy_zero_basis": "pinned body shares the name version; counts are not inferred from state size",
+      "physical_counts_are_not_charged_units": true,
+      "physical_counts_scope": "completed selected source-proven boundaries; lower bounds if an operation throws",
+      "node_allocations_are_not_v19_dict_entry_copies": true,
+      "name_charges_are_subset_of_original_budget": true,
+      "ordered_work": "production-demanded only; first/cached calls and phases reported, no forced materialization",
+      "no_budget_objects_or_ast_caches_retained": true,
+      "exit": 0,
+      "exit_reason": "semantic-controls-passed-structural-costs-reported"
+    }
+  ],
+  "control_sha256": "6581a348af9be38e1cca66d2ff74abe4be0982c4ad7c0c02658a83a75e5d235e"
+}

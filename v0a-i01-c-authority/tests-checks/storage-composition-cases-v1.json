@@ -1,0 +1,103 @@
+{
+  "schema": "pontius-storage-composition-cases-v1",
+  "planned_cases": 4,
+  "planned_projections": 4,
+  "classifications": {
+    "clean": 2,
+    "refuse": 2
+  },
+  "cases": [
+    {
+      "id": "shared-list-consumed",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        def mutate(owner=ReviewTests):\n            owner._launch = None\n        def relay(first, second):\n            first.append(mutate)\n            second[0]()\n        items = []\n        relay(items, items)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        def mutate(owner=Model):\n            _events.append(\"callback\")\n            owner._launch = None\n            _events.append(\"write\")\n        def relay(first, second):\n            _events.append(\"relay\")\n            first.append(mutate)\n            _events.append(\"store\")\n            second[0]()\n        items = []\n        relay(items, items)\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "relay",
+          "store",
+          "callback",
+          "write"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "source_sha256": "17c6ffa2cfd833d15dac07dbc75e180cda8fb59493005238a9161e8611e9cda5",
+      "oracle_sha256": "2060fe8c9174180429b237979947a94489ee82a13ae0b4bf481a47e94c9ce3dd"
+    },
+    {
+      "id": "shared-list-dormant",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        def mutate(owner=ReviewTests):\n            owner._launch = None\n        def relay(first, second):\n            first.append(mutate)\n        items = []\n        relay(items, items)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        def mutate(owner=Model):\n            _events.append(\"callback\")\n            owner._launch = None\n            _events.append(\"write\")\n        def relay(first, second):\n            _events.append(\"relay\")\n            first.append(mutate)\n            _events.append(\"store\")\n        items = []\n        relay(items, items)\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "relay",
+          "store",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "callback",
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "source_sha256": "9ee2b03ddf0be87c68a151a7711bd7c2d2c91b17e580dbe9074792d5a8126328",
+      "oracle_sha256": "4a927350c8a6cb3541f36d67a327e277fec23a8caad930f1236c3c32da4d1065"
+    },
+    {
+      "id": "class-adoption-unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = None\n        module = \"outer\"\n        def read():\n            if owner is not None:\n                owner._launch = None\n        def change(value):\n            nonlocal owner\n            owner = value\n        class Local:\n            module = \"inner\"\n            change(ReviewTests)\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        owner = None\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if owner is not None:\n                owner._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal owner\n            _events.append(\"change\")\n            owner = value\n        class Local:\n            module = \"inner\"\n            change(Model)\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "change",
+          "read",
+          "write"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "source_sha256": "93e8441aae07fff28276b4a6c4336d940cdd8fdc166179695e3aac1e9e284fb9",
+      "oracle_sha256": "6053e9c3f2ae6635419d6086685e4949dd42618026ad2ff2fd8c5fffb7b8492e"
+    },
+    {
+      "id": "class-adoption-safe",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = ReviewTests\n        module = \"outer\"\n        def read():\n            if owner is not None:\n                owner._launch = None\n        def change(value):\n            nonlocal owner\n            owner = value\n        class Local:\n            module = \"inner\"\n            change(None)\n        read()\n        return self._launch(module=module)\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        owner = Model\n        module = \"outer\"\n        def read():\n            _events.append(\"read\")\n            if owner is not None:\n                owner._launch = None\n                _events.append(\"write\")\n        def change(value):\n            nonlocal owner\n            _events.append(\"change\")\n            owner = value\n        class Local:\n            module = \"inner\"\n            change(None)\n        read()\n        return self._launch(module=module)\n",
+      "expected": {
+        "trace": [
+          "change",
+          "read",
+          "sink"
+        ],
+        "result": "outer"
+      },
+      "unreachable_events": [
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "source_sha256": "bc61e68f1e78d1ef22f2220290373ce90a5dff7e8bcad33e6b6a8248fca6e1b0",
+      "oracle_sha256": "54473e1ffaac03fc71908c88cc3c58610abfa6d6efee0e4d62d608dd7be00c7a"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "standing": "Independent static receipt/byte audit; v20 is rejected, not acceptance or a cold verdict.",
+  "source_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+  "inputs_sha256": {
+    "engineer-checks/release20-design-311-receipt.json": "fbecc06b5f59318468d225cfae4f43fa2b6f8ebf92554e841b6b6da50c75a2e6",
+    "engineer-checks/release20-design-311-setup.json": "16e4e127a86eec6c8ad776f9cfe96be641c8a840bcbd08eff5bb42025424b375",
+    "engineer-checks/release20-design-311.txt": "a29a12d166f10ac3ef9e0b99c46df654159f0af1b242ad7963b7d5e5743b5713",
+    "engineer-checks/chain32-v20-diagnosis01-311-receipt.json": "03c82035d15ed8218e8a0ac9907eb189738402215e4bd4e93a72de6d81c14a47",
+    "engineer-checks/chain32-v20-diagnosis01-311.txt": "f4f2a44d96667f8d2b13ccf4de816b1f18541e737381d010763c33762d5d876a",
+    "tests-checks/snapshot-name-environment-v20-01.json": "69776f3ddd31d2d6c2ad49dcfc11f3bef190537aaa219dcbe4a7f8412dc7681b",
+    "tests-checks/red-name-environment-v20-01-311-receipt.json": "073271c7de10694fa72d938c9babee4a21dacaa764eacac9241f623d8f80e2b1",
+    "tests-checks/red-name-environment-v20-01-311.txt": "43d76a321846089bfc6b8ff5cb9b7f4ad97c2c9f019470287cab27ed1c882a81",
+    "tests-checks/red-name-env-v19-311-311-receipt.json": "7e72792ac56de1ca4d3db7f544803f08bcf0ed3e636e538beadd35350c22802a",
+    "tests-checks/name-environment-probe-v20-v1.py": "a45f9818129daabeed96ef5e8cfb1844df6a50bf128a17af9b654bb730c15691",
+    "tests-checks/name-environment-cases-v1.json": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c"
+  },
+  "snapshot_paths_rehashed": {
+    "design": 17,
+    "chain32": 1764,
+    "public24": 1761
+  },
+  "design53": {
+    "exit": 1,
+    "failures": 2,
+    "errors": 1
+  },
+  "chain32": {
+    "exit": 2,
+    "failure": {
+      "work_before": 262144,
+      "requested_units": 1,
+      "work_after": 262145,
+      "limit": 262144
+    },
+    "phase_units": {
+      "assignment_or_overlay": 3705,
+      "constructor": 4993,
+      "fork": 3264,
+      "join": 160983,
+      "lookup": 27392,
+      "ordering": 60301,
+      "other": 1507
+    },
+    "name_units": 250815
+  },
+  "public24": {
+    "exit": 0,
+    "cases": 24,
+    "oracle_projections": 58,
+    "semantic_errors": [],
+    "analysis_errors": [],
+    "instrumentation_errors": [],
+    "unchanged_oracle_and_public_function_asts": true,
+    "v19_charged_total": 168331,
+    "v20_charged_total": 1357663,
+    "ratio": 8.065436550605652,
+    "largest_individual_budget": 135165
+  },
+  "limits": "Floor-only v20 evidence; no 3.14, matrix, ordinary corpus generation, integration or cold verdict."
+}

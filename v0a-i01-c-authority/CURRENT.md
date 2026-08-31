@@ -16,7 +16,7 @@ The latest frozen combined candidate is rejected r010:
 Its findings and reports remain immutable. The [separate repair design](stage0-design.md)
 replaces the bounded callable-authority state/transfer representation.
 
-Last completed behavioral checks: v19 source
+Last successful full focused checks: v19 source
 3d013f20795ff4820656ef45a2aba44a2ee0ad30f830b5e18b2d6975299667c1
 passes the original 53 DesignReview tests and the new matrix's 192 schedules /
 212 harmless projections on actual Python 3.11.15 first and 3.14.6 second.
@@ -57,12 +57,27 @@ cost 36 units each at both 8 and 64 ambient names; construction, terminal orderi
 and retained-version reads still carry substantial, separately recorded costs.
 This establishes pure-storage compatibility, not ordinary-corpus GREEN.
 
-The [bounded port disposition](coordinator-storage-integration-disposition-v1.md)
-authorizes the next production edit in the isolated C worktree only. The source
-there is now an engineering work surface until its exact successor is returned
-and reviewed; v19 remains the last tested production source. All five caps, test
-contracts, accepted A/B and the other three C paths remain fixed. No main source
-integration or new frozen handoff is implied.
+The port produced v20 source
+e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679,
+which is rejected for production fitness. Its first floor DesignReview run
+completed 53 tests with two failures and one error: bounded helper analysis
+exhausts the unchanged work cap. The [single-chain diagnosis](engineer-checks/chain32-v20-diagnosis01-311-receipt.json)
+locates the dominant cost in helper-disabled joins that repeatedly rebuild name
+trees, followed by ordered reads.
+
+The [v20 public24 assessment](tests-checks/name-environment-v20-floor-report-v1.md)
+confirms all 24 public expectations and 58 harmless witnesses still pass on 3.11.
+Shared forks and enabled sparse joins improve locally, but total charged work
+rises 8.07 times versus v19. This is a consumed-budget comparison, not a runtime
+multiplier. [Coordinator verification](coordinator-v20-diagnostics-verification-v3.json)
+rehashes the retained snapshots and checks these results.
+
+The [fitness disposition](coordinator-v20-storage-fitness-disposition-v1.md)
+closes the port lease and reassesses the name-store lifetime before another edit.
+W remains exact v20; v19 is the last source with both focused populations green.
+No further v20 acceptance run, developer-slot run, matrix or ordinary generation
+is planned. All five caps, test contracts, accepted A/B and the other three C paths
+remain fixed. No main source integration or new frozen handoff is implied.
 
 Remaining order: complete the bounded repair; ordinary generation; preservation
 of all 2873 existing inventory entries and 141 canonical capability rows;
