@@ -38,11 +38,3 @@ old-engine fallback, broad suite, guarded/GPU run or main integration is implied
 
 Plan and Gate A harness are now issued; root static review completed. Independent
 harness disposition and actual baseline remain before source GO. See the preparation manifest.
-
-## Baseline complete; state primitives in progress
-
-The fixed3.11 baseline completed6/8 with intact custody/accounting. The unsafe
-class-adoption case is wrongly clean; the safe case is wrongly refused. Other
-four cases retain their expected results. See rewrite-r1-baseline-disposition-v1.md.
-Source GO is issued for Task1 under the frozen plan and size limit; root inspects
-state ownership/accounting before evaluator wiring. No replacement result yet.

@@ -1,0 +1,160 @@
+{
+  "kind": "coordinator fresh receipt/custody verification; no analyzer execution",
+  "receipt": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\rewrite-r1-gate-a-r1-base01-311-receipt.json",
+  "receipt_sha256": "a9bddbae63bf96bfa85a853ada42e0dde8a9f4a27c785a8f4c08c38ce33c8529",
+  "slot": "311",
+  "source_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "snapshot_manifest_sha256": "bbde84c5dffec02c519b57086548e7323768113d8a4bc183023537fcd6a73e35",
+  "snapshot_files_rehashed": 1770,
+  "original_inputs_rehashed": 10,
+  "outputs_rehashed": 4,
+  "actual_version": [
+    3,
+    11,
+    15
+  ],
+  "completed": true,
+  "integrity_ok": true,
+  "accounting_ok": true,
+  "semantic_failures": [
+    "class-adoption-unsafe",
+    "class-adoption-safe"
+  ],
+  "cases": [
+    {
+      "id": "shared-list-consumed",
+      "classification": "refuse",
+      "passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 13,
+          "reason": "helper namespace escape is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 14,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "budget_epochs": 4,
+      "maximum_epoch_work": 578,
+      "total_requested_units": 1055
+    },
+    {
+      "id": "shared-list-dormant",
+      "classification": "clean",
+      "passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "budget_epochs": 4,
+      "maximum_epoch_work": 684,
+      "total_requested_units": 1100
+    },
+    {
+      "id": "class-adoption-unsafe",
+      "classification": "refuse",
+      "passed": false,
+      "argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "blockers": [],
+      "budget_epochs": 4,
+      "maximum_epoch_work": 762,
+      "total_requested_units": 1240
+    },
+    {
+      "id": "class-adoption-safe",
+      "classification": "clean",
+      "passed": false,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 17,
+          "reason": "helper namespace binding change is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 17,
+          "reason": "helper namespace effects are dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 18,
+          "reason": "helper namespace mutation is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_storage_composition.py::ReviewTests::test_static",
+          "relative_path": "tests/test_storage_composition.py",
+          "line": 19,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "budget_epochs": 4,
+      "maximum_epoch_work": 520,
+      "total_requested_units": 998
+    },
+    {
+      "id": "hidden-cell-joined-reached",
+      "classification": "refuse",
+      "passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 18,
+          "reason": "helper namespace escape is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 22,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "budget_epochs": 4,
+      "maximum_epoch_work": 1011,
+      "total_requested_units": 1587
+    },
+    {
+      "id": "hidden-cell-joined-dormant",
+      "classification": "permitted-refusal",
+      "passed": true,
+      "argv": [],
+      "blockers": [
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 18,
+          "reason": "helper namespace escape is dynamically unresolved"
+        },
+        {
+          "item_id": "tests/test_structural_review.py::ReviewTests::test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "line": 21,
+          "reason": "helper namespace identity was mutated"
+        }
+      ],
+      "budget_epochs": 4,
+      "maximum_epoch_work": 985,
+      "total_requested_units": 1542
+    }
+  ],
+  "script_sha256": "2ea9d3910e788647df0615358346e6092327dc9cf3fa48cc57f3af3d0e52d9b4"
+}
