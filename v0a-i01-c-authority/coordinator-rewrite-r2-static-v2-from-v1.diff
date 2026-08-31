@@ -1,0 +1,28 @@
+--- coordinator-rewrite-r2-static-v1.py
++++ coordinator-rewrite-r2-static-v2.py
+@@ -66,8 +66,14 @@
+ def pinned_path(value, *, suffix, must_exist=True):
+     path = Path(value)
+     require(path.is_absolute() and ".." not in path.parts, "artifact path is not absolute/canonical")
+-    for item in ((path,) if must_exist or path.exists() else ()) + tuple(path.parents):
+-        require(not item.stat().st_file_attributes & 1024, "reparse artifact path: " + str(item))
++    for item in (path, *path.parents):
++        try:
++            metadata = item.lstat()
++        except FileNotFoundError:
++            if must_exist or item != path:
++                raise
++            continue
++        require(not metadata.st_file_attributes & 1024, "reparse artifact path: " + str(item))
+     path = path.resolve(strict=must_exist)
+     require(path.is_relative_to(T.resolve(strict=True)), "path is outside retained T")
+     require(path.suffix == suffix, "unexpected artifact suffix")
+@@ -349,7 +355,7 @@
+ def checked_file(path):
+     require(path.is_absolute() and ".." not in path.parts, "input path is not absolute/canonical")
+     for item in (path, *path.parents):
+-        require(not item.stat().st_file_attributes & 1024, "reparse input path: " + str(item))
++        require(not item.lstat().st_file_attributes & 1024, "reparse input path: " + str(item))
+     require(path.is_file(), "input is not a regular file: " + str(path))
+     return path
+ 
