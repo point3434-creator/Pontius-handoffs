@@ -1,0 +1,37 @@
+[
+  {
+    "label": "value-domain",
+    "old": "@dataclass(frozen=True, slots=True, eq=False)\nclass _CChoice:\n    alternatives: tuple[_CAtom | _CRef, ...]\n\n\n_CValue = _CAtom | _CRef | _CChoice",
+    "new": "@dataclass(frozen=True, slots=True, eq=False)\nclass _CBooleanUnknown:\n    \"\"\"A proved builtin bool with unknown value, never a runtime identity.\"\"\"\n\n\n@dataclass(frozen=True, slots=True, eq=False)\nclass _CChoice:\n    alternatives: tuple[_CAtom | _CRef | _CBooleanUnknown, ...]\n\n\n_CValue = _CAtom | _CRef | _CBooleanUnknown | _CChoice"
+  },
+  {
+    "label": "proof-choice-key",
+    "old": "def _c_value_key(ctx: _CContext, value: _CAtom | _CRef) -> tuple[object, ...]:\n    if type(value) is _CRef:",
+    "new": "def _c_value_key(\n    ctx: _CContext, value: _CAtom | _CRef | _CBooleanUnknown,\n) -> tuple[object, ...]:\n    if type(value) is _CBooleanUnknown:\n        ctx.budget.consume(4)  # Identity integer, tuple and two retained fields.\n        return (\"boolean-proof\", id(value))\n    if type(value) is _CRef:"
+  },
+  {
+    "label": "choice-annotation",
+    "old": "    values: list[_CAtom | _CRef] = []",
+    "new": "    values: list[_CAtom | _CRef | _CBooleanUnknown] = []"
+  },
+  {
+    "label": "identity-helper-and-truth",
+    "old": "def _c_truth(ctx: _CContext, state: _CState, value: _CValue) -> bool | None:\n    ctx.budget.consume()\n    if type(value) is _CAtom and value.kind == \"literal\":",
+    "new": "def _c_identity_compare(\n    ctx: _CContext, left: _CValue, right: _CValue, op: ast.cmpop,\n) -> _CAtom | _CBooleanUnknown:\n    ctx.budget.consume()  # Reached identity operation; no operand evaluation.\n    if type(op) is not ast.Is and type(op) is not ast.IsNot:\n        raise InventoryError(\"unsupported canonical identity comparison\")\n    answer: bool | None = None\n    if type(left) is _CRef and type(right) is _CRef:\n        ctx.budget.consume(2)  # Read the two canonical object identities.\n        answer = left.object_id == right.object_id\n    elif type(left) is _CAtom and left.kind == \"literal\" and (\n            type(right) is _CAtom and right.kind == \"literal\"):\n        ctx.budget.consume(2)  # Read the two already proved literal values.\n        a, b = left.data, right.data\n        if a is None or type(a) is bool or b is None or type(b) is bool:\n            answer = a is b\n    elif type(left) is _CRef and type(right) is _CAtom and right.kind == \"literal\":\n        ctx.budget.consume()  # Read the candidate singleton.\n        value = right.data\n        if value is None or type(value) is bool:\n            answer = False\n    elif type(right) is _CRef and type(left) is _CAtom and left.kind == \"literal\":\n        ctx.budget.consume()\n        value = left.data\n        if value is None or type(value) is bool:\n            answer = False\n    # Choices, symbols, opaque values and boolean proofs carry no identity proof.\n    if answer is None:\n        ctx.budget.consume()  # New fieldless proof value.\n        return _CBooleanUnknown()\n    if type(op) is ast.IsNot:\n        answer = not answer\n    return _c_atom(ctx, \"literal\", answer)\n\n\ndef _c_truth(\n    ctx: _CContext, state: _CState, value: _CValue,\n) -> bool | _CBooleanUnknown | None:\n    ctx.budget.consume()\n    if type(value) is _CBooleanUnknown:\n        return value\n    if type(value) is _CAtom and value.kind == \"literal\":"
+  },
+  {
+    "label": "compare-route",
+    "old": "                left, right = values\n                answer = None\n                if isinstance(node.ops[0], (ast.Is, ast.IsNot)):\n                    if type(left) is _CAtom and left.kind == \"literal\" and left.data is None:\n                        answer = type(right) is _CAtom and right.kind == \"literal\" and right.data is None\n                        if type(right) is _CAtom and right.kind in {\"unknown\", \"unbound\"}:\n                            answer = None\n                    elif type(right) is _CAtom and right.kind == \"literal\" and right.data is None:\n                        answer = type(left) is _CAtom and left.kind == \"literal\" and left.data is None\n                        if type(left) is _CAtom and left.kind in {\"unknown\", \"unbound\"}:\n                            answer = None\n                    elif type(left) is _CRef and type(right) is _CRef:\n                        answer = left.object_id == right.object_id\n                    if answer is not None and isinstance(node.ops[0], ast.IsNot):\n                        answer = not answer\n                if answer is None:\n                    value = _c_atom(ctx, \"unknown\", reason=\"unresolved comparison\")\n                else:\n                    value = _c_atom(ctx, \"literal\", answer)\n                prior = _c_follow(ctx, prior, _c_out(ctx, prior.state, value))",
+    "new": "                left, right = values\n                value = _c_identity_compare(ctx, left, right, node.ops[0])\n                prior = _c_follow(ctx, prior, _c_out(ctx, prior.state, value))"
+  },
+  {
+    "label": "not-proof-route",
+    "old": "                truth = _c_truth(ctx, prior.state, prior.result)\n                result = _c_fail(ctx, prior.state, node, \"unsupported implicit truth protocol\") if (\n                    truth is None) else _c_out(ctx, prior.state, _c_atom(ctx, \"literal\", not truth))\n                prior = _c_follow(ctx, prior, result)",
+    "new": "                truth = _c_truth(ctx, prior.state, prior.result)\n                if type(truth) is _CBooleanUnknown:\n                    ctx.budget.consume()  # Negation produces another unknown builtin bool.\n                    result = _c_out(ctx, prior.state, _CBooleanUnknown())\n                elif truth is None:\n                    result = _c_fail(ctx, prior.state, node, \"unsupported implicit truth protocol\")\n                else:\n                    result = _c_out(ctx, prior.state, _c_atom(ctx, \"literal\", not truth))\n                prior = _c_follow(ctx, prior, result)"
+  },
+  {
+    "label": "ordered-proof-branches",
+    "old": "            entered = _c_out(ctx, prior.state, prior.result)\n            for result in _c_statements(ctx, entered, frame, node.body if truth else node.orelse):\n                ctx.budget.consume(2)\n                outcomes.append(_c_follow(ctx, prior, result))",
+    "new": "            uncertain = type(truth) is _CBooleanUnknown\n            if uncertain:\n                ctx.budget.consume(3)  # Ordered pair of branch-body references.\n                branches = (node.body, node.orelse)\n            else:\n                ctx.budget.consume(2)  # One selected branch-body reference.\n                branches = (node.body if truth else node.orelse,)\n            for branch in branches:\n                ctx.budget.consume()  # Reached branch alternative.\n                current = _c_fork(ctx, prior.state) if uncertain else prior.state\n                entered = _c_out(ctx, current, prior.result)\n                for result in _c_statements(ctx, entered, frame, branch):\n                    ctx.budget.consume(2)\n                    outcomes.append(_c_follow(ctx, prior, result))"
+  }
+]
