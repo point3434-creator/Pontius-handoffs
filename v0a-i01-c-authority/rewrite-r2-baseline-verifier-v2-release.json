@@ -1,0 +1,11 @@
+{
+  "release_id": "rewrite-r2-baseline-verifier-v2",
+  "expected_head": "06e6adf1366d6b47efdb904fb957044510dcb85b",
+  "title": "Freeze the corrected R2 baseline receipt verifier",
+  "kind": "Create-only BV-1 and BV-2 corrections for static review; no payload authorization",
+  "pins": {
+    "coordinator-verify-rewrite-r2-baseline-v2.py": "3af2e99f4e5c16ff8e5116f956f0318d065f1d5a2935c3dc606bdd71d84d6585",
+    "coordinator-prepare-rewrite-r2-verifier-v2.py": "b0cab158cd262e6db6f11fa095f4e192dd76b322a04bbc62606c2eff85440e9f",
+    "rewrite-r2-baseline-verifier-engineering-review-codex-a-v1.md": "55c68f98ec6e992e3e264f99eeaaaebfc4886ebfb8aed690987b9c977415580b"
+  }
+}
