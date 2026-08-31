@@ -1,0 +1,462 @@
+diff --git a/tools/generate_test_inventory.py b/tools/generate_test_inventory.py
+index 3b5a967..f3d8bb5 100644
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -9074,6 +9074,457 @@ class _AnalysisBudget:
+         return value
+ 
+ 
++# Canonical C core. R1 Task1 is intentionally not wired to public analysis yet.
++@dataclass(frozen=True, slots=True, eq=False)
++class _CAtom:
++    kind: str
++    data: str | int | float | bool | None = None
++    reason: str | None = None
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CRef:
++    object_id: int
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CChoice:
++    alternatives: tuple[_CAtom | _CRef, ...]
++
++
++_CValue = _CAtom | _CRef | _CChoice
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CCellRef:
++    activation_id: int
++    name: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CScope:
++    node: ast.AST
++    path: str
++    kind: str
++    local_names: tuple[str, ...]
++    parameters: tuple[str, ...]
++    global_names: frozenset[str]
++    nonlocal_names: frozenset[str]
++    free_names: tuple[str, ...]
++    children: tuple[_CScope, ...]
++    sites: tuple[ast.AST, ...]
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CCapture:
++    kind: str
++    cell: _CCellRef | None
++    module: _CRef | None
++    name: str
++    reason: str | None = None
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CFrame:
++    scope: _CScope
++    activation_id: int | None
++    captures: Mapping[str, _CCapture]
++    module: _CRef
++    class_namespace: _CRef | None
++    enclosing_nonclass: _CFrame | None
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CFunction:
++    template: _CScope
++    defaults: tuple[tuple[str, _CValue], ...]
++    captures: tuple[tuple[str, _CCapture], ...]
++    descriptor_kind: str
++    body_kind: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CBound:
++    function: _CRef
++    receiver: _CValue
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CNativeMethod:
++    receiver: _CRef
++    operation: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CSequence:
++    kind: str
++    elements: tuple[_CValue, ...]
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CNamespace:
++    kind: str
++    members: Mapping[str, _CValue]
++    origin: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CInstance:
++    class_ref: _CRef
++    open_entry: bool
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CEnvironment:
++    inherited: bool
++    additions: tuple[tuple[str, str], ...]
++    removals: tuple[str, ...]
++    unresolved_reason: str | None = None
++
++
++_CObject = (
++    _CFunction | _CBound | _CNativeMethod | _CSequence
++    | _CNamespace | _CInstance | _CEnvironment
++)
++
++
++@dataclass(slots=True, eq=False)
++class _CCellBank:
++    scope: _CScope
++    values: dict[str, _CValue]
++    write_token: object
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CCellTable:
++    data: dict[int, _CCellBank]
++    write_token: object
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CObjectTable:
++    data: dict[int, _CObject]
++    write_token: object
++
++
++@dataclass(slots=True, eq=False)
++class _CState:
++    cell_banks: _CCellTable
++    objects: _CObjectTable
++    write_token: object
++    version: int
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CView:
++    cell_banks: _CCellTable
++    objects: _CObjectTable
++    version: int
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CIssue:
++    node: ast.AST
++    path: str
++    reason: str
++    category: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CTrace:
++    kind: str
++    children: tuple[_CTrace, ...]
++    event: _CCallObservation | _CSinkObservation | _CIssue | None
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _COutcome:
++    state: _CState
++    result: _CValue
++    control: str
++    exception_tag: str | None
++    explicit: bool
++    excluded_handlers: frozenset[str]
++    issues: tuple[_CIssue, ...]
++    trace: _CTrace
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CCallObservation:
++    node: ast.Call
++    selected: _CValue
++    receiver: _CValue | None
++    arguments: tuple[_CValue, ...]
++    keywords: tuple[tuple[str, _CValue], ...]
++    defaults: tuple[tuple[str, _CValue], ...]
++    frame: _CFrame
++    entry: _CView
++    completed: tuple[tuple[str, _CValue, _CView, tuple[_CIssue, ...]], ...]
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CSinkObservation:
++    node: ast.Call
++    path: str
++    function: str
++    arguments: tuple[object, ...]
++    keywords: tuple[tuple[str, object], ...]
++    environment: tuple[tuple[tuple[str, str], ...], tuple[str, ...], str | None]
++    helper_path: tuple[tuple[str, int], ...]
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CProgram:
++    modules: Mapping[str, _CScope]
++    scopes: Mapping[int, _CScope]
++    signatures: Mapping[int, _ReviewFunction]
++
++
++@dataclass(slots=True, eq=False)
++class _CArena:
++    next_id: int = 0
++
++
++@dataclass(frozen=True, slots=True, eq=False)
++class _CContext:
++    program: _CProgram
++    arena: _CArena
++    budget: _AnalysisBudget
++    item_id: str
++    path: str
++    helper_path: tuple[tuple[str, int], ...]
++
++
++def _c_identity(ctx: _CContext) -> int:
++    ctx.budget.consume(2)  # Next serial and its retained arena field.
++    identity = ctx.arena.next_id
++    ctx.arena.next_id += 1
++    return identity
++
++
++def _c_copy_dict(ctx: _CContext, source: dict[Any, Any]) -> dict[Any, Any]:
++    ctx.budget.consume(1 + 3 * len(source))  # Allocation, visits, key/value refs.
++    return source.copy()
++
++
++def _c_frozen_map(ctx: _CContext, source: dict[Any, Any]) -> Mapping[Any, Any]:
++    copied = _c_copy_dict(ctx, source)
++    ctx.budget.consume(2)  # Proxy allocation and retained dictionary.
++    return MappingProxyType(copied)
++
++
++def _c_state(ctx: _CContext) -> _CState:
++    version = _c_identity(ctx)
++    ctx.budget.consume(14)  # Token, two dicts, two 2-field tables, 4-field state.
++    token = object()
++    return _CState(_CCellTable({}, token), _CObjectTable({}, token), token, version)
++
++
++def _c_snapshot(ctx: _CContext, state: _CState) -> _CView:
++    ctx.budget.consume(6)  # 3-field view; new token and parent field replacement.
++    view = _CView(state.cell_banks, state.objects, state.version)
++    state.write_token = object()
++    return view
++
++
++def _c_fork(ctx: _CContext, state: _CState) -> _CState:
++    ctx.budget.consume(8)  # Two tokens, parent field, new 4-field state.
++    parent_token = object()
++    child_token = object()
++    child = _CState(state.cell_banks, state.objects, child_token, state.version)
++    state.write_token = parent_token
++    return child
++
++
++def _c_own_cells(ctx: _CContext, state: _CState) -> None:
++    ctx.budget.consume()  # Ownership comparison.
++    if state.cell_banks.write_token is state.write_token:
++        return
++    copied = _c_copy_dict(ctx, state.cell_banks.data)
++    ctx.budget.consume(4)  # Fresh 2-field wrapper and state field replacement.
++    state.cell_banks = _CCellTable(copied, state.write_token)
++
++
++def _c_own_objects(ctx: _CContext, state: _CState) -> None:
++    ctx.budget.consume()
++    if state.objects.write_token is state.write_token:
++        return
++    copied = _c_copy_dict(ctx, state.objects.data)
++    ctx.budget.consume(4)
++    state.objects = _CObjectTable(copied, state.write_token)
++
++
++def _c_new_activation(
++    ctx: _CContext, state: _CState, scope: _CScope,
++) -> int:
++    ctx.budget.consume()
++    if scope.kind != "function":
++        raise InventoryError("canonical lexical activation requires function scope")
++    activation = _c_identity(ctx)
++    version = _c_identity(ctx)
++    ctx.budget.consume(5)  # Values dict and one 3-field unbound atom.
++    values: dict[str, _CValue] = {}
++    unbound = _CAtom("unbound")
++    for name in scope.local_names:
++        ctx.budget.consume(4)  # Visit, insertion, retained name/value.
++        values[name] = unbound
++    ctx.budget.consume(4)  # Cell bank and its 3 retained fields.
++    bank = _CCellBank(scope, values, state.write_token)
++    _c_own_cells(ctx, state)
++    ctx.budget.consume(4)  # New table key/value, insertion, state version field.
++    state.cell_banks.data[activation] = bank
++    state.version = version
++    return activation
++
++
++def _c_cell_read(
++    ctx: _CContext, state: _CState | _CView, cell: _CCellRef,
++) -> _CValue | None:
++    ctx.budget.consume()
++    bank = state.cell_banks.data.get(cell.activation_id)
++    if bank is None:
++        return None
++    ctx.budget.consume()
++    return bank.values.get(cell.name)
++
++
++def _c_cell_write(
++    ctx: _CContext, state: _CState, cell: _CCellRef, value: _CValue,
++) -> bool:
++    ctx.budget.consume()
++    bank = state.cell_banks.data.get(cell.activation_id)
++    if bank is None:
++        return False
++    ctx.budget.consume()
++    if cell.name not in bank.values:
++        return False
++    _c_own_cells(ctx, state)
++    ctx.budget.consume()
++    if bank.write_token is not state.write_token:
++        copied = _c_copy_dict(ctx, bank.values)
++        ctx.budget.consume(6)  # 3-field bank; table update and new value ref.
++        bank = _CCellBank(bank.scope, copied, state.write_token)
++        state.cell_banks.data[cell.activation_id] = bank
++    version = _c_identity(ctx)
++    ctx.budget.consume(3)  # Existing-name update, new value ref, version field.
++    bank.values[cell.name] = value
++    state.version = version
++    return True
++
++
++def _c_object_read(
++    ctx: _CContext, state: _CState | _CView, reference: _CRef,
++) -> _CObject | None:
++    ctx.budget.consume()
++    return state.objects.data.get(reference.object_id)
++
++
++def _c_new_object(ctx: _CContext, state: _CState, record: _CObject) -> _CRef:
++    # The constructing operation charges the immutable record and its fields.
++    identity = _c_identity(ctx)
++    version = _c_identity(ctx)
++    ctx.budget.consume(2)  # Reference allocation and identity field.
++    reference = _CRef(identity)
++    _c_own_objects(ctx, state)
++    ctx.budget.consume(4)  # New table key/value, insertion, version field.
++    state.objects.data[identity] = record
++    state.version = version
++    return reference
++
++
++def _c_object_write(
++    ctx: _CContext, state: _CState, reference: _CRef, record: _CObject,
++) -> bool:
++    ctx.budget.consume()
++    if reference.object_id not in state.objects.data:
++        return False
++    _c_own_objects(ctx, state)
++    version = _c_identity(ctx)
++    ctx.budget.consume(3)  # Existing-ID update, new record ref, version field.
++    state.objects.data[reference.object_id] = record
++    state.version = version
++    return True
++
++
++def _c_value_key(ctx: _CContext, value: _CAtom | _CRef) -> tuple[object, ...]:
++    if type(value) is _CRef:
++        ctx.budget.consume(3)  # Tuple and two retained fields.
++        return ("ref", value.object_id)
++    if value.kind == "literal":
++        ctx.budget.consume(4)
++        return ("literal", type(value.data), value.data)
++    if value.kind == "symbol":
++        ctx.budget.consume(3)
++        return ("symbol", value.data)
++    ctx.budget.consume(4)  # Unknown/unbound identity integer and 2-field tuple.
++    return ("opaque", id(value))
++
++
++def _c_choice(ctx: _CContext, supplied: Iterable[_CValue]) -> _CValue:
++    ctx.budget.consume(2)  # Work list and dedup set.
++    values: list[_CAtom | _CRef] = []
++    seen: set[tuple[object, ...]] = set()
++    for value in supplied:
++        ctx.budget.consume()
++        if type(value) is _CChoice:
++            alternatives = value.alternatives
++        else:
++            ctx.budget.consume(2)
++            alternatives = (value,)
++        for alternative in alternatives:
++            ctx.budget.consume()
++            key = _c_value_key(ctx, alternative)
++            ctx.budget.consume(1 + len(key))  # Set probe and explicit key fields.
++            if key in seen:
++                continue
++            ctx.budget.consume(4 + len(key))  # Updates, retained refs, inserted-key fields.
++            seen.add(key)
++            values.append(alternative)
++    if len(values) == 1:
++        return values[0]
++    if not values:
++        ctx.budget.consume(4)
++        return _CAtom("unknown", reason="canonical alternative set is empty")
++    ctx.budget.consume(len(values))  # Visits during the final tuple copy.
++    ctx.budget.container(len(values))
++    frozen = tuple(values)
++    ctx.budget.consume(2)  # Choice and retained tuple.
++    return _CChoice(frozen)
++
++
++def _c_trace(
++    ctx: _CContext, kind: str, children: tuple[_CTrace, ...],
++    event: _CCallObservation | _CSinkObservation | _CIssue | None = None,
++) -> _CTrace:
++    ctx.budget.consume(4)  # Node plus its 3 fields; caller owns the immutable children tuple.
++    return _CTrace(kind, children, event)
++
++
++def _c_trace_link(
++    ctx: _CContext, kind: str, left: _CTrace, right: _CTrace,
++) -> _CTrace:
++    ctx.budget.consume(3)  # New pair tuple and its two retained child references.
++    return _c_trace(ctx, kind, (left, right))
++
++
++def _c_join(
++    ctx: _CContext, alternatives: Iterable[_COutcome],
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume(2)
++    outcomes: list[_COutcome] = []
++    seen: set[int] = set()
++    for outcome in alternatives:
++        ctx.budget.consume(3)  # Visit, identity integer, set probe.
++        identity = id(outcome)
++        if identity in seen:
++            continue
++        ctx.budget.consume(4)  # Set/list updates and retained references.
++        seen.add(identity)
++        outcomes.append(outcome)
++    ctx.budget.consume(1 + 2 * len(outcomes))  # Tuple allocation, visits, refs.
++    return tuple(outcomes)
++
++
+ @dataclass(slots=True)
+ class _PreclassifierExceptionalState:
+     state: tuple[dict[str, str], set[str]]
