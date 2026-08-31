@@ -176,35 +176,3 @@ verification. The source writer may now implement only the first bounded identit
 branch checkpoint under rewrite-r2-source-checkpoint1-disposition-v1.md. C8fc is
 the immutable R1 baseline; new checkpoint bytes require their own frozen review.
 No main integration, broad acceptance or final cold review is complete.
-
-
-## R2 branch source checkpoint closed; exception checkpoint active
-
-Checkpoint1 is frozen at H c119b3f2c452982cc595b156c276d5d904bbc94b,
-manifest a6399d62ee23b42673766e857af047feb3abdfcab914053813eccec4cb9b9b90,
-source 41b4de563da886a7c674d49b25acd4332ba208906b403ec244d1a4aea856ee05.
-Root and independent source/accounting reviews found no material defect within
-its identity/boolean/branch scope. The corrected AST/hash aid confirmed all21
-input identities, sixteen protected paths, original limits and exact R1 binder;
-the R2 delta is107 raw added-plus-deleted lines. This is source review, not
-runtime GREEN or a reserve/performance claim.
-
-The review utility's lexical-path finding R2-S1 is closed by its frozen v2;
-v1 remains retained and unexecuted. Reviews, the fresh static report and the
-second source checkpoint scope are at H d8c76e0688f0a77d54aab7f24a164f879a37ba6e,
-manifest31605c4b0feb18ef0aad31b2bfc6e0336da575fedcd492a7bef10eb783827f70.
-See [root source review](rewrite-r2-checkpoint1-root-review-v1.md) and
-[checkpoint2 scope](rewrite-r2-source-checkpoint2-disposition-v1.md).
-
-The sole writer is implementing proved exception construction, explicit raise,
-bounded handler matching and complete state/metadata transport. All legacy
-analysis failures remain uncatchable refusals. Deferred generators remain the
-next source checkpoint; no intermediate payload has run. The complete R2 source
-still needs its own reviewed observer adapter and all twelve fixed floor cases,
-then the development replay only after floor success.
-
-Later R3 must preserve the existing behavioral contracts while migrating private
-test interfaces and retiring superseded live machinery. Its compatibility
-inventories are future planning, not new acceptance scope or R3 source GO.
-Main integration, final cold reviews and Claude's finalizer remain open.
-[Navigation before this entry](coordinator-navigation-v22-before-v23.md).
