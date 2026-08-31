@@ -1,0 +1,34 @@
+{
+  "author_path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\coordinator-rewrite-r1-final-static-author-v1.py",
+  "author_sha256": "e376146c21b66eef3d4b73573c219643bc747e0242e13d3737df84bfe91db436",
+  "candidate_executed": false,
+  "expected_binder_source_sha256": "3511f60a62fc9588f153ba3db6b05ac228a1ce235cb23a5316000ce7ba4e550c",
+  "expected_budget_guard_count": 14,
+  "expected_consume_count": 15,
+  "expected_read_wrapper_count": 6,
+  "kind": "Authoring and ast.parse only",
+  "limits": [
+    "No verifier function has been invoked.",
+    "No final candidate has been selected, parsed, or verified by this author.",
+    "Root must inspect exact verifier before dispatch.",
+    "Direct dependency inventories do not prove transitive exclusion or -c terminal policy."
+  ],
+  "payload_executed": false,
+  "protected_path_count": 16,
+  "protected_paths_source_sha256": "d19b0a562e77e808d717f1d1838edd84ee989b4ae93a282f6fa92962e946cffd",
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "schema": "pontius-r1-final-static-authoring-v1",
+  "static_parse": {
+    "candidate_or_test_imports": false,
+    "definitions": 13,
+    "dynamic_python_execution_calls": false
+  },
+  "verifier_bytes": 30819,
+  "verifier_executed": false,
+  "verifier_path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\coordinator-rewrite-r1-final-static-v1.py",
+  "verifier_sha256": "e0a45ca46d5b1a66e1907655b2c43b704250f9d24521a908d0826f4646a5d32a"
+}

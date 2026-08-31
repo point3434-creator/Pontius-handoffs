@@ -1,0 +1,357 @@
+def _c_sink(
+    ctx: _CContext, state: _CState, call: ast.Call, function: str,
+    arguments: tuple[_CValue, ...], keywords: tuple[tuple[str, _CValue], ...],
+) -> tuple[_COutcome, ...]:
+    if len(arguments) != 1 or type(arguments[0]) is not _CRef:
+        return _c_one(ctx, _c_fail(ctx, state, call, "subprocess requires exact argv"))
+    sequence = _c_object_read(ctx, state, arguments[0])
+    if not isinstance(sequence, _CSequence) or not sequence.elements:
+        return _c_one(ctx, _c_fail(ctx, state, call, "subprocess argv is unresolved"))
+    first = sequence.elements[0]
+    if type(first) is not _CAtom or first.kind != "symbol" or first.data != "sys.executable":
+        return _c_one(ctx, _c_fail(ctx, state, call, "subprocess executable is not the active worker"))
+    ctx.budget.consume(2)
+    argv: list[object] = []
+    detached: list[tuple[str, object]] = []
+    for index, value in enumerate(sequence.elements):
+        ctx.budget.consume()
+        if index and (type(value) is not _CAtom or value.kind != "literal"
+                      or type(value.data) is not str):
+            return _c_one(ctx, _c_fail(ctx, state, call, "subprocess argv token is unresolved"))
+        if index and value.data == "-c":
+            return _c_one(ctx, _c_fail(ctx, state, call, "unsupported R1 child-program analysis"))
+        ctx.budget.consume(2)
+        argv.append("sys.executable" if not index else value.data)
+    environment = None
+    for name, value in keywords:
+        ctx.budget.consume()
+        if name == "env":
+            record = _c_object_read(ctx, state, value) if type(value) is _CRef else None
+            if not isinstance(record, _CEnvironment) or not record.inherited or (
+                    record.removals or record.unresolved_reason):
+                return _c_one(ctx, _c_fail(ctx, state, call, "unsupported subprocess environment"))
+            ctx.budget.consume(4)
+            environment = (record.additions, record.removals, None)
+            scalar = None  # Env syntax is unused by policy with the captured triple.
+        elif type(value) is _CAtom and value.kind == "literal":
+            scalar = value.data
+        else:
+            return _c_one(ctx, _c_fail(ctx, state, call, "unresolved subprocess keyword: " + name))
+        ctx.budget.consume(5)
+        detached.append((name, scalar))
+    if environment is None:
+        return _c_one(ctx, _c_fail(ctx, state, call, "R1 requires captured inherited environment"))
+    exact_argv = _c_fact_tuple(ctx.budget, argv)
+    exact_keywords = _c_fact_tuple(ctx.budget, detached)
+    ctx.budget.consume(10)  # Observation and seven fields; singleton argv tuple.
+    observed = _CSinkObservation(call, ctx.path, function, (exact_argv,), exact_keywords,
+                                environment, ctx.helper_path)
+    return _c_one(ctx, _c_out(ctx, state, trace=_c_trace(ctx, "event", (), observed)))
+
+
+def _c_emit_sink(
+    ctx: _CContext, observed: _CSinkObservation,
+) -> tuple[dict[str, object] | None, str | None]:
+    argv = observed.arguments[0]
+    ctx.budget.consume(11)  # Name/attribute/context nodes and argv work list.
+    elements: list[ast.expr] = [ast.Attribute(
+        value=ast.Name(id="sys", ctx=ast.Load()), attr="executable", ctx=ast.Load())]
+    for index in range(1, len(argv)):
+        ctx.budget.consume(5)
+        elements.append(ast.Constant(value=argv[index]))
+    ctx.budget.consume(3)  # Keyword list and empty alias/assignment maps below.
+    keywords: list[ast.keyword] = []
+    for name, value in observed.keywords:
+        ctx.budget.consume(8)
+        keywords.append(ast.keyword(arg=name, value=ast.Constant(value=value)))
+    ctx.budget.consume(20)  # Detached call/qualified name/list/context and retained fields.
+    call = ast.Call(func=ast.Attribute(value=ast.Name(id="subprocess", ctx=ast.Load()),
+                    attr=observed.function.split(".")[-1], ctx=ast.Load()),
+                    args=[ast.List(elts=elements, ctx=ast.Load())], keywords=keywords)
+    additions, removals, error = observed.environment
+    ctx.budget.consume(1 + 3 * len(additions) + 4)
+    environment = (dict(additions), removals, error)
+    ctx.budget.consume(18)  # Empty legacy visitor, never visited or used for live state.
+    execution = _ExecutionScopeVisitor()
+    process, reason, children = _process_definition(
+        call, aliases={}, assignments={}, execution=execution,
+        environment_snapshot=environment, analysis_budget=ctx.budget)
+    if reason is not None or process is None:
+        return None, reason or "canonical subprocess policy did not produce a definition"
+    if children:
+        raise InventoryError("canonical terminal policy unexpectedly entered child analysis")
+    ctx.budget.consume(1 + 3 * len(process) + 12)
+    return {"item_id": ctx.item_id, "approval_scope": "design", "capability_kind": "subprocess",
+            "capability_id": _capability_id("process", process), **process}, None
+
+
+def _c_review_outcomes(
+    ctx: _CContext, outcomes: tuple[_COutcome, ...], *, owned: bool,
+) -> tuple[list[dict[str, object]], list[dict[str, object]],
+           list[dict[str, object]], list[dict[str, object]]]:
+    ctx.budget.consume(6)
+    rows: dict[str, dict[str, object]] = {}
+    blockers: dict[tuple[int, str], dict[str, object]] = {}
+    sites: dict[tuple[object, ...], dict[str, object]] = {}
+    edges: dict[tuple[object, ...], dict[str, object]] = {}
+    scopes: dict[ast.AST, _CScope] = {}
+    observed_calls: set[ast.AST] = set()
+    normal_keys: set[str] | None = None
+    for outcome in outcomes:
+        ctx.budget.consume(5)
+        pending = [outcome.trace]
+        visited: set[int] = set()
+        counts: dict[str, int] = {}
+        while pending:
+            ctx.budget.consume(4)
+            trace = pending.pop()
+            identity = id(trace)
+            if identity in visited:
+                continue
+            ctx.budget.consume(2)
+            visited.add(identity)
+            for child in reversed(trace.children):
+                ctx.budget.consume(3)
+                pending.append(child)
+            event = trace.event
+            if isinstance(event, _CIssue):
+                ctx.budget.consume(17)
+                blockers[(int(getattr(event.node, "lineno", 0)), event.reason)] = _review_blocker(
+                    ctx.item_id, event.path, event.node, event.reason)
+            elif isinstance(event, _CCallObservation):
+                frame = event.caller_frame
+                ctx.budget.consume(5)
+                scopes[frame.scope.node] = frame.scope
+                if frame.scope.kind != "module":
+                    ctx.budget.consume(2)
+                    observed_calls.add(event.node)
+                record = _c_object_read(ctx, event.entry, event.selected) if (
+                    type(event.selected) is _CRef) else None
+                if isinstance(record, _CBound):
+                    record = _c_object_read(ctx, event.entry, record.function)
+                if isinstance(record, _CFunction):
+                    ctx.budget.consume(4)
+                    scopes[record.template.node] = record.template
+                    if frame.scope.kind != "module":
+                        ctx.budget.consume(3)
+                        definition = ctx.program.signatures[record.template.node]
+                        helper = definition.relative_path + "::" + (
+                            (definition.class_name + ".") if definition.class_name else ""
+                        ) + definition.node.name
+                        ctx.budget.consume(31)
+                        key = (frame.scope.path, event.node.lineno, helper)
+                        edges[key] = {"item_id": ctx.item_id, "caller_path": frame.scope.path,
+                                      "line": event.node.lineno, "callee_path": record.template.path,
+                                      "helper_key": helper, "callee_function": definition.node.name,
+                                      "closure_depth": max(0, len(event.helper_path) - 1)}
+            elif isinstance(event, _CSinkObservation):
+                ctx.budget.consume(34)
+                depth = max(0, len(event.helper_path) - 1)
+                helper = event.helper_path[-1][0] if depth else None
+                key = (event.path, event.node.lineno, depth, helper)
+                sites[key] = {"item_id": ctx.item_id, "relative_path": event.path,
+                              "line": event.node.lineno, "sink_kind": "subprocess",
+                              "qualified_name": event.function, "closure_depth": depth,
+                              "closure_helper_key": helper}
+                row, reason = _c_emit_sink(ctx, event) if owned else (
+                    None, "unowned import-time subprocess execution")
+                if reason is not None:
+                    ctx.budget.consume(17)
+                    blockers[(event.node.lineno, reason)] = _review_blocker(
+                        ctx.item_id, event.path, event.node, reason)
+                elif row is not None:
+                    ctx.budget.consume(4)
+                    key = str(row["capability_id"])
+                    count = ctx.budget.cardinality(counts.get(key, 0) + 1)
+                    ctx.budget.consume(6)
+                    counts[key], rows[key] = count, row
+                    if count > 1:
+                        reason = "subprocess multiplicity is not representable"
+                        ctx.budget.consume(17)
+                        blockers[(event.node.lineno, reason)] = _review_blocker(
+                            ctx.item_id, event.path, event.node, reason)
+        if outcome.control in {"normal", "return"} and not outcome.issues:
+            ctx.budget.consume(1 + 3 * len(counts))
+            keys = set(counts)
+            if normal_keys is not None:
+                ctx.budget.consume(len(normal_keys) + len(keys))
+                if normal_keys != keys:
+                    ctx.budget.consume(14)
+                    blockers[(0, "alternatives")] = {"item_id": ctx.item_id,
+                        "relative_path": ctx.path, "line": 0,
+                        "reason": "alternative subprocess definitions are not representable"}
+            normal_keys = keys
+    ctx.budget.consume()
+    dispositions: dict[ast.AST, str] = {}
+    for scope in scopes.values():
+        ctx.budget.consume()
+        for site in scope.sites:
+            ctx.budget.consume()
+            if isinstance(site, ast.Call):
+                ctx.budget.consume(4)
+                dispositions[site] = "observed" if site in observed_calls else (
+                    "blocked" if blockers else "proved_unreachable")
+    for site in observed_calls:
+        ctx.budget.consume(2)
+        if site not in dispositions:
+            raise InventoryError("canonical call lacks a static source disposition")
+    ctx.budget.consume(6)
+    result = []
+    for mapping in (rows, blockers, sites, edges):
+        ctx.budget.consume(3 + 2 * len(mapping))
+        result.append(list(mapping.values()))
+    ctx.budget.consume(5)
+    return result[0], result[1], result[2], result[3]
+
+
+def _process_review_rows(
+    sources: Mapping[str, bytes], inventory: Mapping[str, object],
+    item_universe: Iterable[tuple[str, str]],
+) -> tuple[list[dict[str, object]], list[dict[str, object]],
+           list[dict[str, object]], list[dict[str, object]]]:
+    entries = inventory.get("entries")
+    if not isinstance(entries, list):
+        raise InventoryError("inventory entries are invalid for design derivation")
+    expectations: dict[str, str] = {}
+    for entry in entries:
+        if not isinstance(entry, Mapping):
+            raise InventoryError("inventory item is invalid for design derivation")
+        assignment, exclusion = entry.get("assignment"), entry.get("exclusion")
+        if isinstance(assignment, Mapping):
+            expectation = assignment.get("expectation")
+            if not isinstance(expectation, Mapping):
+                raise InventoryError("inventory expectation is invalid for design derivation")
+            if assignment.get("profile_name") != "historical":
+                expectations[str(entry.get("stable_id"))] = str(expectation.get("kind"))
+        elif isinstance(exclusion, Mapping):
+            expectations[str(entry.get("stable_id"))] = "excluded"
+        else:
+            raise InventoryError("inventory item has no assignment or exclusion for design derivation")
+    parsed: dict[str, ast.Module] = {}
+    certificate_budgets: dict[str, _AnalysisBudget] = {}
+    for path in sorted(sources):
+        try:
+            parsed[path] = ast.parse(_canonical_lf(sources[path]).decode("utf-8"), filename=path)
+        except (UnicodeDecodeError, SyntaxError) as error:
+            raise InventoryError("design source cannot be parsed: " + path) from error
+        certificate_budgets[path] = _AnalysisBudget()
+    program = _c_program(parsed, certificate_budgets)
+    certificate_budgets[next(iter(parsed))].consume(8)
+    arena = _CArena()
+    rows, blockers, sites, edges = [], [], [], []
+    modules: dict[str, tuple[_CState, _CFrame]] = {}
+    for path, scope in program.modules.items():
+        budget = _AnalysisBudget()
+        budget.consume(7)
+        ctx = _CContext(program, arena, budget, "unowned-import-time:" + path, path, ())
+        state = _c_state(ctx)
+        budget.consume(7)
+        module = _c_new_object(ctx, state, _CNamespace("module", MappingProxyType({}), path))
+        budget.consume(10)
+        frame = _CFrame(scope, None, MappingProxyType({}), module, None, None)
+        outcomes = _c_statements(ctx, _c_out(ctx, state), frame, parsed[path].body)
+        added, refused, census, links = _c_review_outcomes(ctx, outcomes, owned=False)
+        blockers.extend(refused)
+        sites.extend(census)
+        edges.extend(links)
+        if len(outcomes) == 1 and outcomes[0].control == "normal" and not refused:
+            budget.consume(6)
+            modules[path] = (outcomes[0].state, frame)
+    for kind, item_id in item_universe:
+        expectation = expectations.get(item_id)
+        if expectation in {"declared_unconditional_skip", "excluded"}:
+            continue
+        if kind == "stable_id" and expectation is None:
+            continue
+        parts = item_id.split("::")
+        path = parts[0]
+        if kind != "stable_id" or len(parts) != 3 or path not in modules:
+            blockers.append({"item_id": item_id, "relative_path": path, "line": 0,
+                             "reason": "unsupported or unavailable canonical review entry"})
+            continue
+        state, frame = modules[path]
+        preflight = _AnalysisBudget()
+        preflight.consume(7)
+        check = _CContext(program, arena, preflight, item_id, path, ())
+        preflight.consume(2)
+        class_value = _c_namespace(check, state, frame.module).members.get(parts[1])
+        namespace = _c_object_read(check, state, class_value) if type(class_value) is _CRef else None
+        if not isinstance(namespace, _CNamespace) or namespace.origin != "unittest.TestCase":
+            blockers.append(_review_blocker(item_id, path, frame.scope.node,
+                                           "entry lacks canonical unittest class"))
+            continue
+        preflight.consume()
+        method = namespace.members.get(parts[2])
+        definition = _c_object_read(check, state, method) if type(method) is _CRef else None
+        if not isinstance(definition, _CFunction):
+            blockers.append(_review_blocker(item_id, path, frame.scope.node,
+                                           "entry is not a canonical function"))
+            continue
+        duplicate = 0
+        for child in frame.scope.children:
+            preflight.consume()
+            if child.kind == "class" and child.node.name == parts[1]:
+                for nested in child.children:
+                    preflight.consume()
+                    if nested.kind == "function" and nested.node.name == parts[2]:
+                        duplicate += 1
+        if duplicate != 1:
+            blockers.append(_review_blocker(item_id, path, definition.template.node,
+                                           "duplicate or indirect unittest entry is unsupported"))
+            continue
+        parameters = definition.template.node.args
+        preflight.consume(4)
+        invalid = (definition.descriptor_kind != "ordinary" or parameters.vararg is not None
+                   or parameters.kwarg is not None or
+                   len(parameters.posonlyargs) + len(parameters.args) < 1 or
+                   len(parameters.posonlyargs) + len(parameters.args) - len(parameters.defaults) > 1)
+        for default in parameters.kw_defaults:
+            preflight.consume()
+            if default is None:
+                invalid = True
+        for name in ("setUp", "tearDown", "setUpClass", "tearDownClass"):
+            preflight.consume()
+            if name in namespace.members:
+                invalid = True
+        if invalid:
+            blockers.append(_review_blocker(item_id, path, definition.template.node,
+                                           "unsupported unittest signature or fixture hooks"))
+            continue
+        budget = _AnalysisBudget()
+        budget.consume(7)
+        ctx = _CContext(program, arena, budget, item_id, path, ())
+        entered = _c_fork(ctx, state)
+        budget.consume(3)
+        receiver = _c_new_object(ctx, entered, _CInstance(class_value, True))
+        selected = _c_read_member(ctx, entered, receiver, parts[2], definition.template.node)
+        budget.consume(19)
+        call = ast.Call(func=ast.Name(id=parts[2], ctx=ast.Load()), args=[], keywords=[])
+        ast.copy_location(call, definition.template.node)
+        completed: list[_COutcome] = []
+        for value in selected:
+            budget.consume()
+            produced = _c_call(ctx, value.state, frame, call, value.result, (), (), entry_call=True) if (
+                value.control == "normal") else _c_one(ctx, value)
+            for outcome in produced:
+                budget.consume(2)
+                completed.append(_c_follow(ctx, value, outcome))
+        added, refused, census, links = _c_review_outcomes(
+            ctx, _c_join(ctx, completed), owned=True)
+        budget.consume(len(added) + len(refused) + len(census) + len(links))
+        rows.extend(added)
+        blockers.extend(refused)
+        sites.extend(census)
+        edges.extend(links)
+    rows, duplicate_items = _normalise_review_rows(rows)
+    for item_id in sorted(duplicate_items):
+        blockers.append({"item_id": item_id, "relative_path": item_id.split("::", 1)[0],
+                         "line": 0, "reason": "subprocess multiplicity is not representable"})
+    blockers.sort(key=lambda row: (str(row["item_id"]), str(row["relative_path"]), int(row["line"])))
+    sites.sort(key=lambda row: (str(row["relative_path"]), int(row["line"]),
+                               str(row["sink_kind"]), str(row["item_id"]),
+                               str(row["closure_helper_key"])))
+    edges.sort(key=lambda row: (str(row["caller_path"]), int(row["line"]),
+                               str(row["callee_path"]), str(row["item_id"])))
+    return rows, blockers, sites, edges
+
+
