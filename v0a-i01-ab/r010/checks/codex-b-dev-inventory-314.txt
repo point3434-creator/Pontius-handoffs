@@ -1,0 +1,27 @@
+{"identity_before_imports": {"executable": "D:\\Pontius\\.venv\\Scripts\\python.exe", "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]", "version_info": [3, 14, 6], "implementation": "cpython"}}
+{"annotation_runtime_oracle": "parameter-call", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "parameter-call", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "literal", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "literal", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "method-parameter-call", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "method-parameter-call", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "method-readonly-call", "future": false, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "method-readonly-call", "future": true, "version": "3.14.6", "actual": "fixed", "expected_refusal": false}
+...........................................test inventory generation failed: design review destination must be an absolute OS-temp child
+test inventory generation failed: design write requires both approval tokens
+................................................................<helper-summary-finally-return-overrides-must-raise-body>:5: SyntaxWarning: 'return' in a 'finally' block
+............
+----------------------------------------------------------------------
+Ran 119 tests in 296.399s
+
+OK

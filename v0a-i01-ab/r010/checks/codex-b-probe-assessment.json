@@ -1,0 +1,111 @@
+{
+  "candidate": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "manifest": "8741fa20b1ebc7e9e9d226f463680c603c348f1332bf19c8ae12b29579f76deb",
+  "confirmed_defect_family": "Nested native collection retention loses callable authority",
+  "confirmed_cases": [
+    {
+      "case": "nested-list-retained",
+      "source_sha256": "415711c086427e7a339216e2de1246ff099dba90e8fb48182b14bc8d6c33a360",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    },
+    {
+      "case": "nested-dict-list-retained",
+      "source_sha256": "f00aef0b96d98438fb9a55c14fe1083f6435374dbb5381c563c3df2eaa67198f",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    },
+    {
+      "case": "nested-tuple-list-retained",
+      "source_sha256": "a658718be647a75a65487a1f6f69f511c55852e6fe968a4b69eb852149016525",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    },
+    {
+      "case": "alias-nested-retained",
+      "source_sha256": "c0fa09edf4fbf0e5249c1894a4ee097dce47b6b3b01e14a5272a67bc77cb3483",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    },
+    {
+      "case": "nested-extend",
+      "source_sha256": "5305451dd8a47736d67f7fc21a699711490788214b22a2a44d2f3b0a28080fbd",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    },
+    {
+      "case": "nested-insert",
+      "source_sha256": "f7f5194df0b417a6f5acd5608d12a89fddc23bf0c19194a5380d60bf79e6b034",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    },
+    {
+      "case": "nested-direct-call",
+      "source_sha256": "eb532e4e449d9fc9f16b20cf22dca75a87ae638b4e871c12cb089a767723023b",
+      "actual_runtime": "TypeError",
+      "actual_analyzer_blocker_count": 0,
+      "actual_process_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ]
+    }
+  ],
+  "classification_note": "The initial absent-global default control is not a finding: lack of a supplied binding is not a proof of failed lookup. Three follow-up explicit failure-order controls passed on both interpreters. Empty-filter and division controls were recorded as conservative-permitted observations, not precision gates.",
+  "probe_process_exit_meaning": "The probe runner exits zero when observations were recorded; its satisfied fields report semantic mismatches. Zero is not a passing defect verdict.",
+  "evidence": [
+    {
+      "path": "codex-b-floor-probes-311.txt",
+      "sha256": "d5f9c7f9b16b28704b72fd5ce96bf7daa05cdf727c3b04bd6cdbedc0a79d0587"
+    },
+    {
+      "path": "codex-b-dev-probes-314.txt",
+      "sha256": "d65b518de02066fc777db9bff9ecf4db21de5459fa1de3bf6143ac11df383404"
+    },
+    {
+      "path": "codex-b-floor-order-311.txt",
+      "sha256": "becfd7b8f9f11fb255b114941081bfa7359caf327ec787c0b1a07055bd34051a"
+    },
+    {
+      "path": "codex-b-dev-order-314.txt",
+      "sha256": "23015cc05ab38645b0174f2e3b9c1236ace1548314133eff8a63dd94a582b399"
+    }
+  ]
+}
