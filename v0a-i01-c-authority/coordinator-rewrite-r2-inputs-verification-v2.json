@@ -1,0 +1,69 @@
+{
+  "kind": "root static input custody and exact-delta verification",
+  "commit": "aa75536cad0ae54b76b02f9351cd7bc789d7f443",
+  "manifest_sha256": "96d1b71a3a08b73d2cf1bb09d3ac06473253b6291addf2fbefc541e3bbe3b41f",
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "pins": {
+    "tests-checks/rewrite-r2-identity-coverage-v1.json": "05e24952ff5672554012bfb784215d76e44f7d95b2f3dbd1e3c0f8672d13ec38",
+    "rewrite-r2-plan-addendum-v1.md": "1a1a6bc7f8ef4c56a72735670ff0bb65e883f3aa559abec7b4fec01af6991998",
+    "tests-checks/rewrite-r2-identity-population-v1.json": "30295f39daafcf265103cd78f3de50393c9111633ca3d5f8515e3f77c9a1197a",
+    "tests-checks/rewrite-r2-identity-inputs-handoff-v1.md": "354c38c26be50e1992a155ffd9505f8fecc23fdeb67482e4cb70853e0046effb",
+    "tests-checks/rewrite-r2-identity-cases-v1.json": "4834971b9d63aa182c1207959721b6bb65f742a106541d96975945060134d9ea",
+    "tests-checks/rewrite-r2-identity-source-model-differences-v1.diff": "d132ded3312b936a5510a4c498f39c06d3a4a6259903cd8ddef0269211e110a6",
+    "tests-checks/name-environment-cases-v1.json": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+    "rewrite-early-population-v1.json": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce"
+  },
+  "case_checks": [
+    {
+      "id": "identity-scale-n8-s4-d0-normal",
+      "source_and_Model_inverse_exact": true,
+      "witness_discriminator_only_delta": true
+    },
+    {
+      "id": "identity-scale-n64-s4-d0-normal",
+      "source_and_Model_inverse_exact": true,
+      "witness_discriminator_only_delta": true
+    },
+    {
+      "id": "identity-scale-n8-s4-d2-exceptional",
+      "source_and_Model_inverse_exact": true,
+      "witness_discriminator_only_delta": true
+    },
+    {
+      "id": "identity-scale-n64-s4-d2-exceptional",
+      "source_and_Model_inverse_exact": true,
+      "witness_discriminator_only_delta": true
+    }
+  ],
+  "unchanged_descriptors": [
+    "shared-list-consumed",
+    "shared-list-dormant",
+    "class-adoption-unsafe",
+    "class-adoption-safe",
+    "hidden-cell-joined-reached",
+    "hidden-cell-joined-dormant",
+    "helper65",
+    "generator70"
+  ],
+  "public_source_references_preserved_no_selector_domain": true,
+  "caps_and_original_test_module_preserved": true,
+  "source_Model_or_candidate_execution": false,
+  "claims_exclude": [
+    "Model outcomes",
+    "analyzer semantics",
+    "mechanism coverage",
+    "work reserve"
+  ],
+  "unresolved_envelope_refs": {
+    "hidden-cell-joined-dormant": "name_environment_public",
+    "hidden-cell-joined-reached": "name_environment_public"
+  },
+  "prior_verifier_failure": "v1 stopped before report: it compared old dependency descriptor with new expanded envelope. v2 checks unchanged source references and public parameters explicitly; neither executed fixtures.",
+  "prior_verifier_sha256": "8a135fbe08a41b4644a9caba8f104b05c9dd2faff3e4769611e0a83bf4c746b1",
+  "verifier_sha256": "50ff08638375e46357f1667749bb1c0db3c6cc8966bf3c5e37fa0500d4f5263b",
+  "pass": false
+}
