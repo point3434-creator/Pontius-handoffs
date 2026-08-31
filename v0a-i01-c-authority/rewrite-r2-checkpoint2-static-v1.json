@@ -1,0 +1,189 @@
+{
+  "schema": "pontius-rewrite-r2-checkpoint2-static-v1",
+  "status": "engineering-source-checkpoint-held-not-runtime-acceptance",
+  "authority": {
+    "frozen_commit": "d8c76e0688f0a77d54aab7f24a164f879a37ba6e",
+    "manifest_sha256": "31605c4b0feb18ef0aad31b2bfc6e0336da575fedcd492a7bef10eb783827f70",
+    "disposition": "rewrite-r2-source-checkpoint2-disposition-v1.md",
+    "disposition_sha256": "5c0e09c4bdda13848f78827ef139a0776859ec4eaf59fd3da76a003fed340b5b"
+  },
+  "bases": {
+    "checkpoint1": "41b4de563da886a7c674d49b25acd4332ba208906b403ec244d1a4aea856ee05",
+    "r1": "c8fc013d2be7599aa41b873552dd2a11191f2be1342d1a8f2bd04a39dc1dbd5f"
+  },
+  "verification": {
+    "source_sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d",
+    "bytes": 1178999,
+    "checkpoint2": {
+      "added": 242,
+      "deleted": 21,
+      "total": 263
+    },
+    "cumulative_r2": {
+      "added": 314,
+      "deleted": 46,
+      "total": 360
+    },
+    "changed_nodes": [
+      "_CChoice",
+      "_CValue",
+      "_CObject",
+      "_COutcome",
+      "_CCallObservation",
+      "_c_value_key",
+      "_c_choice",
+      "_c_out",
+      "_c_fail",
+      "_c_follow",
+      "_c_read_name",
+      "_c_eval",
+      "_c_statement",
+      "_c_call",
+      "_c_invoke",
+      "_c_review_outcomes"
+    ],
+    "added_nodes": [
+      "_CExceptionType",
+      "_CException",
+      "_CExceptionOrigin",
+      "_c_raise_known",
+      "_c_exception_matches",
+      "_c_handle_known_exception",
+      "_c_match_known_handlers",
+      "_c_try"
+    ],
+    "preserved_core": [
+      "_AnalysisBudget",
+      "_bind_helper_arguments",
+      "_c_binding_read",
+      "_CContext",
+      "_c_identity_compare",
+      "_c_truth",
+      "_c_fork",
+      "_c_snapshot",
+      "_c_join",
+      "_c_new_activation",
+      "_c_cell_write",
+      "_c_object_write",
+      "_c_statements",
+      "_c_eval_many",
+      "_c_store",
+      "_c_scope",
+      "_c_construct_class",
+      "_c_construct_function",
+      "_c_sink",
+      "_c_emit_sink",
+      "_process_review_rows"
+    ],
+    "reverse_exact": true,
+    "style": true,
+    "candidate_imported": false,
+    "payload_executed": false,
+    "legacy_tagged_failures": 6,
+    "all_legacy_failures_refused": true,
+    "completion_tuple_fields": 9,
+    "proof_producers_unique": true,
+    "historical_completed_not_terminal": true
+  },
+  "retained_checker_execution": {
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "flags": [
+      "-I",
+      "-S",
+      "-B",
+      "-P"
+    ],
+    "exit_code": 0,
+    "wall_time_seconds": 5.7157421,
+    "static_ast_hash_only": true
+  },
+  "outcome_constructor_counts": {
+    "_COutcome": 1,
+    "_c_out": 40,
+    "_CExceptionType": 1,
+    "_CExceptionOrigin": 1,
+    "_c_raise_known": 1,
+    "_CCallObservation": 1,
+    "_CException": 1,
+    "_CContext": 4
+  },
+  "artifacts": {
+    "rewrite-r2-checkpoint2-source-v1.py": {
+      "sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d",
+      "bytes": 1178999
+    },
+    "rewrite-r2-checkpoint2-from-checkpoint1-v1.diff": {
+      "sha256": "fec89fbb58d6dc5cf09f7276c10d7b43ee75499aaeaee847e7c78d400f23cb45",
+      "bytes": 18801
+    },
+    "rewrite-r2-checkpoint2-from-r1-v1.diff": {
+      "sha256": "d98024cf42d29d11475dae4e62b73f51ecaf20d38b2932ab73da9bb319d0e759",
+      "bytes": 24944
+    },
+    "rewrite-r2-checkpoint2-outcome-inventory-v1.json": {
+      "sha256": "1e44dc04620d2bef50815e10ba0809b7b81a06b475c455d87e2723ac324b1456",
+      "bytes": 21821
+    },
+    "rewrite-r2-checkpoint2-edits-v1.json": {
+      "sha256": "3537edb006c728aced6e8e19f844451d87da89f53d1fc2ecd7855445ae178d66",
+      "bytes": 18317
+    },
+    "rewrite-r2-checkpoint2-static-check-v1.py": {
+      "sha256": "4a5f2d351f289cfc846c8de3fbc01b7cca24e5e15ffbfb208d50278ae4dd6380",
+      "bytes": 6793
+    }
+  },
+  "protected_before": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6"
+  },
+  "protected_after": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6"
+  },
+  "protected_preserved": true,
+  "authoring_failure": {
+    "category": "CreateProcess command-line length",
+    "windows_error": 206,
+    "process_started": false,
+    "candidate_changed_by_failed_attempt": false,
+    "resolution": "Retain exact operations/checker separately; bounded static/data install script."
+  },
+  "candidate_runtime_executed": false,
+  "test_or_model_executed": false,
+  "manual_scope_approval": false,
+  "full_r010_root_static_aid_executed_by_author": false,
+  "limits": [
+    "AST/hash checks do not establish runtime behavior or reserve fitness.",
+    "Checkpoint3 generator/deferred-depth implementation is absent.",
+    "Root retains scope, independent review, freeze and payload authority."
+  ]
+}

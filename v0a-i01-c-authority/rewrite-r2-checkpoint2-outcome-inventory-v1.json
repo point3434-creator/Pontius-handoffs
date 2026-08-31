@@ -1,0 +1,923 @@
+{
+  "before_source_sha256": "41b4de563da886a7c674d49b25acd4332ba208906b403ec244d1a4aea856ee05",
+  "after_source_sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d",
+  "before": [
+    {
+      "owner": "_c_out",
+      "line": 9886,
+      "target": "_COutcome",
+      "call": "_COutcome(state, value, control, exception, False, frozenset(), issues, trace)"
+    },
+    {
+      "owner": "_c_fail",
+      "line": 9896,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, control='refused' if exception is None else 'raise', exception=exception, issues=(issue,), trace=trace)"
+    },
+    {
+      "owner": "_c_follow",
+      "line": 9904,
+      "target": "_c_out",
+      "call": "_c_out(ctx, result.state, result.result, control=result.control, exception=result.exception_tag, issues=issues, trace=trace)"
+    },
+    {
+      "owner": "_c_read_name",
+      "line": 9935,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 9948,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 9962,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 9964,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, _c_atom(ctx, 'unknown', reason='open unittest receiver attribute'))"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 9969,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_element",
+      "line": 9980,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, record.elements[index.data])"
+    },
+    {
+      "owner": "_c_eval_many",
+      "line": 9990,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_store_name",
+      "line": 10020,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, installed)"
+    },
+    {
+      "owner": "_c_store_name",
+      "line": 10025,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_store",
+      "line": 10042,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_store",
+      "line": 10059,
+      "target": "_c_out",
+      "call": "_c_out(ctx, result.state, value, issues=result.issues, trace=result.trace)"
+    },
+    {
+      "owner": "_c_eval_dict",
+      "line": 10164,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_eval_dict",
+      "line": 10223,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, value)"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10235,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, _c_atom(ctx, 'literal', node.value))"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10258,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, value)"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10337,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, value)"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10350,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, _CBooleanUnknown())"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10354,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, _c_atom(ctx, 'literal', not truth))"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10386,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10388,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10443,
+      "target": "_c_out",
+      "call": "_c_out(ctx, current, prior.result)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10449,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10467,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10475,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, prior.result, control='return', issues=prior.issues, trace=prior.trace)"
+    },
+    {
+      "owner": "_c_construct_class",
+      "line": 10614,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state)"
+    },
+    {
+      "owner": "_c_call",
+      "line": 10657,
+      "target": "_CCallObservation",
+      "call": "_CCallObservation(call, selected, receiver, arguments, keywords, defaults, frame, entry, ctx.helper_path, completed)"
+    },
+    {
+      "owner": "_c_call",
+      "line": 10665,
+      "target": "_c_out",
+      "call": "_c_out(ctx, outcome.state, outcome.result, control=outcome.control, exception=outcome.exception_tag, issues=outcome.issues, trace=trace)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10680,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, _c_atom(ctx, 'symbol', 'os'))"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10700,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10757,
+      "target": "_CContext",
+      "call": "_CContext(ctx.program, ctx.arena, ctx.budget, ctx.item_id, record.template.path, helper_path)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10761,
+      "target": "_c_out",
+      "call": "_c_out(entered, state)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10765,
+      "target": "_c_out",
+      "call": "_c_out(ctx, outcome.state, result, issues=outcome.issues, trace=outcome.trace)"
+    },
+    {
+      "owner": "_c_sink",
+      "line": 10819,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, result, trace=_c_trace(ctx, 'event', (), observed))"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11163,
+      "target": "_CContext",
+      "call": "_CContext(program, arena, budget, 'unowned-import-time:' + path, path, ())"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11169,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11192,
+      "target": "_CContext",
+      "call": "_CContext(program, arena, preflight, item_id, path, ())"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11239,
+      "target": "_CContext",
+      "call": "_CContext(program, arena, budget, item_id, path, ())"
+    }
+  ],
+  "after": [
+    {
+      "owner": "_c_out",
+      "line": 9916,
+      "target": "_COutcome",
+      "call": "_COutcome(state, value, control, exception, exception_value, exception_origin, explicit, excluded_handlers, issues, trace)"
+    },
+    {
+      "owner": "_c_fail",
+      "line": 9928,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, control='refused', issues=(issue,), trace=trace)"
+    },
+    {
+      "owner": "_c_follow",
+      "line": 9936,
+      "target": "_c_out",
+      "call": "_c_out(ctx, result.state, result.result, control=result.control, exception=result.exception_tag, exception_value=result.exception_value, exception_origin=result.exception_origin, explicit=result.explicit, excluded_handlers=result.excluded_handlers, issues=issues, trace=trace)"
+    },
+    {
+      "owner": "_c_read_name",
+      "line": 9965,
+      "target": "_CExceptionType",
+      "call": "_CExceptionType(name)"
+    },
+    {
+      "owner": "_c_read_name",
+      "line": 9974,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 9987,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 10001,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 10003,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, _c_atom(ctx, 'unknown', reason='open unittest receiver attribute'))"
+    },
+    {
+      "owner": "_c_read_member",
+      "line": 10008,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_read_element",
+      "line": 10019,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, record.elements[index.data])"
+    },
+    {
+      "owner": "_c_eval_many",
+      "line": 10029,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_store_name",
+      "line": 10059,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, installed)"
+    },
+    {
+      "owner": "_c_store_name",
+      "line": 10064,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_store",
+      "line": 10081,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_store",
+      "line": 10098,
+      "target": "_c_out",
+      "call": "_c_out(ctx, result.state, value, issues=result.issues, trace=result.trace)"
+    },
+    {
+      "owner": "_c_eval_dict",
+      "line": 10203,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_eval_dict",
+      "line": 10262,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, value)"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10274,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, _c_atom(ctx, 'literal', node.value))"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10297,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, value)"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10376,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, value)"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10390,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, _c_atom(ctx, 'literal', -value.data))"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10406,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, _CBooleanUnknown())"
+    },
+    {
+      "owner": "_c_eval",
+      "line": 10410,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, _c_atom(ctx, 'literal', not truth))"
+    },
+    {
+      "owner": "_c_raise_known",
+      "line": 10427,
+      "target": "_CExceptionOrigin",
+      "call": "_CExceptionOrigin(site, ctx.path)"
+    },
+    {
+      "owner": "_c_raise_known",
+      "line": 10428,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, exception, control='raise', exception=record.tag, exception_value=exception, exception_origin=origin, explicit=explicit)"
+    },
+    {
+      "owner": "_c_handle_known_exception",
+      "line": 10461,
+      "target": "_c_out",
+      "call": "_c_out(ctx, raised.state, issues=raised.issues, trace=raised.trace)"
+    },
+    {
+      "owner": "_c_match_known_handlers",
+      "line": 10500,
+      "target": "_c_out",
+      "call": "_c_out(ctx, entered.state, prior.result, control='raise', exception=prior.exception_tag, exception_value=prior.exception_value, exception_origin=prior.exception_origin, explicit=prior.explicit, excluded_handlers=prior.excluded_handlers, issues=entered.issues, trace=entered.trace)"
+    },
+    {
+      "owner": "_c_try",
+      "line": 10527,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10564,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10566,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10606,
+      "target": "_c_raise_known",
+      "call": "_c_raise_known(ctx, prior.state, node, prior.result, explicit=True)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10636,
+      "target": "_c_out",
+      "call": "_c_out(ctx, current, prior.result)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10642,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10660,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_statement",
+      "line": 10668,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state, prior.result, control='return', issues=prior.issues, trace=prior.trace)"
+    },
+    {
+      "owner": "_c_construct_class",
+      "line": 10807,
+      "target": "_c_out",
+      "call": "_c_out(ctx, prior.state)"
+    },
+    {
+      "owner": "_c_call",
+      "line": 10855,
+      "target": "_CCallObservation",
+      "call": "_CCallObservation(call, selected, receiver, arguments, keywords, defaults, frame, entry, ctx.helper_path, completed)"
+    },
+    {
+      "owner": "_c_call",
+      "line": 10863,
+      "target": "_c_out",
+      "call": "_c_out(ctx, outcome.state, outcome.result, control=outcome.control, exception=outcome.exception_tag, exception_value=outcome.exception_value, exception_origin=outcome.exception_origin, explicit=outcome.explicit, excluded_handlers=outcome.excluded_handlers, issues=outcome.issues, trace=trace)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10881,
+      "target": "_CException",
+      "call": "_CException(selected.tag, arguments)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10882,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, value)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10887,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, _c_atom(ctx, 'symbol', 'os'))"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10907,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10964,
+      "target": "_CContext",
+      "call": "_CContext(ctx.program, ctx.arena, ctx.budget, ctx.item_id, record.template.path, helper_path)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10968,
+      "target": "_c_out",
+      "call": "_c_out(entered, state)"
+    },
+    {
+      "owner": "_c_invoke",
+      "line": 10972,
+      "target": "_c_out",
+      "call": "_c_out(ctx, outcome.state, result, issues=outcome.issues, trace=outcome.trace)"
+    },
+    {
+      "owner": "_c_sink",
+      "line": 11026,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state, result, trace=_c_trace(ctx, 'event', (), observed))"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11384,
+      "target": "_CContext",
+      "call": "_CContext(program, arena, budget, 'unowned-import-time:' + path, path, ())"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11390,
+      "target": "_c_out",
+      "call": "_c_out(ctx, state)"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11413,
+      "target": "_CContext",
+      "call": "_CContext(program, arena, preflight, item_id, path, ())"
+    },
+    {
+      "owner": "_process_review_rows",
+      "line": 11460,
+      "target": "_CContext",
+      "call": "_CContext(program, arena, budget, item_id, path, ())"
+    }
+  ],
+  "canonical_spans_after": {
+    "_CAtom": {
+      "line": 9079,
+      "end_line": 9082
+    },
+    "_CRef": {
+      "line": 9086,
+      "end_line": 9087
+    },
+    "_CBooleanUnknown": {
+      "line": 9091,
+      "end_line": 9092
+    },
+    "_CExceptionType": {
+      "line": 9096,
+      "end_line": 9097
+    },
+    "_CChoice": {
+      "line": 9101,
+      "end_line": 9102
+    },
+    "_CCellRef": {
+      "line": 9109,
+      "end_line": 9111
+    },
+    "_CScope": {
+      "line": 9115,
+      "end_line": 9125
+    },
+    "_CCapture": {
+      "line": 9129,
+      "end_line": 9134
+    },
+    "_CFrame": {
+      "line": 9138,
+      "end_line": 9144
+    },
+    "_CFunction": {
+      "line": 9148,
+      "end_line": 9153
+    },
+    "_CBound": {
+      "line": 9157,
+      "end_line": 9159
+    },
+    "_CNativeMethod": {
+      "line": 9163,
+      "end_line": 9165
+    },
+    "_CSequence": {
+      "line": 9169,
+      "end_line": 9171
+    },
+    "_CNamespace": {
+      "line": 9175,
+      "end_line": 9178
+    },
+    "_CInstance": {
+      "line": 9182,
+      "end_line": 9184
+    },
+    "_CException": {
+      "line": 9188,
+      "end_line": 9190
+    },
+    "_CEnvironment": {
+      "line": 9194,
+      "end_line": 9198
+    },
+    "_CCellBank": {
+      "line": 9208,
+      "end_line": 9211
+    },
+    "_CCellTable": {
+      "line": 9215,
+      "end_line": 9217
+    },
+    "_CObjectTable": {
+      "line": 9221,
+      "end_line": 9223
+    },
+    "_CState": {
+      "line": 9227,
+      "end_line": 9231
+    },
+    "_CView": {
+      "line": 9235,
+      "end_line": 9238
+    },
+    "_CIssue": {
+      "line": 9242,
+      "end_line": 9246
+    },
+    "_CTrace": {
+      "line": 9250,
+      "end_line": 9253
+    },
+    "_CExceptionOrigin": {
+      "line": 9257,
+      "end_line": 9259
+    },
+    "_COutcome": {
+      "line": 9263,
+      "end_line": 9273
+    },
+    "_CCallObservation": {
+      "line": 9277,
+      "end_line": 9290
+    },
+    "_CSinkObservation": {
+      "line": 9294,
+      "end_line": 9301
+    },
+    "_CProgram": {
+      "line": 9305,
+      "end_line": 9308
+    },
+    "_CArena": {
+      "line": 9312,
+      "end_line": 9313
+    },
+    "_CContext": {
+      "line": 9317,
+      "end_line": 9323
+    },
+    "_c_identity": {
+      "line": 9326,
+      "end_line": 9330
+    },
+    "_c_copy_dict": {
+      "line": 9333,
+      "end_line": 9335
+    },
+    "_c_frozen_map": {
+      "line": 9338,
+      "end_line": 9341
+    },
+    "_c_state": {
+      "line": 9344,
+      "end_line": 9348
+    },
+    "_c_snapshot": {
+      "line": 9351,
+      "end_line": 9355
+    },
+    "_c_fork": {
+      "line": 9358,
+      "end_line": 9364
+    },
+    "_c_own_cells": {
+      "line": 9367,
+      "end_line": 9373
+    },
+    "_c_own_objects": {
+      "line": 9376,
+      "end_line": 9382
+    },
+    "_c_new_activation": {
+      "line": 9385,
+      "end_line": 9405
+    },
+    "_c_cell_read": {
+      "line": 9408,
+      "end_line": 9416
+    },
+    "_c_cell_write": {
+      "line": 9419,
+      "end_line": 9440
+    },
+    "_c_object_read": {
+      "line": 9443,
+      "end_line": 9447
+    },
+    "_c_new_object": {
+      "line": 9450,
+      "end_line": 9460
+    },
+    "_c_object_write": {
+      "line": 9463,
+      "end_line": 9474
+    },
+    "_c_value_key": {
+      "line": 9477,
+      "end_line": 9496
+    },
+    "_c_choice": {
+      "line": 9499,
+      "end_line": 9528
+    },
+    "_c_trace": {
+      "line": 9531,
+      "end_line": 9536
+    },
+    "_c_trace_link": {
+      "line": 9539,
+      "end_line": 9543
+    },
+    "_c_join": {
+      "line": 9546,
+      "end_line": 9561
+    },
+    "_c_fact_tuple": {
+      "line": 9564,
+      "end_line": 9568
+    },
+    "_c_scope": {
+      "line": 9571,
+      "end_line": 9757
+    },
+    "_c_program": {
+      "line": 9760,
+      "end_line": 9779
+    },
+    "_c_local_name": {
+      "line": 9782,
+      "end_line": 9787
+    },
+    "_c_namespace": {
+      "line": 9790,
+      "end_line": 9796
+    },
+    "_c_namespace_write": {
+      "line": 9799,
+      "end_line": 9814
+    },
+    "_c_capture": {
+      "line": 9817,
+      "end_line": 9842
+    },
+    "_c_captures": {
+      "line": 9845,
+      "end_line": 9860
+    },
+    "_c_name_route": {
+      "line": 9863,
+      "end_line": 9893
+    },
+    "_c_atom": {
+      "line": 9896,
+      "end_line": 9898
+    },
+    "_c_out": {
+      "line": 9901,
+      "end_line": 9917
+    },
+    "_c_fail": {
+      "line": 9920,
+      "end_line": 9928
+    },
+    "_c_follow": {
+      "line": 9931,
+      "end_line": 9939
+    },
+    "_c_one": {
+      "line": 9942,
+      "end_line": 9944
+    },
+    "_c_read_name": {
+      "line": 9947,
+      "end_line": 9974
+    },
+    "_c_read_member": {
+      "line": 9977,
+      "end_line": 10009
+    },
+    "_c_read_element": {
+      "line": 10012,
+      "end_line": 10022
+    },
+    "_c_eval_many": {
+      "line": 10025,
+      "end_line": 10048
+    },
+    "_c_store_name": {
+      "line": 10051,
+      "end_line": 10065
+    },
+    "_c_store": {
+      "line": 10068,
+      "end_line": 10120
+    },
+    "_c_delete": {
+      "line": 10123,
+      "end_line": 10142
+    },
+    "_c_identity_compare": {
+      "line": 10145,
+      "end_line": 10177
+    },
+    "_c_truth": {
+      "line": 10180,
+      "end_line": 10196
+    },
+    "_c_eval_dict": {
+      "line": 10199,
+      "end_line": 10265
+    },
+    "_c_eval": {
+      "line": 10268,
+      "end_line": 10416
+    },
+    "_c_raise_known": {
+      "line": 10419,
+      "end_line": 10429
+    },
+    "_c_exception_matches": {
+      "line": 10432,
+      "end_line": 10452
+    },
+    "_c_handle_known_exception": {
+      "line": 10455,
+      "end_line": 10462
+    },
+    "_c_match_known_handlers": {
+      "line": 10465,
+      "end_line": 10516
+    },
+    "_c_try": {
+      "line": 10519,
+      "end_line": 10538
+    },
+    "_c_statements": {
+      "line": 10541,
+      "end_line": 10556
+    },
+    "_c_statement": {
+      "line": 10559,
+      "end_line": 10686
+    },
+    "_c_binding_read": {
+      "line": 10689,
+      "end_line": 10692
+    },
+    "_c_construct_function": {
+      "line": 10695,
+      "end_line": 10773
+    },
+    "_c_construct_class": {
+      "line": 10776,
+      "end_line": 10816
+    },
+    "_c_call": {
+      "line": 10819,
+      "end_line": 10868
+    },
+    "_c_invoke": {
+      "line": 10871,
+      "end_line": 10974
+    },
+    "_c_sink": {
+      "line": 10977,
+      "end_line": 11026
+    },
+    "_c_emit_sink": {
+      "line": 11029,
+      "end_line": 11063
+    },
+    "_c_review_outcomes": {
+      "line": 11066,
+      "end_line": 11196
+    },
+    "_c_extend_review_rows": {
+      "line": 11316,
+      "end_line": 11320
+    },
+    "_c_preflight_blocker": {
+      "line": 11323,
+      "end_line": 11327
+    },
+    "_c_entry_namespace_supported": {
+      "line": 11330,
+      "end_line": 11342
+    }
+  },
+  "candidate_executed": false
+}

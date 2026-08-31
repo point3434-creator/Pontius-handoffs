@@ -1,0 +1,413 @@
+--- rewrite-r2-checkpoint1-source-v1.py
++++ rewrite-r2-checkpoint2-source-v1.py
+@@ -9093,11 +9093,16 @@
+ 
+ 
+ @dataclass(frozen=True, slots=True, eq=False)
++class _CExceptionType:
++    tag: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
+ class _CChoice:
+-    alternatives: tuple[_CAtom | _CRef | _CBooleanUnknown, ...]
+-
+-
+-_CValue = _CAtom | _CRef | _CBooleanUnknown | _CChoice
++    alternatives: tuple[_CAtom | _CRef | _CBooleanUnknown | _CExceptionType, ...]
++
++
++_CValue = _CAtom | _CRef | _CBooleanUnknown | _CExceptionType | _CChoice
+ 
+ 
+ @dataclass(frozen=True, slots=True, eq=False)
+@@ -9180,6 +9185,12 @@
+ 
+ 
+ @dataclass(frozen=True, slots=True, eq=False)
++class _CException:
++    tag: str
++    arguments: tuple[_CValue, ...]
++
++
++@dataclass(frozen=True, slots=True, eq=False)
+ class _CEnvironment:
+     inherited: bool
+     additions: tuple[tuple[str, str], ...]
+@@ -9189,7 +9200,7 @@
+ 
+ _CObject = (
+     _CFunction | _CBound | _CNativeMethod | _CSequence
+-    | _CNamespace | _CInstance | _CEnvironment
++    | _CNamespace | _CInstance | _CEnvironment | _CException
+ )
+ 
+ 
+@@ -9243,11 +9254,19 @@
+ 
+ 
+ @dataclass(frozen=True, slots=True, eq=False)
++class _CExceptionOrigin:
++    node: ast.AST
++    path: str
++
++
++@dataclass(frozen=True, slots=True, eq=False)
+ class _COutcome:
+     state: _CState
+     result: _CValue
+     control: str
+     exception_tag: str | None
++    exception_value: _CRef | None
++    exception_origin: _CExceptionOrigin | None
+     explicit: bool
+     excluded_handlers: frozenset[str]
+     issues: tuple[_CIssue, ...]
+@@ -9265,7 +9284,10 @@
+     caller_frame: _CFrame
+     entry: _CView
+     helper_path: tuple[tuple[str, int], ...]
+-    completed: tuple[tuple[str, _CValue, _CView, tuple[_CIssue, ...]], ...]
++    completed: tuple[tuple[
++        str, _CValue, _CView, tuple[_CIssue, ...], str | None, _CRef | None,
++        _CExceptionOrigin | None, bool, frozenset[str],
++    ], ...]
+ 
+ 
+ @dataclass(frozen=True, slots=True, eq=False)
+@@ -9453,11 +9475,14 @@
+ 
+ 
+ def _c_value_key(
+-    ctx: _CContext, value: _CAtom | _CRef | _CBooleanUnknown,
++    ctx: _CContext, value: _CAtom | _CRef | _CBooleanUnknown | _CExceptionType,
+ ) -> tuple[object, ...]:
+     if type(value) is _CBooleanUnknown:
+         ctx.budget.consume(4)  # Identity integer, tuple and two retained fields.
+         return ("boolean-proof", id(value))
++    if type(value) is _CExceptionType:
++        ctx.budget.consume(4)  # Tag read, tuple and two retained fields.
++        return ("exception-type", value.tag)
+     if type(value) is _CRef:
+         ctx.budget.consume(3)  # Tuple and two retained fields.
+         return ("ref", value.object_id)
+@@ -9473,7 +9498,7 @@
+ 
+ def _c_choice(ctx: _CContext, supplied: Iterable[_CValue]) -> _CValue:
+     ctx.budget.consume(2)  # Work list and dedup set.
+-    values: list[_CAtom | _CRef | _CBooleanUnknown] = []
++    values: list[_CAtom | _CRef | _CBooleanUnknown | _CExceptionType] = []
+     seen: set[tuple[object, ...]] = set()
+     for value in supplied:
+         ctx.budget.consume()
+@@ -9876,14 +9901,20 @@
+ def _c_out(
+     ctx: _CContext, state: _CState, value: _CValue | None = None, *,
+     control: str = "normal", exception: str | None = None,
++    exception_value: _CRef | None = None, exception_origin: _CExceptionOrigin | None = None,
++    explicit: bool = False, excluded_handlers: frozenset[str] | None = None,
+     issues: tuple[_CIssue, ...] = (), trace: _CTrace | None = None,
+ ) -> _COutcome:
+     if value is None:
+         value = _c_atom(ctx, "literal")
+     if trace is None:
+         trace = _c_trace(ctx, "empty", ())
+-    ctx.budget.consume(10)  # Outcome, eight fields and empty exclusion set.
+-    return _COutcome(state, value, control, exception, False, frozenset(), issues, trace)
++    if excluded_handlers is None:
++        ctx.budget.consume()  # A fresh empty set only when no existing set is retained.
++        excluded_handlers = frozenset()
++    ctx.budget.consume(11)  # Outcome allocation and ten retained fields.
++    return _COutcome(state, value, control, exception, exception_value, exception_origin,
++                     explicit, excluded_handlers, issues, trace)
+ 
+ 
+ def _c_fail(
+@@ -9891,18 +9922,21 @@
+     exception: str | None = None,
+ ) -> _COutcome:
+     ctx.budget.consume(7)  # Issue and four fields; singleton tuple and reference.
+-    issue = _CIssue(site, ctx.path, reason, "unsupported" if exception is None else "exception")
++    # Legacy diagnostic tags are not proofs of catchable Python exceptions.
++    issue = _CIssue(site, ctx.path, reason, "unsupported")
+     trace = _c_trace(ctx, "event", (), issue)
+-    return _c_out(ctx, state, control="refused" if exception is None else "raise",
+-                  exception=exception, issues=(issue,), trace=trace)
++    return _c_out(ctx, state, control="refused", issues=(issue,), trace=trace)
+ 
+ 
+ def _c_follow(ctx: _CContext, prior: _COutcome, result: _COutcome) -> _COutcome:
+     ctx.budget.consume(1 + 2 * (len(prior.issues) + len(result.issues)))
+     issues = prior.issues + result.issues
+     trace = _c_trace_link(ctx, "sequence", prior.trace, result.trace)
++    ctx.budget.consume(4)  # Read the additional active metadata being forwarded.
+     return _c_out(ctx, result.state, result.result, control=result.control,
+-                  exception=result.exception_tag, issues=issues, trace=trace)
++                  exception=result.exception_tag, exception_value=result.exception_value,
++                  exception_origin=result.exception_origin, explicit=result.explicit,
++                  excluded_handlers=result.excluded_handlers, issues=issues, trace=trace)
+ 
+ 
+ def _c_one(ctx: _CContext, outcome: _COutcome) -> tuple[_COutcome, ...]:
+@@ -9924,8 +9958,13 @@
+         namespace = _c_namespace(ctx, state, route.module)
+         ctx.budget.consume()
+         value = namespace.members.get(name)
+-        if value is None and route.kind == "module" and name in {"staticmethod", "__import__"}:
+-            value = _c_atom(ctx, "symbol", name)
++        if value is None and route.kind == "module":
++            ctx.budget.consume()  # Only this fallback can establish builtin exception proof.
++            if name in {"ValueError", "TypeError", "KeyError", "IndexError"}:
++                ctx.budget.consume(2)
++                value = _CExceptionType(name)
++            elif name in {"staticmethod", "__import__"}:
++                value = _c_atom(ctx, "symbol", name)
+     else:
+         return _c_one(ctx, _c_fail(ctx, state, site, "unsupported name route"))
+     if value is None or (type(value) is _CAtom and value.kind == "unbound"):
+@@ -10338,6 +10377,23 @@
+             ctx.budget.consume(2)
+             outcomes.append(prior)
+         return _c_join(ctx, outcomes)
++    if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub):
++        ctx.budget.consume()
++        outcomes = []
++        for prior in _c_eval(ctx, state, frame, node.operand):
++            ctx.budget.consume()
++            if prior.control == "normal":
++                value = prior.result
++                if type(value) is _CAtom and value.kind == "literal" and (
++                        type(value.data) is int or type(value.data) is float):
++                    ctx.budget.consume()  # Exact numeric negation, with no user protocol.
++                    result = _c_out(ctx, prior.state, _c_atom(ctx, "literal", -value.data))
++                else:
++                    result = _c_fail(ctx, prior.state, node, "unsupported unary numeric protocol")
++                prior = _c_follow(ctx, prior, result)
++            ctx.budget.consume(2)
++            outcomes.append(prior)
++        return _c_join(ctx, outcomes)
+     if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+         ctx.budget.consume()
+         outcomes = []
+@@ -10358,6 +10414,128 @@
+         return _c_join(ctx, outcomes)
+     return _c_one(ctx, _c_fail(ctx, state, node, "unsupported reached expression: " +
+                               type(node).__name__))
++
++
++def _c_raise_known(
++    ctx: _CContext, state: _CState, site: ast.AST, exception: _CValue, *, explicit: bool,
++) -> _COutcome:
++    ctx.budget.consume()  # Current exception-record admission.
++    record = _c_object_read(ctx, state, exception) if type(exception) is _CRef else None
++    if type(record) is not _CException:
++        return _c_fail(ctx, state, site, "raise requires a proved builtin exception instance")
++    ctx.budget.consume(4)  # Origin allocation/two fields and retained type-tag read.
++    origin = _CExceptionOrigin(site, ctx.path)
++    return _c_out(ctx, state, exception, control="raise", exception=record.tag,
++                  exception_value=exception, exception_origin=origin, explicit=explicit)
++
++
++def _c_exception_matches(
++    ctx: _CContext, state: _CState, tag: str, selected: _CValue,
++) -> bool | None:
++    ctx.budget.consume()  # Handler type/tuple dispatch.
++    if type(selected) is _CExceptionType:
++        ctx.budget.consume(2)  # Proved tag read and exact type comparison.
++        return selected.tag == tag
++    record = _c_object_read(ctx, state, selected) if type(selected) is _CRef else None
++    if type(record) is not _CSequence:
++        return None
++    ctx.budget.consume()  # Current native-sequence kind check.
++    if record.kind != "tuple":
++        return None
++    matched = False
++    for alternative in record.elements:
++        ctx.budget.consume(2)  # Element visit and proof check, before any tag read.
++        if type(alternative) is not _CExceptionType:
++            return None
++        ctx.budget.consume(2)
++        matched = alternative.tag == tag or matched
++    return matched
++
++
++def _c_handle_known_exception(
++    ctx: _CContext, raised: _COutcome, frame: _CFrame, handler: ast.ExceptHandler,
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume()  # This boundary only consumes an already-matched known raise.
++    if raised.control != "raise":
++        raise InventoryError("canonical handler entry requires a raised outcome")
++    entered = _c_out(ctx, raised.state, issues=raised.issues, trace=raised.trace)
++    return _c_statements(ctx, entered, frame, handler.body)
++
++
++def _c_match_known_handlers(
++    ctx: _CContext, raised: _COutcome, frame: _CFrame, handlers: Sequence[ast.ExceptHandler],
++) -> tuple[_COutcome, ...]:
++    pending = _c_one(ctx, raised)
++    ctx.budget.consume()
++    outcomes: list[_COutcome] = []
++    for handler in handlers:
++        ctx.budget.consume(2)  # Handler visit and pending-alternative check.
++        if not pending:
++            break
++        ctx.budget.consume()
++        following: list[_COutcome] = []
++        for prior in pending:
++            ctx.budget.consume(2)  # Alternative visit and handler-form admission.
++            if handler.name is not None or handler.type is None:
++                ctx.budget.consume(2)
++                outcomes.append(_c_follow(ctx, prior, _c_fail(
++                    ctx, prior.state, handler, "unsupported exception handler form")))
++                continue
++            for evaluated in _c_eval(ctx, prior.state, frame, handler.type):
++                ctx.budget.consume()
++                entered = _c_follow(ctx, prior, evaluated)
++                if entered.control != "normal":
++                    ctx.budget.consume(2)
++                    outcomes.append(entered)
++                    continue
++                ctx.budget.consume()  # Read the active tag for matching current handler values.
++                matched = _c_exception_matches(ctx, entered.state, prior.exception_tag,
++                                               evaluated.result)
++                if matched is None:
++                    ctx.budget.consume(2)
++                    outcomes.append(_c_follow(ctx, entered, _c_fail(
++                        ctx, entered.state, handler, "unproved exception handler identity")))
++                    continue
++                ctx.budget.consume(5)  # Preserve original active metadata after handler lookup.
++                current = _c_out(
++                    ctx, entered.state, prior.result, control="raise",
++                    exception=prior.exception_tag, exception_value=prior.exception_value,
++                    exception_origin=prior.exception_origin, explicit=prior.explicit,
++                    excluded_handlers=prior.excluded_handlers,
++                    issues=entered.issues, trace=entered.trace)
++                if matched:
++                    for result in _c_handle_known_exception(ctx, current, frame, handler):
++                        ctx.budget.consume(3)  # Visit, append and retained outcome.
++                        outcomes.append(result)
++                else:
++                    ctx.budget.consume(2)
++                    following.append(current)
++        pending = _c_join(ctx, following)
++    ctx.budget.consume(2 * len(pending))  # Remaining unhandled outcomes: visits and refs.
++    outcomes.extend(pending)
++    return _c_join(ctx, outcomes)
++
++
++def _c_try(
++    ctx: _CContext, state: _CState, frame: _CFrame, node: ast.Try,
++) -> tuple[_COutcome, ...]:
++    ctx.budget.consume()  # Reached try/finally admission before its body.
++    if node.finalbody:
++        return _c_one(ctx, _c_fail(ctx, state, node, "unsupported finally clause"))
++    ctx.budget.consume()
++    outcomes: list[_COutcome] = []
++    for prior in _c_statements(ctx, _c_out(ctx, state), frame, node.body):
++        ctx.budget.consume()
++        if prior.control == "normal":
++            produced = _c_statements(ctx, prior, frame, node.orelse)
++        elif prior.control == "raise":
++            produced = _c_match_known_handlers(ctx, prior, frame, node.handlers)
++        else:
++            produced = _c_one(ctx, prior)
++        for result in produced:
++            ctx.budget.consume(3)
++            outcomes.append(result)
++    return _c_join(ctx, outcomes)
+ 
+ 
+ def _c_statements(
+@@ -10415,6 +10593,21 @@
+         return _c_construct_function(ctx, state, frame, node)
+     if isinstance(node, ast.ClassDef):
+         return _c_construct_class(ctx, state, frame, node)
++    if isinstance(node, ast.Try):
++        return _c_try(ctx, state, frame, node)
++    if isinstance(node, ast.Raise):
++        if node.exc is None or node.cause is not None:
++            return _c_one(ctx, _c_fail(ctx, state, node, "unsupported raise form"))
++        ctx.budget.consume()
++        outcomes: list[_COutcome] = []
++        for prior in _c_eval(ctx, state, frame, node.exc):
++            ctx.budget.consume()
++            if prior.control == "normal":
++                prior = _c_follow(ctx, prior, _c_raise_known(
++                    ctx, prior.state, node, prior.result, explicit=True))
++            ctx.budget.consume(2)
++            outcomes.append(prior)
++        return _c_join(ctx, outcomes)
+     if isinstance(node, ast.If):
+         ctx.budget.consume()
+         outcomes: list[_COutcome] = []
+@@ -10647,11 +10840,16 @@
+         defaults = record.defaults
+     outcomes = _c_invoke(ctx, state, frame, call, selected, arguments, keywords)
+     ctx.budget.consume()
+-    summaries: list[tuple[str, _CValue, _CView, tuple[_CIssue, ...]]] = []
++    summaries: list[tuple[
++        str, _CValue, _CView, tuple[_CIssue, ...], str | None, _CRef | None,
++        _CExceptionOrigin | None, bool, frozenset[str],
++    ]] = []
+     for outcome in outcomes:
+-        ctx.budget.consume(8)  # Visit, four-field tuple and appended tuple reference.
++        ctx.budget.consume(18)  # Visit, nine-field tuple, append and five new metadata reads.
+         summaries.append((outcome.control, outcome.result,
+-                          _c_snapshot(ctx, outcome.state), outcome.issues))
++                          _c_snapshot(ctx, outcome.state), outcome.issues,
++                          outcome.exception_tag, outcome.exception_value, outcome.exception_origin,
++                          outcome.explicit, outcome.excluded_handlers))
+     completed = _c_fact_tuple(ctx.budget, summaries)
+     ctx.budget.consume(11)
+     observation = _CCallObservation(call, selected, receiver, arguments, keywords,
+@@ -10660,10 +10858,13 @@
+     ctx.budget.consume()
+     result: list[_COutcome] = []
+     for outcome in outcomes:
+-        ctx.budget.consume(2)
++        ctx.budget.consume(6)  # Existing append plus four additional active metadata reads.
+         trace = _c_trace_link(ctx, "sequence", outcome.trace, event)
+-        result.append(_c_out(ctx, outcome.state, outcome.result, control=outcome.control,
+-                             exception=outcome.exception_tag, issues=outcome.issues, trace=trace))
++        result.append(_c_out(
++            ctx, outcome.state, outcome.result, control=outcome.control,
++            exception=outcome.exception_tag, exception_value=outcome.exception_value,
++            exception_origin=outcome.exception_origin, explicit=outcome.explicit,
++            excluded_handlers=outcome.excluded_handlers, issues=outcome.issues, trace=trace))
+     return _c_join(ctx, result)
+ 
+ 
+@@ -10673,6 +10874,12 @@
+     keywords: tuple[tuple[str, _CValue], ...],
+ ) -> tuple[_COutcome, ...]:
+     ctx.budget.consume()
++    if type(selected) is _CExceptionType:
++        if arguments or keywords:
++            return _c_one(ctx, _c_fail(ctx, state, call, "unsupported builtin exception arguments"))
++        ctx.budget.consume(4)  # Two-field exception record plus proved type-tag read.
++        value = _c_new_object(ctx, state, _CException(selected.tag, arguments))
++        return _c_one(ctx, _c_out(ctx, state, value))
+     if type(selected) is _CAtom and selected.kind == "symbol":
+         if selected.data == "__import__" and not keywords and len(arguments) == 1:
+             value = arguments[0]
+@@ -10869,6 +11076,20 @@
+     observed_calls: set[ast.AST] = set()
+     normal_keys: set[str] | None = None
+     for outcome in outcomes:
++        ctx.budget.consume()  # Only active escaping raises become terminal blockers.
++        if outcome.control == "raise":
++            ctx.budget.consume(3)
++            origin = outcome.exception_origin
++            tag = outcome.exception_tag
++            value = outcome.exception_value
++            if origin is None or tag is None or value is None:
++                raise InventoryError("canonical escaping exception lacks proof metadata")
++            ctx.budget.consume(20)  # Reason, origin reads and existing blocker/key export work.
++            site = origin.node
++            path = origin.path
++            reason = "uncaught canonical exception: " + tag
++            blockers[(int(getattr(site, "lineno", 0)), reason)] = _review_blocker(
++                ctx.item_id, path, site, reason)
+         ctx.budget.consume(5)
+         pending = [outcome.trace]
+         visited: set[int] = set()
