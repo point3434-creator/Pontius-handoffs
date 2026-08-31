@@ -1,0 +1,54 @@
+{
+  "inverse_bytes_and_AST_match_v29": true,
+  "limits": [
+    "Source-only review closes the identified pair-accounting omission, not runtime fitness.",
+    "v28 primitive evidence remains bounded; this adapter branch needs real analyzer results.",
+    "No semantic composition or source integration approved."
+  ],
+  "new_sites": [
+    {
+      "line": 22471,
+      "name": "disabled_join_input_pair_allocation",
+      "units": 1
+    },
+    {
+      "line": 22472,
+      "name": "disabled_join_input_pair_reference_copies",
+      "units": 2
+    }
+  ],
+  "next_authorized_dispatch": "One new actual311 focused design run using frozen v5 tests; failed floor does not authorize dev/matrix/corpus.",
+  "old_category_meanings_and_units_preserved": 279,
+  "payload_or_source_executed": false,
+  "pins": {
+    "engineer-generator-v28-storage.py": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+    "engineer-generator-v29-storage-accounting-v1.json": "5074f3509e47d1de642b30f5351dd953997397b4e29a841cc59ae92c6c7d292d",
+    "engineer-generator-v29-storage.py": "b53b905cd20dd97d7d09a3b81f955bf27498a572ce8a6d82e20f007993ab9466",
+    "engineer-generator-v30-storage-accounting-v1.json": "8d89ca2da1d66b5e52ee1eb6d12925b3972e7f96762869d185b098dd7581a094",
+    "engineer-generator-v30-storage-from-v29.diff": "d50c98213038bbedd0060c5136b8150b7e33832a64d406af8f33801863517fff",
+    "engineer-generator-v30-storage.py": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd",
+    "engineer-v30-enumerate-accounting-plan-v1.md": "a6fbc28533102f86341daac86cb76761517e2b2770421d29c6b8d94381bdf983",
+    "tests-checks/v29-disabled-join-engineering-review-codex-a-v1.md": "f397975e37f00ea9512563e91dea9bc89ae7f9dda2ce96ab2f5ed5ba1dc610ad"
+  },
+  "preserved_W_paths": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  },
+  "reviewed_v29_identity_order_pending_debt_and_staging_contract_unchanged": true,
+  "schema": "coordinator-v30-storage-inspection-v1"
+}

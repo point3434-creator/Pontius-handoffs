@@ -1,0 +1,3800 @@
+{
+  "categories": {
+    "adapter_bulk_cursor_install_reference": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15054,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22577,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_bulk_pair_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__.constructor_entries",
+          "line": 15044,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.merged_entries",
+          "line": 22568,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_bulk_pair_reference_copies": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__.constructor_entries",
+          "line": 15045,
+          "units": "2"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.merged_entries",
+          "line": 22569,
+          "units": "2"
+        }
+      ]
+    },
+    "adapter_bulk_producer_closure_references": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15021,
+          "units": "5"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22552,
+          "units": "5"
+        }
+      ]
+    },
+    "adapter_bulk_producer_function_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15020,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22551,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_bulk_producer_generator_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15050,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22573,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_bulk_producer_generator_references": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15051,
+          "units": "5"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22574,
+          "units": "5"
+        }
+      ]
+    },
+    "adapter_bulk_source_iterator_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__.constructor_entries",
+          "line": 15026,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.merged_entries",
+          "line": 22555,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_constructor_dict_items_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__.constructor_entries",
+          "line": 15025,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_constructor_input_visits": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__.constructor_entries",
+          "line": 15028,
+          "units": "1"
+        },
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15058,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_constructor_source_size_read": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15017,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_constructor_unique_guard": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15014,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_local_input_visits": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15000,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_local_membership_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15003,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_local_membership_attempts": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15005,
+          "units": "len(local_order)"
+        }
+      ]
+    },
+    "adapter_local_membership_input_visits": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15004,
+          "units": "len(local_order)"
+        }
+      ]
+    },
+    "adapter_local_membership_lookup": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__.constructor_entries",
+          "line": 15031,
+          "units": "1"
+        },
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15061,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_local_membership_reference_copies": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15007,
+          "units": "len(local_set)"
+        }
+      ]
+    },
+    "adapter_local_order_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 14997,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_local_order_reference_copies": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.__init__",
+          "line": 15001,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_merge_values_generator_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22528,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.merged_entries",
+          "line": 22558,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_merge_values_generator_references": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22530,
+          "units": "2"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.merged_entries",
+          "line": 22560,
+          "units": "2"
+        }
+      ]
+    },
+    "adapter_merge_values_iterator_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22529,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.merged_entries",
+          "line": 22559,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_values_item_visits": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.values.values",
+          "line": 15103,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_values_reference_copies": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.values.values",
+          "line": 15104,
+          "units": "1"
+        }
+      ]
+    },
+    "adapter_values_tuple_allocation": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState.values",
+          "line": 15100,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_entry_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14693,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_group_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14447,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_input_iterator_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14681,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14686,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_key_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14691,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_leaf_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14429,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_leaf_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14434,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_leaf_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14433,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_leaf_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14435,
+          "units": "2"
+        }
+      ]
+    },
+    "bulk_order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14683,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_order_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14700,
+          "units": "2"
+        }
+      ]
+    },
+    "bulk_order_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14699,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_pair_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14687,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_record_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14703,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_record_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14682,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_record_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14705,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_record_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14704,
+          "units": "3"
+        }
+      ]
+    },
+    "bulk_record_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14423,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14713,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14711,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_slot_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14446,
+          "units": "1"
+        }
+      ]
+    },
+    "bulk_uniqueness_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.from_unique_entries",
+          "line": 14696,
+          "units": "1"
+        }
+      ]
+    },
+    "cache_publication_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_charge_cache_commit",
+          "line": 14616,
+          "units": "len(staged)"
+        }
+      ]
+    },
+    "cache_publication_writes": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_charge_cache_commit",
+          "line": 14617,
+          "units": "len(staged) + extra_writes"
+        }
+      ]
+    },
+    "candidate_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions.remember",
+          "line": 14927,
+          "units": "1"
+        }
+      ]
+    },
+    "candidate_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions.remember",
+          "line": 14929,
+          "units": "1"
+        }
+      ]
+    },
+    "candidate_iteration": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14950,
+          "units": "1"
+        }
+      ]
+    },
+    "candidate_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions.remember",
+          "line": 14930,
+          "units": "2"
+        }
+      ]
+    },
+    "certificate_enabled_check": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState._transferred_name_entry",
+          "line": 15121,
+          "units": "1"
+        }
+      ]
+    },
+    "certificate_identity_check": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState._transferred_name_entry",
+          "line": 15123,
+          "units": "1"
+        }
+      ]
+    },
+    "certificate_provenance_check": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState._transferred_name_entry",
+          "line": 15127,
+          "units": "1"
+        }
+      ]
+    },
+    "certificate_reference_check": {
+      "metric": null,
+      "operation": "Existing production adapter category; not classified by the isolated primitive P metric.",
+      "origin": "unchanged production adapter",
+      "source_sites": [
+        {
+          "function": "_ExecutionState._transferred_name_entry",
+          "line": 15125,
+          "units": "1"
+        }
+      ]
+    },
+    "cursor_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.__init__",
+          "line": 14800,
+          "units": "1"
+        }
+      ]
+    },
+    "cursor_fork_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.fork",
+          "line": 14875,
+          "units": "1"
+        }
+      ]
+    },
+    "cursor_fork_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.fork",
+          "line": 14878,
+          "units": "1"
+        }
+      ]
+    },
+    "cursor_publication_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_charge_publication_commit",
+          "line": 14786,
+          "units": "2"
+        }
+      ]
+    },
+    "cursor_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.__init__",
+          "line": 14801,
+          "units": "6"
+        }
+      ]
+    },
+    "cursor_tail_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.__init__",
+          "line": 14802,
+          "units": "1"
+        }
+      ]
+    },
+    "cursor_write_field_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor._replace_entry",
+          "line": 14848,
+          "units": "3"
+        }
+      ]
+    },
+    "disabled_join_authority_guard_reads": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22439,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_budget_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22446,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_candidate_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22481,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_candidate_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22494,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22512,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_candidate_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22496,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_candidate_reference_copies": {
+      "metric": "P",
+      "operation": "Actual variable-cardinality input/history/name traversal or name-reference copies.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22497,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_cardinality_choice": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22501,
+          "units": "3"
+        }
+      ]
+    },
+    "disabled_join_changed_name_visits": {
+      "metric": "P",
+      "operation": "Actual variable-cardinality input/history/name traversal or name-reference copies.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22493,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_common_history_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22479,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_cursor_guard_reads": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22449,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_entry_type_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22521,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_exact_state_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22436,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_exact_version_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22456,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_guard_closure_references": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22433,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_guard_function_allocation": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22432,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_history_change_iterator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22491,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_history_change_reference_reads": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22490,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_history_input_iterator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22483,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_history_input_visits": {
+      "metric": "P",
+      "operation": "Actual variable-cardinality input/history/name traversal or name-reference copies.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22485,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_history_reference_reads": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22486,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22499,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_history_token_visits": {
+      "metric": "P",
+      "operation": "Actual variable-cardinality input/history/name traversal or name-reference copies.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22489,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_input_iterator_allocations": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22469,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_input_pair_allocation": {
+      "metric": "non-P",
+      "operation": "One semantic yielded-pair allocation/materialization at the first loop-body boundary, before the existing input visit/guard use; not a fresh CPython heap tuple claim.",
+      "origin": "v30 enumerate-pair accounting correction",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22471,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_input_pair_reference_copies": {
+      "metric": "P",
+      "operation": "The yielded pair's two reference copies, separately charged without reassigning the meanings of old iterator or input-visit categories.",
+      "origin": "v30 enumerate-pair accounting correction",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22472,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_input_visits": {
+      "metric": "P",
+      "operation": "Actual variable-cardinality input/history/name traversal or name-reference copies.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22473,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_meter_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22453,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22459,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_mode_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22443,
+          "units": "1"
+        },
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22518,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_name_type_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22516,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22504,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_order_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22509,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_order_install_references": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22541,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_order_reference_copies": {
+      "metric": "P",
+      "operation": "Actual variable-cardinality input/history/name traversal or name-reference copies.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22510,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_pending_flag_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22523,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_pending_size_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22464,
+          "units": "2"
+        }
+      ]
+    },
+    "disabled_join_result_install_reference": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22546,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_root_reads": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states.disabled_input",
+          "line": 22462,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_union_iterator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22506,
+          "units": "1"
+        }
+      ]
+    },
+    "disabled_join_value_type_checks": {
+      "metric": "non-P",
+      "operation": "Actual fixed-arity guard/read, logical dictionary attempt/write, iterator/wrapper allocation, or publication-field operation; included in full budget units.",
+      "origin": "v29 operation-local disabled join",
+      "source_sites": [
+        {
+          "function": "_SourceOrderedResolver._merge_states",
+          "line": 22525,
+          "units": "1"
+        }
+      ]
+    },
+    "empty_order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.empty",
+          "line": 14672,
+          "units": "1"
+        }
+      ]
+    },
+    "entry_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.set",
+          "line": 14856,
+          "units": "1"
+        },
+        {
+          "function": "_ExecutionState._transferred_name_entry",
+          "line": 15129,
+          "units": "1"
+        }
+      ]
+    },
+    "entry_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.set",
+          "line": 14857,
+          "units": "2"
+        },
+        {
+          "function": "_ExecutionState._transferred_name_entry",
+          "line": 15130,
+          "units": "2"
+        }
+      ]
+    },
+    "fork_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.fork",
+          "line": 14740,
+          "units": "1"
+        }
+      ]
+    },
+    "history_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_history",
+          "line": 14126,
+          "units": "1"
+        }
+      ]
+    },
+    "history_change_token_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14940,
+          "units": "1"
+        }
+      ]
+    },
+    "history_changed_name_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14942,
+          "units": "1"
+        }
+      ]
+    },
+    "history_depth_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_common_history",
+          "line": 14898,
+          "units": "2"
+        }
+      ]
+    },
+    "history_identity_comparisons": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_common_history",
+          "line": 14895,
+          "units": "1"
+        }
+      ]
+    },
+    "history_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_common_history",
+          "line": 14892,
+          "units": "1"
+        }
+      ]
+    },
+    "history_parent_depth_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_history",
+          "line": 14128,
+          "units": "int(parent is not None)"
+        }
+      ]
+    },
+    "history_parent_reads": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_common_history",
+          "line": 14900,
+          "units": "1"
+        },
+        {
+          "function": "_name_common_history",
+          "line": 14903,
+          "units": "1"
+        },
+        {
+          "function": "_join_name_versions",
+          "line": 14944,
+          "units": "1"
+        }
+      ]
+    },
+    "history_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_history",
+          "line": 14127,
+          "units": "3"
+        }
+      ]
+    },
+    "items_cache_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items",
+          "line": 14636,
+          "units": "1"
+        }
+      ]
+    },
+    "items_cached_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items",
+          "line": 14638,
+          "units": "1"
+        }
+      ]
+    },
+    "items_entry_value_reads": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items.pairs",
+          "line": 14649,
+          "units": "1"
+        }
+      ]
+    },
+    "items_key_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items.pairs",
+          "line": 14645,
+          "units": "1"
+        }
+      ]
+    },
+    "items_pair_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items.pairs",
+          "line": 14650,
+          "units": "1"
+        }
+      ]
+    },
+    "items_pair_generator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items",
+          "line": 14642,
+          "units": "1"
+        }
+      ]
+    },
+    "items_pair_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items.pairs",
+          "line": 14651,
+          "units": "2"
+        }
+      ]
+    },
+    "items_result_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items.pairs",
+          "line": 14652,
+          "units": "1"
+        }
+      ]
+    },
+    "items_result_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items",
+          "line": 14641,
+          "units": "1"
+        }
+      ]
+    },
+    "items_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_ordered_items",
+          "line": 14655,
+          "units": "1"
+        }
+      ]
+    },
+    "join_candidate_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14924,
+          "units": "1"
+        }
+      ]
+    },
+    "join_input_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14914,
+          "units": "len(states)"
+        }
+      ]
+    },
+    "join_input_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14912,
+          "units": "1"
+        }
+      ]
+    },
+    "join_input_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14916,
+          "units": "1"
+        }
+      ]
+    },
+    "join_order_override_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14977,
+          "units": "1"
+        }
+      ]
+    },
+    "join_state_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14933,
+          "units": "1"
+        }
+      ]
+    },
+    "keys_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_keys",
+          "line": 14629,
+          "units": "1"
+        }
+      ]
+    },
+    "keys_view_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_keys",
+          "line": 14627,
+          "units": "1"
+        }
+      ]
+    },
+    "lookup_private_tail_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor._entry",
+          "line": 14813,
+          "units": "1"
+        }
+      ]
+    },
+    "merge_argument_generator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14952,
+          "units": "1"
+        }
+      ]
+    },
+    "merge_argument_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions.arguments",
+          "line": 14957,
+          "units": "1"
+        }
+      ]
+    },
+    "merge_argument_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14951,
+          "units": "1"
+        }
+      ]
+    },
+    "merge_callback_invocation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14970,
+          "units": "1"
+        }
+      ]
+    },
+    "merge_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions.arguments",
+          "line": 14955,
+          "units": "1"
+        }
+      ]
+    },
+    "merge_missing_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_join_name_versions",
+          "line": 14962,
+          "units": "1"
+        }
+      ]
+    },
+    "order_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_order",
+          "line": 14487,
+          "units": "1"
+        }
+      ]
+    },
+    "order_cache_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_known_order",
+          "line": 14495,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14508,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14521,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14532,
+          "units": "1"
+        }
+      ]
+    },
+    "order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14557,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14566,
+          "units": "1"
+        }
+      ]
+    },
+    "order_dictionary_deletes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14582,
+          "units": "1"
+        }
+      ]
+    },
+    "order_dictionary_key_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14571,
+          "units": "1"
+        }
+      ]
+    },
+    "order_dictionary_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14573,
+          "units": "2"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14579,
+          "units": "2"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14607,
+          "units": "2"
+        }
+      ]
+    },
+    "order_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14572,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14578,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14606,
+          "units": "1"
+        }
+      ]
+    },
+    "order_edit_application_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14576,
+          "units": "1"
+        }
+      ]
+    },
+    "order_edit_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14528,
+          "units": "1"
+        }
+      ]
+    },
+    "order_edit_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14539,
+          "units": "1"
+        }
+      ]
+    },
+    "order_edit_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14538,
+          "units": "1"
+        }
+      ]
+    },
+    "order_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_order",
+          "line": 14488,
+          "units": "4"
+        }
+      ]
+    },
+    "order_keys_view_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14593,
+          "units": "1"
+        }
+      ]
+    },
+    "order_parent_reads": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14541,
+          "units": "1"
+        }
+      ]
+    },
+    "order_parent_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_order",
+          "line": 14491,
+          "units": "len(parents)"
+        }
+      ]
+    },
+    "order_parent_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_order",
+          "line": 14490,
+          "units": "1"
+        }
+      ]
+    },
+    "order_parent_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14552,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14589,
+          "units": "1"
+        },
+        {
+          "function": "_join_name_versions",
+          "line": 14975,
+          "units": "len(states)"
+        }
+      ]
+    },
+    "order_proxy_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_seal_order_table",
+          "line": 14502,
+          "units": "1"
+        }
+      ]
+    },
+    "order_proxy_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_seal_order_table",
+          "line": 14503,
+          "units": "1"
+        }
+      ]
+    },
+    "order_recipe_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14519,
+          "units": "1"
+        }
+      ]
+    },
+    "order_stack_pops": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14517,
+          "units": "1"
+        }
+      ]
+    },
+    "order_stack_record_allocations": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14514,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14543,
+          "units": "3"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14548,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14553,
+          "units": "1"
+        }
+      ]
+    },
+    "order_stack_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14515,
+          "units": "4"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14544,
+          "units": "10"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14549,
+          "units": "4"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14554,
+          "units": "4"
+        }
+      ]
+    },
+    "order_staging_lookup": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_known_order",
+          "line": 14498,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14524,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14535,
+          "units": "1"
+        }
+      ]
+    },
+    "order_staging_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14561,
+          "units": "2"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14611,
+          "units": "2"
+        }
+      ]
+    },
+    "order_staging_write": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14560,
+          "units": "1"
+        },
+        {
+          "function": "_name_realize_order",
+          "line": 14610,
+          "units": "1"
+        }
+      ]
+    },
+    "order_temporary_allocations": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14511,
+          "units": "2"
+        }
+      ]
+    },
+    "order_union_argument_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14598,
+          "units": "len(views)"
+        }
+      ]
+    },
+    "order_union_argument_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14597,
+          "units": "1"
+        }
+      ]
+    },
+    "order_union_input_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14601,
+          "units": "input_size"
+        }
+      ]
+    },
+    "order_union_input_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14591,
+          "units": "1"
+        }
+      ]
+    },
+    "order_union_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14600,
+          "units": "input_size"
+        }
+      ]
+    },
+    "order_union_output_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14605,
+          "units": "1"
+        }
+      ]
+    },
+    "order_union_set_allocations": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14599,
+          "units": "2"
+        }
+      ]
+    },
+    "order_union_unique_references": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14603,
+          "units": "len(union)"
+        }
+      ]
+    },
+    "order_union_view_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14585,
+          "units": "1"
+        }
+      ]
+    },
+    "order_union_view_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_realize_order",
+          "line": 14595,
+          "units": "1"
+        }
+      ]
+    },
+    "private_dictionary_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor._replace_entry",
+          "line": 14847,
+          "units": "1 + int(tail_entry is _NAME_MISSING)"
+        }
+      ]
+    },
+    "private_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor._replace_entry",
+          "line": 14846,
+          "units": "1"
+        }
+      ]
+    },
+    "publication_change_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14765,
+          "units": "len(cursor._tail)"
+        }
+      ]
+    },
+    "publication_change_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14766,
+          "units": "len(cursor._tail)"
+        }
+      ]
+    },
+    "publication_change_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14764,
+          "units": "1"
+        }
+      ]
+    },
+    "publication_fresh_tail_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14777,
+          "units": "1"
+        }
+      ]
+    },
+    "publication_plan_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14761,
+          "units": "1"
+        },
+        {
+          "function": "_name_prepare_publication",
+          "line": 14779,
+          "units": "1"
+        }
+      ]
+    },
+    "publication_plan_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14762,
+          "units": "3"
+        },
+        {
+          "function": "_name_prepare_publication",
+          "line": 14780,
+          "units": "3"
+        }
+      ]
+    },
+    "publication_private_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14771,
+          "units": "1"
+        }
+      ]
+    },
+    "publication_tail_size_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_prepare_publication",
+          "line": 14758,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_bitmap_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_child",
+          "line": 14171,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_branch_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14417,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14459,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_branch_editor_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameBranchEdit.__init__",
+          "line": 14154,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_branch_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14418,
+          "units": "3"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14460,
+          "units": "3"
+        }
+      ]
+    },
+    "radix_child_index_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_child",
+          "line": 14175,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14377,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_child_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14346,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14443,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_child_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14360,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14402,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14408,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14454,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_child_reference_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_child",
+          "line": 14177,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14379,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_child_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14414,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14456,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_child_tuple_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14415,
+          "units": "len(children)"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14457,
+          "units": "len(children)"
+        }
+      ]
+    },
+    "radix_edit_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14294,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_editor_change_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameBranchEdit.__init__",
+          "line": 14155,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_editor_child_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14288,
+          "units": "2"
+        },
+        {
+          "function": "_name_radix_edit",
+          "line": 14333,
+          "units": "1 + int(fresh_slot)"
+        }
+      ]
+    },
+    "radix_editor_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14324,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14351,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_editor_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14287,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_edit",
+          "line": 14332,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_editor_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameLeafEdit.__init__",
+          "line": 14147,
+          "units": "1"
+        },
+        {
+          "function": "_NameBranchEdit.__init__",
+          "line": 14156,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_freeze_base_child_reference_copies": {
+      "metric": "P",
+      "operation": "Copy every base packed-child reference once into the unpublished list.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14369,
+          "units": "len(base_children)"
+        }
+      ]
+    },
+    "radix_freeze_base_child_size_reads": {
+      "metric": "non-P",
+      "operation": "Read the packed tuple size before staging its copy.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14368,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_base_metadata_reads": {
+      "metric": "non-P",
+      "operation": "Read cached base bitmap, packed children and pending total, three fields.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14365,
+          "units": "3"
+        }
+      ]
+    },
+    "radix_freeze_base_reads": {
+      "metric": "non-P",
+      "operation": "Read the editor's immutable base once.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14344,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_base_slot_tests": {
+      "metric": "non-P",
+      "operation": "Test one changed slot against the original cached bitmap.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14375,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_change_view_and_iterator_allocations": {
+      "metric": "non-P",
+      "operation": "Create the changes-dictionary items view and traversal iterator, two objects.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14371,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_freeze_changed_slot_visits": {
+      "metric": "P",
+      "operation": "Visit one actual changed-slot dictionary entry.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14373,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_child_delete_operations": {
+      "metric": "non-P",
+      "operation": "One staged packed-list deletion operation.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14394,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_child_insert_operations": {
+      "metric": "non-P",
+      "operation": "One staged packed-list insertion operation.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14405,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_child_replace_operations": {
+      "metric": "non-P",
+      "operation": "One staged packed-list replacement operation.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14401,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_child_shift_reference_copies": {
+      "metric": "P",
+      "operation": "Charge each list reference shifted by insertion or deletion.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14396,
+          "units": "len(children) - index - 1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14407,
+          "units": "len(children) - index"
+        }
+      ]
+    },
+    "radix_freeze_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14339,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_pending_delta_operations": {
+      "metric": "non-P",
+      "operation": "Subtract old child pending count and add new count, two operations.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14386,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_freeze_slot_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14350,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_working_bitmap_reads": {
+      "metric": "non-P",
+      "operation": "Test current slot presence in the evolving packed-list bitmap.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14388,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_working_bitmap_writes": {
+      "metric": "non-P",
+      "operation": "Update the evolving bitmap after insertion or deletion.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14398,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14410,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_working_child_size_reads": {
+      "metric": "non-P",
+      "operation": "Read staged list size to calculate actual shifted references.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14395,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_freeze",
+          "line": 14406,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_freeze_working_rank_operations": {
+      "metric": "non-P",
+      "operation": "Compute current packed-list rank from the evolving bitmap.",
+      "origin": "v28 A existing-branch freeze",
+      "source_sites": [
+        {
+          "function": "_name_radix_freeze",
+          "line": 14390,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_child_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14285,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14251,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14256,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14261,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14259,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14264,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_record_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14254,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_group_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_group",
+          "line": 14262,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_hash_normalizations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_hash",
+          "line": 14161,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_hash_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_hash",
+          "line": 14160,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_leaf",
+          "line": 14212,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_copy_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_copy_leaf",
+          "line": 14228,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_copy_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_copy_leaf",
+          "line": 14232,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_copy_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_copy_leaf",
+          "line": 14231,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_copy_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_copy_leaf",
+          "line": 14233,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_leaf_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_lookup",
+          "line": 14195,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_edit_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14305,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_edit_dictionary_deletes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14309,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_edit_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14312,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_edit_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14313,
+          "units": "1 + int(not present)"
+        }
+      ]
+    },
+    "radix_leaf_editor_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameLeafEdit.__init__",
+          "line": 14146,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_leaf",
+          "line": 14213,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_leaf_proxy_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_leaf",
+          "line": 14209,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_proxy_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_leaf",
+          "line": 14210,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_leaf_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit",
+          "line": 14315,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_lookup_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_lookup",
+          "line": 14187,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_lookup",
+          "line": 14192,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_new_leaf_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14274,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_edit",
+          "line": 14298,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_certificate_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_seal_leaf",
+          "line": 14221,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14437,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_count_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_pending_count",
+          "line": 14201,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_seal_leaf",
+          "line": 14220,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_seal_leaf",
+          "line": 14217,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14430,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_seal_leaf",
+          "line": 14223,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_bulk",
+          "line": 14439,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_leaf",
+          "line": 14206,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_pending_tuple_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_leaf",
+          "line": 14207,
+          "units": "len(pending)"
+        }
+      ]
+    },
+    "radix_record_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_records",
+          "line": 14243,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_record_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_records",
+          "line": 14238,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_record_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_records",
+          "line": 14245,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_record_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_records",
+          "line": 14244,
+          "units": "3"
+        }
+      ]
+    },
+    "radix_record_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14270,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_root_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_lookup",
+          "line": 14181,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_route_steps": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_slot",
+          "line": 14165,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_split_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_records",
+          "line": 14241,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_split_leaf_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14278,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_split_leaf_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14277,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_split_leaf_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14279,
+          "units": "2"
+        }
+      ]
+    },
+    "radix_terminal_collision_bulk_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_bulk",
+          "line": 14428,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_terminal_collision_edit_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_edit_records",
+          "line": 14273,
+          "units": "1"
+        },
+        {
+          "function": "_name_radix_edit",
+          "line": 14304,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_terminal_collision_lookup_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_lookup",
+          "line": 14194,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_walk_child_reference_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_names",
+          "line": 14477,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_walk_name_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_names",
+          "line": 14473,
+          "units": "1"
+        }
+      ]
+    },
+    "radix_walk_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_radix_names",
+          "line": 14465,
+          "units": "1"
+        }
+      ]
+    },
+    "size_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.__len__",
+          "line": 14718,
+          "units": "1"
+        },
+        {
+          "function": "_NameCursor.__len__",
+          "line": 14808,
+          "units": "1"
+        }
+      ]
+    },
+    "snapshot_publications": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_name_charge_publication_commit",
+          "line": 14785,
+          "units": "1"
+        }
+      ]
+    },
+    "snapshot_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.snapshot",
+          "line": 14866,
+          "units": "1"
+        }
+      ]
+    },
+    "snapshot_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor.snapshot",
+          "line": 14868,
+          "units": "1"
+        }
+      ]
+    },
+    "version_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.__init__",
+          "line": 14665,
+          "units": "1"
+        }
+      ]
+    },
+    "version_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameVersion.__init__",
+          "line": 14666,
+          "units": "6"
+        }
+      ]
+    },
+    "write_private_tail_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor._replace_entry",
+          "line": 14829,
+          "units": "1"
+        }
+      ]
+    },
+    "write_size_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C.",
+      "origin": "unchanged prototype classification",
+      "source_sites": [
+        {
+          "function": "_NameCursor._replace_entry",
+          "line": 14844,
+          "units": "1"
+        }
+      ]
+    }
+  },
+  "classification": "Existing classifications retained; new input/history/name traversals and name-reference copies are P. All other new operations remain counted in full C as non-P.",
+  "guard_closure_freevars": [
+    "join_meter",
+    "self"
+  ],
+  "limits": [
+    "Logical semantic storage work, not CPU opcodes or allocator-perfect implementation internals.",
+    "Dictionary attempts do not count hidden C collision equality probes individually.",
+    "No fixed-category discount, budget refund, cap change, or runtime-improvement claim.",
+    "Full original key-view/set union and eager order-memo work remain; history discovery still costs work on fallback.",
+    "For atypical unchanged values the checked lookup is additional to the original per-name tuple; actual operations are not waived."
+  ],
+  "new_categories": [
+    "disabled_join_input_pair_allocation",
+    "disabled_join_input_pair_reference_copies"
+  ],
+  "new_direct_original_budget_consumes": [
+    {
+      "line": 22418,
+      "units": "1"
+    },
+    {
+      "line": 22421,
+      "units": "1"
+    },
+    {
+      "line": 22423,
+      "units": "2"
+    },
+    {
+      "line": 22427,
+      "units": "2"
+    },
+    {
+      "line": 22430,
+      "units": "1"
+    },
+    {
+      "line": 22508,
+      "units": "1"
+    },
+    {
+      "line": 22531,
+      "units": "1 + 2 * len(name_inputs)"
+    }
+  ],
+  "predecessor_sha256": "b53b905cd20dd97d7d09a3b81f955bf27498a572ce8a6d82e20f007993ab9466",
+  "previous_accounting_sha256": "5074f3509e47d1de642b30f5351dd953997397b4e29a841cc59ae92c6c7d292d",
+  "schema": "pontius-v30-production-name-accounting-v1",
+  "source_sha256": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd",
+  "v29_new_categories_retained_unchanged": [
+    "disabled_join_authority_guard_reads",
+    "disabled_join_budget_checks",
+    "disabled_join_candidate_dictionary_allocation",
+    "disabled_join_candidate_dictionary_attempts",
+    "disabled_join_candidate_dictionary_writes",
+    "disabled_join_candidate_reference_copies",
+    "disabled_join_cardinality_choice",
+    "disabled_join_changed_name_visits",
+    "disabled_join_common_history_checks",
+    "disabled_join_cursor_guard_reads",
+    "disabled_join_entry_type_checks",
+    "disabled_join_exact_state_checks",
+    "disabled_join_exact_version_checks",
+    "disabled_join_guard_closure_references",
+    "disabled_join_guard_function_allocation",
+    "disabled_join_history_change_iterator_allocation",
+    "disabled_join_history_change_reference_reads",
+    "disabled_join_history_input_iterator_allocation",
+    "disabled_join_history_input_visits",
+    "disabled_join_history_reference_reads",
+    "disabled_join_history_token_visits",
+    "disabled_join_input_iterator_allocations",
+    "disabled_join_input_visits",
+    "disabled_join_meter_checks",
+    "disabled_join_mode_checks",
+    "disabled_join_name_type_checks",
+    "disabled_join_order_dictionary_allocation",
+    "disabled_join_order_dictionary_writes",
+    "disabled_join_order_install_references",
+    "disabled_join_order_reference_copies",
+    "disabled_join_pending_flag_checks",
+    "disabled_join_pending_size_checks",
+    "disabled_join_result_install_reference",
+    "disabled_join_root_reads",
+    "disabled_join_union_iterator_allocation",
+    "disabled_join_value_type_checks"
+  ],
+  "v30_delta_units": "One allocation unit plus two reference-copy units per reached loop body; failed requests retain the original consume/raise behavior."
+}

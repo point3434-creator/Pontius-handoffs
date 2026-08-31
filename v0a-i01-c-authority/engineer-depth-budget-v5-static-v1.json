@@ -1,0 +1,198 @@
+{
+  "all_three_retained_builder_ASTs_unchanged": true,
+  "case": "generator70",
+  "checkpoint_source_lines": {
+    "adapter_bulk_cursor_install_reference": [
+      22577
+    ],
+    "adapter_bulk_pair_allocation": [
+      22568
+    ],
+    "adapter_bulk_pair_reference_copies": [
+      22569
+    ],
+    "adapter_bulk_producer_closure_references": [
+      22552
+    ],
+    "adapter_bulk_producer_function_allocation": [
+      22551
+    ],
+    "adapter_bulk_producer_generator_allocation": [
+      22573
+    ],
+    "adapter_bulk_producer_generator_references": [
+      22574
+    ],
+    "adapter_bulk_source_iterator_allocation": [
+      22555
+    ],
+    "disabled_join_authority_guard_reads": [
+      22439
+    ],
+    "disabled_join_budget_checks": [
+      22446
+    ],
+    "disabled_join_candidate_dictionary_allocation": [
+      22481
+    ],
+    "disabled_join_candidate_dictionary_attempts": [
+      22512,
+      22494
+    ],
+    "disabled_join_candidate_dictionary_writes": [
+      22496
+    ],
+    "disabled_join_candidate_reference_copies": [
+      22497
+    ],
+    "disabled_join_cardinality_choice": [
+      22501
+    ],
+    "disabled_join_changed_name_visits": [
+      22493
+    ],
+    "disabled_join_common_history_checks": [
+      22479
+    ],
+    "disabled_join_cursor_guard_reads": [
+      22449
+    ],
+    "disabled_join_entry_type_checks": [
+      22521
+    ],
+    "disabled_join_exact_state_checks": [
+      22436
+    ],
+    "disabled_join_exact_version_checks": [
+      22456
+    ],
+    "disabled_join_guard_closure_references": [
+      22433
+    ],
+    "disabled_join_guard_function_allocation": [
+      22432
+    ],
+    "disabled_join_history_change_iterator_allocation": [
+      22491
+    ],
+    "disabled_join_history_change_reference_reads": [
+      22490
+    ],
+    "disabled_join_history_input_iterator_allocation": [
+      22483
+    ],
+    "disabled_join_history_input_visits": [
+      22485
+    ],
+    "disabled_join_history_reference_reads": [
+      22486,
+      22499
+    ],
+    "disabled_join_history_token_visits": [
+      22489
+    ],
+    "disabled_join_input_iterator_allocations": [
+      22469
+    ],
+    "disabled_join_input_pair_allocation": [
+      22471
+    ],
+    "disabled_join_input_pair_reference_copies": [
+      22472
+    ],
+    "disabled_join_input_visits": [
+      22473
+    ],
+    "disabled_join_meter_checks": [
+      22453,
+      22459
+    ],
+    "disabled_join_mode_checks": [
+      22443,
+      22518
+    ],
+    "disabled_join_name_type_checks": [
+      22516
+    ],
+    "disabled_join_order_dictionary_allocation": [
+      22504
+    ],
+    "disabled_join_order_dictionary_writes": [
+      22509
+    ],
+    "disabled_join_order_install_references": [
+      22541
+    ],
+    "disabled_join_order_reference_copies": [
+      22510
+    ],
+    "disabled_join_pending_flag_checks": [
+      22523
+    ],
+    "disabled_join_pending_size_checks": [
+      22464
+    ],
+    "disabled_join_result_install_reference": [
+      22546
+    ],
+    "disabled_join_root_reads": [
+      22462
+    ],
+    "disabled_join_union_iterator_allocation": [
+      22506
+    ],
+    "disabled_join_value_type_checks": [
+      22525
+    ]
+  },
+  "control_sha256": "0fbec7b5419f134cbc837b6f41e87f2557b2cc70ff5f9fec499482e948c22725",
+  "five_cap_names_and_assertion_retained": true,
+  "fixture_sha256": "635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3",
+  "interpretation": "charge attempts/successes are distinct from action completion; budget interruption remains incomplete/unknown",
+  "inverse_control_exact": true,
+  "inverse_probe_exact": true,
+  "new_probe_definitions": [
+    "merge_local_decisions",
+    "merge_observe_charge",
+    "merge_observe_success",
+    "merge_operation_event",
+    "merge_scope",
+    "merge_snapshot",
+    "merge_summary"
+  ],
+  "observer_retention": "observer-only dictionaries/counters contain scalar leaves; merge contexts copied/validated on exit and failure summary",
+  "original_NameMeter_not_wrapped": true,
+  "original_builder_AST_preserved": true,
+  "original_consume_delegation_calls": 1,
+  "original_deep_source_AST_preserved": true,
+  "original_fixture_owner": "_fix15_frozen_review_boundary_contracts",
+  "original_merge_delegation_calls": 1,
+  "original_review_call_AST_preserved": true,
+  "original_test_calls_fixture_owner": true,
+  "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "payload_executed": false,
+  "plan_sha256": "51bbcd9bceab7f68dd6c7778dd584111e5e69e9a772fd85ecb614872eefdc3b9",
+  "population": [
+    "generator70"
+  ],
+  "predecessor_pins": {
+    "engineer-depth-budget-probe-v4.py": "559b099f96a4fcfb9b88eb05338a45ad2184ca5e153a360ee0123e0ee7969379",
+    "engineer-generator-v30-storage.py": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd",
+    "engineer-v30-generator70-diagnostic-plan-v1.md": "51bbcd9bceab7f68dd6c7778dd584111e5e69e9a772fd85ecb614872eefdc3b9",
+    "tests-checks/focused-v2-v30-first01-design-311-receipt.json": "ae46f1f92f9f7de5e554f5cc1f51694a4bd69d6856acce12e099389319a6391d",
+    "tests-depth-budget-control-v4.py": "d62807554ffd50b7552879c5a7eb8b4b940e729063ab041d36ee9e79b823c8a5"
+  },
+  "probe_sha256": "d64afd0f9adca93d9ac4c28b4124f2954b8a8d1e56a36848fbd7b8b111920758",
+  "reach_source_line": 22418,
+  "red_receipt_sha256": "ae46f1f92f9f7de5e554f5cc1f51694a4bd69d6856acce12e099389319a6391d",
+  "restoration": "original install/finally protocol retained, plus empty merge stack and all-call outcome reconciliation",
+  "runtime_limit": "60 seconds owned direct child; no new Git or descendant watchdog claim",
+  "schema": "c-authority-depth-budget-v5-static-v1",
+  "scope": "single retained generator70 floor-only diagnostic",
+  "source_sha256": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd",
+  "source_write_bytes": 0,
+  "static_author_v1_stopped_before_any_harness_write": "original builder is in called _fix15 helper, not direct test body",
+  "status": "authored_not_executed",
+  "tests_write_bytes": 0,
+  "wrapper_delta": "only case allowlist narrowed to generator70"
+}

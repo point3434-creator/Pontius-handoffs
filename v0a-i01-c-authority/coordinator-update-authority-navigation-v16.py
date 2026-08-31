@@ -1,4 +1,17 @@
-# C integration: partial core replacement selected
+from pathlib import Path
+import hashlib
+import json
+
+T = Path(r'D:\Pontius-handoffs\v0a-i01-c-authority')
+h = lambda raw: hashlib.sha256(raw).hexdigest()
+current = T / 'CURRENT.md'
+before = current.read_bytes()
+assert h(before) == 'd649a2330a752cbb8c08759a5423f371032d36b51461f8db0beb63824ee174ed'
+pins = {'rewrite-design-manifest-v1.sha256': '51cf85d387ac0b64c59603cd04fc758dcfa936cac839d016673b02fe9f7a6267',
+        'coordinator-rewrite-design-freeze-v1.json': '6e269ff4539a3c609c0ff2023263513c6611792a95fa5409216c58b98edf7c86',
+        'coordinator-v30-design-verification-v1.json': 'ed57b0fa44fda469f2291268682774bda02e82f5bc13dc9bbfca9d807c2acbf1'}
+assert all(h((T / n).read_bytes()) == pin for n, pin in pins.items())
+after = '''# C integration: partial core replacement selected
 
 2026-08-31. Navigation only. No new implementation candidate, cold verdict,
 acceptance claim or main integration. Frozen implementation handoffs remain a
@@ -68,3 +81,17 @@ authorization. No guarded/GPU run or live15000 ms product result is implied.
 
 [Previous navigation](coordinator-navigation-v15-before-v16.md) preserves the
 earlier status, including what was still in progress at that checkpoint.
+'''.encode()
+report = {'kind': 'navigation-only', 'before_sha256': h(before), 'after_sha256': h(after),
+          'pins': pins, 'source_changed': False, 'payload_executed': False,
+          'strategy': 'partial state/helper-authority core replacement',
+          'held': ['v31 unfinished scratch', 'v5 diagnostic']}
+outputs = {'coordinator-navigation-v15-before-v16.md': before,
+           'coordinator-update-authority-navigation-v16.py': Path(__file__).read_bytes(),
+           'coordinator-navigation-v16.json': (json.dumps(report, indent=2, sort_keys=True) + '\n').encode()}
+assert not any((T / n).exists() for n in outputs)
+for name, raw in outputs.items():
+    with (T / name).open('xb') as stream:
+        stream.write(raw)
+current.write_bytes(after)
+print(json.dumps({'current_sha256': h(after), 'previous_retained': True}))

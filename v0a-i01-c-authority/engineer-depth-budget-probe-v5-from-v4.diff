@@ -1,0 +1,356 @@
+--- engineer-depth-budget-probe-v4.py
++++ engineer-depth-budget-probe-v5.py
+@@ -1,4 +1,4 @@
+-"""One exact helper1050/helper65/generator70 source; scalar-only radix diagnosis, no sensitive execution."""
++"""One original generator70 case on frozen v30; scalar-only branch/cost diagnosis."""
+ import ast
+ import argparse
+ import collections
+@@ -10,10 +10,10 @@
+ import textwrap
+ 
+ parser = argparse.ArgumentParser(description=__doc__)
+-parser.add_argument("--case", required=True, choices=("helper1050", "helper65", "generator70"))
++parser.add_argument("--case", required=True, choices=("generator70",))
+ CASE = parser.parse_args().case
+ ROOT = Path.cwd()
+-GENERATOR_SHA = "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951"
++GENERATOR_SHA = "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd"
+ TEST_SHA = "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+ generator_path = ROOT / "tools/generate_test_inventory.py"
+ test_path = ROOT / "tests/test_inventory_and_profiles.py"
+@@ -50,6 +50,10 @@
+ patches = []
+ stage_stack = []
+ pipeline_events = collections.Counter()
++merge_stack = []
++merge_code = generator._SourceOrderedResolver._merge_states.__code__
++common_history_code = generator._name_common_history.__code__
++BRANCH_REACH_LINE = 22418  # Exact pinned v30 AST statement, verified at authoring.
+ 
+ 
+ def observed_init(self, *args, **keywords):
+@@ -66,6 +70,7 @@
+         "creation_stack": stack_info(sys._getframe(1)),
+         "publication_costs": {}, "bulk_shapes": collections.Counter(),
+         "full_join_sharing": collections.Counter(),
++        "merge_calls": [],
+     }
+     records_by_id[id(self)] = entry
+     records.append(entry)
+@@ -224,6 +229,220 @@
+     entry["bulk_shapes"][shape] += 1
+ 
+ 
++def merge_snapshot(context):
++    """Copy observer-owned scalar containers; never inspect a production object."""
++    def checked(value):
++        if value is None or type(value) in (bool, int, str):
++            return value
++        if type(value) is tuple:
++            return tuple(checked(item) for item in value)
++        if type(value) is list:
++            return [checked(item) for item in value]
++        if type(value) in (dict, collections.Counter):
++            assert all(type(key) is str for key in value)
++            return {key: checked(item) for key, item in value.items()}
++        raise AssertionError("non-scalar merge observation")
++    return checked(context)
++
++
++def merge_local_decisions(context, frame):
++    """Read decisions already computed in original locals; do not repeat a guard."""
++    local = frame.f_locals
++    for name in ("stable_sources", "exact_first", "disabled_join", "compatible"):
++        value = local.get(name)
++        if type(value) is bool:
++            context["decisions"][name] = value
++    if "base" in local:
++        context["decisions"]["common_history_result_known"] = True
++        context["decisions"]["common_history_present"] = local["base"] is not None
++    for name, output, expected in (
++            ("candidate_names", "candidate_names", dict),
++            ("names", "union_names", set)):
++        value = local.get(name)
++        if type(value) is expected:
++            context["decisions"][output] = len(value)
++    index = local.get("index")
++    if type(index) is int:
++        context["decisions"]["last_input_index"] = index
++    # Snapshot sizes are descriptive only; they do not assert shared entries.
++    inputs = local.get("name_inputs")
++    if type(inputs) is tuple:
++        context["input_name_counts"] = tuple(raw_name_count(value) for value in inputs)
++
++
++def merge_observe_charge(entry, frame, parent, third, kind, units, phase):
++    """Observe existing call positions before delegation; no checkpoint is a commit."""
++    if not merge_stack or merge_stack[-1]["epoch"] != entry["epoch"]:
++        return None
++    context = merge_stack[-1]
++    context["exclusive_requested_units"] += units
++    context["component_units"][phase] += units
++    if kind is not None:
++        context["name_kind_units"][kind] += units
++    label = None
++    original_frame = None
++    if frame.f_code is merge_code and frame.f_lineno == BRANCH_REACH_LINE:
++        label = "disabled_branch_reached"
++        original_frame = frame
++        context["branch_reached"] = True
++    elif kind is not None and kind.startswith("disabled_join_"):
++        label = kind
++        current = parent
++        while current is not None:
++            if current.f_code is merge_code:
++                original_frame = current
++                break
++            current = current.f_back
++        if kind == "disabled_join_guard_function_allocation":
++            context["guard_scope_reached"] = True
++        if kind == "disabled_join_input_iterator_allocations":
++            context["result_guard_passed"] = True
++        if kind == "disabled_join_common_history_checks":
++            context["all_input_guards_passed"] = True
++        if kind == "disabled_join_order_dictionary_allocation":
++            context["selected_body_reached"] = True
++        if parent is not None and parent.f_code.co_qualname == (
++                "_SourceOrderedResolver._merge_states.<locals>.disabled_input"):
++            context["last_guard_checkpoint"] = kind
++            pending = parent.f_locals.get("pending")
++            if type(pending) is int:
++                context["decisions"]["last_computed_pending_count"] = pending
++    elif (kind is not None and parent is not None
++          and parent.f_code is common_history_code
++          and third is not None and third.f_code is merge_code):
++        label = "common_history_call/" + kind
++        original_frame = third
++        # The original if disabled_join already selected this call.
++        context["all_input_guards_passed"] = True
++    elif (kind == "bulk_input_iterator_requests" and third is not None
++          and third.f_code is merge_code):
++        label = "legacy_full_build_reached"
++        original_frame = third
++        context["fallback_reached"] = True
++    elif kind == "adapter_merge_values_generator_allocation":
++        label = "per_name_normalization_preparation"
++    if label is None:
++        return None
++    context["checkpoint_attempts"][label] += 1
++    context["last_checkpoint_attempt"] = label
++    if original_frame is not None and label in {
++            "disabled_branch_reached", "disabled_join_guard_function_allocation",
++            "disabled_join_input_iterator_allocations", "disabled_join_input_pair_allocation",
++            "disabled_join_common_history_checks", "disabled_join_cardinality_choice",
++            "disabled_join_order_dictionary_allocation", "disabled_join_result_install_reference",
++            "legacy_full_build_reached"}:
++        merge_local_decisions(context, original_frame)
++    if label == "legacy_full_build_reached":
++        facts = context["decisions"]
++        if facts.get("stable_sources") is False or facts.get("exact_first") is False:
++            reason = "computed_preliminary_guard_false"
++        elif not context["guard_scope_reached"]:
++            reason = "preliminary_meter_or_budget_guard_not_entered"
++        elif facts.get("disabled_join") is False:
++            reason = "computed_result_or_input_guard_false"
++        elif (facts.get("common_history_result_known") is True
++              and facts.get("common_history_present") is False):
++            reason = "computed_common_history_absent"
++        elif (type(facts.get("candidate_names")) is int
++              and type(facts.get("union_names")) is int
++              and facts["candidate_names"] >= facts["union_names"]):
++            reason = "computed_candidate_set_not_sparse"
++        else:
++            reason = "unknown"
++        context["fallback_reason"] = reason
++    return label
++
++
++def merge_observe_success(entry, label):
++    """Original consume returned; only its charge, not the following action, completed."""
++    if label is None:
++        return
++    assert merge_stack and merge_stack[-1]["epoch"] == entry["epoch"]
++    context = merge_stack[-1]
++    context["checkpoint_charge_successes"][label] += 1
++    context["last_checkpoint_charge_success"] = label
++    if label == "disabled_join_result_install_reference":
++        context["install_charge_succeeded"] = True
++
++
++def merge_operation_event(entry, event):
++    if merge_stack and merge_stack[-1]["epoch"] == entry["epoch"]:
++        merge_stack[-1]["operation_events"][event] += 1
++
++
++def merge_scope():
++    original = generator._SourceOrderedResolver._merge_states
++    assert original.__code__ is merge_code
++    def wrapped(*args, **keywords):
++        budget = args[0].budget
++        entry = records_by_id[id(budget)]
++        entry["events"]["state_merge/calls"] += 1
++        context = {
++            "epoch": entry["epoch"], "ordinal": entry["events"]["state_merge/calls"],
++            "work_before": budget.work_units, "work_after": None,
++            "inclusive_requested_units": None, "exclusive_requested_units": 0,
++            "component_units": collections.Counter(), "name_kind_units": collections.Counter(),
++            "checkpoint_attempts": collections.Counter(),
++            "checkpoint_charge_successes": collections.Counter(),
++            "operation_events": collections.Counter(), "decisions": {},
++            "input_name_counts": (), "branch_reached": False,
++            "guard_scope_reached": False, "result_guard_passed": False,
++            "all_input_guards_passed": False, "selected_body_reached": False,
++            "install_charge_succeeded": False, "fallback_reached": False,
++            "fallback_reason": None, "last_guard_checkpoint": None,
++            "last_checkpoint_attempt": None, "last_checkpoint_charge_success": None,
++            "returned": False, "outcome": None,
++        }
++        merge_stack.append(context)
++        try:
++            answer = original(*args, **keywords)
++            context["returned"] = True
++            entry["events"]["state_merge/completed"] += 1
++            return answer
++        finally:
++            assert merge_stack[-1] is context
++            merge_stack.pop()
++            context["work_after"] = budget.work_units
++            context["inclusive_requested_units"] = budget.work_units - context["work_before"]
++            assert sum(context["component_units"].values()) == context["exclusive_requested_units"]
++            assert sum(context["name_kind_units"].values()) <= context["exclusive_requested_units"]
++            assert context["inclusive_requested_units"] >= context["exclusive_requested_units"]
++            if context["returned"] and context["install_charge_succeeded"]:
++                context["outcome"] = "disabled_install_completed"
++            elif context["returned"] and context["fallback_reached"]:
++                context["outcome"] = "legacy_full_build_returned"
++            elif context["returned"]:
++                context["outcome"] = "other_merge_returned"
++            else:
++                # Even a selected body or a paid install charge is not completion.
++                context["outcome"] = "interrupted_or_exception"
++            entry["merge_calls"].append(merge_snapshot(context))
++            entry["events"]["state_merge/exits"] += 1
++    install(generator._SourceOrderedResolver, "_merge_states", wrapped)
++
++
++def merge_summary(entry):
++    rows = entry["merge_calls"]
++    outcomes = collections.Counter()
++    costs = {}
++    for row in rows:
++        outcomes[row["outcome"]] += 1
++        label = row["outcome"]
++        used = row["inclusive_requested_units"]
++        item = costs.setdefault(label, {
++            "calls": 0, "inclusive_units": 0, "minimum_units": used, "maximum_units": used})
++        item["calls"] += 1
++        item["inclusive_units"] += used
++        item["minimum_units"] = min(item["minimum_units"], used)
++        item["maximum_units"] = max(item["maximum_units"], used)
++    return {
++        "completed_wrapper_exits": len(rows), "outcomes": dict(outcomes),
++        "inclusive_costs_by_outcome": costs, "calls": rows,
++        "active_calls": [merge_snapshot(row) for row in merge_stack if row["epoch"] == entry["epoch"]],
++        "meaning": "Flags describe reached original sites. Charge success is not action success; only original merge return after the install charge proves completed installation. Inclusive costs overlap nested calls and publication costs.",
++    }
++
++
+ def sorted_rows(counter, labels):
+     return [dict(zip(labels, item if isinstance(item, tuple) else (item,)), units=units)
+             for item, units in counter.most_common()]
+@@ -259,6 +478,7 @@
+             for facts, count in entry["full_join_sharing"].items()
+         ],
+         "creation_stack": entry["creation_stack"],
++        "merge_observations": merge_summary(entry),
+     }
+     if detailed:
+         value.update({
+@@ -383,6 +603,7 @@
+     entry["thirds"][(caller_key, parent_key, third_key)] += units
+     entry["phases"][phase] += units
+     entry["stage_units"][" > ".join(stage_stack) or "<none>"] += units
++    kind = None
+     if frame.f_code is name_meter_code:
+         kind = frame.f_locals["kind"]
+         assert type(kind) is str and frame.f_locals["self"].budget is self
+@@ -394,10 +615,12 @@
+             entry["events"][kind + "/" + origin + "/charge_attempts"] += 1
+             if kind == "bulk_input_iterator_requests":
+                 record_bulk_shape(entry, third)
++    checkpoint = merge_observe_charge(entry, frame, parent, third, kind, units, phase)
+     try:
+         answer = original_consume(self, units)
+         entry["after"] = self.work_units
+         assert self.work_units == before + units
++        merge_observe_success(entry, checkpoint)
+         return answer
+     except generator.InventoryError:
+         entry["after"] = self.work_units
+@@ -442,14 +665,17 @@
+         budget = budget_from_args(args, keywords)
+         entry = records_by_id[id(budget)]
+         entry["events"][label + "/calls"] += 1
++        merge_operation_event(entry, label + "/calls")
+         try:
+             result = original(*args, **keywords)
+             entry["events"][label + "/completed"] += 1
++            merge_operation_event(entry, label + "/completed")
+             if label == "publication_commit" and args[1].changed:
+                 entry["events"]["changed_publications_committed"] += 1
+             return result
+         finally:
+             entry["events"][label + "/exits"] += 1
++            merge_operation_event(entry, label + "/exits")
+     install(owner, name, wrapped)
+ 
+ 
+@@ -516,8 +742,7 @@
+             lambda args, keywords: args[0].authority.budget, "execution_copy")
+     counted(generator._AuthorityState, "fork",
+             lambda args, keywords: args[0].budget, "authority_fork")
+-    counted(generator._SourceOrderedResolver, "_merge_states",
+-            lambda args, keywords: args[0].budget, "state_merge")
++    merge_scope()
+     for name, label in (
+         ("_name_ordered_items", "ordered_items"), ("_name_keys", "ordered_keys"),
+         ("_name_commit_publication", "publication_commit")):
+@@ -607,6 +832,7 @@
+     assert generator._NameMeter.charge.__code__ is name_meter_code
+     assert {name: getattr(generator, name) for name in caps} == caps
+     assert not stage_stack
++    assert not merge_stack
+     assert hashlib.sha256(generator_path.read_bytes()).hexdigest() == GENERATOR_SHA
+     assert hashlib.sha256(test_path.read_bytes()).hexdigest() == TEST_SHA
+ for record in records:
+@@ -614,13 +840,18 @@
+     assert sum(record["phases"].values()) == sum(record["units"].values())
+     assert sum(record["stage_units"].values()) == sum(record["units"].values())
+     assert sum(record["name_kinds"].values()) <= sum(record["units"].values())
++    assert len(record["merge_calls"]) == record["events"]["state_merge/exits"]
++    assert record["events"]["state_merge/calls"] == record["events"]["state_merge/exits"]
++    assert sum(row["returned"] for row in record["merge_calls"]) == record["events"]["state_merge/completed"]
++    assert sum(row["exclusive_requested_units"] for row in record["merge_calls"]) <= sum(record["units"].values())
+ print(json.dumps({
+     "depth_budget_diagnostic_complete": {
+         "case": CASE, "completed": True, "diagnostic_only": True,
+         "source_sha256": GENERATOR_SHA, "tests_sha256": TEST_SHA,
+         "fixture_sha256": hashlib.sha256(fixture).hexdigest(),
+         "original_expectation": EXPECTATIONS[CASE],
+-        "diagnostic_population": list(CASE_METHODS),
++        "diagnostic_population": [CASE],
++        "branch_observer_complete": True,
+         "budget_failures": failure_count, "failing_epoch": failure_epoch,
+         "original_budget_count": len(records),
+         "all_original_budgets": [summary(record) for record in records],
+@@ -630,7 +861,7 @@
+         "caps_unchanged": {name: getattr(generator, name) for name in caps} == caps,
+         "caps": caps, "review_returned": review is not None, "refusal": refusal,
+         "requested_units_accounted": True,
+-        "scope": "Only selected helper1050/helper65/generator70 original fixture; no bounded32, other tests, matrix, corpus or dev slot",
+-        "accounting_note": "component_units/phase_units alias one disjoint partition; NameMeter kinds and stages are separate views. Preparation deltas include nested radix work and failed requests, not extra work. Final completion contains post-unwind failure costs; commit completion is separate. Bulk events/shapes are attempts, not completed-build claims.",
++        "scope": "Only original generator70 fixture on v30; no helper1050/helper65/bounded32, other tests, matrix, corpus or dev slot",
++        "accounting_note": "component_units/phase_units alias one disjoint partition; NameMeter kinds and stages are separate views. Preparation deltas include nested radix work and failed requests, not extra work. Final completion contains post-unwind failure costs; commit completion is separate. Bulk events/shapes are attempts, not completed-build claims. Merge-exclusive components partition work inside the innermost same-budget merge; merge-inclusive deltas overlap nested calls and publication costs. Only an original return after the final install charge counts as completed disabled installation.",
+     }}, sort_keys=True), flush=True)
+ raise SystemExit(0)

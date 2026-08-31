@@ -1,0 +1,51 @@
+{
+  "W_written": false,
+  "all1761_W_paths_unchanged": true,
+  "all47_primitives_source_exact": true,
+  "all5caps_unchanged": true,
+  "approved_plan_sha256": "a6fbc28533102f86341daac86cb76761517e2b2770421d29c6b8d94381bdf983",
+  "artifacts": {
+    "coordinator-enumerate-accounting-disposition-v1.md": "e780101165f86da26f80094546c8e7110f4c4a16bbbefdb8682b9b8bb1b2310f",
+    "engineer-generator-v30-storage-accounting-v1.json": "8d89ca2da1d66b5e52ee1eb6d12925b3972e7f96762869d185b098dd7581a094",
+    "engineer-generator-v30-storage-from-v29.diff": "d50c98213038bbedd0060c5136b8150b7e33832a64d406af8f33801863517fff",
+    "engineer-generator-v30-storage-preservation-v1.json": "5bd766b888984b8ddc81073e10d8bf1ff7c595c4e37d6fe5872336e1ca7505b8",
+    "engineer-generator-v30-storage.py": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd"
+  },
+  "independent_v29_review_sha256": "f397975e37f00ea9512563e91dea9bc89ae7f9dda2ce96ab2f5ed5ba1dc610ad",
+  "inverse_AST_recovers_v29": true,
+  "inverse_bytes_recover_v29": true,
+  "limits": [
+    "Static authoring proof only. No analyzer, fixture, test or oracle payload executed.",
+    "The two calls close the recorded semantic-accounting omission; runtime fitness remains unmeasured.",
+    "No previous v29/original test result is relabeled by this successor."
+  ],
+  "loop_structure_unchanged": true,
+  "new_charge_sites": {
+    "disabled_join_input_pair_allocation": [
+      {
+        "function": "_SourceOrderedResolver._merge_states",
+        "line": 22471,
+        "units": "1"
+      }
+    ],
+    "disabled_join_input_pair_reference_copies": [
+      {
+        "function": "_SourceOrderedResolver._merge_states",
+        "line": 22472,
+        "units": "2"
+      }
+    ]
+  },
+  "old_direct_consume_calls_AST_unchanged": true,
+  "old_name_category_meanings_and_call_units_unchanged": true,
+  "old_name_charge_categories_count": 279,
+  "only_two_Expr_Call_statements_inserted": true,
+  "payload_executed": false,
+  "predecessor_sha256": "b53b905cd20dd97d7d09a3b81f955bf27498a572ce8a6d82e20f007993ab9466",
+  "schema": "pontius-v30-storage-static-v1",
+  "source_bytes": 1164703,
+  "source_imported_or_executed": false,
+  "source_parsed_only": true,
+  "source_sha256": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd",
+  "unchanged_other_SOR_methods": 126
+}

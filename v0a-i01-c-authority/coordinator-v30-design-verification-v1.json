@@ -1,0 +1,27 @@
+{
+  "schema": "coordinator-v30-design-verification-v1",
+  "receipt_sha256": "ae46f1f92f9f7de5e554f5cc1f51694a4bd69d6856acce12e099389319a6391d",
+  "source_sha256": "1a28fce14cfdd2ee30d9892b7d2719aba8ec152d99d1e3c915660648cf9756fd",
+  "tests_sha256": "48c4620bf5585a76d500b3c9bf4cad4559a04d4f544bc3808832d37b58b03add",
+  "snapshot": "D:\\pontius-snapshots\\focused-authority-3d051419c2da4a099077cc6eb87f3884\\snapshot",
+  "manifest_sha256": "54335612f59092ca9cb20557d87f74705e67834419e3f37b8bf96ff8358e7587",
+  "files_rehashed": 1766,
+  "version": [
+    3,
+    11,
+    15
+  ],
+  "tests_run": 53,
+  "passed": 52,
+  "failed": [
+    "focused_frozen_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+  ],
+  "errors": 0,
+  "skips": 0,
+  "helper65_exact_depth_method_passed": true,
+  "helper1050": "The independently reviewed v5 boundedness assertion passes. This verification does not claim which of its two permitted reasons arose. Prior original-test failures and caps remain unchanged.",
+  "generator70": "Exact-depth method still gets work-cap refusal. Substantive analyzer fitness gate remains failed.",
+  "payload_executed_by_verifier": false,
+  "verifier_correction": "This verifier derives from the corrected v28 evidence reader and binds method/messages rather than physical traceback line numbers. No v30 payload or evidence is changed.",
+  "disposition": "V30 still fails the same generator70 exact-depth gate; no dev/matrix/corpus expansion or integration. Branch eligibility and useful cost reduction require evidence, not an inference from the unchanged52/53 total."
+}

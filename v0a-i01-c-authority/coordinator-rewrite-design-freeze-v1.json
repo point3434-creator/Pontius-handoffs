@@ -1,0 +1,53 @@
+{
+  "gate_B_continuation_reserve_ceiling": 196608,
+  "held": [
+    "unfinished v31 scratch",
+    "v5 generator70 diagnostic"
+  ],
+  "inputs": {
+    "coordinator-v30-design-verification-v1.json": "ed57b0fa44fda469f2291268682774bda02e82f5bc13dc9bbfca9d807c2acbf1",
+    "rewrite-cost-and-fitness-clarification-v2.md": "75c98159a96c33f5f9072c572beae567494ac16fa831c94058c6706be1e22c80",
+    "rewrite-cost-and-fitness-proposal-v1.md": "9b5c4a3cf7d187f47a2f1dc9e01f239279d42c74aaf56208fad39a801f164c76",
+    "rewrite-design-engineering-review-codex-a-v1.md": "40eeb140b1cd7bc312883368df3a97127bf1f727b0b197f4751a98bb3fdf3979",
+    "rewrite-state-model-proposal-v1.md": "dfbff5aef7e49ba2f70e39919feff18bafad3313131771a3184b60f30e60bead",
+    "stage0-design.md": "78bebca5279bf81e30181787f962d40c73826259d0bb3ffb1c7804804c1211e8",
+    "strategy-hold-v31-v1/custody-receipt-v1.json": "3c1d733f247078b6c9f5fc6b356eacca8bf14d3a6cb922374c4f350db60fa161",
+    "tests-checks/depth-budget-v5-harness-engineering-review-codex-a-v1.md": "d2d4439356937b3a393c55cd100c60fb5c79572c4fbf05abf798d781150932e3"
+  },
+  "kind": "design-only; no implementation/cold/runtime claim",
+  "main_user_owned_paths": {
+    "CLAUDE.md": "af06aad6ec36b91a4e942d7cfc1d3560555ae60e50b023270a0807f247b32b76",
+    "docs/workflow.md": "d9de38ede87fb619b3045a60ee7fab137ae23ba3b580c0a6d6b3ca14e567a170"
+  },
+  "outputs": {
+    "coordinator-freeze-c-rewrite-design-v1.py": "92235c53434682e0fefaa5f80755295e0f4a5b8686e2a273b3c3479de5f0b5d1",
+    "coordinator-retain-rewrite-draft-v0.py": "a05a1c7509991680d071667d1f36684b46d3d1f0913df9ee9418a78ab59d0352",
+    "rewrite-design-disposition-v1.md": "3622746a7a8e93c5aea1075701d3b38b3980daf2e09ce797f592ed8c5529e92c",
+    "rewrite-design-manifest-v1.sha256": "51cf85d387ac0b64c59603cd04fc758dcfa936cac839d016673b02fe9f7a6267",
+    "rewrite-design-reviewed-draft-v0.md": "18ff3c1d6b228474a321d93f8be4498c717f5af2244be62855cfb5e50ec24acb",
+    "rewrite-design-v1.md": "701552c177840e4c5c0dd9c5985776256af5b31e7e997067dd662638a67c3ca8",
+    "rewrite-stage0-v1.md": "8c84baa92400716efee2d4dd23eeafefa88a794125bafd4cc97432572ca7e077"
+  },
+  "payload_executed": false,
+  "preserved_W_paths": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  },
+  "rewrite_source_changed": false,
+  "runtime_work_cap": 262144
+}

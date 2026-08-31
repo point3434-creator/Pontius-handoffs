@@ -1,0 +1,47 @@
+{
+  "schema": "pontius-v31-strategy-hold-custody-v1",
+  "status": "UNFINISHED SCRATCH ONLY: not an issued candidate, not a review pair, not executed source",
+  "source_issued": false,
+  "review_pair": false,
+  "candidate_executed": false,
+  "source_edits": false,
+  "normalized": false,
+  "finalized": false,
+  "copied_files_count": 4,
+  "materialized_operations": 113,
+  "pending_recipe_operations": 115,
+  "pending_last_two_materialized": false,
+  "base_v25_sha256": "481098d0be86d27f1664d0705a44a91d50b3a1361280a4e28c82bc366a541853",
+  "source_manifest_path": "C:\\Users\\point\\AppData\\Local\\Temp\\pontius-v31-strategy-hold-v1\\checkpoint.json",
+  "source_manifest_sha256": "d996a680cf802e7ce6dfc82145015a4686ad56c075148b65e14dc9670c22d95c",
+  "source_manifest_exact_bytes_base64": "ew0KICAibWF0ZXJpYWxpemVkX29wZXJhdGlvbnMiOiAxMTMsDQogICJiYXNlX3YyNV9zaGEyNTYiOiAiNDgxMDk4ZDBiZTg2ZDI3ZjE2NjRkMDcwNWE0NGE5MWQ1MGIzYTEzNjEyODBhNGUyOGM4MmJjMzY2YTU0MTg1MyIsDQogICJjYW5kaWRhdGVfZXhlY3V0ZWQiOiBmYWxzZSwNCiAgInNvdXJjZV9pc3N1ZWQiOiBmYWxzZSwNCiAgInBlbmRpbmdfbGFzdF90d29fbWF0ZXJpYWxpemVkIjogZmFsc2UsDQogICJwZW5kaW5nX3JlY2lwZV9vcGVyYXRpb25zIjogMTE1LA0KICAiZmlsZXMiOiB7DQogICAgInBvbnRpdXMtdjMxLWF1dGhvcmluZy5weSI6IHsNCiAgICAgICJzaGEyNTYiOiAiNTcwZmFiZjQ4MDIyYzYxNzMwYTMxODNiNzU1M2QxZWIyMmQ4NTgwOWM0YjQ2M2Q0ZDFjNDVkNmNlZjIwNjEwZCIsDQogICAgICAiYnl0ZXMiOiA1Nzg0DQogICAgfSwNCiAgICAicG9udGl1cy12MzEtcHJldmlldy5weSI6IHsNCiAgICAgICJzaGEyNTYiOiAiNjliZjM0MmMwNzc5OTRhYmIwOWJiYjFiNmUxOTEyNmE4NDgwZGRmOTIyZTljNjhkNDNjNTMzYWFhYjIwMDY4NSIsDQogICAgICAiYnl0ZXMiOiAxMjMyNjAxDQogICAgfSwNCiAgICAicG9udGl1cy12MzEtcGVuZGluZy1yZWNpcGUtc3RyYXRlZ3ktY2hlY2twb2ludC12MS5qc29uIjogew0KICAgICAgInNoYTI1NiI6ICI1ZGVlYTI4Y2Q2MWZmYmM4MmQzNTRiMjBkMDUyMzQ1ZTFkZmQ5Yzk3YTA1ZTE3MmE5MjUxZjBmOWYwNWZkOWIxIiwNCiAgICAgICJieXRlcyI6IDgxOTk0DQogICAgfSwNCiAgICAicG9udGl1cy12MzEtYXV0aG9yaW5nLmpzb24iOiB7DQogICAgICAic2hhMjU2IjogIjRjMzhlN2M0YWY1NGEwOTUwZjliMGE3MWFiNTFkZDUwZWYyN2I2MDgzOWMwNmNkNGJkYmYxM2MyYTA0N2ZkNmUiLA0KICAgICAgImJ5dGVzIjogODA3ODcNCiAgICB9DQogIH0sDQogICJzY2hlbWEiOiAicG9udGl1cy12MzEtdW5pc3N1ZWQtc3RyYXRlZ3ktY2hlY2twb2ludC12MSINCn0=",
+  "source_root": "C:\\Users\\point\\AppData\\Local\\Temp\\pontius-v31-strategy-hold-v1",
+  "destination_root": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\strategy-hold-v31-v1",
+  "files": {
+    "pontius-v31-authoring.py": {
+      "bytes": 5784,
+      "destination_rehashed": true,
+      "source_rehashed_unchanged": true,
+      "sha256": "570fabf48022c61730a3183b7553d1eb22d85809c4b463d4d1c45d6cef20610d"
+    },
+    "pontius-v31-authoring.json": {
+      "bytes": 80787,
+      "destination_rehashed": true,
+      "source_rehashed_unchanged": true,
+      "sha256": "4c38e7c4af54a0950f9b0a71ab51dd50ef27b60839c06cd4bdbf13c2a047fd6e"
+    },
+    "pontius-v31-pending-recipe-strategy-checkpoint-v1.json": {
+      "bytes": 81994,
+      "destination_rehashed": true,
+      "source_rehashed_unchanged": true,
+      "sha256": "5deea28cd61ffbc82d354b20d052345e1dfd9c97a05e172a9251f0f9f05fd9b1"
+    },
+    "pontius-v31-preview.py": {
+      "bytes": 1232601,
+      "destination_rehashed": true,
+      "source_rehashed_unchanged": true,
+      "sha256": "69bf342c077994abb09bbb1b6e19126a8480ddf922e9c68d43c533aaab200685"
+    }
+  },
+  "notes": "Only the four manifest-listed files were byte-copied. This new receipt preserves the governing manifest bytes without copying any unlisted source file. Authoring builder and candidate preview were not imported or executed. Root strategy hold remains active."
+}

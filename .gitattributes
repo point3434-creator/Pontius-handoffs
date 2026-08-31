@@ -68,3 +68,8 @@ v0a-i01-c-authority/tests-checks/v28-primitive-first01-311-seed0.stdout.txt -tex
 v0a-i01-c-authority/tests-checks/v28-primitive-first01-311-seed0.txt -text
 v0a-i01-c-authority/tests-checks/v28-primitive-first01-314-seed0.stdout.txt -text
 v0a-i01-c-authority/tests-checks/v28-primitive-first01-314-seed0.txt -text
+
+# Retain issued C rewrite decision and held inputs byte-exact.
+v0a-i01-c-authority/strategy-hold-v31-v1/custody-receipt-v1.json -text
+v0a-i01-c-authority/tests-checks/focused-v2-v30-first01-design-311.stderr.txt -text
+v0a-i01-c-authority/tests-checks/focused-v2-v30-first01-design-311.stdout.txt -text

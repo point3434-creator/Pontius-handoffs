@@ -1,0 +1,11 @@
+--- engineer-generator-v29-storage.py
++++ engineer-generator-v30-storage.py
+@@ -22468,6 +22468,8 @@
+                         if disabled_join:
+                             join_meter.charge("disabled_join_input_iterator_allocations", 2)
+                             for index, state in enumerate(states):
++                                join_meter.charge("disabled_join_input_pair_allocation")
++                                join_meter.charge("disabled_join_input_pair_reference_copies", 2)
+                                 join_meter.charge("disabled_join_input_visits", 2)
+                                 if not disabled_input(state, name_inputs[index]):
+                                     disabled_join = False
