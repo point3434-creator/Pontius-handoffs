@@ -1,0 +1,65 @@
+--- rewrite-r2-identity-population-v1.json
++++ rewrite-r2-identity-population-v2.json
+@@ -794,6 +794,62 @@
+         "symbol": "public_review"
+       },
+       "selector_domain_argument": false,
++      "source_relative_path": "tests/test_structural_review.py",
++      "stable_ids": [
++        "tests/test_structural_review.py::ReviewTests::test_static"
++      ]
++    },
++    "name_environment_public": {
++      "adjudication_source_span": {
++        "ast_sha256": "b16778b6e0f12703c1696bab17c6878f67c8f3210824e968bd40165fc6a19542",
++        "end_line": 210,
++        "source_ref": "tests-checks/name-environment-probe-v1.py",
++        "source_span_bytes": 1931,
++        "source_span_sha256": "04c0e461727f212003d9e268175070d969a2d7eaf62f4896ef5987a47bf5ecc6",
++        "start_line": 171,
++        "symbol": "original case adjudication loop"
++      },
++      "baseline_commit": "1111111111111111111111111111111111111111",
++      "baseline_root_tree_oid": "2222222222222222222222222222222222222222",
++      "default_child_probe": false,
++      "dependencies": {
++        "digest": {
++          "ast_sha256": "0b854b65fff3a246b9483923c448dabca49fa39ff421b7ca34bf22614fbc44db",
++          "end_line": 17,
++          "source_ref": "tests-checks/name-environment-probe-v1.py",
++          "source_span_bytes": 60,
++          "source_span_sha256": "884bb01e185f2d9d9430301d9fae0ad420aa9c9ab5ec6be9c82587a6bf0ed525",
++          "start_line": 16,
++          "symbol": "digest"
++        },
++        "project_oracles": {
++          "ast_sha256": "e3bbbaa33e65b2d03ceb6ad2430efd8aa908999ec2fab5c01308af96fc67e0e9",
++          "end_line": 152,
++          "source_ref": "tests-checks/name-environment-probe-v1.py",
++          "source_span_bytes": 1488,
++          "source_span_sha256": "9ef1c0c05a9e104aa69f91c9da3ea03a348136061ea62a418c38f74abec622b3",
++          "start_line": 125,
++          "symbol": "project_oracles"
++        },
++        "public_review": {
++          "ast_sha256": "bccb4b0d8d5d3f734a40b9290298747a08976ad93d792f851c77e9fa23a0334f",
++          "end_line": 122,
++          "source_ref": "tests-checks/name-environment-probe-v1.py",
++          "source_span_bytes": 1139,
++          "source_span_sha256": "55ad7dd39403057b2d49e0a72b23343de9c873c27312a6e7df32ed5c3f705019",
++          "start_line": 104,
++          "symbol": "public_review"
++        }
++      },
++      "item_universe": [
++        [
++          "stable_id",
++          "tests/test_structural_review.py::ReviewTests::test_static"
++        ]
++      ],
++      "kind": "original_public_review",
++      "public_api": "derive_design_review",
++      "same_as_retained_v22_public_review_and_model_function": true,
+       "source_relative_path": "tests/test_structural_review.py",
+       "stable_ids": [
+         "tests/test_structural_review.py::ReviewTests::test_static"
