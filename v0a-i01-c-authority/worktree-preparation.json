@@ -1,0 +1,79 @@
+{
+  "candidate": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "worktree": "D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1",
+  "purpose": "Populate fresh editable worktree with exact frozen Git blob bytes after host autocrlf checkout; no original/sealed source changed",
+  "initial_raw_generator_sha256": "a94c67ae7d7658affb6610cc3c0be7aeb02fcd5f7f0b3bca03026b6d54615141",
+  "initial_raw_test_sha256": "219541d67b2d26ff738f1867d8be89388dc158cab1aa7800b46751cabea74aba",
+  "setup_note": "Initial preparation verified all17 payloads then stopped at a status-clean assertion: status reported EOL/stat-only changes. No source repair occurred; independent content diff now exits0 and all17 raw frozen hashes match. No Git configuration changed.",
+  "content_diff_exit": 0,
+  "paths": [
+    {
+      "path": "tests/test_v0a_hand_replay.py",
+      "sha256": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0"
+    },
+    {
+      "path": "tests/test_v0a_replay.py",
+      "sha256": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88"
+    },
+    {
+      "path": "tools/generate_test_inventory.py",
+      "sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+    },
+    {
+      "path": "src/pontius/v0a/runtime.py",
+      "sha256": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee"
+    },
+    {
+      "path": "src/pontius/v0a/model.py",
+      "sha256": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18"
+    },
+    {
+      "path": "tools/check_stabilization_boundaries.py",
+      "sha256": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6"
+    },
+    {
+      "path": "src/pontius/v0a/clock.py",
+      "sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb"
+    },
+    {
+      "path": "src/pontius/v0a/trace.py",
+      "sha256": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1"
+    },
+    {
+      "path": "tests/test-profiles.toml",
+      "sha256": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+    },
+    {
+      "path": "tests/test-inventory.json",
+      "sha256": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d"
+    },
+    {
+      "path": "tests/test_v0a_trace.py",
+      "sha256": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02"
+    },
+    {
+      "path": "src/pontius/v0a/__init__.py",
+      "sha256": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a"
+    },
+    {
+      "path": "tests/test_inventory_and_profiles.py",
+      "sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+    },
+    {
+      "path": "src/pontius/v0a/replay.py",
+      "sha256": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386"
+    },
+    {
+      "path": "tests/test_v0a_boundaries.py",
+      "sha256": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807"
+    },
+    {
+      "path": "tests/test_v0a_contract_faults.py",
+      "sha256": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8"
+    }
+  ]
+}

@@ -14,7 +14,7 @@ candidate-specific authorization under the workflow.
 | R2-05/06 trace/schema/legal acceptance | [A/B r005](../v0a-i01-ab/r005/disposition.md) legal checker sound; [r006 correction](../v0a-i01-ab/r006/disposition.md) CLEAN/SOUND twice | Preserve parser and legal replay contracts |
 | R2-04/09/10 publication/accounting | [r007](../v0a-i01-ab/r007/disposition.md) CLEAN/SOUND twice | Preserve accepted A/B bytes in final integration |
 | R2-02/07/08 flags, settlement comparison, known deliveries | Prior scoped closure preserved | Regression coverage stays active; new oracle defect separately recorded |
-| C origins/imports/inventory/profile/CI | [r010 disposition](../v0a-i01-ab/r010/disposition.md): NOT CLEAN | A: WRONG SHAPE; B: STRAINED. Four Important callable-authority losses reproduce on both slots. Separate contract-focused redesign assessment before edits; no broad wall. A/B remains byte-identical to accepted r007. |
+| C origins/imports/inventory/profile/CI | [r010 disposition](../v0a-i01-ab/r010/disposition.md): NOT CLEAN | A: WRONG SHAPE; B: STRAINED. Four Important callable-authority losses reproduce on both slots. [Separate C authority repair](../v0a-i01-c-authority/stage0-design.md) now in progress under its pre-edit design; no successor frozen or broad wall. A/B remains byte-identical to accepted r007. |
 
 Latest frozen candidate:29c02f6fbd5eb0b7ddc9e816ef28f570b9839358,
 manifest8741fa20b1ebc7e9e9d226f463680c603c348f1332bf19c8ae12b29579f76deb.
