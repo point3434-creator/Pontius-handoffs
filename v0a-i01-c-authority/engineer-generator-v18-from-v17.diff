@@ -1,0 +1,74 @@
+--- v17/tools/generate_test_inventory.py
++++ v18/tools/generate_test_inventory.py
+@@ -13988,12 +13988,21 @@
+         return self.budget.next_authority_identity
+ 
+     def fork(self) -> "_AuthorityState":
+-        result = _AuthorityState(self.budget, self.enabled)
++        self.budget.consume()  # Allocate only the state wrapper before actual table forks.
++        result = object.__new__(_AuthorityState)
++        result.budget = self.budget
++        result.enabled = self.enabled
+         if self.enabled:
+             result.objects = self.objects.fork()
+             result.cells = self.cells.fork()
+             result.results = self.results.fork()
+             result.observed = self.observed.fork()
++        else:
++            self.budget.consume(6)  # Three empty ordinary map wrappers and dictionaries.
++            result.objects = _AuthorityMap(self.budget)
++            result.cells = _AuthorityMap(self.budget)
++            result.results = _AuthorityMap(self.budget)
++            result.observed = _ObservedAuthorityMap(self.budget)
+         return result
+ 
+     def join(self, supplied: "_AuthorityState") -> None:
+@@ -14092,8 +14101,10 @@
+         for name in local_names if self.authority.enabled else ():
+             self.bindings[name] = (self.authority.identity(),)
+         for name, value in values.items():
+-            if (isinstance(parent, _ExecutionState) and name in self.bindings
+-                    and name not in local_names and parent.get(name) is value):
++            if (isinstance(parent, _ExecutionState) and name not in local_names
++                    and parent.get(name) is value):
++                # Exact inherited values keep their parent's already-forked authority.
++                self.authority.budget.consume()  # Copy this name without another transfer.
+                 dict.__setitem__(self, name, value)
+             else:
+                 self[name] = value
+@@ -14112,8 +14123,8 @@
+         # Uncaptured module globals retain immutable provenance in the value
+         # map. A cell is allocated only by actual lexical capture; locals were
+         # allocated for this activation at entry, including not-yet-bound ones.
+-        if self.authority.enabled and name in self.bindings:
+-            identities = self.bindings[name]
++        if self.authority.enabled:
++            identities = self.bindings.get(name, ())
+             for identity in identities:
+                 self.authority.cells[identity] = (value if len(identities) == 1 else
+                     _merge_flow_values("alternative cell write", (
+@@ -14121,8 +14132,8 @@
+ 
+     def __delitem__(self, name: str) -> None:
+         dict.__delitem__(self, name)
+-        if self.authority.enabled and name in self.bindings:
+-            identities = self.bindings[name]
++        if self.authority.enabled:
++            identities = self.bindings.get(name, ())
+             for identity in identities:
+                 deleted = _FlowValue("unbound", reason="deleted cell")
+                 self.authority.cells[identity] = (deleted if len(identities) == 1 else
+@@ -21264,9 +21275,10 @@
+         for state in states[1:]:
+             if isinstance(state, _ExecutionState):
+                 result.authority.join(state.authority)
+-                for name, cells in state.bindings.items():
+-                    result.bindings[name] = tuple(dict.fromkeys((
+-                        *result.bindings.get(name, ()), *cells)))
++                if result.bindings.data is not state.bindings.data:
++                    for name, cells in state.bindings.items():
++                        result.bindings[name] = tuple(dict.fromkeys((
++                            *result.bindings.get(name, ()), *cells)))
+         names = set().union(*(state.keys() for state in states))
+         dict.clear(result)
+         for name in names:

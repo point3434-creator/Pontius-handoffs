@@ -1,0 +1,25 @@
+{
+  "all_other_source_bytes_preserved": true,
+  "artifacts": {
+    "engineer-generator-v18-from-v17.diff": "3db4bbb4486f814eabe907b46c4274c59156c73cae814c8ae01c780456be0c45",
+    "engineer-generator-v18.diff": "e8de05bc2bdd393a88d94b48a39314eda370a0b0cc9d2301fb603b416abdab82",
+    "engineer-generator-v18.py": "d97ea66ef606144bb635f522856af3a5cd08819368af981a0a408c84c1e6cc99"
+  },
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "changed_methods": [
+    "_AuthorityState::fork",
+    "_ExecutionState::__delitem__",
+    "_ExecutionState::__init__",
+    "_ExecutionState::__setitem__",
+    "_SourceOrderedResolver::_merge_states"
+  ],
+  "inverse_text_equals_predecessor": true,
+  "normalized_ast_equals_predecessor": true,
+  "payloads_run": [],
+  "predecessor_sha256": "99cf67ff483244f1540f8d4959f1a84ba010a651de7ec51c228e207636815f84",
+  "prerepair_note": "engineer-state-copy-prerepair-v18.md",
+  "prerepair_note_sha256": "7d56fb8bdfea47b1d04b879646bfb7760926a1b9b4c7fc66aa52bb5f16155a20",
+  "python_control": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "schema": "pontius-engineering-state-copy-static-v1",
+  "source_sha256": "d97ea66ef606144bb635f522856af3a5cd08819368af981a0a408c84c1e6cc99"
+}

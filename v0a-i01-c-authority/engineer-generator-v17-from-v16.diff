@@ -1,0 +1,73 @@
+--- v16/tools/generate_test_inventory.py
++++ v17/tools/generate_test_inventory.py
+@@ -13916,6 +13916,61 @@
+         self.shared = False
+ 
+ 
++class _ObservedAuthorityMap:
++    """Layered observations: published dictionaries stay immutable after a fork."""
++
++    # This is a storage compaction threshold, not an analysis admission cap.
++    _COMPACT_AT_LAYERS = 8
++
++    def __init__(self, budget: _AnalysisBudget) -> None:
++        budget.consume(3)  # Map wrapper, empty dictionary and layer tuple.
++        self.budget = budget
++        self.layers: tuple[dict[int, _FlowValue], ...] = ({},)
++        self.shared = False
++
++    def fork(self) -> "_ObservedAuthorityMap":
++        self.budget.consume()  # New wrapper; the layer tuple is shared unchanged.
++        result = object.__new__(_ObservedAuthorityMap)
++        result.budget = self.budget
++        result.layers = self.layers
++        self.shared = result.shared = True
++        return result
++
++    def get(self, key: int, default: _FlowValue | None = None) -> _FlowValue | None:
++        for layer in reversed(self.layers):
++            self.budget.consume()  # Each attempted dictionary lookup.
++            value = layer.get(key)
++            if value is not None:
++                return value
++        return default
++
++    def __setitem__(self, key: int, value: _FlowValue) -> None:
++        previous = self.get(key)
++        if previous is value or previous == value:
++            return
++        if self.shared:
++            if len(self.layers) >= self._COMPACT_AT_LAYERS:
++                self.budget.consume()  # Fresh compaction dictionary.
++                combined: dict[int, _FlowValue] = {}
++                for layer in self.layers:
++                    self.budget.consume(len(layer) + 1)  # Layer and every visited entry.
++                    combined.update(layer)
++                self.budget.consume()  # Fresh one-layer tuple.
++                self.layers = (combined,)
++            else:
++                # Copy layer references, then allocate the new dictionary and tuple.
++                self.budget.consume(len(self.layers) + 2)
++                self.layers = (*self.layers, {})
++            self.shared = False
++        self.budget.consume()  # The actual write is to this branch's owned last layer.
++        self.layers[-1][key] = value
++
++    def clear(self) -> None:
++        self.budget.consume(2)  # Replacement dictionary and tuple; siblings retain theirs.
++        self.layers = ({},)
++        self.shared = False
++
++
+ class _AuthorityState:
+     """Bounded object/cell store. Forks own maps; records and values are immutable."""
+ 
+@@ -13925,7 +13980,7 @@
+         self.objects = _AuthorityMap(budget)
+         self.cells = _AuthorityMap(budget)
+         self.results = _AuthorityMap(budget)
+-        self.observed = _AuthorityMap(budget)
++        self.observed = _ObservedAuthorityMap(budget)
+ 
+     def identity(self) -> int:
+         self.budget.consume()

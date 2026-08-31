@@ -1,0 +1,118 @@
+{
+  "schema_version": "pontius-c-authority-receipt-v1",
+  "label": "c-authority-write05",
+  "slot": "311",
+  "base": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "snapshot": "D:\\pontius-snapshots\\c-authority-gen05-8dac19b4f51f4a29985722c457c1dd97\\harness",
+  "command": [
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "-B",
+    "-P",
+    "-c",
+    "import sys, runpy, json, importlib.util\nfrom pathlib import Path\nexe, version, target, *args = sys.argv[1:]\ndef require(condition, reason):\n    if not condition:\n        raise RuntimeError(reason)\nrequire(sys.implementation.name == 'cpython', 'payload is not CPython')\nrequire(Path(sys.executable).resolve() == Path(exe).resolve(), 'wrong payload executable')\nrequire('.'.join(map(str, sys.version_info[:3])) == version, 'wrong payload version')\nrequire(sys.flags.safe_path and sys.dont_write_bytecode and not sys.flags.optimize,\n        'payload flags differ')\nidentity = dict(executable=sys.executable, implementation=sys.implementation.name,\n                version=sys.version, version_info=list(sys.version_info[:3]))\nprint(json.dumps(dict(identity_before_payload_import=identity)), flush=True)\norigin = Path(importlib.util.find_spec('pontius.v0a.trace').origin)\nrequire(origin.resolve() == (Path.cwd()/'src/pontius/v0a/trace.py').resolve(),\n        'payload imported outside snapshot')\nsys.argv = [target, *args]\nif target.startswith('module:'):\n    runpy.run_module(target.split(':', 1)[1], run_name='__main__')\nelse:\n    runpy.run_path(target, run_name='__main__')\n",
+    "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "3.11.15",
+    "tools/generate_test_inventory.py",
+    "--write"
+  ],
+  "environment": {
+    "SYSTEMROOT": "C:\\windows",
+    "WINDIR": "C:\\windows",
+    "COMSPEC": "C:\\windows\\System32\\cmd.exe",
+    "PATH": "C:\\windows\\System32",
+    "TEMP": "D:\\pontius-snapshots\\c-authority-gen05-8dac19b4f51f4a29985722c457c1dd97\\temp",
+    "TMP": "D:\\pontius-snapshots\\c-authority-gen05-8dac19b4f51f4a29985722c457c1dd97\\temp",
+    "PONTIUS_GIT": "C:\\Program Files\\Git\\cmd\\git.exe",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_CONFIG_SYSTEM": "NUL",
+    "GIT_ATTR_NOSYSTEM": "1",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "D:\\pontius-snapshots\\c-authority-gen05-8dac19b4f51f4a29985722c457c1dd97\\harness\\src"
+  },
+  "metadata_sha256": "9456519dcf1210602782b4df880c387bff441ef0932fdab70e5e6d9ad66e974e",
+  "harness_sha256": {
+    "snapshot-run-authority-v1.py": "2fee06a156113ffecd54c319c4029300e11a8d7f26edc16be6ff8c396c33aa72"
+  },
+  "runtime_identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      11,
+      15
+    ]
+  },
+  "control_runtime_identity": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "version_info": [
+      3,
+      11,
+      15
+    ]
+  },
+  "exit": 2,
+  "log": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\coordinator-checks\\c-authority-write05-311.txt",
+  "sha256": "5612f2cec40564e5dd8946ef964b109ca42d4e92d72e39a92cc0088ac6eca3f6",
+  "before_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "d97ea66ef606144bb635f522856af3a5cd08819368af981a0a408c84c1e6cc99",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "after_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "d97ea66ef606144bb635f522856af3a5cd08819368af981a0a408c84c1e6cc99",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "stored_blob_sha256": {
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_inventory_and_profiles.py": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1"
+  },
+  "changed_paths": []
+}

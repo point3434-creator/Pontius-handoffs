@@ -1,10 +1,13 @@
 # Increment one â€” current state
 
-2026-08-30. Navigation only; frozen commit/manifest pairs bind every review.
+2026-08-31. Navigation only; frozen commit/manifest pairs bind every review.
 Codex owns A/B corrections and the controller-authorized isolated A/B/C replay.
 Claude's Slice C draft is available as implementation input, not frozen evidence.
 Claude remains the checkpoint finalizer; the final source commit still requires
 candidate-specific authorization under the workflow.
+
+[Current C repair and remaining gates](../v0a-i01-c-authority/CURRENT.md).
+The r010 statistics below describe that rejected frozen candidate, not the new repair.
 
 | Contract | Current standing | Next |
 | --- | --- | --- |

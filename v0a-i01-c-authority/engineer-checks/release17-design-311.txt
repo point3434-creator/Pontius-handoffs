@@ -1,0 +1,80 @@
+{"identity_before_imports": {"executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe", "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]", "version_info": [3, 11, 15], "implementation": "cpython", "cwd": "D:\\Pontius\\engineer-authority-c2091e81115e4db7a82a3f89daea6902\\harness", "pythonpath": "D:\\Pontius\\engineer-authority-c2091e81115e4db7a82a3f89daea6902\\harness\\src", "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=1, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0, warn_default_encoding=0, safe_path=True, int_max_str_digits=-1)"}}
+{"annotation_runtime_oracle": "parameter-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "parameter-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "return-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "retained-callback", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "literal", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "literal", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-type", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "bare-owner", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "readonly-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "method-parameter-call", "future": false, "version": "3.11.15", "actual": "TypeError", "expected_refusal": true}
+{"annotation_runtime_oracle": "method-parameter-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": true}
+{"annotation_runtime_oracle": "method-readonly-call", "future": false, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+{"annotation_runtime_oracle": "method-readonly-call", "future": true, "version": "3.11.15", "actual": "fixed", "expected_refusal": false}
+test_analysis_budgets_contain_deep_helpers_and_invalid_ranges (engineer_focused_design.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges) ... ok
+test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects (engineer_focused_design.DesignReviewTests.test_both_approval_tokens_are_required_and_either_snapshot_drift_rejects) ... ok
+test_callable_authority_annotations_refuse_without_inventing_execution (engineer_focused_design.DesignReviewTests.test_callable_authority_annotations_refuse_without_inventing_execution) ... ok
+test_callable_authority_async_creation_retains_only_future_effects (engineer_focused_design.DesignReviewTests.test_callable_authority_async_creation_retains_only_future_effects) ... ok
+test_callable_authority_class_construction_uses_source_point_bindings (engineer_focused_design.DesignReviewTests.test_callable_authority_class_construction_uses_source_point_bindings) ... ok
+test_callable_authority_construction_defaults_and_deferred_identity (engineer_focused_design.DesignReviewTests.test_callable_authority_construction_defaults_and_deferred_identity) ... ok
+test_callable_authority_decorator_application_uses_the_call_context (engineer_focused_design.DesignReviewTests.test_callable_authority_decorator_application_uses_the_call_context) ... ok
+test_callable_authority_descriptor_construction_refuses_effects (engineer_focused_design.DesignReviewTests.test_callable_authority_descriptor_construction_refuses_effects) ... ok
+test_callable_authority_escape_is_independent_of_incidental_owner_loads (engineer_focused_design.DesignReviewTests.test_callable_authority_escape_is_independent_of_incidental_owner_loads)
+Captured helper authority survives each callable/forwarding spelling. ... ok
+test_callable_authority_forwarded_inputs_follow_execution_order (engineer_focused_design.DesignReviewTests.test_callable_authority_forwarded_inputs_follow_execution_order) ... ok
+test_callable_authority_implicit_execution_cannot_hide_owner_writes (engineer_focused_design.DesignReviewTests.test_callable_authority_implicit_execution_cannot_hide_owner_writes)
+Modeled dispatch must distinguish owner effects from capability-free syntax. ... ok
+test_callable_authority_missing_free_proof_is_an_obligation (engineer_focused_design.DesignReviewTests.test_callable_authority_missing_free_proof_is_an_obligation) ... ok
+test_callable_authority_native_storage_retains_without_invoking (engineer_focused_design.DesignReviewTests.test_callable_authority_native_storage_retains_without_invoking) ... ok
+test_callable_authority_preserves_dormant_and_unrelated_bodies (engineer_focused_design.DesignReviewTests.test_callable_authority_preserves_dormant_and_unrelated_bodies)
+Proof checks cannot execute dormant bodies or invent receiver mutation. ... ok
+test_callable_authority_protocol_forwarding_retains_effect_context (engineer_focused_design.DesignReviewTests.test_callable_authority_protocol_forwarding_retains_effect_context) ... ok
+test_declared_unconditional_skip_body_cannot_grant_capabilities (engineer_focused_design.DesignReviewTests.test_declared_unconditional_skip_body_cannot_grant_capabilities) ... ok
+test_descriptor_defaults_preserve_real_python_argument_binding (engineer_focused_design.DesignReviewTests.test_descriptor_defaults_preserve_real_python_argument_binding) ... ok
+test_each_referenced_process_semantic_changes_the_design_row_digest (engineer_focused_design.DesignReviewTests.test_each_referenced_process_semantic_changes_the_design_row_digest) ... ok
+test_environment_update_delete_alias_and_branch_state_is_call_local (engineer_focused_design.DesignReviewTests.test_environment_update_delete_alias_and_branch_state_is_call_local) ... ok
+test_helper_effective_input_matrix_distinguishes_execution_and_effects (engineer_focused_design.DesignReviewTests.test_helper_effective_input_matrix_distinguishes_execution_and_effects) ... ok
+test_helper_effective_inputs_cover_registered_defaults_and_class_receivers (engineer_focused_design.DesignReviewTests.test_helper_effective_inputs_cover_registered_defaults_and_class_receivers) ... ok
+test_helper_effective_inputs_preserve_overrides_and_nonexecution (engineer_focused_design.DesignReviewTests.test_helper_effective_inputs_preserve_overrides_and_nonexecution) ... ok
+test_helper_effective_inputs_preserve_reached_owner_mutations (engineer_focused_design.DesignReviewTests.test_helper_effective_inputs_preserve_reached_owner_mutations) ... ok
+test_helper_provenance_alias_loss_and_cross_file_mutation_refuse (engineer_focused_design.DesignReviewTests.test_helper_provenance_alias_loss_and_cross_file_mutation_refuse) ... ok
+test_helper_provenance_callee_capture_and_local_admission (engineer_focused_design.DesignReviewTests.test_helper_provenance_callee_capture_and_local_admission) ... ok
+test_helper_provenance_comprehension_scope_is_source_ordered (engineer_focused_design.DesignReviewTests.test_helper_provenance_comprehension_scope_is_source_ordered) ... ok
+test_helper_provenance_imported_initialization_mutation_is_owner_scoped (engineer_focused_design.DesignReviewTests.test_helper_provenance_imported_initialization_mutation_is_owner_scoped) ... ok
+test_helper_provenance_module_exports_and_skip_identity_are_exact (engineer_focused_design.DesignReviewTests.test_helper_provenance_module_exports_and_skip_identity_are_exact) ... ok
+test_helper_provenance_original_members_require_stability (engineer_focused_design.DesignReviewTests.test_helper_provenance_original_members_require_stability) ... ok
+test_helper_provenance_precision_preserves_original_values_and_members (engineer_focused_design.DesignReviewTests.test_helper_provenance_precision_preserves_original_values_and_members) ... ok
+test_helper_provenance_scoped_binding_losses_remain_blocked (engineer_focused_design.DesignReviewTests.test_helper_provenance_scoped_binding_losses_remain_blocked) ... ok
+test_helper_provenance_unsupported_effects_and_escapes_refuse (engineer_focused_design.DesignReviewTests.test_helper_provenance_unsupported_effects_and_escapes_refuse) ... ok
+test_helper_provenance_values_defaults_and_callable_mutation (engineer_focused_design.DesignReviewTests.test_helper_provenance_values_defaults_and_callable_mutation) ... ok
+test_helper_registry_and_argument_binding_fail_closed (engineer_focused_design.DesignReviewTests.test_helper_registry_and_argument_binding_fail_closed) ... ok
+test_import_time_nested_and_duplicate_sensitive_calls_fail_closed (engineer_focused_design.DesignReviewTests.test_import_time_nested_and_duplicate_sensitive_calls_fail_closed) ... ok
+test_invalid_static_helper_arguments_remain_blocked (engineer_focused_design.DesignReviewTests.test_invalid_static_helper_arguments_remain_blocked) ... ok
+test_match_exception_and_child_program_analysis_never_silently_undercounts (engineer_focused_design.DesignReviewTests.test_match_exception_and_child_program_analysis_never_silently_undercounts) ... ok
+test_protected_results_match_captures_and_child_provenance_are_complete (engineer_focused_design.DesignReviewTests.test_protected_results_match_captures_and_child_provenance_are_complete) ... ok
+test_reaching_definitions_preserve_sensitive_reassignments_and_containers (engineer_focused_design.DesignReviewTests.test_reaching_definitions_preserve_sensitive_reassignments_and_containers) ... ok
+test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all (engineer_focused_design.DesignReviewTests.test_receipt_binds_canonical_sources_rows_and_complete_sorted_deny_all) ... ok
+test_receiver_descriptor_not_parameter_spelling_controls_binding (engineer_focused_design.DesignReviewTests.test_receiver_descriptor_not_parameter_spelling_controls_binding) ... ok
+test_registered_probe_and_cross_file_helpers_are_exactly_resolved (engineer_focused_design.DesignReviewTests.test_registered_probe_and_cross_file_helpers_are_exactly_resolved) ... ok
+test_round4_analysis_budget_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent) ... ok
+test_round4_child_and_helper_provenance_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_child_and_helper_provenance_red_contracts_are_independent) ... ok
+test_round4_decorator_definition_point_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_decorator_definition_point_red_contracts_are_independent) ... ok
+test_round4_exception_environment_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_exception_environment_red_contracts_are_independent) ... ok
+test_round4_match_capture_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_match_capture_red_contracts_are_independent) ... ok
+test_round4_sensitive_provenance_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_sensitive_provenance_red_contracts_are_independent) ... ok
+test_round4_source_order_and_branch_bounds_red_contracts_are_independent (engineer_focused_design.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent) ... ok
+test_source_order_bounds_exception_environments_and_decorators_are_exact (engineer_focused_design.DesignReviewTests.test_source_order_bounds_exception_environments_and_decorators_are_exact) ... ok
+test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved (engineer_focused_design.DesignReviewTests.test_unknown_receiver_context_blocks_and_lexical_capture_is_preserved) ... ok
+test_unproven_helper_descriptor_provenance_remains_blocked (engineer_focused_design.DesignReviewTests.test_unproven_helper_descriptor_provenance_remains_blocked) ... ok
+test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization (engineer_focused_design.DesignReviewTests.test_unresolved_dynamic_process_target_is_a_blocker_not_an_authorization) ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 15.036s
+
+OK
