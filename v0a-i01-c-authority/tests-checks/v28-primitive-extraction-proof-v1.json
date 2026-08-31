@@ -1,0 +1,2348 @@
+{
+  "accounting_sha256": "4592e93634857015cd2befa227e7483db1b00895117881d919e6b0508cfa95ca",
+  "all_primitive_ASTs_identical": true,
+  "all_source_segments_identical": true,
+  "attributes_slots_locals_untouched": true,
+  "binding_sha256": "d786b9a609a37bf88ea18d6d6585d2ffb6cafd6ced908d23c1e086291ed8650c",
+  "candidate_imported_or_executed": false,
+  "candidate_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "caps_unchanged": true,
+  "charge_sites": {
+    "bulk_entry_validation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14693,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_group_dictionary_attempts": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14447,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_input_iterator_requests": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14681,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_input_visits": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14686,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_key_validation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14691,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_leaf_dictionary_allocation": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14429,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_leaf_dictionary_writes": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14434,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_leaf_entry_visits": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14433,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_leaf_reference_copies": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14435,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "bulk_order_dictionary_allocation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14683,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_order_reference_copies": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14700,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "bulk_order_writes": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14699,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_pair_validation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14687,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_record_allocation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14703,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_record_list_allocation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14682,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_record_list_reference_copies": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14705,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_record_reference_copies": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14704,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "bulk_record_size_reads": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14423,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_return_reference": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14713,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_size_reads": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14711,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_slot_visits": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14446,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "bulk_uniqueness_attempts": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14696,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "cache_publication_visits": [
+      {
+        "definition": "_name_charge_cache_commit",
+        "production_line": 14616,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='staged', ctx=Load())], keywords=[])"
+      }
+    ],
+    "cache_publication_writes": [
+      {
+        "definition": "_name_charge_cache_commit",
+        "production_line": 14617,
+        "units_AST": "BinOp(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='staged', ctx=Load())], keywords=[]), op=Add(), right=Name(id='extra_writes', ctx=Load()))"
+      }
+    ],
+    "candidate_dictionary_attempts": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14927,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "candidate_dictionary_writes": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14929,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "candidate_iteration": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14950,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "candidate_reference_copies": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14930,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "cursor_allocation": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14800,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "cursor_fork_requests": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14875,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "cursor_fork_return_reference": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14878,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "cursor_publication_reference_copies": [
+      {
+        "definition": "_name_charge_publication_commit",
+        "production_line": 14786,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "cursor_reference_copies": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14801,
+        "units_AST": "Constant(value=6)"
+      }
+    ],
+    "cursor_tail_dictionary_allocation": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14802,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "cursor_write_field_copies": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14848,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "empty_order_dictionary_allocation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14672,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "entry_allocation": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14856,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "entry_reference_copies": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14857,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "fork_reference_copies": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14740,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_allocation": [
+      {
+        "definition": "_name_history",
+        "production_line": 14126,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_change_token_visits": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14940,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_changed_name_visits": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14942,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_depth_reads": [
+      {
+        "definition": "_name_common_history",
+        "production_line": 14898,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "history_identity_comparisons": [
+      {
+        "definition": "_name_common_history",
+        "production_line": 14895,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_input_visits": [
+      {
+        "definition": "_name_common_history",
+        "production_line": 14892,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_parent_depth_read": [
+      {
+        "definition": "_name_history",
+        "production_line": 14128,
+        "units_AST": "Call(func=Name(id='int', ctx=Load()), args=[Compare(left=Name(id='parent', ctx=Load()), ops=[IsNot()], comparators=[Constant(value=None)])], keywords=[])"
+      }
+    ],
+    "history_parent_reads": [
+      {
+        "definition": "_name_common_history",
+        "production_line": 14900,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_common_history",
+        "production_line": 14903,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14944,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "history_reference_copies": [
+      {
+        "definition": "_name_history",
+        "production_line": 14127,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "items_cache_reads": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14636,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_cached_return_reference": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14638,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_entry_value_reads": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14649,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_key_visits": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14645,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_pair_allocation": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14650,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_pair_generator_allocation": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14642,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_pair_reference_copies": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14651,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "items_result_reference_copies": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14652,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_result_tuple_allocation": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14641,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "items_return_reference": [
+      {
+        "definition": "_name_ordered_items",
+        "production_line": 14655,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "join_candidate_dictionary_allocation": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14924,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "join_input_reference_copies": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14914,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='states', ctx=Load())], keywords=[])"
+      }
+    ],
+    "join_input_tuple_allocation": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14912,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "join_input_validation": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14916,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "join_order_override_reference": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14977,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "join_state_visits": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14933,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "keys_return_reference": [
+      {
+        "definition": "_name_keys",
+        "production_line": 14629,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "keys_view_allocation": [
+      {
+        "definition": "_name_keys",
+        "production_line": 14627,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "lookup_private_tail_attempts": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14813,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "merge_argument_generator_allocation": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14952,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "merge_argument_reference_copies": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14957,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "merge_argument_tuple_allocation": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14951,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "merge_callback_invocation": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14970,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "merge_input_visits": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14955,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "merge_missing_visits": [
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14962,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_allocation": [
+      {
+        "definition": "_name_order",
+        "production_line": 14487,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_cache_reads": [
+      {
+        "definition": "_name_known_order",
+        "production_line": 14495,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14508,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14521,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14532,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_dictionary_allocation": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14566,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14557,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_dictionary_deletes": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14582,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_dictionary_key_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14571,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_dictionary_reference_copies": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14573,
+        "units_AST": "Constant(value=2)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14607,
+        "units_AST": "Constant(value=2)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14579,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "order_dictionary_writes": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14572,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14606,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14578,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_edit_application_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14576,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_edit_list_allocation": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14528,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_edit_reference_copies": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14539,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_edit_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14538,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_field_reference_copies": [
+      {
+        "definition": "_name_order",
+        "production_line": 14488,
+        "units_AST": "Constant(value=4)"
+      }
+    ],
+    "order_keys_view_allocation": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14593,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_parent_reads": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14541,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_parent_reference_copies": [
+      {
+        "definition": "_name_order",
+        "production_line": 14491,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='parents', ctx=Load())], keywords=[])"
+      }
+    ],
+    "order_parent_tuple_allocation": [
+      {
+        "definition": "_name_order",
+        "production_line": 14490,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_parent_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14589,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14552,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_join_name_versions",
+        "production_line": 14975,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='states', ctx=Load())], keywords=[])"
+      }
+    ],
+    "order_proxy_allocation": [
+      {
+        "definition": "_name_seal_order_table",
+        "production_line": 14502,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_proxy_reference_copies": [
+      {
+        "definition": "_name_seal_order_table",
+        "production_line": 14503,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_recipe_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14519,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_stack_pops": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14517,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_stack_record_allocations": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14514,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14543,
+        "units_AST": "Constant(value=3)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14548,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14553,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_stack_reference_copies": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14515,
+        "units_AST": "Constant(value=4)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14544,
+        "units_AST": "Constant(value=10)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14549,
+        "units_AST": "Constant(value=4)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14554,
+        "units_AST": "Constant(value=4)"
+      }
+    ],
+    "order_staging_lookup": [
+      {
+        "definition": "_name_known_order",
+        "production_line": 14498,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14524,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14535,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_staging_reference_copies": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14611,
+        "units_AST": "Constant(value=2)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14561,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "order_staging_write": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14610,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14560,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_temporary_allocations": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14511,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "order_union_argument_reference_copies": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14598,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='views', ctx=Load())], keywords=[])"
+      }
+    ],
+    "order_union_argument_tuple_allocation": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14597,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_union_input_attempts": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14601,
+        "units_AST": "Name(id='input_size', ctx=Load())"
+      }
+    ],
+    "order_union_input_size_reads": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14591,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_union_input_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14600,
+        "units_AST": "Name(id='input_size', ctx=Load())"
+      }
+    ],
+    "order_union_output_visits": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14605,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_union_set_allocations": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14599,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "order_union_unique_references": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14603,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='union', ctx=Load())], keywords=[])"
+      }
+    ],
+    "order_union_view_list_allocation": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14585,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "order_union_view_reference_copies": [
+      {
+        "definition": "_name_realize_order",
+        "production_line": 14595,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "private_dictionary_reference_copies": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14847,
+        "units_AST": "BinOp(left=Constant(value=1), op=Add(), right=Call(func=Name(id='int', ctx=Load()), args=[Compare(left=Name(id='tail_entry', ctx=Load()), ops=[Is()], comparators=[Name(id='_NAME_MISSING', ctx=Load())])], keywords=[]))"
+      }
+    ],
+    "private_dictionary_writes": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14846,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "publication_change_entry_visits": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14765,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Name(id='cursor', ctx=Load()), attr='_tail', ctx=Load())], keywords=[])"
+      }
+    ],
+    "publication_change_reference_copies": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14766,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Name(id='cursor', ctx=Load()), attr='_tail', ctx=Load())], keywords=[])"
+      }
+    ],
+    "publication_change_tuple_allocation": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14764,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "publication_fresh_tail_allocation": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14777,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "publication_plan_allocation": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14779,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14761,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "publication_plan_reference_copies": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14780,
+        "units_AST": "Constant(value=3)"
+      },
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14762,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "publication_private_entry_visits": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14771,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "publication_tail_size_read": [
+      {
+        "definition": "_name_prepare_publication",
+        "production_line": 14758,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_bitmap_reads": [
+      {
+        "definition": "_name_radix_child",
+        "production_line": 14171,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_branch_allocation": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14417,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14459,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_branch_editor_allocation": [
+      {
+        "definition": "_NameBranchEdit",
+        "production_line": 14154,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_branch_field_reference_copies": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14418,
+        "units_AST": "Constant(value=3)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14460,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "radix_child_index_operations": [
+      {
+        "definition": "_name_radix_child",
+        "production_line": 14175,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14377,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_child_list_allocation": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14346,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14443,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_child_list_reference_copies": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14360,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14402,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14408,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14454,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_child_reference_visits": [
+      {
+        "definition": "_name_radix_child",
+        "production_line": 14177,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14379,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_child_tuple_allocation": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14414,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14456,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_child_tuple_reference_copies": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14415,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='children', ctx=Load())], keywords=[])"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14457,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='children', ctx=Load())], keywords=[])"
+      }
+    ],
+    "radix_edit_node_visits": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14294,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_editor_change_dictionary_allocation": [
+      {
+        "definition": "_NameBranchEdit",
+        "production_line": 14155,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_editor_child_reference_copies": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14288,
+        "units_AST": "Constant(value=2)"
+      },
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14333,
+        "units_AST": "BinOp(left=Constant(value=1), op=Add(), right=Call(func=Name(id='int', ctx=Load()), args=[Name(id='fresh_slot', ctx=Load())], keywords=[]))"
+      }
+    ],
+    "radix_editor_dictionary_attempts": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14324,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14351,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_editor_dictionary_writes": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14287,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14332,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_editor_field_reference_copies": [
+      {
+        "definition": "_NameLeafEdit",
+        "production_line": 14147,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_NameBranchEdit",
+        "production_line": 14156,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_freeze_base_child_reference_copies": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14369,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='base_children', ctx=Load())], keywords=[])"
+      }
+    ],
+    "radix_freeze_base_child_size_reads": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14368,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_base_metadata_reads": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14365,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "radix_freeze_base_reads": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14344,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_base_slot_tests": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14375,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_change_view_and_iterator_allocations": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14371,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_freeze_changed_slot_visits": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14373,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_child_delete_operations": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14394,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_child_insert_operations": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14405,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_child_replace_operations": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14401,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_child_shift_reference_copies": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14396,
+        "units_AST": "BinOp(left=BinOp(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='children', ctx=Load())], keywords=[]), op=Sub(), right=Name(id='index', ctx=Load())), op=Sub(), right=Constant(value=1))"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14407,
+        "units_AST": "BinOp(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='children', ctx=Load())], keywords=[]), op=Sub(), right=Name(id='index', ctx=Load()))"
+      }
+    ],
+    "radix_freeze_node_visits": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14339,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_pending_delta_operations": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14386,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_freeze_slot_visits": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14350,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_working_bitmap_reads": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14388,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_working_bitmap_writes": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14398,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14410,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_working_child_size_reads": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14395,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14406,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_freeze_working_rank_operations": [
+      {
+        "definition": "_name_radix_freeze",
+        "production_line": 14390,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_child_visits": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14285,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_dictionary_allocation": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14251,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_dictionary_attempts": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14256,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_dictionary_writes": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14261,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_list_allocation": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14259,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_list_reference_copies": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14264,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_record_visits": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14254,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_group_reference_copies": [
+      {
+        "definition": "_name_radix_group",
+        "production_line": 14262,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_hash_normalizations": [
+      {
+        "definition": "_name_radix_hash",
+        "production_line": 14161,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_hash_requests": [
+      {
+        "definition": "_name_radix_hash",
+        "production_line": 14160,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_allocation": [
+      {
+        "definition": "_name_radix_leaf",
+        "production_line": 14212,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_copy_dictionary_allocation": [
+      {
+        "definition": "_name_radix_copy_leaf",
+        "production_line": 14228,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_copy_dictionary_writes": [
+      {
+        "definition": "_name_radix_copy_leaf",
+        "production_line": 14232,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_copy_entry_visits": [
+      {
+        "definition": "_name_radix_copy_leaf",
+        "production_line": 14231,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_copy_reference_copies": [
+      {
+        "definition": "_name_radix_copy_leaf",
+        "production_line": 14233,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_leaf_dictionary_attempts": [
+      {
+        "definition": "_name_radix_lookup",
+        "production_line": 14195,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_edit_dictionary_attempts": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14305,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_edit_dictionary_deletes": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14309,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_edit_dictionary_writes": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14312,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_edit_reference_copies": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14313,
+        "units_AST": "BinOp(left=Constant(value=1), op=Add(), right=Call(func=Name(id='int', ctx=Load()), args=[UnaryOp(op=Not(), operand=Name(id='present', ctx=Load()))], keywords=[]))"
+      }
+    ],
+    "radix_leaf_editor_allocation": [
+      {
+        "definition": "_NameLeafEdit",
+        "production_line": 14146,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_field_reference_copies": [
+      {
+        "definition": "_name_radix_leaf",
+        "production_line": 14213,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_leaf_proxy_allocation": [
+      {
+        "definition": "_name_radix_leaf",
+        "production_line": 14209,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_proxy_reference_copies": [
+      {
+        "definition": "_name_radix_leaf",
+        "production_line": 14210,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_leaf_size_reads": [
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14315,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_lookup_node_visits": [
+      {
+        "definition": "_name_radix_lookup",
+        "production_line": 14192,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_lookup",
+        "production_line": 14187,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_new_leaf_dictionary_allocation": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14274,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14298,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_certificate_reads": [
+      {
+        "definition": "_name_radix_seal_leaf",
+        "production_line": 14221,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14437,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_count_reads": [
+      {
+        "definition": "_name_radix_pending_count",
+        "production_line": 14201,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_entry_visits": [
+      {
+        "definition": "_name_radix_seal_leaf",
+        "production_line": 14220,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_list_allocation": [
+      {
+        "definition": "_name_radix_seal_leaf",
+        "production_line": 14217,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14430,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_list_reference_copies": [
+      {
+        "definition": "_name_radix_seal_leaf",
+        "production_line": 14223,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14439,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_tuple_allocation": [
+      {
+        "definition": "_name_radix_leaf",
+        "production_line": 14206,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_pending_tuple_reference_copies": [
+      {
+        "definition": "_name_radix_leaf",
+        "production_line": 14207,
+        "units_AST": "Call(func=Name(id='len', ctx=Load()), args=[Name(id='pending', ctx=Load())], keywords=[])"
+      }
+    ],
+    "radix_record_allocation": [
+      {
+        "definition": "_name_radix_records",
+        "production_line": 14243,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_record_list_allocation": [
+      {
+        "definition": "_name_radix_records",
+        "production_line": 14238,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_record_list_reference_copies": [
+      {
+        "definition": "_name_radix_records",
+        "production_line": 14245,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_record_reference_copies": [
+      {
+        "definition": "_name_radix_records",
+        "production_line": 14244,
+        "units_AST": "Constant(value=3)"
+      }
+    ],
+    "radix_record_size_reads": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14270,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_root_reads": [
+      {
+        "definition": "_name_radix_lookup",
+        "production_line": 14181,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_route_steps": [
+      {
+        "definition": "_name_radix_slot",
+        "production_line": 14165,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_split_input_visits": [
+      {
+        "definition": "_name_radix_records",
+        "production_line": 14241,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_split_leaf_dictionary_writes": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14278,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_split_leaf_entry_visits": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14277,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_split_leaf_reference_copies": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14279,
+        "units_AST": "Constant(value=2)"
+      }
+    ],
+    "radix_terminal_collision_bulk_operations": [
+      {
+        "definition": "_name_radix_bulk",
+        "production_line": 14428,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_terminal_collision_edit_operations": [
+      {
+        "definition": "_name_radix_edit_records",
+        "production_line": 14273,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_name_radix_edit",
+        "production_line": 14304,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_terminal_collision_lookup_operations": [
+      {
+        "definition": "_name_radix_lookup",
+        "production_line": 14194,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_walk_child_reference_visits": [
+      {
+        "definition": "_name_radix_names",
+        "production_line": 14477,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_walk_name_visits": [
+      {
+        "definition": "_name_radix_names",
+        "production_line": 14473,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "radix_walk_node_visits": [
+      {
+        "definition": "_name_radix_names",
+        "production_line": 14465,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "size_read": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14718,
+        "units_AST": "Constant(value=1)"
+      },
+      {
+        "definition": "_NameCursor",
+        "production_line": 14808,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "snapshot_publications": [
+      {
+        "definition": "_name_charge_publication_commit",
+        "production_line": 14785,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "snapshot_requests": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14866,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "snapshot_return_reference": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14868,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "version_allocation": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14665,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "version_reference_copies": [
+      {
+        "definition": "_NameVersion",
+        "production_line": 14666,
+        "units_AST": "Constant(value=6)"
+      }
+    ],
+    "write_private_tail_attempts": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14829,
+        "units_AST": "Constant(value=1)"
+      }
+    ],
+    "write_size_read": [
+      {
+        "definition": "_NameCursor",
+        "production_line": 14844,
+        "units_AST": "Constant(value=1)"
+      }
+    ]
+  },
+  "constant_count": 6,
+  "constructor_B_extracted": false,
+  "definition_count": 41,
+  "extracted_sha256": "bad767aab3b330666fbc4543224e28347a8cf93f8f69d5940c618737dbea2778",
+  "global_references": [
+    "AssertionError",
+    "BudgetExceeded",
+    "KeyError",
+    "MAXIMUM_WORK",
+    "MappingProxyType",
+    "Meter",
+    "RuntimeError",
+    "TypeError",
+    "ValueError",
+    "_NAME_DELETED",
+    "_NAME_HASH_MASK",
+    "_NAME_HASH_WIDTH",
+    "_NAME_LEAF_SIZE",
+    "_NAME_MISSING",
+    "_NAME_RADIX_BITS",
+    "_NameBranchEdit",
+    "_NameCursor",
+    "_NameEntry",
+    "_NameHistory",
+    "_NameLeafEdit",
+    "_NameOrder",
+    "_NamePublication",
+    "_NameRadixBranch",
+    "_NameRadixLeaf",
+    "_NameVersion",
+    "_join_name_versions",
+    "_name_charge_cache_commit",
+    "_name_charge_publication_commit",
+    "_name_check_name",
+    "_name_commit_order",
+    "_name_commit_publication",
+    "_name_common_history",
+    "_name_history",
+    "_name_keys",
+    "_name_known_order",
+    "_name_order",
+    "_name_ordered_items",
+    "_name_pending_names",
+    "_name_prepare_publication",
+    "_name_radix_bulk",
+    "_name_radix_child",
+    "_name_radix_copy_leaf",
+    "_name_radix_edit",
+    "_name_radix_edit_records",
+    "_name_radix_freeze",
+    "_name_radix_group",
+    "_name_radix_hash",
+    "_name_radix_leaf",
+    "_name_radix_lookup",
+    "_name_radix_names",
+    "_name_radix_pending_count",
+    "_name_radix_records",
+    "_name_radix_seal_leaf",
+    "_name_radix_slot",
+    "_name_realize_order",
+    "_name_seal_order_table",
+    "bool",
+    "classmethod",
+    "dataclass",
+    "hash",
+    "int",
+    "isinstance",
+    "len",
+    "list",
+    "object",
+    "property",
+    "range",
+    "reversed",
+    "set",
+    "str",
+    "sys",
+    "tuple",
+    "type"
+  ],
+  "literal_charge_categories": 213,
+  "new_categories": [
+    "radix_freeze_base_child_reference_copies",
+    "radix_freeze_base_child_size_reads",
+    "radix_freeze_base_metadata_reads",
+    "radix_freeze_base_reads",
+    "radix_freeze_base_slot_tests",
+    "radix_freeze_change_view_and_iterator_allocations",
+    "radix_freeze_changed_slot_visits",
+    "radix_freeze_child_delete_operations",
+    "radix_freeze_child_insert_operations",
+    "radix_freeze_child_replace_operations",
+    "radix_freeze_child_shift_reference_copies",
+    "radix_freeze_pending_delta_operations",
+    "radix_freeze_working_bitmap_reads",
+    "radix_freeze_working_bitmap_writes",
+    "radix_freeze_working_child_size_reads",
+    "radix_freeze_working_rank_operations"
+  ],
+  "old_accounting_sha256": "79f64e5e7bbb429bedd108654b69c8ab5893973ee742517b543129f762f68f2b",
+  "old_category_mappings_unchanged": true,
+  "primitive_nodes": [
+    {
+      "AST_sha256": "6075a4bc034753816a8c7f659c8ba74d46e45e811e7f024a10e57425c0cef4b5",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 36,
+      "kind": "Assign",
+      "name": "_NAME_RADIX_BITS",
+      "production_line": 14098
+    },
+    {
+      "AST_sha256": "4bc2377f853d7eac3b6c9ce9b518d3ff90e71d9ad5c50db46ce34686ed6f5843",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 37,
+      "kind": "Assign",
+      "name": "_NAME_LEAF_SIZE",
+      "production_line": 14100
+    },
+    {
+      "AST_sha256": "3316ddf4fe7765914ae1399cd54a26f2ec1658f624cdef3af42adb58f71232da",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 38,
+      "kind": "Assign",
+      "name": "_NAME_HASH_WIDTH",
+      "production_line": 14102
+    },
+    {
+      "AST_sha256": "e21b0a794bdf4692d6e4d4b842adbf361a7496f1992ab9f9dc761925b6e42cad",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 39,
+      "kind": "Assign",
+      "name": "_NAME_HASH_MASK",
+      "production_line": 14104
+    },
+    {
+      "AST_sha256": "1786cecdd30fc8330c2b110958c867c729b334225d50cabf3de65c26bbf0dc04",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 40,
+      "kind": "Assign",
+      "name": "_NAME_MISSING",
+      "production_line": 14106
+    },
+    {
+      "AST_sha256": "0ba51bddccc59e3f760f6dff16ae7844a1f0d1e41e75598ea8d8fd5f2016f5b2",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 41,
+      "kind": "Assign",
+      "name": "_NAME_DELETED",
+      "production_line": 14108
+    },
+    {
+      "AST_sha256": "a8321402424440c9eedfa0addba0f53a0c82c975d3b1284e82b766ff27e4000c",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 43,
+      "kind": "ClassDef",
+      "name": "_NameEntry",
+      "production_line": 14111
+    },
+    {
+      "AST_sha256": "9f5d7acf1c3650702ae02dad172c264f443083c4a90b785dd252481bd4584c97",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 46,
+      "kind": "FunctionDef",
+      "name": "_name_check_name",
+      "production_line": 14115
+    },
+    {
+      "AST_sha256": "a82140a3362a0e532ace7033e25e614c3782e5fcf451160a95fbcd6908492457",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 50,
+      "kind": "ClassDef",
+      "name": "_NameHistory",
+      "production_line": 14120
+    },
+    {
+      "AST_sha256": "094a980bdd358c009641f10aefcd40f44257eefd52e9576c1fa82fd64aa0a853",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 54,
+      "kind": "FunctionDef",
+      "name": "_name_history",
+      "production_line": 14125
+    },
+    {
+      "AST_sha256": "949fbede8ff42afaff99dcedf2adff825dc8325d714c58cdcc413e05f41da659",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 60,
+      "kind": "ClassDef",
+      "name": "_NameRadixLeaf",
+      "production_line": 14132
+    },
+    {
+      "AST_sha256": "9a40ae91983830bacd78c1e1ff794bc3711a829315e73cae00a8f4f93b5f7bc6",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 64,
+      "kind": "ClassDef",
+      "name": "_NameRadixBranch",
+      "production_line": 14137
+    },
+    {
+      "AST_sha256": "ef20a5b9063b2e8ba809b1cad37fa6ad797f0631f2a611f3f2b09f9940fed3fc",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 68,
+      "kind": "ClassDef",
+      "name": "_NameLeafEdit",
+      "production_line": 14142
+    },
+    {
+      "AST_sha256": "007ab6140027e7d77b7e6308fdd052b3d9bb12b805b91b494d5a52c47ac3a3f1",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 75,
+      "kind": "ClassDef",
+      "name": "_NameBranchEdit",
+      "production_line": 14150
+    },
+    {
+      "AST_sha256": "bfd96fc535a1c061d8039b9d7dab9d21588be9a6d494605191f5341b75313af5",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 83,
+      "kind": "FunctionDef",
+      "name": "_name_radix_hash",
+      "production_line": 14159
+    },
+    {
+      "AST_sha256": "0e7a5de4f7610265f0b2669cf704b0c143ccc3d1f2bc295d9b7cde9300d9ae18",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 87,
+      "kind": "FunctionDef",
+      "name": "_name_radix_slot",
+      "production_line": 14164
+    },
+    {
+      "AST_sha256": "5524b0aa5a04b8c451924a5679e408062b67cc244e2ecb692c652e33d2605226",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 90,
+      "kind": "FunctionDef",
+      "name": "_name_radix_child",
+      "production_line": 14168
+    },
+    {
+      "AST_sha256": "4028abf2c5149d735147c7a076506f516650aa6d82d1a8ee6fbf74b59e8561ce",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 101,
+      "kind": "FunctionDef",
+      "name": "_name_radix_lookup",
+      "production_line": 14180
+    },
+    {
+      "AST_sha256": "cf4369332f7a9e57a2357c7190d7a6764fe03e95264d2f43b9ebd5e5a037b715",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 118,
+      "kind": "FunctionDef",
+      "name": "_name_radix_pending_count",
+      "production_line": 14198
+    },
+    {
+      "AST_sha256": "211c12a34e3dcad726a5a03d8726d4d4363455bd58997180d75b8cac1d118f9e",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 123,
+      "kind": "FunctionDef",
+      "name": "_name_radix_leaf",
+      "production_line": 14204
+    },
+    {
+      "AST_sha256": "be2eb62df61a738026704da94b3c5d22e6f659ea00ffec4a98e131c174ad32c9",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 134,
+      "kind": "FunctionDef",
+      "name": "_name_radix_seal_leaf",
+      "production_line": 14216
+    },
+    {
+      "AST_sha256": "874a2ae0beb8874c685e58d05ac786c69b183a3ff8dad0f489a64b487051c80e",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 144,
+      "kind": "FunctionDef",
+      "name": "_name_radix_copy_leaf",
+      "production_line": 14227
+    },
+    {
+      "AST_sha256": "c8cb1cfb0ce84f10eb7b5af4f035f78eb3e00b3f51309b1353b5307ec42f49ff",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 153,
+      "kind": "FunctionDef",
+      "name": "_name_radix_records",
+      "production_line": 14237
+    },
+    {
+      "AST_sha256": "263240597f43ecaa6d7695f12c3f34725d5d272937b7dc7e24465b53a0366968",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 164,
+      "kind": "FunctionDef",
+      "name": "_name_radix_group",
+      "production_line": 14249
+    },
+    {
+      "AST_sha256": "586efc42725d5f04595623c08213fea5c40cc5b700ade7a2ef80b8747ccff9cc",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 182,
+      "kind": "FunctionDef",
+      "name": "_name_radix_edit_records",
+      "production_line": 14268
+    },
+    {
+      "AST_sha256": "c3029e529522087b1790eaa015bcf2f45a03efe386ed4fcd81d0dbfb52d969ed",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 205,
+      "kind": "FunctionDef",
+      "name": "_name_radix_edit",
+      "production_line": 14292
+    },
+    {
+      "AST_sha256": "596a49769b443c226b8a087b19a7757909eb74c426c993eaf86a7a9856ba13d0",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 249,
+      "kind": "FunctionDef",
+      "name": "_name_radix_freeze",
+      "production_line": 14337
+    },
+    {
+      "AST_sha256": "b4ce9f2eadbba0957e092cc8429abd78cff798d405c7b3c447ba6b686d796054",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 332,
+      "kind": "FunctionDef",
+      "name": "_name_radix_bulk",
+      "production_line": 14421
+    },
+    {
+      "AST_sha256": "b429c961c6b7abd920cb9231e92241a67af70b1fbe7cdae0b41247a7f202c22e",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 373,
+      "kind": "FunctionDef",
+      "name": "_name_radix_names",
+      "production_line": 14463
+    },
+    {
+      "AST_sha256": "f54a73c6a96cd05089fca1deccf9b0093769d25534eafe770d834c2e171ebe6a",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 389,
+      "kind": "ClassDef",
+      "name": "_NameOrder",
+      "production_line": 14480
+    },
+    {
+      "AST_sha256": "0971bf26db517639558f6d438a3cc6542b2fd29b1ce3631267cf9289600cadb4",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 394,
+      "kind": "FunctionDef",
+      "name": "_name_order",
+      "production_line": 14486
+    },
+    {
+      "AST_sha256": "28aeac998de86a2a25a0a4b37e8cb646c9f26febbf4f4e8dc1a09f70d5ef1187",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 401,
+      "kind": "FunctionDef",
+      "name": "_name_known_order",
+      "production_line": 14494
+    },
+    {
+      "AST_sha256": "8fcd32b3866c0fe8fa29cc1b1e9082d2fe1a2a0b0cecda931eb7d6ab6eeadb86",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 407,
+      "kind": "FunctionDef",
+      "name": "_name_seal_order_table",
+      "production_line": 14501
+    },
+    {
+      "AST_sha256": "4287f37bed75d0c7ae887ee78f084668a01e44ee11e5b60d2a9305494523cf02",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 411,
+      "kind": "FunctionDef",
+      "name": "_name_realize_order",
+      "production_line": 14506
+    },
+    {
+      "AST_sha256": "95af76e1e912f3fbd308068336d99f5d99c3235473ad8c654543790147bf33b9",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 519,
+      "kind": "FunctionDef",
+      "name": "_name_charge_cache_commit",
+      "production_line": 14615
+    },
+    {
+      "AST_sha256": "8547c7fde32588a7732341b841d8b23ee9d775449ead32973425259bd69a466d",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 522,
+      "kind": "FunctionDef",
+      "name": "_name_commit_order",
+      "production_line": 14619
+    },
+    {
+      "AST_sha256": "2f43d53054d84493add8aa4677785c9dd84a4f7161e8265e961247aa3ea9b9f3",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 526,
+      "kind": "FunctionDef",
+      "name": "_name_keys",
+      "production_line": 14624
+    },
+    {
+      "AST_sha256": "97e25cf279efc60379f645b57a62e7b936673c58952ff6d0827ef7c3db84bc6e",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 535,
+      "kind": "FunctionDef",
+      "name": "_name_ordered_items",
+      "production_line": 14634
+    },
+    {
+      "AST_sha256": "950c61abac6628fdae5d89b5ce5387250944304269555503be196a340424b4fe",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 561,
+      "kind": "ClassDef",
+      "name": "_NameVersion",
+      "production_line": 14661
+    },
+    {
+      "AST_sha256": "72e923a93b4764535d894274d6a40a76c42306ce5dd4e0b6954801e45e613738",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 649,
+      "kind": "ClassDef",
+      "name": "_NamePublication",
+      "production_line": 14750
+    },
+    {
+      "AST_sha256": "4ef9cba2bf8f72ae04885283b1491668991ef98eca4f6666c5f9cb2296913be3",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 653,
+      "kind": "FunctionDef",
+      "name": "_name_prepare_publication",
+      "production_line": 14755
+    },
+    {
+      "AST_sha256": "037149ed118354a836fc3b2cfe409ff8a7233aa1a3e4b2b8fc183c8045ac09e4",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 680,
+      "kind": "FunctionDef",
+      "name": "_name_charge_publication_commit",
+      "production_line": 14783
+    },
+    {
+      "AST_sha256": "b86236fd402f2d5cb6f64db4cb9262c037f60ca45ccdbedfbc5f459852f93289",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 684,
+      "kind": "FunctionDef",
+      "name": "_name_commit_publication",
+      "production_line": 14788
+    },
+    {
+      "AST_sha256": "135d974f977a48d90d28565dfcd6bcd0427110d4e345ef48c8f58c5f29ed1bcd",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 688,
+      "kind": "ClassDef",
+      "name": "_NameCursor",
+      "production_line": 14793
+    },
+    {
+      "AST_sha256": "f7c59e37928143806967e4d0de9c08a7767b41d8622b5f6448a684c2bd87910a",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 783,
+      "kind": "FunctionDef",
+      "name": "_name_common_history",
+      "production_line": 14889
+    },
+    {
+      "AST_sha256": "de885f6a75a3cc363e4a4f7af58c9ad49eea2bb7b6e6eb6194da462ae565c13f",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 800,
+      "kind": "FunctionDef",
+      "name": "_name_pending_names",
+      "production_line": 14907
+    },
+    {
+      "AST_sha256": "5ef912d0759f5c0c202893c9cc6b50999fe456b23c7d7b65cdbd98adcdab4a5c",
+      "exact_AST_equal": true,
+      "exact_source_segment_equal": true,
+      "extracted_line": 803,
+      "kind": "FunctionDef",
+      "name": "_join_name_versions",
+      "production_line": 14911
+    }
+  ],
+  "production_accounting_sha256": "077c1b4779709672a79368ea1081ecd9cb0499c651851a571a80f075e983c45b",
+  "production_budget_adapter_extracted": false,
+  "production_namespace_map": {
+    "_NAME_DELETED": "_NAME_DELETED",
+    "_NAME_HASH_MASK": "_NAME_HASH_MASK",
+    "_NAME_HASH_WIDTH": "_NAME_HASH_WIDTH",
+    "_NAME_LEAF_SIZE": "_NAME_LEAF_SIZE",
+    "_NAME_MISSING": "_NAME_MISSING",
+    "_NAME_RADIX_BITS": "_NAME_RADIX_BITS",
+    "_NameBranchEdit": "_NameBranchEdit",
+    "_NameCursor": "_NameCursor",
+    "_NameEntry": "_NameEntry",
+    "_NameHistory": "_NameHistory",
+    "_NameLeafEdit": "_NameLeafEdit",
+    "_NameOrder": "_NameOrder",
+    "_NamePublication": "_NamePublication",
+    "_NameRadixBranch": "_NameRadixBranch",
+    "_NameRadixLeaf": "_NameRadixLeaf",
+    "_NameVersion": "_NameVersion",
+    "_join_name_versions": "_join_name_versions",
+    "_name_charge_cache_commit": "_name_charge_cache_commit",
+    "_name_charge_publication_commit": "_name_charge_publication_commit",
+    "_name_check_name": "_name_check_name",
+    "_name_commit_order": "_name_commit_order",
+    "_name_commit_publication": "_name_commit_publication",
+    "_name_common_history": "_name_common_history",
+    "_name_history": "_name_history",
+    "_name_keys": "_name_keys",
+    "_name_known_order": "_name_known_order",
+    "_name_order": "_name_order",
+    "_name_ordered_items": "_name_ordered_items",
+    "_name_pending_names": "_name_pending_names",
+    "_name_prepare_publication": "_name_prepare_publication",
+    "_name_radix_bulk": "_name_radix_bulk",
+    "_name_radix_child": "_name_radix_child",
+    "_name_radix_copy_leaf": "_name_radix_copy_leaf",
+    "_name_radix_edit": "_name_radix_edit",
+    "_name_radix_edit_records": "_name_radix_edit_records",
+    "_name_radix_freeze": "_name_radix_freeze",
+    "_name_radix_group": "_name_radix_group",
+    "_name_radix_hash": "_name_radix_hash",
+    "_name_radix_leaf": "_name_radix_leaf",
+    "_name_radix_lookup": "_name_radix_lookup",
+    "_name_radix_names": "_name_radix_names",
+    "_name_radix_pending_count": "_name_radix_pending_count",
+    "_name_radix_records": "_name_radix_records",
+    "_name_radix_seal_leaf": "_name_radix_seal_leaf",
+    "_name_radix_slot": "_name_radix_slot",
+    "_name_realize_order": "_name_realize_order",
+    "_name_seal_order_table": "_name_seal_order_table"
+  },
+  "public_alias_map": {
+    "Entry": "_NameEntry",
+    "MISSING": "_NAME_MISSING",
+    "NameCursor": "_NameCursor",
+    "NameVersion": "_NameVersion",
+    "_NameMeter": "Meter",
+    "join": "_join_name_versions"
+  },
+  "schema": "pontius-v28-primitive-extraction-proof-v1",
+  "static_compile_only": true,
+  "support_nodes": [
+    {
+      "AST_sha256": "592f2fa86f21ffb1461b8280be8359b0f31f36053c2718a697dc4277e85b7fe7",
+      "exact_AST_equal": true,
+      "name": "MAXIMUM_WORK"
+    },
+    {
+      "AST_sha256": "5197b1ad3d70881c1b960c023b5a4c4715bcc1bda8fe277a7572e16048f9a4dc",
+      "exact_AST_equal": true,
+      "name": "BudgetExceeded"
+    },
+    {
+      "AST_sha256": "08ede99bf6ac3a68116838c3965023c5630062ea0caadb72bfafd307e0077f0a",
+      "exact_AST_equal": true,
+      "name": "Meter"
+    }
+  ],
+  "support_reference_sha256": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71",
+  "unresolved_globals": []
+}

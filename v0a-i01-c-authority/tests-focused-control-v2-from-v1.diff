@@ -1,0 +1,72 @@
+--- tests-focused-control-v1.py
++++ tests-focused-control-v2.py
+@@ -2,7 +2,7 @@
+ 
+ Controller: actual CPython 3.11.15 with -I -S -B -P.
+ Payload: selected actual interpreter with -B -P, fresh r010 snapshot.
+-Only design53 or the immutable matrix192 is admitted. No mutable W input.
++Only design53 or the immutable matrix192 is admitted. V2 pins the reviewed v5 test correction for both. No mutable W input.
+ """
+ import argparse
+ from collections import Counter
+@@ -27,18 +27,18 @@
+ BASE = "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358"
+ ORIGINAL_SOURCE_SHA = "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+ ORIGINAL_TESTS_SHA = "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+-MATRIX_SHA = "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd"
++CANDIDATE_TESTS_SHA = "48c4620bf5585a76d500b3c9bf4cad4559a04d4f544bc3808832d37b58b03add"
+ WRAPPER = ROOT / "tests-focused-wrapper-v1.py"
+ WRAPPER_SHA = "839e30c19b825defae4fea30ec899a43cd0ad346953215421b81478ffc20ca35"
+-POPULATION = ROOT / "tests-focused-population-v1.json"
+-POPULATION_SHA = "8799fd0f5996b84397b42f12b84f19a120a3b99f4be76a78775a4e5666856362"
+-MATRIX = ROOT / "tests-candidate-v4.py"
++POPULATION = ROOT / "tests-focused-population-v2.json"
++POPULATION_SHA = "449ffdd9898d06b43c5d707b01d4e6e387be64ee7f32b2f914e6b58604acb8ea"
++CANDIDATE_TESTS = ROOT / "tests-candidate-v5.py"
+ SLOTS = {
+     "311": (Path(r"D:\Pontius-tools\py311\Scripts\python.exe"), [3, 11, 15]),
+     "314": (Path(r"D:\Pontius\.venv\Scripts\python.exe"), [3, 14, 6]),
+ }
+-SCHEMA = "c-authority-focused-control-v1"
+-PAYLOAD = ".focused-authority"
++SCHEMA = "c-authority-focused-control-v2"
++PAYLOAD = ".focused-authority-v2"
+ SOURCE_RELATIVE = "tools/generate_test_inventory.py"
+ TEST_RELATIVE = "tests/test_inventory_and_profiles.py"
+ TRACKED_COUNT = 1761
+@@ -362,14 +362,13 @@
+         "population": {"path": str(POPULATION), "sha256": POPULATION_SHA},
+         "watch": {"path": str(WATCH), "sha256": arguments.watch_sha},
+     }
+-    if arguments.kind == "matrix":
+-        inputs["matrix_tests"] = {"path": str(MATRIX), "sha256": MATRIX_SHA}
++    inputs["candidate_tests"] = {"path": str(CANDIDATE_TESTS), "sha256": CANDIDATE_TESTS_SHA}
+     if arguments.floor_receipt:
+         inputs["floor"] = {
+             "path": str(handoff_file(arguments.floor_receipt, ".json")),
+             "sha256": arguments.floor_sha,
+         }
+-    prefix = "focused-" + arguments.label + "-" + arguments.kind + "-" + arguments.slot
++    prefix = "focused-v2-" + arguments.label + "-" + arguments.kind + "-" + arguments.slot
+     paths = {role: checks / (prefix + suffix) for role, suffix in {
+         "receipt": "-receipt.json", "setup": "-setup.json",
+         "stdout": ".stdout.txt", "stderr": ".stderr.txt", "log": ".txt",
+@@ -384,7 +383,7 @@
+             "kind": arguments.kind, "source_path": str(source),
+             "source_sha256": arguments.source_sha, "control_sha256": arguments.control_sha,
+             "watch_path": str(WATCH), "watch_sha256": arguments.watch_sha,
+-            "tests_sha256": MATRIX_SHA if arguments.kind == "matrix" else ORIGINAL_TESTS_SHA,
++            "tests_sha256": CANDIDATE_TESTS_SHA,
+             "base_commit": BASE, "tracked_count": TRACKED_COUNT,
+             "controller_executable": str(Path(sys.executable).resolve()),
+             "controller_version": list(sys.version_info[:3]), "timeout_seconds": TIMEOUT,
+@@ -438,8 +437,7 @@
+                 require(digest(git(snapshot, temp, "cat-file", "blob", BASE + ":" + relative))
+                         == expected, "original blob binding")
+             (snapshot / SOURCE_RELATIVE).write_bytes(raw_inputs["source"])
+-            if arguments.kind == "matrix":
+-                (snapshot / TEST_RELATIVE).write_bytes(raw_inputs["matrix_tests"])
++            (snapshot / TEST_RELATIVE).write_bytes(raw_inputs["candidate_tests"])
+             payload = snapshot / PAYLOAD
+             payload.mkdir()
+             payload_files = {

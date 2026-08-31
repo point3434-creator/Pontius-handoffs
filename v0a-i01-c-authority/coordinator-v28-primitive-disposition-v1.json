@@ -1,0 +1,63 @@
+{
+  "approved_next_dispatch": {
+    "runs": 93,
+    "seed": "0",
+    "slot": "311"
+  },
+  "config": {
+    "path": "tests-checks/v28-primitive-config-v1.json",
+    "sha256": "0f11763dd21c681e401282aa1a4a2cd1c4568c8686fbbc3589b9e0887a2f7050"
+  },
+  "control_sha256": "64fcb3ef0aaaf57f63643b3e306fe0f0b65f47c4d5ba8c5fc107dbe68186fcac",
+  "exact_original_support_nodes": 3,
+  "exact_production_nodes_independently_compared": 47,
+  "independent_engineering_review_sha256": "31d1d6f88ce3fa35036c618f5b4ce866a0e72bbde98eb9d8dcb6daf5c81b8733",
+  "input_hashes": {
+    "accounting": "4592e93634857015cd2befa227e7483db1b00895117881d919e6b0508cfa95ca",
+    "candidate": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+    "cursor_cases": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61",
+    "cursor_oracle": "145fe1d59c48e23cdb426bcbe35edbecc3f941a81dc9780e8eeed849be5bc143",
+    "extraction_plan": "b9948d186f89e313f5eae829ab9fa4081f03b3260d4bb8f97237d70b4fbdd2ba",
+    "extraction_proof": "8b6269d44aecaca6a4df93947439e0f54090b4dedb673a6574c5781e580d6c45",
+    "extractor": "96f3e980751e0d4851b95340e894c9519b96241fc726d1fac30d324fd99d6d9f",
+    "indexed_cases": "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a",
+    "indexed_oracle": "95ee5d3dd2e31ffd7ea6ecdd2f5e2b05dddb15e5a5ef1aa70ba8820bd82d2381",
+    "indexed_spec": "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9",
+    "old_accounting": "79f64e5e7bbb429bedd108654b69c8ab5893973ee742517b543129f762f68f2b",
+    "old_cases": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f",
+    "old_oracle": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba",
+    "production_accounting": "077c1b4779709672a79368ea1081ecd9cb0499c651851a571a80f075e983c45b",
+    "production_binding": "d786b9a609a37bf88ea18d6d6585d2ffb6cafd6ced908d23c1e086291ed8650c",
+    "prototype": "bad767aab3b330666fbc4543224e28347a8cf93f8f69d5940c618737dbea2778",
+    "support_reference": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71"
+  },
+  "limits": [
+    "One selected floor invocation; no automatic six-run expansion.",
+    "314 requires successful matching floor evidence and root review.",
+    "Existing finite primitive obligations only; no constructor B, production-meter, resolver or corpus claim.",
+    "Actual changed-category coverage remains to be inspected; no new cases are authorized."
+  ],
+  "new_categories": 16,
+  "original_categories": 197,
+  "preserved_W_paths": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  },
+  "schema": "coordinator-v28-primitive-disposition-v1",
+  "source_imported_or_payload_executed": false
+}

@@ -1,0 +1,989 @@
+[
+  {
+    "kind": "replace",
+    "old": "from typing import Any, Callable\n",
+    "new": "from typing import Any, Callable, Literal\n"
+  },
+  {
+    "kind": "insert_before",
+    "anchor": "@dataclass(frozen=True, slots=True)\nclass _FlowEnvironment:",
+    "text": "@dataclass(frozen=True, slots=True, eq=False)\nclass _DeferredResultCarrier:\n    \"\"\"Retained result alternatives differ from contained element edges.\"\"\"\n\n    role: Literal[\"alternative\", \"element\"]\n    roots: tuple[_FlowValue, ...]\n\n\n@dataclass(frozen=True, slots=True)\nclass _NativeCollectionEffect:\n    owner_refs: tuple[int, ...]\n    mutable_identity: int | None\n    shape_exact: bool\n\n\ndef _ordered_flow_roots(\n    groups: Iterable[Iterable[_FlowValue]], budget: _AnalysisBudget,\n) -> tuple[_FlowValue, ...]:\n    budget.consume(3)\n    result: list[_FlowValue] = []\n    seen: set[tuple[int, tuple[int, ...]]] = set()\n    for group in groups:\n        budget.consume()\n        for value in group:\n            budget.consume(2 + len(value.authority_refs))\n            key = (id(value), value.authority_refs)\n            if key not in seen:\n                seen.add(key)\n                result.append(value)\n    budget.consume(1 + len(result))\n    return tuple(result)\n\n\ndef _join_member_obligations(\n    left: tuple[tuple[str, tuple[_FlowValue, ...]], ...],\n    right: tuple[tuple[str, tuple[_FlowValue, ...]], ...],\n    budget: _AnalysisBudget,\n) -> tuple[tuple[str, tuple[_FlowValue, ...]], ...]:\n    if left is right:\n        budget.consume()\n        return left\n    budget.consume(2)\n    grouped: dict[str, list[tuple[_FlowValue, ...]]] = {}\n    for supplied in (left, right):\n        for name, roots in supplied:\n            budget.consume(2)\n            grouped.setdefault(name, []).append(roots)\n    result = []\n    for name, groups in grouped.items():\n        budget.consume(2)\n        roots = _ordered_flow_roots(groups, budget)\n        if roots:\n            result.append((name, roots))\n    budget.consume(1 + len(result))\n    return tuple(result)\n\n\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "__init__",
+    "old": "self._helper_effect_shapes: dict[int, tuple[frozenset[str], bool]] = {}",
+    "new": "self._helper_effect_shapes: dict[int, tuple[frozenset[str], bool, bool]] = {}"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_helper_effect_shape",
+    "old": ") -> tuple[frozenset[str], bool]:",
+    "new": ") -> tuple[frozenset[str], bool, bool]:"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_helper_effect_shape",
+    "old": "        stores = False\n",
+    "new": "        stores = False\n        constructs = False\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_helper_effect_shape",
+    "old": "            for candidate in _metered_ast_walk(statement, self.budget):\n",
+    "new": "            for candidate in _metered_ast_walk(statement, self.budget):\n                constructs |= isinstance(candidate, (\n                    ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda, ast.ClassDef,\n                ))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_helper_effect_shape",
+    "old": "        result = frozenset(loaded), stores\n",
+    "new": "        result = frozenset(loaded), stores, constructs\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "        loaded, has_stores = self._helper_effect_shape(definition)\n",
+    "new": "        loaded, has_stores, constructs = self._helper_effect_shape(definition)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "        if (not relevant and not has_stores and not any(\n",
+    "new": "        if (not relevant and not has_stores and not constructs and not any(\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_class_comprehension",
+    "old": "                if isinstance(candidate, ast.Name):\n",
+    "new": "                if isinstance(candidate, ast.Name) and isinstance(candidate.ctx, ast.Store):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_generator_state_is_sensitive",
+    "old": "        if state.class_scope_unresolved and state.remaining != 0:\n            return True\n        outer_iterator_changed = (\n            self._deferred_generator_outer_iterator_changed(state)\n        )\n",
+    "new": "        outer_iterator_changed = self._deferred_generator_outer_iterator_changed(state)\n        if self._class_generator_requires_refusal(state):\n            return True\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_consume_generator_expression",
+    "old": "        if state.class_scope_unresolved and (state.remaining != 0 or outer_iterator_changed):\n",
+    "new": "        if self._class_generator_requires_refusal(state):\n"
+  },
+  {
+    "kind": "class_replace_in",
+    "cls": "_AuthorityRecord",
+    "old": "    retained: tuple[_FlowValue, ...] = ()\n",
+    "new": "    retained: tuple[_FlowValue, ...] = ()\n    member_obligations: tuple[tuple[str, tuple[_FlowValue, ...]], ...] = ()\n    member_wildcard: tuple[_FlowValue, ...] = ()\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_AuthorityMap",
+    "name": "__setitem__",
+    "old": "        if key in self.data and self.data[key] == value:\n            return\n",
+    "new": "        if key in self.data:\n            previous = self.data[key]\n            # Record graphs are compared/unioned explicitly by their owning operation.\n            if previous is value or not isinstance(value, _AuthorityRecord) and previous == value:\n                return\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_AuthorityState",
+    "name": "join",
+    "old": "                elif previous != record:\n",
+    "new": "                elif previous is not record:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_AuthorityState",
+    "name": "join",
+    "old": "                        (*previous.retained, *record.retained),\n",
+    "new": "                        _ordered_flow_roots((previous.retained, record.retained), self.budget),\n                        _join_member_obligations(\n                            previous.member_obligations, record.member_obligations, self.budget,\n                        ),\n                        _ordered_flow_roots(\n                            (previous.member_wildcard, record.member_wildcard), self.budget,\n                        ),\n"
+  },
+  {
+    "kind": "function_replace",
+    "name": "_transfer_authority",
+    "text": "def _transfer_authority(\n    value: _FlowValue, state: \"_ExecutionState\", *, retained: bool = False,\n    member_obligations: tuple[tuple[str, tuple[_FlowValue, ...]], ...] = (),\n    member_wildcard: tuple[_FlowValue, ...] = (),\n) -> _FlowValue:\n    \"\"\"Register current retained edges without reconstructing historical cells.\"\"\"\n    store = state.authority\n    if not store.enabled:\n        return value\n    store.budget.consume()\n    # Initialization must precede the ordinary live-reference shortcut.\n    if member_obligations or member_wildcard:\n        initialized = []\n        for name, roots in member_obligations:\n            store.budget.consume(2 + len(roots))\n            initialized.append((name, tuple(\n                _transfer_authority(root, state, retained=True) for root in roots\n            )))\n        store.budget.consume(2 + len(initialized) + len(member_wildcard))\n        member_obligations = tuple(initialized)\n        member_wildcard = tuple(\n            _transfer_authority(root, state, retained=True) for root in member_wildcard\n        )\n        if value.authority_refs and all(\n            identity in store.objects for identity in value.authority_refs\n        ):\n            for identity in value.authority_refs:\n                record = store.objects[identity]\n                members = _join_member_obligations(\n                    record.member_obligations, member_obligations, store.budget,\n                )\n                wildcard = _ordered_flow_roots(\n                    (record.member_wildcard, member_wildcard), store.budget,\n                )\n                store.budget.consume()\n                store.objects[identity] = replace(\n                    record, member_obligations=members, member_wildcard=wildcard,\n                )\n            return value\n    if value.authority_refs:\n        if all(identity in store.objects for identity in value.authority_refs):\n            return value\n        reason = \"helper namespace authority state is unresolved\"\n        value = replace(value, authority_refs=(), helper_refusal=reason,\n                        helper_obligations=(*value.helper_obligations, _FlowValue(\n                            \"helper_deferred_refusal\", reason=reason)))\n    updates: dict[str, object] = {}\n    if value.kind in {\"sequence\", \"slice\", \"maybe_unbound\",\n                      \"deferred_generator_container_merged\", \"deferred_generator_merged\"}:\n        updates[\"value\"] = tuple(_transfer_authority(item, state, retained=True)\n                                 if isinstance(item, _FlowValue) else item\n                                 for item in value.value)\n    elif value.kind in {\"mapping\", \"mapping_keys\"}:\n        updates[\"value\"] = tuple(tuple(_transfer_authority(item, state, retained=True)\n                                       if isinstance(item, _FlowValue) else item\n                                       for item in pair) for pair in value.value)\n    elif value.kind == \"starred_argument\" and isinstance(value.value, _FlowValue):\n        updates[\"value\"] = _transfer_authority(value.value, state, retained=True)\n    elif value.kind == \"deferred_result_carrier\" and isinstance(\n        value.value, _DeferredResultCarrier,\n    ):\n        store.budget.consume(2 + len(value.value.roots))\n        updates[\"value\"] = _DeferredResultCarrier(value.value.role, tuple(\n            _transfer_authority(root, state, retained=True) for root in value.value.roots\n        ))\n    if value.callable_defaults:\n        updates[\"callable_defaults\"] = tuple((name, _transfer_authority(item, state, retained=True))\n                                            for name, item in value.callable_defaults)\n    if value.helper_receiver is not None:\n        updates[\"helper_receiver\"] = _transfer_authority(value.helper_receiver, state, retained=True)\n    if value.helper_obligations:\n        updates[\"helper_obligations\"] = tuple(_transfer_authority(item, state, retained=True)\n                                              for item in value.helper_obligations)\n    value = replace(value, **updates) if updates else value\n    if (value.mutable_collection or retained and value.helper_provenance is not None\n            or value.callable_definition is not None or value.helper_obligations\n            or value.helper_receiver is not None or value.callable_defaults\n            or value.namespace_effects or value.helper_refusal is not None\n            or member_obligations or member_wildcard\n            or value.kind in {\"sequence\", \"mapping\", \"mapping_keys\", \"slice\"}):\n        identity = store.identity()\n        store.objects[identity] = _AuthorityRecord(\n            replace(value, authority_refs=()), member_obligations=member_obligations,\n            member_wildcard=member_wildcard,\n        )\n        value = replace(value, authority_refs=(identity,))\n    return value\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "                        remaining=remaining,\n",
+    "new": "                        remaining=remaining,\n                        class_scope_unresolved=any(state.class_scope_unresolved for state in states),\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "    if generators:\n        return _FlowValue(\n            \"deferred_generator_merged\",\n            tuple(value.value for value in generators),\n            any(\n                _flow_is_sensitive(value)\n                for value in present\n                if value.kind != \"generator\"\n            ),\n            \"deferred generator consumption is dynamically unresolved\",\n        )\n",
+    "new": "    if any(value.kind in {\"generator\", \"deferred_generator_merged\"} for value in present):\n        alternatives: list[object] = []\n        for value in present:\n            if value.kind == \"generator\":\n                alternatives.append(value.value)\n            elif value.kind == \"deferred_generator_merged\":\n                alternatives.extend(value.value)\n            else:\n                alternatives.append(value)\n        return _FlowValue(\n            \"deferred_generator_merged\", tuple(alternatives),\n            any(_flow_is_sensitive(value) for value in present),\n            \"deferred generator consumption is dynamically unresolved\",\n        )\n"
+  },
+  {
+    "kind": "method_insert_before",
+    "cls": "_SourceOrderedResolver",
+    "name": "_transfer",
+    "text": "    def _class_generator_requires_refusal(self, state: _DeferredGeneratorState) -> bool:\n        self.budget.consume()\n        return bool(state.class_scope_unresolved and (\n            state.remaining != 0 or self._deferred_generator_outer_iterator_changed(state)\n        ))\n\n    def _deferred_result_values(\n        self, value: _FlowValue, values: Mapping[str, _FlowValue], *, immediate: bool,\n    ) -> tuple[_FlowValue, ...]:\n        \"\"\"Walk retained edges; element visits cannot suppress alternative visits.\"\"\"\n        self.budget.consume(5)\n        pending = [(\"alternative\", value)]\n        seen_values: set[tuple[str, int]] = set()\n        seen_authority: set[tuple[str, int]] = set()\n        result: list[_FlowValue] = []\n        store = self._authority(values)\n        while pending:\n            role, current = pending.pop()\n            self.budget.consume(2)\n            if immediate and role == \"element\":\n                continue\n            key = (role, id(current))\n            if key in seen_values:\n                continue\n            seen_values.add(key)\n            if current.kind == \"deferred_result_carrier\" and isinstance(\n                current.value, _DeferredResultCarrier,\n            ):\n                self.budget.consume(len(current.value.roots))\n                pending.extend((current.value.role, root) for root in current.value.roots)\n                continue\n            if current.kind == \"generator\" and isinstance(current.value, _DeferredGeneratorState):\n                if immediate or current.value.class_scope_unresolved:\n                    result.append(current)\n                continue\n            if current.kind == \"deferred_local_generator\":\n                if immediate:\n                    result.append(current)\n                continue\n            if current.kind == \"deferred_generator_merged\":\n                for item in current.value:\n                    self.budget.consume(2)\n                    if isinstance(item, _DeferredGeneratorState):\n                        pending.append((\"alternative\", _FlowValue(\"generator\", item)))\n                    elif isinstance(item, _FlowValue):\n                        pending.append((\"alternative\", item))\n                continue\n            if current.kind in {\"maybe_unbound\", \"deferred_generator_container_merged\"}:\n                self.budget.consume(len(current.value))\n                pending.extend((\"alternative\", item) for item in current.value\n                               if isinstance(item, _FlowValue))\n            native = current.kind in {\"sequence\", \"mapping\", \"mapping_keys\", \"slice\"}\n            if native and not immediate:\n                if current.kind in {\"sequence\", \"slice\"}:\n                    children = current.value\n                else:\n                    children = tuple(item for pair in current.value for item in pair\n                                     if isinstance(item, _FlowValue))\n                self.budget.consume(len(children))\n                pending.extend((\"element\", item) for item in children\n                               if isinstance(item, _FlowValue))\n            if current.kind == \"starred_argument\" and isinstance(current.value, _FlowValue):\n                pending.append((role, current.value))\n            for identity in current.authority_refs:\n                self.budget.consume()\n                authority_key = (role, identity)\n                if authority_key in seen_authority:\n                    continue\n                seen_authority.add(authority_key)\n                record = store.objects.get(identity)\n                if record is not None:\n                    pending.append((role, record.value))\n                    retained_role = (\"element\" if record.value.mutable_collection else role)\n                    self.budget.consume(len(record.retained))\n                    pending.extend((retained_role, item) for item in record.retained)\n            # A callable's captures/defaults are not its result or immediate iterator.\n            if current.callable_definition is None and current.kind in {\n                \"unknown\", \"maybe_unbound\", \"deferred_generator_container_merged\",\n            }:\n                self.budget.consume(len(current.helper_obligations))\n                pending.extend((role, item) for item in current.helper_obligations)\n        return _ordered_flow_roots((result,), self.budget)\n\n    def _retained_deferred_values(\n        self, value: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> tuple[_FlowValue, ...]:\n        return self._deferred_result_values(value, values, immediate=False)\n\n    def _immediate_deferred_values(\n        self, value: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> tuple[_FlowValue, ...]:\n        return self._deferred_result_values(value, values, immediate=True)\n\n    def _carrier_result(\n        self, result: _FlowValue, role: Literal[\"alternative\", \"element\"],\n        roots: Iterable[_FlowValue],\n    ) -> _FlowValue:\n        supplied = _ordered_flow_roots((roots,), self.budget)\n        if not supplied:\n            return result\n        self.budget.consume(3 + len(result.helper_obligations))\n        carrier = _FlowValue(\"deferred_result_carrier\", _DeferredResultCarrier(role, supplied))\n        return replace(result, authority_refs=(), helper_obligations=(\n            *result.helper_obligations, carrier,\n        ))\n\n    def _element_result_values(\n        self, value: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> tuple[_FlowValue, ...]:\n        \"\"\"Return may-elements, retaining wrappers until actual extraction.\"\"\"\n        self.budget.consume(4)\n        pending = [value]\n        seen_values: set[int] = set()\n        seen_authority: set[int] = set()\n        result: list[_FlowValue] = []\n        store = self._authority(values)\n        while pending:\n            current = pending.pop()\n            self.budget.consume(2)\n            if id(current) in seen_values:\n                continue\n            seen_values.add(id(current))\n            if current.kind == \"deferred_result_carrier\" and isinstance(\n                current.value, _DeferredResultCarrier,\n            ):\n                self.budget.consume(len(current.value.roots))\n                if current.value.role == \"element\":\n                    result.extend(current.value.roots)\n                else:\n                    pending.extend(current.value.roots)\n            elif current.kind in {\"sequence\", \"slice\"}:\n                self.budget.consume(len(current.value))\n                result.extend(item for item in current.value if isinstance(item, _FlowValue))\n            elif current.kind in {\"mapping\", \"mapping_keys\"}:\n                self.budget.consume(2 * len(current.value))\n                result.extend(item for pair in current.value for item in pair\n                              if isinstance(item, _FlowValue))\n            elif current.kind in {\"maybe_unbound\", \"deferred_generator_container_merged\"}:\n                self.budget.consume(len(current.value))\n                pending.extend(item for item in current.value if isinstance(item, _FlowValue))\n            for identity in current.authority_refs:\n                self.budget.consume()\n                if identity in seen_authority:\n                    continue\n                seen_authority.add(identity)\n                record = store.objects.get(identity)\n                if record is not None:\n                    pending.append(record.value)\n                    self.budget.consume(len(record.retained))\n                    for retained in record.retained:\n                        if retained.kind == \"deferred_result_carrier\":\n                            pending.append(retained)\n                        elif record.value.mutable_collection:\n                            result.append(retained)\n            if current.callable_definition is None:\n                self.budget.consume(len(current.helper_obligations))\n                pending.extend(current.helper_obligations)\n        return _ordered_flow_roots((result,), self.budget)\n\n    def _has_class_member_obligations(\n        self, value: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> bool:\n        store = self._authority(values)\n        for identity in value.authority_refs:\n            self.budget.consume()\n            record = store.objects.get(identity)\n            if record is not None and (record.member_obligations or record.member_wildcard):\n                return True\n        return False\n\n    def _class_member_obligations(\n        self, owner: _FlowValue, member_name: str | None,\n        values: Mapping[str, _FlowValue],\n    ) -> tuple[_FlowValue, ...]:\n        self.budget.consume(4)\n        pending = [owner]\n        seen_values: set[int] = set()\n        seen_authority: set[int] = set()\n        roots: list[_FlowValue] = []\n        store = self._authority(values)\n        while pending:\n            current = pending.pop()\n            self.budget.consume(2)\n            if id(current) in seen_values:\n                continue\n            seen_values.add(id(current))\n            for identity in current.authority_refs:\n                self.budget.consume()\n                if identity in seen_authority:\n                    continue\n                seen_authority.add(identity)\n                record = store.objects.get(identity)\n                if record is None:\n                    roots.append(_FlowValue(\"helper_deferred_refusal\",\n                                            reason=\"helper namespace authority state is unresolved\"))\n                    continue\n                for name, supplied in record.member_obligations:\n                    self.budget.consume(1 + len(supplied))\n                    if member_name is None or name == member_name:\n                        roots.extend(supplied)\n                self.budget.consume(len(record.member_wildcard) + len(record.retained))\n                roots.extend(record.member_wildcard)\n                pending.extend(record.retained)\n                pending.append(record.value)\n            if current.kind == \"deferred_result_carrier\" and isinstance(\n                current.value, _DeferredResultCarrier,\n            ) and current.value.role == \"alternative\":\n                self.budget.consume(len(current.value.roots))\n                pending.extend(current.value.roots)\n            if current.kind in {\"unknown\", \"implicit_class_instance\", \"maybe_unbound\"}:\n                self.budget.consume(len(current.helper_obligations))\n                pending.extend(current.helper_obligations)\n                if current.kind == \"maybe_unbound\":\n                    self.budget.consume(len(current.value))\n                    pending.extend(item for item in current.value if isinstance(item, _FlowValue))\n        return _ordered_flow_roots((roots,), self.budget)\n\n    def _with_class_member_authority(\n        self, installed: _FlowValue, class_values: Mapping[str, _FlowValue],\n        frame: _ClassFrame, bases: Sequence[tuple[ast.expr, _FlowValue]],\n        values: Mapping[str, _FlowValue],\n    ) -> _FlowValue:\n        if not isinstance(values, _ExecutionState) or not values.authority.enabled:\n            return installed\n        members: tuple[tuple[str, tuple[_FlowValue, ...]], ...] = ()\n        store = self._authority(values)\n        for _expression, base in bases:\n            for identity in base.authority_refs:\n                self.budget.consume()\n                record = store.objects.get(identity)\n                if record is not None:\n                    members = _join_member_obligations(\n                        members, record.member_obligations, self.budget,\n                    )\n        # Name order comes from the already executed class namespace.\n        local_names = frame.scope.local_names - frame.scope.global_names - frame.scope.nonlocal_names\n        own = []\n        for name, supplied in class_values.items():\n            self.budget.consume()\n            if name not in local_names or supplied.kind == \"unbound\":\n                continue\n            if (self._has_callable_authority(supplied, class_values)\n                    or self._retained_deferred_values(supplied, class_values)\n                    or self._has_class_member_obligations(supplied, class_values)):\n                own.append((name, (supplied,)))\n        members = _join_member_obligations(members, tuple(own), self.budget)\n        return _transfer_authority(installed, values, member_obligations=members)\n\n    def _retain_class_member_write(\n        self, owner: _FlowValue, member_name: str | None,\n        supplied: _FlowValue | None, values: Mapping[str, _FlowValue],\n    ) -> None:\n        store = self._authority(values)\n        roots = (() if supplied is None else (self._transfer(supplied, values),))\n        for identity in owner.authority_refs:\n            self.budget.consume()\n            record = store.objects.get(identity)\n            if record is None or not (record.member_obligations or record.member_wildcard):\n                continue\n            if member_name is None:\n                wildcard = _ordered_flow_roots((record.member_wildcard, roots), self.budget)\n                store.objects[identity] = replace(record, member_wildcard=wildcard)\n            elif roots:\n                members = _join_member_obligations(\n                    record.member_obligations, ((member_name, roots),), self.budget,\n                )\n                store.objects[identity] = replace(record, member_obligations=members)\n\n    def _current_exact_collection_value(\n        self, owner: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> _FlowValue | None:\n        store = self._authority(values)\n        if not owner.authority_refs:\n            return None\n        records = []\n        for identity in owner.authority_refs:\n            self.budget.consume()\n            record = store.objects.get(identity)\n            if record is None or record.value.kind not in {\"sequence\", \"mapping\"}:\n                return None\n            records.append(record.value)\n        self.budget.consume(1 + len(records))\n        current = _merge_flow_values(\"current collection\", tuple(records), budget=self.budget)\n        if current.kind not in {\"sequence\", \"mapping\"}:\n            return None\n        return replace(current, authority_refs=owner.authority_refs)\n\n    def _invalidate_collection_result_shape(\n        self, owner: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> None:\n        store = self._authority(values)\n        for identity in owner.authority_refs:\n            self.budget.consume()\n            record = store.objects.get(identity)\n            if record is None:\n                continue\n            current = replace(record.value, authority_refs=(identity,))\n            children = self._element_result_values(current, values)\n            carrier = self._carrier_result(\n                _flow_unknown(\"collection result shape is unresolved\"), \"element\", children,\n            )\n            roots = _ordered_flow_roots(\n                (record.retained, carrier.helper_obligations), self.budget,\n            )\n            self.budget.consume()\n            store.objects[identity] = replace(\n                record, value=replace(record.value, kind=\"unknown\", value=None),\n                retained=roots,\n            )\n\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_flow_class_statement",
+    "old": "                        method_authorities,\n",
+    "new": "                        method_authorities, frame,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_finish_class_definition",
+    "old": "        method_authorities: Sequence[_FlowValue],\n",
+    "new": "        method_authorities: Sequence[_FlowValue], frame: _ClassFrame,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_finish_class_definition",
+    "old": "        self._bind_name(statement.name, self._transfer(installed, values), values, statement)\n",
+    "new": "        installed = self._with_class_member_authority(\n            installed, class_values, frame, base_values, values,\n        )\n        self._bind_name(statement.name, installed, values, statement)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_reachable_helper_authorities",
+    "old": "            pending.extend(current.helper_obligations)\n",
+    "new": "            pending.extend(current.helper_obligations)\n            if current.kind == 'deferred_result_carrier' and isinstance(\n                current.value, _DeferredResultCarrier,\n            ):\n                self.budget.consume(len(current.value.roots))\n                pending.extend(current.value.roots)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_has_callable_authority",
+    "old": "            pending.extend(item.helper_obligations)\n",
+    "new": "            pending.extend(item.helper_obligations)\n            if item.kind == 'deferred_result_carrier' and isinstance(\n                item.value, _DeferredResultCarrier,\n            ):\n                self.budget.consume(len(item.value.roots))\n                pending.extend(item.value.roots)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_poison_mutable_collection",
+    "old": "        reason: str,\n",
+    "new": "        reason: str,\n        preserve_exact_authority: bool = False,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_poison_mutable_collection",
+    "old": "        for name, candidate in tuple(values.items()):\n",
+    "new": "        if not preserve_exact_authority:\n            self._invalidate_collection_result_shape(owner, values)\n        for name, candidate in tuple(values.items()):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "    ) -> bool:\n",
+    "new": "    ) -> _NativeCollectionEffect | None:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "return False",
+    "new": "return None",
+    "all": true
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "                return True\n",
+    "new": "                # Admission only; get/pop/clear/copy has not updated shape here.\n                self.budget.consume(2 + len(owner.authority_refs))\n                return _NativeCollectionEffect(\n                    owner.authority_refs, owner.mutable_collection_identity, False,\n                )\n",
+    "all": true
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "        current = self._authority_object_value(owner, values)\n        if current.kind == \"sequence\":\n",
+    "new": "        exact = self._current_exact_collection_value(owner, values)\n        current = exact or replace(owner, kind=\"unknown\", value=None)\n        if current.kind == \"sequence\":\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "        return True\n",
+    "new": "        self.budget.consume(2 + len(owner.authority_refs))\n        return _NativeCollectionEffect(\n            owner.authority_refs, owner.mutable_collection_identity,\n            exact is not None and current.kind == \"sequence\",\n        )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "    ) -> _FlowValue | None:\n",
+    "new": "    ) -> _FlowValue | _NativeCollectionEffect | None:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "        if (local is None and registered is None\n                and self._retain_native_list_call(node, arguments, keywords, values)):\n            return\n",
+    "new": "        if local is None and registered is None:\n            native_effect = self._retain_native_list_call(node, arguments, keywords, values)\n            if native_effect is not None:\n                return native_effect\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "        if isinstance(node, ast.Call):\n",
+    "new": "        if isinstance(node, ast.Call):\n            native_collection_effect: _NativeCollectionEffect | None = None\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                if deferred_helper is not None:\n                    return deferred_helper\n",
+    "new": "                if isinstance(deferred_helper, _NativeCollectionEffect):\n                    native_collection_effect = deferred_helper\n                elif deferred_helper is not None:\n                    return deferred_helper\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                        sensitive=mutation_sensitive,\n                        reason=\"mixed protected receiver is dynamically unresolved\",\n",
+    "new": "                        sensitive=mutation_sensitive,\n                        reason=\"mixed protected receiver is dynamically unresolved\",\n                        preserve_exact_authority=self._native_effect_preserves(\n                            native_collection_effect, direct_owner,\n                        ),\n"
+  },
+  {
+    "kind": "method_insert_before",
+    "cls": "_SourceOrderedResolver",
+    "name": "_collection_authority_result",
+    "text": "    def _native_effect_preserves(\n        self, effect: _NativeCollectionEffect | None, owner: _FlowValue,\n    ) -> bool:\n        self.budget.consume(1 + len(owner.authority_refs))\n        return bool(effect is not None and effect.shape_exact\n                    and effect.owner_refs == owner.authority_refs\n                    and effect.mutable_identity == owner.mutable_collection_identity)\n\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_collection_authority_result",
+    "old": "        current = self._authority_object_value(owner, values)\n",
+    "new": "        current = self._current_exact_collection_value(owner, values)\n        if current is None:\n            return None\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                    current = self._authority_object_value(owner, values)\n                    if current.kind == \"sequence\" and type(index.value) is int:\n",
+    "new": "                    current = self._current_exact_collection_value(owner, values)\n                    if current is not None and current.kind == \"sequence\" and type(index.value) is int:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                    elif current.kind == \"mapping\":\n",
+    "new": "                    elif current is not None and current.kind == \"mapping\":\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_flow_values",
+    "old": "    name: str, values: Sequence[_FlowValue | None],\n",
+    "new": "    name: str, values: Sequence[_FlowValue | None], *, budget: _AnalysisBudget | None = None,\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "    values: Sequence[_FlowValue | None],\n",
+    "new": "    values: Sequence[_FlowValue | None], *, budget: _AnalysisBudget | None = None,\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "                first = states[0]\n",
+    "new": "                if budget is None:\n                    raise InventoryError(\"deferred merge operation budget is unresolved\")\n                budget.consume(1 + len(states))\n                first = states[0]\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "        alternatives: list[object] = []\n        for value in present:\n",
+    "new": "        if budget is None:\n            raise InventoryError(\"deferred merge operation budget is unresolved\")\n        budget.consume(2)\n        alternatives: list[object] = []\n        for value in present:\n            budget.consume()\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "            elif value.kind == \"deferred_generator_merged\":\n                alternatives.extend(value.value)\n",
+    "new": "            elif value.kind == \"deferred_generator_merged\":\n                budget.consume(len(value.value))\n                alternatives.extend(value.value)\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "        return _FlowValue(\n            \"deferred_generator_merged\", tuple(alternatives),\n",
+    "new": "        budget.consume(2 + len(alternatives))\n        return _FlowValue(\n            \"deferred_generator_merged\", tuple(alternatives),\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_transfer",
+    "old": "            if value.kind == \"unknown\" and len(retained) == len(exact) == 1:\n",
+    "new": "            if (value.kind == \"unknown\" and not value.helper_obligations\n                    and len(retained) == len(exact) == 1):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "            result = self._evaluate_value(node, values, record)\n",
+    "new": "            result = self._evaluate_value(node, values, record)\n            if isinstance(node, ast.Attribute):\n                owner = self._authority(values).observed.get(id(node.value))\n                if owner is not None:\n                    selected = self._class_member_obligations(owner, node.attr, values)\n                    if selected:\n                        result = self._carrier_result(result, \"alternative\", selected)\n            elif isinstance(node, ast.Subscript) and result.kind == \"unknown\":\n                owner = self._authority(values).observed.get(id(node.value))\n                if owner is not None and self._retained_deferred_values(owner, values):\n                    result = self._carrier_result(\n                        result, \"alternative\", self._element_result_values(owner, values),\n                    )\n            elif isinstance(node, ast.Call) and result.kind == \"unknown\" and isinstance(\n                node.func, ast.Attribute,\n            ):\n                owner = self._authority(values).observed.get(id(node.func.value))\n                if owner is not None and self._retained_deferred_values(owner, values):\n                    if node.func.attr in {\"pop\", \"popitem\", \"get\", \"setdefault\", \"__getitem__\"}:\n                        result = self._carrier_result(\n                            result, \"alternative\", self._element_result_values(owner, values),\n                        )\n                    elif node.func.attr in {\"copy\", \"items\", \"keys\", \"values\"}:\n                        result = self._carrier_result(\n                            result, \"element\", self._element_result_values(owner, values),\n                        )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_record_deferred_generator_consumption",
+    "old": "        if candidate.kind not in {\n            \"generator\",\n            \"deferred_generator_merged\",\n            \"deferred_local_generator\",\n        }:\n            return _DeferredGeneratorConsumption(False)\n",
+    "new": "        if candidate.kind not in {\n            \"generator\", \"deferred_generator_merged\", \"deferred_local_generator\",\n        }:\n            immediate = self._immediate_deferred_values(candidate, values)\n            if not any(self._deferred_generator_value_is_sensitive(\n                root, values, include_value_sensitivity=False,\n            ) for root in immediate):\n                return _DeferredGeneratorConsumption(False)\n            self.flow.standalone_blockers.append((\n                site, \"deferred generator consumption is dynamically unresolved\",\n            ))\n            return _DeferredGeneratorConsumption(True)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "            if constructor_success is not None and not constructor_unknown:\n                return _FlowValue(\n                    \"exception_instance\",\n                    constructor_success,\n                )\n",
+    "new": "            if constructor_success is not None and not constructor_unknown:\n                return _FlowValue(\n                    \"exception_instance\",\n                    constructor_success,\n                )\n            if (callable_name in {\"list\", \"tuple\", \"next\", \"iter\"}\n                    and not node.keywords and len(node.args) in (\n                        {1, 2} if callable_name == \"next\" else {1}\n                    ) and argument_values\n                    and self._retained_deferred_values(argument_values[0], values)):\n                supplied = argument_values[0]\n                immediate = self._immediate_deferred_values(supplied, values)\n                if callable_name == \"iter\":\n                    # Iterator acquisition does not execute a nested/deferred body.\n                    return self._carrier_result(\n                        _flow_unknown(\"iterator result is unresolved\"), \"alternative\", (supplied,),\n                    )\n                if any(self._deferred_generator_value_is_sensitive(\n                    root, values, include_value_sensitivity=False,\n                ) for root in immediate):\n                    self.flow.standalone_blockers.append((\n                        node, \"deferred generator consumption is dynamically unresolved\",\n                    ))\n                    return _flow_unknown(\n                        \"deferred generator consumption is dynamically unresolved\", sensitive=True,\n                    )\n                if not immediate and callable_name in {\"list\", \"tuple\"}:\n                    return self._carrier_result(\n                        _flow_unknown(\"native container result is not materialized\"), \"element\",\n                        self._element_result_values(supplied, values),\n                    )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                    helper_obligations=callable_value.helper_obligations,\n",
+    "new": "                    helper_obligations=(\n                        (*callable_value.helper_obligations, callable_value)\n                        if self._has_class_member_obligations(callable_value, values)\n                        else callable_value.helper_obligations\n                    ),\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "            owner = self._evaluate(target.value, values, False)\n            if (\n                owner.kind == \"implicit_class\"\n",
+    "new": "            owner = self._evaluate(target.value, values, False)\n            self._retain_class_member_write(owner, target.attr, value, values)\n            if (\n                owner.kind == \"implicit_class\"\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_delete_target",
+    "old": "        if isinstance(target, ast.Attribute):\n            supplied_owner = self._evaluate(target.value, values)\n",
+    "new": "        if isinstance(target, ast.Attribute):\n            supplied_owner = self._evaluate(target.value, values)\n            self._retain_class_member_write(supplied_owner, target.attr, None, values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "                for item in target.elts:\n                    self._assign(item, ambiguous, values)\n",
+    "new": "                if self._retained_deferred_values(value, values):\n                    ambiguous = self._carrier_result(\n                        ambiguous, \"alternative\", self._element_result_values(value, values),\n                    )\n                for item in target.elts:\n                    self._assign(item, ambiguous, values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_comprehension",
+    "old": "                self._assign(generator.target, iteration_value, local_values)\n",
+    "new": "                if self._retained_deferred_values(iterator, local_values):\n                    iteration_value = self._carrier_result(\n                        iteration_value, \"alternative\",\n                        self._element_result_values(iterator, local_values),\n                    )\n                self._assign(generator.target, iteration_value, local_values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_flow_statement_value",
+    "old": "                self._assign(statement.target, iteration_value, entered)\n",
+    "new": "                if self._retained_deferred_values(iterator, entered):\n                    iteration_value = self._carrier_result(\n                        iteration_value, \"alternative\",\n                        self._element_result_values(iterator, entered),\n                    )\n                self._assign(statement.target, iteration_value, entered)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_try_statement_states",
+    "old": "                self._assign(statement.target, iteration_value, entered)\n",
+    "new": "                if self._retained_deferred_values(iterator, entered):\n                    iteration_value = self._carrier_result(\n                        iteration_value, \"alternative\",\n                        self._element_result_values(iterator, entered),\n                    )\n                self._assign(statement.target, iteration_value, entered)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_statements",
+    "old": "                self._assign(statement.target, iteration_value, body_state)\n",
+    "new": "                if self._retained_deferred_values(iterator, body_state):\n                    iteration_value = self._carrier_result(\n                        iteration_value, \"alternative\",\n                        self._element_result_values(iterator, body_state),\n                    )\n                self._assign(statement.target, iteration_value, body_state)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "            for identity in current.authority_refs:\n                self.budget.consume()\n                authority_key = (role, identity)\n                if authority_key in seen_authority:\n                    continue\n                seen_authority.add(authority_key)\n                record = store.objects.get(identity)\n                if record is not None:\n                    pending.append((role, record.value))\n                    retained_role = (\"element\" if record.value.mutable_collection else role)\n                    self.budget.consume(len(record.retained))\n                    pending.extend((retained_role, item) for item in record.retained)\n",
+    "new": ""
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "            seen_values.add(key)\n",
+    "new": "            seen_values.add(key)\n            if current.authority_refs:\n                for identity in current.authority_refs:\n                    self.budget.consume()\n                    authority_key = (role, identity)\n                    if authority_key in seen_authority:\n                        continue\n                    seen_authority.add(authority_key)\n                    record = store.objects.get(identity)\n                    if record is not None:\n                        pending.append((role, record.value))\n                        retained_role = (\"element\" if record.value.mutable_collection else role)\n                        self.budget.consume(len(record.retained))\n                        pending.extend((retained_role, item) for item in record.retained)\n                if current.callable_definition is None and current.kind == \"unknown\":\n                    self.budget.consume(len(current.helper_obligations))\n                    pending.extend((role, item) for item in current.helper_obligations)\n                continue\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_element_result_values",
+    "old": "            for identity in current.authority_refs:\n                self.budget.consume()\n                if identity in seen_authority:\n                    continue\n                seen_authority.add(identity)\n                record = store.objects.get(identity)\n                if record is not None:\n                    pending.append(record.value)\n                    self.budget.consume(len(record.retained))\n                    for retained in record.retained:\n                        if retained.kind == \"deferred_result_carrier\":\n                            pending.append(retained)\n                        elif record.value.mutable_collection:\n                            result.append(retained)\n",
+    "new": ""
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_element_result_values",
+    "old": "            seen_values.add(id(current))\n",
+    "new": "            seen_values.add(id(current))\n            if current.authority_refs:\n                for identity in current.authority_refs:\n                    self.budget.consume()\n                    if identity in seen_authority:\n                        continue\n                    seen_authority.add(identity)\n                    record = store.objects.get(identity)\n                    if record is not None:\n                        pending.append(record.value)\n                        self.budget.consume(len(record.retained))\n                        for retained in record.retained:\n                            if retained.kind == \"deferred_result_carrier\":\n                                pending.append(retained)\n                            elif record.value.mutable_collection:\n                                result.append(retained)\n                if current.callable_definition is None and current.kind == \"unknown\":\n                    self.budget.consume(len(current.helper_obligations))\n                    pending.extend(current.helper_obligations)\n                continue\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "old": "        self.budget.consume(4)\n",
+    "new": "        self.budget.consume()\n        if not owner.authority_refs and not owner.helper_obligations and owner.kind != \"maybe_unbound\":\n            return ()\n        self.budget.consume(3)\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "        budget.consume(2 + len(alternatives))\n",
+    "new": "        budget.consume(2 + len(alternatives) + len(present))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        store = self._authority(values)\n",
+    "new": "        store = self._authority(values)\n        wildcard: tuple[_FlowValue, ...] = ()\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "                    members = _join_member_obligations(\n                        members, record.member_obligations, self.budget,\n                    )\n",
+    "new": "                    members = _join_member_obligations(\n                        members, record.member_obligations, self.budget,\n                    )\n                    wildcard = _ordered_flow_roots(\n                        (wildcard, record.member_wildcard), self.budget,\n                    )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        return _transfer_authority(installed, values, member_obligations=members)\n",
+    "new": "        return _transfer_authority(\n            installed, values, member_obligations=members, member_wildcard=wildcard,\n        )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "        if (not relevant and not has_stores and not constructs and not any(\n",
+    "new": "        retained_inputs = any(\n            self._has_class_member_obligations(environment[name], environment)\n            or self._retained_deferred_values(environment[name], environment)\n            for name in input_names if name in environment\n        )\n        if (not relevant and not has_stores and not constructs and not retained_inputs and not any(\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "            if retained:\n                refuse(\"helper namespace escape is dynamically unresolved\", retained)\n",
+    "new": "            escaped_deferred = []\n            for supplied in explicit:\n                roots = self._class_member_obligations(supplied, None, values)\n                for root in roots:\n                    if any(self._deferred_generator_value_is_sensitive(\n                        delayed, values, include_value_sensitivity=False,\n                    ) for delayed in self._retained_deferred_values(root, values)):\n                        self.budget.consume()\n                        escaped_deferred.append(_FlowValue(\n                            \"helper_deferred_refusal\",\n                            reason=\"helper namespace deferred member escape is unresolved\",\n                        ))\n            retained += tuple(escaped_deferred)\n            if retained:\n                refuse(\"helper namespace escape is dynamically unresolved\", retained)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                    selected = self._class_member_obligations(owner, node.attr, values)\n                    if selected:\n                        result = self._carrier_result(result, \"alternative\", selected)\n",
+    "new": "                    selected = self._class_member_obligations(\n                        owner, None if node.attr == \"__dict__\" else node.attr, values,\n                    )\n                    if selected:\n                        result = self._carrier_result(\n                            result, \"element\" if node.attr == \"__dict__\" else \"alternative\", selected,\n                        )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "            if (\n                callable_name in {\"setattr\", \"delattr\"}\n                and len(argument_values) >= 2\n",
+    "new": "            if callable_name in {\"setattr\", \"delattr\"} and len(argument_values) >= 2:\n                supplied_member = argument_values[1]\n                self._retain_class_member_write(\n                    argument_values[0],\n                    str(supplied_member.value) if supplied_member.kind == \"scalar\"\n                    and type(supplied_member.value) is str else None,\n                    argument_values[2] if callable_name == \"setattr\"\n                    and len(argument_values) >= 3 else None, values,\n                )\n            if (\n                callable_name in {\"setattr\", \"delattr\"}\n                and len(argument_values) >= 2\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "                current = self._authority_object_value(owner, values)\n                if current.kind == \"sequence\" and type(index.value) is int and (\n",
+    "new": "                current = self._current_exact_collection_value(owner, values)\n                if current is not None and current.kind == \"sequence\" and type(index.value) is int and (\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "        if isinstance(target, ast.Starred):\n            self._assign(target.value, _flow_unknown(\"starred assignment is dynamically unresolved\"), values)\n            return\n",
+    "new": "        if isinstance(target, ast.Starred):\n            supplied = _flow_unknown(\"starred assignment is dynamically unresolved\")\n            if self._retained_deferred_values(value, values):\n                supplied = self._carrier_result(supplied, \"element\", (value,))\n            self._assign(target.value, supplied, values)\n            return\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                direct_owner = self._evaluate(node.func.value, values, False)\n                protected_copy_owner = (\n",
+    "new": "                direct_owner = self._evaluate(node.func.value, values, False)\n                if direct_owner.authority_refs:\n                    current_shape = self._current_exact_collection_value(direct_owner, values)\n                    if current_shape is not None:\n                        direct_owner = current_shape\n                    elif direct_owner.kind in {\"sequence\", \"mapping\"}:\n                        direct_owner = replace(direct_owner, kind=\"unknown\", value=None)\n                protected_copy_owner = (\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "            escaped_deferred = []\n            for supplied in explicit:\n",
+    "new": "            escaped_deferred = []\n            # These known observations/extractions do not consume unread members.\n            member_observation = bool(\n                not node.keywords and (\n                    str(callable_value.value) == \"vars\" and len(arguments) == 1\n                    or str(callable_value.value) in {\"getattr\", \"hasattr\"}\n                    and len(arguments) in {2, 3}\n                )\n            )\n            for supplied in (() if member_observation else explicit):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                    elif node.func.attr in {\"copy\", \"items\", \"keys\", \"values\"}:\n                        result = self._carrier_result(\n                            result, \"element\", self._element_result_values(owner, values),\n                        )\n",
+    "new": "                    elif node.func.attr in {\"copy\", \"items\", \"keys\", \"values\"}:\n                        result = self._carrier_result(\n                            result, \"element\", self._element_result_values(owner, values),\n                        )\n                    elif node.func.attr == \"__iter__\" and not node.args and not node.keywords:\n                        result = self._carrier_result(result, \"alternative\", (owner,))\n                    elif node.func.attr == \"__next__\" and not node.args and not node.keywords:\n                        consumption = self._record_deferred_generator_consumption(\n                            owner, values, node, mode=\"one\",\n                        )\n                        if not consumption.blocked:\n                            result = self._carrier_result(\n                                result, \"alternative\", self._element_result_values(owner, values),\n                            )\n            elif isinstance(node, ast.Call) and result.kind == \"unknown\":\n                callable_value = self._authority(values).observed.get(id(node.func))\n                marker = (str(callable_value.value) if callable_value is not None\n                          and callable_value.kind in {\"qname\", \"proved_non_sensitive_callable\"}\n                          else None)\n                arguments = tuple(self._authority(values).observed.get(id(item)) for item in node.args)\n                if marker in {\"vars\", \"getattr\"} and arguments and arguments[0] is not None:\n                    owner = arguments[0]\n                    if marker == \"vars\" and len(arguments) == 1 and not node.keywords:\n                        result = self._carrier_result(\n                            result, \"element\", self._class_member_obligations(owner, None, values),\n                        )\n                    elif marker == \"getattr\" and len(arguments) in {2, 3} and not node.keywords:\n                        name = arguments[1]\n                        member = (str(name.value) if name is not None and name.kind == \"scalar\"\n                                  and type(name.value) is str else None)\n                        result = self._carrier_result(\n                            result, \"alternative\", self._class_member_obligations(owner, member, values),\n                        )\n                elif marker == \"next\" and len(arguments) in {1, 2} and not node.keywords:\n                    owner = arguments[0]\n                    if (owner is not None and self._retained_deferred_values(owner, values)\n                            and not self._immediate_deferred_values(owner, values)):\n                        result = self._carrier_result(\n                            result, \"alternative\", self._element_result_values(owner, values),\n                        )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "                    if record is not None:\n                        pending.append((role, record.value))\n",
+    "new": "                    if record is None:\n                        # Retain negative may-evidence; never reseed a missing live store.\n                        self.budget.consume(2)\n                        pending.append((role, replace(current, authority_refs=())))\n                    else:\n                        pending.append((role, record.value))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_element_result_values",
+    "old": "                    if record is not None:\n                        pending.append(record.value)\n",
+    "new": "                    if record is None:\n                        self.budget.consume(2)\n                        pending.append(replace(current, authority_refs=()))\n                    else:\n                        pending.append(record.value)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_collection_authority",
+    "old": "                self.budget.consume(len(retained) + 1)\n                store.objects[identity] = replace(record, retained=(*record.retained, *retained))\n",
+    "new": "                roots = _ordered_flow_roots((record.retained, retained), self.budget)\n                self.budget.consume()\n                store.objects[identity] = replace(record, retained=roots)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_apply_helper_call_effects",
+    "old": "        retained_inputs = any(\n",
+    "new": "        self.budget.consume(2 + len(input_names))\n        retained_inputs = any(\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "            elif isinstance(node, ast.Call) and result.kind == \"unknown\":\n                callable_value = ",
+    "new": "            elif isinstance(node, ast.Call) and result.kind == \"unknown\":\n                self.budget.consume(2 + len(node.args))\n                callable_value = "
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                marker = (str(callable_value.value) if callable_value is not None\n                          and callable_value.kind in {\"qname\", \"proved_non_sensitive_callable\"}\n                          else None)\n",
+    "new": "                marker = (str(callable_value.value[0]) if callable_value is not None\n                          and callable_value.kind == \"callable_summary\"\n                          and isinstance(callable_value.value, tuple)\n                          else str(callable_value.value) if callable_value is not None\n                          and callable_value.kind in {\"qname\", \"proved_non_sensitive_callable\"}\n                          else None)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                    self._deferred_generator_value_is_sensitive(\n                        value,\n                        values,\n                        include_value_sensitivity=False,\n                    )\n                    for value in (*argument_values, *keyword_values)\n",
+    "new": "                    (self._deferred_generator_value_is_sensitive(\n                        value, values, include_value_sensitivity=False,\n                    ) or any(self._deferred_generator_value_is_sensitive(\n                        retained, values, include_value_sensitivity=False,\n                    ) for retained in self._retained_deferred_values(value, values)))\n                    for value in (*argument_values, *keyword_values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        own = []\n",
+    "new": "        own = []\n        definite_shadows: set[str] = set()\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "            if name not in local_names or supplied.kind == \"unbound\":\n                continue\n            if (self._has_callable_authority",
+    "new": "            if name not in local_names or supplied.kind == \"unbound\":\n                continue\n            if supplied.kind != \"maybe_unbound\":\n                definite_shadows.add(name)\n            if (self._has_callable_authority"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        members = _join_member_obligations(members, tuple(own), self.budget)\n",
+    "new": "        self.budget.consume(2 + len(members) + len(own) + len(definite_shadows))\n        members = tuple((name, roots) for name, roots in members if name not in definite_shadows)\n        members = _join_member_obligations(members, tuple(own), self.budget)\n"
+  },
+  {
+    "kind": "class_replace_in",
+    "cls": "_AuthorityRecord",
+    "old": "    member_wildcard: tuple[_FlowValue, ...] = ()\n",
+    "new": "    member_wildcard: tuple[_FlowValue, ...] = ()\n    class_member_owner: bool = False\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_AuthorityState",
+    "name": "join",
+    "old": "                            (previous.member_wildcard, record.member_wildcard), self.budget,\n                        ),\n",
+    "new": "                            (previous.member_wildcard, record.member_wildcard), self.budget,\n                        ),\n                        previous.class_member_owner or record.class_member_owner,\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "    member_wildcard: tuple[_FlowValue, ...] = (),\n",
+    "new": "    member_wildcard: tuple[_FlowValue, ...] = (),\n    reserve_class_owner: bool = False,\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "    if member_obligations or member_wildcard:\n",
+    "new": "    if member_obligations or member_wildcard or reserve_class_owner:\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "                    record, member_obligations=members, member_wildcard=wildcard,\n",
+    "new": "                    record, member_obligations=members, member_wildcard=wildcard,\n                    class_member_owner=record.class_member_owner or reserve_class_owner,\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "            or member_obligations or member_wildcard\n",
+    "new": "            or member_obligations or member_wildcard or reserve_class_owner\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "            member_wildcard=member_wildcard,\n",
+    "new": "            member_wildcard=member_wildcard, class_member_owner=reserve_class_owner,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "            installed, values, member_obligations=members, member_wildcard=wildcard,\n",
+    "new": "            installed, values, member_obligations=members, member_wildcard=wildcard,\n            reserve_class_owner=True,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_has_class_member_obligations",
+    "old": "            if record is not None and (record.member_obligations or record.member_wildcard):\n",
+    "new": "            if record is not None and (record.class_member_owner\n                                       or record.member_obligations or record.member_wildcard):\n"
+  },
+  {
+    "kind": "method_insert_before",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "text": "    def _class_member_owner_ids(\n        self, owner: _FlowValue, values: Mapping[str, _FlowValue], *,\n        instance_read: bool = False,\n    ) -> tuple[tuple[int, ...], bool]:\n        \"\"\"Find receiver alternatives, never classes merely contained or captured.\"\"\"\n        self.budget.consume(5)\n        pending = [owner]\n        seen_values: set[int] = set()\n        seen_authority: set[int] = set()\n        identities: list[int] = []\n        unresolved = False\n        store = self._authority(values)\n        while pending:\n            current = pending.pop()\n            self.budget.consume(2)\n            if id(current) in seen_values:\n                continue\n            seen_values.add(id(current))\n            if current.kind == \"implicit_class_instance\" and not instance_read:\n                continue\n            explicit_class = bool(current.kind == \"implicit_class\" or (\n                current.helper_provenance is not None\n                and current.helper_provenance.kind == \"class\"\n            ))\n            if current.authority_refs:\n                for identity in current.authority_refs:\n                    self.budget.consume()\n                    if identity in seen_authority:\n                        continue\n                    seen_authority.add(identity)\n                    record = store.objects.get(identity)\n                    if record is None:\n                        unresolved |= explicit_class\n                    elif record.class_member_owner:\n                        identities.append(identity)\n                    else:\n                        pending.append(record.value)\n                        # Retained native elements are not receiver alternatives.\n                        if not record.value.mutable_collection:\n                            self.budget.consume(len(record.retained))\n                            pending.extend(record.retained)\n            elif explicit_class:\n                unresolved = True\n            if current.kind == \"deferred_result_carrier\" and isinstance(\n                current.value, _DeferredResultCarrier,\n            ):\n                if current.value.role == \"alternative\":\n                    self.budget.consume(len(current.value.roots))\n                    pending.extend(current.value.roots)\n                continue\n            if current.kind in {\"maybe_unbound\", \"implicit_protocol_merged\",\n                                \"deferred_generator_container_merged\"}:\n                self.budget.consume(len(current.value))\n                pending.extend(item for item in current.value if isinstance(item, _FlowValue))\n            if current.callable_definition is None:\n                self.budget.consume(len(current.helper_obligations))\n                for retained in current.helper_obligations:\n                    if (retained.kind == \"deferred_result_carrier\"\n                            or current.kind in {\"unknown\", \"implicit_class\",\n                                                \"implicit_class_instance\"}):\n                        pending.append(retained)\n        self.budget.consume(1 + len(identities))\n        return tuple(identities), unresolved\n\n"
+  },
+  {
+    "kind": "method_replace",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "text": "    def _class_member_obligations(\n        self, owner: _FlowValue, member_name: str | None,\n        values: Mapping[str, _FlowValue],\n    ) -> tuple[_FlowValue, ...]:\n        if (not owner.authority_refs and not owner.helper_obligations\n                and owner.kind not in {\"implicit_class\", \"implicit_class_instance\",\n                                       \"maybe_unbound\", \"implicit_protocol_merged\"}):\n            return ()\n        identities, _unresolved = self._class_member_owner_ids(\n            owner, values, instance_read=True,\n        )\n        self.budget.consume()\n        roots: list[_FlowValue] = []\n        store = self._authority(values)\n        for identity in identities:\n            self.budget.consume()\n            record = store.objects.get(identity)\n            if record is None:\n                # A missing retained store cannot prove a clean member result.\n                roots.append(_FlowValue(\"helper_deferred_refusal\",\n                                        reason=\"helper namespace authority state is unresolved\"))\n                continue\n            for name, supplied in record.member_obligations:\n                self.budget.consume(1 + len(supplied))\n                if member_name is None or name == member_name:\n                    roots.extend(supplied)\n            self.budget.consume(len(record.member_wildcard))\n            roots.extend(record.member_wildcard)\n        return _ordered_flow_roots((roots,), self.budget)\n"
+  },
+  {
+    "kind": "method_replace",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_class_member_write",
+    "text": "    def _retain_class_member_write(\n        self, site: ast.AST, owner: _FlowValue, member_name: str | None,\n        supplied: _FlowValue | None, values: Mapping[str, _FlowValue],\n    ) -> None:\n        if not isinstance(values, _ExecutionState) or not values.authority.enabled:\n            return\n        identities, unresolved = self._class_member_owner_ids(owner, values)\n        if not identities and not unresolved:\n            return\n        store = self._authority(values)\n        self.budget.consume(2)\n        roots = (() if supplied is None else (self._transfer(supplied, values),))\n        if supplied is not None and unresolved and (\n            self._has_callable_authority(supplied, values)\n            or self._deferred_result_values(supplied, values, immediate=False, all_deferred=True)\n        ):\n            self._refuse_helper_authority(\n                site, roots, \"helper namespace class member store lacks live owner authority\",\n            )\n        for identity in identities:\n            self.budget.consume()\n            record = store.objects.get(identity)\n            if record is None:\n                continue\n            if member_name is None:\n                wildcard = _ordered_flow_roots((record.member_wildcard, roots), self.budget)\n                store.objects[identity] = replace(record, member_wildcard=wildcard)\n            elif roots:\n                members = _join_member_obligations(\n                    record.member_obligations, ((member_name, roots),), self.budget,\n                )\n                store.objects[identity] = replace(record, member_obligations=members)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "        self, value: _FlowValue, values: Mapping[str, _FlowValue], *, immediate: bool,\n",
+    "new": "        self, value: _FlowValue, values: Mapping[str, _FlowValue], *, immediate: bool,\n        all_deferred: bool = False,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "                if immediate or current.value.class_scope_unresolved:\n",
+    "new": "                if immediate or all_deferred or current.value.class_scope_unresolved:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "                if immediate:\n                    result.append(current)\n",
+    "new": "                if immediate or all_deferred:\n                    result.append(current)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "            self._retain_class_member_write(owner, target.attr, value, values)\n",
+    "new": "            self._retain_class_member_write(target, owner, target.attr, value, values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_delete_target",
+    "old": "            self._retain_class_member_write(supplied_owner, target.attr, None, values)\n",
+    "new": "            self._retain_class_member_write(target, supplied_owner, target.attr, None, values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                self._retain_class_member_write(\n                    argument_values[0],\n",
+    "new": "                self._retain_class_member_write(\n                    node, argument_values[0],\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "            values[root] = _flow_store_path(current, path, value)\n",
+    "new": "            stored = _flow_store_path(current, path, value)\n            if current is not None:\n                class_owners, unresolved_class = self._class_member_owner_ids(current, values)\n                if class_owners or unresolved_class:\n                    stored = self._carrier_result(stored, \"alternative\", (current,))\n            values[root] = stored\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_owner_ids",
+    "old": "    ) -> tuple[tuple[int, ...], bool]:\n",
+    "new": "    ) -> tuple[tuple[int, ...], bool, tuple[_FlowValue, ...]]:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_owner_ids",
+    "old": "        identities: list[int] = []\n        unresolved = False\n",
+    "new": "        identities: list[int] = []\n        issues: list[_FlowValue] = []\n        unresolved = False\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_owner_ids",
+    "old": "            if current.kind == \"implicit_class_instance\" and not instance_read:\n                continue\n",
+    "new": "            if current.callable_definition is not None:\n                continue\n            if current.kind == \"implicit_class_instance\" and not instance_read:\n                continue\n            if current.helper_refusal is not None or current.kind == \"helper_deferred_refusal\":\n                self.budget.consume(2)\n                issues.append(_FlowValue(\"helper_deferred_refusal\", reason=(\n                    current.helper_refusal or current.reason\n                    or \"helper namespace class owner is unresolved\")))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_owner_ids",
+    "old": "                    if record is None:\n                        unresolved |= explicit_class\n",
+    "new": "                    if record is None:\n                        unresolved |= explicit_class\n                        self.budget.consume(2)\n                        issues.append(_FlowValue(\"helper_deferred_refusal\",\n                                                reason=\"helper namespace authority state is unresolved\"))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_owner_ids",
+    "old": "        return tuple(identities), unresolved\n",
+    "new": "        return tuple(identities), unresolved, _ordered_flow_roots((issues,), self.budget)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "old": "        identities, _unresolved = self._class_member_owner_ids(\n",
+    "new": "        identities, _unresolved, issues = self._class_member_owner_ids(\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "old": "        roots: list[_FlowValue] = []\n",
+    "new": "        self.budget.consume(len(issues))\n        roots: list[_FlowValue] = list(issues)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_class_member_write",
+    "old": "        identities, unresolved = self._class_member_owner_ids(owner, values)\n        if not identities and not unresolved:\n",
+    "new": "        identities, unresolved, issues = self._class_member_owner_ids(owner, values)\n        if not identities and not unresolved and not issues:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_class_member_write",
+    "old": "        if supplied is not None and unresolved and (\n",
+    "new": "        if supplied is not None and (unresolved or issues) and (\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_assign",
+    "old": "                class_owners, unresolved_class = self._class_member_owner_ids(current, values)\n                if class_owners or unresolved_class:\n",
+    "new": "                class_owners, unresolved_class, class_issues = self._class_member_owner_ids(current, values)\n                if class_owners or unresolved_class or class_issues:\n"
+  },
+  {
+    "kind": "method_replace",
+    "cls": "_SourceOrderedResolver",
+    "name": "_has_class_member_obligations",
+    "text": "    def _has_class_member_obligations(\n        self, value: _FlowValue, values: Mapping[str, _FlowValue],\n    ) -> bool:\n        if not value.authority_refs and not value.helper_obligations:\n            return False\n        identities, _unresolved, issues = self._class_member_owner_ids(\n            value, values, instance_read=True,\n        )\n        return bool(identities or issues)\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_flow_values",
+    "old": "budget: _AnalysisBudget | None = None",
+    "new": "budget: _AnalysisBudget"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "budget: _AnalysisBudget | None = None",
+    "new": "budget: _AnalysisBudget"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "                if budget is None:\n                    raise InventoryError(\"deferred merge operation budget is unresolved\")\n",
+    "new": ""
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_merge_legacy_flow_values",
+    "old": "    if any(value.kind in {\"generator\", \"deferred_generator_merged\"} for value in present):\n        if budget is None:\n            raise InventoryError(\"deferred merge operation budget is unresolved\")\n",
+    "new": "    budget.consume(1 + len(present))\n    if any(value.kind in {\"generator\", \"deferred_generator_merged\"} for value in present):\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_ordered_flow_roots",
+    "old": "            budget.consume(2 + len(value.authority_refs))\n",
+    "new": "            budget.consume(2 + 2 * len(value.authority_refs))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_deferred_result_values",
+    "old": "                else:\n                    children = tuple(item for pair in current.value for item in pair\n",
+    "new": "                else:\n                    self.budget.consume(1 + 2 * len(current.value))\n                    children = tuple(item for pair in current.value for item in pair\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        local_names = frame.scope.local_names - frame.scope.global_names - frame.scope.nonlocal_names\n",
+    "new": "        self.budget.consume(5 + 2 * len(frame.scope.local_names)\n                            + len(frame.scope.global_names) + len(frame.scope.nonlocal_names))\n        local_names = frame.scope.local_names - frame.scope.global_names - frame.scope.nonlocal_names\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "    if member_obligations or member_wildcard or reserve_class_owner:\n        initialized = []\n",
+    "new": "    if member_obligations or member_wildcard or reserve_class_owner:\n        store.budget.consume(1 + 2 * len(value.authority_refs))\n        initialized = []\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "        identity = store.identity()\n",
+    "new": "        if reserve_class_owner:\n            store.budget.consume(4)  # Record, two value copies and returned ref tuple.\n        identity = store.identity()\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_record_deferred_generator_consumption",
+    "old": "            self.flow.standalone_blockers.append((\n                site, \"deferred generator consumption is dynamically unresolved\",\n            ))\n            return _DeferredGeneratorConsumption(True)\n",
+    "new": "            self.flow.standalone_blockers.append((\n                site, \"helper namespace deferred generator consumption is dynamically unresolved\",\n            ))\n            return _DeferredGeneratorConsumption(True)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                    ) and argument_values\n                    and self._retained_deferred_values(argument_values[0], values)):\n",
+    "new": "                    ) and argument_values\n                    and (callable_name == \"iter\" or argument_values[0].kind not in {\n                        \"generator\", \"deferred_generator_merged\", \"deferred_local_generator\",\n                    }) and self._retained_deferred_values(argument_values[0], values)):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "                    self.flow.standalone_blockers.append((\n                        node, \"deferred generator consumption is dynamically unresolved\",\n                    ))\n                    return _flow_unknown(\n                        \"deferred generator consumption is dynamically unresolved\", sensitive=True,\n                    )\n                if not immediate and callable_name in {\"list\", \"tuple\"}:\n",
+    "new": "                    self.flow.standalone_blockers.append((\n                        node, \"helper namespace deferred generator consumption is dynamically unresolved\",\n                    ))\n                    return _flow_unknown(\n                        \"helper namespace deferred generator consumption is dynamically unresolved\", sensitive=True,\n                    )\n                if not immediate and callable_name == \"next\":\n                    return self._carrier_result(\n                        _flow_unknown(\"iterator element result is unresolved\"), \"alternative\",\n                        self._element_result_values(supplied, values),\n                    )\n                if not immediate and callable_name in {\"list\", \"tuple\"}:\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate_value",
+    "old": "            if deferred_consumer_sensitive:\n                reason = \"deferred generator consumption is dynamically unresolved\"\n",
+    "new": "            if deferred_consumer_sensitive:\n                retained_escape = any(\n                    value.kind not in {\"generator\", \"deferred_generator_merged\", \"deferred_local_generator\"}\n                    and self._retained_deferred_values(value, values)\n                    for value in (*argument_values, *keyword_values)\n                )\n                reason = (\"helper namespace deferred generator consumption is dynamically unresolved\"\n                          if retained_escape else \"deferred generator consumption is dynamically unresolved\")\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                    elif node.func.attr == \"__next__\" and not node.args and not node.keywords:\n                        consumption = self._record_deferred_generator_consumption(\n                            owner, values, node, mode=\"one\",\n                        )\n",
+    "new": "                    elif not node.keywords and (\n                        node.func.attr == \"__next__\" and not node.args\n                        or node.func.attr == \"send\" and len(node.args) == 1\n                        or node.func.attr == \"throw\" and 1 <= len(node.args) <= 3\n                    ):\n                        consumption = self._record_deferred_generator_consumption(\n                            owner, values, node, mode=\"full\" if node.func.attr == \"throw\" else \"one\",\n                        )\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_current_exact_collection_value",
+    "old": "            if record is None or record.value.kind not in {\"sequence\", \"mapping\"}:\n",
+    "new": "            if (record is None or record.retained\n                    or record.value.kind not in {\"sequence\", \"mapping\"}):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_collection_authority",
+    "old": "        store = self._authority(values)\n        retained = tuple(self._transfer(value, values) for value in supplied)\n",
+    "new": "        store = self._authority(values)\n        retained = tuple(self._transfer(value, values) for value in supplied)\n        # Retention-only mutation cannot leave an old exact shape recoverable.\n        self._invalidate_collection_result_shape(owner, values)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "        if method == \"extend\" and arguments[0].kind != \"sequence\":\n            return None\n",
+    "new": "        extend_input = arguments[0]\n        if method == \"extend\" and self._retained_deferred_values(extend_input, values):\n            immediate = self._immediate_deferred_values(extend_input, values)\n            if any(self._deferred_generator_value_is_sensitive(\n                item, values, include_value_sensitivity=False,\n            ) for item in immediate):\n                self.flow.standalone_blockers.append((\n                    node, \"helper namespace deferred generator consumption is dynamically unresolved\",\n                ))\n                self.budget.consume(2 + len(owner.authority_refs))\n                return _NativeCollectionEffect(owner.authority_refs, owner.mutable_collection_identity, False)\n        if method == \"extend\" and extend_input.kind != \"sequence\":\n            return None\n        if method == \"extend\" and extend_input.authority_refs:\n            current_input = self._current_exact_collection_value(extend_input, values)\n            if current_input is None or current_input.kind != \"sequence\":\n                self._retain_native_collection_authority(\n                    owner, self._element_result_values(extend_input, values), values,\n                )\n                self.budget.consume(2 + len(owner.authority_refs))\n                return _NativeCollectionEffect(owner.authority_refs, owner.mutable_collection_identity, False)\n            extend_input = current_input\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_retain_native_list_call",
+    "old": "                items.extend(arguments[0].value)\n",
+    "new": "                items.extend(extend_input.value)\n"
+  },
+  {
+    "kind": "function_replace_in",
+    "name": "_transfer_authority",
+    "old": "    elif value.kind == \"starred_argument\" and isinstance(value.value, _FlowValue):\n",
+    "new": "    elif value.kind in {\"starred_argument\", \"class_member_base\"} and isinstance(value.value, _FlowValue):\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        store = self._authority(values)\n        wildcard: tuple[_FlowValue, ...] = ()\n        for _expression, base in bases:\n            for identity in base.authority_refs:\n                self.budget.consume()\n                record = store.objects.get(identity)\n                if record is not None:\n                    members = _join_member_obligations(\n                        members, record.member_obligations, self.budget,\n                    )\n                    wildcard = _ordered_flow_roots(\n                        (wildcard, record.member_wildcard), self.budget,\n                    )\n",
+    "new": "        wildcard: tuple[_FlowValue, ...] = ()\n        self.budget.consume(3 + 3 * len(bases) + len(installed.helper_obligations))\n        base_edges = tuple(_FlowValue(\"class_member_base\", base) for _expression, base in bases)\n        if base_edges:\n            installed = replace(installed, helper_obligations=(\n                *installed.helper_obligations, *base_edges,\n            ))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        self.budget.consume(5 + 2 * len(frame.scope.local_names)\n",
+    "new": "        self.budget.consume(3 + 2 * len(frame.scope.local_names)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        definite_shadows: set[str] = set()\n",
+    "new": ""
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "            if supplied.kind != \"maybe_unbound\":\n                definite_shadows.add(name)\n",
+    "new": ""
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "                own.append((name, (supplied,)))\n",
+    "new": "                self.budget.consume(3)\n                own.append((name, (supplied,)))\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_with_class_member_authority",
+    "old": "        self.budget.consume(2 + len(members) + len(own) + len(definite_shadows))\n        members = tuple((name, roots) for name, roots in members if name not in definite_shadows)\n",
+    "new": "        self.budget.consume(1 + len(own))\n"
+  },
+  {
+    "kind": "method_replace",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_owner_ids",
+    "text": "    def _class_member_owner_ids(\n        self, owner: _FlowValue, values: Mapping[str, _FlowValue], *,\n        instance_read: bool = False, member_lookup: bool = False,\n    ) -> tuple[tuple[int, ...], bool, tuple[_FlowValue, ...]]:\n        \"\"\"Find receiver/name-selected base alternatives, never contained/captured classes.\"\"\"\n        self.budget.consume(6)\n        pending = [(\"receiver\", owner)]\n        seen_values: set[tuple[str, int]] = set()\n        seen_authority: set[tuple[str, int]] = set()\n        identities: list[int] = []\n        issues: list[_FlowValue] = []\n        unresolved = False\n        store = self._authority(values)\n        while pending:\n            role, current = pending.pop()\n            self.budget.consume(2)\n            key = (role, id(current))\n            if key in seen_values:\n                continue\n            seen_values.add(key)\n            if current.callable_definition is not None:\n                continue\n            if current.kind == \"implicit_class_instance\" and not instance_read:\n                continue\n            if current.kind == \"class_member_base\":\n                if member_lookup and isinstance(current.value, _FlowValue):\n                    self.budget.consume()\n                    pending.append((\"base\", current.value))\n                continue\n            if current.helper_refusal is not None or current.kind == \"helper_deferred_refusal\":\n                self.budget.consume(2)\n                issues.append(_FlowValue(\"helper_deferred_refusal\", reason=(\n                    current.helper_refusal or current.reason\n                    or \"helper namespace class owner is unresolved\")))\n            explicit_class = bool(current.kind == \"implicit_class\" or (\n                current.helper_provenance is not None\n                and current.helper_provenance.kind == \"class\"\n            ))\n            if current.authority_refs:\n                for identity in current.authority_refs:\n                    self.budget.consume()\n                    authority_key = (role, identity)\n                    if authority_key in seen_authority:\n                        continue\n                    seen_authority.add(authority_key)\n                    authority_record = store.objects.get(identity)\n                    if authority_record is None:\n                        unresolved |= explicit_class\n                        self.budget.consume(2)\n                        issues.append(_FlowValue(\"helper_deferred_refusal\",\n                                                reason=\"helper namespace authority state is unresolved\"))\n                    elif authority_record.class_member_owner:\n                        identities.append(identity)\n                        # Current records dominate historical embedded projections.\n                        if member_lookup:\n                            self.budget.consume(len(authority_record.value.helper_obligations))\n                            pending.extend((role, item) for item in authority_record.value.helper_obligations\n                                           if item.kind == \"class_member_base\")\n                    else:\n                        pending.append((role, authority_record.value))\n                        if not authority_record.value.mutable_collection:\n                            self.budget.consume(len(authority_record.retained))\n                            pending.extend((role, item) for item in authority_record.retained)\n                # Receiver-origin/result carriers may survive a legacy shape change.\n                if current.kind != \"implicit_class\":\n                    self.budget.consume(len(current.helper_obligations))\n                    pending.extend((role, item) for item in current.helper_obligations\n                                   if item.kind == \"deferred_result_carrier\")\n                continue\n            elif explicit_class:\n                unresolved = True\n                if role == \"base\":\n                    self.budget.consume(2)\n                    issues.append(_FlowValue(\"helper_deferred_refusal\",\n                                            reason=\"helper namespace inherited member authority is unresolved\"))\n            elif role == \"base\" and not current.helper_obligations and current.kind not in {\n                \"deferred_result_carrier\", \"maybe_unbound\", \"implicit_protocol_merged\",\n            }:\n                self.budget.consume(2)\n                issues.append(_FlowValue(\"helper_deferred_refusal\",\n                                        reason=\"helper namespace inherited member authority is unresolved\"))\n            if current.kind == \"deferred_result_carrier\" and isinstance(\n                current.value, _DeferredResultCarrier,\n            ):\n                if current.value.role == \"alternative\":\n                    self.budget.consume(len(current.value.roots))\n                    pending.extend((role, item) for item in current.value.roots)\n                continue\n            if current.kind in {\"maybe_unbound\", \"implicit_protocol_merged\",\n                                \"deferred_generator_container_merged\"}:\n                self.budget.consume(len(current.value))\n                pending.extend((role, item) for item in current.value if isinstance(item, _FlowValue))\n            self.budget.consume(len(current.helper_obligations))\n            for retained in current.helper_obligations:\n                if (retained.kind in {\"deferred_result_carrier\", \"class_member_base\"}\n                        or current.kind in {\"unknown\", \"implicit_class\", \"implicit_class_instance\"}):\n                    pending.append((role, retained))\n        self.budget.consume(2 + 2 * len(identities))\n        return tuple(dict.fromkeys(identities)), unresolved, _ordered_flow_roots((issues,), self.budget)\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "old": "        values: Mapping[str, _FlowValue],\n",
+    "new": "        values: Mapping[str, _FlowValue], *, include_inherited: bool = True,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_class_member_obligations",
+    "old": "            owner, values, instance_read=True,\n",
+    "new": "            owner, values, instance_read=True, member_lookup=include_inherited,\n"
+  },
+  {
+    "kind": "method_replace_in",
+    "cls": "_SourceOrderedResolver",
+    "name": "_evaluate",
+    "old": "                        owner, None if node.attr == \"__dict__\" else node.attr, values,\n",
+    "new": "                        owner, None if node.attr == \"__dict__\" else node.attr, values,\n                        include_inherited=result.kind not in {\"scalar\", \"sequence\", \"mapping\"},\n"
+  }
+]

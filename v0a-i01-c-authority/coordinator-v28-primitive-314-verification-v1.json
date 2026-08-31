@@ -1,0 +1,3416 @@
+{
+  "all_raw_records_and_input_output_hashes_checked": true,
+  "limits": [
+    "Finite primitive evidence only; no production-budget adapter, constructor B, resolver, corpus or integration claim.",
+    "Positive category counts establish exercised operations, not exhaustive branch or behavior coverage."
+  ],
+  "new_category_witnesses": {
+    "radix_freeze_base_child_reference_copies": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 104,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 39,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 39,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 39,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 78,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 78,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 78,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 78,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 91,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 91,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 91,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 91,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 606,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 696,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 606,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 786,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 690,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 174,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 1636,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 10800,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 1261,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 3054,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 13,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 242,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 45,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 80,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 62,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 62,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 62,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 62,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_base_child_size_reads": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 2,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 53,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 59,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 15,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 111,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 735,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 97,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 195,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 1,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 1,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 17,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 22,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 22,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_base_metadata_reads": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 9,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 9,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 9,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 18,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 18,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 18,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 18,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 21,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 21,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 21,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 21,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 141,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 159,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 141,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 177,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 141,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 45,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 333,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 2205,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 291,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 585,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 2736,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 51,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 9,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 66,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 66,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 54,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 54,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 54,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 54,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_base_reads": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 9,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 7,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 54,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-dense-private-64",
+        "phase": "cursor",
+        "reported_units": 1,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 112,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 752,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 97,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 195,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 928,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 1,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 1,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 17,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 50,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 50,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 18,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_base_slot_tests": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 55,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 63,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 15,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 111,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 735,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 196,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 13,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 242,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_change_view_and_iterator_allocations": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 14,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 14,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 14,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 14,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 94,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 106,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 94,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 118,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 94,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 30,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 222,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 1470,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 194,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 390,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 1824,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 2,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 2,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 34,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 44,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 44,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 36,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 36,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 36,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 36,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_changed_slot_visits": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 55,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 63,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 15,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 111,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 735,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 196,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 13,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 242,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_child_delete_operations": [],
+    "radix_freeze_child_insert_operations": [
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      }
+    ],
+    "radix_freeze_child_replace_operations": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 43,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 51,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 43,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 59,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 42,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 105,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 675,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 196,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 13,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 242,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_child_shift_reference_copies": [
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 23,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 23,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 23,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 23,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 27,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 388,
+        "run_phase": "baseline"
+      }
+    ],
+    "radix_freeze_pending_delta_operations": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 52,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 16,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 16,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 16,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 20,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 94,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 110,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 94,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 126,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 94,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 30,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 222,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 1470,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 196,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 392,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 1824,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 32,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 484,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 10,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 56,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 56,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 48,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 40,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_working_bitmap_reads": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 55,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 63,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 15,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 111,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 735,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 196,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 13,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 242,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      }
+    ],
+    "radix_freeze_working_bitmap_writes": [
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      }
+    ],
+    "radix_freeze_working_child_size_reads": [
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 4,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 6,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 60,
+        "run_phase": "baseline"
+      }
+    ],
+    "radix_freeze_working_rank_operations": [
+      {
+        "case": "unrelated-construction-order-history",
+        "phase": "storage",
+        "reported_units": 26,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "terminal-after-linear-merges",
+        "phase": "storage",
+        "reported_units": 12,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-ascending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-descending",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "retained-growth-zigzag",
+        "phase": "storage",
+        "reported_units": 3,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-linear-history",
+        "phase": "storage",
+        "reported_units": 8,
+        "run_phase": "last"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "first"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "middle"
+      },
+      {
+        "case": "failed-order-balanced-history",
+        "phase": "storage",
+        "reported_units": 10,
+        "run_phase": "last"
+      },
+      {
+        "case": "cost-grid-n64-j2-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j2-d2",
+        "phase": "storage",
+        "reported_units": 55,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d0",
+        "phase": "storage",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cost-grid-n64-j4-d2",
+        "phase": "storage",
+        "reported_units": 63,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "cursor-fork-per-write-64",
+        "phase": "cursor",
+        "reported_units": 47,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I01-grow-fork-32",
+        "phase": "indexed",
+        "reported_units": 15,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I02-grow-fork-128",
+        "phase": "indexed",
+        "reported_units": 111,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I03-grow-fork-512",
+        "phase": "indexed",
+        "reported_units": 735,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I04-hot-ambient-32",
+        "phase": "indexed",
+        "reported_units": 98,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I05-hot-ambient-512",
+        "phase": "indexed",
+        "reported_units": 196,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I07-collisions-64",
+        "phase": "indexed",
+        "reported_units": 912,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I08-bulk-32",
+        "phase": "indexed",
+        "reported_units": 13,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I09-bulk-128",
+        "phase": "indexed",
+        "reported_units": 16,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I10-bulk-512",
+        "phase": "indexed",
+        "reported_units": 242,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I11-published-owner-release",
+        "phase": "indexed",
+        "reported_units": 5,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I12-atomic-snapshot",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I13-atomic-fork",
+        "phase": "indexed",
+        "reported_units": 28,
+        "run_phase": "last"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I14-atomic-keys",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "first"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I15-atomic-items",
+        "phase": "indexed",
+        "reported_units": 24,
+        "run_phase": "last"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "baseline"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "first"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "middle"
+      },
+      {
+        "case": "I16-atomic-bulk",
+        "phase": "indexed",
+        "reported_units": 20,
+        "run_phase": "last"
+      }
+    ]
+  },
+  "receipt_sha256": "6f4614f6ea451516ed3bf168793dc6db3843acd4986631122dfab90f6aec8e32",
+  "rehash_files": 1787,
+  "runs_passed": 93,
+  "same_seed_complete_case_records_equal_to_floor": true,
+  "schema": "coordinator-v28-primitive-verification-v1",
+  "seed": "0",
+  "slot": "314",
+  "unexercised_new_categories": [
+    "radix_freeze_child_delete_operations"
+  ]
+}

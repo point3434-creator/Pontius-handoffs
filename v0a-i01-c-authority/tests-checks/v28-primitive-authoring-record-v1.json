@@ -1,0 +1,123 @@
+{
+  "schema": "pontius-v28-primitive-authoring-record-v1",
+  "author": "codex/r010_cold_a",
+  "execution_scope": "static source derivation and compile only",
+  "candidate_or_oracle_payload_executed": false,
+  "config_created": false,
+  "snapshot_created": false,
+  "production_edits": false,
+  "artifacts": [
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-plan-v1.md",
+      "sha256": "b9948d186f89e313f5eae829ab9fa4081f03b3260d4bb8f97237d70b4fbdd2ba",
+      "bytes": 6034,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-extractor-v1.py",
+      "sha256": "15dd6400617563230b549704338f19dc9a96fe9a5682ceb39c356ac478e028c5",
+      "bytes": 14477,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-extractor-v2.py",
+      "sha256": "96f3e980751e0d4851b95340e894c9519b96241fc726d1fac30d324fd99d6d9f",
+      "bytes": 15656,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-extracted-v1.py",
+      "sha256": "bad767aab3b330666fbc4543224e28347a8cf93f8f69d5940c618737dbea2778",
+      "bytes": 38123,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-accounting-v1.json",
+      "sha256": "4592e93634857015cd2befa227e7483db1b00895117881d919e6b0508cfa95ca",
+      "bytes": 43786,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-extraction-proof-v1.json",
+      "sha256": "8b6269d44aecaca6a4df93947439e0f54090b4dedb673a6574c5781e580d6c45",
+      "bytes": 67035,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-control-author-v1.py",
+      "sha256": "59d3b9841a930be3435e43a7de37e3d77fda6e963fd090c816ebc9f685934b48",
+      "bytes": 15872,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-control-author-v2.py",
+      "sha256": "c2382e5274d72c4d49283ea3882ff34744d0747dbffbe791f77a213b94eb0273",
+      "bytes": 15872,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-control-v1.py",
+      "sha256": "64fcb3ef0aaaf57f63643b3e306fe0f0b65f47c4d5ba8c5fc107dbe68186fcac",
+      "bytes": 46189,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-control-v1-from-indexed-v4.diff",
+      "sha256": "033718be75dae809213fbffa4804f8dc62fe57d632967116d798bad73a6988e2",
+      "bytes": 21331,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-extractor-v2-from-v1.diff",
+      "sha256": "9e1aa403638b9ff19ad91ca5cb0e8239ddf696b051d99810c2bf442534309aef",
+      "bytes": 2624,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-harness-static-v1.json",
+      "sha256": "d988339dc7f1504bb56e86c7b334eb3cdf2efbfccc8587370b1ff6092174ad5a",
+      "bytes": 5091,
+      "lf_only": true
+    },
+    {
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\v28-primitive-handoff-v1.md",
+      "sha256": "224d403846622eab3770ad893d7e5a95624c88a083ceb3486b3e60350dd29b84",
+      "bytes": 8122,
+      "lf_only": true
+    }
+  ],
+  "observed_authoring_calls": [
+    {
+      "script": "v28-primitive-extractor-v1.py --author",
+      "exit": 1,
+      "phase": "static accounting comparison",
+      "error": "ValueError: prior category reclassified: bulk_entry_validation",
+      "output_artifacts_created": false,
+      "classification": "authoring validation error, not product result"
+    },
+    {
+      "script": "v28-primitive-extractor-v2.py --author",
+      "exit": 0,
+      "phase": "static derivation and compile",
+      "primitive_nodes": 47,
+      "categories": 213,
+      "output_artifacts_created": true
+    },
+    {
+      "script": "v28-primitive-control-author-v1.py",
+      "exit": 1,
+      "phase": "source replacement count guard",
+      "error": "AssertionError: ('indexed_control', 7, 5)",
+      "output_artifacts_created": false,
+      "classification": "authoring guard error, not product result"
+    },
+    {
+      "script": "v28-primitive-control-author-v2.py",
+      "exit": 0,
+      "phase": "static control and wrapper compile",
+      "output_artifacts_created": true
+    }
+  ],
+  "raw_tool_outputs": "Retained in this task tool history; this is a structured transcription, not a raw process log",
+  "root_review_and_dispatch_required": true
+}

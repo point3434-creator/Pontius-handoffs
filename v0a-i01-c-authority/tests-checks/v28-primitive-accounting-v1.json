@@ -1,0 +1,888 @@
+{
+  "accounting_convention": [
+    "Every literal charge category in the exact source is listed. Unknown observed categories must fail accounting completeness.",
+    "P counts explicit entry/reference visits and copies, not allocator-perfect CPU instructions. Dictionary operation dispatch is non-P while its separate copied-entry/reference category is P.",
+    "Wrapper/proxy metadata copies and node/control/empty-slot inspections remain in total C but not content P.",
+    "Dictionary attempts do not measure hidden C-level hash/equality probes. Independent protocol observers report those separately.",
+    "snapshot_publications is charged before commit and may throw; only a successfully returned operation establishes completed publication.",
+    "Terminal collision categories identify actual hash-width-exhausted path operations; N16 may use an ordinary leaf dictionary with real observed equality collisions.",
+    "Factory input preparation and oracle work are external to this primitive; factory construction and its own iteration are charged."
+  ],
+  "bulk_counters": {
+    "input_visits": "bulk_input_visits",
+    "order_writes": "bulk_order_writes",
+    "uniqueness_attempts": "bulk_uniqueness_attempts"
+  },
+  "categories": {
+    "bulk_entry_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_group_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "bulk_input_iterator_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "bulk_key_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_leaf_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "bulk_leaf_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "bulk_leaf_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "bulk_leaf_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "bulk_order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "bulk_order_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "bulk_order_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "bulk_pair_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_record_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "bulk_record_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "bulk_record_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "bulk_record_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "bulk_record_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_slot_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "bulk_uniqueness_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "cache_publication_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "cache_publication_writes": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "candidate_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "candidate_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "candidate_iteration": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "candidate_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "cursor_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "cursor_fork_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "cursor_fork_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "cursor_publication_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "cursor_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "cursor_tail_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "cursor_write_field_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "empty_order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "entry_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "entry_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "fork_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "history_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "history_change_token_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "history_changed_name_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "history_depth_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "history_identity_comparisons": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "history_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "history_parent_depth_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "history_parent_reads": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "history_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "items_cache_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "items_cached_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "items_entry_value_reads": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "items_key_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "items_pair_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "items_pair_generator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "items_pair_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "items_result_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "items_result_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "items_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "join_candidate_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "join_input_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "join_input_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "join_input_validation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "join_order_override_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "join_state_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "keys_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "keys_view_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "lookup_private_tail_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "merge_argument_generator_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "merge_argument_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "merge_argument_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "merge_callback_invocation": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "merge_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "merge_missing_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_cache_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "order_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "order_dictionary_deletes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "order_dictionary_key_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_dictionary_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "order_edit_application_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_edit_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_edit_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_edit_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "order_keys_view_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_parent_reads": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_parent_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_parent_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_parent_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_proxy_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_proxy_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "order_recipe_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_stack_pops": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "order_stack_record_allocations": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_stack_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_staging_lookup": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "order_staging_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_staging_write": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "order_temporary_allocations": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_union_argument_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_union_argument_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_union_input_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "order_union_input_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "order_union_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_union_output_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_union_set_allocations": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_union_unique_references": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "order_union_view_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "order_union_view_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "private_dictionary_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "private_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "publication_change_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "publication_change_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "publication_change_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "publication_fresh_tail_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "publication_plan_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "publication_plan_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "publication_private_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "publication_tail_size_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_bitmap_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_branch_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_branch_editor_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_branch_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "radix_child_index_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_child_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_child_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_child_reference_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_child_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_child_tuple_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_edit_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_editor_change_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_editor_child_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_editor_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_editor_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_editor_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "radix_freeze_base_child_reference_copies": {
+      "metric": "P",
+      "operation": "Copy every base packed-child reference once into the unpublished list."
+    },
+    "radix_freeze_base_child_size_reads": {
+      "metric": "non-P",
+      "operation": "Read the packed tuple size before staging its copy."
+    },
+    "radix_freeze_base_metadata_reads": {
+      "metric": "non-P",
+      "operation": "Read cached base bitmap, packed children and pending total, three fields."
+    },
+    "radix_freeze_base_reads": {
+      "metric": "non-P",
+      "operation": "Read the editor's immutable base once."
+    },
+    "radix_freeze_base_slot_tests": {
+      "metric": "non-P",
+      "operation": "Test one changed slot against the original cached bitmap."
+    },
+    "radix_freeze_change_view_and_iterator_allocations": {
+      "metric": "non-P",
+      "operation": "Create the changes-dictionary items view and traversal iterator, two objects."
+    },
+    "radix_freeze_changed_slot_visits": {
+      "metric": "P",
+      "operation": "Visit one actual changed-slot dictionary entry."
+    },
+    "radix_freeze_child_delete_operations": {
+      "metric": "non-P",
+      "operation": "One staged packed-list deletion operation."
+    },
+    "radix_freeze_child_insert_operations": {
+      "metric": "non-P",
+      "operation": "One staged packed-list insertion operation."
+    },
+    "radix_freeze_child_replace_operations": {
+      "metric": "non-P",
+      "operation": "One staged packed-list replacement operation."
+    },
+    "radix_freeze_child_shift_reference_copies": {
+      "metric": "P",
+      "operation": "Charge each list reference shifted by insertion or deletion."
+    },
+    "radix_freeze_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_freeze_pending_delta_operations": {
+      "metric": "non-P",
+      "operation": "Subtract old child pending count and add new count, two operations."
+    },
+    "radix_freeze_slot_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_freeze_working_bitmap_reads": {
+      "metric": "non-P",
+      "operation": "Test current slot presence in the evolving packed-list bitmap."
+    },
+    "radix_freeze_working_bitmap_writes": {
+      "metric": "non-P",
+      "operation": "Update the evolving bitmap after insertion or deletion."
+    },
+    "radix_freeze_working_child_size_reads": {
+      "metric": "non-P",
+      "operation": "Read staged list size to calculate actual shifted references."
+    },
+    "radix_freeze_working_rank_operations": {
+      "metric": "non-P",
+      "operation": "Compute current packed-list rank from the evolving bitmap."
+    },
+    "radix_group_child_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_group_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_group_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_group_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_group_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_group_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_group_record_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_group_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_hash_normalizations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_hash_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_leaf_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_leaf_copy_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_leaf_copy_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_leaf_copy_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_leaf_copy_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_leaf_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_leaf_edit_dictionary_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_leaf_edit_dictionary_deletes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_leaf_edit_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_leaf_edit_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_leaf_editor_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_leaf_field_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "radix_leaf_proxy_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_leaf_proxy_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "radix_leaf_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_lookup_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_new_leaf_dictionary_allocation": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_pending_certificate_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_pending_count_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_pending_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_pending_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_pending_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_pending_tuple_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_pending_tuple_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_record_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_record_list_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "radix_record_list_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_record_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_record_size_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_root_reads": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_route_steps": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_split_input_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_split_leaf_dictionary_writes": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "radix_split_leaf_entry_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_split_leaf_reference_copies": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_terminal_collision_bulk_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_terminal_collision_edit_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_terminal_collision_lookup_operations": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "radix_walk_child_reference_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_walk_name_visits": {
+      "metric": "P",
+      "operation": "Explicit entry/reference visit or copy at the source sites; each charge represents that physical algorithm event once."
+    },
+    "radix_walk_node_visits": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "size_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "snapshot_publications": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "snapshot_requests": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "snapshot_return_reference": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    },
+    "version_allocation": {
+      "metric": "non-P",
+      "operation": "Actual container, node, record, iterator or wrapper allocation at the source sites."
+    },
+    "version_reference_copies": {
+      "metric": "non-P",
+      "operation": "Wrapper/proxy field-reference copies; kept in full C, separate from indexed/name content P."
+    },
+    "write_private_tail_attempts": {
+      "metric": "non-P",
+      "operation": "One logical Python dictionary operation/allocation; internal C hash/equality probes are not counted by this unit."
+    },
+    "write_size_read": {
+      "metric": "non-P",
+      "operation": "Algorithm control/read/validation, returned-wrapper or publication-request work at the source sites; included in full C."
+    }
+  },
+  "collision_attempt_categories": [
+    "radix_leaf_dictionary_attempts",
+    "radix_leaf_edit_dictionary_attempts",
+    "bulk_leaf_dictionary_writes"
+  ],
+  "extraction_policy": "Identity production namespace; public aliases; exact original Meter support only.",
+  "production_accounting_sha256": "077c1b4779709672a79368ea1081ecd9cb0499c651851a571a80f075e983c45b",
+  "production_source_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "prototype_path": "v28-primitive-extracted-v1.py",
+  "prototype_sha256": "bad767aab3b330666fbc4543224e28347a8cf93f8f69d5940c618737dbea2778",
+  "publication_attempt_category": "snapshot_publications",
+  "schema": "pontius-indexed-storage-accounting-v1",
+  "support_reference_sha256": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71",
+  "terminal_collision_categories": [
+    "radix_terminal_collision_lookup_operations",
+    "radix_terminal_collision_edit_operations",
+    "radix_terminal_collision_bulk_operations"
+  ]
+}

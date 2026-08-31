@@ -1,0 +1,19 @@
+{
+  "schema": "coordinator-focused-control-v2-static-v1",
+  "input_pins": {
+    "tests-focused-control-v1.py": "2676cc5e58db5a1e70044610de1876c96e23b38cd1a55c4f22f47aaa59118eba",
+    "tests-focused-wrapper-v1.py": "839e30c19b825defae4fea30ec899a43cd0ad346953215421b81478ffc20ca35",
+    "tests-focused-population-v1.json": "8799fd0f5996b84397b42f12b84f19a120a3b99f4be76a78775a4e5666856362",
+    "tests-candidate-v5.py": "48c4620bf5585a76d500b3c9bf4cad4559a04d4f544bc3808832d37b58b03add",
+    "engineer-budget-assertion-candidate-review-v1.md": "faf1bdb169669c5e252cfe679e8e4ed0fb08f522a5a14d1c753d0c56664de10c"
+  },
+  "control_sha256": "601138510cc361b073837eb8ab1a405af0e2f47d711854457e02b875bdbb4b5a",
+  "population_sha256": "449ffdd9898d06b43c5d707b01d4e6e387be64ee7f32b2f914e6b58604acb8ea",
+  "changed_function": "run",
+  "all_other_functions_ast_equal": true,
+  "inverse_recovers_normalized_original_control": true,
+  "population_only_test_pins_and_scope_changed": true,
+  "wrapper_byte_unchanged": true,
+  "payload_executed": false,
+  "standing": "New frozen harness for reviewed assertion correction; root dispatch separate."
+}

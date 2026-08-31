@@ -1,0 +1,655 @@
+{
+  "added_top_level": [
+    "_DeferredResultCarrier",
+    "_NativeCollectionEffect",
+    "_ordered_flow_roots",
+    "_join_member_obligations"
+  ],
+  "all_merge_calls": [
+    {
+      "budget": "budget",
+      "callee": "_merge_legacy_flow_values",
+      "line": 13595,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_legacy_flow_values",
+      "line": 13596,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13630,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13635,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13676,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13720,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13761,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13765,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 14198,
+      "owner": "_AuthorityState.join"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 14218,
+      "owner": "_AuthorityState.join"
+    },
+    {
+      "budget": "self.authority.budget",
+      "callee": "_merge_flow_values",
+      "line": 15047,
+      "owner": "_ExecutionState._write_cells"
+    },
+    {
+      "budget": "self.authority.budget",
+      "callee": "_merge_flow_values",
+      "line": 15057,
+      "owner": "_ExecutionState.__delitem__"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 15234,
+      "owner": "_captured_call_environment"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 15910,
+      "owner": "_SourceOrderedResolver._current_exact_collection_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 15964,
+      "owner": "_SourceOrderedResolver._refresh_bound_projection"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 16003,
+      "owner": "_SourceOrderedResolver._class_read_name"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 16062,
+      "owner": "_SourceOrderedResolver._class_merge_local_projection"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 16081,
+      "owner": "_SourceOrderedResolver._class_merge_local_projection"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 17859,
+      "owner": "_SourceOrderedResolver._snapshot_call"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 17872,
+      "owner": "_SourceOrderedResolver._snapshot_call"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 18340,
+      "owner": "_SourceOrderedResolver._resume_deferred_local_generator_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 20632,
+      "owner": "_SourceOrderedResolver._evaluate_comprehension"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 20738,
+      "owner": "_SourceOrderedResolver._evaluate_comprehension"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 20823,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 21280,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 21318,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 22044,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23402,
+      "owner": "_SourceOrderedResolver._merge_auxiliary_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23433,
+      "owner": "_SourceOrderedResolver._merge_auxiliary_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23468,
+      "owner": "_SourceOrderedResolver._merge_auxiliary_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23903,
+      "owner": "_SourceOrderedResolver._flow_statement_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 24332,
+      "owner": "_SourceOrderedResolver._try_statement_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 24877,
+      "owner": "_SourceOrderedResolver._statements"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 25333,
+      "owner": "_source_ordered_helper_return"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 25339,
+      "owner": "_source_ordered_helper_return"
+    }
+  ],
+  "analysis_budget_exact": true,
+  "authorization": "Root explicitly authorized T-only v25 authoring from v23 after both plan reviews; later approved only mechanical operation-budget keywords at ExecutionState._write_cells and __delitem__.",
+  "base_v23_sha256": "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
+  "budget_call_inventory": [
+    {
+      "budget": "budget",
+      "callee": "_merge_legacy_flow_values",
+      "line": 13595,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_legacy_flow_values",
+      "line": 13596,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13630,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13635,
+      "owner": "_merge_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13676,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13720,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13761,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 13765,
+      "owner": "_merge_legacy_flow_values"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 14198,
+      "owner": "_AuthorityState.join"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 14218,
+      "owner": "_AuthorityState.join"
+    },
+    {
+      "budget": "self.authority.budget",
+      "callee": "_merge_flow_values",
+      "line": 15047,
+      "owner": "_ExecutionState._write_cells"
+    },
+    {
+      "budget": "self.authority.budget",
+      "callee": "_merge_flow_values",
+      "line": 15057,
+      "owner": "_ExecutionState.__delitem__"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 15234,
+      "owner": "_captured_call_environment"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 15964,
+      "owner": "_SourceOrderedResolver._refresh_bound_projection"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 16003,
+      "owner": "_SourceOrderedResolver._class_read_name"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 16062,
+      "owner": "_SourceOrderedResolver._class_merge_local_projection"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 16081,
+      "owner": "_SourceOrderedResolver._class_merge_local_projection"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 17859,
+      "owner": "_SourceOrderedResolver._snapshot_call"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 17872,
+      "owner": "_SourceOrderedResolver._snapshot_call"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 18340,
+      "owner": "_SourceOrderedResolver._resume_deferred_local_generator_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 20632,
+      "owner": "_SourceOrderedResolver._evaluate_comprehension"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 20738,
+      "owner": "_SourceOrderedResolver._evaluate_comprehension"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 20823,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 21280,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 21318,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 22044,
+      "owner": "_SourceOrderedResolver._evaluate_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23402,
+      "owner": "_SourceOrderedResolver._merge_auxiliary_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23433,
+      "owner": "_SourceOrderedResolver._merge_auxiliary_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23468,
+      "owner": "_SourceOrderedResolver._merge_auxiliary_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 23903,
+      "owner": "_SourceOrderedResolver._flow_statement_value"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 24332,
+      "owner": "_SourceOrderedResolver._try_statement_states"
+    },
+    {
+      "budget": "self.budget",
+      "callee": "_merge_flow_values",
+      "line": 24877,
+      "owner": "_SourceOrderedResolver._statements"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 25333,
+      "owner": "_source_ordered_helper_return"
+    },
+    {
+      "budget": "budget",
+      "callee": "_merge_flow_values",
+      "line": 25339,
+      "owner": "_source_ordered_helper_return"
+    }
+  ],
+  "candidate_executed": false,
+  "candidate_imported": false,
+  "category_static_assertions": {
+    "base_edges_read_selection_only": true,
+    "comprehension_store_context_only": true,
+    "construction_activation_flag": true,
+    "empty_epoch_guard_shared": true,
+    "four_current_shape_gates": true,
+    "merged_marker_or_preserved": true,
+    "normal_completion_only_reservation": [
+      "_with_class_member_authority"
+    ],
+    "owner_tag_not_callable_root": true,
+    "shape_invalidation_before_legacy_poison": true
+  },
+  "changed_or_added_methods": {
+    "_AuthorityMap": [
+      "__setitem__"
+    ],
+    "_AuthorityRecord": [],
+    "_AuthorityState": [
+      "join"
+    ],
+    "_ExecutionState": [
+      "_write_cells",
+      "__delitem__"
+    ],
+    "_SourceOrderedResolver": [
+      "__init__",
+      "_class_generator_requires_refusal",
+      "_deferred_result_values",
+      "_retained_deferred_values",
+      "_immediate_deferred_values",
+      "_carrier_result",
+      "_element_result_values",
+      "_has_class_member_obligations",
+      "_class_member_owner_ids",
+      "_class_member_obligations",
+      "_with_class_member_authority",
+      "_retain_class_member_write",
+      "_current_exact_collection_value",
+      "_invalidate_collection_result_shape",
+      "_transfer",
+      "_refresh_bound_projection",
+      "_class_read_name",
+      "_class_merge_local_projection",
+      "_evaluate_class_comprehension",
+      "_snapshot_call",
+      "_resume_deferred_local_generator_value",
+      "_poison_mutable_collection",
+      "_record_deferred_generator_consumption",
+      "_deferred_generator_state_is_sensitive",
+      "_consume_generator_expression",
+      "_reachable_helper_authorities",
+      "_helper_effect_shape",
+      "_has_callable_authority",
+      "_native_effect_preserves",
+      "_collection_authority_result",
+      "_retain_native_collection_authority",
+      "_retain_native_list_call",
+      "_apply_helper_call_effects",
+      "_evaluate",
+      "_evaluate_comprehension",
+      "_evaluate_value",
+      "_assign",
+      "_delete_target",
+      "_merge_auxiliary_states",
+      "_flow_statement_value",
+      "_try_statement_states",
+      "_flow_class_statement",
+      "_finish_class_definition",
+      "_statements"
+    ]
+  },
+  "changed_top_level": [
+    "_merge_flow_values",
+    "_merge_legacy_flow_values",
+    "_AuthorityRecord",
+    "_AuthorityMap",
+    "_AuthorityState",
+    "_transfer_authority",
+    "_ExecutionState",
+    "_captured_call_environment",
+    "_SourceOrderedResolver",
+    "_source_ordered_helper_return"
+  ],
+  "exact_name_storage_nodes": [
+    "_NameMeter",
+    "_NameEntry",
+    "_name_check_name",
+    "_NameHistory",
+    "_name_history",
+    "_NameLayer",
+    "_name_seal_layer",
+    "_name_lookup_layers",
+    "_name_compact",
+    "_NameOrder",
+    "_name_order",
+    "_name_known_order",
+    "_name_seal_order_table",
+    "_name_realize_order",
+    "_name_charge_cache_commit",
+    "_name_commit_order",
+    "_name_keys",
+    "_name_ordered_items",
+    "_NameVersion",
+    "_NamePublication",
+    "_name_prepare_publication",
+    "_name_charge_publication_commit",
+    "_name_commit_publication",
+    "_NameCursor",
+    "_name_common_history",
+    "_name_pending_names",
+    "_join_name_versions"
+  ],
+  "exact_name_storage_region": true,
+  "execution_state_only_approved_budget_keywords": true,
+  "fixture_or_payload_executed": false,
+  "flags": {
+    "dont_write_bytecode": true,
+    "isolated": 1,
+    "no_site": 1,
+    "safe_path": true
+  },
+  "frozen_case_expectations_changed": false,
+  "frozen_case_pins": {
+    "class-comprehension-boundary-cases-v1.json": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+    "class-comprehension-extension-cases-v1.json": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-name-boundary-cases-v1.json": "31c50af8fda3cebc65e44d655db600dd1029a3e110b711a82d475750ece05a1c",
+    "class-owner-late-store-cases-v1.json": "08fce0e37eaeb24192c4f227677d7625097748ccb2cbc79470df4699718a9b47",
+    "class-semantic-extension-cases-v1.json": "925ae5b9354377a5957f0c32c8bf5b58fea01612498b835abd6392f9cc87d268",
+    "scalar-class-composition-cases-v1.json": "50e88cedf77f902012237ccd88700c911fa8f3681c8dada380cca6c3142659ac",
+    "storage-composition-cases-v1.json": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709"
+  },
+  "frozen_cases": 52,
+  "identical_flow_value_merge_fast_path_exact_ast": true,
+  "maximum_constants_exact": true,
+  "merge_operation_budget_required": true,
+  "new_refusal_cause_inventory": {
+    "_class_member_obligations": [
+      "helper namespace authority state is unresolved"
+    ],
+    "_class_member_owner_ids": [
+      "helper namespace authority state is unresolved",
+      "helper namespace class owner is unresolved",
+      "helper namespace inherited member authority is unresolved"
+    ],
+    "_evaluate_value": [
+      "helper namespace deferred execution is dynamically unresolved",
+      "helper namespace deferred generator consumption is dynamically unresolved",
+      "helper namespace owner needed for mutation is unresolved"
+    ],
+    "_record_deferred_generator_consumption": [
+      "helper namespace deferred generator consumption is dynamically unresolved"
+    ],
+    "_retain_class_member_write": [
+      "helper namespace class member store lacks live owner authority"
+    ],
+    "_retain_native_list_call": [
+      "helper namespace deferred generator consumption is dynamically unresolved"
+    ]
+  },
+  "no_indirect_merge_references": true,
+  "normative_plan_files": {
+    "engineer-generator-v25-class-owner-projection-companion-v1.md": "96bbf47d1251b5249e7796c6f3f9482f6a2a6e2b257c26207f0b5e7e6c9ae21e",
+    "engineer-generator-v25-inheritance-clarification-v1.md": "6f1aeb1b68593ac5f3c863d4137b5008700eb5cf5b5f88a72d8252a043cc7582",
+    "engineer-generator-v25-semantic-plan-v1.md": "39807c39a14e6f2009ffa69f5f09604c8354c1043a09be6c63e5982412621c2d",
+    "engineer-generator-v25-semantic-plan-v2.md": "e2ed7f88a6c081be3ec54556e47a327ce1ea2d336e55200e788857cfec099bb8",
+    "engineer-generator-v25-semantic-plan-v3-origin-clarification-v2.md": "458e182d3bfc8e715e1f9f2be0762fe1237088570a98c81f1958b1f766b22e70",
+    "engineer-generator-v25-semantic-plan-v3.md": "1d661231a472fc689af06ea993234f27ab88a65da950d83f1811c1f941d94723"
+  },
+  "ops_sha256": "082fbd74b48514f36ca92e0028195d679501cfd940310b1064f98dff7a634885",
+  "original_frozen_cases": 44,
+  "other_top_level_statements_exact_except_typing_literal": true,
+  "plan_pins": {
+    "v1": "39807c39a14e6f2009ffa69f5f09604c8354c1043a09be6c63e5982412621c2d",
+    "v2": "e2ed7f88a6c081be3ec54556e47a327ce1ea2d336e55200e788857cfec099bb8"
+  },
+  "python_executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "r010": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+  "r010_source_sha256": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+  "runtime": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "schema": "pontius-v25-semantic-static-v1",
+  "semantic_results": "unexecuted; original44 and independent8 fixed expectations await root-owned validation",
+  "source_bytes": 1209187,
+  "source_path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-generator-v25-semantic.py",
+  "source_sha256": "481098d0be86d27f1664d0705a44a91d50b3a1361280a4e28c82bc366a541853",
+  "w_watch_after": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  },
+  "w_watch_before": {
+    ".github/workflows/ci.yml": "ce3bcf3a2feed6f232d5af131a04e21ba82ed32794838e48297fc780c110a386",
+    "src/pontius/v0a/__init__.py": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "src/pontius/v0a/clock.py": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "src/pontius/v0a/model.py": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "src/pontius/v0a/replay.py": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "src/pontius/v0a/runtime.py": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "src/pontius/v0a/trace.py": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "tests/test-inventory.json": "6b866ea24975ee448511f72662f4d04e7f56eba026c0b797bbfa3f4dc7f4008d",
+    "tests/test-profiles.toml": "5862820a7c316dd9e4bbfe0997ba09f861f8cce257897da6a9a8da659e6912f1",
+    "tests/test_inventory_and_profiles.py": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+    "tests/test_v0a_boundaries.py": "f81387bbf46dfeaf7de8dbcc4f47c2ff04ac06f23f9fd3d1bdd84bf2f210f807",
+    "tests/test_v0a_contract_faults.py": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "tests/test_v0a_hand_replay.py": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "tests/test_v0a_replay.py": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "tests/test_v0a_trace.py": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "tools/check_stabilization_boundaries.py": "3dbf89f1a81661bc12fd7e7ea3625b1cb472d9d2f239496ff51ee348e859b4d6",
+    "tools/generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+  },
+  "watched_paths": 17
+}

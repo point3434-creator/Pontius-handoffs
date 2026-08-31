@@ -1,0 +1,127 @@
+{
+  "candidate_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "control_compiled_not_executed": true,
+  "control_sha256": "64fcb3ef0aaaf57f63643b3e306fe0f0b65f47c4d5ba8c5fc107dbe68186fcac",
+  "extra_inputs": {
+    "candidate": {
+      "path": "engineer-generator-v28-storage.py",
+      "sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e"
+    },
+    "extraction_plan": {
+      "path": "tests-checks/v28-primitive-plan-v1.md",
+      "sha256": "b9948d186f89e313f5eae829ab9fa4081f03b3260d4bb8f97237d70b4fbdd2ba"
+    },
+    "extraction_proof": {
+      "path": "tests-checks/v28-primitive-extraction-proof-v1.json",
+      "sha256": "8b6269d44aecaca6a4df93947439e0f54090b4dedb673a6574c5781e580d6c45"
+    },
+    "extractor": {
+      "path": "tests-checks/v28-primitive-extractor-v2.py",
+      "sha256": "96f3e980751e0d4851b95340e894c9519b96241fc726d1fac30d324fd99d6d9f"
+    },
+    "old_accounting": {
+      "path": "engineer-name-radix-accounting-v1.json",
+      "sha256": "79f64e5e7bbb429bedd108654b69c8ab5893973ee742517b543129f762f68f2b"
+    },
+    "production_accounting": {
+      "path": "engineer-generator-v28-storage-accounting-v1.json",
+      "sha256": "077c1b4779709672a79368ea1081ecd9cb0499c651851a571a80f075e983c45b"
+    },
+    "production_binding": {
+      "path": "engineer-generator-v28-storage-binding-proof-v1.json",
+      "sha256": "d786b9a609a37bf88ea18d6d6585d2ffb6cafd6ced908d23c1e086291ed8650c"
+    },
+    "support_reference": {
+      "path": "engineer-name-radix-prototype-v1.py",
+      "sha256": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71"
+    }
+  },
+  "extractor_v2_diff_sha256": "9e1aa403638b9ff19ad91ca5cb0e8239ddf696b051d99810c2bf442534309aef",
+  "floor_evidence_files_dev": 5,
+  "frozen_derived": {
+    "accounting": {
+      "path": "tests-checks/v28-primitive-accounting-v1.json",
+      "sha256": "4592e93634857015cd2befa227e7483db1b00895117881d919e6b0508cfa95ca"
+    },
+    "cursor_oracle": {
+      "path": "tests-checks/cursor-oracle-v2.py",
+      "sha256": "145fe1d59c48e23cdb426bcbe35edbecc3f941a81dc9780e8eeed849be5bc143"
+    },
+    "indexed_oracle": {
+      "path": "tests-checks/indexed-storage-extension-oracle-v2.py",
+      "sha256": "95ee5d3dd2e31ffd7ea6ecdd2f5e2b05dddb15e5a5ef1aa70ba8820bd82d2381"
+    },
+    "prototype": {
+      "path": "tests-checks/v28-primitive-extracted-v1.py",
+      "sha256": "bad767aab3b330666fbc4543224e28347a8cf93f8f69d5940c618737dbea2778"
+    }
+  },
+  "immutable_prior_inputs": {
+    "cursor_cases": {
+      "path": "tests-checks/cursor-oracle-cases-v1.json",
+      "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61"
+    },
+    "cursor_oracle": {
+      "path": "tests-checks/cursor-oracle-v2.py",
+      "sha256": "145fe1d59c48e23cdb426bcbe35edbecc3f941a81dc9780e8eeed849be5bc143"
+    },
+    "indexed_cases": {
+      "path": "tests-checks/indexed-storage-extension-cases-v1.json",
+      "sha256": "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a"
+    },
+    "indexed_oracle": {
+      "path": "tests-checks/indexed-storage-extension-oracle-v2.py",
+      "sha256": "95ee5d3dd2e31ffd7ea6ecdd2f5e2b05dddb15e5a5ef1aa70ba8820bd82d2381"
+    },
+    "indexed_spec": {
+      "path": "tests-checks/indexed-storage-extension-spec-v1.md",
+      "sha256": "11d11003b3ce84d485df549e73a494e358db69cc6f5db6faea5dae8f50c330f9"
+    },
+    "old_cases": {
+      "path": "tests-checks/storage-oracle-cases-v2.json",
+      "sha256": "3bd5678da334fb551c2f179906e8b4d2cf7a0b0e7a3779e0fad2fb4b4a9c548f"
+    },
+    "old_oracle": {
+      "path": "tests-checks/storage-oracle-v2.py",
+      "sha256": "6a58ef82832d53510f7d44d58cf5a8fa3764f8be5f2c28dcb7e555a83c72cfba"
+    }
+  },
+  "limitations": [
+    "Extracted primitive A only; production budget adapter and constructor B excluded.",
+    "New16 category presence in source is not runtime branch coverage.",
+    "Authoring v1 static accounting comparison failed before artifact creation; corrected in retained v2.",
+    "Per-runtime full AST equality is checked locally; AST dump hashes are not normalized across runtimes."
+  ],
+  "manifest_files_dev": 1787,
+  "manifest_files_floor": 1782,
+  "new_record": "static_extraction_verified",
+  "payload_executed": false,
+  "payload_files_floor": 21,
+  "planned_phase_runs": [
+    34,
+    28,
+    31
+  ],
+  "predecessor_control_sha256": "7192e46cd855d767c96a06ba81ffaa97c97604e12042fad5e06e299f10a5e44c",
+  "raw_control_diff_sha256": "033718be75dae809213fbffa4804f8dc62fe57d632967116d798bad73a6988e2",
+  "root_config_and_dispatch_required": true,
+  "schema": "pontius-v28-primitive-harness-static-v1",
+  "selected_slot_only": true,
+  "total_runs_per_child": 93,
+  "tracked_files_unchanged": 1761,
+  "unchanged_parent_function_ASTs": [
+    "create",
+    "digest",
+    "environment_for",
+    "git",
+    "hashes",
+    "is_digest",
+    "local_file",
+    "read_input",
+    "req",
+    "validate",
+    "write_json"
+  ],
+  "wrapper_compiled_not_executed": true,
+  "wrapper_sha256": "a9dfcd8790ab63c9d4a5e3276074633d6e7b765650587e2bbe2b69c357f6a5c5"
+}

@@ -1,0 +1,59 @@
+{
+  "W_written": false,
+  "all1761_W_paths_unchanged": true,
+  "analysis_caps_unchanged": 5,
+  "artifacts": {
+    "coordinator-disabled-join-operation-disposition-v1.md": "320df60041e12736d19f40b7f7bdfdc39b064cd6d42f2c1696fd36c8fa42295e",
+    "engineer-generator-v29-storage-accounting-v1.json": "5074f3509e47d1de642b30f5351dd953997397b4e29a841cc59ae92c6c7d292d",
+    "engineer-generator-v29-storage-from-v28.diff": "5d65d6c5b720bce21d4db79afbca603372711699fd364d21cce4adb9008d3c7f",
+    "engineer-generator-v29-storage-preservation-v1.json": "bcc97e505a42dfb093bc4ada0de3d62d76b83d03b1016319aa7b889f1111a2dc",
+    "engineer-generator-v29-storage.py": "b53b905cd20dd97d7d09a3b81f955bf27498a572ce8a6d82e20f007993ab9466"
+  },
+  "branch_first_line": 22417,
+  "branch_last_line": 22546,
+  "exact_inverse_removal_recovers_every_v28_byte": true,
+  "fallback_resume_line": 22547,
+  "generic_primitive_changed": false,
+  "guard_closure_freevars": [
+    "join_meter",
+    "self"
+  ],
+  "limits": [
+    "Static inspection is not runtime fitness or an independent cold-review verdict.",
+    "No claim that common-history hit rate or total budget clears the remaining generator70 gate.",
+    "The five-cap/refusal contract and every test byte remain unchanged by this source candidate.",
+    "Independent semantic composition must reprove the identical-object merge law."
+  ],
+  "new_name_charge_categories": 36,
+  "no_no_work_writes_or_certificate_keywords": true,
+  "only_new_attribute_stores": [
+    {
+      "expression": "staged._order",
+      "line": 22540
+    },
+    {
+      "expression": "staged._items_cache",
+      "line": 22541
+    },
+    {
+      "expression": "result._names",
+      "line": 22545
+    }
+  ],
+  "original_full_fallback_prefix_and_body_AST_exact": true,
+  "original_identical_FlowValue_fast_path_AST_and_source_unchanged": true,
+  "original_per_name_supplied_merge_transfer_validation_conditional_cells_AST_exact": true,
+  "original_union_expression_AST_exact_occurrences": 1,
+  "payload_executed": false,
+  "plan_sha256": "d8faada0f14b1f7ffb0e0062ebd90e6fe196718b663cba93d39cd8246ff1b7fa",
+  "predecessor_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "schema": "pontius-v29-storage-static-v1",
+  "semantic_v25_combined": false,
+  "source_bytes": 1164516,
+  "source_imported": false,
+  "source_sha256": "b53b905cd20dd97d7d09a3b81f955bf27498a572ce8a6d82e20f007993ab9466",
+  "syntax_compiled_only": true,
+  "unchanged_other_SOR_methods": 126,
+  "unchanged_primitive_objects": 47,
+  "whole_module_AST_equal_except_one_merge_states_method": true
+}

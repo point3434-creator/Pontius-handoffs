@@ -1,0 +1,142 @@
+--- engineer-generator-v28-storage.py
++++ engineer-generator-v29-storage.py
+@@ -22411,6 +22411,139 @@
+             self.budget.consume(2 + 2 * sum(len(state) for state in name_inputs))
+             names = set().union(*key_views)
+             self.budget.consume(len(names))  # Unique set references.
++            # Operation-local identity law: disabled transfer does no work, but
++            # retained entries remain pending for every later enabled boundary.
++            # Generic joins and the legacy full fallback retain their contracts.
++            disabled_join = False
++            self.budget.consume()  # Exact, stable source-sequence type.
++            stable_sources = type(states) is tuple
++            if not stable_sources:
++                self.budget.consume()  # The other ordinary source-sequence type.
++                stable_sources = type(states) is list
++            self.budget.consume(2)  # First snapshot reference and exact type check.
++            first_names = name_inputs[0]
++            exact_first = type(first_names) is _NameVersion
++            if stable_sources and exact_first:
++                self.budget.consume(2)  # Meter reference and exact type check.
++                join_meter = first_names._meter
++                if type(join_meter) is _NameMeter:
++                    self.budget.consume()  # Original budget identity.
++                    if join_meter.budget is self.budget:
++                        join_meter.charge("disabled_join_guard_function_allocation")
++                        join_meter.charge("disabled_join_guard_closure_references", 2)
++
++                        def disabled_input(state, captured):
++                            join_meter.charge("disabled_join_exact_state_checks")
++                            if type(state) is not _ExecutionState:
++                                return False
++                            join_meter.charge("disabled_join_authority_guard_reads", 2)
++                            authority = state.authority
++                            if type(authority) is not _AuthorityState:
++                                return False
++                            join_meter.charge("disabled_join_mode_checks")
++                            if authority.enabled is not False:
++                                return False
++                            join_meter.charge("disabled_join_budget_checks")
++                            if authority.budget is not self.budget:
++                                return False
++                            join_meter.charge("disabled_join_cursor_guard_reads", 2)
++                            cursor = state._names
++                            if type(cursor) is not _NameCursor:
++                                return False
++                            join_meter.charge("disabled_join_meter_checks")
++                            if cursor._meter is not join_meter:
++                                return False
++                            join_meter.charge("disabled_join_exact_version_checks")
++                            if type(captured) is not _NameVersion:
++                                return False
++                            join_meter.charge("disabled_join_meter_checks")
++                            if captured._meter is not join_meter:
++                                return False
++                            join_meter.charge("disabled_join_root_reads")
++                            pending = _name_radix_pending_count(join_meter, captured._root)
++                            join_meter.charge("disabled_join_pending_size_checks", 2)
++                            return pending == captured._size
++
++                        disabled_join = disabled_input(result, first_names)
++                        if disabled_join:
++                            join_meter.charge("disabled_join_input_iterator_allocations", 2)
++                            for index, state in enumerate(states):
++                                join_meter.charge("disabled_join_input_visits", 2)
++                                if not disabled_input(state, name_inputs[index]):
++                                    disabled_join = False
++                                    break
++            if disabled_join:
++                base = _name_common_history(join_meter, name_inputs)
++                join_meter.charge("disabled_join_common_history_checks")
++                if base is not None:
++                    join_meter.charge("disabled_join_candidate_dictionary_allocation")
++                    candidate_names = {}
++                    join_meter.charge("disabled_join_history_input_iterator_allocation")
++                    for captured in name_inputs:
++                        join_meter.charge("disabled_join_history_input_visits")
++                        join_meter.charge("disabled_join_history_reference_reads")
++                        token = captured._history
++                        while token is not base:
++                            join_meter.charge("disabled_join_history_token_visits")
++                            join_meter.charge("disabled_join_history_change_reference_reads")
++                            join_meter.charge("disabled_join_history_change_iterator_allocation")
++                            for name in token.changes:
++                                join_meter.charge("disabled_join_changed_name_visits")
++                                join_meter.charge("disabled_join_candidate_dictionary_attempts")
++                                if name not in candidate_names:
++                                    join_meter.charge("disabled_join_candidate_dictionary_writes")
++                                    join_meter.charge("disabled_join_candidate_reference_copies", 2)
++                                    candidate_names[name] = None
++                            join_meter.charge("disabled_join_history_reference_reads")
++                            token = token.parent
++                    join_meter.charge("disabled_join_cardinality_choice", 3)
++                    if len(candidate_names) < len(names):
++                        staged = _NameCursor(first_names)
++                        join_meter.charge("disabled_join_order_dictionary_allocation")
++                        order_table = {}
++                        join_meter.charge("disabled_join_union_iterator_allocation")
++                        for name in names:
++                            self.budget.consume()  # The original legacy union-name visit.
++                            join_meter.charge("disabled_join_order_dictionary_writes")
++                            join_meter.charge("disabled_join_order_reference_copies", 2)
++                            order_table[name] = None
++                            join_meter.charge("disabled_join_candidate_dictionary_attempts")
++                            if name not in candidate_names:
++                                # Do not generalize this to None, subclasses, a
++                                # positive certificate, or a now-enabled result.
++                                join_meter.charge("disabled_join_name_type_checks")
++                                if type(name) is str:
++                                    join_meter.charge("disabled_join_mode_checks")
++                                    if result.authority.enabled is False:
++                                        inherited = first_names._entry(name)
++                                        join_meter.charge("disabled_join_entry_type_checks")
++                                        if type(inherited) is _NameEntry:
++                                            join_meter.charge("disabled_join_pending_flag_checks")
++                                            if inherited.no_work is False:
++                                                join_meter.charge("disabled_join_value_type_checks")
++                                                if type(inherited.value) is _FlowValue:
++                                                    continue
++                            join_meter.charge("adapter_merge_values_generator_allocation")
++                            join_meter.charge("adapter_merge_values_iterator_allocation")
++                            join_meter.charge("adapter_merge_values_generator_references", 2)
++                            self.budget.consume(1 + 2 * len(name_inputs))
++                            supplied = tuple(state.get(name) for state in name_inputs)
++                            entry = result._transferred_name_entry(_merge_flow_values(name, supplied))
++                            _name_check_name(name)
++                            if result.authority.enabled:
++                                identities = result.bindings.get(name, ())
++                                result._write_cells(entry.value, identities)
++                            staged._replace_entry(name, entry)
++                        memo = _name_seal_order_table(join_meter, order_table)
++                        order = _name_order(join_meter, "known", cache=memo)
++                        join_meter.charge("disabled_join_order_install_references", 2)
++                        staged._order = order
++                        staged._items_cache = None
++                        version = staged.snapshot()
++                        cursor = _NameCursor(version)
++                        join_meter.charge("disabled_join_result_install_reference")
++                        result._names = cursor
++                        return result
+             result.clear()
+             meter = result._names._meter
+             meter.charge("adapter_bulk_producer_function_allocation")

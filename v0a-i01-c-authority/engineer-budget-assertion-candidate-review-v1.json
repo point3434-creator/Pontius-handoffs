@@ -1,0 +1,64 @@
+{
+  "canonical_helper_depth_origins": [
+    {
+      "line": 25149,
+      "literal": "analysis helper depth exceeds 64"
+    },
+    {
+      "line": 25929,
+      "literal": "analysis helper depth exceeds 64"
+    },
+    {
+      "line": 19519,
+      "literal": "analysis helper depth exceeds 64"
+    }
+  ],
+  "canonical_work_cap": 262144,
+  "fixtures": [
+    {
+      "fixture_and_other_method_statements_unchanged": true,
+      "name": "test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+      "old_assertion": "analysis.*(?:depth|budget)",
+      "original_line": 4919,
+      "original_method_AST_sha256": "52113b4f72dfc13ba5baaa5e88397ee2e18d03dfaca0cdd040206a6e437db2d9",
+      "v5_assertion": "^analysis (?:helper depth exceeds 64|work units exceed 262144)$",
+      "v5_line": 4919
+    },
+    {
+      "fixture_and_other_method_statements_unchanged": true,
+      "name": "test_round4_analysis_budget_red_contracts_are_independent",
+      "old_assertion": "^analysis helper depth exceeds 64$",
+      "original_line": 20406,
+      "original_method_AST_sha256": "d4efbf772c93b240757d1e15c425e07f1673a8331f973d5302fc538f4c903e30",
+      "v5_assertion": "^analysis helper depth exceeds 64$",
+      "v5_line": 20406
+    },
+    {
+      "fixture_and_other_method_statements_unchanged": true,
+      "name": "_fix15_frozen_review_boundary_contracts",
+      "old_assertion": "^analysis deferred generator depth exceeds 64$",
+      "original_line": 13570,
+      "original_method_AST_sha256": "4841b9b345476773e87678d73fd2539a51ebd17010ae3faa1cbfa202257b101d",
+      "v5_assertion": "^analysis deferred generator depth exceeds 64$",
+      "v5_line": 13570
+    },
+    {
+      "fixture_and_other_method_statements_unchanged": true,
+      "name": "test_round4_analysis_budget_red_contracts_are_independent",
+      "old_assertion": "^analysis work units exceed 262144$",
+      "original_line": 20406,
+      "original_method_AST_sha256": "d4efbf772c93b240757d1e15c425e07f1673a8331f973d5302fc538f4c903e30",
+      "v5_assertion": "^analysis work units exceed 262144$",
+      "v5_line": 20406
+    }
+  ],
+  "inverse_single_literal_recovers_v4": true,
+  "original_tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "prior_failed_runs_reclassified": false,
+  "schema": "pontius-budget-assertion-review-v1",
+  "source_or_tests_executed": false,
+  "source_sha256": "4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e",
+  "v4_sha256": "06e169d4f35920e0db3c783dfbebf4716cfe45f989847426aa0d7937275e1afd",
+  "v5_sha256": "48c4620bf5585a76d500b3c9bf4cad4559a04d4f544bc3808832d37b58b03add",
+  "verdict": "No material defect found in the proposed one-line correction; static review only."
+}

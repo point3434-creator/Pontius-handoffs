@@ -1,0 +1,316 @@
+--- D:\Pontius-handoffs\v0a-i01-c-authority\engineer-indexed-storage-control-v4.py
++++ D:\Pontius-handoffs\v0a-i01-c-authority\tests-checks\v28-primitive-control-v1.py
+@@ -1,9 +1,12 @@
+-"""Three-phase pure indexed-storage control; authoring does not authorize execution.
++"""Three-phase v28 production-primitive control; no execution authorized by authoring.
+ 
+ Run using the exact floor interpreter with -I -S -B -P.
+ Arguments: LABEL SLOT SEED CONFIG_RELATIVE CONFIG_SHA256
+ For SLOT=314 append FLOOR_RECEIPT_RELATIVE FLOOR_RECEIPT_SHA256.
+ Root creates the fully pinned config only after reviewing every final input.
++One invocation runs one selected slot/seed, never an automatic matrix.
++The complete candidate/support references are static-only; only verified extracted
++primitive nodes and original oracle code are imported in the isolated child.
+ """
+ import hashlib
+ import importlib.util
+@@ -42,9 +45,12 @@
+                  "sha256": "795e893c4fbeee3963a3ea3cbbffdfacbea193f53063eb4848c8e9ac6d12984a"}
+ CURSOR_CASES = {"path": "tests-checks/cursor-oracle-cases-v1.json",
+                 "sha256": "ecddd020ffb2a0d85e624aeb7fb544f631b302839f9a5f3542c998b36c37ac61"}
+-SCHEMA = "indexed-name-storage-control-v1"
++EXTRA_INPUTS = {'candidate': {'path': 'engineer-generator-v28-storage.py', 'sha256': '4db6502350e59fe363998351384a62d9e669598241a644810e9a7ffd6b4b4d0e'}, 'support_reference': {'path': 'engineer-name-radix-prototype-v1.py', 'sha256': '0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71'}, 'production_binding': {'path': 'engineer-generator-v28-storage-binding-proof-v1.json', 'sha256': 'd786b9a609a37bf88ea18d6d6585d2ffb6cafd6ced908d23c1e086291ed8650c'}, 'production_accounting': {'path': 'engineer-generator-v28-storage-accounting-v1.json', 'sha256': '077c1b4779709672a79368ea1081ecd9cb0499c651851a571a80f075e983c45b'}, 'old_accounting': {'path': 'engineer-name-radix-accounting-v1.json', 'sha256': '79f64e5e7bbb429bedd108654b69c8ab5893973ee742517b543129f762f68f2b'}, 'extractor': {'path': 'tests-checks/v28-primitive-extractor-v2.py', 'sha256': '96f3e980751e0d4851b95340e894c9519b96241fc726d1fac30d324fd99d6d9f'}, 'extraction_proof': {'path': 'tests-checks/v28-primitive-extraction-proof-v1.json', 'sha256': '8b6269d44aecaca6a4df93947439e0f54090b4dedb673a6574c5781e580d6c45'}, 'extraction_plan': {'path': 'tests-checks/v28-primitive-plan-v1.md', 'sha256': 'b9948d186f89e313f5eae829ab9fa4081f03b3260d4bb8f97237d70b4fbdd2ba'}}
++EXTRA_COPIES = {'candidate-static.py': 'candidate', 'meter-support-reference-static.py': 'support_reference', 'production-binding.json': 'production_binding', 'production-accounting.json': 'production_accounting', 'old-accounting.json': 'old_accounting', 'extractor.py': 'extractor', 'extraction-proof.json': 'extraction_proof', 'extraction-plan.md': 'extraction_plan'}
++FROZEN_DERIVED = {'prototype': {'path': 'tests-checks/v28-primitive-extracted-v1.py', 'sha256': 'bad767aab3b330666fbc4543224e28347a8cf93f8f69d5940c618737dbea2778'}, 'accounting': {'path': 'tests-checks/v28-primitive-accounting-v1.json', 'sha256': '4592e93634857015cd2befa227e7483db1b00895117881d919e6b0508cfa95ca'}, 'cursor_oracle': {'path': 'tests-checks/cursor-oracle-v2.py', 'sha256': '145fe1d59c48e23cdb426bcbe35edbecc3f941a81dc9780e8eeed849be5bc143'}, 'indexed_oracle': {'path': 'tests-checks/indexed-storage-extension-oracle-v2.py', 'sha256': '95ee5d3dd2e31ffd7ea6ecdd2f5e2b05dddb15e5a5ef1aa70ba8820bd82d2381'}}
++SCHEMA = "v28-production-primitive-control-v1"
+ TIMEOUT = 60
+-PAYLOAD = ".storage-indexed-prototype"
++PAYLOAD = ".storage-v28-primitive"
+ 
+ 
+ def req(value, message):
+@@ -167,7 +173,19 @@
+     req(summary.get("runtime") == [int(part) for part in version.split(".")],
+         "oracle runtime mismatch")
+     req(summary.get("hash_seed") == seed, "oracle seed mismatch")
+-    req(summary.get("maximum_meter_limit") == 262144, "oracle meter limit mismatch")
++    req(type(summary.get("maximum_meter_limit")) is int
++        and summary.get("maximum_meter_limit") == 262144, "oracle meter limit mismatch")
++
++
++def check_extraction_record(record, config):
++    req(record.get("candidate_sha256") == config["candidate"]["sha256"]
++        and record.get("extracted_sha256") == config["prototype"]["sha256"]
++        and record.get("accounting_sha256") == config["accounting"]["sha256"]
++        and record.get("proof_sha256") == config["extraction_proof"]["sha256"]
++        and is_digest(record.get("current_runtime_proof_sha256"))
++        and type(record.get("production_nodes_verified")) is int
++        and record["production_nodes_verified"] == 47
++        and record.get("static_only") is True, "extraction verification pins/claims")
+ 
+ 
+ WRAPPER = r'''"""Finite stdlib bootstrap; no Pontius import or target body execution."""
+@@ -200,7 +218,7 @@
+     return path
+ 
+ def emit(record):
+-    print(json.dumps({"indexed_control": record}, sort_keys=True), flush=True)
++    print(json.dumps({"v28_primitive_control": record}, sort_keys=True), flush=True)
+ 
+ def no_pontius():
+     req(not any(name == "pontius" or name.startswith("pontius.")
+@@ -227,7 +245,8 @@
+     req(summary.get("case_pack_sha256") == case_sha, "case pack SHA mismatch")
+     req(summary.get("runtime") == list(map(int, version.split("."))), "runtime mismatch")
+     req(summary.get("hash_seed") == seed, "seed mismatch")
+-    req(summary.get("maximum_meter_limit") == 262144, "meter limit mismatch")
++    req(type(summary.get("maximum_meter_limit")) is int
++        and summary.get("maximum_meter_limit") == 262144, "meter limit mismatch")
+ 
+ def main():
+     req(len(sys.argv) == 7, "child argument count")
+@@ -254,12 +273,12 @@
+     req(P(pontius_spec.origin).resolve() == (snapshot / "src/pontius/__init__.py").resolve(),
+         "Pontius origin outside snapshot")
+     no_pontius()
+-    req(payload_name == ".storage-indexed-prototype", "payload directory")
++    req(payload_name == ".storage-v28-primitive", "payload directory")
+     payload = snapshot / payload_name
+     manifest_raw = checked(payload / "manifest.json").read_bytes()
+     req(h(manifest_raw) == manifest_sha, "manifest SHA mismatch")
+     manifest = json.loads(manifest_raw)
+-    wanted_files = 1779 if version == "3.14.6" else 1774
++    wanted_files = 1787 if version == "3.14.6" else 1782
+     req(type(manifest) is dict and len(manifest) == wanted_files, "manifest file count")
+     for name, wanted in manifest.items():
+         relative = P(name)
+@@ -276,7 +295,9 @@
+           "environment": actual_environment, "manifest_sha256": manifest_sha,
+           "verified_files": len(manifest), "pontius_imported": False,
+           "prototype_sha256": config["prototype"]["sha256"],
+-          "accounting_sha256": config["accounting"]["sha256"]})
++          "accounting_sha256": config["accounting"]["sha256"],
++          "candidate_sha256": config["candidate"]["sha256"],
++          "extraction_proof_sha256": config["extraction_proof"]["sha256"]})
+     req(h(checked(payload / "prototype.py").read_bytes()) == config["prototype"]["sha256"],
+         "prototype content pin")
+     accounting_raw = checked(payload / "accounting.json").read_bytes()
+@@ -285,7 +306,20 @@
+     req(accounting["schema"] == "pontius-indexed-storage-accounting-v1"
+         and accounting["prototype_sha256"] == config["prototype"]["sha256"],
+         "accounting source identity")
+-    prototype = load("indexed_prototype_under_test", payload / "prototype.py")
++    verifier = load("static_extraction_verifier", payload / "extractor.py")
++    extraction = verifier.verify_extraction(*[checked(payload / name).read_bytes() for name in (
++        "candidate-static.py", "meter-support-reference-static.py", "production-binding.json",
++        "production-accounting.json", "old-accounting.json", "prototype.py",
++        "accounting.json", "extraction-proof.json")])
++    req(extraction["candidate_sha256"] == config["candidate"]["sha256"]
++        and extraction["extracted_sha256"] == config["prototype"]["sha256"]
++        and extraction["accounting_sha256"] == config["accounting"]["sha256"]
++        and extraction["proof_sha256"] == config["extraction_proof"]["sha256"]
++        and type(extraction["production_nodes_verified"]) is int
++        and extraction["production_nodes_verified"] == 47
++        and extraction["static_only"] is True, "static extraction verification")
++    emit({"kind": "static_extraction_verified", **extraction})
++    prototype = load("v28_extracted_primitive_under_test", payload / "prototype.py")
+     passed = True
+     definitions = (
+         ("storage", "old_oracle.py", "verify_storage", "old_cases.json",
+@@ -344,8 +378,8 @@
+     req((slot == "311" and len(sys.argv) == 6)
+         or (slot == "314" and len(sys.argv) == 8), "floor receipt arguments")
+     validate(ROOT)
+-    checks = validate(ROOT / "engineer-checks")
+-    prefix = "indexed-" + label + "-" + slot + "-seed" + seed
++    checks = validate(ROOT / "tests-checks")
++    prefix = "v28-primitive-" + label + "-" + slot + "-seed" + seed
+     paths = {key: checks / (prefix + suffix) for key, suffix in (
+         ("setup", "-setup.json"), ("receipt", "-receipt.json"),
+         ("stdout", ".stdout.txt"), ("stderr", ".stderr.txt"), ("log", ".txt"),
+@@ -354,7 +388,8 @@
+     streams = {key: path.open("x+b") for key, path in paths.items()}
+     setup = {"schema": SCHEMA, "label": label, "slot": slot, "seed": seed,
+              "base_commit": BASE_COMMIT, "config_sha256": config_sha,
+-             "production_source_sha256": SOURCE_SHA, "disposition_sha256": DISPOSITION_SHA}
++             "production_watch_sha256": SOURCE_SHA, "candidate_sha256": EXTRA_INPUTS["candidate"]["sha256"],
++             "disposition_sha256": DISPOSITION_SHA}
+     receipt = dict(setup)
+     receipt.update({"success": False, "integrity_ok": False, "payload_started": False})
+     phase = "preflight"
+@@ -373,9 +408,12 @@
+         fields = {"schema", "control_sha256", "disposition_sha256", "prototype",
+                   "old_oracle", "old_cases", "cursor_oracle", "cursor_cases", "cursor_expected",
+                   "indexed_oracle", "indexed_cases", "indexed_expected", "accounting", "indexed_spec"}
++        fields |= set(EXTRA_INPUTS)
+         req(type(config) is dict and set(config) == fields
+             and config["schema"] == SCHEMA, "config schema")
+-        req(config["disposition_sha256"] == DISPOSITION_SHA, "config disposition")
++        req(config["disposition_sha256"] == DISPOSITION_SHA, "historical disposition pin")
++        req(all(config[key] == value for key, value in {**EXTRA_INPUTS, **FROZEN_DERIVED}.items()),
++            "frozen production extraction or unchanged oracle inputs differ")
+         req(config["old_oracle"] == OLD_ORACLE and config["old_cases"] == OLD_CASES,
+             "old oracle/cases are frozen")
+         req(config["indexed_cases"] == INDEXED_CASES and config["indexed_spec"] == INDEXED_SPEC
+@@ -390,6 +428,8 @@
+             "cursor planned cases")
+         req(type(expected["planned_runs"]) is int
+             and expected["planned_runs"] >= expected["planned_cases"], "cursor planned runs")
++        req(all(type(config["indexed_expected"][key]) is int
++                for key in ("planned_cases", "planned_runs")), "indexed population exact types")
+         control_path = validate(P(__file__).absolute(), regular=True)
+         control_raw = control_path.read_bytes()
+         req(is_digest(config["control_sha256"])
+@@ -407,7 +447,10 @@
+             path, raw = read_input(config[key], suffix)
+             input_paths[key] = path
+             inputs[key] = raw
+-        req(len(set(input_paths.values())) == 9, "input paths must be distinct")
++        for key, entry in EXTRA_INPUTS.items():
++            path, raw = read_input(config[key], P(entry["path"]).suffix)
++            input_paths[key], inputs[key] = path, raw
++        req(len(set(input_paths.values())) == 17, "input paths must be distinct")
+         accounting = json.loads(inputs["accounting"])
+         req(accounting.get("schema") == "pontius-indexed-storage-accounting-v1"
+             and accounting.get("prototype_sha256") == config["prototype"]["sha256"],
+@@ -419,6 +462,7 @@
+         wanted_hashes = {key: config[key]["sha256"] for key in (
+             "prototype", "old_oracle", "old_cases", "cursor_oracle", "cursor_cases",
+             "indexed_oracle", "indexed_cases", "accounting", "indexed_spec") }
++        wanted_hashes.update({key: entry["sha256"] for key, entry in EXTRA_INPUTS.items()})
+         wanted_hashes.update({"control": digest(control_raw), "config": config_sha,
+                               "disposition": DISPOSITION_SHA, "production_watch": SOURCE_SHA})
+         req(input_hashes == wanted_hashes, "input changed during preflight")
+@@ -439,7 +483,11 @@
+             req(floor.get("success") is True and floor.get("integrity_ok") is True
+                 and type(floor.get("exit")) is int and floor["exit"] == 0
+                 and floor.get("payload_started") is True
+-                and floor.get("result_ok") is True, "floor did not succeed")
++                and floor.get("result_ok") is True
++                and type(floor.get("process_returncode")) is int
++                and floor["process_returncode"] == 0
++                and "error" not in floor and "cleanup_error" not in floor
++                and not floor.get("timeout"), "floor did not succeed")
+             req(floor.get("input_hashes_before") == input_hashes
+                 and floor.get("input_hashes_after") == input_hashes, "floor source input hashes")
+             req(floor["before"] == floor["after"]
+@@ -463,34 +511,40 @@
+             floor_records = []
+             for line in floor_files["floor-stdout.txt"].splitlines():
+                 obj = json.loads(line)
+-                if isinstance(obj, dict) and isinstance(obj.get("indexed_control"), dict):
+-                    floor_records.append(obj["indexed_control"])
++                if isinstance(obj, dict) and isinstance(obj.get("v28_primitive_control"), dict):
++                    floor_records.append(obj["v28_primitive_control"])
+             floor_identities = [x for x in floor_records if x.get("kind") == "identity_before_payload_imports"]
+             floor_results = [x for x in floor_records if x.get("kind") == "phase_result"]
+             floor_completed = [x for x in floor_records if x.get("kind") == "completed"]
++            floor_extractions = [x for x in floor_records if x.get("kind") == "static_extraction_verified"]
+             floor_setup = json.loads(floor_files["floor-setup.json"])
+             req(type(floor_setup) is dict
+                 and all(key in floor and floor[key] == value
+                         for key, value in floor_setup.items()), "floor setup/receipt differ")
+             req(floor_records == floor.get("retained_control_records")
+                 and floor_identities == floor.get("identity_records")
+-                and floor_completed == floor.get("completed_records"),
++                and floor_completed == floor.get("completed_records")
++                and floor_extractions == floor.get("extraction_records"),
+                 "floor raw identity/completion streams differ")
+             req([x.get("kind") for x in floor_records] == [
+-                    "identity_before_payload_imports", "phase_result", "phase_result",
++                    "identity_before_payload_imports", "static_extraction_verified", "phase_result", "phase_result",
+                     "phase_result", "completed"]
+                 and [x.get("phase") for x in floor_results] == ["storage", "cursor", "indexed"]
+                 and floor_completed == [{"kind": "completed", "ok": True}]
+                 and floor_completed[0].get("ok") is True,
+                 "floor record order/completion")
++            req(len(floor_extractions) == 1, "floor extraction record population")
++            check_extraction_record(floor_extractions[0], config)
+             floor_identity = floor_identities[0]
+             req(floor_identity.get("implementation") == "cpython"
+                 and floor_identity.get("cwd") == str(floor_snapshot)
+                 and floor_identity.get("environment") == floor_setup["environment"]
+                 and floor_identity.get("manifest_sha256") == floor_setup["manifest_sha256"]
+-                and floor_identity.get("verified_files") == len(floor["before"]) == 1774
++                and floor_identity.get("verified_files") == len(floor["before"]) == 1782
+                 and floor_identity.get("prototype_sha256") == config["prototype"]["sha256"]
+                 and floor_identity.get("accounting_sha256") == config["accounting"]["sha256"]
++                and floor_identity.get("candidate_sha256") == config["candidate"]["sha256"]
++                and floor_identity.get("extraction_proof_sha256") == config["extraction_proof"]["sha256"]
+                 and floor_identity.get("pontius_imported") is False,
+                 "floor raw identity context")
+             req(floor_setup["config"] == config
+@@ -521,7 +575,7 @@
+         phase = "clone"
+         validate(SNAPSHOTS)
+         validate(WORKSPACE)
+-        folder = SNAPSHOTS / ("indexed-prototype-" + uuid.uuid4().hex)
++        folder = SNAPSHOTS / ("v28-primitive-" + uuid.uuid4().hex)
+         req(folder.is_relative_to(SNAPSHOTS), "snapshot outside D-local root")
+         folder.mkdir()
+         validate(folder)
+@@ -553,6 +607,7 @@
+             "indexed_cases.json": inputs["indexed_cases"],
+             "accounting.json": inputs["accounting"],
+             "indexed-storage-extension-spec-v1.md": inputs["indexed_spec"],
++            **{name: inputs[key] for name, key in EXTRA_COPIES.items()},
+             **floor_files,
+         }
+         for name, raw in files.items():
+@@ -589,7 +644,7 @@
+             process.wait(timeout=TIMEOUT)
+             exit_code = 124
+             receipt["timeout"] = True
+-            raise RuntimeError("finite indexed-storage oracle timed out after 60 seconds")
++            raise RuntimeError("finite v28 primitive oracle timed out after 60 seconds")
+         phase = "result_validation"
+         streams["stdout"].flush()
+         stdout = paths["stdout"].read_bytes()
+@@ -599,12 +654,16 @@
+                 value = json.loads(line)
+             except (ValueError, UnicodeError):
+                 continue
+-            if isinstance(value, dict) and isinstance(value.get("indexed_control"), dict):
+-                records.append(value["indexed_control"])
++            if isinstance(value, dict) and isinstance(value.get("v28_primitive_control"), dict):
++                records.append(value["v28_primitive_control"])
+         identities = [item for item in records
+                       if item.get("kind") == "identity_before_payload_imports"]
+         results = [item for item in records if item.get("kind") == "phase_result"]
+         completed = [item for item in records if item.get("kind") == "completed"]
++        extractions = [item for item in records if item.get("kind") == "static_extraction_verified"]
++        receipt["extraction_records"] = extractions
++        req(len(extractions) == 1, "extraction record population")
++        check_extraction_record(extractions[0], config)
+         receipt["identity_records"] = identities
+         receipt["phase_results"] = results
+         receipt["completed_records"] = completed
+@@ -618,6 +677,8 @@
+             and identity.get("hash_seed") == seed and identity.get("manifest_sha256") == manifest_sha
+             and identity.get("prototype_sha256") == config["prototype"]["sha256"]
+             and identity.get("accounting_sha256") == config["accounting"]["sha256"]
++            and identity.get("candidate_sha256") == config["candidate"]["sha256"]
++            and identity.get("extraction_proof_sha256") == config["extraction_proof"]["sha256"]
+             and identity.get("pontius_imported") is False, "payload identity context")
+         req(len(results) == 3 and [item.get("phase") for item in results] == ["storage", "cursor", "indexed"],
+             "missing or unordered oracle results")
+@@ -635,7 +696,7 @@
+                 req(summary.get("accounting_complete") is True
+                     and summary.get("fitness_passed") is True, "indexed fitness/accounting failed")
+         req([item.get("kind") for item in records] == [
+-                "identity_before_payload_imports", "phase_result", "phase_result",
++                "identity_before_payload_imports", "static_extraction_verified", "phase_result", "phase_result",
+                 "phase_result", "completed"]
+             and completed == [{"kind": "completed", "ok": True}]
+             and completed[0].get("ok") is True,
+@@ -718,8 +779,8 @@
+                 value = json.loads(line)
+             except (ValueError, UnicodeError):
+                 continue
+-            if isinstance(value, dict) and isinstance(value.get("indexed_control"), dict):
+-                partial_records.append(value["indexed_control"])
++            if isinstance(value, dict) and isinstance(value.get("v28_primitive_control"), dict):
++                partial_records.append(value["v28_primitive_control"])
+         receipt["retained_control_records"] = partial_records
+         log = stdout + b"\nCONTROL STDERR\n" + stderr
+         if "error" in receipt:

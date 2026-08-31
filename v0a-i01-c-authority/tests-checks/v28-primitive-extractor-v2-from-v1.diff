@@ -1,0 +1,41 @@
+--- v28-primitive-extractor-v1.py
++++ v28-primitive-extractor-v2.py
+@@ -189,7 +189,8 @@
+             "unclassified primitive category: " + kind)
+         categories[kind] = {field: item[field] for field in ("metric", "operation")}
+         if kind in old_accounting["categories"]:
+-            req(categories[kind] == old_accounting["categories"][kind],
++            req(categories[kind] == {field: old_accounting["categories"][kind][field]
++                                    for field in ("metric", "operation")},
+                 "prior category reclassified: " + kind)
+     accounting = {key: value for key, value in old_accounting.items()
+                   if key not in {"categories", "prototype_sha256", "prototype_path"}}
+@@ -227,12 +228,26 @@
+     actual = derive(candidate_raw, support_raw, binding_raw, production_accounting_raw,
+                     old_accounting_raw)
+     for supplied, regenerated, label in zip(
+-        (extracted_raw, accounting_raw, proof_raw), actual,
+-        ("extraction", "accounting", "proof"), strict=True,
++        (extracted_raw, accounting_raw), actual[:2], ("extraction", "accounting"), strict=True,
+     ):
+         req(supplied == regenerated, label + " differs from deterministic static derivation")
++    # AST schemas and symbol tables can differ across Python patch lines. Each
++    # derive() above has already compared complete ASTs within this interpreter.
++    # Bind the retained floor proof's runtime-stable claims; do not normalize ASTs.
++    retained, current = json.loads(proof_raw), json.loads(actual[2])
++    varying = {"primitive_nodes", "support_nodes", "global_references", "charge_sites"}
++    req({key: value for key, value in retained.items() if key not in varying}
++        == {key: value for key, value in current.items() if key not in varying},
++        "retained extraction proof differs on runtime-stable claims")
++    for field in ("primitive_nodes", "support_nodes"):
++        stable = lambda rows: [{key: value for key, value in row.items()
++                                if key != "AST_sha256"} for row in rows]
++        req(stable(retained[field]) == stable(current[field]), "retained node inventory differs")
++    req(set(retained["charge_sites"]) == set(current["charge_sites"]),
++        "retained charge category inventory differs")
+     return {"candidate_sha256": SOURCE_SHA, "extracted_sha256": sha(extracted_raw),
+             "accounting_sha256": sha(accounting_raw), "proof_sha256": sha(proof_raw),
++            "current_runtime_proof_sha256": sha(actual[2]),
+             "production_nodes_verified": 47, "static_only": True}
+ 
+ 

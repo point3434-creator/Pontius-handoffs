@@ -1,0 +1,11 @@
+{
+  "schema": "coordinator-testfix-verifier-v1-failure",
+  "failed_verifier_sha256": "37a5e349c051ba0d303fc7b3fc16ac5c0f2d05ec3f40e75bbcbfe9802bcf3b5e",
+  "failure": "AssertionError at expected traceback line14553; actual context-manager line14551, literal line14553.",
+  "prior_checks": "Snapshot1766 files, inputs, raw outputs, identity, exact53 completion and one canonical generator-depth failure checked before this assertion.",
+  "report_issued_by_v1": false,
+  "payload_rerun": false,
+  "raw_evidence_changed": false,
+  "successor": "codex-verify-v28-testfix-v2.py",
+  "successor_sha256": "e709a908668f13ceca6ac0640950f8fa602f4f41bfc29b94fb0459248860c4b3"
+}
