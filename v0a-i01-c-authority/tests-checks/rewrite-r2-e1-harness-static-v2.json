@@ -1,0 +1,40 @@
+{
+  "Model_execution": false,
+  "author": "codex/cold_review_a; engineering author",
+  "classifications": {
+    "clean": 2,
+    "refuse": 2
+  },
+  "control_path": "rewrite-r2-e1-control-v2.py",
+  "control_sha256": "c76a6e170062094986e7cdea90ad8e2e7737da2d38657c6f604da8eb86417ec0",
+  "control_v2_from_late_store_diff_sha256": "0c2dde5548b63533b83ba1fbc44c1202031e46892984703b459a99a0ed3c6883",
+  "control_v2_from_v1_diff_sha256": "3e68cbb51ee1ec55b18e7050838b211a498a34fd956690829b2e173a0c76560d",
+  "floor_RED_unlocks_development": false,
+  "full_public_result_rehashed_and_projected_by_validator": true,
+  "harness_execution": false,
+  "immutable_predecessor": {
+    "control_path": "rewrite-r2-e1-control-v1.py",
+    "control_sha256": "09f9fccdca6790d9299c49692eb78f2440206393261994d4df1fe35621e00336",
+    "executed": false
+  },
+  "inherited_static_map_sha256": "73246b42a82a8cbf113c7507ad47be1f51365a43f8e7794c2cc57560b5c53308",
+  "limits": [
+    "No aid/probe/controller/candidate/Model execution; static checks only.",
+    "Pre-try output stream acquisition can fail before a completed receipt; this cannot yield a successful receipt.",
+    "Failure-path partial-record collection remains best-effort; raw stdout/stderr/log are retained."
+  ],
+  "planned_cases": 4,
+  "planned_projections": 4,
+  "probe_path": "rewrite-r2-e1-probe-v1.py",
+  "probe_sha256": "7ac823d560034a140275d2447bf68bbe1f98adc8c250e61d46aedada018656a3",
+  "schema": "pontius-r2-e1-harness-static-v2",
+  "source_execution": false,
+  "v2_correction": {
+    "category": "E1-H1 strict child output acceptance",
+    "live_and_floor_replay_use_same_validator": true,
+    "probe_changed": false,
+    "semantic_expectations_changed": false,
+    "stderr_must_be_empty": true,
+    "stdout_exact_json_object_records": 6
+  }
+}

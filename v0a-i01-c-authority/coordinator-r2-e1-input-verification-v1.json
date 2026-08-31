@@ -1,0 +1,56 @@
+{
+  "adopted_source_sha256": "4de9d83394368d269d925206a0ff2d133a132ce0a4a2b1134f63db0dff67985f",
+  "candidate_imported": false,
+  "cases": [
+    {
+      "constructor_prefix_matches": true,
+      "id": "E01-standard",
+      "oracle_sha256": "7fdec11471feb056e44fada20530f1b2f3257b505dd4f2519d76e2d783b4914f",
+      "source_sha256": "c95af8ff2b7351ced282cb35f3a4b52d6a2b31a5f4439ce8d6f021d89abbc00b"
+    },
+    {
+      "constructor_prefix_matches": true,
+      "id": "E02-module-empty",
+      "oracle_sha256": "b953807a3d46610ce2c5772aa97849d5e6f01a88844fb4307ccd985a926cd38b",
+      "source_sha256": "ddba228b7efe40069838fd7481c30bdcf78961a008f1630311027ebd83b67f6e"
+    },
+    {
+      "constructor_prefix_matches": true,
+      "id": "E03-module-empty-deleted",
+      "oracle_sha256": "abc844601c01f1f94c7f93750d754e413b7371cc4260765e57893758f5234899",
+      "source_sha256": "17f573eb8c6c0e3be7975ab395b2d4211c04361d5620e45975745631bd6798d3"
+    },
+    {
+      "constructor_prefix_matches": true,
+      "id": "E04-local-empty",
+      "oracle_sha256": "b7aac4b510c9b32d2fbdd46860f244b60604e1db500025c5f5918cb9bb9055c2",
+      "source_sha256": "5067bf59d7cd8be1e7c0ade137da37b1dced5f151a0069a20ebfdc0ba1f47f34"
+    }
+  ],
+  "commit": "ed837198d2c83757bfb74d962af244c33f0aeae6",
+  "frozen_blob_and_disk_identity": true,
+  "manifest_sha256": "a45941376da823672808050182e151f22520167d6cb24a8a9947e7b2a6c4f45e",
+  "models_executed": false,
+  "public_envelope_exact": true,
+  "runtime": {
+    "dont_write_bytecode": true,
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "isolated": true,
+    "no_site": true,
+    "safe_path": true,
+    "version": [
+      3,
+      11,
+      15
+    ]
+  },
+  "schema": "coordinator-r2-e1-input-verification-v1",
+  "sensitive_sources_executed": false,
+  "verified_pins": {
+    "tests-checks/rewrite-r2-e1-cases-v1.json": "59b8457a2323634d883fb2c9b0ff82a1e60cd980c5f2a4b50e627c8ca32cdb9b",
+    "tests-checks/rewrite-r2-e1-source-differences-v1.diff": "a879d595fe18fd76abf7640464d37da983579061a471ea6b23df1a2fb694c76c",
+    "tests-checks/rewrite-r2-e1-source-model-map-v1.json": "171f76c7532ae5ef24e279892110b9afdcbb56660951d8c85d9bfd31270f68fb",
+    "tests-checks/rewrite-r2-e1-spec-v1.md": "4fcb92ed30a86be1664d9b1981e5e8dc8c47d5d76eaab7b08dc09db74abc9f11"
+  },
+  "verifier_sha256": "fe901dcb8a9135cbb0a3eef92d6022030ef68a34216ba68f94c072514b415b60"
+}

@@ -1,0 +1,45 @@
+--- rewrite-r2-e1-control-v1.py
++++ rewrite-r2-e1-control-v2.py
+@@ -128,10 +128,20 @@
+     return result
+ 
+ 
+-def validate_result(stdout, exit_code, setup, pack):
++def validate_result(stdout, stderr, exit_code, setup, pack):
+     require(type(exit_code) is int and exit_code in (0, 1), "non-case child exit")
+     require(b"\r" not in stdout, "stdout not LF")
+-    records = [json.loads(line) for line in stdout.splitlines() if line.startswith(b"{")]
++    require(stderr == b"", "unexpected child stderr")
++    lines = stdout.splitlines()
++    require(len(lines) == len(pack["cases"]) + 2 and all(lines), "stdout record line count")
++    records = []
++    for line in lines:
++        try:
++            value = json.loads(line)
++        except (ValueError, UnicodeError) as error:
++            raise RuntimeError("stdout line is not JSON") from error
++        require(type(value) is dict, "stdout record is not an object")
++        records.append(value)
+     require(records and set(records[0]) == {"identity_before_imports"}, "missing first pre-import identity")
+     identities = [r["identity_before_imports"] for r in records if "identity_before_imports" in r]
+     require(len(identities) == 1, "identity count")
+@@ -326,7 +336,8 @@
+             require(floor_setup["slot"] == "311", "floor setup is not actual floor")
+             require(pinned_outputs["log"] == pinned_outputs["stdout"]
+                     + b"\nCONTROL STDERR\n" + pinned_outputs["stderr"], "floor raw log framing")
+-            proof = validate_result(pinned_outputs["stdout"], floor["exit"], floor_setup, pack)
++            proof = validate_result(pinned_outputs["stdout"], pinned_outputs["stderr"],
++                                    floor["exit"], floor_setup, pack)
+             require(proof["completed"] and proof["semantic_ok"] and proof["summary"] == floor["summary"]
+                     and proof["identity"] == floor["identity"], "floor output completion")
+             require(floor["success"] is bool(proof["semantic_ok"] and floor["exit"] == 0),
+@@ -407,7 +418,8 @@
+             raise RuntimeError("infrastructure watchdog expired after 60 seconds")
+         phase = "result-validation"
+         streams["stdout"].flush()
+-        result = validate_result(outputs["stdout"].read_bytes(), exit_code, setup, pack)
++        result = validate_result(outputs["stdout"].read_bytes(), outputs["stderr"].read_bytes(),
++                                 exit_code, setup, pack)
+         receipt.update(result)
+         require(result["completed"], "finite oracle/analyzer scope incomplete")
+     except BaseException as error:

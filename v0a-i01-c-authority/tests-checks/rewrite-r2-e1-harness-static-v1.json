@@ -1,0 +1,62 @@
+{
+  "Model_execution": false,
+  "W_watch_matches_explicit_source_pin": true,
+  "analyzed_count_derived_from_public_result_records": true,
+  "author": "codex/cold_review_a; engineering author",
+  "base_inputs": {
+    "class-owner-late-store-control-v1.py": "1a1a0483b118e41de5e343c6dff11e8cc577928fd37daeb0c7dd0b9a5aeb7b1c",
+    "class-owner-late-store-probe-v1.py": "6fa50f3268c4e672e03819adde462d5a044f00dfa7b849b0d273450f14ffcf22",
+    "name-environment-probe-v1.py": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4",
+    "rewrite-r2-e1-cases-v1.json": "59b8457a2323634d883fb2c9b0ff82a1e60cd980c5f2a4b50e627c8ca32cdb9b",
+    "rewrite-r2-e1-spec-v1.md": "4fcb92ed30a86be1664d9b1981e5e8dc8c47d5d76eaab7b08dc09db74abc9f11"
+  },
+  "classifications": {
+    "clean": 2,
+    "refuse": 2
+  },
+  "control_diff_sha256": "4e83c9e2a47b8bf79e27c4a44b110b68211cd909d767590a4479fc95ecd722c2",
+  "control_helpers_raw_exact": [
+    "require",
+    "sha",
+    "canonical",
+    "valid_digest",
+    "checked",
+    "create",
+    "write_json",
+    "environment",
+    "git",
+    "file_hashes"
+  ],
+  "control_sha256": "09f9fccdca6790d9299c49692eb78f2440206393261994d4df1fe35621e00336",
+  "floor_RED_unlocks_development": false,
+  "full_public_result_rehashed_and_projected_by_validator": true,
+  "harness_execution": false,
+  "limits": [
+    "No aid/probe/controller/candidate/Model execution; static checks only.",
+    "Inherited pre-try stream acquisition may fail before a completed receipt; no completion may be claimed.",
+    "Inherited validator ignores non-JSON stdout lines; raw stdout/stderr/log retained for root review."
+  ],
+  "payload_files_development": 11,
+  "payload_files_floor": 6,
+  "planned_cases": 4,
+  "planned_projections": 4,
+  "probe_diff_sha256": "fbedd43d3fa92568ff5b58575dc54ed3693b12fdbfa017f4caebecd7d53e0de5",
+  "probe_helpers_raw_exact": [
+    "require",
+    "digest",
+    "canonical",
+    "checked",
+    "hashes"
+  ],
+  "probe_sha256": "7ac823d560034a140275d2447bf68bbe1f98adc8c250e61d46aedada018656a3",
+  "protected_constant_source": {
+    "count": 16,
+    "path": "coordinator-rewrite-r2-static-v2.py",
+    "sha256": "d129db5a66bd0b5755613873c4de3d965543c4637c857e48d1a7928513977018"
+  },
+  "public_review_body_raw_exact_to_name_environment_probe": true,
+  "public_review_signature_only_added_parameter": "generator",
+  "schema": "pontius-r2-e1-harness-static-v1",
+  "snapshot_base_files": 1761,
+  "source_execution": false
+}
