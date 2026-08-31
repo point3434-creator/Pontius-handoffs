@@ -1,0 +1,50 @@
+--- class-comprehension-extension-probe-v1.py
++++ class-comprehension-extension-probe-v2.py
+@@ -87,12 +87,17 @@
+             and pack["requirements"]["source_basis_v23_sha256"]
+             == "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
+             "frozen requirement basis")
+-    require(pack["planned_cases"] == pack["planned_projections"] == 8, "finite counts")
++    require(all(type(pack[field]) is int
++                for field in ("planned_cases", "planned_projections"))
++            and pack["planned_cases"] == pack["planned_projections"] == 8, "finite counts")
+     require(tuple(case["id"] for case in pack["cases"]) == CASE_IDS, "case order")
+     require(tuple(case["schedule_id"] for case in pack["cases"])
+             == tuple("R" + str(n).zfill(2) for n in range(1, 9)), "schedule identities")
+-    require(dict(Counter(case["classification"] for case in pack["cases"]))
+-            == {"clean": 3, "refuse": 4, "permitted-refusal": 1}, "classifications")
++    require(type(pack["classifications"]) is dict
++            and all(type(count) is int for count in pack["classifications"].values())
++            and pack["classifications"] == {"clean": 3, "refuse": 4, "permitted-refusal": 1}
++            and dict(Counter(case["classification"] for case in pack["cases"]))
++            == pack["classifications"], "classifications")
+     for case in pack["cases"]:
+         for field, hash_field in (("source", "source_sha256"), ("oracle_source", "oracle_sha256")):
+             value = case[field]
+@@ -205,7 +210,8 @@
+     generator = importlib.util.module_from_spec(spec)
+     sys.modules[spec.name] = generator
+     spec.loader.exec_module(generator)
+-    require({name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed")
++    require(all(type(getattr(generator, name)) is int for name in CAPS)
++            and {name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed")
+     semantic_failures, oracle_errors, analyzer_errors = [], [], []
+     analyzed = 0
+     for case in pack["cases"]:
+@@ -244,13 +250,14 @@
+             "blockers": blockers, "semantic_passed": semantic_ok, "passed": semantic_ok,
+             "receipt_sha256": digest(canonical(review["receipt"])) if review is not None else None,
+         }, allow_nan=False), flush=True)
+-    require({name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed during run")
++    require(all(type(getattr(generator, name)) is int for name in CAPS)
++            and {name: getattr(generator, name) for name in CAPS} == CAPS, "caps changed during run")
+     hashes(snapshot, manifest)
+     require(digest(checked(payload / "manifest.json").read_bytes()) == manifest_sha, "manifest changed")
+     summary = {"class_comprehension_extension_summary": True, "schema": SCHEMA, "slot": slot,
+                "generator_sha256": source_sha, "pack_sha256": PACK_SHA, "probe_sha256": probe_sha,
+                "schedule_sha256": SCHEDULE_SHA, "planned_cases": 8, "case_count": 8,
+-               "projections": 6, "analyzed_cases": analyzed,
++               "projections": 8, "analyzed_cases": analyzed,
+                "semantic_failures": semantic_failures,
+                "oracle_errors": oracle_errors, "analyzer_errors": analyzer_errors,
+                "completed": analyzed == 8 and not oracle_errors and not analyzer_errors,

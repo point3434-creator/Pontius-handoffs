@@ -1,0 +1,269 @@
+{
+  "schema": "pontius-storage-composition-cases-v1",
+  "pack_name": "class-comprehension-extension-v1",
+  "author": "codex/cold_review_a engineering oracle author",
+  "planned_cases": 8,
+  "planned_projections": 8,
+  "requirements": {
+    "class_name_addendum_sha256": "de7b5417b2cc899710af0a32332360f31546b6264d1cb58896104a362568e93f",
+    "source_basis_v23_sha256": "53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499",
+    "engineering_note_sha256": "84461f44efa2da40cfc8729a0d80eb45c0266e4e88a67d88d9d7703c955d44cc",
+    "candidate_v23_inspected": true,
+    "extension_results_opened": false,
+    "root_table_approved": true,
+    "old_comp6_case_sha256": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71"
+  },
+  "classifications": {
+    "refuse": 4,
+    "clean": 3,
+    "permitted-refusal": 1
+  },
+  "static_only_inventory": [
+    {
+      "id": "same-identity-marker-or",
+      "source_anchor": "13749-13795",
+      "obligation": "Merge must preserve marker disjunction unless identical expression identity guarantees identical marker; no reachable mixed-flag same-identity state is asserted and no fabricated private-state case is included."
+    },
+    {
+      "id": "native-shape-poisoning",
+      "source_anchor": "18162-18185;18837-18884;19298-19318;19735-19746",
+      "obligation": "Related carrier-copy risk remains unexecuted and is not included in these eight cases."
+    }
+  ],
+  "cases": [
+    {
+      "id": "R01-attribute-receiver-unsafe",
+      "schedule_id": "R01",
+      "family": "target-receiver-load",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = ReviewTests\n        def emitted():\n            return 0\n        try:\n            class Local:\n                result = [emitted() for owner._launch in (None,)]\n        except NameError:\n            pass\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        owner = Model\n        def emitted():\n            _events.append(\"target-completed\")\n            return 0\n        _events.append(\"eager-start\")\n        try:\n            class Local:\n                result = [emitted() for owner._launch in (None,)]\n            _events.append(\"eager-end\")\n        except NameError:\n            _events.append(\"handler\")\n            pass\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "eager-start",
+          "target-completed",
+          "eager-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "handler",
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "Attribute comprehension targets read their receiver/index expressions; those reads do not allocate implicit local bindings. A nonempty target assignment mutates the protected sink before emitted; an empty iterable never evaluates the target. NameError recovery must not turn an invented receiver-local failure into authorization.",
+      "source_sha256": "6edf3cee2502d7c3b6b029928bddb3adf68c84cca8fd6b5e724547d45f20b4e8",
+      "oracle_sha256": "a78d8933dfada1884e48034eebe1e711a78c7d4bbc84c22a5a97e7406124298e"
+    },
+    {
+      "id": "R02-attribute-receiver-dormant",
+      "schedule_id": "R02",
+      "family": "target-receiver-load",
+      "polarity": "dormant",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owner = ReviewTests\n        def emitted():\n            return 0\n        try:\n            class Local:\n                result = [emitted() for owner._launch in ()]\n        except NameError:\n            pass\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        owner = Model\n        def emitted():\n            _events.append(\"target-completed\")\n            return 0\n        _events.append(\"eager-start\")\n        try:\n            class Local:\n                result = [emitted() for owner._launch in ()]\n            _events.append(\"eager-end\")\n        except NameError:\n            _events.append(\"handler\")\n            pass\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "eager-start",
+          "eager-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "handler",
+        "target-completed"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "Attribute comprehension targets read their receiver/index expressions; those reads do not allocate implicit local bindings. A nonempty target assignment mutates the protected sink before emitted; an empty iterable never evaluates the target. NameError recovery must not turn an invented receiver-local failure into authorization.",
+      "source_sha256": "4975dacd0b9f15df52fbb6e59f957f0de13c2eaad4253f5f88d54d61b4ad8de6",
+      "oracle_sha256": "10f022b76f1a273b524f09f4eb70b06ab29c9dcd13ea8a6b86b963c13d4d9b87"
+    },
+    {
+      "id": "R03-indexed-receiver-unsafe",
+      "schedule_id": "R03",
+      "family": "target-indexed-receiver-load",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owners = (ReviewTests,)\n        index = 0\n        def emitted():\n            return 0\n        try:\n            class Local:\n                result = [emitted() for owners[index]._launch in (None,)]\n        except NameError:\n            pass\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        owners = (Model,)\n        index = 0\n        def emitted():\n            _events.append(\"target-completed\")\n            return 0\n        _events.append(\"eager-start\")\n        try:\n            class Local:\n                result = [emitted() for owners[index]._launch in (None,)]\n            _events.append(\"eager-end\")\n        except NameError:\n            _events.append(\"handler\")\n            pass\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "eager-start",
+          "target-completed",
+          "eager-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "handler",
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "Attribute comprehension targets read their receiver/index expressions; those reads do not allocate implicit local bindings. A nonempty target assignment mutates the protected sink before emitted; an empty iterable never evaluates the target. NameError recovery must not turn an invented receiver-local failure into authorization.",
+      "source_sha256": "67f37de66ebede2f73a18a8a345b93b9d5e3ce6f9461c1caf7e65b786038f8fd",
+      "oracle_sha256": "5c41be658a0e979c60f7f6fc86295490d70f12d1d8559f31c5231b4af66d9bb3"
+    },
+    {
+      "id": "R04-indexed-receiver-dormant",
+      "schedule_id": "R04",
+      "family": "target-indexed-receiver-load",
+      "polarity": "dormant",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        owners = (ReviewTests,)\n        index = 0\n        def emitted():\n            return 0\n        try:\n            class Local:\n                result = [emitted() for owners[index]._launch in ()]\n        except NameError:\n            pass\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        owners = (Model,)\n        index = 0\n        def emitted():\n            _events.append(\"target-completed\")\n            return 0\n        _events.append(\"eager-start\")\n        try:\n            class Local:\n                result = [emitted() for owners[index]._launch in ()]\n            _events.append(\"eager-end\")\n        except NameError:\n            _events.append(\"handler\")\n            pass\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "eager-start",
+          "eager-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "handler",
+        "target-completed"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "Attribute comprehension targets read their receiver/index expressions; those reads do not allocate implicit local bindings. A nonempty target assignment mutates the protected sink before emitted; an empty iterable never evaluates the target. NameError recovery must not turn an invented receiver-local failure into authorization.",
+      "source_sha256": "e28baae649a65086b352c8e019c6e38b37fc60f1b3a439cc2d12ee56464bc321",
+      "oracle_sha256": "29988e6fe0921aeead7e343be322b2094a9adb069a9dde8618e8a345bca5a28c"
+    },
+    {
+      "id": "R05-nested-generator-join-unsafe",
+      "schedule_id": "R05",
+      "family": "nested-deferred-alternative-join",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    left = True\n    right = True\n    def test_static(self):\n        armed = True\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        benign = (0 for unused in (0,))\n        class Local:\n            armed = False\n            a = (read(armed) for unused in (0,))\n            b = (read(armed) for unused in (0,))\n            first = a if self.left else b\n            chosen = first if self.right else benign\n            list(chosen)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    left = True\n    right = True\n    def test_static(self):\n        armed = True\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        benign = (0 for unused in (0,))\n        _events.append(\"ordinary-created\")\n        class Local:\n            armed = False\n            a = (read(armed) for unused in (0,))\n            _events.append(\"class-a-created\")\n            b = (read(armed) for unused in (0,))\n            _events.append(\"class-b-created\")\n            first = a if self.left else b\n            _events.append(\"first-join\")\n            chosen = first if self.right else benign\n            _events.append(\"second-join\")\n            _events.append(\"consume\")\n            list(chosen)\n            _events.append(\"consume-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "ordinary-created",
+          "class-a-created",
+          "class-b-created",
+          "first-join",
+          "second-join",
+          "consume",
+          "read",
+          "write",
+          "consume-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "Nested selections must retain every generator alternative's deferred authority. The ordinary benign generator is created outside class; full consumption is inside class so no class-result transport is needed. Unsafe reached body requires explicit refusal; the safe unsupported deferred path may refuse.",
+      "source_sha256": "eea797edcae02ae2841b1fece96b8f05c6f6443fb0578e6bf72bb051f01ea4c1",
+      "oracle_sha256": "48123447d0262830a2e90b6d98dcc0ba5344f404db0e66b03094ee2d8f0309de"
+    },
+    {
+      "id": "R06-nested-generator-join-safe",
+      "schedule_id": "R06",
+      "family": "nested-deferred-alternative-join",
+      "polarity": "safe",
+      "classification": "permitted-refusal",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    left = True\n    right = True\n    def test_static(self):\n        armed = False\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        benign = (0 for unused in (0,))\n        class Local:\n            armed = False\n            a = (read(armed) for unused in (0,))\n            b = (read(armed) for unused in (0,))\n            first = a if self.left else b\n            chosen = first if self.right else benign\n            list(chosen)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    left = True\n    right = True\n    def test_static(self):\n        armed = False\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        benign = (0 for unused in (0,))\n        _events.append(\"ordinary-created\")\n        class Local:\n            armed = False\n            a = (read(armed) for unused in (0,))\n            _events.append(\"class-a-created\")\n            b = (read(armed) for unused in (0,))\n            _events.append(\"class-b-created\")\n            first = a if self.left else b\n            _events.append(\"first-join\")\n            chosen = first if self.right else benign\n            _events.append(\"second-join\")\n            _events.append(\"consume\")\n            list(chosen)\n            _events.append(\"consume-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "ordinary-created",
+          "class-a-created",
+          "class-b-created",
+          "first-join",
+          "second-join",
+          "consume",
+          "read",
+          "consume-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "Nested selections must retain every generator alternative's deferred authority. The ordinary benign generator is created outside class; full consumption is inside class so no class-result transport is needed. Unsafe reached body requires explicit refusal; the safe unsupported deferred path may refuse.",
+      "source_sha256": "14fe24d5849a842d766de22df124e6461b2a684e84acfaa5f972c7f528a162ea",
+      "oracle_sha256": "f67d2c9cefbf5942af2cd5c632e7b9de038a86c585b9a43f97f9cbca5582fb0d"
+    },
+    {
+      "id": "R07-initially-empty-generator-grown-unsafe",
+      "schedule_id": "R07",
+      "family": "changed-empty-class-generator-full-consumption",
+      "polarity": "unsafe",
+      "classification": "refuse",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        items = []\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        class Local:\n            armed = False\n            grow = True\n            pending = (read(armed) for unused in items)\n            if grow:\n                items.append(0)\n            tuple(pending)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        items = []\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        class Local:\n            armed = False\n            grow = True\n            pending = (read(armed) for unused in items)\n            _events.append(\"generator-created\")\n            if grow:\n                items.append(0)\n                _events.append(\"append\")\n            _events.append(\"consume\")\n            tuple(pending)\n            _events.append(\"consume-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "generator-created",
+          "append",
+          "consume",
+          "read",
+          "write",
+          "consume-end"
+        ],
+        "result": "TypeError"
+      },
+      "unreachable_events": [
+        "sink"
+      ],
+      "required_argv": null,
+      "contract_basis": "A list iterator is created over an empty list, which may grow before full consumption. The reached generator body reads the enclosing armed cell, not the consuming class's shadow. The unchanged empty control never executes the body and must not acquire a blanket deferred refusal.",
+      "source_sha256": "8ffe6d883ce7a1291b0944243037d241fea2563a353ddc5a2382d439ab1629ad",
+      "oracle_sha256": "079c251c1da8b63ababba21c67c703a9de76c0e27f13536e69f64f73a6d5edb8"
+    },
+    {
+      "id": "R08-initially-empty-generator-dormant",
+      "schedule_id": "R08",
+      "family": "changed-empty-class-generator-full-consumption",
+      "polarity": "dormant",
+      "classification": "clean",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        subprocess.run([sys.executable, \"-m\", module], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n    def test_static(self):\n        armed = True\n        items = []\n        def read(value):\n            if value:\n                ReviewTests._launch = None\n        class Local:\n            armed = False\n            grow = False\n            pending = (read(armed) for unused in items)\n            if grow:\n                items.append(0)\n            tuple(pending)\n        return self._launch()\n",
+      "oracle_source": "_events = []\nclass Model:\n    @staticmethod\n    def _launch(module=\"fixed\"):\n        _events.append(\"sink\")\n        return module\n    def test_static(self):\n        armed = True\n        items = []\n        def read(value):\n            _events.append(\"read\")\n            if value:\n                Model._launch = None\n                _events.append(\"write\")\n        class Local:\n            armed = False\n            grow = False\n            pending = (read(armed) for unused in items)\n            _events.append(\"generator-created\")\n            if grow:\n                items.append(0)\n                _events.append(\"append\")\n            _events.append(\"consume\")\n            tuple(pending)\n            _events.append(\"consume-end\")\n        return self._launch()\n",
+      "expected": {
+        "trace": [
+          "generator-created",
+          "consume",
+          "consume-end",
+          "sink"
+        ],
+        "result": "fixed"
+      },
+      "unreachable_events": [
+        "append",
+        "read",
+        "write"
+      ],
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "contract_basis": "A list iterator is created over an empty list, which may grow before full consumption. The reached generator body reads the enclosing armed cell, not the consuming class's shadow. The unchanged empty control never executes the body and must not acquire a blanket deferred refusal.",
+      "source_sha256": "84fdfe75baa512037e5096678ddf41374229f7687f8578de2e5f5bee975207a1",
+      "oracle_sha256": "ec079697e94bb207891de67a067ae143ba3e2bf6b59e858725ac8aba37fd9410"
+    }
+  ]
+}

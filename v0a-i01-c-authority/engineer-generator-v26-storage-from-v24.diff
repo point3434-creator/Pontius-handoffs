@@ -1,0 +1,118 @@
+--- engineer-generator-v24-storage.py
++++ engineer-generator-v26-storage.py
+@@ -14570,7 +14570,7 @@
+ 
+ def _name_keys(owner):
+     meter = owner._meter
+-    table, staged = _name_realize_order(meter, owner._name_order)
++    table, staged = _name_realize_order(meter, owner._order)
+     meter.charge("keys_view_allocation")
+     result = table.keys()
+     meter.charge("keys_return_reference")
+@@ -14584,7 +14584,7 @@
+     if owner._items_cache is not None:
+         meter.charge("items_cached_return_reference")
+         return owner._items_cache
+-    table, staged = _name_realize_order(meter, owner._name_order)
++    table, staged = _name_realize_order(meter, owner._order)
+     meter.charge("items_result_tuple_allocation")
+     meter.charge("items_pair_generator_allocation")
+     def pairs():
+@@ -14611,8 +14611,8 @@
+     def __init__(self, meter, root, history, order, size, items_cache=None):
+         meter.charge("version_allocation")
+         meter.charge("version_reference_copies", 6)
+-        self._meter, self._root, self._name_history = meter, root, history
+-        self._name_order, self._size, self._items_cache = order, size, items_cache
++        self._meter, self._root, self._history = meter, root, history
++        self._order, self._size, self._items_cache = order, size, items_cache
+ 
+     @classmethod
+     def empty(cls, meter):
+@@ -14703,7 +14703,7 @@
+     """Stage private index paths/history; no owner or order-cache mutation."""
+     meter = cursor._meter
+     meter.charge("publication_tail_size_read")
+-    dirty = bool(cursor._tail) or cursor._name_order is not cursor._base._name_order
++    dirty = bool(cursor._tail) or cursor._order is not cursor._base._order
+     if not dirty:
+         meter.charge("publication_plan_allocation")
+         meter.charge("publication_plan_reference_copies", 3)
+@@ -14712,14 +14712,14 @@
+     meter.charge("publication_change_entry_visits", len(cursor._tail))
+     meter.charge("publication_change_reference_copies", len(cursor._tail))
+     changes = tuple(cursor._tail)
+-    history = _name_history(meter, cursor._base._name_history, changes)
++    history = _name_history(meter, cursor._base._history, changes)
+     root = cursor._base._root
+     for name, replacement in cursor._tail.items():
+         meter.charge("publication_private_entry_visits")
+         root = _name_radix_edit(meter, root, name, replacement, _name_radix_hash(meter, name))
+     if cursor._tail:
+         root = _name_radix_freeze(meter, root)
+-    version = _NameVersion(meter, root, history, cursor._name_order,
++    version = _NameVersion(meter, root, history, cursor._order,
+                           cursor._size, cursor._items_cache)
+     meter.charge("publication_fresh_tail_allocation")
+     empty_tail = {}
+@@ -14748,7 +14748,7 @@
+         meter.charge("cursor_reference_copies", 6)
+         meter.charge("cursor_tail_dictionary_allocation")
+         self._meter, self._base, self._tail = meter, version, {}
+-        self._name_order, self._size = version._name_order, version._size
++        self._order, self._size = version._order, version._size
+         self._items_cache = version._items_cache
+ 
+     def __len__(self):
+@@ -14783,7 +14783,7 @@
+             raise KeyError(name)
+         inserted = old is _NAME_MISSING
+         deleted = replacement is _NAME_DELETED
+-        order = self._name_order
++        order = self._order
+         if inserted:
+             order = _name_order(meter, "insert", (order,), name)
+         elif deleted:
+@@ -14794,7 +14794,7 @@
+         meter.charge("private_dictionary_reference_copies", 1 + int(tail_entry is _NAME_MISSING))
+         meter.charge("cursor_write_field_copies", 3)
+         self._tail[name] = replacement
+-        self._name_order, self._size, self._items_cache = order, size, None
++        self._order, self._size, self._items_cache = order, size, None
+ 
+     def set(self, name, value, *, no_work=False):
+         _name_check_name(name)
+@@ -14834,10 +14834,10 @@
+         return _name_ordered_items(self)
+ 
+ def _name_common_history(meter, states):
+-    base = states[0]._name_history
++    base = states[0]._history
+     for index in range(1, len(states)):
+         meter.charge("history_input_visits")
+-        other = states[index]._name_history
++        other = states[index]._history
+         while base is not other:
+             meter.charge("history_identity_comparisons")
+             if base is None or other is None:
+@@ -14882,7 +14882,7 @@
+             for name in _name_radix_names(meter, state._root):
+                 remember(name)
+         else:
+-            token = state._name_history
++            token = state._history
+             while token is not base:
+                 meter.charge("history_change_token_visits")
+                 for name in token.changes:
+@@ -14920,9 +14920,9 @@
+             raise TypeError("merge must return Entry(value, bool)")
+         cursor._replace_entry(name, entry)
+     meter.charge("order_parent_visits", len(states))
+-    order = _name_order(meter, "union", tuple(state._name_order for state in states))
++    order = _name_order(meter, "union", tuple(state._order for state in states))
+     meter.charge("join_order_override_reference")
+-    cursor._name_order = order
++    cursor._order = order
+     cursor._items_cache = None
+     return cursor.snapshot()
+ 

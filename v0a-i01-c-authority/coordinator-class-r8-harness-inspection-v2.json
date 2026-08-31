@@ -1,0 +1,32 @@
+{
+  "schema": "coordinator-class-r8-harness-inspection-v2",
+  "pins": {
+    "class-comprehension-extension-cases-v1.json": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-comprehension-extension-spec-v1.md": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+    "class-comprehension-extension-probe-v2.py": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426",
+    "class-comprehension-extension-control-v2.py": "34c16309d974e40909bc352d509308b19d2fa4fd42f06386d27430fcf07526e2",
+    "class-comprehension-boundary-probe-v1.py": "b0232750b89fba7939a093e81e9e4b8a183d23371f6464eaa8d3443bedf49138",
+    "class-comprehension-boundary-control-v1.py": "775157055e5a9b6234307ef552536a25bb6049fd76e001e352fc954eac258eba"
+  },
+  "changed_functions": {
+    "probe": [
+      "load_pack",
+      "main",
+      "oracle"
+    ],
+    "control": [
+      "main",
+      "validate_result"
+    ]
+  },
+  "source_model_control_correspondence": 8,
+  "schema_summary_count_fields_exact": true,
+  "payload_executed": false,
+  "manual_review": [
+    "Read all8 sources/independent Models/spec and completecomp6-to-v1 plusv1-to-v2 harness deltas.",
+    "Root caught stale projections6 in unexecutedv1;v2 fixes it and exacttypes without changing any case expectation.",
+    "Model adds only harmless list/NameError builtins; sensitive source stays AST-only.",
+    "Existing fresh snapshot,60s directchildwatchdog,actual311-first,fullmanifest/input/output/floorreplay rules unchanged."
+  ],
+  "disposition": "Dispatch frozenv23 on311 first to reproduce the three source concerns. Samecandidate314 only aftercomplete/intactfloor; diagnosticsemanticRED allowed. No candidate edit authorized here."
+}

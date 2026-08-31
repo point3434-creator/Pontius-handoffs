@@ -1,0 +1,52 @@
+--- tests-depth-budget-control-v2.py
++++ tests-depth-budget-control-v3.py
+@@ -1,4 +1,4 @@
+-"""Two-case floor-only budget diagnostic control, for root review before use.
++"""Three-case v26 floor-only budget diagnostic control, for root review before use.
+ 
+ Invoke with actual CPython 3.11.15 and -I -S -B -P.
+ No candidate/probe import or payload occurs unless main is explicitly dispatched.
+@@ -29,8 +29,12 @@
+ TEST_SHA = "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+ SOURCE_RELATIVE = "tools/generate_test_inventory.py"
+ TEST_RELATIVE = "tests/test_inventory_and_profiles.py"
+-PROBE = ROOT / "engineer-depth-budget-probe-v2.py"
+-CASES = ("helper1050", "generator70")
++SOURCE_SHA = "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951"
++PROBE_SHA = "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae"
++FIXTURE_SHAS = {'helper1050': '148ffd41c2a5d5616a4b8d1cf8bc297f488ae8f6ddc1109d1d2842afa9183754', 'helper65': '94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6', 'generator70': '635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3'}
++EXPECTATIONS = {'helper1050': 'analysis.*(?:depth|budget)', 'helper65': '^analysis helper depth exceeds 64$', 'generator70': '^analysis deferred generator depth exceeds 64$'}
++PROBE = ROOT / "engineer-depth-budget-probe-v3.py"
++CASES = ("helper1050", "helper65", "generator70")
+ TRACKED_COUNT = 1761
+ TIMEOUT = 60
+ PAYLOAD = ".depth-budget-diagnostic"
+@@ -180,7 +184,7 @@
+     req(h(raw) == sys.argv[2], "job bytes")
+     job = json.loads(raw)
+     req(job["schema"] == "c-authority-depth-budget-job-v1", "job schema")
+-    req(job["case"] in ("helper1050", "generator70"), "bounded case")
++    req(job["case"] in ("helper1050", "helper65", "generator70"), "bounded case")
+     req(sys.implementation.name == "cpython"
+         and list(sys.version_info[:3]) == [3, 11, 15], "actual floor patch")
+     req(Path(sys.executable).resolve() == checked(Path(job["executable"])).resolve(),
+@@ -297,7 +301,9 @@
+                 and completion.get("caps_unchanged") is True
+                 and completion.get("original_methods_restored") is True
+                 and completion.get("source_sha256") == source_sha
+-                and completion.get("tests_sha256") == TEST_SHA)
++                and completion.get("tests_sha256") == TEST_SHA
++                and completion.get("fixture_sha256") == FIXTURE_SHAS[case]
++                and completion.get("original_expectation") == EXPECTATIONS[case])
+     return {
+         "identity": identity, "identity_valid": identity_valid, "completion": completion,
+         "complete": complete, "failure_records": failures, "bootstrap_errors": bootstrap_errors,
+@@ -330,6 +336,8 @@
+     require(all(is_sha(value) for value in
+                 (args.source_sha, args.probe_sha, args.control_sha, args.watch_sha)),
+             "all input SHA256 values must be explicit")
++    require(args.source_sha == SOURCE_SHA and args.probe_sha == PROBE_SHA,
++            "fixed v26 candidate and reviewed probe required")
+     source = retained(args.source_path)
+     control = retained(str(Path(__file__).absolute()))
+     checked(ROOT)

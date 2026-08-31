@@ -1,0 +1,160 @@
+{
+  "schema": "coordinator-v26-storage-inspection-v1",
+  "pins": {
+    "engineer-generator-v24-storage.py": "156ee88a99abb26edeaaf178841c72e89f2bdc15696c37ef91f4dcc54b767431",
+    "engineer-generator-v26-storage.py": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+    "engineer-name-radix-prototype-v1.py": "0c4e9ae2bef9b5489cc00f11adb5dd3400be6f6d5ea90537fb5951bba8ba1a71",
+    "engineer-generator-v24-storage-namespacing-v1.json": "39858fc73cdd3b2279184de3838f1d70533aacc9d382a477494caf39bf07c38a",
+    "engineer-generator-v26-storage-from-v24.diff": "838433dd56ce774bf52111978880a13a2a9f658ec34a13e6241e4dd2d54df2b5"
+  },
+  "changed_attributes": [
+    [
+      14837,
+      "_name_history",
+      "_history"
+    ],
+    [
+      14925,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14573,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14587,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14715,
+      "_name_history",
+      "_history"
+    ],
+    [
+      14722,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14786,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14840,
+      "_name_history",
+      "_history"
+    ],
+    [
+      14614,
+      "_name_history",
+      "_history"
+    ],
+    [
+      14615,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14706,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14706,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14751,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14751,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14797,
+      "_name_order",
+      "_order"
+    ],
+    [
+      14885,
+      "_name_history",
+      "_history"
+    ],
+    [
+      14923,
+      "_name_order",
+      "_order"
+    ]
+  ],
+  "prototype_roles_verified": [
+    "_NameEntry",
+    "_NAME_MISSING",
+    "_NameCursor",
+    "_NameVersion",
+    "_NameBranchEdit",
+    "_NAME_DELETED",
+    "_NAME_HASH_MASK",
+    "_NAME_HASH_WIDTH",
+    "_NameHistory",
+    "_NAME_LEAF_SIZE",
+    "_NameLeafEdit",
+    "_NameOrder",
+    "_NamePublication",
+    "_NAME_RADIX_BITS",
+    "_NameRadixBranch",
+    "_NameRadixLeaf",
+    "_name_charge_cache_commit",
+    "_name_charge_publication_commit",
+    "_name_check_name",
+    "_name_commit_order",
+    "_name_commit_publication",
+    "_name_common_history",
+    "_name_history",
+    "_name_keys",
+    "_name_known_order",
+    "_name_order",
+    "_name_ordered_items",
+    "_name_pending_names",
+    "_name_prepare_publication",
+    "_name_radix_bulk",
+    "_name_radix_child",
+    "_name_radix_copy_leaf",
+    "_name_radix_edit",
+    "_name_radix_edit_records",
+    "_name_radix_freeze",
+    "_name_radix_group",
+    "_name_radix_hash",
+    "_name_radix_leaf",
+    "_name_radix_lookup",
+    "_name_radix_names",
+    "_name_radix_pending_count",
+    "_name_radix_records",
+    "_name_radix_seal_leaf",
+    "_name_radix_slot",
+    "_name_realize_order",
+    "_name_seal_order_table",
+    "_join_name_versions"
+  ],
+  "v24_rejected_by_role_comparison": [
+    "_NameCursor",
+    "_NameVersion",
+    "_name_common_history",
+    "_name_keys",
+    "_name_ordered_items",
+    "_name_prepare_publication",
+    "_join_name_versions"
+  ],
+  "v24_slot_check_rejects_and_v26_passes": true,
+  "all_other_ast_fields_exact": true,
+  "candidate_executed_or_imported": false,
+  "manual_review": "Read all17 attribute corrections and full category root-cause note. No adapter work, algorithm, charge, cap, test or semantic changes. Reference comparison keeps attributes/strings/method/parameter names exact and only namespaces audited module names.",
+  "disposition": "Run unchanged design53 on real311 in a fresh snapshot. v24 failure retained; no314/matrix/corpus expansion until floor success. No W/main integration."
+}

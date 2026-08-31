@@ -1,0 +1,76 @@
+{
+  "schema": "pontius-class-comprehension-extension-authoring-v2",
+  "payload_executed": false,
+  "predecessor_v1_disposition": "Unexecuted: root identified projections literal6 mismatch against8-case controller before dispatch.",
+  "v1_authoring_sha256": "38818dd398ea4b8f0b84b7f819161660e7dc7f6c4e448b21b9933d0047af84a4",
+  "probe_base": {
+    "path": "class-comprehension-extension-probe-v1.py",
+    "sha256": "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e"
+  },
+  "control_base": {
+    "path": "class-comprehension-extension-control-v1.py",
+    "sha256": "957bc82f2f81a70b9b9023d1bef333d8f90dca3472144392ae2c8c387ad21271"
+  },
+  "probe_new": {
+    "path": "class-comprehension-extension-probe-v2.py",
+    "sha256": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426",
+    "edits": [
+      {
+        "old": "\"projections\": 6, \"analyzed_cases\": analyzed",
+        "new": "\"projections\": 8, \"analyzed_cases\": analyzed",
+        "count": 1
+      },
+      {
+        "old": "    require(pack[\"planned_cases\"] == pack[\"planned_projections\"] == 8, \"finite counts\")",
+        "new": "    require(all(type(pack[field]) is int\n                for field in (\"planned_cases\", \"planned_projections\"))\n            and pack[\"planned_cases\"] == pack[\"planned_projections\"] == 8, \"finite counts\")",
+        "count": 1
+      },
+      {
+        "old": "    require(dict(Counter(case[\"classification\"] for case in pack[\"cases\"]))\n            == {\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}, \"classifications\")",
+        "new": "    require(type(pack[\"classifications\"]) is dict\n            and all(type(count) is int for count in pack[\"classifications\"].values())\n            and pack[\"classifications\"] == {\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}\n            and dict(Counter(case[\"classification\"] for case in pack[\"cases\"]))\n            == pack[\"classifications\"], \"classifications\")",
+        "count": 1
+      },
+      {
+        "old": "    require({name: getattr(generator, name) for name in CAPS} == CAPS, \"caps changed\")",
+        "new": "    require(all(type(getattr(generator, name)) is int for name in CAPS)\n            and {name: getattr(generator, name) for name in CAPS} == CAPS, \"caps changed\")",
+        "count": 1
+      },
+      {
+        "old": "    require({name: getattr(generator, name) for name in CAPS} == CAPS, \"caps changed during run\")",
+        "new": "    require(all(type(getattr(generator, name)) is int for name in CAPS)\n            and {name: getattr(generator, name) for name in CAPS} == CAPS, \"caps changed during run\")",
+        "count": 1
+      }
+    ]
+  },
+  "control_new": {
+    "path": "class-comprehension-extension-control-v2.py",
+    "sha256": "34c16309d974e40909bc352d509308b19d2fa4fd42f06386d27430fcf07526e2",
+    "edits": [
+      {
+        "old": "PROBE = CHECKS / \"class-comprehension-extension-probe-v1.py\"",
+        "new": "PROBE = CHECKS / \"class-comprehension-extension-probe-v2.py\"",
+        "count": 1
+      },
+      {
+        "old": "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e",
+        "new": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426",
+        "count": 1
+      },
+      {
+        "old": "    require(summary[\"planned_cases\"] == summary[\"case_count\"] == summary[\"projections\"] == 8,\n            \"summary scope\")",
+        "new": "    require(all(type(summary[field]) is int for field in\n                (\"planned_cases\", \"case_count\", \"projections\", \"analyzed_cases\")),\n            \"summary count types\")\n    require(summary[\"planned_cases\"] == summary[\"case_count\"] == summary[\"projections\"] == 8\n            and 0 <= summary[\"analyzed_cases\"] <= 8, \"summary scope\")",
+        "count": 1
+      },
+      {
+        "old": "    require(summary[\"classifications\"] == {\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}\n            and summary[\"caps\"] == CAPS, \"summary classifications/caps\")",
+        "new": "    require(type(summary[\"classifications\"]) is dict\n            and all(type(count) is int for count in summary[\"classifications\"].values())\n            and summary[\"classifications\"] == {\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}\n            and type(summary[\"caps\"]) is dict\n            and all(type(limit) is int for limit in summary[\"caps\"].values())\n            and summary[\"caps\"] == CAPS, \"summary classifications/caps\")",
+        "count": 1
+      },
+      {
+        "old": "        require(pack[\"planned_cases\"] == pack[\"planned_projections\"] == len(pack[\"cases\"]) == 8\n                and pack[\"pack_name\"] == \"class-comprehension-extension-v1\", \"frozen pack scope\")",
+        "new": "        require(all(type(pack[field]) is int\n                    for field in (\"planned_cases\", \"planned_projections\"))\n                and pack[\"planned_cases\"] == pack[\"planned_projections\"] == len(pack[\"cases\"]) == 8\n                and pack[\"pack_name\"] == \"class-comprehension-extension-v1\", \"frozen pack scope\")\n        require(type(pack[\"classifications\"]) is dict\n                and all(type(count) is int for count in pack[\"classifications\"].values())\n                and pack[\"classifications\"] == {\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1},\n                \"frozen classification counts\")",
+        "count": 1
+      }
+    ]
+  }
+}

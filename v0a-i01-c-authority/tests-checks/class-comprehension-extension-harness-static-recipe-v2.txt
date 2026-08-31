@@ -1,0 +1,180 @@
+import sys
+assert sys.version_info[:3] == (3, 11, 15), sys.version
+assert sys.executable.replace("\\", "/").lower() == "d:/pontius-tools/py311/scripts/python.exe"
+assert sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode
+assert sys.flags.safe_path
+import ast
+import difflib
+import hashlib
+import json
+from pathlib import Path
+
+BASE = Path("D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks")
+def digest(raw):
+    return hashlib.sha256(raw).hexdigest()
+def pinned(name, expected):
+    raw = (BASE / name).read_bytes()
+    assert digest(raw) == expected, name
+    assert b"\r" not in raw and raw.endswith(b"\n") and not raw.startswith(b"\xef\xbb\xbf")
+    return raw
+v1_raw = pinned("class-comprehension-extension-authoring-v1.json",
+                "38818dd398ea4b8f0b84b7f819161660e7dc7f6c4e448b21b9933d0047af84a4")
+v2_raw = pinned("class-comprehension-extension-authoring-v2.json",
+                "e004f3e63f1016a7da16090fe61ffb5cc0c295492a8fc201fd8cf1481b39d59e")
+maps = [json.loads(v1_raw), json.loads(v2_raw)]
+pins = {
+    "class-comprehension-extension-cases-v1.json":
+        "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-comprehension-extension-spec-v1.md":
+        "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+    "class-comprehension-extension-static-proof-v1.json":
+        "222a098a4916f9b5370dd851dd928227eb750589a1f6e621e4a3f4eedda1a0e4",
+    "class-comprehension-boundary-cases-v1.json":
+        "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+    "class-comprehension-boundary-spec-v1.md":
+        "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+}
+for name, expected in pins.items():
+    pinned(name, expected)
+pack = json.loads((BASE / "class-comprehension-extension-cases-v1.json").read_bytes())
+assert type(pack["planned_cases"]) is type(pack["planned_projections"]) is int
+assert pack["planned_cases"] == pack["planned_projections"] == len(pack["cases"]) == 8
+assert pack["classifications"] == {"clean": 3, "refuse": 4, "permitted-refusal": 1}
+assert all(type(v) is int for v in pack["classifications"].values())
+
+def dump(node):
+    return ast.dump(node, include_attributes=False)
+def assignment(tree, name):
+    return next(n.value for n in tree.body if isinstance(n, ast.Assign)
+                and any(isinstance(t, ast.Name) and t.id == name for t in n.targets))
+def functions(tree):
+    return {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
+def summary_fields(tree):
+    main = functions(tree)["main"]
+    summary = next(n.value for n in ast.walk(main) if isinstance(n, ast.Assign)
+                   and any(isinstance(t, ast.Name) and t.id == "summary" for t in n.targets))
+    assert isinstance(summary, ast.Dict)
+    return {k.value: v for k, v in zip(summary.keys, summary.values, strict=True)}
+def has_expression(tree, source, expected_count=1):
+    expected = dump(ast.parse(source, mode="eval").body)
+    count = sum(dump(n) == expected for n in ast.walk(tree))
+    assert count == expected_count, (source, count, expected_count)
+def subscript_is(node, root, key):
+    return (isinstance(node, ast.Subscript) and isinstance(node.value, ast.Name)
+            and node.value.id == root and isinstance(node.slice, ast.Constant)
+            and node.slice.value == key)
+def domain(tree, root, key, expected):
+    values = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Compare) and any(
+                subscript_is(n, root, key) for n in ast.walk(node)):
+            for child in ast.walk(node):
+                if isinstance(child, ast.Constant) and type(child.value) in {int, float, bool}:
+                    assert type(child.value) is int, (root, key, child.value)
+                    values.add(child.value)
+    assert values == set(expected), (root, key, values, expected)
+    return sorted(values)
+
+records = {}
+trees = {}
+for role in ("probe", "control"):
+    steps = []
+    texts = []
+    for index, mapping in enumerate(maps, 1):
+        old_info, new_info = mapping[role + "_base"], mapping[role + "_new"]
+        old_raw = pinned(old_info["path"], old_info["sha256"])
+        new_raw = pinned(new_info["path"], new_info["sha256"])
+        old, new = old_raw.decode(), new_raw.decode()
+        assert old == old.rstrip() + "\n"
+        expected = old
+        for edit in new_info["edits"]:
+            assert expected.count(edit["old"]) == edit["count"]
+            expected = expected.replace(edit["old"], edit["new"])
+        assert expected == new, (role, index)
+        old_tree, new_tree = ast.parse(old), ast.parse(new)
+        compile(new, new_info["path"], "exec", dont_inherit=True)
+        old_funcs, new_funcs = functions(old_tree), functions(new_tree)
+        assert old_funcs.keys() == new_funcs.keys()
+        changed = sorted(n for n in old_funcs if dump(old_funcs[n]) != dump(new_funcs[n]))
+        assert changed == (["load_pack", "main", "oracle"] if role == "probe" and index == 1
+                           else ["load_pack", "main"] if role == "probe"
+                           else ["main", "validate_result"]), changed
+        for name in ("CAPS", "SLOTS"):
+            assert dump(assignment(old_tree, name)) == dump(assignment(new_tree, name))
+        if role == "probe":
+            assert dump(old_funcs["public_review"]) == dump(new_funcs["public_review"])
+        else:
+            for name in ("WATCH", "WATCH_SHA", "TIMEOUT", "BASE", "GIT"):
+                assert dump(assignment(old_tree, name)) == dump(assignment(new_tree, name))
+        diff_raw = "".join(difflib.unified_diff(
+            old.splitlines(keepends=True), new.splitlines(keepends=True),
+            fromfile=old_info["path"], tofile=new_info["path"])).encode()
+        suffix = "v1-from-boundary-v1" if index == 1 else "v2-from-v1"
+        diff_name = "class-comprehension-extension-" + role + "-" + suffix + ".diff"
+        with (BASE / diff_name).open("xb") as stream:
+            stream.write(diff_raw)
+        steps.append({"before_sha256": digest(old_raw), "after_sha256": digest(new_raw),
+                      "authorized_replacement_replay_equal": True,
+                      "changed_functions": changed,
+                      "unchanged_functions": sorted(n for n in old_funcs if n not in changed),
+                      "diff_path": diff_name, "diff_sha256": digest(diff_raw),
+                      "syntax_compiled_not_executed": True})
+        texts.append(new)
+        trees[(role, index)] = new_tree
+    records[role] = steps
+
+predecessor = summary_fields(trees[("probe", 1)])
+predecessor_mismatch = {field: predecessor[field].value for field in
+                       ("planned_cases", "case_count", "projections")
+                       if predecessor[field].value != 8}
+assert predecessor_mismatch == {"projections": 6}
+probe, control = trees[("probe", 2)], trees[("control", 2)]
+fields = summary_fields(probe)
+for field in ("planned_cases", "case_count", "projections"):
+    assert isinstance(fields[field], ast.Constant) and type(fields[field].value) is int
+    assert fields[field].value == 8
+assert isinstance(fields["analyzed_cases"], ast.Name) and fields["analyzed_cases"].id == "analyzed"
+assert dump(assignment(functions(probe)["main"], "analyzed")) == dump(ast.Constant(value=0))
+has_expression(probe, 'all(type(pack[field]) is int for field in ("planned_cases", "planned_projections"))')
+has_expression(probe, 'type(pack["classifications"]) is dict')
+has_expression(probe, 'all(type(count) is int for count in pack["classifications"].values())')
+has_expression(probe, 'all(type(getattr(generator, name)) is int for name in CAPS)', 2)
+has_expression(control, 'all(type(pack[field]) is int for field in ("planned_cases", "planned_projections"))')
+has_expression(control, 'all(type(summary[field]) is int for field in ("planned_cases", "case_count", "projections", "analyzed_cases"))')
+for root in ("pack", "summary"):
+    has_expression(control, 'type(' + root + '["classifications"]) is dict')
+    has_expression(control, 'all(type(count) is int for count in ' + root
+                   + '["classifications"].values())')
+has_expression(control, 'type(summary["caps"]) is dict')
+has_expression(control, 'all(type(limit) is int for limit in summary["caps"].values())')
+domains = {}
+for root, keys in (("pack", ("planned_cases", "planned_projections")),
+                   ("summary", ("planned_cases", "case_count", "projections", "analyzed_cases"))):
+    for key in keys:
+        expected = (0, 8) if key == "analyzed_cases" else (8,)
+        domains[root + "." + key] = domain(control, root, key, expected)
+for key in ("planned_cases", "planned_projections"):
+    domain(probe, "pack", key, (8,))
+caps = ast.literal_eval(assignment(probe, "CAPS"))
+assert caps == ast.literal_eval(assignment(control, "CAPS"))
+assert all(type(v) is int for v in caps.values())
+assert caps["MAXIMUM_ANALYSIS_WORK_UNITS"] == 262144
+assert ast.literal_eval(assignment(control, "TIMEOUT")) == 60
+assert ast.literal_eval(assignment(probe, "CASE_IDS")) == tuple(c["id"] for c in pack["cases"])
+assert ast.literal_eval(assignment(control, "PROBE_SHA")) == maps[1]["probe_new"]["sha256"]
+print(json.dumps({
+    "schema": "pontius-class-comprehension-extension-harness-static-v2",
+    "static_only": True, "candidate_imported": False, "models_executed": False,
+    "analyzer_called": False, "controller_or_probe_executed": False,
+    "runtime": list(sys.version_info[:3]), "executable": sys.executable,
+    "pins": pins, "authoring_sha256": [digest(v1_raw), digest(v2_raw)],
+    "records": records, "predecessor_v1_unexecuted": True,
+    "predecessor_v1_schema_mismatch": predecessor_mismatch,
+    "v2_summary_constant_counts": {f: fields[f].value
+                                 for f in ("planned_cases", "case_count", "projections")},
+    "v2_summary_analyzed_source": "integer counter initialized to zero",
+    "v2_count_comparison_domains": domains,
+    "v2_exact_integer_guard_ast_checks": True, "caps": caps,
+    "original_watch_slots_caps_timeout_ast_unchanged": True,
+    "all_static_assertions_passed": True
+}, indent=2, sort_keys=True))

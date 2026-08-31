@@ -1,0 +1,71 @@
+{
+  "authoring_only": true,
+  "bootstrap_only_change": "helper65 added to fixed population",
+  "bootstrap_sha256": "45a6cb331ad8019a6fef3fd96c346c439a07cc14b3ec9db9e15f593129c665f7",
+  "bulk_shapes": "One observation per original bulk_input_iterator_requests; exact dict/set/tuple/private _size only, no public mapping reads.",
+  "control_functions_unchanged": [
+    "require",
+    "digest",
+    "is_sha",
+    "checked",
+    "retained",
+    "pinned",
+    "json_bytes",
+    "create",
+    "save",
+    "environment_for",
+    "git",
+    "names",
+    "hashes",
+    "records",
+    "arguments"
+  ],
+  "control_predecessor_sha256": "bbdc550c042fe62c8c19e838ffe35a9cabc09f22fdd4d941bdb0d9d0a41599a5",
+  "control_sha256": "91533776e028ad57513611940423cd1cb2c6d8c0d85f8cafd49f089ebfd9e2d7",
+  "fixed_cases": {
+    "generator70": {
+      "builder_ast_matches_original": true,
+      "builder_ast_sha256": "655e34130d9445bebc00d1be6ccb15d050183a56240fb832d46db85633c4febb",
+      "expectation": "^analysis deferred generator depth exceeds 64$",
+      "fixture_bytes": 3142,
+      "fixture_sha256": "635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3",
+      "method": "test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+    },
+    "helper1050": {
+      "builder_ast_matches_original": true,
+      "builder_ast_sha256": "81e22b99a8cf2af1d0ac7f1c3291fe39f45bd5d84442ce99715e1285e7a48f1a",
+      "expectation": "analysis.*(?:depth|budget)",
+      "fixture_bytes": 45283,
+      "fixture_sha256": "148ffd41c2a5d5616a4b8d1cf8bc297f488ae8f6ddc1109d1d2842afa9183754",
+      "method": "test_analysis_budgets_contain_deep_helpers_and_invalid_ranges"
+    },
+    "helper65": {
+      "builder_ast_matches_original": true,
+      "builder_ast_sha256": "b4cbee4eb2d4de25f25fcc75acc72e46dc6c6c587a7a8ed9dc17624e52136e61",
+      "expectation": "^analysis helper depth exceeds 64$",
+      "fixture_bytes": 2882,
+      "fixture_sha256": "94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6",
+      "method": "test_round4_analysis_budget_red_contracts_are_independent"
+    }
+  },
+  "frame_partial_construction_guards_unchanged": true,
+  "limits": [
+    "No product verdict",
+    "No runtime ratio claim",
+    "Original absent hash seed preserved",
+    "Direct child watchdog only",
+    "Bulk events are attempts, not completed builds"
+  ],
+  "old_two_builder_asts_unchanged": true,
+  "original_consume_delegation_ast_unchanged_minus_scalar_event": true,
+  "partitions": "component_units and phase_units alias ONE disjoint partition; stage and NameMeter kind totals are separate views",
+  "payload_executed": false,
+  "probe_predecessor_sha256": "8db7415b97750e8880b25351be76b6fdf75d767a03a3a589d739113a73b6cae0",
+  "probe_sha256": "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae",
+  "publication": "Preparation deltas are inclusive cross-cuts, including failed requests after unwind; commit success separate. All records retain scalar metadata only.",
+  "schema": "c-authority-depth-budget-v3-authoring-proof-v1",
+  "source_and_watch_preserved": true,
+  "source_sha256": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+  "tests_sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf",
+  "watch_sha256": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+}

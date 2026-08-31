@@ -1,0 +1,162 @@
+{
+  "all_static_assertions_passed": true,
+  "analyzer_called": false,
+  "authoring_sha256": [
+    "38818dd398ea4b8f0b84b7f819161660e7dc7f6c4e448b21b9933d0047af84a4",
+    "e004f3e63f1016a7da16090fe61ffb5cc0c295492a8fc201fd8cf1481b39d59e"
+  ],
+  "candidate_imported": false,
+  "caps": {
+    "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647,
+    "MAXIMUM_ANALYSIS_CHILD_DEPTH": 4,
+    "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+    "MAXIMUM_ANALYSIS_HELPER_DEPTH": 64,
+    "MAXIMUM_ANALYSIS_WORK_UNITS": 262144
+  },
+  "controller_or_probe_executed": false,
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "models_executed": false,
+  "original_watch_slots_caps_timeout_ast_unchanged": true,
+  "pins": {
+    "class-comprehension-boundary-cases-v1.json": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+    "class-comprehension-boundary-spec-v1.md": "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+    "class-comprehension-extension-cases-v1.json": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-comprehension-extension-spec-v1.md": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+    "class-comprehension-extension-static-proof-v1.json": "222a098a4916f9b5370dd851dd928227eb750589a1f6e621e4a3f4eedda1a0e4"
+  },
+  "predecessor_v1_schema_mismatch": {
+    "projections": 6
+  },
+  "predecessor_v1_unexecuted": true,
+  "records": {
+    "control": [
+      {
+        "after_sha256": "957bc82f2f81a70b9b9023d1bef333d8f90dca3472144392ae2c8c387ad21271",
+        "authorized_replacement_replay_equal": true,
+        "before_sha256": "775157055e5a9b6234307ef552536a25bb6049fd76e001e352fc954eac258eba",
+        "changed_functions": [
+          "main",
+          "validate_result"
+        ],
+        "diff_path": "class-comprehension-extension-control-v1-from-boundary-v1.diff",
+        "diff_sha256": "1a016e4e185c78e1fee4c3de1b5b8069851156d539962c46d17accd761de9a5b",
+        "syntax_compiled_not_executed": true,
+        "unchanged_functions": [
+          "canonical",
+          "checked",
+          "create",
+          "environment",
+          "file_hashes",
+          "git",
+          "require",
+          "sha",
+          "valid_digest",
+          "write_json"
+        ]
+      },
+      {
+        "after_sha256": "34c16309d974e40909bc352d509308b19d2fa4fd42f06386d27430fcf07526e2",
+        "authorized_replacement_replay_equal": true,
+        "before_sha256": "957bc82f2f81a70b9b9023d1bef333d8f90dca3472144392ae2c8c387ad21271",
+        "changed_functions": [
+          "main",
+          "validate_result"
+        ],
+        "diff_path": "class-comprehension-extension-control-v2-from-v1.diff",
+        "diff_sha256": "bb506566247eb4de3c875e7ab1f36ecf0d7b77d4c9ffaab0e79dcc412d74f8c7",
+        "syntax_compiled_not_executed": true,
+        "unchanged_functions": [
+          "canonical",
+          "checked",
+          "create",
+          "environment",
+          "file_hashes",
+          "git",
+          "require",
+          "sha",
+          "valid_digest",
+          "write_json"
+        ]
+      }
+    ],
+    "probe": [
+      {
+        "after_sha256": "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e",
+        "authorized_replacement_replay_equal": true,
+        "before_sha256": "b0232750b89fba7939a093e81e9e4b8a183d23371f6464eaa8d3443bedf49138",
+        "changed_functions": [
+          "load_pack",
+          "main",
+          "oracle"
+        ],
+        "diff_path": "class-comprehension-extension-probe-v1-from-boundary-v1.diff",
+        "diff_sha256": "3e64b196b6dbc9a864099120b19782c7d985d7b422d0ce5c07992809d8fb7a63",
+        "syntax_compiled_not_executed": true,
+        "unchanged_functions": [
+          "canonical",
+          "checked",
+          "digest",
+          "hashes",
+          "public_review",
+          "require"
+        ]
+      },
+      {
+        "after_sha256": "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426",
+        "authorized_replacement_replay_equal": true,
+        "before_sha256": "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e",
+        "changed_functions": [
+          "load_pack",
+          "main"
+        ],
+        "diff_path": "class-comprehension-extension-probe-v2-from-v1.diff",
+        "diff_sha256": "7c5dbb139b10b9382a78a1055d4150ca8a70db32ead105de28f3dd709c0b3566",
+        "syntax_compiled_not_executed": true,
+        "unchanged_functions": [
+          "canonical",
+          "checked",
+          "digest",
+          "hashes",
+          "oracle",
+          "public_review",
+          "require"
+        ]
+      }
+    ]
+  },
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "schema": "pontius-class-comprehension-extension-harness-static-v2",
+  "static_only": true,
+  "v2_count_comparison_domains": {
+    "pack.planned_cases": [
+      8
+    ],
+    "pack.planned_projections": [
+      8
+    ],
+    "summary.analyzed_cases": [
+      0,
+      8
+    ],
+    "summary.case_count": [
+      8
+    ],
+    "summary.planned_cases": [
+      8
+    ],
+    "summary.projections": [
+      8
+    ]
+  },
+  "v2_exact_integer_guard_ast_checks": true,
+  "v2_summary_analyzed_source": "integer counter initialized to zero",
+  "v2_summary_constant_counts": {
+    "case_count": 8,
+    "planned_cases": 8,
+    "projections": 8
+  }
+}

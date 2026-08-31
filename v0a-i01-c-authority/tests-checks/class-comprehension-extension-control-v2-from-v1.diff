@@ -1,0 +1,49 @@
+--- class-comprehension-extension-control-v1.py
++++ class-comprehension-extension-control-v2.py
+@@ -26,8 +26,8 @@
+ BASE_GENERATOR_SHA = "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+ WATCH = Path(r"D:\Pontius-worktrees\codex-v0a-i01-c-authority-v1\tools\generate_test_inventory.py")
+ WATCH_SHA = "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679"
+-PROBE = CHECKS / "class-comprehension-extension-probe-v1.py"
+-PROBE_SHA = "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e"
++PROBE = CHECKS / "class-comprehension-extension-probe-v2.py"
++PROBE_SHA = "231bcddb04eb5f3f93135c46bc03f1ed6275195949f4189a700d2f0eb3571426"
+ PACK = CHECKS / "class-comprehension-extension-cases-v1.json"
+ PACK_SHA = "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd"
+ SCHEDULE = CHECKS / "class-comprehension-extension-spec-v1.md"
+@@ -179,9 +179,16 @@
+             and summary["generator_sha256"] == setup["generator_sha256"] and summary["pack_sha256"] == PACK_SHA
+             and summary["probe_sha256"] == PROBE_SHA and summary["schedule_sha256"] == SCHEDULE_SHA,
+             "summary pins")
+-    require(summary["planned_cases"] == summary["case_count"] == summary["projections"] == 8,
+-            "summary scope")
+-    require(summary["classifications"] == {"clean": 3, "refuse": 4, "permitted-refusal": 1}
++    require(all(type(summary[field]) is int for field in
++                ("planned_cases", "case_count", "projections", "analyzed_cases")),
++            "summary count types")
++    require(summary["planned_cases"] == summary["case_count"] == summary["projections"] == 8
++            and 0 <= summary["analyzed_cases"] <= 8, "summary scope")
++    require(type(summary["classifications"]) is dict
++            and all(type(count) is int for count in summary["classifications"].values())
++            and summary["classifications"] == {"clean": 3, "refuse": 4, "permitted-refusal": 1}
++            and type(summary["caps"]) is dict
++            and all(type(limit) is int for limit in summary["caps"].values())
+             and summary["caps"] == CAPS, "summary classifications/caps")
+     require(summary["semantic_failures"] == semantic_failures
+             and summary["oracle_errors"] == oracle_errors and summary["analyzer_errors"] == analyzer_errors,
+@@ -241,8 +248,14 @@
+         inputs = {key: checked(p).read_bytes() for key, p in input_paths.items()}
+         require({key: sha(raw) for key, raw in inputs.items()} == input_hashes, "original input pin mismatch")
+         pack = json.loads(inputs["pack"])
+-        require(pack["planned_cases"] == pack["planned_projections"] == len(pack["cases"]) == 8
++        require(all(type(pack[field]) is int
++                    for field in ("planned_cases", "planned_projections"))
++                and pack["planned_cases"] == pack["planned_projections"] == len(pack["cases"]) == 8
+                 and pack["pack_name"] == "class-comprehension-extension-v1", "frozen pack scope")
++        require(type(pack["classifications"]) is dict
++                and all(type(count) is int for count in pack["classifications"].values())
++                and pack["classifications"] == {"clean": 3, "refuse": 4, "permitted-refusal": 1},
++                "frozen classification counts")
+         setup["control_sha256"] = args.control_sha256
+         floor_files = {}
+         if args.slot == "314":

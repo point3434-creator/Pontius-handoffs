@@ -1,0 +1,94 @@
+import sys
+assert sys.version_info[:3] == (3, 11, 15), sys.version
+assert sys.executable.replace("\\", "/").lower() == "d:/pontius-tools/py311/scripts/python.exe"
+assert sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode
+assert sys.flags.safe_path
+import ast
+import difflib
+import hashlib
+import json
+from pathlib import Path
+
+BASE = Path("D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks")
+def digest(raw):
+    return hashlib.sha256(raw).hexdigest()
+authoring_raw = (BASE / "class-comprehension-extension-authoring-v1.json").read_bytes()
+assert digest(authoring_raw) == "38818dd398ea4b8f0b84b7f819161660e7dc7f6c4e448b21b9933d0047af84a4"
+authoring = json.loads(authoring_raw)
+pins = {
+    "class-comprehension-extension-cases-v1.json":
+        "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-comprehension-extension-spec-v1.md":
+        "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+    "class-comprehension-extension-static-proof-v1.json":
+        "222a098a4916f9b5370dd851dd928227eb750589a1f6e621e4a3f4eedda1a0e4",
+}
+for name, expected in pins.items():
+    assert digest((BASE / name).read_bytes()) == expected, name
+def dump(node):
+    return ast.dump(node, include_attributes=False)
+def assignment(tree, name):
+    return next(n.value for n in tree.body if isinstance(n, ast.Assign)
+                and any(isinstance(t, ast.Name) and t.id == name for t in n.targets))
+records = {}
+for role in ("probe", "control"):
+    before_info, after_info = authoring[role + "_base"], authoring[role + "_new"]
+    before_raw = (BASE / before_info["path"]).read_bytes()
+    after_raw = (BASE / after_info["path"]).read_bytes()
+    assert digest(before_raw) == before_info["sha256"]
+    assert digest(after_raw) == after_info["sha256"]
+    assert b"\r" not in after_raw and not after_raw.startswith(b"\xef\xbb\xbf")
+    before, after = before_raw.decode(), after_raw.decode()
+    assert before == before.rstrip() + "\n"
+    expected = before
+    for edit in after_info["edits"]:
+        assert expected.count(edit["old"]) == edit["count"]
+        expected = expected.replace(edit["old"], edit["new"])
+    assert expected == after, role
+    old_tree, new_tree = ast.parse(before), ast.parse(after)
+    compile(after, after_info["path"], "exec", dont_inherit=True)
+    old_functions = {n.name: dump(n) for n in old_tree.body
+                     if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))}
+    new_functions = {n.name: dump(n) for n in new_tree.body
+                     if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))}
+    assert old_functions.keys() == new_functions.keys()
+    changed = sorted(name for name in old_functions
+                     if old_functions[name] != new_functions[name])
+    assert changed == (["load_pack", "main", "oracle"] if role == "probe"
+                       else ["main", "validate_result"]), changed
+    for name in ("CAPS", "SLOTS"):
+        assert dump(assignment(old_tree, name)) == dump(assignment(new_tree, name))
+    if role == "probe":
+        assert old_functions["public_review"] == new_functions["public_review"]
+        assert ast.literal_eval(assignment(new_tree, "CASE_IDS")) == tuple(
+            c["id"] for c in json.loads((BASE / "class-comprehension-extension-cases-v1.json")
+                                       .read_bytes())["cases"])
+        assert 'except TypeError:' in after and 'except NameError:' not in after
+    else:
+        assert dump(assignment(old_tree, "WATCH")) == dump(assignment(new_tree, "WATCH"))
+        assert dump(assignment(old_tree, "WATCH_SHA")) == dump(assignment(new_tree, "WATCH_SHA"))
+        assert "timeout=60" in after or "TIMEOUT = 60" in after
+    diff_raw = "".join(difflib.unified_diff(
+        before.splitlines(keepends=True), after.splitlines(keepends=True),
+        fromfile=before_info["path"], tofile=after_info["path"])).encode()
+    diff_path = BASE / ("class-comprehension-extension-" + role
+                       + "-v1-from-boundary-v1.diff")
+    with diff_path.open("xb") as stream:
+        stream.write(diff_raw)
+    records[role] = {
+        "before_sha256": digest(before_raw), "after_sha256": digest(after_raw),
+        "after_bytes": len(after_raw), "authorized_replacement_replay_equal": True,
+        "changed_functions": changed,
+        "unchanged_functions": sorted(n for n in old_functions if n not in changed),
+        "caps_and_runtime_slots_ast_equal": True,
+        "syntax_compiled_not_executed": True,
+        "raw_diff_path": str(diff_path), "raw_diff_sha256": digest(diff_raw),
+        "raw_diff_bytes": len(diff_raw)}
+print(json.dumps({
+    "schema": "pontius-class-comprehension-extension-harness-static-v1",
+    "static_only": True, "candidate_imported": False, "models_executed": False,
+    "analyzer_called": False, "controller_or_probe_executed": False,
+    "runtime": list(sys.version_info[:3]), "executable": sys.executable,
+    "pins": pins, "authoring_sha256": digest(authoring_raw), "records": records,
+    "all_static_assertions_passed": True
+}, indent=2, sort_keys=True))

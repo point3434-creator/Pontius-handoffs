@@ -1,0 +1,144 @@
+{
+  "schema": "pontius-class-comprehension-extension-authoring-v1",
+  "payload_executed": false,
+  "probe_base": {
+    "path": "class-comprehension-boundary-probe-v1.py",
+    "sha256": "b0232750b89fba7939a093e81e9e4b8a183d23371f6464eaa8d3443bedf49138"
+  },
+  "control_base": {
+    "path": "class-comprehension-boundary-control-v1.py",
+    "sha256": "775157055e5a9b6234307ef552536a25bb6049fd76e001e352fc954eac258eba"
+  },
+  "probe_new": {
+    "path": "class-comprehension-extension-probe-v1.py",
+    "sha256": "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e",
+    "edits": [
+      {
+        "old": "six-case",
+        "new": "eight-case",
+        "count": 1
+      },
+      {
+        "old": "class-comprehension-boundary",
+        "new": "class-comprehension-extension",
+        "count": 3
+      },
+      {
+        "old": "class_comprehension_boundary",
+        "new": "class_comprehension_extension",
+        "count": 3
+      },
+      {
+        "old": "independent_class_comprehension_model",
+        "new": "independent_class_comprehension_extension_model",
+        "count": 1
+      },
+      {
+        "old": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+        "new": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+        "count": 1
+      },
+      {
+        "old": "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+        "new": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+        "count": 1
+      },
+      {
+        "old": "    \"Q01-eager-cell-unsafe\",\n    \"Q02-eager-cell-safe\",\n    \"Q03-class-first-iterable-unsafe\",\n    \"Q04-class-first-iterable-safe\",\n    \"Q05-deferred-cell-unsafe\",\n    \"Q06-deferred-cell-safe\",\n",
+        "new": "    \"R01-attribute-receiver-unsafe\",\n    \"R02-attribute-receiver-dormant\",\n    \"R03-indexed-receiver-unsafe\",\n    \"R04-indexed-receiver-dormant\",\n    \"R05-nested-generator-join-unsafe\",\n    \"R06-nested-generator-join-safe\",\n    \"R07-initially-empty-generator-grown-unsafe\",\n    \"R08-initially-empty-generator-dormant\",\n",
+        "count": 1
+      },
+      {
+        "old": "and pack[\"requirements\"][\"candidate_v23_inspected\"] is False, \"frozen requirement basis\")",
+        "new": "and pack[\"requirements\"][\"candidate_v23_inspected\"] is True\n            and pack[\"requirements\"][\"extension_results_opened\"] is False\n            and pack[\"requirements\"][\"root_table_approved\"] is True\n            and pack[\"requirements\"][\"source_basis_v23_sha256\"]\n            == \"53a17d52196bd83a540ebf4892d3687f3efbe9633d1539fa834ea0a27f0db499\",\n            \"frozen requirement basis\")",
+        "count": 1
+      },
+      {
+        "old": "pack[\"planned_cases\"] == pack[\"planned_projections\"] == 6",
+        "new": "pack[\"planned_cases\"] == pack[\"planned_projections\"] == 8",
+        "count": 1
+      },
+      {
+        "old": "tuple(\"Q\" + str(n).zfill(2) for n in range(1, 7))",
+        "new": "tuple(\"R\" + str(n).zfill(2) for n in range(1, 9))",
+        "count": 1
+      },
+      {
+        "old": "{\"clean\": 2, \"refuse\": 3, \"permitted-refusal\": 1}",
+        "new": "{\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}",
+        "count": 1
+      },
+      {
+        "old": "(\"__build_class__\", \"staticmethod\", \"tuple\")",
+        "new": "(\"__build_class__\", \"staticmethod\", \"tuple\", \"list\", \"NameError\")",
+        "count": 1
+      },
+      {
+        "old": "\"planned_cases\": 6, \"case_count\": 6",
+        "new": "\"planned_cases\": 8, \"case_count\": 8",
+        "count": 1
+      },
+      {
+        "old": "\"completed\": analyzed == 6",
+        "new": "\"completed\": analyzed == 8",
+        "count": 1
+      }
+    ]
+  },
+  "control_new": {
+    "path": "class-comprehension-extension-control-v1.py",
+    "sha256": "957bc82f2f81a70b9b9023d1bef333d8f90dca3472144392ae2c8c387ad21271",
+    "edits": [
+      {
+        "old": "six-case",
+        "new": "eight-case",
+        "count": 1
+      },
+      {
+        "old": "class-comprehension-boundary",
+        "new": "class-comprehension-extension",
+        "count": 8
+      },
+      {
+        "old": "class_comprehension_boundary",
+        "new": "class_comprehension_extension",
+        "count": 3
+      },
+      {
+        "old": "b0232750b89fba7939a093e81e9e4b8a183d23371f6464eaa8d3443bedf49138",
+        "new": "b17d4ba2754ce12158fb536d17762deb9f6e5ab4e745693309d56fef460f565e",
+        "count": 1
+      },
+      {
+        "old": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+        "new": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+        "count": 1
+      },
+      {
+        "old": "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+        "new": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+        "count": 1
+      },
+      {
+        "old": "summary[\"planned_cases\"] == summary[\"case_count\"] == summary[\"projections\"] == 6",
+        "new": "summary[\"planned_cases\"] == summary[\"case_count\"] == summary[\"projections\"] == 8",
+        "count": 1
+      },
+      {
+        "old": "{\"clean\": 2, \"refuse\": 3, \"permitted-refusal\": 1}",
+        "new": "{\"clean\": 3, \"refuse\": 4, \"permitted-refusal\": 1}",
+        "count": 1
+      },
+      {
+        "old": "summary[\"analyzed_cases\"] == 6",
+        "new": "summary[\"analyzed_cases\"] == 8",
+        "count": 1
+      },
+      {
+        "old": "pack[\"planned_cases\"] == pack[\"planned_projections\"] == len(pack[\"cases\"]) == 6",
+        "new": "pack[\"planned_cases\"] == pack[\"planned_projections\"] == len(pack[\"cases\"]) == 8",
+        "count": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,172 @@
+import sys
+assert sys.version_info[:3] == (3, 11, 15), sys.version
+assert sys.executable.replace("\\", "/").lower() == "d:/pontius-tools/py311/scripts/python.exe"
+assert sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode
+assert sys.flags.safe_path
+import ast
+import copy
+import hashlib
+import json
+from pathlib import Path
+
+BASE = Path("D:/Pontius-handoffs/v0a-i01-c-authority/tests-checks")
+PINS = {
+    "class-comprehension-extension-cases-v1.json":
+        "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-comprehension-extension-spec-v1.md":
+        "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+    "class-comprehension-boundary-cases-v1.json":
+        "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+    "class-comprehension-boundary-spec-v1.md":
+        "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+    "class-comprehension-v23-engineering-review-codex-a-v1.md":
+        "84461f44efa2da40cfc8729a0d80eb45c0266e4e88a67d88d9d7703c955d44cc",
+}
+def digest(raw):
+    return hashlib.sha256(raw).hexdigest()
+for name, expected in PINS.items():
+    raw = (BASE / name).read_bytes()
+    assert digest(raw) == expected, name
+    assert not raw.startswith(b"\xef\xbb\xbf") and b"\r" not in raw
+    assert raw.endswith(b"\n")
+pack = json.loads((BASE / "class-comprehension-extension-cases-v1.json").read_text())
+assert pack["planned_cases"] == pack["planned_projections"] == 8
+assert pack["classifications"] == {"refuse": 4, "clean": 3, "permitted-refusal": 1}
+assert [c["schedule_id"] for c in pack["cases"]] == ["R%02d" % i for i in range(1, 9)]
+
+def is_event(node):
+    return (isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+            and isinstance(node.value.func, ast.Attribute)
+            and isinstance(node.value.func.value, ast.Name)
+            and node.value.func.value.id == "_events"
+            and node.value.func.attr == "append")
+
+class NormalizeModel(ast.NodeTransformer):
+    def visit_Expr(self, node):
+        return None if is_event(node) else self.generic_visit(node)
+    def visit_Name(self, node):
+        return ast.copy_location(ast.Name(id="ReviewTests", ctx=node.ctx), node
+                                 ) if node.id == "Model" else node
+
+def root_class(tree, name):
+    return next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == name)
+def method(cls):
+    return next(n for n in cls.body if isinstance(n, ast.FunctionDef)
+                and n.name == "test_static")
+def assigned(body, name):
+    return next(n.value for n in body if isinstance(n, ast.Assign)
+                and any(isinstance(t, ast.Name) and t.id == name for t in n.targets))
+def class_local(body):
+    for n in ast.walk(ast.Module(body=body, type_ignores=[])):
+        if isinstance(n, ast.ClassDef) and n.name == "Local":
+            return n
+    raise AssertionError("Local absent")
+def dump(node):
+    return ast.dump(node, include_attributes=False)
+
+records = []
+source_methods = []
+for case in pack["cases"]:
+    for field, hash_field in (("source", "source_sha256"), ("oracle_source", "oracle_sha256")):
+        text = case[field]
+        assert "\r" not in text and text.endswith("\n")
+        assert digest(text.encode()) == case[hash_field]
+    source = ast.parse(case["source"], filename="<AST-only-sensitive-source>")
+    model = ast.parse(case["oracle_source"], filename="<unexecuted-independent-Model>")
+    assert not any(isinstance(n, (ast.Import, ast.ImportFrom)) for n in ast.walk(model))
+    forbidden = {"subprocess", "sys", "os", "pontius", "exec", "eval", "compile",
+                 "open", "__import__"}
+    assert not any(isinstance(n, ast.Name) and n.id in forbidden for n in ast.walk(model))
+    source_cls, model_cls = root_class(source, "ReviewTests"), root_class(model, "Model")
+    source_method, model_method = method(source_cls), method(model_cls)
+    normal = NormalizeModel().visit(copy.deepcopy(model_method))
+    assert dump(normal) == dump(source_method), case["id"]
+    source_attrs = [dump(n) for n in source_cls.body if isinstance(n, ast.Assign)]
+    model_attrs = [dump(n) for n in model_cls.body if isinstance(n, ast.Assign)]
+    assert source_attrs == model_attrs
+    events = [n.value.args[0].value for n in ast.walk(model_method)
+              if is_event(n) and isinstance(n.value.args[0], ast.Constant)]
+    assert set(case["expected"]["trace"]).issubset(set(events) | {"sink"})
+    assert set(case["expected"]["trace"]).isdisjoint(case["unreachable_events"])
+    assert case["expected"]["result"] == (
+        "TypeError" if case["classification"] == "refuse" else "fixed")
+    assert case["required_argv"] == (
+        None if case["classification"] == "refuse" else [["-m", "fixed"]])
+    record = {"id": case["id"], "source_sha256": case["source_sha256"],
+              "oracle_sha256": case["oracle_sha256"], "source_model_ast_equal": True,
+              "declared_trace": case["expected"]["trace"],
+              "unreachable_events": case["unreachable_events"]}
+    if case["schedule_id"] in {"R01", "R02", "R03", "R04"}:
+        comp = next(n for n in ast.walk(source_method) if isinstance(n, ast.ListComp))
+        target = comp.generators[0].target
+        assert isinstance(target, ast.Attribute) and target.attr == "_launch"
+        assert isinstance(target.ctx, ast.Store)
+        names = [n for n in ast.walk(target) if isinstance(n, ast.Name)]
+        assert all(isinstance(n.ctx, ast.Load) for n in names)
+        wanted = ["owner"] if case["schedule_id"] in {"R01", "R02"} else ["index", "owners"]
+        assert sorted(n.id for n in names) == wanted
+        assert isinstance(comp.generators[0].iter, ast.Tuple)
+        cardinality = len(comp.generators[0].iter.elts)
+        assert cardinality == (1 if case["classification"] == "refuse" else 0)
+        handler = next(n for n in ast.walk(source_method) if isinstance(n, ast.ExceptHandler))
+        assert isinstance(handler.type, ast.Name) and handler.type.id == "NameError"
+        assert isinstance(comp.elt, ast.Call) and comp.elt.func.id == "emitted"
+        record.update(target_read_names=wanted, target_bound_names=[],
+                      literal_iteration_cardinality=cardinality,
+                      handler_tag="NameError",
+                      event_order_basis="target assignment precedes emitted element call")
+    elif case["schedule_id"] in {"R05", "R06"}:
+        local = class_local(source_method.body)
+        assert isinstance(assigned(source_method.body, "benign"), ast.GeneratorExp)
+        assert isinstance(assigned(local.body, "a"), ast.GeneratorExp)
+        assert isinstance(assigned(local.body, "b"), ast.GeneratorExp)
+        first, second = assigned(local.body, "first"), assigned(local.body, "chosen")
+        assert isinstance(first, ast.IfExp) and isinstance(second, ast.IfExp)
+        assert (first.test.attr, first.body.id, first.orelse.id) == ("left", "a", "b")
+        assert (second.test.attr, second.body.id, second.orelse.id) == ("right", "first", "benign")
+        assert all(assigned(source_cls.body, n).value is True for n in ("left", "right"))
+        consume = local.body[-1].value
+        assert isinstance(consume, ast.Call) and consume.func.id == "list"
+        assert consume.args[0].id == "chosen"
+        assert assigned(local.body, "armed").value is False
+        record.update(ordinary_generator_outside_class=True,
+                      class_generator_count=2, conditional_join_count=2,
+                      concrete_selection=["a", "first"],
+                      consumer="in-class list(chosen)")
+    else:
+        local = class_local(source_method.body)
+        assert assigned(source_method.body, "armed").value is True
+        items = assigned(source_method.body, "items")
+        assert isinstance(items, ast.List) and not items.elts
+        assert assigned(local.body, "armed").value is False
+        pending = assigned(local.body, "pending")
+        assert isinstance(pending, ast.GeneratorExp)
+        assert pending.generators[0].iter.id == "items"
+        branch = next(n for n in local.body if isinstance(n, ast.If))
+        assert branch.test.id == "grow"
+        append = branch.body[0].value
+        assert (append.func.value.id, append.func.attr, append.args[0].value
+                ) == ("items", "append", 0)
+        assert assigned(local.body, "grow").value is (case["schedule_id"] == "R07")
+        consume = local.body[-1].value
+        assert consume.func.id == "tuple" and consume.args[0].id == "pending"
+        record.update(initial_list_cardinality=0,
+                      append_reached=case["schedule_id"] == "R07",
+                      consumer="in-class tuple(pending)",
+                      event_order_basis="creation, optional append, full consumption")
+    records.append(record)
+    source_methods.append(source_method)
+print(json.dumps({
+    "schema": "pontius-class-comprehension-extension-static-v1",
+    "static_only": True, "candidate_imported": False, "sensitive_source_executed": False,
+    "models_executed": False, "analyzer_called": False,
+    "runtime": list(sys.version_info[:3]), "executable": sys.executable,
+    "flags": {"isolated": bool(sys.flags.isolated), "no_site": bool(sys.flags.no_site),
+              "dont_write_bytecode": bool(sys.flags.dont_write_bytecode),
+              "safe_path": bool(sys.flags.safe_path)},
+    "pins": PINS, "planned_cases": 8, "planned_projections": 8,
+    "classifications": pack["classifications"], "case_records": records,
+    "same_identity_marker_inventory_only": True,
+    "native_shape_poisoning_unexecuted_risk_only": True,
+    "all_static_assertions_passed": True
+}, indent=2, sort_keys=True))

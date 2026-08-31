@@ -1,0 +1,227 @@
+{
+  "all_static_assertions_passed": true,
+  "analyzer_called": false,
+  "candidate_imported": false,
+  "case_records": [
+    {
+      "declared_trace": [
+        "eager-start",
+        "target-completed",
+        "eager-end"
+      ],
+      "event_order_basis": "target assignment precedes emitted element call",
+      "handler_tag": "NameError",
+      "id": "R01-attribute-receiver-unsafe",
+      "literal_iteration_cardinality": 1,
+      "oracle_sha256": "a78d8933dfada1884e48034eebe1e711a78c7d4bbc84c22a5a97e7406124298e",
+      "source_model_ast_equal": true,
+      "source_sha256": "6edf3cee2502d7c3b6b029928bddb3adf68c84cca8fd6b5e724547d45f20b4e8",
+      "target_bound_names": [],
+      "target_read_names": [
+        "owner"
+      ],
+      "unreachable_events": [
+        "handler",
+        "sink"
+      ]
+    },
+    {
+      "declared_trace": [
+        "eager-start",
+        "eager-end",
+        "sink"
+      ],
+      "event_order_basis": "target assignment precedes emitted element call",
+      "handler_tag": "NameError",
+      "id": "R02-attribute-receiver-dormant",
+      "literal_iteration_cardinality": 0,
+      "oracle_sha256": "10f022b76f1a273b524f09f4eb70b06ab29c9dcd13ea8a6b86b963c13d4d9b87",
+      "source_model_ast_equal": true,
+      "source_sha256": "4975dacd0b9f15df52fbb6e59f957f0de13c2eaad4253f5f88d54d61b4ad8de6",
+      "target_bound_names": [],
+      "target_read_names": [
+        "owner"
+      ],
+      "unreachable_events": [
+        "handler",
+        "target-completed"
+      ]
+    },
+    {
+      "declared_trace": [
+        "eager-start",
+        "target-completed",
+        "eager-end"
+      ],
+      "event_order_basis": "target assignment precedes emitted element call",
+      "handler_tag": "NameError",
+      "id": "R03-indexed-receiver-unsafe",
+      "literal_iteration_cardinality": 1,
+      "oracle_sha256": "5c41be658a0e979c60f7f6fc86295490d70f12d1d8559f31c5231b4af66d9bb3",
+      "source_model_ast_equal": true,
+      "source_sha256": "67f37de66ebede2f73a18a8a345b93b9d5e3ce6f9461c1caf7e65b786038f8fd",
+      "target_bound_names": [],
+      "target_read_names": [
+        "index",
+        "owners"
+      ],
+      "unreachable_events": [
+        "handler",
+        "sink"
+      ]
+    },
+    {
+      "declared_trace": [
+        "eager-start",
+        "eager-end",
+        "sink"
+      ],
+      "event_order_basis": "target assignment precedes emitted element call",
+      "handler_tag": "NameError",
+      "id": "R04-indexed-receiver-dormant",
+      "literal_iteration_cardinality": 0,
+      "oracle_sha256": "29988e6fe0921aeead7e343be322b2094a9adb069a9dde8618e8a345bca5a28c",
+      "source_model_ast_equal": true,
+      "source_sha256": "e28baae649a65086b352c8e019c6e38b37fc60f1b3a439cc2d12ee56464bc321",
+      "target_bound_names": [],
+      "target_read_names": [
+        "index",
+        "owners"
+      ],
+      "unreachable_events": [
+        "handler",
+        "target-completed"
+      ]
+    },
+    {
+      "class_generator_count": 2,
+      "concrete_selection": [
+        "a",
+        "first"
+      ],
+      "conditional_join_count": 2,
+      "consumer": "in-class list(chosen)",
+      "declared_trace": [
+        "ordinary-created",
+        "class-a-created",
+        "class-b-created",
+        "first-join",
+        "second-join",
+        "consume",
+        "read",
+        "write",
+        "consume-end"
+      ],
+      "id": "R05-nested-generator-join-unsafe",
+      "oracle_sha256": "48123447d0262830a2e90b6d98dcc0ba5344f404db0e66b03094ee2d8f0309de",
+      "ordinary_generator_outside_class": true,
+      "source_model_ast_equal": true,
+      "source_sha256": "eea797edcae02ae2841b1fece96b8f05c6f6443fb0578e6bf72bb051f01ea4c1",
+      "unreachable_events": [
+        "sink"
+      ]
+    },
+    {
+      "class_generator_count": 2,
+      "concrete_selection": [
+        "a",
+        "first"
+      ],
+      "conditional_join_count": 2,
+      "consumer": "in-class list(chosen)",
+      "declared_trace": [
+        "ordinary-created",
+        "class-a-created",
+        "class-b-created",
+        "first-join",
+        "second-join",
+        "consume",
+        "read",
+        "consume-end",
+        "sink"
+      ],
+      "id": "R06-nested-generator-join-safe",
+      "oracle_sha256": "f67d2c9cefbf5942af2cd5c632e7b9de038a86c585b9a43f97f9cbca5582fb0d",
+      "ordinary_generator_outside_class": true,
+      "source_model_ast_equal": true,
+      "source_sha256": "14fe24d5849a842d766de22df124e6461b2a684e84acfaa5f972c7f528a162ea",
+      "unreachable_events": [
+        "write"
+      ]
+    },
+    {
+      "append_reached": true,
+      "consumer": "in-class tuple(pending)",
+      "declared_trace": [
+        "generator-created",
+        "append",
+        "consume",
+        "read",
+        "write",
+        "consume-end"
+      ],
+      "event_order_basis": "creation, optional append, full consumption",
+      "id": "R07-initially-empty-generator-grown-unsafe",
+      "initial_list_cardinality": 0,
+      "oracle_sha256": "079c251c1da8b63ababba21c67c703a9de76c0e27f13536e69f64f73a6d5edb8",
+      "source_model_ast_equal": true,
+      "source_sha256": "8ffe6d883ce7a1291b0944243037d241fea2563a353ddc5a2382d439ab1629ad",
+      "unreachable_events": [
+        "sink"
+      ]
+    },
+    {
+      "append_reached": false,
+      "consumer": "in-class tuple(pending)",
+      "declared_trace": [
+        "generator-created",
+        "consume",
+        "consume-end",
+        "sink"
+      ],
+      "event_order_basis": "creation, optional append, full consumption",
+      "id": "R08-initially-empty-generator-dormant",
+      "initial_list_cardinality": 0,
+      "oracle_sha256": "ec079697e94bb207891de67a067ae143ba3e2bf6b59e858725ac8aba37fd9410",
+      "source_model_ast_equal": true,
+      "source_sha256": "84fdfe75baa512037e5096678ddf41374229f7687f8578de2e5f5bee975207a1",
+      "unreachable_events": [
+        "append",
+        "read",
+        "write"
+      ]
+    }
+  ],
+  "classifications": {
+    "clean": 3,
+    "permitted-refusal": 1,
+    "refuse": 4
+  },
+  "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+  "flags": {
+    "dont_write_bytecode": true,
+    "isolated": true,
+    "no_site": true,
+    "safe_path": true
+  },
+  "models_executed": false,
+  "native_shape_poisoning_unexecuted_risk_only": true,
+  "pins": {
+    "class-comprehension-boundary-cases-v1.json": "9df895eb5bd645a5e4ef05be0f7c0a3db76df458ca023bbfbd36407ee3496b71",
+    "class-comprehension-boundary-spec-v1.md": "8a4220e2a9f41a4171c585f6f5fa36ace1e22fb38e8849f96cd29a490facea82",
+    "class-comprehension-extension-cases-v1.json": "eb5551c054fc89da28fd2e4db433f56f7a3dbbd4cdb70509070a89fe362c74fd",
+    "class-comprehension-extension-spec-v1.md": "ed292bcf0207aad474e8293cf055c17de6409b9d851f95a8b8225d4375848dc6",
+    "class-comprehension-v23-engineering-review-codex-a-v1.md": "84461f44efa2da40cfc8729a0d80eb45c0266e4e88a67d88d9d7703c955d44cc"
+  },
+  "planned_cases": 8,
+  "planned_projections": 8,
+  "runtime": [
+    3,
+    11,
+    15
+  ],
+  "same_identity_marker_inventory_only": true,
+  "schema": "pontius-class-comprehension-extension-static-v1",
+  "sensitive_source_executed": false,
+  "static_only": true
+}

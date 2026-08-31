@@ -1,4 +1,21 @@
-# C authority repair: current checkpoint
+"""Replace mutable navigation with a concise current checkpoint; preserve its prior text."""
+from pathlib import Path
+import hashlib
+import json
+
+T = Path(r"D:\Pontius-handoffs\v0a-i01-c-authority")
+h = lambda raw: hashlib.sha256(raw).hexdigest()
+current = T / "CURRENT.md"
+before = current.read_bytes()
+assert h(before) == "72bfc37aacf1dd32d307d9537c50626cc031f645a2b5f2ddfaf65f4f059a80bf"
+pins = {
+    "coordinator-v26-depth-budget-verification-v1.json": "2e729e903ed0f0c869e88aa595d62bc0da5a2f3a47d29962f901a4865a87bf30",
+    "coordinator-v26-r8-verification-v1.json": "181248855d1947c775d21728ed3ae5c2bb62b7deb15604154f88b95290e89bac",
+    "engineer-generator-v25-semantic-plan-v1.md": "39807c39a14e6f2009ffa69f5f09604c8354c1043a09be6c63e5982412621c2d",
+    "engineer-generator-v25-semantic-plan-v2.md": "e2ed7f88a6c081be3ec54556e47a327ce1ea2d336e55200e788857cfec099bb8",
+}
+assert all(h((T / name).read_bytes()) == pin for name, pin in pins.items())
+after = """# C authority repair: current checkpoint
 
 2026-08-31. Navigation only, not a frozen handoff, evidence seal, acceptance
 result or reviewer verdict. Reviews bind to a git snapshot ref and manifest
@@ -94,3 +111,18 @@ No guarded profile, GPU execution, experiment owner or live15-second action-wall
 claim is authorized. Earlier checkpoint details and links are retained in
 [the prior navigation](coordinator-navigation-v12-before-v13.md); all issued
 candidate, failure, raw evidence and review artifacts remain immutable.
+""".encode()
+report = {"schema": "coordinator-navigation-v13", "before_sha256": h(before), "after_sha256": h(after),
+          "pins": pins, "production_source_changed": False, "payload_running": False,
+          "semantic_authoring": "T-only v25 source authorized; no payload/W/main lease",
+          "storage_authoring": "Measured remedy plan only, no optimization source authorized",
+          "prior_navigation_retained": "coordinator-navigation-v12-before-v13.md"}
+outputs = {"coordinator-navigation-v12-before-v13.md": before,
+           "coordinator-update-authority-navigation-v13.py": Path(__file__).read_bytes(),
+           "coordinator-navigation-v13.json": (json.dumps(report, indent=2) + "\n").encode()}
+assert not any((T / name).exists() for name in outputs)
+for name, raw in outputs.items():
+    with (T / name).open("xb") as stream:
+        stream.write(raw)
+current.write_bytes(after)
+print(json.dumps({"navigation_sha256": h(after), "old_navigation_retained": True, "source_changed": False}))

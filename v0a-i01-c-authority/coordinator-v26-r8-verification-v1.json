@@ -1,0 +1,51 @@
+{
+  "schema": "coordinator-v26-r8-verification-v1",
+  "v26": {
+    "receipt_sha256": "284ddc5bbadbcc2f46c89b8a0ae782eeadade716090d3788ae122d591b1ef7fe",
+    "source_sha256": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+    "snapshot": "D:\\pontius-snapshots\\focused-authority-1133dca7c2674491988f1779c196f98a\\snapshot",
+    "files_rehashed": 1766,
+    "tests_run": 53,
+    "passed": 50,
+    "failed": [
+      "focused_frozen_tests.DesignReviewTests.test_analysis_budgets_contain_deep_helpers_and_invalid_ranges",
+      "focused_frozen_tests.DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent (boundary='helper-depth')",
+      "focused_frozen_tests.DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+    ],
+    "errors": 0,
+    "interpretation": "Slot-construction failure fixed. All three remaining failures are work-cap refusal before required depth checks; real adapter fitness still rejected. No matrix/dev/corpus expansion."
+  },
+  "r8": [
+    {
+      "slot": "311",
+      "receipt_sha256": "5c56ae9cc8a0c6a46be61e10ca7786505caa8173145878d18df0842ddc62add1",
+      "snapshot": "D:\\pontius-snapshots\\class-comprehension-extension-dda96d2e08f84641953e08bb7cbc667b\\snapshot",
+      "files_rehashed": 1768,
+      "cases": 8,
+      "passed": 4,
+      "wrong_clean_cases": [
+        "R01-attribute-receiver-unsafe",
+        "R03-indexed-receiver-unsafe",
+        "R05-nested-generator-join-unsafe",
+        "R07-initially-empty-generator-grown-unsafe"
+      ]
+    },
+    {
+      "slot": "314",
+      "receipt_sha256": "6df879fcdf435dda1ba5a234ab2f41eaf6f0358e028789985c5d68b11e1267e8",
+      "snapshot": "D:\\pontius-snapshots\\class-comprehension-extension-5f853bbc31674b43ace1b57a68164547\\snapshot",
+      "files_rehashed": 1773,
+      "cases": 8,
+      "passed": 4,
+      "wrong_clean_cases": [
+        "R01-attribute-receiver-unsafe",
+        "R03-indexed-receiver-unsafe",
+        "R05-nested-generator-join-unsafe",
+        "R07-initially-empty-generator-grown-unsafe"
+      ]
+    }
+  ],
+  "r8_complete_case_records_equal_across_interpreters": true,
+  "payload_executed_by_verifier": false,
+  "disposition": "Both lanes remain rejected. v26 requires measured cost diagnosis; v25 semantic implementation awaits plan review. Preserve every fixed expectation and all failed predecessors."
+}

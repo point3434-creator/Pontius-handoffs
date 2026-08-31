@@ -1,0 +1,39 @@
+{
+  "schema": "coordinator-depth-budget-v3-inspection-v1",
+  "pins": {
+    "engineer-depth-budget-probe-v3.py": "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae",
+    "tests-depth-budget-control-v3.py": "91533776e028ad57513611940423cd1cb2c6d8c0d85f8cafd49f089ebfd9e2d7",
+    "engineer-depth-budget-probe-v2.py": "8db7415b97750e8880b25351be76b6fdf75d767a03a3a589d739113a73b6cae0",
+    "tests-depth-budget-control-v2.py": "bbdc550c042fe62c8c19e838ffe35a9cabc09f22fdd4d941bdb0d9d0a41599a5",
+    "engineer-depth-budget-v3-dispatch-spec-v1.md": "1b51a57c139f8c5f8743579ce56cf9c1d4b31b3b1ee7f4c5a9390e92d27ad640",
+    "engineer-depth-budget-v3-static-v1.json": "45b0b5503145ed4be2f3874975681c24ed35e8561fb89d64ebe7fc1e15b75e8f",
+    "engineer-generator-v26-storage.py": "1f908957ee43d5841f8da09e306bd52dc5efeca9609a5d522e76df22b4dcd951",
+    "coordinator-preservation-baseline-v2.json": "a2f848258a6f7622161e92962b594568400bc4582bb32461aedd3c41a85d768e"
+  },
+  "old_two_fixture_builders_ast_equal": true,
+  "helper65_original_builder_ast_equal": true,
+  "original_consume_delegation_exact_after_scalar_event_removal": true,
+  "unchanged_control_functions": [
+    "require",
+    "digest",
+    "is_sha",
+    "checked",
+    "retained",
+    "pinned",
+    "json_bytes",
+    "create",
+    "save",
+    "environment_for",
+    "git",
+    "names",
+    "hashes",
+    "records",
+    "arguments"
+  ],
+  "wrapper_only_adds_helper65": true,
+  "all_17_preserved_paths_rehashed": true,
+  "payload_executed_or_imported": false,
+  "inspection_correction": "Initial unissued static verifier assumed the helper65 builder was a top-level method statement. It failed before any output or payload; corrected to find its unique enclosing subtest body and compare the exact contiguous construction AST.",
+  "manual_review": "Read complete probe, complete changed controller and both predecessor diffs. Raw publication fields and bulk counts inspect exact builtins/private scalar fields only; original operations delegate once. Component sums are disjoint; preparation deltas are inclusive and must never be added to them. Failed publication costs become final only after unwind. No new seed or budget behavior.",
+  "disposition": "Authorize root-serialized three exact fixture diagnostics on real311, fresh detached snapshots and retained raw receipts, 60s direct child watchdog each. No other tests, optimization, dev slot, W or main integration."
+}
