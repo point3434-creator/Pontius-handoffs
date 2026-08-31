@@ -1,0 +1,49 @@
+{
+  "Model_count": 8,
+  "fixed_case_ids": [
+    "shared-list-consumed",
+    "shared-list-dormant",
+    "class-adoption-unsafe",
+    "class-adoption-safe",
+    "hidden-cell-joined-reached",
+    "hidden-cell-joined-dormant"
+  ],
+  "independent_harness_disposition_still_required_before_dispatch": true,
+  "inputs": {
+    "rewrite-early-population-v1.json": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce",
+    "rewrite-r1-base-generator.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "rewrite-r1-category-review-v1.md": "f04eedf4de32550cb3d4e02e310eeed85f5963ba4621ea7de430b8cae125522a",
+    "rewrite-r1-implementation-plan-v1.md": "18f8124432880016d6dd0690ed4d3b582b8e202c5bdda21ae48a65efa0ae521d",
+    "tests-checks/name-environment-cases-v1.json": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+    "tests-checks/name-environment-probe-v1.py": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4",
+    "tests-checks/original-composition-ten-control-v1.py": "20f196243e078ef542628b6a400ab2266443c1b1d918327ee14004f98e564bb4",
+    "tests-checks/original-composition-ten-probe-v1.py": "e2564b1d1d61c0a92e449f80eb5118eb72141b3fabd9022cf2b2881d1c56927e",
+    "tests-checks/rewrite-r1-control-v1.py": "9310da3cecabaae0127fb6562a15b388355f722c35dcd5abbd2b039fd0f4d48c",
+    "tests-checks/rewrite-r1-handoff-v1.md": "cdea6c9dcd3cb91755223178e9114b026edc5625849d641a2d58dbcedd5756d6",
+    "tests-checks/rewrite-r1-observer-map-v1.json": "af8df00ceb6b02bb5730eee56754ce78badcab6102ce861d726eed704522bfbd",
+    "tests-checks/rewrite-r1-plan-v1.md": "8cec0f3af002f04b20c82dee62d29f0601a87047249ab2dfcde5a164ca73826d",
+    "tests-checks/rewrite-r1-probe-v1.py": "c0672ac61fa19b5dd3d46fc6c0dbbdaae4565c610e7e658619c738559fb27395",
+    "tests-checks/rewrite-r1-static-v1.json": "49414e161aca661bc6c3c302564b5982759ca5ec23618b71dd0cba19568ada97",
+    "tests-checks/storage-composition-cases-v1.json": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709"
+  },
+  "kind": "coordinator static review; no candidate or Model imported",
+  "predecessor_static_failure": "v1 changed an AST function name in place during comparison, causing later duplicate-name assertion; no outputs/payload. v2 compares copies.",
+  "preserved_AST": {
+    "controller_checked": true,
+    "controller_create": true,
+    "controller_environment": true,
+    "controller_file_hashes": true,
+    "controller_git": true,
+    "controller_write_json": true,
+    "name_project_oracles": true,
+    "name_public_review": true,
+    "probe_control_load_cases": true,
+    "probe_control_public_verdict": true,
+    "probe_control_validate_budget_metrics": true,
+    "storage_Model": true,
+    "storage_public": true
+  },
+  "public_count": 6,
+  "runtime_executed": false,
+  "source_edits_authorized_now": false
+}

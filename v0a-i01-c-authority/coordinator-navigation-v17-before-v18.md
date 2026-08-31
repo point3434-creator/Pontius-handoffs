@@ -85,16 +85,3 @@ The combined [design manifest v2](rewrite-design-manifest-v2.sha256) includes th
 clarification, rereview and population. Category/API implementation planning,
 operation accounting and a reviewed controller still precede production edits/runs.
 [Navigation before this addendum](coordinator-navigation-v16-before-v17.md).
-
-## R1 implementation preparation
-
-The controller said to proceed. The isolated r010 worktree is prepared; the
-[concrete plan](rewrite-r1-implementation-plan-v1.md) and [coordinator disposition](rewrite-r1-plan-disposition-v1.md)
-define the sole source writer, public-path replacement, accounting and2500-line
-first-attempt boundary. [Static checks](coordinator-rewrite-r1-static-v1.json)
-confirm the six original public cases/eight Models and preserved harness helpers.
-[The preparation manifest](rewrite-r1-preparation-manifest-v1.sha256) freezes
-the exact plan/harness/baseline inputs. Independent harness review and root
-baseline dispatch still precede source GO. No replacement source or payload
-has been executed at this entry; it does not imply implementation acceptance.
-See [R1 progress](rewrite-r1-progress.md); [prior navigation](coordinator-navigation-v17-before-v18.md).

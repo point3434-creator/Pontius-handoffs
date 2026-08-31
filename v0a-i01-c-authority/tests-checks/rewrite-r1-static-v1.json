@@ -1,0 +1,71 @@
+{
+  "Model_projections": 8,
+  "candidate_or_Model_imported": false,
+  "classifications": {
+    "clean": 2,
+    "permitted-refusal": 1,
+    "refuse": 3
+  },
+  "control_sha256": "9310da3cecabaae0127fb6562a15b388355f722c35dcd5abbd2b039fd0f4d48c",
+  "deltas": {
+    "control": "4763694e0430cd0abd84c7a946b343236419e8dc2184ee00f569d959b7847b5c",
+    "probe": "a9078e6be36c468a321b2484e4ddcb6ed1986a54e290466dd3ff0778cbba88a2"
+  },
+  "gate": "A",
+  "observer_map_sha256": "af8df00ceb6b02bb5730eee56754ce78badcab6102ce861d726eed704522bfbd",
+  "ordered_case_ids": [
+    "shared-list-consumed",
+    "shared-list-dormant",
+    "class-adoption-unsafe",
+    "class-adoption-safe",
+    "hidden-cell-joined-reached",
+    "hidden-cell-joined-dormant"
+  ],
+  "original_consume_source_segment_sha256": "d910a8af42711e5130b93af9e55b8917dbd8b48433e29e1ab3cd51df63b7af5c",
+  "original_inputs": {
+    "rewrite-early-population-v1.json": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce",
+    "rewrite-r1-base-generator.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692",
+    "tests-checks\\name-environment-cases-v1.json": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c",
+    "tests-checks\\name-environment-probe-v1.py": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4",
+    "tests-checks\\original-composition-ten-control-v1.py": "20f196243e078ef542628b6a400ab2266443c1b1d918327ee14004f98e564bb4",
+    "tests-checks\\original-composition-ten-probe-v1.py": "e2564b1d1d61c0a92e449f80eb5118eb72141b3fabd9022cf2b2881d1c56927e",
+    "tests-checks\\storage-composition-cases-v1.json": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709"
+  },
+  "payload_executed": false,
+  "plan_sha256": "8cec0f3af002f04b20c82dee62d29f0601a87047249ab2dfcde5a164ca73826d",
+  "population_sha256": "3dd0ec8b6130b38d5138724b43e233e4e1a3e595f089c182291b00912d8423ce",
+  "preservation": {
+    "budget_validation_probe_control_equal": true,
+    "controller_checked_unchanged": true,
+    "controller_create_unchanged": true,
+    "controller_environment_unchanged": true,
+    "controller_file_hashes_unchanged": true,
+    "controller_git_unchanged": true,
+    "controller_write_json_unchanged": true,
+    "load_cases_probe_control_equal": true,
+    "name_Model_runner": true,
+    "name_public_function": true,
+    "probe_canonical_unchanged": true,
+    "probe_checked_unchanged": true,
+    "probe_digest_unchanged": true,
+    "probe_hashes_unchanged": true,
+    "probe_require_unchanged": true,
+    "public_verdict_probe_control_equal": true,
+    "storage_Model_runner": true,
+    "storage_public_function_body_and_signature": true
+  },
+  "probe_sha256": "c0672ac61fa19b5dd3d46fc6c0dbbdaae4565c610e7e658619c738559fb27395",
+  "public_case_count": 6,
+  "schema": "pontius-rewrite-r1-harness-static-v1",
+  "source_fixtures_regenerated": false,
+  "static_runtime": [
+    3,
+    11,
+    15
+  ],
+  "unexecuted_status": "AST/hash/provenance checks only; runtime custody and observer behavior remain review/run obligations",
+  "worktree_watches_at_authoring": {
+    "D:\\Pontius-worktrees\\codex-v0a-i01-c-authority-v1\\tools\\generate_test_inventory.py": "e61b3a067c67fe35e120ecfbb70f40606e737e4a03a607df94db3afb0c2dd679",
+    "D:\\Pontius-worktrees\\codex-v0a-i01-c-core-v1\\tools\\generate_test_inventory.py": "29c49c61a632665544e067eb3612039b0828979d21bbc5fd04f6ea5dc2630692"
+  }
+}
