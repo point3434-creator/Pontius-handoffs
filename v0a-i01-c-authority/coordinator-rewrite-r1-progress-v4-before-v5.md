@@ -75,22 +75,3 @@ post-Gate-A source disposition. The private-API compatibility inventory identifi
 three original test roots that constrain later removal; neither test migration
 nor keeping an alternate old engine has been authorized. No new population,
 changed cap, runtime claim, broad suite or main integration at this checkpoint.
-
-
-## R1 Gate A completed on both interpreters
-
-The corrected canonical source is frozen at H b1d15de062ac45c351f0254b358ee1e5fc35bdee,
-manifest beb50fab0fe159249de1397529b78a71e2b176b8e3643ea64ccb37dbf1a1c15a,
-source c8fc013d2be7599aa41b873552dd2a11191f2be1342d1a8f2bd04a39dc1dbd5f.
-Its two engineering source reviews closed the bounded corrections. Root then
-ran the unchanged six-case/eight-Model Gate A on actual3.11.15 and3.14.6; both
-passed with independent receipt/snapshot/accounting verification. The two
-original class-adoption failures are corrected. See [the result record](rewrite-r1-gate-a-core01-results-v1.md).
-
-The largest epoch is6692 under the unchanged262144 cap. Both hidden cases
-refuse unproved truth before a join: no joined-cell or branch-scaling claim.
-R2 planning is next; the original Gate B remains held for its recorded missing
-comparison premise and a separately frozen correction. No broad suite, original
-test migration, main integration, final cold acceptance or live-hand result yet.
-Source remains held while the next plan is reviewed. Earlier entries describe
-their historical checkpoints and are not relabeled by this addendum.
