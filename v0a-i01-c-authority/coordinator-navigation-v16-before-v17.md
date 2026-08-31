@@ -68,20 +68,3 @@ authorization. No guarded/GPU run or live15000 ms product result is implied.
 
 [Previous navigation](coordinator-navigation-v15-before-v16.md) preserves the
 earlier status, including what was still in progress at that checkpoint.
-
-## Final design review and exact early population
-
-The [bounded rereview](rewrite-design-engineering-rereview-codex-a-v2.md) verified
-the frozen design pair and found all six concerns addressed. Its comprehension
-wording clarification is retained in [the scope addendum](rewrite-scope-clarification-v1.md):
-implicit comprehension locals belong to their own frame; free-name lookup skips
-the class namespace. Read that addendum with the v1 design; issued bytes are unchanged.
-
-[The early population](rewrite-early-population-v1.json) binds exactly Gate A6 and
-Gate B12 to the original cases and depth assertions. [Static verification](coordinator-rewrite-population-verification-v1.json)
-rehashes12 whole inputs,10 source/Model case records and36 original source spans.
-No payload ran. These are design checks, not implementation or performance results.
-The combined [design manifest v2](rewrite-design-manifest-v2.sha256) includes the
-clarification, rereview and population. Category/API implementation planning,
-operation accounting and a reviewed controller still precede production edits/runs.
-[Navigation before this addendum](coordinator-navigation-v16-before-v17.md).

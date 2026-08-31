@@ -1,0 +1,1091 @@
+{
+  "authoring": {
+    "actual_static_runtime": [
+      3,
+      11,
+      15
+    ],
+    "candidate_imported": false,
+    "date": "2026-08-31",
+    "harness_or_controller_authored": false,
+    "mode": "raw hashes, JSON selection and AST-only extraction",
+    "payload_executed": false,
+    "source_fixture_regenerated": false,
+    "test_or_model_module_executed": false
+  },
+  "budget_scope": {
+    "epochs": "all original _AnalysisBudget creations and requests for each case, matched by creation stage/owner/item/stack",
+    "failures": "include every actual requested charge through refusal; invent none if a depth check raises without consume",
+    "forbidden": [
+      "enabled-only totals",
+      "new resets/splits/refunds to pass",
+      "hidden preparation",
+      "N-value ambient reconstruction at unchanged forks/D0 joins",
+      "old-core or fixture-ID dispatch"
+    ],
+    "historical_epoch_numbers_are_not_filters": {
+      "v26_generator70": 6,
+      "v26_helper65": 7
+    },
+    "included_semantic_paths": [
+      "definition-time protocol",
+      "unittest entry preflight",
+      "direct review-flow entry",
+      "source-ordered helper return",
+      "main helper analysis",
+      "ordered observation and deferred consumption"
+    ],
+    "ordered_names": "legitimately demanded ordered-name reads remain charged; do not equate them with forbidden value reconstruction",
+    "report": [
+      "all epoch initial/requested/final totals",
+      "maximum epoch",
+      "sum across epochs",
+      "actual operation categories",
+      "disjoint versus inclusive cost views",
+      "matched semantic entry and current candidate identity"
+    ]
+  },
+  "cases": {
+    "class-adoption-safe": {
+      "case_json_pointer": "/cases/3",
+      "case_record_canonical_sha256": "56193de96e29a76851545238da934140d2df9fe308fe98040d5342d70249ad8d",
+      "classification": "clean",
+      "envelope_ref": "storage_composition_public",
+      "expected_data_canonical_sha256": "6a8035339cf00aec4b7a762515876d1d255d0c9259f58be6768b8df61af8c197",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "expected",
+        "required_argv"
+      ],
+      "id": "class-adoption-safe",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 620,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/3/oracle_source",
+        "sha256": "54473e1ffaac03fc71908c88cc3c58610abfa6d6efee0e4d62d608dd7be00c7a"
+      },
+      "model_projection_count": 1,
+      "pack_ref": "tests-checks/storage-composition-cases-v1.json",
+      "required_argv": [
+        [
+          "-m",
+          "outer"
+        ]
+      ],
+      "source": {
+        "bytes": 641,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/3/source",
+        "sha256": "bc61e68f1e78d1ef22f2220290373ce90a5dff7e8bcad33e6b6a8248fca6e1b0"
+      },
+      "unreachable_events": [
+        "write"
+      ]
+    },
+    "class-adoption-unsafe": {
+      "case_json_pointer": "/cases/2",
+      "case_record_canonical_sha256": "a276469f14d5c3e62cba93067977eb3f6203f1b98642f1a5dd0ea9473983d207",
+      "classification": "refuse",
+      "envelope_ref": "storage_composition_public",
+      "expected_data_canonical_sha256": "b0a1a3dad5d374071fe6fc96a1976236cda22912bd3314f9dd6413fa1de3cd3c",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "expected",
+        "required_argv"
+      ],
+      "id": "class-adoption-unsafe",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 620,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/2/oracle_source",
+        "sha256": "6053e9c3f2ae6635419d6086685e4949dd42618026ad2ff2fd8c5fffb7b8492e"
+      },
+      "model_projection_count": 1,
+      "pack_ref": "tests-checks/storage-composition-cases-v1.json",
+      "required_argv": null,
+      "source": {
+        "bytes": 641,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/2/source",
+        "sha256": "93e8441aae07fff28276b4a6c4336d940cdd8fdc166179695e3aac1e9e284fb9"
+      },
+      "unreachable_events": [
+        "sink"
+      ]
+    },
+    "generator70": {
+      "builder_AST_correspondence_verified_without_execution": true,
+      "classification": "exact-depth-error",
+      "envelope_ref": "original_design_review",
+      "fixture_owner": {
+        "ast_sha256": "4841b9b345476773e87678d73fd2539a51ebd17010ae3faa1cbfa202257b101d",
+        "end_line": 14557,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 35172,
+        "source_span_sha256": "cfe079962b34fac82554b8ffe42013011f39ad820ce2efc91f1f99ccd50fb3d6",
+        "start_line": 13570,
+        "symbol": "DesignReviewTests._fix15_frozen_review_boundary_contracts"
+      },
+      "historical_fixture_receipt": {
+        "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\depth-budget-v26-cost01-generator70-311-receipt.json",
+        "sha256": "14351189ec337a045a8e812174bad3f018901804d4f52c72b1929bbdc950f366"
+      },
+      "id": "generator70",
+      "kind": "existing_original_depth_case",
+      "method_to_owner_call_edge": {
+        "AST_verified": true,
+        "callee": "_fix15_frozen_review_boundary_contracts",
+        "caller": "test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+      },
+      "model": null,
+      "model_projection_count": 0,
+      "oracle": {
+        "exception": "InventoryError",
+        "kind": "original InventoryError assertion",
+        "regex": "^analysis deferred generator depth exceeds 64$",
+        "work_cap_error_is_substitute": false
+      },
+      "original_assertion_block": {
+        "ast_sha256": "5edb15c29ce05209cefe6d5677c8174089bfb04523073a836dd62addae9b8318",
+        "end_line": 14557,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 264,
+        "source_span_sha256": "ee90c7b72bdbc19656d51e03b577d1bcfd735855253b7beca174a9fe3fcc97ea",
+        "start_line": 14551,
+        "symbol": "generator70 exact assertion"
+      },
+      "original_builder_fragments": [
+        {
+          "ast_sha256": "d5a2f4cb7dba1e7f5d4526f7f58fec1de3c79c4594a11e4fc400f10d076c0737",
+          "end_line": 14535,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 345,
+          "source_span_sha256": "a7a712847aa5498e1b0d0966491a38a7b05437539c6ad065c637c00aa922b286",
+          "start_line": 14528,
+          "symbol": "chained_source"
+        },
+        {
+          "ast_sha256": "6b6b428b9678a8816bba9c0af20670146da8c051048e32d8bc2611b7e38abe2d",
+          "end_line": 14550,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 312,
+          "source_span_sha256": "049e1956e94a0bd12e97527da9a6b2a672f681ca53e74f8630b39841dc95216e",
+          "start_line": 14543,
+          "symbol": "generator70 deep_source"
+        }
+      ],
+      "original_method": {
+        "ast_sha256": "bb7a616f6b3e71d8305e4007405f0393719f7304fac4ffb5d4d689460eaa8756",
+        "end_line": 19897,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 19217,
+        "source_span_sha256": "4a486c325b519cc56dd14192c3f794816ba95aea569d9595d01ca414aad9f468",
+        "start_line": 19419,
+        "symbol": "DesignReviewTests.test_round4_source_order_and_branch_bounds_red_contracts_are_independent"
+      },
+      "original_review_call": {
+        "ast_sha256": "bc2ec66e43300a673c35ce89dd992ffc8c9ba9caff011dc1a4d063fd386c10c0",
+        "end_line": 14557,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 111,
+        "source_span_sha256": "7bd949a440ff0394a95bf737428f5b94a81d79f9294d6eb0dcac84650a60e5d4",
+        "start_line": 14555,
+        "symbol": "generator70 _review invocation"
+      },
+      "original_test_module_ref": "original_test_module",
+      "retained_equivalent_builder": {
+        "ast_sha256": "655e34130d9445bebc00d1be6ccb15d050183a56240fb832d46db85633c4febb",
+        "end_line": 497,
+        "source_ref": "engineer-depth-budget-probe-v3.py",
+        "source_span_bytes": 558,
+        "source_span_sha256": "1a754a6122c3dec48989f9c65b5075eef878e815b9db6278be87d3b504a30cf0",
+        "start_line": 489,
+        "symbol": "generator70_source"
+      },
+      "source": {
+        "bytes": 3142,
+        "execution": "static analysis only",
+        "hash_evidence_case": "generator70",
+        "hash_evidence_ref": "coordinator-v26-depth-budget-verification-v1.json",
+        "regenerated": false,
+        "sha256": "635e682b2253cd44201e2afdb95c288b9973f5629ec4eeb3c5bfd078743eb5e3"
+      }
+    },
+    "helper65": {
+      "builder_AST_correspondence_verified_without_execution": true,
+      "classification": "exact-depth-error",
+      "envelope_ref": "original_design_review",
+      "fixture_owner": {
+        "ast_sha256": "d4efbf772c93b240757d1e15c425e07f1673a8331f973d5302fc538f4c903e30",
+        "end_line": 20656,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 9945,
+        "source_span_sha256": "bd43e01bce5dde611cc294dba19b083d560f366885bb67486df912b06480b442",
+        "start_line": 20406,
+        "symbol": "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent"
+      },
+      "historical_fixture_receipt": {
+        "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\depth-budget-v26-cost01-helper65-311-receipt.json",
+        "sha256": "9544ba20d5eb289a10032166a764e302a02d2eb1f20229e7953d1c04e4562cbe"
+      },
+      "id": "helper65",
+      "kind": "existing_original_depth_case",
+      "method_to_owner_call_edge": null,
+      "model": null,
+      "model_projection_count": 0,
+      "oracle": {
+        "exception": "InventoryError",
+        "kind": "original InventoryError assertion",
+        "regex": "^analysis helper depth exceeds 64$",
+        "work_cap_error_is_substitute": false
+      },
+      "original_assertion_block": {
+        "ast_sha256": "f004878d0a18544c747adebb67d150e29ac6722a40f3bd847a449496b847aed9",
+        "end_line": 20456,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 409,
+        "source_span_sha256": "c3f0d3fc992ce70d630b779c2c67eda9bc19c33f0c2bbe3cce009ac1d759e4d4",
+        "start_line": 20446,
+        "symbol": "helper65 exact assertion"
+      },
+      "original_builder_fragments": [
+        {
+          "ast_sha256": "50f503531a51e020aedc84fce2cab1ca39927284cc288a1df104cb5e329e90af",
+          "end_line": 20424,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 165,
+          "source_span_sha256": "51147d1d3cc2dea7dc6406532ebcdae1868bad2c56f0c760bec554803fd07a88",
+          "start_line": 20419,
+          "symbol": "helper65 construction 0"
+        },
+        {
+          "ast_sha256": "602d00a25e023e15d98cb9409da4c2e588c70a45b24ef05c55fff14dd783b5b5",
+          "end_line": 20438,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 612,
+          "source_span_sha256": "5af2756c09d7ce9eae62e6f0ab05c7039239cb83b2104cee004c77423abd4edd",
+          "start_line": 20425,
+          "symbol": "helper65 construction 1"
+        },
+        {
+          "ast_sha256": "543687d0ec9e78221f8284e78c16867ab74d6a515ce40346bb319d88d316aad9",
+          "end_line": 20445,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 260,
+          "source_span_sha256": "6e29560a80df9669241e09457814332091493da86b1d66a81a3f71db34df42d7",
+          "start_line": 20439,
+          "symbol": "helper65 construction 2"
+        },
+        {
+          "ast_sha256": "6725eb9d0fabcf40e8d4e4af416432a42446ff42a34c3d40ae2cc430d04b33c5",
+          "end_line": 20453,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 76,
+          "source_span_sha256": "4995131ca7b8fed86b43e77937f030f522083c73725f171032e8d04f1e8696ab",
+          "start_line": 20453,
+          "symbol": "helper65 source expression"
+        }
+      ],
+      "original_method": {
+        "ast_sha256": "d4efbf772c93b240757d1e15c425e07f1673a8331f973d5302fc538f4c903e30",
+        "end_line": 20656,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 9945,
+        "source_span_sha256": "bd43e01bce5dde611cc294dba19b083d560f366885bb67486df912b06480b442",
+        "start_line": 20406,
+        "symbol": "DesignReviewTests.test_round4_analysis_budget_red_contracts_are_independent"
+      },
+      "original_review_call": {
+        "ast_sha256": "1af52e85d5075d6a00764bd3787eb22c1b5622bd6565678fb54b107392d365eb",
+        "end_line": 20456,
+        "source_ref": "original_test_module",
+        "source_span_bytes": 252,
+        "source_span_sha256": "dbdcf99b15a1b51a7a0a4aa3a561a841e2f9971c90c2deb706395aee5fe048eb",
+        "start_line": 20450,
+        "symbol": "helper65 _review invocation"
+      },
+      "original_test_module_ref": "original_test_module",
+      "retained_equivalent_builder": {
+        "ast_sha256": "b4cbee4eb2d4de25f25fcc75acc72e46dc6c6c587a7a8ed9dc17624e52136e61",
+        "end_line": 487,
+        "source_ref": "engineer-depth-budget-probe-v3.py",
+        "source_span_bytes": 674,
+        "source_span_sha256": "08fbc6cd8a02d8191bac7c64318d79e35ff2a087eed2e96c0db79d8b4c0afd7c",
+        "start_line": 477,
+        "symbol": "helper65_source"
+      },
+      "source": {
+        "bytes": 2882,
+        "execution": "static analysis only",
+        "hash_evidence_case": "helper65",
+        "hash_evidence_ref": "coordinator-v26-depth-budget-verification-v1.json",
+        "regenerated": false,
+        "sha256": "94b070b8fcf2e66c42e1a779558e830d7caae670366f9313faf0989c722818c6"
+      }
+    },
+    "hidden-cell-joined-dormant": {
+      "allowed_public_outcome_rule": "nonempty blockers OR exact subprocess argv [[-m,fixed]]",
+      "case_json_pointer": "/cases/17",
+      "case_record_canonical_sha256": "ed60b3849277aa735b5e32bd7f00eb1a755458164f0ad259d6a66ea0fd5777d9",
+      "classification": "permitted-refusal",
+      "envelope_ref": "name_environment_public",
+      "expected_data_canonical_sha256": "f15eac3887b37563834a159d893fc981994207ae469680beb2f2ad5ddea1966c",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "witnesses"
+      ],
+      "id": "hidden-cell-joined-dormant",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 728,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/17/oracle_source",
+        "sha256": "ad282a243d2d7bc220760589006ceff9ed153f56cf6056fed003872b878faebc"
+      },
+      "model_projection_count": 2,
+      "pack_ref": "tests-checks/name-environment-cases-v1.json",
+      "shape": {
+        "ambient": 0,
+        "changed": null,
+        "exit": "mixed",
+        "family": "semantic",
+        "successors": 0
+      },
+      "source": {
+        "bytes": 698,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/17/source",
+        "sha256": "d4ad9711f76ab267ce3c0cae1085b04f4f67d441eb838b3759c75e3f557cfbcc"
+      },
+      "unreachable_events": [
+        "body",
+        "write"
+      ]
+    },
+    "hidden-cell-joined-reached": {
+      "allowed_public_outcome_rule": "nonempty blockers",
+      "case_json_pointer": "/cases/16",
+      "case_record_canonical_sha256": "6990c8d81eb728cada4103e1f9cc6f3ba9b9ef681ee8881210585eaa43e2d76b",
+      "classification": "refuse",
+      "envelope_ref": "name_environment_public",
+      "expected_data_canonical_sha256": "603557aee54e7347f0b4d1b0c86523e7a0560f0ffa7d87f9f03b0f9da383fabd",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "witnesses"
+      ],
+      "id": "hidden-cell-joined-reached",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 743,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/16/oracle_source",
+        "sha256": "bc335d71a509b9baa2b9505d607d8fa53d502e139dadc08d3b56ccffcdd45821"
+      },
+      "model_projection_count": 2,
+      "pack_ref": "tests-checks/name-environment-cases-v1.json",
+      "shape": {
+        "ambient": 0,
+        "changed": null,
+        "exit": "mixed",
+        "family": "semantic",
+        "successors": 0
+      },
+      "source": {
+        "bytes": 713,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/16/source",
+        "sha256": "39041506be1e50fc402da03f2fe62d7ca3eb5aec51159d144147f793d2411397"
+      },
+      "unreachable_events": []
+    },
+    "scale-n64-s4-d0-normal": {
+      "allowed_public_outcome_rule": "no blockers AND exact subprocess argv [[-m,fixed]]",
+      "case_json_pointer": "/cases/12",
+      "case_record_canonical_sha256": "549d4dfa15a2db0f927b5fba162f21f2b3bf8e4b4924bc14d66229242badd83b",
+      "classification": "clean",
+      "envelope_ref": "name_environment_public",
+      "expected_data_canonical_sha256": "3a460414ea90b668c94ece8a2df63c4c9afd0252e28b7f551538f30cb3f286a9",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "witnesses"
+      ],
+      "id": "scale-n64-s4-d0-normal",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 2818,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/12/oracle_source",
+        "sha256": "00a3a4792a10e0279efc591401f7856bd157b580b234f6d2972246912c780ed4"
+      },
+      "model_projection_count": 4,
+      "pack_ref": "tests-checks/name-environment-cases-v1.json",
+      "shape": {
+        "ambient": 64,
+        "changed": 0,
+        "exit": "normal",
+        "family": "scaling",
+        "successors": 4
+      },
+      "source": {
+        "bytes": 2026,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/12/source",
+        "sha256": "8cd92fb80500595801e3948c1cb9a7ac825334457139b70933307714ad09fe10"
+      },
+      "unreachable_events": []
+    },
+    "scale-n64-s4-d2-exceptional": {
+      "allowed_public_outcome_rule": "no blockers AND exact subprocess argv [[-m,fixed]]",
+      "case_json_pointer": "/cases/15",
+      "case_record_canonical_sha256": "2bdc1710de8c485206a742085b86fda2efaaba1fc69ddb3c1fc16c3482096817",
+      "classification": "clean",
+      "envelope_ref": "name_environment_public",
+      "expected_data_canonical_sha256": "a128317701e088a2326d6ab22793d5ed4cb0388068ddbd1c20b9ca0e02921ad3",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "witnesses"
+      ],
+      "id": "scale-n64-s4-d2-exceptional",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 3513,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/15/oracle_source",
+        "sha256": "12818b59ac4dc3d9ed3768c28afef434e34b6ebf387a5c3b4bf469d44cc9740f"
+      },
+      "model_projection_count": 4,
+      "pack_ref": "tests-checks/name-environment-cases-v1.json",
+      "shape": {
+        "ambient": 64,
+        "changed": 2,
+        "exit": "exceptional",
+        "family": "scaling",
+        "successors": 4
+      },
+      "source": {
+        "bytes": 2415,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/15/source",
+        "sha256": "a67c06db53e8804496c85cf9437e5fbfa9c68a235e27e0af69b454713167b33d"
+      },
+      "unreachable_events": []
+    },
+    "scale-n8-s4-d0-normal": {
+      "allowed_public_outcome_rule": "no blockers AND exact subprocess argv [[-m,fixed]]",
+      "case_json_pointer": "/cases/4",
+      "case_record_canonical_sha256": "f5fbd7b9d9fd46c2bbef7d33af7ed5d68e7e38c51f03e5b4fdbf7e2f751228df",
+      "classification": "clean",
+      "envelope_ref": "name_environment_public",
+      "expected_data_canonical_sha256": "c9d5f906b5b17c8786f026c106ece62415f9f4d6eb131b47e8f8823da4b817e2",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "witnesses"
+      ],
+      "id": "scale-n8-s4-d0-normal",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 808,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/4/oracle_source",
+        "sha256": "c3085cc320db1712eb6a2ef5c4777b18d28278004235579ffd85cb29100c47fa"
+      },
+      "model_projection_count": 4,
+      "pack_ref": "tests-checks/name-environment-cases-v1.json",
+      "shape": {
+        "ambient": 8,
+        "changed": 0,
+        "exit": "normal",
+        "family": "scaling",
+        "successors": 4
+      },
+      "source": {
+        "bytes": 686,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/4/source",
+        "sha256": "7a496280160092f1389045b0d640f9871f4080b1807db988d04725730fa8b1c7"
+      },
+      "unreachable_events": []
+    },
+    "scale-n8-s4-d2-exceptional": {
+      "allowed_public_outcome_rule": "no blockers AND exact subprocess argv [[-m,fixed]]",
+      "case_json_pointer": "/cases/7",
+      "case_record_canonical_sha256": "c0292310789ef42c6e0570a86ab7c3ac9878407e33352b59031a6f81c99c7d03",
+      "classification": "clean",
+      "envelope_ref": "name_environment_public",
+      "expected_data_canonical_sha256": "92be9ba741ab3836adc68319189062d29b0c42e163c7109e881934f772aca8ba",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "witnesses"
+      ],
+      "id": "scale-n8-s4-d2-exceptional",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 1503,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/7/oracle_source",
+        "sha256": "335cf692d739f50143151b2429fd34d8f22328661701f95c91acc1767feac3b0"
+      },
+      "model_projection_count": 4,
+      "pack_ref": "tests-checks/name-environment-cases-v1.json",
+      "shape": {
+        "ambient": 8,
+        "changed": 2,
+        "exit": "exceptional",
+        "family": "scaling",
+        "successors": 4
+      },
+      "source": {
+        "bytes": 1075,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/7/source",
+        "sha256": "0e22e6aa9144d52d49c0c9a1a398b4fec9d7213b03e64b3af39278b92e3a2303"
+      },
+      "unreachable_events": []
+    },
+    "shared-list-consumed": {
+      "case_json_pointer": "/cases/0",
+      "case_record_canonical_sha256": "2dc4f5aae8b64634cbd97f19c09646c5e9674b97d16384f853f00e2ad12b07a1",
+      "classification": "refuse",
+      "envelope_ref": "storage_composition_public",
+      "expected_data_canonical_sha256": "c6591c8239699cdcb27e354ac7114128176bd2e9d13d306f53f5fad3efc6aa9c",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "expected",
+        "required_argv"
+      ],
+      "id": "shared-list-consumed",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 538,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/0/oracle_source",
+        "sha256": "2060fe8c9174180429b237979947a94489ee82a13ae0b4bf481a47e94c9ce3dd"
+      },
+      "model_projection_count": 1,
+      "pack_ref": "tests-checks/storage-composition-cases-v1.json",
+      "required_argv": null,
+      "source": {
+        "bytes": 524,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/0/source",
+        "sha256": "17c6ffa2cfd833d15dac07dbc75e180cda8fb59493005238a9161e8611e9cda5"
+      },
+      "unreachable_events": [
+        "sink"
+      ]
+    },
+    "shared-list-dormant": {
+      "case_json_pointer": "/cases/1",
+      "case_record_canonical_sha256": "c3da166d09f2a3d736ffefbeb7ff16b3c5ad434cb01c4973cca4076ba0105ac9",
+      "classification": "clean",
+      "envelope_ref": "storage_composition_public",
+      "expected_data_canonical_sha256": "634164f103b66fa8ebdc9425b8b58fa5be02d63719be6770a9ef23213a331978",
+      "expected_data_keys": [
+        "classification",
+        "unreachable_events",
+        "expected",
+        "required_argv"
+      ],
+      "id": "shared-list-dormant",
+      "kind": "existing_source_and_independent_model",
+      "model": {
+        "bytes": 514,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "future independent harmless Model projection only",
+        "json_pointer": "/cases/1/oracle_source",
+        "sha256": "4a927350c8a6cb3541f36d67a327e277fec23a8caad930f1236c3c32da4d1065"
+      },
+      "model_projection_count": 1,
+      "pack_ref": "tests-checks/storage-composition-cases-v1.json",
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "source": {
+        "bytes": 500,
+        "encoding": "UTF-8 of decoded JSON string without normalization",
+        "execution": "static analysis only",
+        "json_pointer": "/cases/1/source",
+        "sha256": "9ee2b03ddf0be87c68a151a7711bd7c2d2c91b17e580dbe9074792d5a8126328"
+      },
+      "unreachable_events": [
+        "callback",
+        "write"
+      ]
+    }
+  },
+  "envelopes": {
+    "name_environment_public": {
+      "adjudication_source_span": {
+        "ast_sha256": "b16778b6e0f12703c1696bab17c6878f67c8f3210824e968bd40165fc6a19542",
+        "end_line": 210,
+        "source_ref": "tests-checks/name-environment-probe-v1.py",
+        "source_span_bytes": 1931,
+        "source_span_sha256": "04c0e461727f212003d9e268175070d969a2d7eaf62f4896ef5987a47bf5ecc6",
+        "start_line": 171,
+        "symbol": "original case adjudication loop"
+      },
+      "baseline_commit": "1111111111111111111111111111111111111111",
+      "baseline_root_tree_oid": "2222222222222222222222222222222222222222",
+      "default_child_probe": false,
+      "dependencies": {
+        "digest": {
+          "ast_sha256": "0b854b65fff3a246b9483923c448dabca49fa39ff421b7ca34bf22614fbc44db",
+          "end_line": 17,
+          "source_ref": "tests-checks/name-environment-probe-v1.py",
+          "source_span_bytes": 60,
+          "source_span_sha256": "884bb01e185f2d9d9430301d9fae0ad420aa9c9ab5ec6be9c82587a6bf0ed525",
+          "start_line": 16,
+          "symbol": "digest"
+        },
+        "project_oracles": {
+          "ast_sha256": "e3bbbaa33e65b2d03ceb6ad2430efd8aa908999ec2fab5c01308af96fc67e0e9",
+          "end_line": 152,
+          "source_ref": "tests-checks/name-environment-probe-v1.py",
+          "source_span_bytes": 1488,
+          "source_span_sha256": "9ef1c0c05a9e104aa69f91c9da3ea03a348136061ea62a418c38f74abec622b3",
+          "start_line": 125,
+          "symbol": "project_oracles"
+        },
+        "public_review": {
+          "ast_sha256": "bccb4b0d8d5d3f734a40b9290298747a08976ad93d792f851c77e9fa23a0334f",
+          "end_line": 122,
+          "source_ref": "tests-checks/name-environment-probe-v1.py",
+          "source_span_bytes": 1139,
+          "source_span_sha256": "55ad7dd39403057b2d49e0a72b23343de9c873c27312a6e7df32ed5c3f705019",
+          "start_line": 104,
+          "symbol": "public_review"
+        }
+      },
+      "item_universe": [
+        [
+          "stable_id",
+          "tests/test_structural_review.py::ReviewTests::test_static"
+        ]
+      ],
+      "kind": "original_public_review",
+      "public_api": "derive_design_review",
+      "same_as_retained_v22_public_review_and_model_function": true,
+      "source_relative_path": "tests/test_structural_review.py",
+      "stable_ids": [
+        "tests/test_structural_review.py::ReviewTests::test_static"
+      ]
+    },
+    "original_design_review": {
+      "baseline_commit": "1111111111111111111111111111111111111111",
+      "baseline_root_tree_oid": "2222222222222222222222222222222222222222",
+      "default_child_probe": true,
+      "default_child_source_path": "tools/test_child.py",
+      "dependencies": {
+        "GENERATOR_PATH": {
+          "ast_sha256": "f11218872ff69ea390a678c88a68c72ec7022409b2707e642f74450e2b8890ea",
+          "end_line": 27,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 72,
+          "source_span_sha256": "9069e8d768c3f5a5dfa6f4a740e407f922f5e1199c82509678f43dbe62db7d02",
+          "start_line": 27,
+          "symbol": "GENERATOR_PATH"
+        },
+        "SNAPSHOT_ROOT": {
+          "ast_sha256": "61428274b7b002bb0e5b6de6fcb67569ed4bdcb3039b66b3a605c0c91b2157db",
+          "end_line": 26,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 52,
+          "source_span_sha256": "60d31d7db56505f7c29c68204721bde2c6ce332ea200a0c1f3335a136355de6c",
+          "start_line": 26,
+          "symbol": "SNAPSHOT_ROOT"
+        },
+        "_canonical_json_bytes": {
+          "ast_sha256": "1f1a5c273262ca148cc0a1d4a4500f072b8a45a86a6aa8dbafd0e8dd4e508ad4",
+          "end_line": 285,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 193,
+          "source_span_sha256": "060c4c71b540c4bfd47754147205a37d0c144deac5162a31a79a7f5599cf47db",
+          "start_line": 279,
+          "symbol": "_canonical_json_bytes"
+        },
+        "_ids_digest": {
+          "ast_sha256": "6c9d929e7ea0e54362cff5cd0c99a344b6904471bb41ac54945f0d84b36ffd1c",
+          "end_line": 276,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 196,
+          "source_span_sha256": "85698c26059afb0f76a47216ced921dab4d92e8d9065fc6ab0217c55f8369913",
+          "start_line": 274,
+          "symbol": "_ids_digest"
+        },
+        "_inventory_entry": {
+          "ast_sha256": "9e77bee8b8a3e2ee75a59e5dd79b2beff3f7ac7d27b32dfd3a14b3fb940e3d0d",
+          "end_line": 1975,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 712,
+          "source_span_sha256": "9f8e2d840471389806f4beb8df6b0917fec31d569043c010379cbf28399bdd93",
+          "start_line": 1956,
+          "symbol": "DesignReviewTests._inventory_entry"
+        },
+        "_load_generator": {
+          "ast_sha256": "6ed452ea0940b970f695bd25e84f771acb5234ea4b9839eb812c8f7d1d5b59df",
+          "end_line": 253,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 633,
+          "source_span_sha256": "d370901791b2add1fbba727d97df43c53d10be70ea97fed46bef586a8b923603",
+          "start_line": 242,
+          "symbol": "_load_generator"
+        },
+        "_review": {
+          "ast_sha256": "dcee8fcb3b83cb05813f9784e247b233131e12f03e11f41e85a529b86478a63e",
+          "end_line": 1996,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 752,
+          "source_span_sha256": "f30e2e2cdab360d8c061cdd28ab02c4da84df4c918e54ff25cff841cf1038424",
+          "start_line": 1977,
+          "symbol": "DesignReviewTests._review"
+        },
+        "_source": {
+          "ast_sha256": "468e434dd0d90cd84d1c2c7b9edf80ee934aba9fa17afbd9bdd4f0e7c0bf0fce",
+          "end_line": 289,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 98,
+          "source_span_sha256": "bcb7ab0320928d404906fbf866be12db2b9d79adf9ba907ca6ce89c35d0f4a72",
+          "start_line": 288,
+          "symbol": "_source"
+        },
+        "setUp": {
+          "ast_sha256": "4e020852ba72bb94c5c7f35863a0b9cc2b6219f4465886f66d08bd8f8697413a",
+          "end_line": 1954,
+          "source_ref": "original_test_module",
+          "source_span_bytes": 3710,
+          "source_span_sha256": "7f176d58850c01aeac22d3ee9864224af65287f14f99380ce48a298bff983173",
+          "start_line": 1857,
+          "symbol": "DesignReviewTests.setUp"
+        }
+      },
+      "inventory_generation_not_executed": true,
+      "item_universe": [
+        [
+          "stable_id",
+          "tests/test_review.py::ReviewTests::test_denied"
+        ],
+        [
+          "stable_id",
+          "tests/test_review.py::ReviewTests::test_static"
+        ],
+        [
+          "fixture",
+          "fixture:tests/test_review.py"
+        ],
+        [
+          "fixture",
+          "fixture:tests/test_review.py::ReviewTests"
+        ],
+        [
+          "probe",
+          "probe:gpu-availability"
+        ]
+      ],
+      "kind": "original_DesignReviewTests_review",
+      "public_api": "derive_design_review",
+      "source_literal_dependencies": {
+        "tests/test_review.py": {
+          "decoded_literal_utf8_sha256": "0e0eaa3a7417ebe3dace7d98e5c61bad759574bc2c61a9629115fc90da82ab06",
+          "literal_source_span": {
+            "ast_sha256": "20470f0d4b65468b6f56a959707019bfeb0f931d3c8a24c0488b5ab49990046f",
+            "end_line": 1939,
+            "source_ref": "original_test_module",
+            "source_span_bytes": 2061,
+            "source_span_sha256": "5986f34cb0803ff12a94fb518de26d7706dddf8f85c8a699f286085ce59ce327",
+            "start_line": 1884,
+            "symbol": "setUp literal tests/test_review.py"
+          },
+          "materialized_fixture_not_regenerated": true,
+          "normalizer_dependency": "original_design_review._source"
+        },
+        "tools/test_child.py": {
+          "decoded_literal_utf8_sha256": "b6276ddd83fb08ace2634cd8d2986396f4a27648fe3ee5d6df37fa4c0b3de793",
+          "literal_source_span": {
+            "ast_sha256": "4736a5af843560d22411bab53d6ee1ba03f472549d19a04f4f0a149116ab92e8",
+            "end_line": 1945,
+            "source_ref": "original_test_module",
+            "source_span_bytes": 110,
+            "source_span_sha256": "8086b9a196f765e5ec9b130d01d3966c6dfb4b7f0e2443c39bcf76ca9cbcb075",
+            "start_line": 1942,
+            "symbol": "setUp literal tools/test_child.py"
+          },
+          "materialized_fixture_not_regenerated": true,
+          "normalizer_dependency": "original_design_review._source"
+        }
+      },
+      "source_override_semantics": "original _review(sources=...) with include_probe default True",
+      "source_relative_path": "tests/test_review.py",
+      "stable_ids": [
+        "tests/test_review.py::ReviewTests::test_denied",
+        "tests/test_review.py::ReviewTests::test_static"
+      ]
+    },
+    "storage_composition_public": {
+      "adjudication_source_span": {
+        "ast_sha256": "69c1a3e38414d8e3bc1bdab14dad241051feae4bcfa0b6102b9c93afe494815b",
+        "end_line": 179,
+        "source_ref": "tests-checks/storage-composition-probe-v1.py",
+        "source_span_bytes": 1943,
+        "source_span_sha256": "ccd5ab9293ccf2bcc5146be99d06f4ef43f51ff2b68bcab27878780998f91df4",
+        "start_line": 145,
+        "symbol": "main case adjudication loop"
+      },
+      "baseline_commit": "1111111111111111111111111111111111111111",
+      "baseline_root_tree_oid": "2222222222222222222222222222222222222222",
+      "default_child_probe": false,
+      "dependencies": {
+        "canonical": {
+          "ast_sha256": "513f65ec8c24fa4e0c497d04d52ea44a244e42859c59ca7b777f506a6165de6a",
+          "end_line": 43,
+          "source_ref": "tests-checks/storage-composition-probe-v1.py",
+          "source_span_bytes": 144,
+          "source_span_sha256": "34331ff91c9ce2d47806f879002313275f603344305727016dd129ab9dca3a93",
+          "start_line": 41,
+          "symbol": "canonical"
+        },
+        "digest": {
+          "ast_sha256": "0b854b65fff3a246b9483923c448dabca49fa39ff421b7ca34bf22614fbc44db",
+          "end_line": 38,
+          "source_ref": "tests-checks/storage-composition-probe-v1.py",
+          "source_span_bytes": 60,
+          "source_span_sha256": "884bb01e185f2d9d9430301d9fae0ad420aa9c9ab5ec6be9c82587a6bf0ed525",
+          "start_line": 37,
+          "symbol": "digest"
+        },
+        "oracle": {
+          "ast_sha256": "17d67339b52dc85e2741819ef5f0c3e159c89eab42670eca8c245125c88a618a",
+          "end_line": 84,
+          "source_ref": "tests-checks/storage-composition-probe-v1.py",
+          "source_span_bytes": 944,
+          "source_span_sha256": "03c7077875429e9958bf56e3b7e9b959bcb50db5c8838c13d872f968d7b217f9",
+          "start_line": 69,
+          "symbol": "oracle"
+        },
+        "public_review": {
+          "ast_sha256": "c1a3343a3e7b40c7660c0b6422cf6f41545ca73490034e7a4796e3fd310431c3",
+          "end_line": 104,
+          "source_ref": "tests-checks/storage-composition-probe-v1.py",
+          "source_span_bytes": 1084,
+          "source_span_sha256": "43f7500c75a78cab8f1bb4187cfcbf7acaa96bc75bc8e61165ed213fa5da4390",
+          "start_line": 87,
+          "symbol": "public_review"
+        }
+      },
+      "item_universe": [
+        [
+          "stable_id",
+          "tests/test_storage_composition.py::ReviewTests::test_static"
+        ]
+      ],
+      "kind": "original_public_review",
+      "public_api": "derive_design_review",
+      "same_as_retained_ten_probe_public_review_and_model_body": true,
+      "source_relative_path": "tests/test_storage_composition.py",
+      "stable_ids": [
+        "tests/test_storage_composition.py::ReviewTests::test_static"
+      ]
+    }
+  },
+  "excluded_work": [
+    "boundary/CI/native writer rewrite",
+    "new fixtures",
+    "old diagnostic v5 dispatch"
+  ],
+  "execution_authorized": false,
+  "gates": {
+    "A": {
+      "budget_rule": "all original caps; record actual headroom",
+      "classifications": {
+        "clean": 2,
+        "permitted-refusal": 1,
+        "refuse": 3
+      },
+      "depth_assertions": 0,
+      "independent_model_projections": 8,
+      "ordered_case_ids": [
+        "shared-list-consumed",
+        "shared-list-dormant",
+        "class-adoption-unsafe",
+        "class-adoption-safe",
+        "hidden-cell-joined-reached",
+        "hidden-cell-joined-dormant"
+      ],
+      "public_analysis_count": 6,
+      "scope_limit": "temporal aliases/cells/class effects/deferred callable nonexecution, not deep-generator completion"
+    },
+    "B": {
+      "adds_case_ids": [
+        "helper65",
+        "generator70",
+        "scale-n8-s4-d0-normal",
+        "scale-n64-s4-d0-normal",
+        "scale-n8-s4-d2-exceptional",
+        "scale-n64-s4-d2-exceptional"
+      ],
+      "classifications": {
+        "clean": 6,
+        "exact-depth-error": 2,
+        "permitted-refusal": 1,
+        "refuse": 3
+      },
+      "criterion_applies_to": "every original budget in complete public analysis, not selected failing epoch",
+      "depth_assertions": 2,
+      "engineering_continuation_work_maximum": 196608,
+      "independent_model_projections": 24,
+      "ordered_case_ids": [
+        "shared-list-consumed",
+        "shared-list-dormant",
+        "class-adoption-unsafe",
+        "class-adoption-safe",
+        "hidden-cell-joined-reached",
+        "hidden-cell-joined-dormant",
+        "helper65",
+        "generator70",
+        "scale-n8-s4-d0-normal",
+        "scale-n64-s4-d0-normal",
+        "scale-n8-s4-d2-exceptional",
+        "scale-n64-s4-d2-exceptional"
+      ],
+      "production_work_cap_unchanged": 262144,
+      "public_analysis_count": 12,
+      "reruns_GateA": true
+    }
+  },
+  "hash_definitions": {
+    "ast": "UTF-8 ast.dump(node,include_attributes=False), computed on actual CPython3.11.15; raw source/file pins are primary",
+    "canonical_case_or_expected_data": "UTF-8 json.dumps(ensure_ascii=False,sort_keys=True,separators=(',',':')); no final newline",
+    "depth_fixture": "existing independently retained fixture hashes; builders are only parsed and compared, never called",
+    "source_and_model": "SHA256 of UTF-8 encoding of existing decoded JSON strings, without normalization",
+    "source_span": "original whole lines from start_line through end_line inclusive, original indentation/newline bytes; decorators included"
+  },
+  "inputs": {
+    "coordinator-v26-depth-budget-verification-v1.json": {
+      "bytes": 317940,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\coordinator-v26-depth-budget-verification-v1.json",
+      "sha256": "2e729e903ed0f0c869e88aa595d62bc0da5a2f3a47d29962f901a4865a87bf30"
+    },
+    "engineer-depth-budget-probe-v3.py": {
+      "bytes": 27565,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-depth-budget-probe-v3.py",
+      "sha256": "7aa9f188b2917fec149485501eafcc4d516d3104a10b026e5ec33262b24962ae"
+    },
+    "engineer-depth-budget-v3-static-v1.json": {
+      "bytes": 3345,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\engineer-depth-budget-v3-static-v1.json",
+      "sha256": "45b0b5503145ed4be2f3874975681c24ed35e8561fb89d64ebe7fc1e15b75e8f"
+    },
+    "rewrite-cost-and-fitness-clarification-v2.md": {
+      "bytes": 5931,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\rewrite-cost-and-fitness-clarification-v2.md",
+      "sha256": "75c98159a96c33f5f9072c572beae567494ac16fa831c94058c6706be1e22c80"
+    },
+    "rewrite-cost-and-fitness-proposal-v1.md": {
+      "bytes": 8335,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\rewrite-cost-and-fitness-proposal-v1.md",
+      "sha256": "9b5c4a3cf7d187f47a2f1dc9e01f239279d42c74aaf56208fad39a801f164c76"
+    },
+    "tests-checks/name-environment-cases-v1.json": {
+      "bytes": 117394,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\name-environment-cases-v1.json",
+      "sha256": "d07ccfd6d72daee378d1a67468290e7e30fd8f2a0e608bad9cc16fc4b51b2e9c"
+    },
+    "tests-checks/name-environment-probe-v1.py": {
+      "bytes": 12207,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\name-environment-probe-v1.py",
+      "sha256": "94a91ff970aa0df12c4334d72a2476ca5d58a4b76aa3a412c5440e93411806b4"
+    },
+    "tests-checks/name-environment-probe-v22-v1.py": {
+      "bytes": 22757,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\name-environment-probe-v22-v1.py",
+      "sha256": "51a35645eacfe02ee1ff5ef92b9180543cf24a412384b89084e434935e470626"
+    },
+    "tests-checks/original-composition-ten-probe-v1.py": {
+      "bytes": 15144,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\original-composition-ten-probe-v1.py",
+      "sha256": "e2564b1d1d61c0a92e449f80eb5118eb72141b3fabd9022cf2b2881d1c56927e"
+    },
+    "tests-checks/storage-composition-cases-v1.json": {
+      "bytes": 7341,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\storage-composition-cases-v1.json",
+      "sha256": "faa0026181653881737e15af0effe6e670fbad3ad20e684c1d019851dd0dd709"
+    },
+    "tests-checks/storage-composition-probe-v1.py": {
+      "bytes": 9470,
+      "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\storage-composition-probe-v1.py",
+      "sha256": "5dd945a7cbe4430c1433633653fbf18172e129075ac265d33617f6255c9d1997"
+    }
+  },
+  "limitations": [
+    "design definition only, no semantic/performance verdict",
+    "referenced old probe code is dependency provenance, not authorization to execute its old full population",
+    "source/model hashes do not replace custody or runtime identity checks",
+    "GateB success permits integration, not ordinary-corpus or release acceptance",
+    "no cross-run runtime benchmark or current-v30 branch claim"
+  ],
+  "original_caps": {
+    "MAXIMUM_ANALYSIS_CARDINALITY": 2147483647,
+    "MAXIMUM_ANALYSIS_CHILD_DEPTH": 4,
+    "MAXIMUM_ANALYSIS_CONTAINER_ELEMENTS": 4096,
+    "MAXIMUM_ANALYSIS_HELPER_DEPTH": 64,
+    "MAXIMUM_ANALYSIS_WORK_UNITS": 262144
+  },
+  "original_test_module": {
+    "blob_oid": "a62562fbba5969e33cc04786d91064afad30e580",
+    "bytes": 1265190,
+    "commit": "29c02f6fbd5eb0b7ddc9e816ef28f570b9839358",
+    "kind": "git_blob",
+    "relative_path": "tests/test_inventory_and_profiles.py",
+    "repository": "D:\\Pontius",
+    "root_tree_oid": "21d7aeb7a6a5d5c6cd599e9467e838dd888c828d",
+    "sha256": "c46760b0d08a140e8da7c62a2f554b6a2f57410940e939c6914e9d4ffa873aaf"
+  },
+  "replacement_candidate": null,
+  "required_before_execution": [
+    "root-reviewed exact replacement candidate and operation-accounting map",
+    "root-reviewed/pinned controller with complete custody",
+    "whole selected public analysis uses the new core",
+    "no old-authority fallback or fixture-keyed dispatch"
+  ],
+  "root_disposition": {
+    "GateA": "all original production caps only; record every epoch",
+    "GateB": "adopted pre-result engineering continuation maximum196608 per original budget",
+    "GateB_criterion_is_not_an_analyzer_admission_cap": true,
+    "basis": "parent/root explicit instruction preceding this manifest; no result-based tuning",
+    "unchanged_production_work_cap": 262144
+  },
+  "schema": "pontius-c-rewrite-early-population-v1",
+  "scope": "partial analysis-state/helper-authority replacement only",
+  "status": "design_population_frozen"
+}
