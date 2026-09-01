@@ -1,0 +1,213 @@
+{
+  "adopted_input": {
+    "adoption": "Only byte-exact sink statement and complete public invocation envelope; no ambient ladder or helper wrapper.",
+    "case_id": "identity-scale-n8-s4-d0-normal",
+    "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\rewrite-r2-identity-cases-v1.json",
+    "sha256": "4834971b9d63aa182c1207959721b6bb65f742a106541d96975945060134d9ea",
+    "sink_line_sha256": "3666eeefde269e73dbc947419c3a441480302feed6877dda01dffd7186d2b3c5",
+    "source_sha256": "4de9d83394368d269d925206a0ff2d133a132ce0a4a2b1134f63db0dff67985f",
+    "standing": "Frozen identity input, not a passed identity analyzer case. New controls must establish clean public behavior."
+  },
+  "author": "codex/cold_review_a; engineering input author, not cold",
+  "base_launch_call_ast_sha256": "cadb78df89cd59b70ca120372645384a663c13713e98ef12590db1ecc14b269b",
+  "cases": [
+    {
+      "classification": "refuse",
+      "id": "T01-false-absent-nested",
+      "launch_call_ast_sha256": "cadb78df89cd59b70ca120372645384a663c13713e98ef12590db1ecc14b269b",
+      "launch_contract_normalized_ast_sha256": "57540c77d370c81ea5a9600b73b5d10ba9521aef74e181c25b3d73da43544f57",
+      "model_executed": false,
+      "model_function_type_constructor_count": 1,
+      "model_import_count": 0,
+      "model_inner_capture_required": true,
+      "model_unchanged_from_v1": true,
+      "oracle_sha256": "0f162416b4a61badb7513fe1497cf31a23d22da858dedef22a263dbe0a4b7302",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "source_classdef_count": 1,
+      "source_functiondef_count": 2,
+      "source_import_count": 1,
+      "source_sha256": "b88ecbaca295fe8c91dfa29664d00ae3b6ab7599c71d2c7bece069f253edcfef",
+      "source_unchanged_from_v1": true
+    },
+    {
+      "classification": "refuse",
+      "id": "T02-true-present-nested",
+      "launch_call_ast_sha256": "cadb78df89cd59b70ca120372645384a663c13713e98ef12590db1ecc14b269b",
+      "launch_contract_normalized_ast_sha256": "57540c77d370c81ea5a9600b73b5d10ba9521aef74e181c25b3d73da43544f57",
+      "model_executed": false,
+      "model_function_type_constructor_count": 1,
+      "model_import_count": 0,
+      "model_inner_capture_required": true,
+      "model_unchanged_from_v1": true,
+      "oracle_sha256": "923d5b7ca20263955ffe5ea63114e8670c2daa23029d0c786a2032b7253d4bdb",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "source_classdef_count": 1,
+      "source_functiondef_count": 2,
+      "source_import_count": 1,
+      "source_sha256": "d1210528e03d45d8a5c41fb8fa4be8c313f5638a317cd7b0486dc586bf7b8286",
+      "source_unchanged_from_v1": true
+    },
+    {
+      "classification": "clean",
+      "id": "T03-true-postdelete-class",
+      "launch_call_ast_sha256": "cadb78df89cd59b70ca120372645384a663c13713e98ef12590db1ecc14b269b",
+      "launch_contract_normalized_ast_sha256": "57540c77d370c81ea5a9600b73b5d10ba9521aef74e181c25b3d73da43544f57",
+      "model_executed": false,
+      "model_function_type_constructor_count": 1,
+      "model_import_count": 0,
+      "model_inner_capture_required": true,
+      "model_unchanged_from_v1": true,
+      "oracle_sha256": "7928b84ca289e33c8494a5a4b29ad18550497891b8fe69a16a45530c60a7a4e0",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "source_classdef_count": 1,
+      "source_functiondef_count": 1,
+      "source_import_count": 1,
+      "source_sha256": "46c836aa68dc7bf399c8fa5108eb5a881fe20172c2cf4aa478d75f33f619e372",
+      "source_unchanged_from_v1": true
+    },
+    {
+      "classification": "refuse",
+      "id": "C01-implicit-build-class",
+      "launch_call_ast_sha256": "37f005209bb47598eb54c9131b63d1f0d8c8f2d6798c55e04de7991f62251a4d",
+      "launch_contract_normalized_ast_sha256": "57540c77d370c81ea5a9600b73b5d10ba9521aef74e181c25b3d73da43544f57",
+      "model_executed": false,
+      "model_function_type_constructor_count": 1,
+      "model_import_count": 0,
+      "model_inner_capture_required": false,
+      "model_unchanged_from_v1": true,
+      "oracle_sha256": "beee6b625871516f6e62d40c336ba49938085ff93bf4ca01003a3d894a51cfe8",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "source_classdef_count": 2,
+      "source_functiondef_count": 1,
+      "source_import_count": 1,
+      "source_sha256": "65e8837b86e8853e1ffa3600843a3702853c291c559e108903fc7527ae188d8e",
+      "source_unchanged_from_v1": true
+    },
+    {
+      "classification": "refuse",
+      "id": "I01-implicit-import",
+      "launch_call_ast_sha256": "c6df787f71b8971ccf22fdadb544c7f47e80e3cafe55740d94e313a3b1bd7758",
+      "launch_contract_normalized_ast_sha256": "57540c77d370c81ea5a9600b73b5d10ba9521aef74e181c25b3d73da43544f57",
+      "model_executed": false,
+      "model_function_type_constructor_count": 1,
+      "model_import_count": 1,
+      "model_inner_capture_required": false,
+      "model_unchanged_from_v1": true,
+      "oracle_sha256": "e8556312c94955df8699c2d71e6f31d530dc3dbc93312df48314569457e4826c",
+      "parsed_stable_id": "tests/test_structural_review.py::ReviewTests::test_static",
+      "sensitive_source_executed": false,
+      "source_classdef_count": 1,
+      "source_functiondef_count": 1,
+      "source_import_count": 2,
+      "source_sha256": "f55d264c4087c02b8db503ba745eb8708722820bbdcac625a6609909c3ee028b",
+      "source_unchanged_from_v1": true
+    }
+  ],
+  "category_route_requirements": {
+    "C01-implicit-build-class": {
+      "category_closure_requires_consumer_reached": true,
+      "consumer": "LOAD_BUILD_CLASS for nested Local",
+      "public_contract_note": "An explicit blocker is safe, but an earlier blocker alone does not prove this implicit-consumer category closed."
+    },
+    "I01-implicit-import": {
+      "category_closure_requires_consumer_reached": true,
+      "consumer": "IMPORT_NAME for method-local import os as launch_os",
+      "public_contract_note": "An explicit blocker is safe, but an earlier blocker alone does not prove this implicit-consumer category closed."
+    }
+  },
+  "classifications": {
+    "clean": 1,
+    "refuse": 4
+  },
+  "exception_metadata_static_proof": {
+    "C01": {
+      "cpython_3_11_15": "https://github.com/python/cpython/blob/v3.11.15/Python/ceval.c#L2547-L2566",
+      "cpython_3_14_6": "https://github.com/python/cpython/blob/v3.14.6/Python/generated_cases.c.h#L8802-L8815",
+      "expected_message": "__build_class__ not found",
+      "expected_name": null,
+      "expected_type": "NameError",
+      "future_harness_observation_required": true
+    },
+    "I01": {
+      "cpython_3_11_15": "https://github.com/python/cpython/blob/v3.11.15/Python/ceval.c#L6969-L6980",
+      "cpython_3_14_6": "https://github.com/python/cpython/blob/v3.14.6/Python/ceval.c#L2941-L2951",
+      "expected_message": "__import__ not found",
+      "expected_name": null,
+      "expected_type": "ImportError",
+      "future_harness_observation_required": true
+    }
+  },
+  "governing_design_sha256": "eaeb65d775857c229c509b430bf3eeb187bc058e79e27cda2a1b4a17cab74845",
+  "model_execution_authorized": false,
+  "module_key_phase_expectations": {
+    "C01-implicit-build-class": {
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": false
+    },
+    "I01-implicit-import": {
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": false
+    },
+    "T01-false-absent-nested": {
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": false
+    },
+    "T02-true-present-nested": {
+      "post_call_module_key_present": true,
+      "pre_call_module_key_present": true
+    },
+    "T03-true-postdelete-class": {
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": true
+    }
+  },
+  "pack_sha256": "71c5e8efd0922b213a917a1709c271d3d0fa26ba0268d2d8a7f780e942550511",
+  "planned_cases": 5,
+  "planned_projections": 5,
+  "predecessor": {
+    "v1_pack_sha256": "15260811af2ff936f925d720639dfec5b367089544fd6e6150ef023382ae5063",
+    "v2_pack_sha256": "04e202caae3f9203db9859966aea8794e07f30679472ffaeabd3c7b13006da4c",
+    "v2_source_model_map_sha256": "24a41515e2f59973a8673f202d5373f12978a4c2c43d4bdf4848d428325d8ec7",
+    "v2_spec_sha256": "746a9e524c9959bb4c5621f0497b917835fda73c4e84c203a290ab82b87cef5d",
+    "v3_corrections_only": [
+      "phase-separated module-key expectations",
+      "CPython 3.14.6 exact source pins",
+      "category-route evidence limitation"
+    ]
+  },
+  "public_envelope_byte_equivalent": true,
+  "public_envelope_canonical_sha256": "8d4cdf6e791199ae5232437832ef4a39d0076451bf2227a66f69d9c6a31eef23",
+  "red_commit": "5444e5f3f338840a05157c683fdbf4d2fec66654",
+  "red_manifest_sha256": "9e9e68f88f2544c8857d14c02e6a7439c48d76ff53cf22f15859643e5736992c",
+  "runtime_evidence": false,
+  "schema": "pontius-r2-e1-transition-static-source-model-map-v3",
+  "sensitive_source_execution_authorized": false,
+  "source_diff_sha256": "c393c7b5ecf1e6cad0e753e89e00be1058e4b8c03dea95e8770c60b8b651270a",
+  "source_sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d",
+  "spec_sha256": "fd0e8e6b6a23aca5eed9b75baacab4dfbf552e1a8db11d6673d897873ec7ef64",
+  "t03_static_driver_correspondence": {
+    "driver_global_declaration": [
+      "__builtins__"
+    ],
+    "driver_statement_order": [
+      "events.append(module)",
+      "store __builtins__",
+      "delete __builtins__",
+      "create _method",
+      "invoke _method"
+    ],
+    "inner_free_names": [],
+    "model_executed": false,
+    "runtime_identity_and_trace_validation_required": true,
+    "sensitive_statement_order": [
+      "store __builtins__",
+      "delete __builtins__",
+      "create ReviewTests",
+      "invoke test_static later"
+    ]
+  }
+}

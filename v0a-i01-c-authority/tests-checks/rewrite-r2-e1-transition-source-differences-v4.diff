@@ -1,0 +1,62 @@
+--- E01-standard
++++ T01-false-absent-nested
+@@ -1,5 +1,9 @@
+ import subprocess, sys, unittest
++__builtins__ = {}
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+-        ValueError()
+-        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++        def inner():
++            ValueError()
++            subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++        inner()
++del __builtins__
+--- E01-standard
++++ T02-true-present-nested
+@@ -1,5 +1,8 @@
+ import subprocess, sys, unittest
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+-        ValueError()
+-        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++        def inner():
++            ValueError()
++            subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++        inner()
++__builtins__ = {}
+--- E01-standard
++++ T03-true-postdelete-class
+@@ -1,4 +1,6 @@
+ import subprocess, sys, unittest
++__builtins__ = {}
++del __builtins__
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+         ValueError()
+--- E01-standard
++++ C01-implicit-build-class
+@@ -1,5 +1,8 @@
+-import subprocess, sys, unittest
++import os, subprocess, sys, unittest
++__builtins__ = {}
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+-        ValueError()
+-        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++        class Local:
++            pass
++        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**os.environ, "SAFE": "1"}, timeout=5, check=False)
++del __builtins__
+--- E01-standard
++++ I01-implicit-import
+@@ -1,5 +1,7 @@
+ import subprocess, sys, unittest
++__builtins__ = {}
+ class ReviewTests(unittest.TestCase):
+     def test_static(self):
+-        ValueError()
+-        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**__import__("os").environ, "SAFE": "1"}, timeout=5, check=False)
++        import os as launch_os
++        subprocess.run([sys.executable, "-m", "fixed"], cwd=".", env={**launch_os.environ, "SAFE": "1"}, timeout=5, check=False)
++del __builtins__

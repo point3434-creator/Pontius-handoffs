@@ -1,0 +1,154 @@
+{
+  "analyzer_executed": false,
+  "base_pack_sha256": "59b8457a2323634d883fb2c9b0ff82a1e60cd980c5f2a4b50e627c8ca32cdb9b",
+  "candidate_imported": false,
+  "case_order": [
+    "T01-false-absent-nested",
+    "T02-true-present-nested",
+    "T03-true-postdelete-class",
+    "C01-implicit-build-class",
+    "I01-implicit-import"
+  ],
+  "cases": [
+    {
+      "classification": "refuse",
+      "id": "T01-false-absent-nested",
+      "model_ast_parsed_only": true,
+      "oracle_sha256": "0f162416b4a61badb7513fe1497cf31a23d22da858dedef22a263dbe0a4b7302",
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": false,
+      "source_ast_parsed_only": true,
+      "source_sha256": "b88ecbaca295fe8c91dfa29664d00ae3b6ab7599c71d2c7bece069f253edcfef"
+    },
+    {
+      "classification": "refuse",
+      "id": "T02-true-present-nested",
+      "model_ast_parsed_only": true,
+      "oracle_sha256": "923d5b7ca20263955ffe5ea63114e8670c2daa23029d0c786a2032b7253d4bdb",
+      "post_call_module_key_present": true,
+      "pre_call_module_key_present": true,
+      "source_ast_parsed_only": true,
+      "source_sha256": "d1210528e03d45d8a5c41fb8fa4be8c313f5638a317cd7b0486dc586bf7b8286"
+    },
+    {
+      "classification": "clean",
+      "id": "T03-true-postdelete-class",
+      "model_ast_parsed_only": true,
+      "oracle_sha256": "7928b84ca289e33c8494a5a4b29ad18550497891b8fe69a16a45530c60a7a4e0",
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": true,
+      "source_ast_parsed_only": true,
+      "source_sha256": "46c836aa68dc7bf399c8fa5108eb5a881fe20172c2cf4aa478d75f33f619e372"
+    },
+    {
+      "classification": "refuse",
+      "id": "C01-implicit-build-class",
+      "model_ast_parsed_only": true,
+      "oracle_sha256": "beee6b625871516f6e62d40c336ba49938085ff93bf4ca01003a3d894a51cfe8",
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": false,
+      "source_ast_parsed_only": true,
+      "source_sha256": "65e8837b86e8853e1ffa3600843a3702853c291c559e108903fc7527ae188d8e"
+    },
+    {
+      "classification": "refuse",
+      "id": "I01-implicit-import",
+      "model_ast_parsed_only": true,
+      "oracle_sha256": "e8556312c94955df8699c2d71e6f31d530dc3dbc93312df48314569457e4826c",
+      "post_call_module_key_present": false,
+      "pre_call_module_key_present": false,
+      "source_ast_parsed_only": true,
+      "source_sha256": "f55d264c4087c02b8db503ba745eb8708722820bbdcac625a6609909c3ee028b"
+    }
+  ],
+  "category_route_requirements_static_only": {
+    "C01-implicit-build-class": {
+      "category_closure_requires_consumer_reached": true,
+      "consumer": "LOAD_BUILD_CLASS for nested Local",
+      "public_contract_note": "An explicit blocker is safe, but an earlier blocker alone does not prove this implicit-consumer category closed."
+    },
+    "I01-implicit-import": {
+      "category_closure_requires_consumer_reached": true,
+      "consumer": "IMPORT_NAME for method-local import os as launch_os",
+      "public_contract_note": "An explicit blocker is safe, but an earlier blocker alone does not prove this implicit-consumer category closed."
+    },
+    "T01-false-absent-nested": {
+      "category_closure_requires_all_steps": true,
+      "consumer": "explicit ValueError fallback in nested inner",
+      "public_contract_note": "Any explicit blocker is safe refusal, but an earlier blocker does not close the false-proof/absent-key nested-creation transition category.",
+      "required_reviewed_evidence": [
+        "outer invocation",
+        "nested inner creation",
+        "nested inner invocation",
+        "reached explicit ValueError fallback"
+      ]
+    },
+    "T02-true-present-nested": {
+      "category_closure_requires_all_steps": true,
+      "consumer": "explicit ValueError fallback in nested inner",
+      "public_contract_note": "Any explicit blocker is safe refusal, but an earlier blocker does not close the true-proof/present-empty-key nested-creation transition category.",
+      "required_reviewed_evidence": [
+        "outer invocation under retained true builtin proof",
+        "nested inner creation while module __builtins__ key is present and empty",
+        "nested inner invocation",
+        "reached explicit ValueError fallback"
+      ]
+    }
+  },
+  "governing_design_sha256": "eaeb65d775857c229c509b430bf3eeb187bc058e79e27cda2a1b4a17cab74845",
+  "harness_executed": false,
+  "held_source_sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d",
+  "models_executed": false,
+  "public_envelope_canonical_sha256": "8d4cdf6e791199ae5232437832ef4a39d0076451bf2227a66f69d9c6a31eef23",
+  "public_envelope_exact": true,
+  "runtime": {
+    "dont_write_bytecode": true,
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "expected_executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "ignore_environment": true,
+    "implementation": "cpython",
+    "isolated": true,
+    "no_site": true,
+    "no_user_site": true,
+    "optimize": 0,
+    "safe_path": true,
+    "version": [
+      3,
+      11,
+      15
+    ]
+  },
+  "schema": "coordinator-r2-e1-transition-input-verification-v1",
+  "sensitive_sources_executed": false,
+  "source_and_model_bytes_unchanged_across_v1_v2_v3_v4_v5": true,
+  "source_diff_byte_identical_across_v1_v2_v3_v4_v5": true,
+  "verified_pins": {
+    "tests-checks/rewrite-r2-e1-transition-cases-v5.json": "946457a644ab777e3c0a66e84c5f942740cec027d03500582ff31b300c16d427",
+    "tests-checks/rewrite-r2-e1-transition-handoff-v5.md": "9a8aadb05251a0ceb84e9fa1d833be4ab7b1350d86183022a20654fc2545cfd9",
+    "tests-checks/rewrite-r2-e1-transition-source-differences-v5.diff": "c393c7b5ecf1e6cad0e753e89e00be1058e4b8c03dea95e8770c60b8b651270a",
+    "tests-checks/rewrite-r2-e1-transition-source-model-map-v5.json": "0b0dddca5b661ef2622ec79554c7005bffeb60a24561cb44324796081ab7b241",
+    "tests-checks/rewrite-r2-e1-transition-spec-v5.md": "0851471493a93845668cb39d9e6a5d4584688d505a86a87cd7a63df69162243a"
+  },
+  "verified_predecessor_pins": {
+    "tests-checks/rewrite-r2-e1-transition-cases-v1.json": "15260811af2ff936f925d720639dfec5b367089544fd6e6150ef023382ae5063",
+    "tests-checks/rewrite-r2-e1-transition-cases-v2.json": "04e202caae3f9203db9859966aea8794e07f30679472ffaeabd3c7b13006da4c",
+    "tests-checks/rewrite-r2-e1-transition-cases-v3.json": "71c5e8efd0922b213a917a1709c271d3d0fa26ba0268d2d8a7f780e942550511",
+    "tests-checks/rewrite-r2-e1-transition-cases-v4.json": "b2275042ddce8a2a415a5eb9a5a0303b07ef8d64210cccf22ea493601b93e5db",
+    "tests-checks/rewrite-r2-e1-transition-handoff-v2.md": "0105d58f6987a424ad11f5e25202c1e73f01bf24bbd37b0d0e5e92ea23fb165b",
+    "tests-checks/rewrite-r2-e1-transition-handoff-v3.md": "d7ad6c1dc75c1e6b2e3b73a223e3d1c8188b6a755ece20d22a4557f47ce2454b",
+    "tests-checks/rewrite-r2-e1-transition-handoff-v4.md": "d1eff592fd2bf4cc18e3f47a338daea959d9ae121d1940e8ffb55831ef7999f2",
+    "tests-checks/rewrite-r2-e1-transition-source-differences-v1.diff": "c393c7b5ecf1e6cad0e753e89e00be1058e4b8c03dea95e8770c60b8b651270a",
+    "tests-checks/rewrite-r2-e1-transition-source-differences-v2.diff": "c393c7b5ecf1e6cad0e753e89e00be1058e4b8c03dea95e8770c60b8b651270a",
+    "tests-checks/rewrite-r2-e1-transition-source-differences-v3.diff": "c393c7b5ecf1e6cad0e753e89e00be1058e4b8c03dea95e8770c60b8b651270a",
+    "tests-checks/rewrite-r2-e1-transition-source-differences-v4.diff": "c393c7b5ecf1e6cad0e753e89e00be1058e4b8c03dea95e8770c60b8b651270a",
+    "tests-checks/rewrite-r2-e1-transition-source-model-map-v1.json": "bdc26b40813cd4feab2d287ebff6181d5c925a274cf354f562beb5d4fcab2263",
+    "tests-checks/rewrite-r2-e1-transition-source-model-map-v2.json": "24a41515e2f59973a8673f202d5373f12978a4c2c43d4bdf4848d428325d8ec7",
+    "tests-checks/rewrite-r2-e1-transition-source-model-map-v3.json": "9ccb088c53a317ada694ead9287c1d5fe8f2376d3c2549d99ac1e6cbb731ea7a",
+    "tests-checks/rewrite-r2-e1-transition-source-model-map-v4.json": "fabf97bd74f26c980c4bba8ef1a43d9fc68232889bbc5164c8e030b0db027888",
+    "tests-checks/rewrite-r2-e1-transition-spec-v1.md": "af38727b3c01ff3a42088c29e8fa11c49e71c3d0e26e7133a35217c46055787e",
+    "tests-checks/rewrite-r2-e1-transition-spec-v2.md": "746a9e524c9959bb4c5621f0497b917835fda73c4e84c203a290ab82b87cef5d",
+    "tests-checks/rewrite-r2-e1-transition-spec-v3.md": "fd0e8e6b6a23aca5eed9b75baacab4dfbf552e1a8db11d6673d897873ec7ef64",
+    "tests-checks/rewrite-r2-e1-transition-spec-v4.md": "bf4ba88a299651f7e3167b3ee8ea2cb853767bd19fbd612a0fe500a1475947bc"
+  },
+  "verifier_sha256": "5d202545cd08b7af880114ec775c6fba77d00a12ccc775a2ab04d3a6700400d6"
+}

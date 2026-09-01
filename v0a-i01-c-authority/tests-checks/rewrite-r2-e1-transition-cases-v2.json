@@ -1,0 +1,319 @@
+{
+  "adopted_input": {
+    "adoption": "Only byte-exact sink statement and complete public invocation envelope; no ambient ladder or helper wrapper.",
+    "case_id": "identity-scale-n8-s4-d0-normal",
+    "path": "D:\\Pontius-handoffs\\v0a-i01-c-authority\\tests-checks\\rewrite-r2-identity-cases-v1.json",
+    "sha256": "4834971b9d63aa182c1207959721b6bb65f742a106541d96975945060134d9ea",
+    "sink_line_sha256": "3666eeefde269e73dbc947419c3a441480302feed6877dda01dffd7186d2b3c5",
+    "source_sha256": "4de9d83394368d269d925206a0ff2d133a132ce0a4a2b1134f63db0dff67985f",
+    "standing": "Frozen identity input, not a passed identity analyzer case. New controls must establish clean public behavior."
+  },
+  "author": "codex/cold_review_a; engineering input author, not cold",
+  "cases": [
+    {
+      "classification": "refuse",
+      "context": "false-method-key-deleted-nested-function",
+      "expected": {
+        "captures": {
+          "inner_builtins_is_expected": true,
+          "inner_count": 1,
+          "inner_globals_is_context": true,
+          "outer_builtins_is_expected": true,
+          "outer_globals_is_context": true
+        },
+        "exception": {
+          "name": "ValueError",
+          "type": "NameError"
+        },
+        "module_key_present": false,
+        "result": null,
+        "trace": [
+          "outer",
+          "constructor"
+        ]
+      },
+      "id": "T01-false-absent-nested",
+      "oracle_sha256": "0f162416b4a61badb7513fe1497cf31a23d22da858dedef22a263dbe0a4b7302",
+      "oracle_source": "_events = []\n_captured_functions = []\ndef _outer_body():\n    _events.append(\"outer\")\n    def _inner():\n        _events.append(\"constructor\")\n        ValueError()\n        _events.append(\"launch\")\n        return \"fixed\"\n    _captured_functions.append(_inner)\n    return _inner()\n_outer_builtin_context = {}\n_inner_builtin_context = _outer_builtin_context\n_context = {\"_events\": _events, \"_captured_functions\": _captured_functions, \"__name__\": \"transition_t01\", \"__builtins__\": _outer_builtin_context}\n_function = _FUNCTION_TYPE(_outer_body.__code__, _context, \"transition_t01_outer\")\ndel _context[\"__builtins__\"]\n",
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "schedule_id": "T01",
+      "source": "import subprocess, sys, unittest\n__builtins__ = {}\nclass ReviewTests(unittest.TestCase):\n    def test_static(self):\n        def inner():\n            ValueError()\n            subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n        inner()\ndel __builtins__\n",
+      "source_sha256": "b88ecbaca295fe8c91dfa29664d00ae3b6ab7599c71d2c7bece069f253edcfef",
+      "unreachable_events": [
+        "launch"
+      ]
+    },
+    {
+      "classification": "refuse",
+      "context": "true-method-key-present-nested-function",
+      "expected": {
+        "captures": {
+          "inner_builtins_is_expected": true,
+          "inner_count": 1,
+          "inner_globals_is_context": true,
+          "outer_builtins_is_expected": true,
+          "outer_globals_is_context": true
+        },
+        "exception": {
+          "name": "ValueError",
+          "type": "NameError"
+        },
+        "module_key_present": true,
+        "result": null,
+        "trace": [
+          "outer",
+          "constructor"
+        ]
+      },
+      "id": "T02-true-present-nested",
+      "oracle_sha256": "923d5b7ca20263955ffe5ea63114e8670c2daa23029d0c786a2032b7253d4bdb",
+      "oracle_source": "_events = []\n_captured_functions = []\ndef _outer_body():\n    _events.append(\"outer\")\n    def _inner():\n        _events.append(\"constructor\")\n        ValueError()\n        _events.append(\"launch\")\n        return \"fixed\"\n    _captured_functions.append(_inner)\n    return _inner()\n_outer_builtin_context = _STANDARD_BUILTINS\n_inner_builtin_context = {}\n_context = {\"_events\": _events, \"_captured_functions\": _captured_functions, \"__name__\": \"transition_t02\", \"__builtins__\": _outer_builtin_context}\n_function = _FUNCTION_TYPE(_outer_body.__code__, _context, \"transition_t02_outer\")\n_context[\"__builtins__\"] = _inner_builtin_context\n",
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "schedule_id": "T02",
+      "source": "import subprocess, sys, unittest\nclass ReviewTests(unittest.TestCase):\n    def test_static(self):\n        def inner():\n            ValueError()\n            subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n        inner()\n__builtins__ = {}\n",
+      "source_sha256": "d1210528e03d45d8a5c41fb8fa4be8c313f5638a317cd7b0486dc586bf7b8286",
+      "unreachable_events": [
+        "launch"
+      ]
+    },
+    {
+      "classification": "clean",
+      "context": "proved-module-postdelete-class-method",
+      "expected": {
+        "captures": {
+          "inner_builtins_is_expected": true,
+          "inner_count": 1,
+          "inner_globals_is_context": true,
+          "outer_builtins_is_expected": true,
+          "outer_globals_is_context": true
+        },
+        "exception": null,
+        "module_key_present": false,
+        "result": "fixed",
+        "trace": [
+          "module",
+          "constructor",
+          "launch"
+        ]
+      },
+      "id": "T03-true-postdelete-class",
+      "oracle_sha256": "7928b84ca289e33c8494a5a4b29ad18550497891b8fe69a16a45530c60a7a4e0",
+      "oracle_source": "_events = []\n_captured_functions = []\ndef _module_driver():\n    global __builtins__\n    _events.append(\"module\")\n    __builtins__ = {}\n    del __builtins__\n    def _method():\n        _events.append(\"constructor\")\n        ValueError()\n        _events.append(\"launch\")\n        return \"fixed\"\n    _captured_functions.append(_method)\n    return _method()\n_outer_builtin_context = _STANDARD_BUILTINS\n_inner_builtin_context = _outer_builtin_context\n_context = {\"_events\": _events, \"_captured_functions\": _captured_functions, \"__name__\": \"transition_t03\", \"__builtins__\": _outer_builtin_context}\n_function = _FUNCTION_TYPE(_module_driver.__code__, _context, \"transition_t03_module_driver\")\n",
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "schedule_id": "T03",
+      "source": "import subprocess, sys, unittest\n__builtins__ = {}\ndel __builtins__\nclass ReviewTests(unittest.TestCase):\n    def test_static(self):\n        ValueError()\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**__import__(\"os\").environ, \"SAFE\": \"1\"}, timeout=5, check=False)\n",
+      "source_sha256": "46c836aa68dc7bf399c8fa5108eb5a881fe20172c2cf4aa478d75f33f619e372",
+      "unreachable_events": []
+    },
+    {
+      "classification": "refuse",
+      "context": "false-method-key-deleted-implicit-build-class",
+      "expected": {
+        "captures": {
+          "inner_builtins_is_expected": null,
+          "inner_count": 0,
+          "inner_globals_is_context": null,
+          "outer_builtins_is_expected": true,
+          "outer_globals_is_context": true
+        },
+        "exception": {
+          "message": "__build_class__ not found",
+          "name": null,
+          "type": "NameError"
+        },
+        "module_key_present": false,
+        "result": null,
+        "trace": [
+          "outer"
+        ]
+      },
+      "id": "C01-implicit-build-class",
+      "oracle_sha256": "beee6b625871516f6e62d40c336ba49938085ff93bf4ca01003a3d894a51cfe8",
+      "oracle_source": "_events = []\n_captured_functions = []\ndef _outer_body():\n    _events.append(\"outer\")\n    class Local:\n        pass\n    _events.append(\"launch\")\n    return \"fixed\"\n_outer_builtin_context = {}\n_inner_builtin_context = None\n_context = {\"_events\": _events, \"_captured_functions\": _captured_functions, \"__name__\": \"transition_c01\", \"__builtins__\": _outer_builtin_context}\n_function = _FUNCTION_TYPE(_outer_body.__code__, _context, \"transition_c01_outer\")\ndel _context[\"__builtins__\"]\n",
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "schedule_id": "C01",
+      "source": "import os, subprocess, sys, unittest\n__builtins__ = {}\nclass ReviewTests(unittest.TestCase):\n    def test_static(self):\n        class Local:\n            pass\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**os.environ, \"SAFE\": \"1\"}, timeout=5, check=False)\ndel __builtins__\n",
+      "source_sha256": "65e8837b86e8853e1ffa3600843a3702853c291c559e108903fc7527ae188d8e",
+      "unreachable_events": [
+        "launch"
+      ]
+    },
+    {
+      "classification": "refuse",
+      "context": "false-method-key-deleted-implicit-import",
+      "expected": {
+        "captures": {
+          "inner_builtins_is_expected": null,
+          "inner_count": 0,
+          "inner_globals_is_context": null,
+          "outer_builtins_is_expected": true,
+          "outer_globals_is_context": true
+        },
+        "exception": {
+          "message": "__import__ not found",
+          "name": null,
+          "type": "ImportError"
+        },
+        "module_key_present": false,
+        "result": null,
+        "trace": [
+          "outer"
+        ]
+      },
+      "id": "I01-implicit-import",
+      "oracle_sha256": "e8556312c94955df8699c2d71e6f31d530dc3dbc93312df48314569457e4826c",
+      "oracle_source": "_events = []\n_captured_functions = []\ndef _outer_body():\n    _events.append(\"outer\")\n    import os as launch_os\n    _events.append(\"launch\")\n    return \"fixed\"\n_outer_builtin_context = {}\n_inner_builtin_context = None\n_context = {\"_events\": _events, \"_captured_functions\": _captured_functions, \"__name__\": \"transition_i01\", \"__builtins__\": _outer_builtin_context}\n_function = _FUNCTION_TYPE(_outer_body.__code__, _context, \"transition_i01_outer\")\ndel _context[\"__builtins__\"]\n",
+      "required_argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "schedule_id": "I01",
+      "source": "import subprocess, sys, unittest\n__builtins__ = {}\nclass ReviewTests(unittest.TestCase):\n    def test_static(self):\n        import os as launch_os\n        subprocess.run([sys.executable, \"-m\", \"fixed\"], cwd=\".\", env={**launch_os.environ, \"SAFE\": \"1\"}, timeout=5, check=False)\ndel __builtins__\n",
+      "source_sha256": "f55d264c4087c02b8db503ba745eb8708722820bbdcac625a6609909c3ee028b",
+      "unreachable_events": [
+        "launch"
+      ]
+    }
+  ],
+  "classifications": {
+    "clean": 1,
+    "refuse": 4
+  },
+  "execution_authorized": false,
+  "model_contract": {
+    "call_target": "_function",
+    "captured_functions": "_captured_functions",
+    "context": "_context",
+    "events": "_events",
+    "inner_expected_builtins": "_inner_builtin_context",
+    "no_live_object_serialization": true,
+    "outer_expected_builtins": "_outer_builtin_context",
+    "precall_identity_validation_required": true
+  },
+  "pack_name": "rewrite-r2-e1-transition-v2",
+  "planned_cases": 5,
+  "planned_projections": 5,
+  "predecessor": {
+    "disposition": "immutable and unexecuted; superseded only for exception metadata",
+    "pack_sha256": "15260811af2ff936f925d720639dfec5b367089544fd6e6150ef023382ae5063",
+    "source_model_map_sha256": "bdc26b40813cd4feab2d287ebff6181d5c925a274cf354f562beb5d4fcab2263",
+    "spec_sha256": "af38727b3c01ff3a42088c29e8fa11c49e71c3d0e26e7133a35217c46055787e"
+  },
+  "public_envelope": {
+    "baseline_commit": "1111111111111111111111111111111111111111",
+    "baseline_root_tree_oid": "2222222222222222222222222222222222222222",
+    "default_child_probe": false,
+    "digest_source_reference": {
+      "ast_sha256": "0b854b65fff3a246b9483923c448dabca49fa39ff421b7ca34bf22614fbc44db",
+      "end_line": 17,
+      "source_ref": "tests-checks/name-environment-probe-v1.py",
+      "source_span_bytes": 60,
+      "source_span_sha256": "884bb01e185f2d9d9430301d9fae0ad420aa9c9ab5ec6be9c82587a6bf0ed525",
+      "start_line": 16,
+      "symbol": "digest"
+    },
+    "inventory_document": {
+      "baseline_commit": "1111111111111111111111111111111111111111",
+      "baseline_discovery": {
+        "stable_id_count": 1,
+        "stable_ids_sha256": "df2a36984bfbb65df63832595f0dadc21f044a39a245a564ceec566339b0887f",
+        "test_file_count": 1
+      },
+      "discovery": {
+        "stable_id_count": 1,
+        "stable_ids_sha256": "df2a36984bfbb65df63832595f0dadc21f044a39a245a564ceec566339b0887f",
+        "test_file_count": 1
+      },
+      "entries": [
+        {
+          "assignment": {
+            "expectation": {
+              "kind": "pass"
+            },
+            "payload_id": "current:tests/test_structural_review.py",
+            "profile_name": "current"
+          },
+          "baseline_assignment": {
+            "expectation": {
+              "kind": "pass"
+            },
+            "payload_id": "current:tests/test_structural_review.py",
+            "profile_name": "current"
+          },
+          "case_name": "ReviewTests",
+          "method_name": "test_static",
+          "relative_path": "tests/test_structural_review.py",
+          "stable_id": "tests/test_structural_review.py::ReviewTests::test_static"
+        }
+      ],
+      "schema_version": "pontius-test-inventory-v1"
+    },
+    "inventory_document_bytes_sha256": "f188f624991fcb4740f8fd4873bb3c16d0b890a0baae1d2711bcfcbf1feaecf2",
+    "inventory_document_bytes_utf8": "{\"baseline_commit\":\"1111111111111111111111111111111111111111\",\"baseline_discovery\":{\"stable_id_count\":1,\"stable_ids_sha256\":\"df2a36984bfbb65df63832595f0dadc21f044a39a245a564ceec566339b0887f\",\"test_file_count\":1},\"discovery\":{\"stable_id_count\":1,\"stable_ids_sha256\":\"df2a36984bfbb65df63832595f0dadc21f044a39a245a564ceec566339b0887f\",\"test_file_count\":1},\"entries\":[{\"assignment\":{\"expectation\":{\"kind\":\"pass\"},\"payload_id\":\"current:tests/test_structural_review.py\",\"profile_name\":\"current\"},\"baseline_assignment\":{\"expectation\":{\"kind\":\"pass\"},\"payload_id\":\"current:tests/test_structural_review.py\",\"profile_name\":\"current\"},\"case_name\":\"ReviewTests\",\"method_name\":\"test_static\",\"relative_path\":\"tests/test_structural_review.py\",\"stable_id\":\"tests/test_structural_review.py::ReviewTests::test_static\"}],\"schema_version\":\"pontius-test-inventory-v1\"}\n",
+    "item_universe": [
+      [
+        "stable_id",
+        "tests/test_structural_review.py::ReviewTests::test_static"
+      ]
+    ],
+    "public_api": "derive_design_review",
+    "public_review_source_reference": {
+      "ast_sha256": "bccb4b0d8d5d3f734a40b9290298747a08976ad93d792f851c77e9fa23a0334f",
+      "end_line": 122,
+      "source_ref": "tests-checks/name-environment-probe-v1.py",
+      "source_span_bytes": 1139,
+      "source_span_sha256": "55ad7dd39403057b2d49e0a72b23343de9c873c27312a6e7df32ed5c3f705019",
+      "start_line": 104,
+      "symbol": "public_review"
+    },
+    "selector_domain_argument": false,
+    "source_relative_path": "tests/test_structural_review.py",
+    "stable_ids": [
+      "tests/test_structural_review.py::ReviewTests::test_static"
+    ]
+  },
+  "requirements": {
+    "authorizing_red_commit": "5444e5f3f338840a05157c683fdbf4d2fec66654",
+    "authorizing_red_manifest_sha256": "9e9e68f88f2544c8857d14c02e6a7439c48d76ff53cf22f15859643e5736992c",
+    "exception_metadata_source_proof": {
+      "cpython_3_11_15_import_name": "https://github.com/python/cpython/blob/v3.11.15/Python/ceval.c#L6969-L6980",
+      "cpython_3_11_15_load_build_class": "https://github.com/python/cpython/blob/v3.11.15/Python/ceval.c#L2547-L2566",
+      "cpython_3_14_0_import_name": "https://github.com/python/cpython/blob/v3.14.0/Python/ceval.c#L2812-L2823",
+      "cpython_3_14_0_load_build_class": "https://github.com/python/cpython/blob/v3.14.0/Python/generated_cases.c.h#L8802-L8823",
+      "inference": "PyErr_SetString supplies only the message; no name keyword is set, so .name is None."
+    },
+    "existing_e1_owner_unchanged": true,
+    "existing_e1_pack_sha256": "59b8457a2323634d883fb2c9b0ff82a1e60cd980c5f2a4b50e627c8ca32cdb9b",
+    "governing_design_sha256": "eaeb65d775857c229c509b430bf3eeb187bc058e79e27cda2a1b4a17cab74845",
+    "helper_valued_maps_used": false,
+    "red_receipt_sha256": "2040b896281e161f5fee285bc7c62506a867a1dc168feadc96f89ddd4fd4bd00",
+    "red_verification_sha256": "6d17bd8218f008e54d90fbadffc47feb57f5e0c1b2522021d8fc1c6841b2ded2",
+    "source_AST_only": true,
+    "source_commit": "beff8193e9d5ce7316f5006fccc77ffcb5ca5695",
+    "source_manifest_sha256": "ef3561cb462fcbd31dda7d3774ea34d00c575b7549dc1cc804ad9f92e11c582b",
+    "source_sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d"
+  },
+  "schema": "pontius-builtin-context-transition-cases-v2"
+}
