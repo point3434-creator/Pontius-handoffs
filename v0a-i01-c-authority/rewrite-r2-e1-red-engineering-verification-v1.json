@@ -1,0 +1,190 @@
+{
+  "schema": "pontius-r2-e1-red-engineering-verification-v1",
+  "status": "independent-engineering-verification-not-cold-review",
+  "verdict": "CONFIRMED_EXPECTED_RED",
+  "frozen": {
+    "commit": "d8ee173790de341475b5c3bd101e8bfcf2c148ab",
+    "dispatch_manifest_sha256": "d0697c84d35edd8515989edefe963f4f444bf5721354b1a53afe9f0cb6e35289",
+    "receipt_path": "tests-checks/rewrite-r2-e1-e1-red01-311-receipt.json",
+    "receipt_sha256": "2040b896281e161f5fee285bc7c62506a867a1dc168feadc96f89ddd4fd4bd00",
+    "candidate_sha256": "7ce0778ab6e8d3aec78d4b91a02407a3bc6c0068ea8abaf7774e534f1662fb3d",
+    "control_sha256": "c76a6e170062094986e7cdea90ad8e2e7737da2d38657c6f604da8eb86417ec0",
+    "probe_sha256": "7ac823d560034a140275d2447bf68bbe1f98adc8c250e61d46aedada018656a3",
+    "pack_sha256": "59b8457a2323634d883fb2c9b0ff82a1e60cd980c5f2a4b50e627c8ca32cdb9b",
+    "schedule_sha256": "4fcb92ed30a86be1664d9b1981e5e8dc8c47d5d76eaab7b08dc09db74abc9f11"
+  },
+  "custody": {
+    "outputs": {
+      "log": {
+        "sha256": "ade557dae560aea98c29b4459f60ad74f5202e296a0007b4ba910ce6a8d3f3a2",
+        "bytes": 17706
+      },
+      "setup": {
+        "sha256": "10b90cbe412f1a183440f6fafa894da8a7d114a610eac2ac7d626c1464b7e1a4",
+        "bytes": 245505
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stdout": {
+        "sha256": "c6e7becd72c14caace3e9a79b0ba016920747c6f3956ee539954a1862b5ca1ed",
+        "bytes": 17690
+      }
+    },
+    "snapshot": {
+      "manifest_sha256": "c3272bfbeb87b2b45d5c07501df3196faf19b499047dc8f8b808c5dab89ccfea",
+      "files_rehashed": 1767,
+      "errors": []
+    },
+    "input_files_rehashed": 22,
+    "protected_files_rehashed": 16,
+    "before_after_manifest_equal": true,
+    "input_hashes_before_after_equal": true,
+    "retained_stdout_records_exact_receipt": true,
+    "setup_fields_exact_receipt": true,
+    "integrity_ok": true,
+    "stderr_empty": true
+  },
+  "runtime": {
+    "implementation": "cpython",
+    "version_info": [
+      3,
+      11,
+      15
+    ],
+    "version": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "hash_seed": "0",
+    "probe_process_returncode": 1,
+    "returncode_meaning": "expected semantic RED; four cases completed with no analyzer/oracle error"
+  },
+  "cases": [
+    {
+      "id": "E01-standard",
+      "classification": "clean",
+      "semantic_passed": true,
+      "oracle_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "public_result_sha256": "a175a6743b873f82d444a3e691c3413c784748a5130f534a0fb14cf3c6b92b4d",
+      "receipt_sha256": "abfeb9d36d8373b0933ae1f96cf57a16ed7a8cb0cb86b7bc89688e598b88f174",
+      "oracle_actual": {
+        "trace": [
+          "constructor",
+          "launch"
+        ],
+        "result": "fixed",
+        "exception": null,
+        "captured_builtins_empty": false,
+        "module_key_present": true
+      }
+    },
+    {
+      "id": "E02-module-empty",
+      "classification": "refuse",
+      "semantic_passed": false,
+      "oracle_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "public_result_sha256": "9faee45c48ffab109cacf4d9e0b49552881d474faeaf2a67026f25552f723f7f",
+      "receipt_sha256": "c05d496d396b90280fe5cd7b14618a98923c5b442cd8fa4599614d06fbd0b9c8",
+      "oracle_actual": {
+        "trace": [
+          "constructor"
+        ],
+        "result": null,
+        "exception": {
+          "type": "NameError",
+          "name": "ValueError"
+        },
+        "captured_builtins_empty": true,
+        "module_key_present": true
+      }
+    },
+    {
+      "id": "E03-module-empty-deleted",
+      "classification": "refuse",
+      "semantic_passed": false,
+      "oracle_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "public_result_sha256": "8f9f2434494a7a52599c5a17d75d7d2340399ccf435802f72869ece3e2e057fb",
+      "receipt_sha256": "8e0305d20fb53d33aa9b10141d4fd9695d811c7798ed3c4d61088cba7a69ea56",
+      "oracle_actual": {
+        "trace": [
+          "constructor"
+        ],
+        "result": null,
+        "exception": {
+          "type": "NameError",
+          "name": "ValueError"
+        },
+        "captured_builtins_empty": true,
+        "module_key_present": false
+      }
+    },
+    {
+      "id": "E04-local-empty",
+      "classification": "clean",
+      "semantic_passed": true,
+      "oracle_passed": true,
+      "argv": [
+        [
+          "-m",
+          "fixed"
+        ]
+      ],
+      "blockers": [],
+      "public_result_sha256": "c2cdcd271b0f4c54a8a127719dacf9a06d02742820019bed7d155c65430b8603",
+      "receipt_sha256": "bf0e0f750b91586dc236a07c3b75f045482cdd05ef57d88631259ebe3ef185d0",
+      "oracle_actual": {
+        "trace": [
+          "constructor",
+          "launch"
+        ],
+        "result": "fixed",
+        "exception": null,
+        "captured_builtins_empty": false,
+        "module_key_present": true
+      }
+    }
+  ],
+  "adjudication": {
+    "E01": "required clean control passed; exact argv [[-m,fixed]], no blockers",
+    "E02": "required refusal failed: analyzer emitted exact [[-m,fixed]] row and no blocker while harmless Model proved captured empty builtins and NameError(ValueError) before launch",
+    "E03": "required refusal failed identically after deleting the module key; harmless Model retained the captured empty builtins and NameError(ValueError) before launch",
+    "E04": "required clean local-shadow control passed; exact argv [[-m,fixed]], no blockers",
+    "semantic_failures": [
+      "E02-module-empty",
+      "E03-module-empty-deleted"
+    ]
+  },
+  "source_execution_boundary": {
+    "sensitive_source_executed_as_python": false,
+    "evidence": "Probe AST has one exec/compile site, in oracle(), whose tree is parsed only from case['oracle_source']; public_review passes case['source'] bytes only to generator.derive_design_review.",
+    "harmless_oracles_only": true,
+    "payload_rerun_by_reviewer": false
+  },
+  "checker_authoring_note": "The first reviewer-only verifier reached all custody/case assertions, then raised KeyError because it expected helper name run_model. Static AST inspection found the actual helper oracle; replacing only that verifier name made the same read-only verifier pass. No candidate, harness, output, or payload changed.",
+  "limits": [
+    "No candidate or harness was rerun.",
+    "No fix design or source change was assessed.",
+    "This verifies the retained CPython3.11.15 RED only; development-slot evidence remains separate."
+  ]
+}

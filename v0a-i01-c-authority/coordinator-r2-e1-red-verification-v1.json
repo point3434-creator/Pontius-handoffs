@@ -1,0 +1,47 @@
+{
+  "actual_runtime": {
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "version_info": [
+      3,
+      11,
+      15
+    ]
+  },
+  "analyzed_cases": 4,
+  "anticipated_product_red": true,
+  "candidate_executed_by_verifier": false,
+  "candidate_imported_by_verifier": false,
+  "clean_controls": [
+    "E01-standard",
+    "E04-local-empty"
+  ],
+  "failure_mechanism": "missing explicit blocker; launch row retained",
+  "files_rehashed": 1767,
+  "harness_executed_by_verifier": false,
+  "infrastructure_failure": false,
+  "input_count_rehashed": 22,
+  "integrity_clean": true,
+  "oracle_models_passed": 4,
+  "public_results_rehashed": 4,
+  "receipt_sha256": "2040b896281e161f5fee285bc7c62506a867a1dc168feadc96f89ddd4fd4bd00",
+  "records_rederived": 6,
+  "runtime": {
+    "dont_write_bytecode": true,
+    "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "isolated": true,
+    "no_site": true,
+    "safe_path": true,
+    "version": [
+      3,
+      11,
+      15
+    ]
+  },
+  "schema": "coordinator-r2-e1-red-verification-v1",
+  "semantic_failures": [
+    "E02-module-empty",
+    "E03-module-empty-deleted"
+  ],
+  "verifier_sha256": "c7049478ac889c6d2653505ffa16be15ca6f37b5d655258c58782155f9622837"
+}
