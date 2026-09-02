@@ -34,7 +34,7 @@ still be checked after each publication rather than inferred from hook success.
 | v0a-i01-c-authority | draft | [Current state](v0a-i01-c-authority/CURRENT.md) | Separate C authority-transfer FIX after r010 second residual; bounded identity/cell-state replacement and independent contract tests in progress; no frozen successor or main integration |
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |
 | review-guidance | r002 | [Disposition](review-guidance/r002/disposition.md) | CLEAN; exact reviewed workflow committed and pushed as d1ed3cb; concurrent edits preserved; refs archived |
-| v0a-i01-freeze-tools-design | r001 | [Disposition](v0a-i01-freeze-tools-design/r001/disposition.md) | NOT CLEAN: codex-a WRONG SHAPE, codex-b STRAINED; eleven-class r002 rewrite open; no implementation authority |
+| v0a-i01-freeze-tools-design | r002 | [Handoff](v0a-i01-freeze-tools-design/r002/handoff.md) | FROZEN FIX candidate; cold reviews pending; no implementation authority |
 
 The existing task verdict ledger remains at
 [its original location](../Pontius-worktrees/v0a-increment-1-preregistration-review/progress.md).
