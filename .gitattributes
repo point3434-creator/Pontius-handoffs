@@ -103,3 +103,7 @@ v0a-i01-c-authority/rewrite-r2-static-aid-v1-release.json -text
 
 # Preserve issued rewrite-r2-checkpoint1-v1 bytes.
 v0a-i01-c-authority/rewrite-r2-checkpoint1-v1-release.json -text
+
+# Preserve these issued v0a acceptance/seal packets, including raw Windows logs.
+v0a-consolidation/r004/** -text
+v0a-i01-seal/r001/** -text

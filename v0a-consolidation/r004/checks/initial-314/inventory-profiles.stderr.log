@@ -1,0 +1,17 @@
+......................................F....test inventory generation failed: design review destination must be an absolute OS-temp child
+test inventory generation failed: design write requires both approval tokens
+..................................<helper-summary-finally-return-overrides-must-raise-body>:5: SyntaxWarning: 'return' in a 'finally' block
+...........
+======================================================================
+FAIL: test_windows_persistent_close_failures_are_truthful_and_retryable (__main__.AtomicAndGitBoundaryTests.test_windows_persistent_close_failures_are_truthful_and_retryable) (prebound_owner_family='readback')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius\tmp\v0a-consolidation-r001-r004-314-1788559688086\snapshot\tests\test_inventory_and_profiles.py", line 26176, in _round7_windows_file_owners_bind_before_caller_failure
+    self.assertEqual(replacement, selected_handle)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != 624
+
+----------------------------------------------------------------------
+Ran 88 tests in 156.031s
+
+FAILED (failures=1)

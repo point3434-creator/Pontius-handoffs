@@ -35,6 +35,8 @@ still be checked after each publication rather than inferred from hook success.
 | review-guidance | r001 | [Disposition](review-guidance/r001/disposition.md) | NOT CLEAN; concurrent proposal isolated from intended commit; archived |
 | review-guidance | r002 | [Disposition](review-guidance/r002/disposition.md) | CLEAN; exact reviewed workflow committed and pushed as d1ed3cb; concurrent edits preserved; refs archived |
 | v0a-i01-freeze-tools-design | r002 | [Disposition](v0a-i01-freeze-tools-design/r002/disposition.md) | NOT CLEAN: codex-a WRONG SHAPE, codex-b STRAINED; three blocking classes; no implementation authority |
+| v0a-consolidation | r004 | [Disposition](v0a-consolidation/r004/disposition.md) | Bounded CPU acceptance approved; exact r007 core preserved; inherited fixture caveat retained; source-seal decision pending |
+| v0a-i01-seal | r001 | [Disposition](v0a-i01-seal/r001/disposition.md) | CLEAN/SOUND independent metadata review; three files beyond unchanged r004; specific decision-commit authorization pending, seal inactive |
 
 The existing task verdict ledger remains at
 [its original location](../Pontius-worktrees/v0a-increment-1-preregistration-review/progress.md).

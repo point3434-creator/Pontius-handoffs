@@ -1,0 +1,282 @@
+[
+  {
+    "name": "interpreter",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,platform; print(sys.executable); print(platform.python_implementation()); print(sys.version); print(sys.flags)"
+    ],
+    "exit_code": 0,
+    "seconds": 0.096
+  },
+  {
+    "name": "status-freshness",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 1.591
+  },
+  {
+    "name": "status-generation",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_status_generation.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.566
+  },
+  {
+    "name": "evidence-errors-model",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_evidence_errors_and_model.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.324
+  },
+  {
+    "name": "evidence-manifests",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_evidence_manifests.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.433
+  },
+  {
+    "name": "evidence-manifest-generation",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_evidence_manifest_generation.py"
+    ],
+    "exit_code": 0,
+    "seconds": 33.743
+  },
+  {
+    "name": "orchestration-imports",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_test_orchestration_import_boundary.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.204
+  },
+  {
+    "name": "orchestration-configuration",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_test_orchestration_configuration.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.622
+  },
+  {
+    "name": "inventory-profiles",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 0,
+    "seconds": 135.714
+  },
+  {
+    "name": "boundaries",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "seconds": 28.978
+  },
+  {
+    "name": "retained-inventory",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_retained_evidence_inventory.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.565
+  },
+  {
+    "name": "generation-check",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tools/generate_test_inventory.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 53.563
+  },
+  {
+    "name": "public-boundary",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "seconds": 6.723
+  },
+  {
+    "name": "v0a-hand-replay",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.37
+  },
+  {
+    "name": "v0a-trace",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_trace.py"
+    ],
+    "exit_code": 0,
+    "seconds": 3.331
+  },
+  {
+    "name": "v0a-replay",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_replay.py"
+    ],
+    "exit_code": 0,
+    "seconds": 2.875
+  },
+  {
+    "name": "v0a-contract-faults",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.324
+  },
+  {
+    "name": "kernel-action-clock",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_action_clock.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.291
+  },
+  {
+    "name": "kernel-preparation-bank",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_preparation_bank.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.311
+  },
+  {
+    "name": "kernel-legal-spine-v2",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_legal_decision_spine_v2.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.412
+  },
+  {
+    "name": "kernel-betting",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_no_limit_betting.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.413
+  },
+  {
+    "name": "kernel-cards",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_holdem_cards.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.329
+  },
+  {
+    "name": "kernel-blueprint",
+    "python": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-314-1788562329291\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_immutable_blueprint.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.31
+  }
+]

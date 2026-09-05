@@ -1,0 +1,282 @@
+[
+  {
+    "name": "interpreter",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,platform; print(sys.executable); print(platform.python_implementation()); print(sys.version); print(sys.flags)"
+    ],
+    "exit_code": 0,
+    "seconds": 0.094
+  },
+  {
+    "name": "status-freshness",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 1.641
+  },
+  {
+    "name": "status-generation",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_status_generation.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.55
+  },
+  {
+    "name": "evidence-errors-model",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_evidence_errors_and_model.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.302
+  },
+  {
+    "name": "evidence-manifests",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_evidence_manifests.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.392
+  },
+  {
+    "name": "evidence-manifest-generation",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_evidence_manifest_generation.py"
+    ],
+    "exit_code": 0,
+    "seconds": 34.083
+  },
+  {
+    "name": "orchestration-imports",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_test_orchestration_import_boundary.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.203
+  },
+  {
+    "name": "orchestration-configuration",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_test_orchestration_configuration.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.71
+  },
+  {
+    "name": "inventory-profiles",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 0,
+    "seconds": 136.306
+  },
+  {
+    "name": "boundaries",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "seconds": 27.206
+  },
+  {
+    "name": "retained-inventory",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_retained_evidence_inventory.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.577
+  },
+  {
+    "name": "generation-check",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tools/generate_test_inventory.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 52.846
+  },
+  {
+    "name": "public-boundary",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "seconds": 5.985
+  },
+  {
+    "name": "v0a-hand-replay",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.339
+  },
+  {
+    "name": "v0a-trace",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_trace.py"
+    ],
+    "exit_code": 0,
+    "seconds": 3.258
+  },
+  {
+    "name": "v0a-replay",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_replay.py"
+    ],
+    "exit_code": 0,
+    "seconds": 2.877
+  },
+  {
+    "name": "v0a-contract-faults",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.294
+  },
+  {
+    "name": "kernel-action-clock",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_action_clock.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.265
+  },
+  {
+    "name": "kernel-preparation-bank",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_preparation_bank.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.269
+  },
+  {
+    "name": "kernel-legal-spine-v2",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_legal_decision_spine_v2.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.334
+  },
+  {
+    "name": "kernel-betting",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_no_limit_betting.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.39
+  },
+  {
+    "name": "kernel-cards",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_holdem_cards.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.299
+  },
+  {
+    "name": "kernel-blueprint",
+    "python": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "root": "D:\\Pontius\\tmp\\v0a-r004-cpu-acceptance-311-1788562021546\\snapshot",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_immutable_blueprint.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.275
+  }
+]

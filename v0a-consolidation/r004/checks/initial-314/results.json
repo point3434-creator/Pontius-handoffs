@@ -1,0 +1,93 @@
+[
+  {
+    "name": "interpreter",
+    "arguments": [
+      "-B",
+      "-P",
+      "--version"
+    ],
+    "exit_code": 0,
+    "seconds": 0.063
+  },
+  {
+    "name": "hand-replay",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.501
+  },
+  {
+    "name": "trace",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_trace.py"
+    ],
+    "exit_code": 0,
+    "seconds": 3.407
+  },
+  {
+    "name": "replay",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_replay.py"
+    ],
+    "exit_code": 0,
+    "seconds": 2.979
+  },
+  {
+    "name": "contract-faults",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.356
+  },
+  {
+    "name": "boundaries",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "seconds": 29.675
+  },
+  {
+    "name": "inventory-profiles",
+    "arguments": [
+      "-B",
+      "-P",
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 1,
+    "seconds": 156.507
+  },
+  {
+    "name": "generation-check",
+    "arguments": [
+      "-B",
+      "-P",
+      "tools/generate_test_inventory.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 69.862
+  },
+  {
+    "name": "public-boundary",
+    "arguments": [
+      "-B",
+      "-P",
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "seconds": 8.393
+  }
+]

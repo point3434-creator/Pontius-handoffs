@@ -1,0 +1,142 @@
+[
+  {
+    "path": ".github/workflows/ci.yml",
+    "blob": "0585dcd6191dbe97b4f00f3866cc5da9798b4c51",
+    "sha256": "bbcf73e780fd827ca8c6eb691dd564d99806b841ada31f94e6be00a16aa8293b",
+    "bytes": 5389,
+    "lf": 126
+  },
+  {
+    "path": "STATUS.md",
+    "blob": "617ded62577cf82cd944da64b9044064c089a508",
+    "sha256": "d1987460551e18eb434461cdf882adb4a282a37f628abd5f7580f7b512046988",
+    "bytes": 26960,
+    "lf": 99
+  },
+  {
+    "path": "docs/architecture/v0a-increment-1-source-bindings.json",
+    "blob": "0186bf3ce894bb7512e761cd6667050c4c7e9f25",
+    "sha256": "4136020b369eabcd1dd7c160a7b4f9dd05d9fc587fc8276993cc807b9f9e034b",
+    "bytes": 14093,
+    "lf": 538
+  },
+  {
+    "path": "docs/decisions/ADR-0487-source-seal-the-blueprint-only-v0a-hand-runtime.md",
+    "blob": "1c7c620bfe78ac558c20931fae5e17d9c7ab8333",
+    "sha256": "66ebe50e4836dd1b3e7aa0ce5738bd07adac6202899096d217fab21f4d4bedb9",
+    "bytes": 10788,
+    "lf": 171
+  },
+  {
+    "path": "src/pontius/v0a/__init__.py",
+    "blob": "c502c799cd9104683f87c5e3e05c25630809b4c8",
+    "sha256": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a",
+    "bytes": 73,
+    "lf": 1
+  },
+  {
+    "path": "src/pontius/v0a/clock.py",
+    "blob": "32cdc99e2e8e6c074dd925410c39330fa413af18",
+    "sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb",
+    "bytes": 3401,
+    "lf": 87
+  },
+  {
+    "path": "src/pontius/v0a/model.py",
+    "blob": "3602989e3a3d5f36c9a0bd5d102797b8e349191d",
+    "sha256": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18",
+    "bytes": 22612,
+    "lf": 569
+  },
+  {
+    "path": "src/pontius/v0a/replay.py",
+    "blob": "89e1604ed443ff7d26fdb94e65150c0582c27ca9",
+    "sha256": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53",
+    "bytes": 40059,
+    "lf": 912
+  },
+  {
+    "path": "src/pontius/v0a/runtime.py",
+    "blob": "1c855b3b5e8f2d057105128733f43279b9f73990",
+    "sha256": "307115a9a50be0a80b0cbba997f26f385abcbe1abdc32bd749495eb4692084ee",
+    "bytes": 50288,
+    "lf": 1257
+  },
+  {
+    "path": "src/pontius/v0a/trace.py",
+    "blob": "8440aa0274b642af3e03326813989ff5b3333766",
+    "sha256": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1",
+    "bytes": 53951,
+    "lf": 1225
+  },
+  {
+    "path": "tests/test-inventory.json",
+    "blob": "d655d205053c13da2634e8a22b36c58b72ee340b",
+    "sha256": "130b6aecbacc6b166ad6ca4053d3ce49ca3bbffd21294340d719b59bcf9625a1",
+    "bytes": 1673342,
+    "lf": 1
+  },
+  {
+    "path": "tests/test-profiles.toml",
+    "blob": "ada2c73eb0834fe9822b84e5d31b2ffdfb78b4a6",
+    "sha256": "2daa496d1ab8dc6b8e4c80a68d0227925881ee8957c8fe080a5ad6dea3885652",
+    "bytes": 456401,
+    "lf": 7534
+  },
+  {
+    "path": "tests/test_inventory_and_profiles.py",
+    "blob": "45c65de9cde1506db8ad900d624ec69fce5b9893",
+    "sha256": "0d32193d41c527d21b6ae8e48df21bc1ea7ee3222f53efe9643d23e103a04490",
+    "bytes": 1187607,
+    "lf": 30434
+  },
+  {
+    "path": "tests/test_stabilization_boundaries.py",
+    "blob": "1614883448ba673ceb53ea253bc8036479967877",
+    "sha256": "aa85fdb3f34c8358d3ef74acde333cdb2790476ccc68af649131bfc63205318c",
+    "bytes": 65808,
+    "lf": 1575
+  },
+  {
+    "path": "tests/test_v0a_contract_faults.py",
+    "blob": "6ae1e2f6c87995e353609bc48995d620cbf50343",
+    "sha256": "fa7b35f334ebdc232e3d1789db0923ca32ca28ffa0a0a4db741de3a7470cbcf8",
+    "bytes": 23767,
+    "lf": 610
+  },
+  {
+    "path": "tests/test_v0a_hand_replay.py",
+    "blob": "6d20cf30a76e6f047941bf66e5f2a710143c177c",
+    "sha256": "0a46d155256c4d5727bf53cbc7d8b8ec811d37d777b5c3d7996d8b31ecd822c0",
+    "bytes": 54725,
+    "lf": 1244
+  },
+  {
+    "path": "tests/test_v0a_replay.py",
+    "blob": "d8ff7df0bba86e8f1b8c310e3d76b21d8d8d574a",
+    "sha256": "1905b75cef434830cf60a7ddc0faf3b5f58cf3bee4947a9be408a017fa0d9c88",
+    "bytes": 81491,
+    "lf": 1795
+  },
+  {
+    "path": "tests/test_v0a_trace.py",
+    "blob": "89ed7b6afb94ef3e37d671618cb6c5da51be505f",
+    "sha256": "6de564516a2b866b8b13789bcdff213062911a794bb726a9c9361e785a465d02",
+    "bytes": 67481,
+    "lf": 1373
+  },
+  {
+    "path": "tools/check_stabilization_boundaries.py",
+    "blob": "c3f739f001fd70d5326bc7ec4609f483e1ba5525",
+    "sha256": "58e4213581c7ce170070574b170172fca83cd8548cfc94b1a1ee309c63d7e031",
+    "bytes": 19898,
+    "lf": 531
+  },
+  {
+    "path": "tools/generate_test_inventory.py",
+    "blob": "da0fb1efd0f38747ad90f91aea572789ace7e0aa",
+    "sha256": "d58b796247509865c38f0929428d7c1964702cb2a651f830ee9426bd4ee461c6",
+    "bytes": 983625,
+    "lf": 25459
+  }
+]

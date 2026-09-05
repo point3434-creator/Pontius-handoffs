@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_windows_persistent_close_failures_are_truthful_and_retryable (__main__.AtomicAndGitBoundaryTests.test_windows_persistent_close_failures_are_truthful_and_retryable) (prebound_owner_family='published_disposal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius\tmp\v0a-consolidation-r004-handle-baseline\repo\tests\test_inventory_and_profiles.py", line 26113, in _round7_windows_file_owners_bind_before_caller_failure
+    self.assertEqual(replacement, selected_handle)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != 740
+
+----------------------------------------------------------------------
+Ran 1 test in 1.250s
+
+FAILED (failures=1)

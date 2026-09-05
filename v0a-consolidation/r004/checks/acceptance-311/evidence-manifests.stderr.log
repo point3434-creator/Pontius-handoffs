@@ -1,0 +1,16 @@
+test_current_boundary_rejects_overlap_owner_duplicates_and_baseline_disagreement (__main__.EvidenceManifestTests.test_current_boundary_rejects_overlap_owner_duplicates_and_baseline_disagreement) ... ok
+test_duplicate_toml_table_is_a_configuration_error (__main__.EvidenceManifestTests.test_duplicate_toml_table_is_a_configuration_error) ... ok
+test_each_schema_rejects_its_applicable_malformed_scalar_path_count_and_digest_fields (__main__.EvidenceManifestTests.test_each_schema_rejects_its_applicable_malformed_scalar_path_count_and_digest_fields) ... ok
+test_each_schema_rejects_missing_or_extra_root_fields (__main__.EvidenceManifestTests.test_each_schema_rejects_missing_or_extra_root_fields) ... ok
+test_every_declared_field_is_independently_type_checked_by_both_parsers (__main__.EvidenceManifestTests.test_every_declared_field_is_independently_type_checked_by_both_parsers) ... ok
+test_historical_manifest_rejects_duplicate_commit_path_counts_and_digest_disagreement (__main__.EvidenceManifestTests.test_historical_manifest_rejects_duplicate_commit_path_counts_and_digest_disagreement) ... ok
+test_parses_each_strict_manifest_schema (__main__.EvidenceManifestTests.test_parses_each_strict_manifest_schema) ... ok
+test_retained_semantic_identity_is_key_order_independent_but_raw_identity_is_not (__main__.EvidenceManifestTests.test_retained_semantic_identity_is_key_order_independent_but_raw_identity_is_not) ... ok
+test_schema_tables_reject_missing_extra_and_wrong_scalar_values (__main__.EvidenceManifestTests.test_schema_tables_reject_missing_extra_and_wrong_scalar_values) ... ok
+test_toml_syntax_and_duplicate_keys_are_configuration_errors_with_cause (__main__.EvidenceManifestTests.test_toml_syntax_and_duplicate_keys_are_configuration_errors_with_cause) ... ok
+test_tool_local_parsers_and_encoder_conform_to_active_contract_vectors (__main__.EvidenceManifestTests.test_tool_local_parsers_and_encoder_conform_to_active_contract_vectors) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.035s
+
+OK
