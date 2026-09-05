@@ -7,6 +7,7 @@ still be checked after each publication rather than inferred from hook success.
 
 | Task | Round | Packet | State |
 | --- | --- | --- | --- |
+| v0a-blueprint-artifact-open | r001 | [Packet][blueprint-open-r001] | CLEAN/SOUND; authorized adoption pending |
 | v0a-blueprint-artifact-design | r001 | [Packet][blueprint-r001] | NOT CLEAN; retained |
 | v0a-blueprint-artifact-design | r002 | [Packet][blueprint-r002] | CLEAN/SOUND twice; not adopted |
 | v0a-i01-prereg | r001 | [Legacy reports](../Pontius-worktrees/v0a-increment-1-preregistration-review/r1-candidate.json) | Rejected; preserved in its original location |
@@ -53,3 +54,4 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 
 [blueprint-r001]: v0a-blueprint-artifact-design/r001/handoff.md
 [blueprint-r002]: v0a-blueprint-artifact-design/r002/handoff.md
+[blueprint-open-r001]: v0a-blueprint-artifact-open/r001/handoff.md

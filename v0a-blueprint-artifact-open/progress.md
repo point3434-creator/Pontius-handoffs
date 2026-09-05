@@ -1,0 +1,1 @@
+2026-09-05 | r001 | candidate 964ae18a64eccc595526525536d0e53e02293b83 | manifest a6daf28c7bba5d7c531b39d31ea4f2e09c292339996a73baec0edb5bd523da1b | Codex independent Tier A metadata reviewer | CLEAN | Spec PASS | Quality PASS | C/I/M 0/0/0 | SOUND
