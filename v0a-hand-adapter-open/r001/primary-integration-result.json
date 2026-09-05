@@ -1,0 +1,20 @@
+{
+  "decision_commit": "abe559511a72086791ca53cd3dfec24e49ec280b",
+  "candidate": "36c31477d87028aeec31339d28ccc089ffcaa31d",
+  "base": "7a387e995e3b37232d2379332927247a4d49c64e",
+  "tree": "67d0e61c2cce8cba2c6e2ff759c24f432d50ac04",
+  "manifest_sha256": "83814f33a6f7f64b99da7bedfaaa81e61712c083d8f0ecf55a79f0f9a22f142c",
+  "paths": [
+    "STATUS.md",
+    "docs/decisions/ADR-0493-open-the-one-hand-file-adapter-source-round.md",
+    "docs/architecture/v0a-hand-adapter-r002/brief.md",
+    "docs/architecture/v0a-hand-adapter-r002/design.md",
+    "docs/architecture/v0a-hand-adapter-r002/source-opening-draft.md"
+  ],
+  "primary_pushed": true,
+  "handoff_publication": "pending explicit transfer approval",
+  "operating_authority": false,
+  "prior_status_sha256": "3ad015f8e8f7e2623bca0a4e23411f5c287134aa89bb60531a935226189172c5",
+  "postcommit_checks": "CPython 3.11.15 then 3.14.6; status current; 12 tests each; exact reviewed tree",
+  "final_status_sha256": "3ad015f8e8f7e2623bca0a4e23411f5c287134aa89bb60531a935226189172c5"
+}

@@ -1,0 +1,2 @@
+Reviewer B — v0a-hand-adapter-design/r003 — commit 02e24f143b8df4b2f03e8a94c58ab57905a8b2b6 — manifest f730799182d3f3eda2d9efa273048b2eaf28ceeb4274ea7525df95426ca679b1 — PASS: Spec PASS; Quality PASS; C/I/M 0/0/0; CLEAN; Design SOUND.
+Reviewer A — v0a-hand-adapter-design/r003 — commit 02e24f143b8df4b2f03e8a94c58ab57905a8b2b6 — manifest f730799182d3f3eda2d9efa273048b2eaf28ceeb4274ea7525df95426ca679b1 — CLEAN; Spec PASS; Quality PASS; C/I/M 0/0/0; Design SOUND.

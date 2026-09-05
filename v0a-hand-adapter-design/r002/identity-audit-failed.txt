@@ -1,0 +1,16 @@
+FILE: docs/architecture/v0a-hand-adapter-r002/brief.md: 4820 bytes, 79 LF, 2 terminal LF bytes
+FILE: docs/architecture/v0a-hand-adapter-r002/design.md: 19701 bytes, 305 LF, 2 terminal LF bytes
+FILE: docs/architecture/v0a-hand-adapter-r002/source-opening-draft.md: 6417 bytes, 105 LF, 2 terminal LF bytes
+Traceback (most recent call last):
+  File "D:\Pontius\tmp\v0a-hand-adapter-design-r001\audit-r002.py", line 85, in <module>
+    git("diff", "--check", BASE, COMMIT)
+  File "D:\Pontius\tmp\v0a-hand-adapter-design-r001\audit-r002.py", line 22, in git
+    return subprocess.check_output(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Program Files\\Git\\cmd\\git.exe', '--no-replace-objects', '-c', 'safe.directory=D:/Pontius/tmp/v0a-hand-adapter-design-r001/authoring', '-C', 'D:\\Pontius\\tmp\\v0a-hand-adapter-design-r001\\authoring', 'diff', '--check', '7a387e995e3b37232d2379332927247a4d49c64e', '1c2fde7bdb9359436f9c2ff260e324a08439752b']' returned non-zero exit status 2.
+Audit exit: 1

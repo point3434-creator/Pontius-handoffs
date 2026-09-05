@@ -1,0 +1,4 @@
+Codex independent review — v0a-hand-adapter-design/r001 @ 21474e3d5b105c1709205df1eb5543417abb5a0a / manifest ce327c6982338c148d26d4d73cad978ad05b49596520449337d2cc9cb9be0bc9: CLEAN; Spec PASS; Quality PASS; C/I/M 0/0/0; Design SOUND.
+Reviewer B — v0a-hand-adapter-design/r001 — commit 21474e3d5b105c1709205df1eb5543417abb5a0a — manifest ce327c6982338c148d26d4d73cad978ad05b49596520449337d2cc9cb9be0bc9 — FAIL: Spec FAIL; Quality FAIL; C/I/M 1/0/0; unresolved correction; Design SOUND.
+Reviewer B — v0a-hand-adapter-design/r003 — commit 02e24f143b8df4b2f03e8a94c58ab57905a8b2b6 — manifest f730799182d3f3eda2d9efa273048b2eaf28ceeb4274ea7525df95426ca679b1 — PASS: Spec PASS; Quality PASS; C/I/M 0/0/0; CLEAN; Design SOUND.
+Reviewer A — v0a-hand-adapter-design/r003 — commit 02e24f143b8df4b2f03e8a94c58ab57905a8b2b6 — manifest f730799182d3f3eda2d9efa273048b2eaf28ceeb4274ea7525df95426ca679b1 — CLEAN; Spec PASS; Quality PASS; C/I/M 0/0/0; Design SOUND.

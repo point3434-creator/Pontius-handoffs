@@ -1,0 +1,1 @@
+Codex, fresh independent Tier A reviewer — v0a-hand-adapter-open/r001 — commit 36c31477d87028aeec31339d28ccc089ffcaa31d — manifest 83814f33a6f7f64b99da7bedfaaa81e61712c083d8f0ecf55a79f0f9a22f142c — Spec PASS; Quality PASS; C/I/M 0/0/0; CLEAN; Design SOUND.

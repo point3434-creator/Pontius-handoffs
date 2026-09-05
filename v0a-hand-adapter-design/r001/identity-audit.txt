@@ -1,0 +1,13 @@
+Read-only identity audit, CPython 3.11.15, -B -P.
+Command: D:/Pontius-tools/py311/Scripts/python.exe -B -P D:/Pontius/tmp/v0a-hand-adapter-design-r001/audit.py
+The final line below is primary HEAD; primary tracked/index status output was empty.
+
+PASS: exact ref, parent, tree and three-path documentation-only scope
+PASS: raw packet/working/blob bytes and whole-row-sorted LF manifest
+PASS: six proposed registration exceptions pin the actual base blobs
+PASS: all other base blobs unchanged; authoring HEAD/index unchanged
+PASS: LF-only, no BOM/trailing whitespace, final LF, lines <=100 columns
+Candidate: 21474e3d5b105c1709205df1eb5543417abb5a0a
+Manifest: ce327c6982338c148d26d4d73cad978ad05b49596520449337d2cc9cb9be0bc9
+LIMIT: no implementation, project import, payload/test run or runtime acceptance
+7a387e995e3b37232d2379332927247a4d49c64e

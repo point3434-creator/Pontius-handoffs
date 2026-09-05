@@ -1,0 +1,14 @@
+FILE: docs/architecture/v0a-hand-adapter-r002/brief.md: 4819 bytes, 78 LF, 1 terminal LF bytes
+FILE: docs/architecture/v0a-hand-adapter-r002/design.md: 19700 bytes, 304 LF, 1 terminal LF bytes
+FILE: docs/architecture/v0a-hand-adapter-r002/source-opening-draft.md: 6416 bytes, 104 LF, 1 terminal LF bytes
+PASS: raw Git object hashes, ref, parent, tree and exact three-path docs-only scope
+PASS: raw packet/working/blob bytes and whole-row-sorted LF manifest
+PASS: six registration pins; all other base blobs and authoring HEAD/index unchanged
+PASS: r001 ref/manifest/raw files retained byte-exact
+PASS: brief/opening preserve original content; r001-to-r002 version labels only
+PASS: LF-only, no BOM/trailing whitespace, final LF, lines <=100 columns
+PASS: r003 differs from r002 by exactly one removed EOF LF in each file
+PASS: r002 ref/manifest/raw packet and original working files unchanged
+Candidate: 02e24f143b8df4b2f03e8a94c58ab57905a8b2b6
+Manifest: f730799182d3f3eda2d9efa273048b2eaf28ceeb4274ea7525df95426ca679b1
+LIMIT: no implementation, project import, payload/test run or runtime acceptance

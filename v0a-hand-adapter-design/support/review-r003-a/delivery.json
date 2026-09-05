@@ -1,0 +1,24 @@
+{
+  "seat": "a",
+  "exit_code": 0,
+  "argv": [
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--sandbox",
+    "read-only",
+    "-c",
+    "windows.sandbox=\"elevated\"",
+    "--disable",
+    "multi_agent",
+    "--model",
+    "gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--json",
+    "--output-last-message",
+    "D:\\Pontius\\tmp\\v0a-hand-adapter-design-r001\\review-r003-a\\review.md",
+    "-"
+  ],
+  "report": "D:\\Pontius\\tmp\\v0a-hand-adapter-design-r001\\review-r003-a\\review.md"
+}

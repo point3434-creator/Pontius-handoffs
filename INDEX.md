@@ -62,3 +62,12 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 [blueprint-r001]: v0a-blueprint-artifact-design/r001/handoff.md
 [blueprint-r002]: v0a-blueprint-artifact-design/r002/handoff.md
 [blueprint-open-r001]: v0a-blueprint-artifact-open/r001/handoff.md
+
+## One-hand file adapter
+
+- [Design r001](v0a-hand-adapter-design/r001/disposition.md): retained NOT CLEAN.
+- [Design r002](v0a-hand-adapter-design/r002/disposition.md): audit failed; no review.
+- [Design r003](v0a-hand-adapter-design/r003/disposition.md): two CLEAN/SOUND reviews.
+- [Source opening r001](v0a-hand-adapter-open/r001/disposition.md): CLEAN/SOUND;
+  [adopted as abe5595](v0a-hand-adapter-open/r001/adoption-result.md).
+- [Publication map](v0a-hand-adapter-design/publication-map.md): original-path mappings.
