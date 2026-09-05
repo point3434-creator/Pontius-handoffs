@@ -71,3 +71,5 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Source opening r001](v0a-hand-adapter-open/r001/disposition.md): CLEAN/SOUND;
   [adopted as abe5595](v0a-hand-adapter-open/r001/adoption-result.md).
 - [Publication map](v0a-hand-adapter-design/publication-map.md): original-path mappings.
+- [Publication complete](v0a-hand-adapter-open/r001/publication-result.md):
+  four archive refs and all retained packets verified on the private remotes.
