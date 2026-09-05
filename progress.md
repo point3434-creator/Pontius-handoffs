@@ -3,6 +3,8 @@
 Task-level review verdicts live only in each task's progress.md. This ledger
 records round dispositions, not duplicate reviewer verdicts.
 
+2026-09-05 | v0a-blueprint-artifact-design/r002 | Codex coordinator | DESIGN REVIEW CLEAN/SOUND in two fresh Tier C reviews; all three r001 scalar/capacity design corrections closed, no required findings; ready for separate source-opening adoption, not adopted or implemented; no payload execution, source or master change | candidate a552f6f34efe10155a702fd09a03bcc70802a369 | manifest 67abe320f73b8edfab60a93511f31eac62d0fac0279cdef712acda91fcf7aced | v0a-blueprint-artifact-design/r002/disposition.md
+
 2026-09-05 | v0a-blueprint-artifact-design/r001 | Codex coordinator | NOT READY FOR ADOPTION; three accepted design-contract corrections, shape SOUND; r001 retained unchanged; controller authorized one documentation-only r002 correction and packet publication, no source opening | candidate 336b8660f2f0b33fbeaa40d02cfc97c041ae6e1a | manifest 404d81333837358c2c4d5d60e1702039a13c276dbe14979684033aa23b82024a | v0a-blueprint-artifact-design/r001/disposition.md
 
 2026-08-30 | v0a-i01-prereg/r004 | /root | REJECTED packet identity: full-row manifest ordering required; source unchanged in r005 | commit 98328440d4425fed1dbc7eb30b26b5f785709f05 | advertised manifest 402514df6aead93fc1495096d6f9647b0021992751b63566f90a695b89d2d8f0 | v0a-i01-prereg/r004/disposition.md
