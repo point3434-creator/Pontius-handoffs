@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\Pontius\tmp\v0a-driver-seal-r001\prepare-snapshot\src\pontius\status_generation.py", line 335, in render_status
+    snapshot = _front_door(rows)
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Pontius\tmp\v0a-driver-seal-r001\prepare-snapshot\src\pontius\status_generation.py", line 237, in _front_door
+    require_current_authority(snapshot_controller, role="front-door controller")
+  File "D:\Pontius\tmp\v0a-driver-seal-r001\prepare-snapshot\src\pontius\status_generation.py", line 179, in require_current_authority
+    raise ValueError(f"{role} must reference a currently accepted ADR")
+ValueError: front-door controller must reference a currently accepted ADR

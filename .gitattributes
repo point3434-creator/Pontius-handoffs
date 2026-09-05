@@ -107,3 +107,7 @@ v0a-i01-c-authority/rewrite-r2-checkpoint1-v1-release.json -text
 # Preserve these issued v0a acceptance/seal packets, including raw Windows logs.
 v0a-consolidation/r004/** -text
 v0a-i01-seal/r001/** -text
+
+# Preserve the approved driver and driver-seal packets byte-for-byte.
+v0a-driver/r001/** -text
+v0a-driver-seal/r001/** -text
