@@ -1,0 +1,27 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\candidate-handle-cause-diagnostic-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\candidate-handle-cause-diagnostic-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\candidate-handle-cause-diagnostic-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "D:/Pontius/tmp/v0a-blueprint-artifact-impl-r001/diagnose-handle-reuse.py"
+    ],
+    "exit_code": 1,
+    "stdout": "{\r\n  \"diagnostic_only\": true,\r\n  \"observations\": [\r\n    {\r\n      \"family\": \"recovery\",\r\n      \"line\": 26179,\r\n      \"assertion\": \"None != 544\",\r\n      \"selected_handle\": 544,\r\n      \"replacement\": null,\r\n      \"replacement_blockers\": 4096,\r\n      \"close_attempts\": 1,\r\n      \"caught_chain\": [\r\n        {\r\n          \"type\": \"OSError\",\r\n          \"message\": \"failure immediately after recovery acquisition\"\r\n        },\r\n        {\r\n          \"type\": \"_GovernancePreparationFailure\",\r\n          \"message\": \"governance preparation failed\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"family\": \"published\",\r\n      \"line\": 26179,\r\n      \"assertion\": \"None != 17460\",\r\n      \"selected_handle\": 17460,\r\n      \"replacement\": null,\r\n      \"replacement_blockers\": 4096,\r\n      \"close_attempts\": 1,\r\n      \"caught_chain\": [\r\n        {\r\n          \"type\": \"OSError\",\r\n          \"message\": \"failure immediately after published acquisition\"\r\n        },\r\n        {\r\n          \"type\": \"_GovernancePreparationFailure\",\r\n          \"message\": \"governance preparation failed\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+    "stderr": "FF\r\n======================================================================\r\nFAIL: test_windows_persistent_close_failures_are_truthful_and_retryable (__main__.AtomicAndGitBoundaryTests.test_windows_persistent_close_failures_are_truthful_and_retryable) (prebound_owner_family='recovery')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\candidate-handle-cause-diagnostic-311\\tests\\test_inventory_and_profiles.py\", line 26179, in _round7_windows_file_owners_bind_before_caller_failure\r\n    self.assertEqual(replacement, selected_handle)\r\nAssertionError: None != 544\r\n\r\n======================================================================\r\nFAIL: test_windows_persistent_close_failures_are_truthful_and_retryable (__main__.AtomicAndGitBoundaryTests.test_windows_persistent_close_failures_are_truthful_and_retryable) (prebound_owner_family='published')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\candidate-handle-cause-diagnostic-311\\tests\\test_inventory_and_profiles.py\", line 26179, in _round7_windows_file_owners_bind_before_caller_failure\r\n    self.assertEqual(replacement, selected_handle)\r\nAssertionError: None != 17460\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 1.547s\r\n\r\nFAILED (failures=2)\r\n"
+  }
+]

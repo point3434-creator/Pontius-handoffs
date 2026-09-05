@@ -1,0 +1,31 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\review-a-codec-edges-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-X",
+      "int_max_str_digits=640",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\review-a-codec-edges-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\review-a-codec-edges-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-X",
+      "int_max_str_digits=640",
+      "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\packets\\r001\\reviews\\a\\probe_codec_edges.py"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\packets\\r001\\reviews\\a\\probe_codec_edges.py\", line 73, in <module>\r\n    refused(document)\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\packets\\r001\\reviews\\a\\probe_codec_edges.py\", line 29, in refused\r\n    decode_blueprint(encoded(document))\r\n                     ^^^^^^^^^^^^^^^^^\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\packets\\r001\\reviews\\a\\probe_codec_edges.py\", line 24, in encoded\r\n    return json.dumps(document, ensure_ascii=True, separators=(\",\", \":\")).encode(\"ascii\")\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib\\json\\__init__.py\", line 238, in dumps\r\n    **kw).encode(obj)\r\n          ^^^^^^^^^^^\r\n  File \"C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib\\json\\encoder.py\", line 200, in encode\r\n    chunks = self.iterencode(o, _one_shot=True)\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\point\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\Lib\\json\\encoder.py\", line 258, in iterencode\r\n    return _iterencode(o, 0)\r\n           ^^^^^^^^^^^^^^^^^\r\nValueError: Exceeds the limit (640 digits) for integer string conversion; use sys.set_int_max_str_digits() to increase the limit\r\n"
+  }
+]

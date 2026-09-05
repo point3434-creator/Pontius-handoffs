@@ -1,0 +1,27 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\codec-boundary-red-r001-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\codec-boundary-red-r001-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\codec-boundary-red-r001-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_blueprint_artifact_boundary.py"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "F...\r\n======================================================================\r\nFAIL: test_codec_family_and_imports_are_exact (__main__.CodecBoundaryTests.test_codec_family_and_imports_are_exact)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\codec-boundary-red-r001-311\\tests\\test_blueprint_artifact_boundary.py\", line 75, in test_codec_family_and_imports_are_exact\r\n    self.assertTrue(callable(policy))\r\nAssertionError: False is not true\r\n\r\n----------------------------------------------------------------------\r\nRan 4 tests in 21.290s\r\n\r\nFAILED (failures=1)\r\n"
+  }
+]

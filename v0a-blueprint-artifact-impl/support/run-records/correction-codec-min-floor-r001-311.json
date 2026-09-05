@@ -1,0 +1,31 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\correction-codec-min-floor-r001-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-X",
+      "int_max_str_digits=640",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\correction-codec-min-floor-r001-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\correction-codec-min-floor-r001-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-X",
+      "int_max_str_digits=640",
+      "tests/test_blueprint_artifact.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ".......\r\n----------------------------------------------------------------------\r\nRan 7 tests in 0.070s\r\n\r\nOK\r\n"
+  }
+]

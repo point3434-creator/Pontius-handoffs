@@ -1,0 +1,1 @@
+2026-09-05 | Codex reviewer B | v0a-blueprint-artifact-impl/r001 | commit 6fb7f840d31d946e6b5dcb45faf82939dafd46ec | manifest 26b8fb178aecaf3dccf038ee2e108dc4ce913f7f07baff10cff5efbe11011aee | Spec FAIL | Quality FAIL | C/I/M 0/2/0 | REQUIRED CORRECTIONS B01/B02 | SOUND

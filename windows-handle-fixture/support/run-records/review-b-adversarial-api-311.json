@@ -1,0 +1,28 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-b-adversarial-api-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-b-adversarial-api-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-b-adversarial-api-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import importlib.util\nfrom pathlib import Path\nimport tempfile\n\npath = Path('tests/test_inventory_and_profiles.py')\nspec = importlib.util.spec_from_file_location('review_b_inventory_tests', path)\nassert spec is not None and spec.loader is not None\nmodule = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(module)\ngenerator = module._load_generator()\nfilesystem = generator.secure_filesystem\nraw_create, _, _, raw_close = filesystem._windows_directory_api()\ninvalid = filesystem.ctypes.c_void_p(-1).value\nwith tempfile.TemporaryDirectory(prefix='pontius-review-b-probe-') as temporary:\n    root = Path(temporary)\n    missing = root / 'absent'\n    arguments = (\n        str(missing), 0x00000020 | 0x00000080 | 0x00100000,\n        0x00000001 | 0x00000002 | 0x00000004, None, 3,\n        0x02000000 | 0x00200000, None,\n    )\n    raw_result = raw_create(*arguments)\n    raw_error = filesystem.ctypes.get_last_error()\n    assert int(raw_result) == invalid and raw_error != 0\n    with module._ControlledWindowsHandles(filesystem) as routing:\n        routed_create = filesystem._windows_directory_api()[0]\n        routed_result = routed_create(*arguments)\n        routed_error = filesystem.ctypes.get_last_error()\n        assert int(routed_result) == invalid\n        assert routed_error == raw_error, (routed_error, raw_error)\n        token = generator._windows_open_governance_directory(root)[0]\n        native = routing.live[token]\n        routed_close = filesystem._windows_directory_api()[3]\n        assert routed_close(filesystem.wintypes.HANDLE(token))\n        assert token not in routing.live\n        assert not routing.native_is_open(native)\n        assert not routed_close(filesystem.wintypes.HANDLE(token))\n        assert filesystem.ctypes.get_last_error() == 6\n        filesystem.ctypes.set_last_error(1234)\n        try:\n            generator._windows_governance_handle_is_open(routing.TOKEN_START + 999)\n        except AssertionError as error:\n            assert 'unknown synthetic handle' in str(error)\n        else:\n            raise AssertionError('unknown token reached Windows')\n        assert filesystem.ctypes.get_last_error() == 1234\n    routing = module._ControlledWindowsHandles(filesystem)\n    original_raw_close = routing.raw_close\n    token = None\n    native = None\n    try:\n        with routing:\n            token = generator._windows_open_governance_directory(root)[0]\n            native = routing.live[token]\n            routing.raw_close = lambda _handle: 0\n            raise ValueError('review-b-primary')\n    except AssertionError as error:\n        assert isinstance(error.__cause__, ValueError)\n        assert 'close failures' in str(error)\n        assert token in routing.live and routing.live[token] == native\n        assert filesystem.ctypes is routing.ctypes\n    else:\n        raise AssertionError('failed fallback close did not fail teardown')\n    finally:\n        assert native is not None\n        assert original_raw_close(filesystem.wintypes.HANDLE(native))\n        routing.live.clear()\nprint('review-b adversarial API/error/refusal/teardown probes passed')"
+    ],
+    "exit_code": 0,
+    "stdout": "review-b adversarial API/error/refusal/teardown probes passed\r\n",
+    "stderr": ""
+  }
+]

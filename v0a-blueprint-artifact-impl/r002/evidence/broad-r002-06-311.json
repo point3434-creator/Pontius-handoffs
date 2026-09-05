@@ -1,0 +1,27 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\broad-r002-06-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\broad-r002-06-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\broad-r002-06-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_evidence_manifests.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_current_boundary_rejects_overlap_owner_duplicates_and_baseline_disagreement (__main__.EvidenceManifestTests.test_current_boundary_rejects_overlap_owner_duplicates_and_baseline_disagreement) ... ok\r\ntest_duplicate_toml_table_is_a_configuration_error (__main__.EvidenceManifestTests.test_duplicate_toml_table_is_a_configuration_error) ... ok\r\ntest_each_schema_rejects_its_applicable_malformed_scalar_path_count_and_digest_fields (__main__.EvidenceManifestTests.test_each_schema_rejects_its_applicable_malformed_scalar_path_count_and_digest_fields) ... ok\r\ntest_each_schema_rejects_missing_or_extra_root_fields (__main__.EvidenceManifestTests.test_each_schema_rejects_missing_or_extra_root_fields) ... ok\r\ntest_every_declared_field_is_independently_type_checked_by_both_parsers (__main__.EvidenceManifestTests.test_every_declared_field_is_independently_type_checked_by_both_parsers) ... ok\r\ntest_historical_manifest_rejects_duplicate_commit_path_counts_and_digest_disagreement (__main__.EvidenceManifestTests.test_historical_manifest_rejects_duplicate_commit_path_counts_and_digest_disagreement) ... ok\r\ntest_parses_each_strict_manifest_schema (__main__.EvidenceManifestTests.test_parses_each_strict_manifest_schema) ... ok\r\ntest_retained_semantic_identity_is_key_order_independent_but_raw_identity_is_not (__main__.EvidenceManifestTests.test_retained_semantic_identity_is_key_order_independent_but_raw_identity_is_not) ... ok\r\ntest_schema_tables_reject_missing_extra_and_wrong_scalar_values (__main__.EvidenceManifestTests.test_schema_tables_reject_missing_extra_and_wrong_scalar_values) ... ok\r\ntest_toml_syntax_and_duplicate_keys_are_configuration_errors_with_cause (__main__.EvidenceManifestTests.test_toml_syntax_and_duplicate_keys_are_configuration_errors_with_cause) ... ok\r\ntest_tool_local_parsers_and_encoder_conform_to_active_contract_vectors (__main__.EvidenceManifestTests.test_tool_local_parsers_and_encoder_conform_to_active_contract_vectors) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 11 tests in 0.033s\r\n\r\nOK\r\n"
+  }
+]

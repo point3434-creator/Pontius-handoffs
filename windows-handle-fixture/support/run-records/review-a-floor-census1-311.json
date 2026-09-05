@@ -1,0 +1,27 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-a-floor-census1-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-a-floor-census1-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-a-floor-census1-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\reviews\\a\\probe_schedule_census.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"events\": [{\"event\": \"reuse\", \"identity_size\": 16, \"native\": 700, \"token\": 281474976710659}, {\"event\": \"survived\", \"native\": 700, \"token\": 281474976710659}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 700, \"token\": 281474976710670}, {\"event\": \"survived\", \"native\": 700, \"token\": 281474976710670}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 568, \"token\": 281474976710678}, {\"event\": \"survived\", \"native\": 568, \"token\": 281474976710678}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 700, \"token\": 281474976710684}, {\"event\": \"survived\", \"native\": 700, \"token\": 281474976710684}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 700, \"token\": 281474976710692}, {\"event\": \"survived\", \"native\": 700, \"token\": 281474976710692}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 728, \"token\": 281474976710703}, {\"event\": \"survived\", \"native\": 728, \"token\": 281474976710703}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 732, \"token\": 281474976710709}, {\"event\": \"survived\", \"native\": 732, \"token\": 281474976710709}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 712, \"token\": 281474976710716}, {\"event\": \"survived\", \"native\": 712, \"token\": 281474976710716}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 724, \"token\": 281474976710724}, {\"event\": \"survived\", \"native\": 724, \"token\": 281474976710724}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 404, \"token\": 281474976710734}, {\"event\": \"survived\", \"native\": 404, \"token\": 281474976710734}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 728, \"token\": 281474976710744}, {\"event\": \"survived\", \"native\": 728, \"token\": 281474976710744}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 712, \"token\": 281474976710750}, {\"event\": \"survived\", \"native\": 712, \"token\": 281474976710750}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 732, \"token\": 281474976710759}, {\"event\": \"survived\", \"native\": 732, \"token\": 281474976710759}, {\"event\": \"reuse\", \"identity_size\": 16, \"native\": 736, \"token\": 281474976710766}, {\"event\": \"survived\", \"native\": 736, \"token\": 281474976710766}], \"family_counts\": {\"_final3_windows_writer_reused_handles_are_role_isolated\": 5, \"_round7_windows_file_owners_bind_before_caller_failure\": 6, \"_round9_windows_disposition_absence_beats_same_inode_reuse\": 3}}\r\n",
+    "stderr": ""
+  }
+]

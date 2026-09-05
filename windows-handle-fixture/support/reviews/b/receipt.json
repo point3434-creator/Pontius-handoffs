@@ -1,0 +1,95 @@
+{
+  "schema_version": "pontius-cold-review-receipt-v1",
+  "reviewer": "codex-reviewer-b",
+  "task_id": "windows-handle-fixture",
+  "round": "r001",
+  "candidate": {
+    "base": "5e56e4454f7b8ccb360d3e36245abc33318349bb",
+    "commit": "76309774b551a874b8f9c677bc59e51299cee0e4",
+    "tree": "f7d2451c20e417967864718b3d000a3eb60387e9",
+    "manifest_sha256": "755c34175c060a4f0ef55616c9e52e336989645763cb16c0fd5a26293a7a37a6"
+  },
+  "inputs": {
+    "brief_design_sha256": "cae851310c2517106a3bddd7fba36fa154f751bc85b2e323d86fb69da9682022",
+    "design_addendum_1_sha256": "00a9acb667102562f3a4019f9359c0271216bc91f3ffb5d41c77ffcfb346f9f9",
+    "design_addendum_2_sha256": "e6aeeefd5a5607a70ec63b23bab3fa8b43e66ab685df2e36ade02a9ed7290cc0",
+    "blind_inventory_sha256": "a297601a35ad354f8eb4690742cd5d59c966a5c136d2a1a56a15d9072f530bcd",
+    "deferred_coverage_sha256": "6c5ea08ff78251c40714f3d651fa9f2720d6a995ed4de99dadd5e0f1f281bb8e"
+  },
+  "frozen_blob_audit": {
+    "changed_paths": [
+      "tests/test-inventory.json",
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "test_inventory_json_sha256": "0b07a2ac105e6fce052f923322836b94a36a14d9c174b5d2cc085c7baa29664f",
+    "test_inventory_and_profiles_py_sha256": "3fc1ee4390383ec8a5eb389563fb6ef039ab349a9a2117c78b2b2c87b289a992",
+    "lf_only": true,
+    "bom_free": true,
+    "trailing_whitespace_free": true,
+    "adapter_nonblank_lines": 164,
+    "adapter_nonblank_budget": 200,
+    "new_lines_over_100_columns": [
+      {"line": 21184, "columns": 107},
+      {"line": 21337, "columns": 104},
+      {"line": 21338, "columns": 103},
+      {"line": 21382, "columns": 101},
+      {"line": 21424, "columns": 106}
+    ]
+  },
+  "executions": [
+    {
+      "run_name": "review-b-focused-controls-311",
+      "slot": "3.11.15",
+      "scope": "three adapter controls plus full governed Windows lifecycle helper",
+      "result": "PASS",
+      "tests_run": 4,
+      "record_sha256": "50192d27caca95e57f72fc5b035d00130fa8c12febea350b4d6e3ab1a5ab5b35"
+    },
+    {
+      "run_name": "review-b-focused-controls-314",
+      "slot": "3.14.6",
+      "scope": "three adapter controls plus full governed Windows lifecycle helper",
+      "result": "PASS",
+      "tests_run": 4,
+      "record_sha256": "5ef2267656b841c10d8dfbccdccc8e302297205c0bcd8726617846d8d42e94de"
+    },
+    {
+      "run_name": "review-b-full-inventory-311",
+      "slot": "3.11.15",
+      "scope": "full tests/test_inventory_and_profiles.py",
+      "result": "ENVIRONMENT_LIMITED",
+      "tests_run": 91,
+      "detail": "90 tests passed; the Git-identity hardlink test received sandbox WinError 5",
+      "record_sha256": "c303ea4cb36d97e644f9cb30baa16ce79e94a21fa0161be282c1fd9d7d0c272d"
+    },
+    {
+      "run_name": "review-b-full-inventory-escalated-311",
+      "slot": "3.11.15",
+      "scope": "full tests/test_inventory_and_profiles.py with hardlink permission",
+      "result": "PASS",
+      "tests_run": 91,
+      "record_sha256": "4902f832c73a8b58944c31a38bd328cae5162fb8771581dccfa60a0d7b38743e"
+    },
+    {
+      "run_name": "review-b-adversarial-api-311",
+      "slot": "3.11.15",
+      "scope": "CreateFileW error, token refusal, retired-token close, failed teardown close",
+      "result": "PASS",
+      "record_sha256": "432bd5c0001be4511ea4b66ec6e7f3423f1cd1e3e97bde6fa86ce98fd9d957d5"
+    },
+    {
+      "run_name": "review-b-adversarial-api-314",
+      "slot": "3.14.6",
+      "scope": "CreateFileW error, token refusal, retired-token close, failed teardown close",
+      "result": "PASS",
+      "record_sha256": "b7790b4fa6d6aed86c5a80716f88fbca4283eb9a9fc3288b27113da8f82f1b3d"
+    }
+  ],
+  "verdict": {
+    "specification": "PASS",
+    "quality": "FAIL",
+    "critical_important_minor": [0, 0, 1],
+    "defect": "NOT CLEAN",
+    "design": "SOUND"
+  }
+}

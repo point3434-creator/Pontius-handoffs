@@ -1,0 +1,195 @@
+[
+  {
+    "sequence": 1,
+    "slot": "311",
+    "command": [
+      "tests/test_blueprint_artifact.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-01-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 2,
+    "slot": "311",
+    "command": [
+      "tests/test_blueprint_artifact_boundary.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-02-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 3,
+    "slot": "311",
+    "command": [
+      "tests/test_immutable_blueprint.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-03-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 4,
+    "slot": "311",
+    "command": [
+      "tests/test_status_generation.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-04-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 5,
+    "slot": "311",
+    "command": [
+      "tests/test_evidence_errors_and_model.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-05-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 6,
+    "slot": "311",
+    "command": [
+      "tests/test_evidence_manifests.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-06-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 7,
+    "slot": "311",
+    "command": [
+      "tests/test_evidence_manifest_generation.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-07-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 8,
+    "slot": "311",
+    "command": [
+      "tests/test_test_orchestration_import_boundary.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-08-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 9,
+    "slot": "311",
+    "command": [
+      "tests/test_test_orchestration_configuration.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-09-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 10,
+    "slot": "311",
+    "command": [
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 1,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-10-311.json",
+    "failure": "Python refused or failed: 1"
+  },
+  {
+    "sequence": 11,
+    "slot": "311",
+    "command": [
+      "tests/test_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-11-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 12,
+    "slot": "311",
+    "command": [
+      "tests/test_retained_evidence_inventory.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-12-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 13,
+    "slot": "311",
+    "command": [
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-13-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 14,
+    "slot": "311",
+    "command": [
+      "tests/test_v0a_trace.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-14-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 15,
+    "slot": "311",
+    "command": [
+      "tests/test_v0a_replay.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-15-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 16,
+    "slot": "311",
+    "command": [
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-16-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 17,
+    "slot": "311",
+    "command": [
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-17-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 18,
+    "slot": "311",
+    "command": [
+      "tools/generate_test_inventory.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-18-311.json",
+    "failure": null
+  },
+  {
+    "sequence": 19,
+    "slot": "311",
+    "command": [
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-19-311.json",
+    "failure": null
+  }
+]

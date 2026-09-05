@@ -1,0 +1,28 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-driver-imports-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-driver-imports-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-driver-imports-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import importlib.util, pathlib; p=pathlib.Path('tools/check_stabilization_boundaries.py'); s=importlib.util.spec_from_file_location('boundary_diagnostic',p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); m.enforce_orchestration_import_policy({'tools/v0a_rehearsal_driver.py': pathlib.Path('tools/v0a_rehearsal_driver.py').read_bytes()})"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-driver-imports-311\\tools\\check_stabilization_boundaries.py\", line 336, in enforce_orchestration_import_policy\r\n    _raise_violations(violations)\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-driver-imports-311\\tools\\check_stabilization_boundaries.py\", line 118, in _raise_violations\r\n    raise BoundaryError(violations)\r\nboundary_diagnostic.BoundaryError: forbidden orchestration import: tools.v0a_rehearsal_driver -> pontius.immutable_blueprint; forbidden orchestration import: tools.v0a_rehearsal_driver -> pontius.v0a.replay; forbidden orchestration import: tools.v0a_rehearsal_driver -> pontius.v0a.trace\r\n"
+  }
+]

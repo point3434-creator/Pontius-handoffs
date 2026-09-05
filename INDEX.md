@@ -7,6 +7,12 @@ still be checked after each publication rather than inferred from hook success.
 
 | Task | Round | Packet | State |
 | --- | --- | --- | --- |
+| v0a-blueprint-artifact-impl | r001 | [Packet](v0a-blueprint-artifact-impl/r001/handoff.md) | Rejected; retained |
+| v0a-blueprint-artifact-impl | r002 | [Packet](v0a-blueprint-artifact-impl/r002/handoff.md) | Two CLEAN source reviews; combined acceptance in fixture r002 |
+| windows-handle-fixture | r001 | [Packet](windows-handle-fixture/r001/handoff.md) | Minor formatting rejection; retained |
+| windows-handle-fixture | r002 | [Acceptance](windows-handle-fixture/r002/acceptance.md) | Two CLEAN reviews; 38 acceptance commands passed |
+| v0a-blueprint-artifact-seal | r001 | [Packet](v0a-blueprint-artifact-seal/r001/handoff.md) | STATUS CRLF rejection; retained |
+| v0a-blueprint-artifact-seal | r002 | [Acceptance](v0a-blueprint-artifact-seal/r002/acceptance.md) | CLEAN; exact integration authorized, commit pending |
 | v0a-blueprint-artifact-open | r001 | [Packet][blueprint-open-r001] | ADOPTED c4af7f6 |
 | v0a-blueprint-artifact-design | r001 | [Packet][blueprint-r001] | NOT CLEAN; retained |
 | v0a-blueprint-artifact-design | r002 | [Packet][blueprint-r002] | Adopted ADR-0490 |

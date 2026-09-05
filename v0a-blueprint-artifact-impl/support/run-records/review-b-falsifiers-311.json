@@ -1,0 +1,31 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\review-b-falsifiers-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-X",
+      "int_max_str_digits=640",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\review-b-falsifiers-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\review-b-falsifiers-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-X",
+      "int_max_str_digits=640",
+      "D:/Pontius/tmp/v0a-blueprint-artifact-impl-r001/packets/r001/reviews/b/probe.py"
+    ],
+    "exit_code": 1,
+    "stdout": "IDENTITY: all 12 Git blobs and packet bytes match; manifest and tree verified\r\nINVENTORY: 2828 old rows identical; 23 additions: {'tests/test_blueprint_artifact.py': 7, 'tests/test_blueprint_artifact_boundary.py': 4, 'tests/test_v0a_rehearsal_driver.py': 12}\r\nPROFILE DELTA stabilization_test_files exactly three additions, all old values identical\r\n",
+    "stderr": "Traceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\packets\\r001\\reviews\\b\\probe.py\", line 54, in <module>\r\n    assert all(item in newp[key] for item in oldp[key]), key\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: profile\r\n"
+  }
+]

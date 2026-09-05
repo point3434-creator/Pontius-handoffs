@@ -1,0 +1,28 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-unregistered-census-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-unregistered-census-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\baseline-unregistered-census-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import importlib.util,sys,os,pathlib; root=pathlib.Path.cwd(); spec=importlib.util.spec_from_file_location('inventory_diagnostic',root/'tools/generate_test_inventory.py'); m=importlib.util.module_from_spec(spec); sys.modules[spec.name]=m; spec.loader.exec_module(m); baseline=m.discover_test_sources(m._baseline_sources(root,pathlib.Path(os.environ['PONTIUS_GIT']))); snapshot=m._capture_working_sources(root,include_support_modules=True); working=m.discover_test_sources({p:b for p,b in snapshot.sources.items() if p.startswith('tests/') and pathlib.PurePosixPath(p).name.startswith('test')}); old={x.stable_id for x in baseline.methods}; missing=[x for x in working.methods if x.stable_id not in old and x.relative_path not in m.STABILIZATION_TEST_FILES]; print('Unregistered files:',sorted({x.relative_path for x in missing})); print('Unregistered methods:',len(missing)); print('\\n'.join(x.stable_id for x in missing))"
+    ],
+    "exit_code": 0,
+    "stdout": "Unregistered files: ['tests/test_v0a_rehearsal_driver.py']\r\nUnregistered methods: 12\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_authorized_mode_is_not_an_option\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_both_controls_publish_complete_independently_verified_traces\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_changed_source_refuses_before_import_and_publication\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_corrupt_persisted_trace_cannot_earn_success\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_existing_trace_is_retained_and_never_overwritten\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_failed_host_receipt_cannot_earn_success\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_import_shadow_refuses_before_publication\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_matching_hashes_do_not_replace_independent_replay\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_missing_git_is_typed_refusal\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_unsafe_suffix_refuses\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_wrong_mode_namespace_refuses_without_writes\r\ntests/test_v0a_rehearsal_driver.py::DriverTests::test_wrong_root_and_missing_root_refuse_without_writes\r\n",
+    "stderr": ""
+  }
+]

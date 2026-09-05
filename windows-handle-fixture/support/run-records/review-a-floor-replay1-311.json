@@ -1,0 +1,27 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-a-floor-replay1-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-a-floor-replay1-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\snapshots\\review-a-floor-replay1-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "D:\\Pontius\\tmp\\windows-handle-fixture-r001\\reviews\\a\\probe_replay_matrix.py"
+    ],
+    "exit_code": 0,
+    "stdout": "[{\"helper\": \"_final3_windows_writer_reused_handles_are_role_isolated\", \"native\": 672, \"occurrence\": 1, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"staging\"}, {\"helper\": \"_final3_windows_writer_reused_handles_are_role_isolated\", \"native\": 584, \"occurrence\": 2, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"published\"}, {\"helper\": \"_final3_windows_writer_reused_handles_are_role_isolated\", \"native\": 684, \"occurrence\": 3, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"recovery\"}, {\"helper\": \"_final3_windows_writer_reused_handles_are_role_isolated\", \"native\": 720, \"occurrence\": 4, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"deterministic_lock\"}, {\"helper\": \"_final3_windows_writer_reused_handles_are_role_isolated\", \"native\": 736, \"occurrence\": 1, \"owner_type\": \"_WindowsHandleOwner\", \"raw_oracle_detected\": true, \"schedule\": \"directory\"}, {\"helper\": \"_round7_windows_file_owners_bind_before_caller_failure\", \"native\": 748, \"occurrence\": 1, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"staging\"}, {\"helper\": \"_round7_windows_file_owners_bind_before_caller_failure\", \"native\": 756, \"occurrence\": 2, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"original\"}, {\"helper\": \"_round7_windows_file_owners_bind_before_caller_failure\", \"native\": 784, \"occurrence\": 3, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"recovery\"}, {\"helper\": \"_round7_windows_file_owners_bind_before_caller_failure\", \"native\": 772, \"occurrence\": 4, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"published\"}, {\"helper\": \"_round7_windows_file_owners_bind_before_caller_failure\", \"native\": 772, \"occurrence\": 5, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"readback\"}, {\"helper\": \"_round7_windows_file_owners_bind_before_caller_failure\", \"native\": 768, \"occurrence\": 6, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"published_disposal\"}, {\"helper\": \"_round9_windows_disposition_absence_beats_same_inode_reuse\", \"native\": 736, \"occurrence\": 1, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"staging\"}, {\"helper\": \"_round9_windows_disposition_absence_beats_same_inode_reuse\", \"native\": 752, \"occurrence\": 2, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"published_disposal\"}, {\"helper\": \"_round9_windows_disposition_absence_beats_same_inode_reuse\", \"native\": 736, \"occurrence\": 3, \"owner_type\": \"_WindowsGovernanceFileOwner\", \"raw_oracle_detected\": true, \"schedule\": \"recovery\"}]\r\n",
+    "stderr": ""
+  }
+]

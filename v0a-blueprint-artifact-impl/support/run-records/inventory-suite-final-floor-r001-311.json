@@ -1,0 +1,27 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\inventory-suite-final-floor-r001-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.immutable_blueprint as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/immutable_blueprint.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\inventory-suite-final-floor-r001-311\\src\\pontius\\immutable_blueprint.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\inventory-suite-final-floor-r001-311",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "................E........................F.test inventory generation failed: design review destination must be an absolute OS-temp child\r\ntest inventory generation failed: design write requires both approval tokens\r\n.......F.....................................\r\n======================================================================\r\nERROR: test_git_launch_and_raw_object_reads_are_identity_bound (__main__.AtomicAndGitBoundaryTests.test_git_launch_and_raw_object_reads_are_identity_bound)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\inventory-suite-final-floor-r001-311\\tests\\test_inventory_and_profiles.py\", line 29191, in test_git_launch_and_raw_object_reads_are_identity_bound\r\n    os.link(Path(sys.executable), executable)\r\nPermissionError: [WinError 5] Access is denied: 'D:\\\\Pontius-tools\\\\py311\\\\Scripts\\\\python.exe' -> 'D:\\\\Pontius\\\\tmp\\\\v0a-blueprint-artifact-impl-r001\\\\process-temp\\\\inventory-suite-final-floor-r001-311\\\\pontius-inventory-git-lease-rmj7e2m9\\\\bin\\\\git.exe'\r\n\r\n======================================================================\r\nFAIL: test_added_tests_are_only_reviewed_stabilization_current_entries (__main__.CheckedInInventoryTests.test_added_tests_are_only_reviewed_stabilization_current_entries)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\inventory-suite-final-floor-r001-311\\tests\\test_inventory_and_profiles.py\", line 29914, in test_added_tests_are_only_reviewed_stabilization_current_entries\r\n    self.assertEqual(\r\nAssertionError: Tuples differ: ('tes[1252 chars]0a_rehearsal_driver.py', 'tests/test_v0a_repla[28 chars].py') != ('tes[1252 chars]0a_replay.py', 'tests/test_v0a_rehearsal_drive[28 chars].py')\r\n\r\nFirst differing element 29:\r\n'tests/test_v0a_rehearsal_driver.py'\r\n'tests/test_v0a_replay.py'\r\n\r\nDiff is 1463 characters long. Set self.maxDiff to None to see it.\r\n\r\n======================================================================\r\nFAIL: test_working_discovery_binds_every_entry_and_introduced_id (__main__.CheckedInInventoryTests.test_working_discovery_binds_every_entry_and_introduced_id)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\snapshots\\inventory-suite-final-floor-r001-311\\tests\\test_inventory_and_profiles.py\", line 29651, in test_working_discovery_binds_every_entry_and_introduced_id\r\n    self.assertEqual(\r\nAssertionError: {'sub[59 chars]nt': 6, 'cross_file_helper_edge_count': 27, 'c[389 chars]531}} != {'sub[59 chars]nt': 5, 'cross_file_helper_edge_count': 27, 'c[389 chars]adb'}\r\nDiff is 945 characters long. Set self.maxDiff to None to see it.\r\n\r\n----------------------------------------------------------------------\r\nRan 88 tests in 116.536s\r\n\r\nFAILED (failures=2, errors=1)\r\n"
+  }
+]

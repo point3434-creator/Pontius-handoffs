@@ -1,0 +1,502 @@
+[
+  {
+    "slot": "311",
+    "sequence": 1,
+    "command": [
+      "tests/test_blueprint_artifact.py"
+    ],
+    "exit_code": 0,
+    "tests": 7,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-01-311.json",
+    "receipt_sha256": "a78633197df7bf3d37613a3fb73c83f0bd87a1399576f3d22f2a7dfc062df83e"
+  },
+  {
+    "slot": "311",
+    "sequence": 2,
+    "command": [
+      "tests/test_blueprint_artifact_boundary.py"
+    ],
+    "exit_code": 0,
+    "tests": 4,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-02-311.json",
+    "receipt_sha256": "f1ec3dc428d0ccd38772941c0fef05082e67a8b911ec71815d3b7d7cf9d64756"
+  },
+  {
+    "slot": "311",
+    "sequence": 3,
+    "command": [
+      "tests/test_immutable_blueprint.py"
+    ],
+    "exit_code": 0,
+    "tests": 8,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-03-311.json",
+    "receipt_sha256": "2e5f9b7f6888b29fa455d25fdb964c9e2c135731d40c4cafea8d42ba861f53e3"
+  },
+  {
+    "slot": "311",
+    "sequence": 4,
+    "command": [
+      "tests/test_status_generation.py"
+    ],
+    "exit_code": 0,
+    "tests": 12,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-04-311.json",
+    "receipt_sha256": "5238a57b5ab7674fada4b49252876b27eb72d8538ab29c519cb34c6b7e8b5f32"
+  },
+  {
+    "slot": "311",
+    "sequence": 5,
+    "command": [
+      "tests/test_evidence_errors_and_model.py"
+    ],
+    "exit_code": 0,
+    "tests": 7,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-05-311.json",
+    "receipt_sha256": "c477319e72c84e744b724948775da05e170378621ae5d34c59c4bf6d3eaef3cf"
+  },
+  {
+    "slot": "311",
+    "sequence": 6,
+    "command": [
+      "tests/test_evidence_manifests.py"
+    ],
+    "exit_code": 0,
+    "tests": 11,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-06-311.json",
+    "receipt_sha256": "8541af445897ce662c572be7e50c4151b2655e61dc13bbbc2b34d9b6ce8f9ff7"
+  },
+  {
+    "slot": "311",
+    "sequence": 7,
+    "command": [
+      "tests/test_evidence_manifest_generation.py"
+    ],
+    "exit_code": 0,
+    "tests": 61,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-07-311.json",
+    "receipt_sha256": "0518c82a7be852e8753be8aa87205bf764db6af9fd4487574ec613baaa1fcc8c"
+  },
+  {
+    "slot": "311",
+    "sequence": 8,
+    "command": [
+      "tests/test_test_orchestration_import_boundary.py"
+    ],
+    "exit_code": 0,
+    "tests": 3,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-08-311.json",
+    "receipt_sha256": "f77f94b570f0211b51fcbff4f4ae17f508ab0deee265011cf19401de24868751"
+  },
+  {
+    "slot": "311",
+    "sequence": 9,
+    "command": [
+      "tests/test_test_orchestration_configuration.py"
+    ],
+    "exit_code": 0,
+    "tests": 53,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-09-311.json",
+    "receipt_sha256": "5aa25501a67eb6e79d820332b5c1491fc259ecc85ea8cc5a6725e64151260c5b"
+  },
+  {
+    "slot": "311",
+    "sequence": 10,
+    "command": [
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 1,
+    "tests": 88,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-10-311.json",
+    "receipt_sha256": "ccb7358371a559418dfe37ff0e31c26eb51dcf2dc5e0238e3c8216f3e613cad7"
+  },
+  {
+    "slot": "311",
+    "sequence": 11,
+    "command": [
+      "tests/test_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "tests": 52,
+    "skipped": 1,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-11-311.json",
+    "receipt_sha256": "118bbe91d400e421588f131db9adff1d935453dfa890332fb3ab4826ab69e08f"
+  },
+  {
+    "slot": "311",
+    "sequence": 12,
+    "command": [
+      "tests/test_retained_evidence_inventory.py"
+    ],
+    "exit_code": 0,
+    "tests": 4,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-12-311.json",
+    "receipt_sha256": "7b8bd42061d3f0b05240b0676a96736a12655d64c6dd531b243885ed8321563e"
+  },
+  {
+    "slot": "311",
+    "sequence": 13,
+    "command": [
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "exit_code": 0,
+    "tests": 45,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-13-311.json",
+    "receipt_sha256": "8fd26e861d9238425cc4a49e9bcbe7aee7ebbfa1fc62619475911b9159cc3696"
+  },
+  {
+    "slot": "311",
+    "sequence": 14,
+    "command": [
+      "tests/test_v0a_trace.py"
+    ],
+    "exit_code": 0,
+    "tests": 53,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-14-311.json",
+    "receipt_sha256": "dffb7b3359301009672c05aa0323212e0a6dd6491fa174355d2e96c08f9e6d49"
+  },
+  {
+    "slot": "311",
+    "sequence": 15,
+    "command": [
+      "tests/test_v0a_replay.py"
+    ],
+    "exit_code": 0,
+    "tests": 62,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-15-311.json",
+    "receipt_sha256": "c583b0a148c0ea29c9e87b424475fe39883be3e0d45e6d883c456f8582edf3d3"
+  },
+  {
+    "slot": "311",
+    "sequence": 16,
+    "command": [
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "exit_code": 0,
+    "tests": 22,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-16-311.json",
+    "receipt_sha256": "98df009f5bed867d530fa12dbc6c6bea097f94d5c5900f5e2ca53544bd92c551"
+  },
+  {
+    "slot": "311",
+    "sequence": 17,
+    "command": [
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "tests": null,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-17-311.json",
+    "receipt_sha256": "09a362a21f8449cbd5e48eee797a2d8d2f39c10fa52cf228ecdd5fbd85c3d3ae"
+  },
+  {
+    "slot": "311",
+    "sequence": 18,
+    "command": [
+      "tools/generate_test_inventory.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "tests": null,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-18-311.json",
+    "receipt_sha256": "7c7eda0221b268e016740699dc52bccf3f76891f03eb7ab770301f5da22831f1"
+  },
+  {
+    "slot": "311",
+    "sequence": 19,
+    "command": [
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "tests": null,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-19-311.json",
+    "receipt_sha256": "a138dab28e7e2fae689681f557e1e66ccf072c18664461c7ec2dfaf5b4517466"
+  },
+  {
+    "slot": "314",
+    "sequence": 1,
+    "command": [
+      "tests/test_blueprint_artifact.py"
+    ],
+    "exit_code": 0,
+    "tests": 7,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-01-314.json",
+    "receipt_sha256": "8b290f88e0a829bd4c3e89fa7ac79e07e1c94d86ecb0e11c68fa833585f30507"
+  },
+  {
+    "slot": "314",
+    "sequence": 2,
+    "command": [
+      "tests/test_blueprint_artifact_boundary.py"
+    ],
+    "exit_code": 0,
+    "tests": 4,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-02-314.json",
+    "receipt_sha256": "4e83ac93387171d495dcd5790878e0f1edd27ab4c34a326b1bec21abb2833a16"
+  },
+  {
+    "slot": "314",
+    "sequence": 3,
+    "command": [
+      "tests/test_immutable_blueprint.py"
+    ],
+    "exit_code": 0,
+    "tests": 8,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-03-314.json",
+    "receipt_sha256": "d338a9d22d3048acbc0ea881998393e84e4ed64f38dad9f5578debbb8ab86c72"
+  },
+  {
+    "slot": "314",
+    "sequence": 4,
+    "command": [
+      "tests/test_status_generation.py"
+    ],
+    "exit_code": 0,
+    "tests": 12,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-04-314.json",
+    "receipt_sha256": "362627be6d49d24cf66917bc7f21f258a4018ebe9ac789cef4a59ba168c11ebb"
+  },
+  {
+    "slot": "314",
+    "sequence": 5,
+    "command": [
+      "tests/test_evidence_errors_and_model.py"
+    ],
+    "exit_code": 0,
+    "tests": 7,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-05-314.json",
+    "receipt_sha256": "96fc4329abeb9027f0806b3c527501a82c263700d9956a6e9ff295cf6262f56e"
+  },
+  {
+    "slot": "314",
+    "sequence": 6,
+    "command": [
+      "tests/test_evidence_manifests.py"
+    ],
+    "exit_code": 0,
+    "tests": 11,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-06-314.json",
+    "receipt_sha256": "44e19e8966a6cc46888cbd91ad6e7b9539975888dc68c8042d91c86878b8c31f"
+  },
+  {
+    "slot": "314",
+    "sequence": 7,
+    "command": [
+      "tests/test_evidence_manifest_generation.py"
+    ],
+    "exit_code": 0,
+    "tests": 61,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-07-314.json",
+    "receipt_sha256": "485fa95d6f15dafb1c8e1c7db4131d36c07f5e08ff25e0b5170b79e23240fde2"
+  },
+  {
+    "slot": "314",
+    "sequence": 8,
+    "command": [
+      "tests/test_test_orchestration_import_boundary.py"
+    ],
+    "exit_code": 0,
+    "tests": 3,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-08-314.json",
+    "receipt_sha256": "1b2412ca9c7a626368f95b7c5886884062535df5d19e32d1f02d85751b83fae8"
+  },
+  {
+    "slot": "314",
+    "sequence": 9,
+    "command": [
+      "tests/test_test_orchestration_configuration.py"
+    ],
+    "exit_code": 0,
+    "tests": 53,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-09-314.json",
+    "receipt_sha256": "70cc457df36f52382fa33769b383127a3826fdabc141124ccc8bc601bb638d51"
+  },
+  {
+    "slot": "314",
+    "sequence": 10,
+    "command": [
+      "tests/test_inventory_and_profiles.py"
+    ],
+    "exit_code": 1,
+    "tests": 88,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-10-314.json",
+    "receipt_sha256": "26ab5d37d3a575d443e17f51192479e5dfc2fd3a495cd9050622f7c74c72e471"
+  },
+  {
+    "slot": "314",
+    "sequence": 11,
+    "command": [
+      "tests/test_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "tests": 52,
+    "skipped": 1,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-11-314.json",
+    "receipt_sha256": "0c8265cc703c3bf9b537470716ff33ac54c668be79fba87248569baf40532689"
+  },
+  {
+    "slot": "314",
+    "sequence": 12,
+    "command": [
+      "tests/test_retained_evidence_inventory.py"
+    ],
+    "exit_code": 0,
+    "tests": 4,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-12-314.json",
+    "receipt_sha256": "12b644d6410bb9ae9d487c5db63d54543165d29217354c7ec2774c96f284a9c6"
+  },
+  {
+    "slot": "314",
+    "sequence": 13,
+    "command": [
+      "tests/test_v0a_hand_replay.py"
+    ],
+    "exit_code": 0,
+    "tests": 45,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-13-314.json",
+    "receipt_sha256": "e57187bf21ba69a342e32ff873c411f34c9aa46d1f2b281ffd9e420e91dc6cc9"
+  },
+  {
+    "slot": "314",
+    "sequence": 14,
+    "command": [
+      "tests/test_v0a_trace.py"
+    ],
+    "exit_code": 0,
+    "tests": 53,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-14-314.json",
+    "receipt_sha256": "d01c379b03d37a3c66446a6d420246fc4c98399ba8ca6fa530d94b6fcd1495ad"
+  },
+  {
+    "slot": "314",
+    "sequence": 15,
+    "command": [
+      "tests/test_v0a_replay.py"
+    ],
+    "exit_code": 0,
+    "tests": 62,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-15-314.json",
+    "receipt_sha256": "3ca1636cd068668d85871a6be3892928f7d5ba3fb11411222815c5c1ce84fc8f"
+  },
+  {
+    "slot": "314",
+    "sequence": 16,
+    "command": [
+      "tests/test_v0a_contract_faults.py"
+    ],
+    "exit_code": 0,
+    "tests": 22,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-16-314.json",
+    "receipt_sha256": "2e6804a578bd953668ac72b5fc3e2ec409ac3afd91f2345686b1a470949d4d3f"
+  },
+  {
+    "slot": "314",
+    "sequence": 17,
+    "command": [
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "tests": null,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-17-314.json",
+    "receipt_sha256": "49334228695f8338a75394bb6170ac0862f886c46fe79599d1f0ec5d1f82cd01"
+  },
+  {
+    "slot": "314",
+    "sequence": 18,
+    "command": [
+      "tools/generate_test_inventory.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "tests": null,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-18-314.json",
+    "receipt_sha256": "14ef4f979c2e29600ac6576fc20bd602b1823cdafaa65ca9c205cc4061909fd4"
+  },
+  {
+    "slot": "314",
+    "sequence": 19,
+    "command": [
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "tests": null,
+    "skipped": 0,
+    "frozen_files_matched": 12,
+    "receipt": "D:\\Pontius\\tmp\\v0a-blueprint-artifact-impl-r001\\run-records\\broad-r002-19-314.json",
+    "receipt_sha256": "3ddd9b507da93bff2fc9606d3a98bcb9bc041ba3e7ee064639a10a009d70a572"
+  }
+]

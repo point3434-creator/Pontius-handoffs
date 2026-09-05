@@ -1,0 +1,1066 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 0585dcd..1c52786 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -97,20 +97,28 @@ jobs:
+         run: .venv\Scripts\python.exe -B -P tests\test_retained_evidence_inventory.py
+ 
+       - name: Generated inventory/profiles byte-stability
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tools\generate_test_inventory.py --check
+ 
+       - name: Stabilization boundary check
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tools\check_stabilization_boundaries.py
+ 
++      - name: Blueprint artifact suite
++        if: ${{ !cancelled() }}
++        run: .venv\Scripts\python.exe -B -P tests\test_blueprint_artifact.py
++
++      - name: Blueprint artifact boundary suite
++        if: ${{ !cancelled() }}
++        run: .venv\Scripts\python.exe -B -P tests\test_blueprint_artifact_boundary.py
++
+       - name: v0a hand replay suite
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tests\test_v0a_hand_replay.py
+ 
+       - name: v0a trace suite
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tests\test_v0a_trace.py
+ 
+       - name: v0a replay suite
+         if: ${{ !cancelled() }}
+diff --git a/src/pontius/blueprint_artifact/__init__.py b/src/pontius/blueprint_artifact/__init__.py
+new file mode 100644
+index 0000000..cf635d0
+--- /dev/null
++++ b/src/pontius/blueprint_artifact/__init__.py
+@@ -0,0 +1 @@
++"""Inert package for portable immutable-blueprint data artifacts."""
+diff --git a/src/pontius/blueprint_artifact/codec.py b/src/pontius/blueprint_artifact/codec.py
+new file mode 100644
+index 0000000..71d09d7
+--- /dev/null
++++ b/src/pontius/blueprint_artifact/codec.py
+@@ -0,0 +1,280 @@
++"""Strict deterministic byte codec for immutable blueprint action sources."""
++
++from __future__ import annotations
++
++import json
++
++from pontius.immutable_blueprint import (
++    BlueprintActionEntry,
++    BlueprintDecisionKey,
++    ImmutableBlueprintActionSource,
++)
++from pontius.no_limit_betting import (
++    BettingAction,
++    BettingActionKind,
++    BettingActionRecord,
++    BettingStreet,
++)
++
++
++_ARTIFACT_VERSION = "pontius-v0a-blueprint-artifact-v1"
++_KEY_VERSION = "blueprint-decision-key-v1"
++_INTEGER_LIMIT = 10**640
++_ROOT_FIELDS = frozenset({"version", "source_id", "entries"})
++_ENTRY_FIELDS = frozenset({"key", "action"})
++_ACTION_FIELDS = frozenset({"kind", "raise_to"})
++_KEY_FIELDS = frozenset({
++    "version", "controlled_seat", "private_hand", "board", "button",
++    "small_blind", "big_blind", "street", "starting_stacks", "stacks",
++    "total_contributions", "street_contributions", "folded", "pending_seats",
++    "last_full_raise_size", "acted_at_bet", "public_history",
++})
++
++
++class BlueprintArtifactError(ValueError):
++    """The complete external artifact or exact source graph was refused."""
++
++
++def _refuse(path: str, reason: str) -> None:
++    raise BlueprintArtifactError(f"{path}: {reason}")
++
++
++def _object(value: object, fields: frozenset[str], path: str) -> dict[str, object]:
++    if type(value) is not dict:
++        _refuse(path, "must be an object")
++    assert isinstance(value, dict)
++    if set(value) != fields:
++        _refuse(path, "has missing or unknown members")
++    return value
++
++
++def _sequence(value: object, path: str, *, wire: bool,
++              width: int | None = None) -> list[object] | tuple[object, ...]:
++    expected = list if wire else tuple
++    if type(value) is not expected:
++        _refuse(path, "must be an array" if wire else "must be an exact tuple")
++    assert isinstance(value, (list, tuple))
++    if width is not None and len(value) != width:
++        _refuse(path, "has the wrong width")
++    return value
++
++
++def _text(value: object, path: str) -> str:
++    if type(value) is not str:
++        _refuse(path, "must be a string")
++    assert isinstance(value, str)
++    if any("\ud800" <= character <= "\udfff" for character in value):
++        _refuse(path, "must contain only Unicode scalar values")
++    return value
++
++
++def _integer(value: object, path: str, *, lower: int = 0,
++             upper: int | None = None) -> int:
++    if type(value) is not int:
++        _refuse(path, "must be an exact integer")
++    assert isinstance(value, int)
++    if value < lower or value >= _INTEGER_LIMIT or (upper is not None and value >= upper):
++        _refuse(path, "is outside the admitted integer range")
++    return value
++
++
++def _label(value: object, kind: type[BettingStreet] | type[BettingActionKind],
++           path: str) -> BettingStreet | BettingActionKind:
++    text = _text(value, path)
++    try:
++        return kind(text)
++    except ValueError as error:
++        raise BlueprintArtifactError(f"{path}: unsupported label") from error
++
++
++def _integers(value: object, path: str, *, wire: bool, width: int | None = None,
++              lower: int = 0, upper: int | None = None) -> tuple[int, ...]:
++    items = _sequence(value, path, wire=wire, width=width)
++    return tuple(_integer(item, f"{path}[{index}]", lower=lower, upper=upper)
++                 for index, item in enumerate(items))
++
++
++def _history(value: object, path: str, *, wire: bool) -> tuple[tuple[object, ...], ...]:
++    rows = _sequence(value, path, wire=wire)
++    admitted = []
++    for index, raw in enumerate(rows):
++        item = f"{path}[{index}]"
++        row = _sequence(raw, item, wire=wire, width=8)
++        street = _label(row[0], BettingStreet, f"{item}[0]")
++        seat = _integer(row[1], f"{item}[1]", upper=6)
++        kind = _label(row[2], BettingActionKind, f"{item}[2]")
++        raise_to = (None if row[3] is None else
++                    _integer(row[3], f"{item}[3]", lower=1))
++        chips = _integer(row[4], f"{item}[4]")
++        if type(row[5]) is not bool:
++            _refuse(f"{item}[5]", "must be an exact boolean")
++        return_seat = (None if row[6] is None else
++                       _integer(row[6], f"{item}[6]", upper=6))
++        return_chips = _integer(row[7], f"{item}[7]")
++        action = BettingAction(kind, raise_to)
++        BettingActionRecord(street, seat, action, chips, row[5], return_seat, return_chips)
++        admitted.append((street.value, seat, kind.value, raise_to, chips,
++                         row[5], return_seat, return_chips))
++    return tuple(admitted)
++
++
++def _key(value: object, path: str, *, wire: bool) -> tuple[BlueprintDecisionKey, dict]:
++    if wire:
++        data = _object(value, _KEY_FIELDS, path)
++        get = data.__getitem__
++    else:
++        if type(value) is not BlueprintDecisionKey:
++            _refuse(path, "must be an exact BlueprintDecisionKey")
++        get = lambda name: getattr(value, name)
++    if _text(get("version"), f"{path}.version") != _KEY_VERSION if wire else False:
++        _refuse(f"{path}.version", "unsupported version")
++    street_value = get("street")
++    if wire:
++        street = _label(street_value, BettingStreet, f"{path}.street")
++    elif type(street_value) is BettingStreet:
++        street = street_value
++    else:
++        _refuse(f"{path}.street", "must be an exact BettingStreet")
++    private = _integers(get("private_hand"), f"{path}.private_hand", wire=wire,
++                        width=2, upper=52)
++    board = _integers(get("board"), f"{path}.board", wire=wire, upper=52)
++    six_positive = {
++        name: _integers(get(name), f"{path}.{name}", wire=wire, width=6, lower=1)
++        for name in ("starting_stacks",)
++    }
++    six_nonnegative = {
++        name: _integers(get(name), f"{path}.{name}", wire=wire, width=6)
++        for name in ("stacks", "total_contributions", "street_contributions")
++    }
++    folded_raw = _sequence(get("folded"), f"{path}.folded", wire=wire, width=6)
++    if any(type(item) is not bool for item in folded_raw):
++        _refuse(f"{path}.folded", "must contain exact booleans")
++    acted_raw = _sequence(get("acted_at_bet"), f"{path}.acted_at_bet",
++                          wire=wire, width=6)
++    acted = tuple(None if item is None else _integer(item, f"{path}.acted_at_bet")
++                  for item in acted_raw)
++    values = dict(
++        controlled_seat=_integer(get("controlled_seat"), f"{path}.controlled_seat", upper=6),
++        private_hand=private, board=board,
++        button=_integer(get("button"), f"{path}.button", upper=6),
++        small_blind=_integer(get("small_blind"), f"{path}.small_blind", lower=1),
++        big_blind=_integer(get("big_blind"), f"{path}.big_blind", lower=1),
++        street=street, **six_positive, **six_nonnegative, folded=tuple(folded_raw),
++        pending_seats=_integers(get("pending_seats"), f"{path}.pending_seats",
++                                wire=wire, upper=6),
++        last_full_raise_size=_integer(get("last_full_raise_size"),
++                                      f"{path}.last_full_raise_size", lower=1),
++        acted_at_bet=acted,
++        public_history=_history(get("public_history"), f"{path}.public_history", wire=wire),
++    )
++    rebuilt = BlueprintDecisionKey(**values)
++    if not wire and rebuilt != value:
++        _refuse(path, "is not a canonical exact key graph")
++    document = {"version": _KEY_VERSION, **{
++        name: (item.value if isinstance(item, BettingStreet) else item)
++        for name, item in values.items()
++    }}
++    return rebuilt, document
++
++
++def _action(value: object, path: str, *, wire: bool) -> tuple[BettingAction, dict]:
++    if wire:
++        data = _object(value, _ACTION_FIELDS, path)
++        kind = _label(data["kind"], BettingActionKind, f"{path}.kind")
++        raw_raise = data["raise_to"]
++    else:
++        if type(value) is not BettingAction:
++            _refuse(path, "must be an exact BettingAction")
++        kind, raw_raise = value.kind, value.raise_to
++        if type(kind) is not BettingActionKind:
++            _refuse(f"{path}.kind", "must be an exact BettingActionKind")
++    raise_amount = (None if raw_raise is None else
++                    _integer(raw_raise, f"{path}.raise_to", lower=1))
++    rebuilt = BettingAction(kind, raise_amount)
++    if not wire and rebuilt != value:
++        _refuse(path, "is not a canonical exact action graph")
++    return rebuilt, {"kind": kind.value, "raise_to": raise_amount}
++
++
++def _admit(document: object, *, wire: bool) -> tuple[ImmutableBlueprintActionSource, dict]:
++    if wire:
++        root = _object(document, _ROOT_FIELDS, "root")
++        if _text(root["version"], "root.version") != _ARTIFACT_VERSION:
++            _refuse("root.version", "unsupported version")
++        source_id, raw_entries = _text(root["source_id"], "root.source_id"), root["entries"]
++    else:
++        if type(document) is not ImmutableBlueprintActionSource:
++            _refuse("source", "must be an exact ImmutableBlueprintActionSource")
++        source_id = _text(document.source_id, "source.source_id")
++        raw_entries = document.entries
++    if not source_id.strip():
++        _refuse("source_id", "must contain a non-whitespace character")
++    entries = _sequence(raw_entries, "entries", wire=wire)
++    admitted, serialized = [], []
++    for index, raw in enumerate(entries):
++        path = f"entries[{index}]"
++        if wire:
++            item = _object(raw, _ENTRY_FIELDS, path)
++            raw_key, raw_action = item["key"], item["action"]
++        else:
++            if type(raw) is not BlueprintActionEntry:
++                _refuse(path, "must be an exact BlueprintActionEntry")
++            raw_key, raw_action = raw.key, raw.action
++        key, key_document = _key(raw_key, f"{path}.key", wire=wire)
++        action, action_document = _action(raw_action, f"{path}.action", wire=wire)
++        admitted.append(BlueprintActionEntry(key, action))
++        serialized.append((key, {"key": key_document, "action": action_document}))
++    source = ImmutableBlueprintActionSource(source_id, tuple(admitted))
++    if not wire and source != document:
++        _refuse("source", "is not a canonical exact source graph")
++    ordered = [item for _, item in sorted(serialized, key=lambda pair: pair[0].canonical_bytes())]
++    return source, {"version": _ARTIFACT_VERSION, "source_id": source_id, "entries": ordered}
++
++
++def _pairs(pairs: list[tuple[str, object]]) -> dict[str, object]:
++    result = {}
++    for name, value in pairs:
++        if name in result:
++            _refuse("JSON object", "contains a duplicate member name")
++        result[name] = value
++    return result
++
++
++def _parse_integer(token: str) -> int:
++    if len(token.removeprefix("-")) > 640:
++        _refuse("JSON integer", "has more than 640 decimal digits")
++    return int(token)
++
++
++def _reject_number(token: str) -> None:
++    _refuse("JSON number", "floats and nonfinite constants are not admitted")
++
++
++def decode_blueprint(raw: bytes) -> ImmutableBlueprintActionSource:
++    """Decode strict UTF-8 JSON bytes into one completely admitted source."""
++    if type(raw) is not bytes:
++        _refuse("raw", "must be exact bytes")
++    if raw.startswith(b"\xef\xbb\xbf"):
++        _refuse("raw", "UTF-8 BOM is not admitted")
++    try:
++        text = raw.decode("utf-8")
++        document = json.loads(text, object_pairs_hook=_pairs, parse_int=_parse_integer,
++                              parse_float=_reject_number, parse_constant=_reject_number)
++        return _admit(document, wire=True)[0]
++    except BlueprintArtifactError:
++        raise
++    except (UnicodeDecodeError, json.JSONDecodeError, RecursionError,
++            TypeError, ValueError) as error:
++        raise BlueprintArtifactError(f"artifact refused: {error}") from error
++
++
++def encode_blueprint(source: ImmutableBlueprintActionSource) -> bytes:
++    """Validate an exact source graph and return deterministic ASCII JSON plus LF."""
++    try:
++        _, document = _admit(source, wire=False)
++        return (json.dumps(document, allow_nan=False, ensure_ascii=True,
++                           separators=(",", ":"), sort_keys=True) + "\n").encode("ascii")
++    except BlueprintArtifactError:
++        raise
++    except (TypeError, ValueError, UnicodeError, RecursionError) as error:
++        raise BlueprintArtifactError(f"source refused: {error}") from error
+diff --git a/tests/fixtures/blueprint_artifact/history_control.json b/tests/fixtures/blueprint_artifact/history_control.json
+new file mode 100644
+index 0000000..a695c1e
+--- /dev/null
++++ b/tests/fixtures/blueprint_artifact/history_control.json
+@@ -0,0 +1,31 @@
++{
++  "version": "pontius-v0a-blueprint-artifact-v1",
++  "source_id": "artifact-history-🚀",
++  "entries": [{
++    "key": {
++      "version": "blueprint-decision-key-v1",
++      "controlled_seat": 0,
++      "private_hand": [0, 1],
++      "board": [20, 21, 22],
++      "button": 0,
++      "small_blind": 1,
++      "big_blind": 2,
++      "street": "flop",
++      "starting_stacks": [200, 200, 200, 200, 200, 200],
++      "stacks": [200, 200, 200, 200, 200, 200],
++      "total_contributions": [0, 0, 0, 0, 0, 0],
++      "street_contributions": [0, 0, 0, 0, 0, 0],
++      "folded": [false, false, false, false, false, false],
++      "pending_seats": [0, 1],
++      "last_full_raise_size": 2,
++      "acted_at_bet": [null, null, null, null, null, null],
++      "public_history": [
++        ["preflop", 0, "fold", null, 0, false, null, 0],
++        ["preflop", 1, "check", null, 0, false, null, 0],
++        ["preflop", 2, "call", null, 2, false, null, 0],
++        ["preflop", 3, "raise", 6, 6, true, 3, 4]
++      ]
++    },
++    "action": {"kind": "check", "raise_to": null}
++  }]
++}
+diff --git a/tests/fixtures/blueprint_artifact/raise_control.json b/tests/fixtures/blueprint_artifact/raise_control.json
+new file mode 100644
+index 0000000..decced9
+--- /dev/null
++++ b/tests/fixtures/blueprint_artifact/raise_control.json
+@@ -0,0 +1 @@
++{"entries":[{"action":{"kind":"raise","raise_to":6},"key":{"acted_at_bet":[null,null,null,null,null,null],"big_blind":2,"board":[],"button":0,"controlled_seat":3,"folded":[false,false,false,false,false,false],"last_full_raise_size":2,"pending_seats":[3,4,5,0,1,2],"private_hand":[1,13],"public_history":[],"small_blind":1,"stacks":[200,199,198,200,200,200],"starting_stacks":[200,200,200,200,200,200],"street":"preflop","street_contributions":[0,1,2,0,0,0],"total_contributions":[0,1,2,0,0,0],"version":"blueprint-decision-key-v1"}}],"source_id":"pontius-v0a-blueprint-artifact-v1-correctness-policy","version":"pontius-v0a-blueprint-artifact-v1"}
+diff --git a/tests/test_blueprint_artifact.py b/tests/test_blueprint_artifact.py
+new file mode 100644
+index 0000000..12ef51f
+--- /dev/null
++++ b/tests/test_blueprint_artifact.py
+@@ -0,0 +1,225 @@
++from __future__ import annotations
++import json
++from pathlib import Path
++import tempfile
++import unittest
++from pontius.blueprint_artifact.codec import (
++    BlueprintArtifactError,
++    decode_blueprint,
++    encode_blueprint,
++)
++from pontius.immutable_blueprint import (
++    BlueprintActionEntry,
++    BlueprintDecisionKey,
++    ImmutableBlueprintActionSource,
++)
++from pontius.no_limit_betting import BettingAction, BettingActionKind, BettingStreet, raise_to
++from pontius.v0a.model import ActionMailbox, DeliveryStatus, FailureCode, HandStartedEvent
++from pontius.v0a.replay import (
++    Fixture, PROTOCOL_ID, ReplayHost, ScriptedAction, verify_successful_trace)
++from pontius.v0a.runtime import HandRuntime
++FIXTURES = Path(__file__).with_name("fixtures") / "blueprint_artifact"
++RAISE = FIXTURES / "raise_control.json"
++HISTORY = FIXTURES / "history_control.json"
++DELETE = object()
++HAND = "pontius-v0a-blueprint-artifact-v1-correctness-hand"
++def expected_raise(action: BettingAction | None = None) -> ImmutableBlueprintActionSource:
++    key = BlueprintDecisionKey(
++        controlled_seat=3, private_hand=(1, 13), board=(), button=0,
++        small_blind=1, big_blind=2, street=BettingStreet.PREFLOP,
++        starting_stacks=(200,) * 6, stacks=(200, 199, 198, 200, 200, 200),
++        total_contributions=(0, 1, 2, 0, 0, 0),
++        street_contributions=(0, 1, 2, 0, 0, 0), folded=(False,) * 6,
++        pending_seats=(3, 4, 5, 0, 1, 2), last_full_raise_size=2,
++        acted_at_bet=(None,) * 6, public_history=(),
++    )
++    return ImmutableBlueprintActionSource(
++        source_id="pontius-v0a-blueprint-artifact-v1-correctness-policy",
++        entries=(BlueprintActionEntry(key, action or raise_to(6)),),
++    )
++def changed(path: tuple[object, ...], value: object = DELETE, fixture: Path = RAISE) -> bytes:
++    document = json.loads(fixture.read_text(encoding="utf-8"))
++    target = document
++    for part in path[:-1]:
++        target = target[part]
++    if value is DELETE:
++        del target[path[-1]]
++    else:
++        target[path[-1]] = value
++    return json.dumps(document, ensure_ascii=True).encode("ascii")
++def forge(value: object, **changes: object) -> object:
++    clone = object.__new__(type(value))
++    for name in value.__slots__:
++        object.__setattr__(clone, name, changes.get(name, getattr(value, name)))
++    return clone
++class StepClock:
++    def __init__(self) -> None:
++        self.now = 1_000
++    def __call__(self) -> int:
++        self.now += 1_000
++        return self.now
++class BlueprintArtifactTests(unittest.TestCase):
++    def assert_refused(self, raw: object) -> None:
++        with self.assertRaises(BlueprintArtifactError):
++            decode_blueprint(raw)
++    def test_handwritten_fixtures_full_keys_actions_and_canonical_bytes(self) -> None:
++        loaded = decode_blueprint(RAISE.read_bytes())
++        self.assertEqual(loaded, expected_raise())
++        self.assertEqual(encode_blueprint(loaded), RAISE.read_bytes())
++        history = decode_blueprint(HISTORY.read_bytes())
++        key = history.entries[0].key
++        self.assertEqual(history.source_id, "artifact-history-🚀")
++        self.assertEqual((key.street, key.board), (BettingStreet.FLOP, (20, 21, 22)))
++        self.assertEqual(tuple(atom[2] for atom in key.public_history),
++                         ("fold", "check", "call", "raise"))
++        self.assertEqual(key.public_history[-1][3:], (6, 6, True, 3, 4))
++        document = json.loads(HISTORY.read_text(encoding="utf-8"))
++        second = json.loads(json.dumps(document["entries"][0]))
++        second["key"]["private_hand"] = [2, 3]
++        second["action"] = {"kind": "fold", "raise_to": None}
++        document["entries"].append(second)
++        forward = decode_blueprint(json.dumps(document).encode())
++        document["entries"].reverse()
++        reverse = decode_blueprint(json.dumps(document).encode())
++        self.assertEqual(encode_blueprint(forward), encode_blueprint(reverse))
++        empty = ImmutableBlueprintActionSource("artifact-empty")
++        self.assertEqual(decode_blueprint(encode_blueprint(empty)), empty)
++    def test_decode_rejects_closed_schema_and_value_corruptions(self) -> None:
++        cases = [
++            changed(("version",), "v2"), changed(("source_id",), " "),
++            changed(("entries",), {}), changed(("extra",), 1), changed(("version",)),
++            changed(("entries", 0, "extra"), 1), changed(("entries", 0, "action")),
++            changed(("entries", 0, "key", "extra"), 1),
++            changed(("entries", 0, "key", "version")),
++            changed(("entries", 0, "key", "controlled_seat"), True),
++            changed(("entries", 0, "key", "controlled_seat"), 6),
++            changed(("entries", 0, "key", "private_hand"), [1]),
++            changed(("entries", 0, "key", "private_hand"), [1, 1]),
++            changed(("entries", 0, "key", "folded", 0), 0),
++            changed(("entries", 0, "key", "stacks"), [0] * 5),
++            changed(("entries", 0, "key", "pending_seats"), [3, 3]),
++            changed(("entries", 0, "key", "acted_at_bet", 0), False),
++            changed(("entries", 0, "key", "street"), "fifth"),
++            changed(("entries", 0, "action", "kind"), "bet"),
++            changed(("entries", 0, "action", "raise_to"), None),
++            changed(("entries", 0, "key", "small_blind"), 2.0),
++            changed(("entries", 0, "key", "big_blind"), float("nan")),
++            changed(("entries", 0, "key", "board"), [1, 2, 3], HISTORY),
++            changed(("entries", 0, "key", "public_history", 0), ["preflop"], HISTORY),
++            b"\xff", RAISE.read_bytes() + b"x", b"[" * 1100 + b"]" * 1100,
++            b'{"version":1,"version":2}',
++            RAISE.read_bytes().replace(b'"controlled_seat":3',
++                                       b'"controlled_seat":3,"controlled_seat":3'),
++            RAISE.read_bytes().replace(b'"kind":"raise"',
++                                       b'"kind":"raise","kind":"raise"'),
++        ]
++        duplicate = json.loads(RAISE.read_text())
++        duplicate["entries"].append(json.loads(json.dumps(duplicate["entries"][0])))
++        duplicate["entries"][-1]["key"]["private_hand"].reverse()
++        cases.append(json.dumps(duplicate).encode())
++        duplicate["entries"][-1]["action"]["kind"] = "bad"
++        cases.append(json.dumps(duplicate).encode())
++        for index, raw in enumerate(cases):
++            with self.subTest(index=index):
++                self.assert_refused(raw)
++        self.assert_refused(bytearray(RAISE.read_bytes()))
++    def test_numeric_unicode_and_removed_byte_ceiling_are_symmetric(self) -> None:
++        base = RAISE.read_bytes()
++        maximum = b"9" * 640
++        admitted = decode_blueprint(base.replace(b'"last_full_raise_size":2',
++                                                 b'"last_full_raise_size":' + maximum))
++        self.assertEqual(admitted.entries[0].key.last_full_raise_size, 10**640 - 1)
++        self.assertEqual(decode_blueprint(encode_blueprint(admitted)).digest, admitted.digest)
++        for token in (b"1" + b"0" * 640, b"9" * 641):
++            self.assert_refused(base.replace(b'"last_full_raise_size":2',
++                                             b'"last_full_raise_size":' + token))
++        source = expected_raise()
++        key = forge(source.entries[0].key, last_full_raise_size=10**640)
++        entry = forge(source.entries[0], key=key)
++        with self.assertRaises(BlueprintArtifactError):
++            encode_blueprint(forge(source, entries=(entry,)))
++        pair = base.replace(b'"source_id":"pontius-v0a-blueprint-artifact-v1-correctness-policy"',
++                            b'"source_id":"\\ud83d\\ude80"')
++        self.assertEqual(decode_blueprint(pair).source_id, "🚀")
++        for escaped in (b"\\ud800", b"\\udfff"):
++            self.assert_refused(pair.replace(b"\\ud83d\\ude80", escaped))
++        for text in ("\ud800", "\udfff", "\ud800\udfff"):
++            with self.assertRaises(BlueprintArtifactError):
++                encode_blueprint(ImmutableBlueprintActionSource(text))
++        large = ImmutableBlueprintActionSource("x" * (1_048_576 + 1))
++        self.assertEqual(decode_blueprint(encode_blueprint(large)), large)
++    def test_export_rejects_foreign_and_malformed_exact_graphs_before_hooks(self) -> None:
++        marker: list[str] = []
++        class Trap(ImmutableBlueprintActionSource):
++            def __getattribute__(self, name: str) -> object:
++                marker.append(name)
++                raise AssertionError("foreign hook invoked")
++        entry = (source := expected_raise()).entries[0]
++        foreign = lambda value: object.__new__(type("Foreign", (type(value),), {}))
++        bad = [object.__new__(Trap), forge(source, entries=[]), forge(source, source_id="\ud800"),
++               forge(source, entries=(forge(entry, key=forge(entry.key, folded=(0,) * 6)),)),
++               forge(source, entries=(foreign(entry),)),
++               forge(source, entries=(forge(entry, key=foreign(entry.key)),)),
++               forge(source, entries=(forge(entry, action=foreign(entry.action)),))]
++        for value in bad:
++            with self.subTest(type=type(value)):
++                with self.assertRaises(BlueprintArtifactError):
++                    encode_blueprint(value)
++        self.assertEqual(marker, [])
++    def test_file_bytes_are_portable_without_codec_file_io(self) -> None:
++        with tempfile.TemporaryDirectory() as directory:
++            path = Path(directory) / "policy.json"
++            path.write_bytes(RAISE.read_bytes())
++            loaded = decode_blueprint(path.read_bytes())
++            path.write_bytes(encode_blueprint(loaded))
++            self.assertEqual(decode_blueprint(path.read_bytes()), expected_raise())
++    def test_loaded_policy_hits_misses_and_illegal_hits_through_runtime(self) -> None:
++        def run(raw: bytes):
++            mailbox = ActionMailbox()
++            runtime = HandRuntime(blueprint=decode_blueprint(raw), mailbox=mailbox,
++                                  clock=StepClock())
++            outcome = runtime.dispatch(HandStartedEvent(
++                hand_id=HAND, event_index=0, button=0, controlled_seat=3,
++                starting_stacks=(200,) * 6, small_blind=1, big_blind=2,
++                private_cards=(1, 13)))
++            return outcome, mailbox
++        hit, mailbox = run(RAISE.read_bytes())
++        self.assertEqual((hit.decision.selection_reason.value,
++                          hit.decision.selected_action.raise_to), ("table_hit", 6))
++        self.assertEqual(len(mailbox.accepted), 1)
++        miss, mailbox = run(RAISE.read_bytes().replace(b'"private_hand":[1,13]',
++                                                       b'"private_hand":[2,14]'))
++        self.assertEqual((miss.decision.selection_reason.value,
++                          miss.decision.selected_action.kind), ("passive_default", "call"))
++        self.assertEqual(len(mailbox.accepted), 1)
++        illegal, mailbox = run(RAISE.read_bytes().replace(b'"raise_to":6', b'"raise_to":1000'))
++        self.assertIs(illegal.failure.code, FailureCode.INVALID_BLUEPRINT_ENTRY)
++        self.assertIs(illegal.failure.delivery_status, DeliveryStatus.NOT_ATTEMPTED)
++        self.assertEqual(len(mailbox.accepted), 0)
++    def test_loaded_policy_completes_replay_and_independent_reader(self) -> None:
++        fixture = Fixture(
++            name="artifact-fold-control",
++            seed_label="pontius-v0a-blueprint-artifact-v1-correctness-seed",
++            hand_id=HAND, button=0, controlled_seat=3, starting_stacks=(200,) * 6,
++            small_blind=1, big_blind=2,
++            board_text=("7c", "8d", "9h", "Js", "Qc"),
++            hand_text=("As Ad", "Kh Kd", "Ts 8s", "2c 5c", "Ah 3h", "4s 6s"),
++            script=tuple(ScriptedAction("preflop", seat, "fold")
++                         for seat in (4, 5, 0, 1, 2)),
++            expected_payouts=(0, 0, 0, 5, 0, 0), expected_pots=(5,),
++            expected_controlled_actions=1,
++        )
++        host = ReplayHost(fixture, run_id=f"{PROTOCOL_ID}-correctness-artifact",
++                          blueprint=decode_blueprint(RAISE.read_bytes()), clock=StepClock())
++        outcome = host.run()
++        self.assertTrue(outcome.receipt.passed)
++        self.assertEqual(outcome.oracle_payouts, (0, 0, 0, 5, 0, 0))
++        self.assertEqual(outcome.settlement.final_stacks, (200, 199, 198, 203, 200, 200))
++        self.assertEqual(len(host.mailbox.accepted), 1)
++        verify_successful_trace(
++            outcome.trace, fixture=fixture, blueprint=expected_raise(),
++            source_commit="0" * 40, source_manifest_sha256="0" * 64,
++            expected_mode="correctness", expected_clock_kind="deterministic_test",
++        )
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_blueprint_artifact_boundary.py b/tests/test_blueprint_artifact_boundary.py
+new file mode 100644
+index 0000000..bd119cf
+--- /dev/null
++++ b/tests/test_blueprint_artifact_boundary.py
+@@ -0,0 +1,74 @@
++"""Source-boundary controls for the portable blueprint artifact round."""
++from __future__ import annotations
++import importlib.util
++from pathlib import Path
++import unittest
++ROOT = Path(__file__).resolve().parents[1]
++CHECKER_PATH = ROOT / "tools" / "check_stabilization_boundaries.py"
++SPEC = importlib.util.spec_from_file_location("blueprint_boundary_checker", CHECKER_PATH)
++assert SPEC is not None and SPEC.loader is not None
++CHECKER = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(CHECKER)
++def assert_public_gate_rejects(test: unittest.TestCase, relative: str, suffix: bytes) -> None:
++    path = ROOT / relative
++    original = path.read_bytes() if path.exists() else None
++    try:
++        path.write_bytes((original or b"") + suffix)
++        with test.assertRaises(CHECKER.BoundaryError):
++            CHECKER.check_repository(ROOT)
++    finally:
++        if original is None:
++            path.unlink()
++        else:
++            path.write_bytes(original)
++class DriverBoundaryAmendmentTests(unittest.TestCase):
++    def test_existing_driver_is_scanned_and_the_public_gate_accepts_it(self) -> None:
++        CHECKER.enforce_origin_classification(
++            {}, {"tools/v0a_rehearsal_driver.py": b""}
++        )
++        CHECKER.check_repository(ROOT)
++    def test_undeclared_driver_siblings_remain_rejected(self) -> None:
++        assert_public_gate_rejects(self,
++            "tools/v0a_rehearsal_driver_extra.py", b"# owned negative fixture\n"
++        )
++    def test_driver_import_allowance_is_exact_and_origin_specific(self) -> None:
++        allowed = (
++            "import pontius.immutable_blueprint\n"
++            "import pontius.v0a.replay\n"
++            "import pontius.v0a.trace\n"
++        ).encode("ascii")
++        CHECKER.enforce_orchestration_import_policy(
++            {"tools/v0a_rehearsal_driver.py": allowed}
++        )
++        with self.assertRaises(CHECKER.BoundaryError):
++            CHECKER.enforce_orchestration_import_policy(
++                {"tools/run_tests.py": b"import pontius.immutable_blueprint\n"}
++            )
++        for relative, suffix in (
++            ("tools/v0a_rehearsal_driver.py", b"\nimport pontius.status_generation\n"),
++            ("tools/run_tests.py", b"\nimport pontius.immutable_blueprint\n"),
++        ):
++            with self.subTest(relative):
++                assert_public_gate_rejects(self, relative, suffix)
++class CodecBoundaryTests(unittest.TestCase):
++    def test_codec_family_and_imports_are_exact(self) -> None:
++        paths = {
++            "src/pontius/blueprint_artifact/__init__.py": b"",
++            "src/pontius/blueprint_artifact/codec.py": (
++                b"from __future__ import annotations\nimport json\n"
++                b"import pontius.immutable_blueprint\nimport pontius.no_limit_betting\n"
++            ),
++        }
++        CHECKER.enforce_origin_classification(paths, {})
++        policy = getattr(CHECKER, "enforce_blueprint_artifact_import_policy", None)
++        self.assertTrue(callable(policy))
++        policy(paths)
++        for path, suffix in (
++            ("src/pontius/blueprint_artifact/extra.py", b"# owned negative fixture\n"),
++            ("src/pontius/blueprint_artifact/codec.py", b"\nimport pathlib\n"),
++            ("src/pontius/immutable_blueprint.py", b"\nimport pontius.blueprint_artifact.codec\n"),
++        ):
++            with self.subTest(path):
++                assert_public_gate_rejects(self, path, suffix)
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_inventory_and_profiles.py b/tests/test_inventory_and_profiles.py
+index 45c65de..bcea88f 100644
+--- a/tests/test_inventory_and_profiles.py
++++ b/tests/test_inventory_and_profiles.py
+@@ -199,20 +199,22 @@ V7_RETAINED_OVERLAYS = {
+         "artifacts/work_preflight/"
+         "legal_river_quotient_compiled_global_separation_calibration_v7.jsonl",
+         7_858_857,
+         "78b2f8351ca49785756ec336d4f967bcc83a86f9ef96506a6144726cf3b312b3",
+     ),
+ }
+ 
+ STABILIZATION_TEST_FILES = (
+     "tests/evidence_test_support.py",
+     "tests/orchestration_test_support.py",
++    "tests/test_blueprint_artifact.py",
++    "tests/test_blueprint_artifact_boundary.py",
+     "tests/test_evidence_authorization.py",
+     "tests/test_evidence_errors_and_model.py",
+     "tests/test_evidence_filesystem_and_git.py",
+     "tests/test_evidence_import_boundary.py",
+     "tests/test_evidence_manifest_generation.py",
+     "tests/test_evidence_manifests.py",
+     "tests/test_inventory_and_profiles.py",
+     "tests/test_retained_evidence_inventory.py",
+     "tests/test_retained_v7_assessment.py",
+     "tests/test_stabilization_boundaries.py",
+@@ -224,20 +226,21 @@ STABILIZATION_TEST_FILES = (
+     "tests/test_test_orchestration_guards.py",
+     "tests/test_test_orchestration_historical.py",
+     "tests/test_test_orchestration_import_boundary.py",
+     "tests/test_test_orchestration_posix_group.py",
+     "tests/test_test_orchestration_process.py",
+     "tests/test_test_orchestration_protocol.py",
+     "tests/test_test_orchestration_windows_job.py",
+     "tests/test_test_orchestration_workspace.py",
+     "tests/test_v0a_contract_faults.py",
+     "tests/test_v0a_hand_replay.py",
++    "tests/test_v0a_rehearsal_driver.py",
+     "tests/test_v0a_replay.py",
+     "tests/test_v0a_trace.py",
+ )
+ 
+ _PATH_BEFORE_BOOTSTRAP = tuple(sys.path)
+ 
+ 
+ def _load_generator() -> ModuleType:
+     if not GENERATOR_PATH.is_file():
+         raise AssertionError(f"missing Task 2 generator: {GENERATOR_PATH}")
+@@ -29642,35 +29645,35 @@ class CheckedInInventoryTests(unittest.TestCase):
+         )
+         self.assertEqual(len(review["receipt"]["expanded_rows"]), 141)
+         self.assertEqual(
+             review["spec_capabilities_sha256"],
+             "d303a26e373f0b173a4283dcede5735fdae6b849fdb0cb0ffcddec9017e8012a",
+         )
+         self.assertEqual(
+             review["analysis_census"],
+             {
+                 "subprocess_direct_site_count": 43,
+-                "subprocess_helper_site_count": 5,
++                "subprocess_helper_site_count": 6,
+                 "cross_file_helper_edge_count": 27,
+                 "cupy_call_node_count": 30,
+                 "string_sink_decoy_count": 588,
+                 "string_sink_decoy_sha256": (
+-                    "bf4add353334a549793f8787d4ea91aaec0d5371a3516a9030e7f4ced105c589"
++                    "e344991972f24356926fe90e6a329e3c819b9c7208a3691de5893ff8c683bb17"
+                 ),
+                 "string_sink_decoy_partitions": {
+                     "design_production": 17,
+                     "historical_production": 6,
+                     "prior_stabilization_synthetic": 34,
+                     "task2_synthetic": 531,
+                 },
+                 "analyzed_sites_sha256": (
+-                    "9d1f6f58620eb21ca721985786fd57d68cf8a5f3f5ac3a4f7cea05c8261ecadb"
++                    "31879b63b1de2070ed2886cb104848b136cf5afa59c178c475d71d89fcd96e54"
+                 ),
+             },
+         )
+         receipt = review["receipt"]
+         expected_kind = {item_id: item_kind for item_kind, item_id in expected_universe}
+         expanded_items = {str(row["item_id"]) for row in receipt["expanded_rows"]}
+         deny_all = {
+             (str(row["item_kind"]), str(row["item_id"]))
+             for row in receipt["deny_all"]
+         }
+@@ -29746,27 +29749,27 @@ class CheckedInInventoryTests(unittest.TestCase):
+         self.assertIn(("stable_id", source_seal_id), deny_all)
+         self.assertEqual(
+             [
+                 row["reason"]
+                 for row in review["unresolved_dynamic_blockers"]
+                 if row["item_id"] == source_seal_id
+             ],
+             ["unsupported subprocess keyword: capture_output"],
+         )
+         blockers = review["unresolved_dynamic_blockers"]
+-        self.assertEqual(len(blockers), 376)
++        self.assertEqual(len(blockers), 394)
+         self.assertEqual(
+             Counter(row["reason"] for row in blockers),
+             Counter(
+                 {
+-                    "unsupported subprocess keyword: capture_output": 46,
+-                    "dynamic helper arguments prevent exact sink derivation": 15,
++                    "unsupported subprocess keyword: capture_output": 55,
++                    "dynamic helper arguments prevent exact sink derivation": 24,
+                     "helper binding has fewer positional parameters than defaults": 7,
+                     "CuPy action or view is outside the approved call scope": 11,
+                     "dynamic repetition prevents a finite call bound": 2,
+                     "dynamic repetition prevents a finite helper call bound": 1,
+                     "mixed protected receiver is dynamically unresolved": 61,
+                     "unsupported subprocess keyword: stdin": 5,
+                     "registered probe implementation is absent": 1,
+                     "dynamic sensitive call result is unresolved": 16,
+                     "unregistered CuPy call is unresolved": 2,
+                     "deferred generator consumption is dynamically unresolved": 50,
+@@ -29847,33 +29850,33 @@ class CheckedInInventoryTests(unittest.TestCase):
+                 ("tests/test_factorized_belief.py", 34),
+                 ("tests/test_factorized_belief.py", 34),
+                 ("tests/test_factorized_belief.py", 34),
+                 ("tests/test_fresh_action_width_greedy.py", 229),
+                 ("tests/test_fresh_action_width_transfer_structures.py", 288),
+                 ("tests/test_fresh_action_width_transfer_structures.py", 292),
+                 ("tests/test_full_width_river_capacity_preflight.py", 54),
+                 ("tests/test_full_width_river_capacity_preflight_v2_result.py", 150),
+                 ("tests/test_h32_selector_stable_affine_certificate_audit.py", 110),
+                 ("tests/test_incremental_leaf_adjoint_response.py", 276),
+-                ("tests/test_inventory_and_profiles.py", 1458),
+-                ("tests/test_inventory_and_profiles.py", 1465),
+-                ("tests/test_inventory_and_profiles.py", 2953),
+-                ("tests/test_inventory_and_profiles.py", 4165),
+-                ("tests/test_inventory_and_profiles.py", 4427),
+-                ("tests/test_inventory_and_profiles.py", 5660),
+-                ("tests/test_inventory_and_profiles.py", 12476),
+-                ("tests/test_inventory_and_profiles.py", 12476),
+-                ("tests/test_inventory_and_profiles.py", 12485),
+-                ("tests/test_inventory_and_profiles.py", 16216),
+-                ("tests/test_inventory_and_profiles.py", 18242),
+-                ("tests/test_inventory_and_profiles.py", 18242),
+-                ("tests/test_inventory_and_profiles.py", 4794),
++                ("tests/test_inventory_and_profiles.py", 1461),
++                ("tests/test_inventory_and_profiles.py", 1468),
++                ("tests/test_inventory_and_profiles.py", 2956),
++                ("tests/test_inventory_and_profiles.py", 4168),
++                ("tests/test_inventory_and_profiles.py", 4430),
++                ("tests/test_inventory_and_profiles.py", 5663),
++                ("tests/test_inventory_and_profiles.py", 12479),
++                ("tests/test_inventory_and_profiles.py", 12479),
++                ("tests/test_inventory_and_profiles.py", 12488),
++                ("tests/test_inventory_and_profiles.py", 16219),
++                ("tests/test_inventory_and_profiles.py", 18245),
++                ("tests/test_inventory_and_profiles.py", 18245),
++                ("tests/test_inventory_and_profiles.py", 4797),
+                 ("tests/test_linear_program_certificate.py", 157),
+                 ("tests/test_linear_program_certificate.py", 193),
+                 ("tests/test_native_simplex_audit_reanalysis.py", 404),
+                 ("tests/test_native_simplex_audit_reanalysis.py", 386),
+                 ("tests/test_native_simplex_audit_reanalysis.py", 298),
+                 ("tests/test_river_selective_screen.py", 320),
+                 ("tests/test_shared_resident_response_context.py", 71),
+             ],
+         )
+         self.assertEqual(
+diff --git a/tools/check_stabilization_boundaries.py b/tools/check_stabilization_boundaries.py
+index c3f739f..2aa9671 100644
+--- a/tools/check_stabilization_boundaries.py
++++ b/tools/check_stabilization_boundaries.py
+@@ -46,33 +46,40 @@ V0A_PERMITTED_INTERNAL = frozenset(
+         "pontius.action_clock",
+         "pontius.preparation_bank",
+         "pontius.legal_decision_spine_v2",
+         "pontius.no_limit_betting",
+         "pontius.holdem_cards",
+         "pontius.immutable_blueprint",
+     }
+ )
+ V0A_HOST_ONLY_INTERNAL = frozenset({"pontius.river"})
+ V0A_HOST_MODULE = "pontius.v0a.replay"
++BLUEPRINT_ARTIFACT_ORIGIN_PATHS = frozenset(
++    {
++        "src/pontius/blueprint_artifact/__init__.py",
++        "src/pontius/blueprint_artifact/codec.py",
++    }
++)
+ ORCHESTRATION_ORIGIN_PATHS = frozenset(
+     {
+         "tools/__init__.py",
+         "tools/check_stabilization_boundaries.py",
+         "tools/ci_native_diagnostics.py",
+         "tools/generate_retained_backup_manifest.py",
+         "tools/compare_run_summaries.py",
+         "tools/generate_dependency_baseline.py",
+         "tools/generate_evidence_manifests.py",
+         "tools/generate_test_inventory.py",
+         "tools/run_tests.py",
+         "tools/stabilization_verification.py",
+         "tools/test_child.py",
++        "tools/v0a_rehearsal_driver.py",
+         "tools/test_orchestration/__init__.py",
+         "tools/test_orchestration/configuration.py",
+         "tools/test_orchestration/engine.py",
+         "tools/test_orchestration/environment.py",
+         "tools/test_orchestration/errors.py",
+         "tools/test_orchestration/evidence_guard.py",
+         "tools/test_orchestration/git.py",
+         "tools/test_orchestration/model.py",
+         "tools/test_orchestration/posix_group.py",
+         "tools/test_orchestration/process.py",
+@@ -155,20 +162,22 @@ def enforce_legacy_edges(baseline: object, current: object) -> None:
+         current_edges[origin].add(target)
+     violations: list[str] = []
+     for missing in sorted(baseline_modules - current_modules):
+         violations.append(f"legacy module is missing: {missing}")
+     for added in sorted(current_modules - baseline_modules):
+         classified = (
+             added == "pontius.evidence"
+             or added.startswith("pontius.evidence.")
+             or added == "pontius.v0a"
+             or added.startswith("pontius.v0a.")
++            or added == "pontius.blueprint_artifact"
++            or added.startswith("pontius.blueprint_artifact.")
+         )
+         if not classified:
+             violations.append(f"new source module lacks stabilization classification: {added}")
+     for origin in sorted(baseline_modules & current_modules):
+         removed = baseline_edges[origin] - current_edges[origin]
+         added = current_edges[origin] - baseline_edges[origin]
+         if removed or added:
+             detail = [f"legacy outgoing edges changed for {origin}"]
+             detail.extend(f"removed {origin} -> {target}" for target in sorted(removed))
+             detail.extend(f"added {origin} -> {target}" for target in sorted(added))
+@@ -204,20 +213,26 @@ def _is_stdlib(target: str) -> bool:
+ def enforce_origin_classification(
+     current_sources: Mapping[str, bytes], tool_sources: Mapping[str, bytes]
+ ) -> None:
+     """Reject stabilization origins that neither accepted plan declares."""
+ 
+     violations = [
+         f"unclassified stabilization origin: {path}"
+         for path in sorted(current_sources)
+         if path.startswith("src/pontius/evidence/") and path not in EVIDENCE_ORIGIN_PATHS
+     ]
++    violations.extend(
++        f"unclassified stabilization origin: {path}"
++        for path in sorted(current_sources)
++        if path.startswith("src/pontius/blueprint_artifact/")
++        and path not in BLUEPRINT_ARTIFACT_ORIGIN_PATHS
++    )
+     violations.extend(
+         f"unclassified stabilization origin: {path}"
+         for path in sorted(current_sources)
+         if (
+             path == "src/pontius/v0a.py"
+             or path.startswith("src/pontius/v0a/")
+         )
+         and path not in V0A_ORIGIN_PATHS
+     )
+     violations.extend(
+@@ -324,25 +339,51 @@ def enforce_orchestration_import_policy(sources: Mapping[str, bytes]) -> None:
+     try:
+         edges = _BASELINE.import_edges(sources)
+     except _BASELINE.BaselineError as error:
+         raise BoundaryError(f"orchestration sources cannot be scanned: {error}") from error
+     for origin, target in edges:
+         if not origin.startswith("tools"):
+             continue
+         sibling = target == _ORCHESTRATION_SIBLING_PREFIX or target.startswith(
+             _ORCHESTRATION_SIBLING_PREFIX + "."
+         )
+-        if not _is_stdlib(target) and not sibling:
++        driver_internal = origin == "tools.v0a_rehearsal_driver" and target in {
++            "pontius.immutable_blueprint",
++            "pontius.v0a.replay",
++            "pontius.v0a.trace",
++        }
++        if not _is_stdlib(target) and not sibling and not driver_internal:
+             violations.append(f"forbidden orchestration import: {origin} -> {target}")
+     _raise_violations(violations)
+ 
+ 
++def enforce_blueprint_artifact_import_policy(sources: Mapping[str, bytes]) -> None:
++    """Keep the portable codec inert and limited to its two value modules."""
++
++    try:
++        edges = _BASELINE.import_edges(sources)
++    except _BASELINE.BaselineError as error:
++        raise BoundaryError(f"blueprint artifact sources cannot be scanned: {error}") from error
++    violations = []
++    family = "pontius.blueprint_artifact"
++    allowed = {"__future__", "json", "pontius.immutable_blueprint",
++               "pontius.no_limit_betting"}
++    for origin, target in edges:
++        in_family = origin == family or origin.startswith(family + ".")
++        targets_family = target == family or target.startswith(family + ".")
++        if in_family and target not in allowed:
++            violations.append(f"forbidden blueprint artifact import: {origin} -> {target}")
++        elif targets_family and not in_family:
++            violations.append(f"legacy origin imports blueprint artifact: {origin} -> {target}")
++    _raise_violations(violations)
++
++
+ def _read_regular_source(path: Path, *, root: Path) -> object:
+     try:
+         return _BASELINE.read_regular_snapshot(
+             path,
+             maximum_bytes=_BASELINE.MAXIMUM_SOURCE_BYTES,
+             root=root,
+         )
+     except _BASELINE.BaselineError as error:
+         raise BoundaryError(f"Python source cannot be snapshotted: {path}: {error}") from error
+ 
+@@ -498,20 +539,21 @@ def check_repository(repository_root: Path) -> None:
+     )
+     try:
+         current_graph = _BASELINE.scan_sources(current_sources)
+     except _BASELINE.BaselineError as error:
+         raise BoundaryError(f"current dependency graph cannot be derived: {error}") from error
+     enforce_origin_classification(current_sources, tool_sources)
+     enforce_legacy_edges(parsed.graph, current_graph)
+     enforce_no_new_or_expanded_scc(parsed.graph, current_graph)
+     enforce_evidence_import_policy(current_sources)
+     enforce_v0a_import_policy(current_sources)
++    enforce_blueprint_artifact_import_policy(current_sources)
+     enforce_orchestration_import_policy(tool_sources)
+     _revalidate_repository_snapshot(
+         baseline_snapshot, current_inventory, tool_inventory
+     )
+ 
+ 
+ def parse_arguments(argv: Sequence[str] | None) -> argparse.Namespace:
+     parser = argparse.ArgumentParser(description=__doc__)
+     return parser.parse_args(argv)
+ 
+diff --git a/tools/generate_test_inventory.py b/tools/generate_test_inventory.py
+index da0fb1e..7f7f9cf 100644
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -149,20 +149,22 @@ DECLARED_SKIPS = {
+         "test_small_gpu_seed_round_trips_both_distinct_arms_without_optimizer_work"
+     ): (
+         "ADR-0281 seed authority is revoked; its GPU path is never invoked",
+         "revoked_adr_0281_gpu_path_never_invoked",
+         "aa949216ccc291eab69a7eca888eb7e0fa5f43c804099bf6cf51c6fde9429909",
+     ),
+ }
+ STABILIZATION_TEST_FILES = frozenset({
+     "tests/evidence_test_support.py",
+     "tests/orchestration_test_support.py",
++    "tests/test_blueprint_artifact.py",
++    "tests/test_blueprint_artifact_boundary.py",
+     "tests/test_evidence_errors_and_model.py",
+     "tests/test_evidence_manifests.py",
+     "tests/test_evidence_manifest_generation.py",
+     "tests/test_evidence_filesystem_and_git.py",
+     "tests/test_evidence_authorization.py",
+     "tests/test_retained_v7_assessment.py",
+     "tests/test_evidence_import_boundary.py",
+     "tests/test_test_orchestration_configuration.py",
+     "tests/test_inventory_and_profiles.py",
+     "tests/test_test_orchestration_protocol.py",
+@@ -174,20 +176,21 @@ STABILIZATION_TEST_FILES = frozenset({
+     "tests/test_test_orchestration_guards.py",
+     "tests/test_test_orchestration_workspace.py",
+     "tests/test_test_orchestration_historical.py",
+     "tests/test_test_orchestration_engine.py",
+     "tests/test_stabilization_boundaries.py",
+     "tests/test_test_orchestration_import_boundary.py",
+     "tests/test_stabilization_verification.py",
+     "tests/test_retained_evidence_inventory.py",
+     "tests/test_v0a_contract_faults.py",
+     "tests/test_v0a_hand_replay.py",
++    "tests/test_v0a_rehearsal_driver.py",
+     "tests/test_v0a_replay.py",
+     "tests/test_v0a_trace.py",
+ })
+ 
+ 
+ class InventoryError(RuntimeError):
+     """Deterministic inventory/profile generation failure."""
+ 
+ 
+ @dataclass(frozen=True, slots=True)

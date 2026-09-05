@@ -111,3 +111,8 @@ v0a-i01-seal/r001/** -text
 # Preserve the approved driver and driver-seal packets byte-for-byte.
 v0a-driver/r001/** -text
 v0a-driver-seal/r001/** -text
+
+# Preserve these authorized implementation, fixture and integration packets exactly.
+v0a-blueprint-artifact-impl/** -text
+windows-handle-fixture/** -text
+v0a-blueprint-artifact-seal/** -text
