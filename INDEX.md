@@ -7,9 +7,9 @@ still be checked after each publication rather than inferred from hook success.
 
 | Task | Round | Packet | State |
 | --- | --- | --- | --- |
-| v0a-blueprint-artifact-open | r001 | [Packet][blueprint-open-r001] | CLEAN/SOUND; authorized adoption pending |
+| v0a-blueprint-artifact-open | r001 | [Packet][blueprint-open-r001] | ADOPTED c4af7f6 |
 | v0a-blueprint-artifact-design | r001 | [Packet][blueprint-r001] | NOT CLEAN; retained |
-| v0a-blueprint-artifact-design | r002 | [Packet][blueprint-r002] | CLEAN/SOUND twice; not adopted |
+| v0a-blueprint-artifact-design | r002 | [Packet][blueprint-r002] | Adopted ADR-0490 |
 | v0a-i01-prereg | r001 | [Legacy reports](../Pontius-worktrees/v0a-increment-1-preregistration-review/r1-candidate.json) | Rejected; preserved in its original location |
 | v0a-i01-prereg | r002 | [Legacy handoff](../Pontius-worktrees/v0a-increment-1-preregistration-review/r2-handoff.md) | Three independent CLEAN reviews; later notes assessed separately |
 | v0a-i01-prereg | r003 | [Legacy candidate](../Pontius-worktrees/v0a-increment-1-preregistration-review/r3-candidate.json) | Preserved; a generated-link check failed |
