@@ -7,7 +7,7 @@ still be checked after each publication rather than inferred from hook success.
 
 | Task | Round | Packet | State |
 | --- | --- | --- | --- |
-| workflow-proportionality | r001 | [Acceptance](workflow-proportionality/r001/acceptance.md) | Two CLEAN/SOUND cold reviews; integration authorized, decision pending |
+| workflow-proportionality | r001 | [Adoption](workflow-proportionality/r001/adoption-result.md) | ADOPTED ADR-0492, 7a387e9; three prospective workflow amendments |
 | v0a-blueprint-artifact-impl | r001 | [Packet](v0a-blueprint-artifact-impl/r001/handoff.md) | Rejected; retained |
 | v0a-blueprint-artifact-impl | r002 | [Packet](v0a-blueprint-artifact-impl/r002/handoff.md) | Incorporated with fixture r002 under ADR-0491, 53773cb |
 | windows-handle-fixture | r001 | [Packet](windows-handle-fixture/r001/handoff.md) | Minor formatting rejection; retained |
