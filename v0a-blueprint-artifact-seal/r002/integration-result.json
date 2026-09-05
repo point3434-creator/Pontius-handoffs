@@ -1,0 +1,33 @@
+{
+  "publication_commit": "9c87d0fa995f6a0401ea4b1efef7ae612cc0c9b3",
+  "published_files": 459,
+  "seal_commit": "53773cb9e7489d8cfa32b4e0ceadea37c5980023",
+  "base": "c4af7f61270b583eb3a3c6d8b3b7e4c49637dc98",
+  "tree": "f3acfba65b32e0890bb86f0af9c087f55e75e50d",
+  "candidate": "12df7106b2fca3b25ed4f57115ba9a31e70b6815",
+  "paths": [
+    ".github/workflows/ci.yml",
+    "STATUS.md",
+    "docs/decisions/ADR-0491-source-seal-the-portable-blueprint-artifact.md",
+    "src/pontius/blueprint_artifact/__init__.py",
+    "src/pontius/blueprint_artifact/codec.py",
+    "tests/fixtures/blueprint_artifact/history_control.json",
+    "tests/fixtures/blueprint_artifact/raise_control.json",
+    "tests/test-inventory.json",
+    "tests/test-profiles.toml",
+    "tests/test_blueprint_artifact.py",
+    "tests/test_blueprint_artifact_boundary.py",
+    "tests/test_inventory_and_profiles.py",
+    "tools/check_stabilization_boundaries.py",
+    "tools/generate_test_inventory.py"
+  ],
+  "archives": [
+    "refs/heads/archive/v0a-blueprint-artifact-impl/r001:refs/heads/archive/v0a-blueprint-artifact-impl/r001",
+    "refs/heads/archive/v0a-blueprint-artifact-impl/r002:refs/heads/archive/v0a-blueprint-artifact-impl/r002",
+    "refs/heads/archive/windows-handle-fixture/r001:refs/heads/archive/windows-handle-fixture/r001",
+    "refs/heads/archive/windows-handle-fixture/r002:refs/heads/archive/windows-handle-fixture/r002",
+    "refs/heads/archive/v0a-blueprint-artifact-seal/r001:refs/heads/archive/v0a-blueprint-artifact-seal/r001",
+    "refs/heads/archive/v0a-blueprint-artifact-seal/r002:refs/heads/archive/v0a-blueprint-artifact-seal/r002"
+  ],
+  "operating_authority": false
+}
