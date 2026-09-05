@@ -1,0 +1,33 @@
+{
+  "commit": "a552f6f34efe10155a702fd09a03bcc70802a369",
+  "base": "7ee314b443e10896e87a2e194f24eddda31ff77d",
+  "tree": "14b71ec9dc6bc6db20393008dde9f25db13a95c5",
+  "ref": "refs/heads/review/v0a-blueprint-artifact-design/r002",
+  "manifest_sha256": "67abe320f73b8edfab60a93511f31eac62d0fac0279cdef712acda91fcf7aced",
+  "manifest_rows": "346aa8c36c59d970bd1ae71ecdf86d64ccbe78c996f955e526f581b061c96808  docs/architecture/v0a-blueprint-artifact-r002/source-opening-draft.md\n5403709d2ee8cc6b0cbacd7775ca7cf71f07f1eecba5e5902286a2387de1b96d  docs/architecture/v0a-blueprint-artifact-r002/design.md\nd83bfd196dc8fe9b632858a83abba77a7dc9d8ae9e3247ea1d1fed82de80b2e3  docs/architecture/v0a-blueprint-artifact-r002/coverage.md\n",
+  "files": [
+    {
+      "path": "docs/architecture/v0a-blueprint-artifact-r002/design.md",
+      "sha256": "5403709d2ee8cc6b0cbacd7775ca7cf71f07f1eecba5e5902286a2387de1b96d",
+      "bytes": 18524,
+      "lf": 293
+    },
+    {
+      "path": "docs/architecture/v0a-blueprint-artifact-r002/source-opening-draft.md",
+      "sha256": "346aa8c36c59d970bd1ae71ecdf86d64ccbe78c996f955e526f581b061c96808",
+      "bytes": 7729,
+      "lf": 127
+    },
+    {
+      "path": "docs/architecture/v0a-blueprint-artifact-r002/coverage.md",
+      "sha256": "d83bfd196dc8fe9b632858a83abba77a7dc9d8ae9e3247ea1d1fed82de80b2e3",
+      "bytes": 4608,
+      "lf": 74
+    }
+  ],
+  "primary_tracked": "clean",
+  "normal_head_and_index": "unchanged",
+  "temporary_index": "removed",
+  "scope": "Documentation-only FIX; no project payload execution",
+  "raw_blob_hashing": "git cat-file blob StandardOutput.BaseStream; SHA256; digest-first ordinal whole-row sort; LF"
+}
