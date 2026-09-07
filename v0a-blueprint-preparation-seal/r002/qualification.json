@@ -1,0 +1,247 @@
+{
+  "all_gates_passed": true,
+  "candidate": {
+    "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+    "commit": "06ccb89587478c09493ec0eda53f8e62a4dece95",
+    "date": "2026-09-07",
+    "manifest_sha256": "e99482ab23a5d0538733e7ae0dc19b562c40a66a03a32bb544beb6ec4384d609",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-seal/r002",
+    "round": "r002",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-seal",
+    "tree": "92c5f6d5637a342aeb38f5fffd540a27669dd27c"
+  },
+  "created_utc": "2026-09-07T23:12:24.165010+00:00",
+  "exact_user_authorization": {
+    "byte_length": 2474,
+    "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-seal\\r002\\authorization-001.json",
+    "sha256": "cdfe50c0d11a9d50e52c6b608172ac0d4c1196efa0dacd4ffeafbfc0632338d9"
+  },
+  "external_publication_pending": true,
+  "external_publication_pending_explicit_approval": false,
+  "final_checks": [
+    {
+      "files": [
+        {
+          "byte_length": 113,
+          "path": "D:\\pseal-r002-311-status\\source.json",
+          "sha256": "076340cfeb7dc4614214999bbe42a67a29a02a3f1262d4384341318d4913e723"
+        },
+        {
+          "byte_length": 1697,
+          "path": "D:\\pseal-r002-311-status\\intent.json",
+          "sha256": "a4125ef5ba027c400ee00315dcec4a05824a75a47a1c1ed52d9325fdda65eb23"
+        },
+        {
+          "byte_length": 22,
+          "path": "D:\\pseal-r002-311-status\\stdout.bin",
+          "sha256": "2c85a199d84984a0b917667d03622c2e33a1ad050479bb81d4736d4ffd91d3fc"
+        },
+        {
+          "byte_length": 0,
+          "path": "D:\\pseal-r002-311-status\\stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "byte_length": 67,
+          "path": "D:\\pseal-r002-311-status\\receipt.json",
+          "sha256": "490652062c5f27ff957eabd4280a09cce505e97e8906e030abb05142af9179ef"
+        },
+        {
+          "byte_length": 151,
+          "path": "D:\\pseal-r002-311-status\\source-after.json",
+          "sha256": "446dea08a14096cf33fd6350cd3dfa42cfd105bcbe118b3fc228f277241e2200"
+        }
+      ],
+      "gate": "status",
+      "receipt": {
+        "exit_code": 0,
+        "passed": true,
+        "wall_seconds": 0.269978
+      },
+      "root": "D:\\pseal-r002-311-status",
+      "slot": "311"
+    },
+    {
+      "files": [
+        {
+          "byte_length": 113,
+          "path": "D:\\pseal-r002-311-tests\\source.json",
+          "sha256": "076340cfeb7dc4614214999bbe42a67a29a02a3f1262d4384341318d4913e723"
+        },
+        {
+          "byte_length": 1674,
+          "path": "D:\\pseal-r002-311-tests\\intent.json",
+          "sha256": "76bf67daffb063ca983651b7f84b4300a514351478db9098c9540ec4483764c3"
+        },
+        {
+          "byte_length": 0,
+          "path": "D:\\pseal-r002-311-tests\\stdout.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "byte_length": 116,
+          "path": "D:\\pseal-r002-311-tests\\stderr.bin",
+          "sha256": "f33160f8949cb35cb1b78614be1848775209fc6e115f7661232612f4727080b8"
+        },
+        {
+          "byte_length": 97,
+          "path": "D:\\pseal-r002-311-tests\\receipt.json",
+          "sha256": "1bf961218adb2d5024771f64625ff10913dad7f572e1c39cb34d1f664396ea39"
+        },
+        {
+          "byte_length": 151,
+          "path": "D:\\pseal-r002-311-tests\\source-after.json",
+          "sha256": "446dea08a14096cf33fd6350cd3dfa42cfd105bcbe118b3fc228f277241e2200"
+        }
+      ],
+      "gate": "tests",
+      "receipt": {
+        "exit_code": 0,
+        "passed": true,
+        "skips": 0,
+        "tests": 12,
+        "wall_seconds": 0.4629859
+      },
+      "root": "D:\\pseal-r002-311-tests",
+      "slot": "311"
+    },
+    {
+      "files": [
+        {
+          "byte_length": 113,
+          "path": "D:\\pseal-r002-314-status\\source.json",
+          "sha256": "076340cfeb7dc4614214999bbe42a67a29a02a3f1262d4384341318d4913e723"
+        },
+        {
+          "byte_length": 1700,
+          "path": "D:\\pseal-r002-314-status\\intent.json",
+          "sha256": "91977082becf55da22dd4de837cbdc6d90d44d077309fece63938275431e6fcd"
+        },
+        {
+          "byte_length": 22,
+          "path": "D:\\pseal-r002-314-status\\stdout.bin",
+          "sha256": "2c85a199d84984a0b917667d03622c2e33a1ad050479bb81d4736d4ffd91d3fc"
+        },
+        {
+          "byte_length": 0,
+          "path": "D:\\pseal-r002-314-status\\stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "byte_length": 67,
+          "path": "D:\\pseal-r002-314-status\\receipt.json",
+          "sha256": "cd1304c621ddba3505b9febb8c070790f5badba33b1baa9856e34a9f2dc3716b"
+        },
+        {
+          "byte_length": 151,
+          "path": "D:\\pseal-r002-314-status\\source-after.json",
+          "sha256": "446dea08a14096cf33fd6350cd3dfa42cfd105bcbe118b3fc228f277241e2200"
+        }
+      ],
+      "gate": "status",
+      "receipt": {
+        "exit_code": 0,
+        "passed": true,
+        "wall_seconds": 0.312854
+      },
+      "root": "D:\\pseal-r002-314-status",
+      "slot": "314"
+    },
+    {
+      "files": [
+        {
+          "byte_length": 113,
+          "path": "D:\\pseal-r002-314-tests\\source.json",
+          "sha256": "076340cfeb7dc4614214999bbe42a67a29a02a3f1262d4384341318d4913e723"
+        },
+        {
+          "byte_length": 1677,
+          "path": "D:\\pseal-r002-314-tests\\intent.json",
+          "sha256": "c5f830c856462dfc0dce69c4e04d59093d869fb442b5b1b2130b60ca4b84fec6"
+        },
+        {
+          "byte_length": 0,
+          "path": "D:\\pseal-r002-314-tests\\stdout.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "byte_length": 116,
+          "path": "D:\\pseal-r002-314-tests\\stderr.bin",
+          "sha256": "61f94784c93c161b0be64ba4828aba2ee5d4f51a835225644e3badb7b663f152"
+        },
+        {
+          "byte_length": 97,
+          "path": "D:\\pseal-r002-314-tests\\receipt.json",
+          "sha256": "4d7d7e33e3add7d1388ba504515b5e83764dc7872f4bdd5d9459552ee46f613c"
+        },
+        {
+          "byte_length": 151,
+          "path": "D:\\pseal-r002-314-tests\\source-after.json",
+          "sha256": "446dea08a14096cf33fd6350cd3dfa42cfd105bcbe118b3fc228f277241e2200"
+        }
+      ],
+      "gate": "tests",
+      "receipt": {
+        "exit_code": 0,
+        "passed": true,
+        "skips": 0,
+        "tests": 12,
+        "wall_seconds": 0.4858808
+      },
+      "root": "D:\\pseal-r002-314-tests",
+      "slot": "314"
+    }
+  ],
+  "metadata_files": [
+    "docs/decisions/ADR-0514-source-seal-accounted-immutable-blueprint-preparation.md",
+    "docs/architecture/v0a-blueprint-preparation-r001/performance-report.md",
+    "STATUS.md"
+  ],
+  "no_decision_commit": true,
+  "review_closure": {
+    "candidate": "06ccb89587478c09493ec0eda53f8e62a4dece95",
+    "closure_basis": "Original complete cold metadata report plus independent non-cold raw-evidence verification supplement",
+    "created_utc": "2026-09-07T23:11:27.032328+00:00",
+    "defect_verdict": "CLEAN",
+    "design_verdict": "SOUND",
+    "evidence_access_finding": "CLOSED",
+    "final_status_gates": "Required next; not replaced",
+    "manifest_sha256": "e99482ab23a5d0538733e7ae0dc19b562c40a66a03a32bb544beb6ec4384d609",
+    "no_candidate_byte_change": true,
+    "no_second_full_cold_pass_claimed": true,
+    "original_metadata_review": {
+      "byte_length": 17098,
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-seal\\r002\\reviews\\review-001-codex.md",
+      "sha256": "139878d537796d0be50df93e6bd35087160e9ff87120d530acb2a8a1e5e952a1"
+    },
+    "original_verdict": "NOT CLEAN / SOUND",
+    "original_verdict_preserved": true,
+    "readable_mapping": {
+      "byte_length": 10142,
+      "path": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\seal-r002-readable-history\\mapping.json",
+      "sha256": "793bb7d79c8c23b4bde3d6efa901a4052585762373aef3e7e5754f2b3a361134"
+    },
+    "report": {
+      "byte_length": 6214,
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-seal\\r002\\reviews\\verification-002-historical-access.md",
+      "sha256": "c0b58852c4ee2bc263d0d97aa755aa25667b0c488a0234901f55fa20a4c86a27"
+    },
+    "required_findings_open": 0,
+    "source_candidate_unchanged": "666cb43b097707a54733a51cd7930d55920a5af7",
+    "user_authorization": {
+      "byte_length": 2474,
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-seal\\r002\\authorization-001.json",
+      "sha256": "cdfe50c0d11a9d50e52c6b608172ac0d4c1196efa0dacd4ffeafbfc0632338d9"
+    }
+  },
+  "skips": 0,
+  "source_files_incorporated_exactly": 24,
+  "source_qualification": {
+    "byte_length": 210141,
+    "path": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\r002-source-qualification.json",
+    "sha256": "9e79a7d7d53512fa00058f95521ff0a9bf9ba5c820625cac4ce7815f518155db"
+  },
+  "tests": 24,
+  "unchanged_source_candidate": "666cb43b097707a54733a51cd7930d55920a5af7"
+}

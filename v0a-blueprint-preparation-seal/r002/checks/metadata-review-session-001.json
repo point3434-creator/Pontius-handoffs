@@ -1,0 +1,59 @@
+{
+  "candidate": "06ccb89587478c09493ec0eda53f8e62a4dece95",
+  "created_utc": "2026-09-07T23:05:27.299277+00:00",
+  "finding": "Access denied to sixteen already-bound positive historical CLI primary records",
+  "intent": {
+    "argv": [
+      "C:/Users/point/AppData/Local/OpenAI/Codex/bin/8e5b6932251c2c1c/codex.exe",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "read-only",
+      "--cd",
+      "D:\\pseal-review-r002\\snapshot",
+      "--output-last-message",
+      "D:\\pseal-review-r002\\review.md",
+      "--color",
+      "never",
+      "-"
+    ],
+    "candidate": {
+      "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+      "commit": "06ccb89587478c09493ec0eda53f8e62a4dece95",
+      "date": "2026-09-07",
+      "manifest_sha256": "e99482ab23a5d0538733e7ae0dc19b562c40a66a03a32bb544beb6ec4384d609",
+      "ref": "refs/heads/review/v0a-blueprint-preparation-seal/r002",
+      "round": "r002",
+      "schema_version": "pontius-handoff-candidate-v1",
+      "task_id": "v0a-blueprint-preparation-seal",
+      "tree": "92c5f6d5637a342aeb38f5fffd540a27669dd27c"
+    },
+    "cwd": "D:\\pseal-review-r002\\snapshot",
+    "fresh_session": true,
+    "prompt_sha256": "043b041bee966b41bb61a971c43fcc45f05335767a0ec419c3877c34edec52a5"
+  },
+  "manifest_sha256": "e99482ab23a5d0538733e7ae0dc19b562c40a66a03a32bb544beb6ec4384d609",
+  "original_report": {
+    "byte_length": 17098,
+    "path": "D:\\pseal-review-r002\\review.md",
+    "sha256": "139878d537796d0be50df93e6bd35087160e9ff87120d530acb2a8a1e5e952a1"
+  },
+  "original_report_preserved_byte_for_byte": true,
+  "original_verdict": "NOT CLEAN / SOUND",
+  "other_required_findings": false,
+  "required_findings_open": 1,
+  "retained_report": {
+    "byte_length": 17098,
+    "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-seal\\r002\\reviews\\review-001-codex.md",
+    "sha256": "139878d537796d0be50df93e6bd35087160e9ff87120d530acb2a8a1e5e952a1"
+  },
+  "session": {
+    "exit_code": 0,
+    "report": {
+      "byte_length": 17098,
+      "path": "D:\\pseal-review-r002\\review.md",
+      "sha256": "139878d537796d0be50df93e6bd35087160e9ff87120d530acb2a8a1e5e952a1"
+    },
+    "wall_seconds": 916.9184009
+  }
+}

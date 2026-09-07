@@ -1,0 +1,43 @@
+{
+  "intent": {
+    "argv": [
+      "C:/Users/point/AppData/Local/OpenAI/Codex/bin/8e5b6932251c2c1c/codex.exe",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "read-only",
+      "--cd",
+      "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\mechanical-r002-m\\snapshot",
+      "--output-last-message",
+      "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\mechanical-r002-m\\review.md",
+      "--color",
+      "never",
+      "-"
+    ],
+    "candidate": {
+      "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+      "commit": "666cb43b097707a54733a51cd7930d55920a5af7",
+      "date": "2026-09-07",
+      "manifest_sha256": "4ac5089861356eb3bfe25f8d4c2b45aff3c9b39b4306a51a66ea3f5d01fa4012",
+      "ref": "refs/heads/review/v0a-blueprint-preparation-source/r002",
+      "round": "r002",
+      "schema_version": "pontius-handoff-candidate-v1",
+      "task_id": "v0a-blueprint-preparation-source",
+      "tree": "2515fe2cf7259b611f60e5b2582e846422cb0247"
+    },
+    "cwd": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\mechanical-r002-m\\snapshot",
+    "input_scope": "mechanical verification; frozen handoff, source, normative requirements and explicit anchor reports",
+    "prompt_sha256": "413f4e295015442cde693a1d2a7b22b2246c6cbb1197c5617c9ef15c67e9e476"
+  },
+  "local_session": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\mechanical-r002-m",
+  "log_hashes": {
+    "prompt.txt": "413f4e295015442cde693a1d2a7b22b2246c6cbb1197c5617c9ef15c67e9e476",
+    "stderr.log": "8865c2266fdc633addf801ba09f7ed376bf241294bfb5ef8379fe3730428d76f",
+    "stdout.log": "643f85c0deaae2936d1f88ecf6133a4f6c1659b344dbf256ebccfb3f60c0e720"
+  },
+  "receipt": {
+    "exit_code": 0,
+    "report_sha256": "3dff42a495e016c6b88f2c13df84514522e3256e61ec6e9538c226744da71d61",
+    "wall_seconds": 250.9443455
+  }
+}

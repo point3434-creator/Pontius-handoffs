@@ -1,0 +1,46 @@
+{
+  "candidate": "666cb43b097707a54733a51cd7930d55920a5af7",
+  "cumulative_change": "Restore only original CI comments at lines3/30/90",
+  "external_publication": "Pending explicit permission after automatic approval review denial",
+  "gate_state": "Exact corrected-source broad gates have not yet run",
+  "manifest_sha256": "4ac5089861356eb3bfe25f8d4c2b45aff3c9b39b4306a51a66ea3f5d01fa4012",
+  "mechanical_verification": {
+    "correction_verdict": "CLEAN",
+    "design_verdict": "SOUND",
+    "eligibility": "ELIGIBLE",
+    "exit_code": 0,
+    "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-source\\r002\\reviews\\mechanical-001-codex-m.md",
+    "report_sha256": "3dff42a495e016c6b88f2c13df84514522e3256e61ec6e9538c226744da71d61",
+    "wall_seconds": 250.9443455
+  },
+  "no_new_substantive_pass_claimed": true,
+  "original_verdicts_preserved": true,
+  "required_corrections_open": 0,
+  "reviews": [
+    {
+      "defect_verdict": "NOT CLEAN",
+      "design_verdict": "SOUND",
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-source\\r001\\reviews\\review-001-codex-a.md",
+      "reviewer": "a",
+      "sha256": "08ef2835d4f8aba10a8d1f66ee3b1142b0bd0c399f4f75d1380558a12ae4e8e2"
+    },
+    {
+      "defect_verdict": "CLEAN",
+      "design_verdict": "SOUND",
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-source\\r001\\reviews\\review-002-codex-b.md",
+      "reviewer": "b",
+      "sha256": "2810966dae3d823503319de75927cb6d61482ec4eaf7d3333b45831ead56c664"
+    }
+  ],
+  "substantive_anchor": {
+    "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+    "commit": "d3717e7153bc2acad43672e954fbd53bcdd51fe7",
+    "date": "2026-09-07",
+    "manifest_sha256": "5405d27ea6a72de5fbfb0f0cced81f9b34b71178e7914f85f2fb44c4fe0a42b1",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-source/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-source",
+    "tree": "0bc222b83110a9c0b66eddb9157d240fd5a8a074"
+  }
+}

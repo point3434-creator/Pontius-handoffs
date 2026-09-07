@@ -94,3 +94,8 @@ in [the task ledger](v0a-i01-prereg/progress.md).
   adopted as c9a8aa9; two CLEAN/SOUND reviews and floor-first status receipts.
   Remote publication follows the user's explicit packet authorization; original
   pre-authorization records remain unchanged.
+
+## Immutable blueprint preparation source and seal
+
+- [Source r001/r002](v0a-blueprint-preparation-source/r002/disposition.md): retained reviews, mechanical closure and complete source qualification.
+- [Source-seal metadata r001/r002](v0a-blueprint-preparation-seal/r002/publication.md): ADR-0514 adopted as 7242891b; exact approval, review, checks and dispositions.

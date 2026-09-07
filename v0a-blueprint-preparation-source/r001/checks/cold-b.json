@@ -1,0 +1,55 @@
+{
+  "exit_code": 0,
+  "intent": {
+    "argv": [
+      "C:/Users/point/AppData/Local/OpenAI/Codex/bin/8e5b6932251c2c1c/codex.exe",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "read-only",
+      "--cd",
+      "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b\\snapshot",
+      "--output-last-message",
+      "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b\\review.md",
+      "--color",
+      "never",
+      "-"
+    ],
+    "candidate": {
+      "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+      "commit": "d3717e7153bc2acad43672e954fbd53bcdd51fe7",
+      "date": "2026-09-07",
+      "manifest_sha256": "5405d27ea6a72de5fbfb0f0cced81f9b34b71178e7914f85f2fb44c4fe0a42b1",
+      "ref": "refs/heads/review/v0a-blueprint-preparation-source/r001",
+      "round": "r001",
+      "schema_version": "pontius-handoff-candidate-v1",
+      "task_id": "v0a-blueprint-preparation-source",
+      "tree": "0bc222b83110a9c0b66eddb9157d240fd5a8a074"
+    },
+    "cwd": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b\\snapshot",
+    "input_scope": "fresh session; only frozen handoff, source and normative requirements",
+    "prompt_sha256": "e7d46f11c439511d6878d25465b8b57233f8045b0665fb7be3a4ae1220fc4a07"
+  },
+  "logs": [
+    {
+      "bytes": 3605,
+      "path": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b\\prompt.txt",
+      "sha256": "e7d46f11c439511d6878d25465b8b57233f8045b0665fb7be3a4ae1220fc4a07"
+    },
+    {
+      "bytes": 19351,
+      "path": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b\\stdout.log",
+      "sha256": "375fc1939971cdca71e9e08b53b24e866885597153032cd0c8e4b0fcaee07415"
+    },
+    {
+      "bytes": 621125,
+      "path": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b\\stderr.log",
+      "sha256": "06ab8a36d98d11aa10debf361ccf0182fda132b49426b6256e18b023e50f062f"
+    }
+  ],
+  "report": "reviews/review-002-codex-b.md",
+  "report_sha256": "2810966dae3d823503319de75927cb6d61482ec4eaf7d3333b45831ead56c664",
+  "retained_local_session": "D:\\Pontius\\tmp\\blueprint-preparation-implementation-20260907-001\\cold-r001-b",
+  "reviewer": "codex-b",
+  "wall_seconds": 637.6140758
+}

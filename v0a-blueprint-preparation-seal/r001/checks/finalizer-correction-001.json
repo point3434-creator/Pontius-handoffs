@@ -1,0 +1,27 @@
+{
+  "adr_after_sha256": "62ac8179898bb61fbb02376dee9744958487bf36cf17bda2e52a1b4c58808ac7",
+  "adr_before_sha256": "945eef00bc127a4aefa6924ae1e84c3f64cf65975604e310ad91b35b6e565556",
+  "audit": "git diff --check",
+  "author": "Codex /root finalizer",
+  "candidate": {
+    "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+    "commit": "bfff3fd58dd19b9d132daa00170f28a1a1361d61",
+    "date": "2026-09-07",
+    "manifest_sha256": "3d2d084274b3d372d75719d0bff59848441bea0a53cce3dfdf211493fcf5b165",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-seal/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-seal",
+    "tree": "e3035d773b1334c0a34d070eeb766a0a5ff4964a"
+  },
+  "correction": "Remove exactly the final report LF and replace its one SHA-256 citation in ADR-0514",
+  "created_utc": "2026-09-07T22:37:31.521040+00:00",
+  "external_review_or_publication_retry": false,
+  "new_metadata_round_required": "r002",
+  "outcome": "FAIL: one extra report EOF newline; no substantive or source change",
+  "report_after_sha256": "96b30907d3efc60b9206f21ea4d96dbf7c375989c50d61f37bda123de41f1285",
+  "report_before_sha256": "93433ef5dcafcbef8a7430cdb33d6e4dbad841ff530d93bb8e75b8777fa3bee8",
+  "review_launch_status": "The earlier automatic approval review rejected r001 before process creation",
+  "source_candidate_unchanged": "666cb43b097707a54733a51cd7930d55920a5af7",
+  "stdout": "docs/architecture/v0a-blueprint-preparation-r001/performance-report.md:224: new blank line at EOF.\n"
+}

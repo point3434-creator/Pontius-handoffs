@@ -1,0 +1,48 @@
+{
+  "adoption": {
+    "branch": "master",
+    "condition": "CLEAN/SOUND metadata review and all four final status gates pass",
+    "destination": "https://github.com/point3434-creator/Pontius.git",
+    "title": "Source-seal accounted immutable blueprint preparation"
+  },
+  "approved_question": "Do you approve sending this exact candidate and its source qualification/cost records through the authenticated Codex CLI to OpenAI for the fresh review; then, if the review and final checks pass, committing and pushing its exact tree to Pontius/master, and publishing the complete source r001/r002 and seal r001/r002 packets to the private Pontius-handoffs repository?",
+  "approved_tree": "92c5f6d5637a342aeb38f5fffd540a27669dd27c",
+  "candidate": {
+    "base": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+    "commit": "06ccb89587478c09493ec0eda53f8e62a4dece95",
+    "date": "2026-09-07",
+    "manifest_sha256": "e99482ab23a5d0538733e7ae0dc19b562c40a66a03a32bb544beb6ec4384d609",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-seal/r002",
+    "round": "r002",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-seal",
+    "tree": "92c5f6d5637a342aeb38f5fffd540a27669dd27c"
+  },
+  "created_utc": "2026-09-07T22:46:07.433819+00:00",
+  "external_review": {
+    "constraint": "Fresh independent read-only metadata review",
+    "destination": "OpenAI service through authenticated Codex CLI",
+    "payload": "Exact private candidate plus governing/source qualification/cost records"
+  },
+  "new_operating_or_research_owner": false,
+  "proposal": {
+    "byte_length": 5808,
+    "path": "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius\\blueprint-implementation-work\\source-seal-approval.md",
+    "sha256": "9c68b753bb37cd63c7f0b00590142f6154eb15638e2ba94ebb2eae8ea4826880"
+  },
+  "publication": {
+    "actual_retained_experiment_results_journals_lifecycle_evidence_stay_local": true,
+    "destination": "https://github.com/point3434-creator/Pontius-handoffs",
+    "payload": "Complete coordination packets including source copies, reviews and qualification records",
+    "scope": [
+      "v0a-blueprint-preparation-source/r001",
+      "v0a-blueprint-preparation-source/r002",
+      "v0a-blueprint-preparation-seal/r001",
+      "v0a-blueprint-preparation-seal/r002"
+    ],
+    "visibility": "private"
+  },
+  "recorder": "Codex /root",
+  "source_changes_beyond_exact_candidate": false,
+  "user_message": "I approve it all"
+}
