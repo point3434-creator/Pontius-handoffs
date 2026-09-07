@@ -1,0 +1,194 @@
+# Walking-skeleton CI: the CPU-safe governance and orchestration suites on the
+# CPython 3.11 release slot, every push. This is the fast early-warning layer,
+# not acceptance evidence — acceptance still requires the disposable-snapshot
+# procedure of CLAUDE.md rule 5. GPU/H32/scientific suites are intentionally
+# excluded (hosted runners have no RTX 5080); they remain snapshot-only.
+name: CI
+
+on:
+  push:
+    branches: [master, "codex/**"]
+  workflow_dispatch:
+
+jobs:
+  release-slot:
+    name: Release-slot suites (CPython 3.11, CPU)
+    runs-on: windows-latest
+    timeout-minutes: 40
+    env:
+      PONTIUS_GIT: C:\Program Files\Git\cmd\git.exe
+      PYTHONPATH: C:\px\Pontius\src
+      # The runner's default TEMP (D:\a\_temp) traverses the same reparse
+      # mount the workspace does; suites build tempfile fixtures that the
+      # evidence readers must accept, so temp goes to clean storage as well.
+      TEMP: C:\pt
+      TMP: C:\pt
+    defaults:
+      run:
+        # The runner workspace under D:\a traverses a reparse/mount ancestor,
+        # which the evidence configuration reader rejects by design. Suites
+        # therefore run from a local clone at a mount-clean, short path — the
+        # CI analogue of the disposable-snapshot policy. The fresh clone also
+        # re-materializes the sealed -text pins on every run.
+        working-directory: C:\px\Pontius
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Relocate to a reparse-clean clone
+        working-directory: ${{ github.workspace }}
+        run: |
+          New-Item -ItemType Directory -Force C:\px | Out-Null
+          New-Item -ItemType Directory -Force C:\pt | Out-Null
+          # Defender real-time scanning briefly holds freshly created files,
+          # denying the writers' DELETE-access opens and lock teardown
+          # (WinError 5). The suites' own sharing discipline is the guard
+          # under test; the scanner is not part of the contract.
+          Add-MpPreference -ExclusionPath 'C:\px','C:\pt'
+          git clone --quiet --no-hardlinks "${{ github.workspace }}" C:\px\Pontius
+          git -C C:\px\Pontius checkout --quiet ${{ github.sha }}
+
+      - name: Sync locked environment on CPython 3.11
+        run: uv sync --group dev --python 3.11
+
+      - name: STATUS.md freshness
+        run: .venv\Scripts\python.exe -B -P -m pontius.status_generation --check
+
+      - name: Status generation suite
+        run: .venv\Scripts\python.exe -B -P tests\test_status_generation.py
+
+      - name: Evidence errors and model suite
+        run: .venv\Scripts\python.exe -B -P tests\test_evidence_errors_and_model.py
+
+      - name: Evidence manifests suite
+        run: .venv\Scripts\python.exe -B -P tests\test_evidence_manifests.py
+
+      - name: Evidence manifest generation suite
+        run: .venv\Scripts\python.exe -B -P tests\test_evidence_manifest_generation.py
+
+      - name: Orchestration import boundary suite
+        run: .venv\Scripts\python.exe -B -P tests\test_test_orchestration_import_boundary.py
+
+      - name: Orchestration configuration suite
+        run: .venv\Scripts\python.exe -B -P tests\test_test_orchestration_configuration.py
+
+      - name: Inventory and profiles suite
+        run: .venv\Scripts\python.exe -B -P tests\test_inventory_and_profiles.py
+
+      # Instrumentation round (controller-authorized): raw native status
+      # chains and both sides of the ancestor identity comparison. Runs even
+      # when the inventory suite fails; gates nothing itself.
+      - name: Native transaction diagnostics (instrumentation)
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tools\ci_native_diagnostics.py
+
+      # Downstream gates execute regardless of earlier failures so unreached
+      # gates get verified; each still fails the job on its own defects, and
+      # a failed inventory suite above keeps the job red — nothing is masked.
+      - name: Stabilization boundaries suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_stabilization_boundaries.py
+
+      - name: Retained-evidence inventory suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_retained_evidence_inventory.py
+
+      - name: Generated inventory/profiles byte-stability
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tools\generate_test_inventory.py --check
+
+      - name: Stabilization boundary check
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tools\check_stabilization_boundaries.py
+
+      - name: Blueprint artifact suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_blueprint_artifact.py
+
+      - name: Blueprint artifact boundary suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_blueprint_artifact_boundary.py
+
+      - name: v0a hand scenario suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_hand_scenario.py
+
+      - name: v0a hand adapter suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_hand_adapter.py
+
+      - name: v0a hand adapter boundary suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_hand_adapter_boundary.py
+
+      - name: v0a event adapter suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_event_adapter.py
+
+      - name: Decision provider suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider.py
+
+      - name: Decision provider runtime suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider_runtime.py
+
+      - name: Decision provider transport suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider_transport.py
+
+      - name: Decision provider session suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider_session.py
+
+      - name: v0a event adapter boundary suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_event_adapter_boundary.py
+
+      - name: v0a table host suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_table_host.py
+
+      - name: v0a table host boundary suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_table_host_boundary.py
+
+      - name: v0a table session suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_table_session.py
+
+      - name: v0a table session boundary suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_table_session_boundary.py
+
+      - name: v0a hand replay suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_hand_replay.py
+
+      - name: Seeded deals suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_seeded_deals.py
+
+      - name: Seeded deals boundary suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_seeded_deals_boundary.py
+
+      - name: v0a trace suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_trace.py
+
+      - name: v0a replay suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_replay.py
+
+      - name: v0a contract faults suite
+        if: ${{ !cancelled() }}
+        run: .venv\Scripts\python.exe -B -P tests\test_v0a_contract_faults.py
+
+      - name: Ruff report (informational, non-gating)
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: uv run ruff check src tools tests --statistics

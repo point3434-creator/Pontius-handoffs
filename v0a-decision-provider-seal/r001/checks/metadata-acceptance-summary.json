@@ -1,0 +1,50 @@
+{
+  "candidate": "68c3fd24702a575ec5f9468c70f209e127f7f688",
+  "manifest_sha256": "c1fb04e1599c56033e80b3273dcb718f0fb1ec7613fb728d3761c0bd9123569c",
+  "payload_commands": 4,
+  "tests_per_interpreter": 12,
+  "total_test_executions": 24,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "source_candidate": "4d567797e4b3945ea3ff6c75613c56c05bc0b75a",
+  "source_blobs_unchanged": 23,
+  "integration_paths": 25,
+  "review_sha256": "159e68c33938800d47004a454e98eafc37723d3317912c19d8a1ecfb7e754469",
+  "receipts": [
+    {
+      "slot": "311",
+      "version": "3.11.15",
+      "command": "-m pontius.status_generation --check",
+      "exit_code": 0,
+      "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\m001g1-311.json",
+      "sha256": "f2add510a75950fbb19437eee6388cab800df7393195c762a28aaf3d079eb0f9"
+    },
+    {
+      "slot": "311",
+      "version": "3.11.15",
+      "command": "tests/test_status_generation.py",
+      "exit_code": 0,
+      "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\m001g2-311.json",
+      "sha256": "bfa7a81007dd7fac256233c893e8a1f943bb5da302c74a3b3aa4a9664f8b75b4"
+    },
+    {
+      "slot": "314",
+      "version": "3.14.6",
+      "command": "-m pontius.status_generation --check",
+      "exit_code": 0,
+      "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\m001g1-314.json",
+      "sha256": "91e5a6afc41a512f7881d5ee1f3e35fc46274340226ba68dec64c8461b94e1fc"
+    },
+    {
+      "slot": "314",
+      "version": "3.14.6",
+      "command": "tests/test_status_generation.py",
+      "exit_code": 0,
+      "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\m001g2-314.json",
+      "sha256": "09a340fed0eccad3f61c7f8c94668865a95232f2b40660d37a05ca86edb4de2a"
+    }
+  ],
+  "decision_commit_authorization": "pending",
+  "remote_handoff_publication": "pending exact authorization after automatic approval-review rejection"
+}

@@ -1,0 +1,88 @@
+[
+  {
+    "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\r2rgreen3-311.json",
+    "sha256": "bb5d1cd973f80d31d2ebe66fe8babc7185565e42caaeb6fa772a2fde4f003adf",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\snapshots\\r2rgreen3-311",
+    "snapshot_head": "c82f69eddc47cb628608d75708f4a9edc75b4d52",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_decision_provider_runtime.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests": 18
+  },
+  {
+    "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\r2rgreen3-314.json",
+    "sha256": "76ad00ed2c28c208399670aa791688c87dc45d04785b4b6c2d46a25a5c33bf2b",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\snapshots\\r2rgreen3-314",
+    "snapshot_head": "66d004d8c7ebb55f8c3715e856c0cf494d0c2277",
+    "interpreter": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_decision_provider_runtime.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests": 18
+  },
+  {
+    "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\r2tf-311.json",
+    "sha256": "3477a57a8d49ecddcdbef03a19dc01b0a06608d8504c2c3c5186cff35a578351",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\snapshots\\r2tf-311",
+    "snapshot_head": "36389cec575a1367a7cba85ab67f50612adb78b3",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_decision_provider_transport.py"
+    ],
+    "exit_code": 0,
+    "tests": 12
+  },
+  {
+    "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\r2tf-314.json",
+    "sha256": "c1401800dae973d523b3b870263b784523af27e2c0737c9da5f23fe7df0cf012",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\snapshots\\r2tf-314",
+    "snapshot_head": "b0c9b328fa713b79edda3ff681da2c19ce5cd56c",
+    "interpreter": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_decision_provider_transport.py"
+    ],
+    "exit_code": 0,
+    "tests": 12
+  },
+  {
+    "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\r2t1-311.json",
+    "sha256": "0aaac6e5192e97f0424299f767f6ca52c3882040e8bbbb0f58defab656a5c05d",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\snapshots\\r2t1-311",
+    "snapshot_head": "cc582e16fdd21cbda98205aa508dfaa4e7f1b877",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_decision_provider_session.py"
+    ],
+    "exit_code": 0,
+    "tests": 3
+  },
+  {
+    "receipt": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\run-records\\r2t1-314.json",
+    "sha256": "fdd37819e52af2ef089e9316efc209141a49f3702877a8357ea0702c80305974",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-decision-provider-implementation-r001\\snapshots\\r2t1-314",
+    "snapshot_head": "78f4a44e5a31f1de0bfccd5f910eff1928fe4741",
+    "interpreter": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_decision_provider_session.py"
+    ],
+    "exit_code": 0,
+    "tests": 3
+  }
+]

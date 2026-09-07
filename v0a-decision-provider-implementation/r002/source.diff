@@ -1,0 +1,3634 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 0a9491b..3d873a2 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -121,20 +121,36 @@ jobs:
+         run: .venv\Scripts\python.exe -B -P tests\test_v0a_hand_adapter.py
+ 
+       - name: v0a hand adapter boundary suite
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tests\test_hand_adapter_boundary.py
+ 
+       - name: v0a event adapter suite
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tests\test_v0a_event_adapter.py
+ 
++      - name: Decision provider suite
++        if: ${{ !cancelled() }}
++        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider.py
++
++      - name: Decision provider runtime suite
++        if: ${{ !cancelled() }}
++        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider_runtime.py
++
++      - name: Decision provider transport suite
++        if: ${{ !cancelled() }}
++        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider_transport.py
++
++      - name: Decision provider session suite
++        if: ${{ !cancelled() }}
++        run: .venv\Scripts\python.exe -B -P tests\test_decision_provider_session.py
++
+       - name: v0a event adapter boundary suite
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tests\test_v0a_event_adapter_boundary.py
+ 
+       - name: v0a table host suite
+         if: ${{ !cancelled() }}
+         run: .venv\Scripts\python.exe -B -P tests\test_v0a_table_host.py
+ 
+       - name: v0a table host boundary suite
+         if: ${{ !cancelled() }}
+diff --git a/src/pontius/decision_provider/__init__.py b/src/pontius/decision_provider/__init__.py
+new file mode 100644
+index 0000000..b81a3e4
+--- /dev/null
++++ b/src/pontius/decision_provider/__init__.py
+@@ -0,0 +1 @@
++"""Fixed, future-blind decision providers and their engine admission contract."""
+diff --git a/src/pontius/decision_provider/codec.py b/src/pontius/decision_provider/codec.py
+new file mode 100644
+index 0000000..f5795bc
+--- /dev/null
++++ b/src/pontius/decision_provider/codec.py
+@@ -0,0 +1,137 @@
++"""Exact provider decision wire records, separate from the sealed v1 trace."""
++from __future__ import annotations
++
++from pontius.decision_provider.model import (
++    PROPOSAL_REASONS, PROVIDER_OUTCOMES, SELECTION_REASONS,
++    ProviderDecisionRecord, own_value, require_label,
++)
++from pontius.v0a.model import FailureCode, HandAction
++from pontius.v0a.trace import (
++    _TIMING_KEYS, _require_digest, _require_int, _require_text, _validate_action, _validate_timing,
++    action_payload, preparation_payload, timing_payload,
++)
++
++FIELDS = frozenset(ProviderDecisionRecord.__dataclass_fields__)
++
++
++def _keys(value, fields):
++    if (type(value) is not dict or any(type(key) is not str for key in value)
++            or set(value) != set(fields)):
++        raise ValueError("provider object has incorrect fields")
++
++
++def decision_payload(record):
++    if type(record) is not ProviderDecisionRecord:
++        raise TypeError("requires an exact provider record")
++    record = own_value(record)
++    payload = {name: getattr(record, name) for name in FIELDS}
++    for name in ("fallback_action", "selected_action", "applied_action", "delivered_action"):
++        value = payload[name]
++        payload[name] = None if value is None else action_payload(value)
++    proposal = record.proposal
++    payload["proposal"] = None if proposal is None else {
++        "decision_sha256": proposal.decision_sha256,
++        "action": None if proposal.action is None else action_payload(
++            HandAction.from_betting_action(proposal.action)), "reason": proposal.reason}
++    payload["delivery_status"] = record.delivery_status.value
++    payload["failure_reason"] = (
++        None if record.failure_reason is None else record.failure_reason.value)
++    payload["timing"] = timing_payload(record.timing)
++    payload["preparation_use"] = preparation_payload(record.preparation_use)
++    return validate_decision(payload)
++
++
++def validate_decision(payload):
++    """Validate a parsed v2 decision; transport owns raw JSON/frame admission."""
++    _keys(payload, FIELDS)
++    require_label(payload["schema_version"], ("pontius-provider-decision-v1",))
++    require_label(payload["provider"], ("baseline-rules-v1",))
++    _require_text(payload["hand_id"], label="hand id")
++    for name in ("event_index", "action_index", "street_action_index"):
++        _require_int(payload[name], label=name, minimum=0 if name == "event_index" else 1)
++    _require_int(payload["seat"], label="seat", minimum=0, maximum=5)
++    require_label(payload["street"], ("preflop", "flop", "turn", "river"))
++    for name in FIELDS:
++        if name.endswith("_sha256"):
++            if name != "state_after_sha256" or payload[name] is not None:
++                _require_digest(payload[name], label=name)
++    for name in ("fallback_action", "selected_action", "applied_action", "delivered_action"):
++        if name in ("applied_action", "delivered_action") and payload[name] is None:
++            continue
++        _keys(payload[name], ("kind", "raise_to"))
++        _validate_action(payload[name], label=name)
++    require_label(payload["fallback_reason"], ("table_hit", "passive_default"))
++    outcome, reason, origin = (payload[name] for name in (
++        "provider_outcome", "selection_reason", "selection_origin"))
++    require_label(outcome, PROVIDER_OUTCOMES)
++    require_label(reason, SELECTION_REASONS)
++    require_label(origin, ("provider", "blueprint_fallback"))
++    proposal = payload["proposal"]
++    if proposal is not None:
++        _keys(proposal, ("decision_sha256", "action", "reason"))
++        _require_digest(proposal["decision_sha256"], label="proposal digest")
++        require_label(proposal["reason"], PROPOSAL_REASONS)
++        if (proposal["action"] is None) != (proposal["reason"] == "abstain"):
++            raise ValueError("abstention action and reason differ")
++        if proposal["action"] is not None:
++            _keys(proposal["action"], ("kind", "raise_to"))
++            _validate_action(proposal["action"], label="proposal action")
++    if outcome in ("not_called", "error") and proposal is not None:
++        raise ValueError("unavailable provider output cannot carry a proposal")
++    if outcome in ("proposed", "abstained"):
++        if (proposal is None or proposal["decision_sha256"] != payload["decision_sha256"]
++                or (proposal["action"] is None) != (outcome == "abstained")):
++            raise ValueError("provider outcome contradicts proposal")
++    expected = {"provider_selected": "proposed", "provider_abstained": "abstained",
++                "provider_invalid": "invalid", "provider_error": "error",
++                "provider_skipped_cutoff": "not_called"}
++    if reason != "provider_late" and outcome != expected[reason]:
++        raise ValueError("selection reason contradicts provider outcome")
++    if reason == "provider_late" and outcome == "not_called":
++        raise ValueError("a skipped provider cannot return late")
++    if (origin == "provider") != (reason == "provider_selected"):
++        raise ValueError("selection origin contradicts reason")
++    expected_action = proposal["action"] if origin == "provider" else payload["fallback_action"]
++    if payload["selected_action"] != expected_action:
++        raise ValueError("selected action contradicts selection")
++    applied, delivered = payload["applied_action"], payload["delivered_action"]
++    if (applied is None) != (payload["state_after_sha256"] is None):
++        raise ValueError("application and resulting state disagree")
++    if applied is not None and applied != payload["selected_action"]:
++        raise ValueError("applied action contradicts selection")
++    status = payload["delivery_status"]
++    require_label(status, ("not_attempted", "rejected", "accepted", "unknown"))
++    if (delivered is not None) != (status == "accepted"):
++        raise ValueError("confirmed delivery and status disagree")
++    if status != "not_attempted" and applied is None:
++        raise ValueError("delivery requires local application")
++    if delivered is not None and delivered != applied:
++        raise ValueError("confirmed delivery contradicts local application")
++    timing, failure = payload["timing"], payload["failure_reason"]
++    if type(timing) is not dict:
++        raise ValueError("provider decision requires timing")
++    _keys(timing, _TIMING_KEYS)
++    _validate_timing(timing, label="provider decision")
++    preparation = payload["preparation_use"]
++    _keys(preparation, ("producer_status", "artifact_sha256s", "credited_seconds"))
++    require_label(preparation["producer_status"], ("producer_absent",))
++    if (type(preparation["artifact_sha256s"]) is not list or preparation["artifact_sha256s"]
++            or type(preparation["credited_seconds"]) is not int
++            or preparation["credited_seconds"] != 0):
++        raise ValueError("preparation credit must remain absent")
++    if failure is not None:
++        require_label(failure, tuple(code.value for code in FailureCode))
++    if reason in ("provider_late", "provider_skipped_cutoff"):
++        if timing["work_cutoff_crossed"] is not True or failure is None:
++            raise ValueError("late or skipped fallback must retain cutoff failure")
++    if timing["status"] == "completed":
++        if timing["work_cutoff_crossed"] and reason not in (
++                "provider_late", "provider_skipped_cutoff"):
++            raise ValueError("completed work cutoff requires late or skipped fallback")
++        expected_failure = ("action_deadline_exceeded" if timing["deadline_crossed"]
++                            else "work_cutoff_exceeded" if timing["work_cutoff_crossed"] else None)
++        if failure != expected_failure or status != "accepted":
++            raise ValueError("completed timing contradicts delivery or failure")
++    elif failure != timing["interruption_reason"]:
++        raise ValueError("interrupted timing contradicts failure")
++    return payload
+diff --git a/src/pontius/decision_provider/model.py b/src/pontius/decision_provider/model.py
+new file mode 100644
+index 0000000..6cce376
+--- /dev/null
++++ b/src/pontius/decision_provider/model.py
+@@ -0,0 +1,216 @@
++"""Owned values and canonical identities; no runtime or transport authority."""
++from __future__ import annotations
++
++from dataclasses import dataclass, fields
++from hashlib import sha256
++import json
++import math
++
++from pontius.holdem_cards import OneSeatCardState
++from pontius.immutable_blueprint import (
++    BlueprintActionEntry, BlueprintDecisionKey, ImmutableBlueprintActionSource,
++)
++from pontius.no_limit_betting import (
++    BettingAction, BettingActionKind, BettingActionRecord, BettingStreet,
++    LegalBettingDecision, NoLimitBettingState, RaiseBounds, TerminalReason,
++)
++from pontius.v0a.model import (
++    DeliveryStatus, FailureCode, HandAction, PreparationUseRecord, TimingRecord, TimingStatus,
++    _require_ascii_id, _require_exact_int, _require_seat, _require_sha256, _require_street,
++)
++
++PROVIDERS = ('blueprint-v1', 'baseline-rules-v1')
++PROPOSAL_REASONS = ('abstain', 'blueprint_hit', 'blueprint_default', 'premium_raise',
++                    'premium_call', 'playable_call', 'made_hand_raise', 'made_hand_call',
++                    'pair_call', 'free_check', 'weak_fold')
++PROVIDER_OUTCOMES = ('not_called', 'proposed', 'abstained', 'error', 'invalid')
++SELECTION_REASONS = ('provider_selected', 'provider_abstained', 'provider_error',
++                     'provider_invalid', 'provider_late', 'provider_skipped_cutoff')
++
++
++def require_label(value, choices):
++    if type(value) is not str or value not in choices:
++        raise ValueError('unknown or non-exact provider label')
++
++
++def canonical_sha256(payload):
++    return sha256(json.dumps(payload, sort_keys=True, separators=(',', ':'),
++                             ensure_ascii=True, allow_nan=False).encode('ascii')).hexdigest()
++
++
++def own_value(value, _depth=0):
++    """Rebuild only known immutable types, without executing caller methods."""
++    if _depth > 32:
++        raise ValueError('provider value graph exceeds bounded depth')
++    kind = type(value)
++    if value is None or kind in (str, int, bool):
++        return value
++    if kind is float and math.isfinite(value):
++        return value
++    if kind in (BettingStreet, BettingActionKind, TerminalReason, DeliveryStatus,
++                FailureCode, TimingStatus):
++        return value
++    if kind is tuple:
++        return tuple(own_value(item, _depth + 1) for item in value)
++    if kind in (OneSeatCardState, NoLimitBettingState, LegalBettingDecision, RaiseBounds,
++                BettingAction, BettingActionRecord, BlueprintActionEntry, BlueprintDecisionKey,
++                ImmutableBlueprintActionSource, DecisionProposal, ProviderIdentity,
++                HandAction, TimingRecord, PreparationUseRecord, ProviderDecisionRecord):
++        return kind(**{f.name: own_value(getattr(value, f.name), _depth + 1)
++                       for f in fields(kind)})
++    raise TypeError('provider value graph requires exact immutable types')
++
++
++def same_exact(left, right):
++    kind = type(right)
++    if type(left) is not kind:
++        return False
++    if kind is tuple:
++        return len(left) == len(right) and all(same_exact(a, b) for a, b in zip(left, right))
++    if kind in (LegalBettingDecision, RaiseBounds):
++        return all(same_exact(getattr(left, f.name), getattr(right, f.name)) for f in fields(kind))
++    return left == right
++
++
++@dataclass(frozen=True, slots=True)
++class DecisionObservation:
++    version: str
++    hand_id: str
++    action_index: int
++    cards: OneSeatCardState
++    betting: NoLimitBettingState
++    decision: LegalBettingDecision
++    remaining_work_ns: int
++
++    def __post_init__(self):
++        require_label(self.version, ('pontius-decision-observation-v1',))
++        _require_ascii_id(self.hand_id, name='hand id')
++        _require_exact_int(self.action_index, name='action index', minimum=1)
++        _require_exact_int(self.remaining_work_ns, name='remaining work', minimum=0)
++        if self.remaining_work_ns > 14_000_000_000:
++            raise ValueError('remaining work exceeds the action work budget')
++        if (type(self.cards) is not OneSeatCardState
++                or type(self.betting) is not NoLimitBettingState
++                or type(self.decision) is not LegalBettingDecision):
++            raise TypeError('observation requires exact visible context')
++        if type(self.betting.history) is not tuple or len(self.betting.history) > 256:
++            raise ValueError('provider history exceeds finite action domain')
++        cards, betting = own_value(self.cards), own_value(self.betting)
++        if sum(betting.starting_stacks) >= 10**640:
++            raise ValueError('chip total exceeds finite event domain')
++        decision = betting.legal_decision()
++        if not same_exact(self.decision, decision):
++            raise ValueError('decision differs from recomputed legal context')
++        BlueprintDecisionKey.from_state(cards=cards, betting=betting, decision=decision)
++        object.__setattr__(self, 'cards', cards)
++        object.__setattr__(self, 'betting', betting)
++        object.__setattr__(self, 'decision', decision)
++
++    @property
++    def decision_sha256(self):
++        key = BlueprintDecisionKey.from_state(
++            cards=self.cards, betting=self.betting, decision=self.decision)
++        legal = {f.name: getattr(self.decision, f.name) for f in fields(LegalBettingDecision)}
++        bounds = self.decision.raise_bounds
++        legal['raise_bounds'] = None if bounds is None else {
++            f.name: getattr(bounds, f.name) for f in fields(RaiseBounds)}
++        return canonical_sha256(dict(version=self.version, hand_id=self.hand_id,
++            action_index=self.action_index, key=json.loads(key.canonical_bytes()), legal=legal))
++
++
++@dataclass(frozen=True, slots=True)
++class DecisionProposal:
++    decision_sha256: str
++    action: BettingAction | None
++    reason: str
++
++    def __post_init__(self):
++        _require_sha256(self.decision_sha256, name='proposal decision digest')
++        require_label(self.reason, PROPOSAL_REASONS)
++        if (self.action is None) != (self.reason == 'abstain'):
++            raise ValueError('null action and abstain reason must agree')
++        if self.action is not None:
++            if type(self.action) is not BettingAction:
++                raise TypeError('proposal action must be exact')
++            object.__setattr__(self, 'action', own_value(self.action))
++
++
++@dataclass(frozen=True, slots=True)
++class ProviderIdentity:
++    provider: str
++    config_sha256: str
++
++    def __post_init__(self):
++        require_label(self.provider, PROVIDERS)
++        _require_sha256(self.config_sha256, name='provider config digest')
++
++
++@dataclass(frozen=True, slots=True)
++class Selection:
++    proposal: DecisionProposal | None
++    provider_outcome: str
++    selection_reason: str
++    selection_origin: str
++    selected_action: BettingAction
++
++
++@dataclass(frozen=True, slots=True)
++class ProviderDecisionRecord:
++    schema_version: str
++    hand_id: str
++    event_index: int
++    action_index: int
++    street_action_index: int
++    seat: int
++    street: str
++    state_before_sha256: str
++    state_after_sha256: str | None
++    visible_cards_sha256: str
++    decision_sha256: str
++    source_manifest_sha256: str
++    provider: str
++    config_sha256: str
++    fallback_blueprint_sha256: str
++    fallback_action: HandAction
++    fallback_reason: str
++    proposal: DecisionProposal | None
++    provider_outcome: str
++    selection_reason: str
++    selection_origin: str
++    selected_action: HandAction
++    applied_action: HandAction | None
++    delivery_status: DeliveryStatus
++    delivered_action: HandAction | None
++    timing: TimingRecord
++    preparation_use: PreparationUseRecord
++    failure_reason: FailureCode | None
++
++    def __post_init__(self):
++        require_label(self.schema_version, ('pontius-provider-decision-v1',))
++        _require_ascii_id(self.hand_id, name='hand id')
++        for name in ('event_index', 'action_index', 'street_action_index'):
++            _require_exact_int(getattr(self, name), name=name,
++                               minimum=0 if name == 'event_index' else 1)
++        _require_seat(self.seat, name='acting seat')
++        _require_street(self.street)
++        for f in fields(type(self)):
++            value = getattr(self, f.name)
++            if (f.name.endswith('_sha256')
++                    and not (f.name == 'state_after_sha256' and value is None)):
++                _require_sha256(value, name=f.name)
++        for name, choices in (('provider', PROVIDERS),
++                ('fallback_reason', ('table_hit', 'passive_default')),
++                ('provider_outcome', PROVIDER_OUTCOMES), ('selection_reason', SELECTION_REASONS),
++                ('selection_origin', ('provider', 'blueprint_fallback'))):
++            require_label(getattr(self, name), choices)
++        for name, kind, optional in (('fallback_action', HandAction, False),
++                ('selected_action', HandAction, False), ('applied_action', HandAction, True),
++                ('delivered_action', HandAction, True), ('proposal', DecisionProposal, True),
++                ('timing', TimingRecord, False), ('preparation_use', PreparationUseRecord, False),
++                ('delivery_status', DeliveryStatus, False), ('failure_reason', FailureCode, True)):
++            value = getattr(self, name)
++            if optional and value is None:
++                continue
++            if type(value) is not kind:
++                raise TypeError('provider record has non-exact ' + name)
++            object.__setattr__(self, name, own_value(value))
+diff --git a/src/pontius/decision_provider/providers.py b/src/pontius/decision_provider/providers.py
+new file mode 100644
+index 0000000..c456a69
+--- /dev/null
++++ b/src/pontius/decision_provider/providers.py
+@@ -0,0 +1,92 @@
++"""Two fixed built-ins; all strategy work uses already visible cards."""
++from __future__ import annotations
++
++from itertools import combinations
++from pontius.decision_provider.model import (
++    DecisionObservation, DecisionProposal, ProviderIdentity, canonical_sha256, own_value,
++)
++from pontius.immutable_blueprint import ImmutableBlueprintActionSource
++from pontius.no_limit_betting import CALL, CHECK, FOLD, BettingActionKind, BettingStreet, raise_to
++from pontius.river import evaluate_five, evaluate_seven
++
++
++def visible_rank(cards):
++    if len(cards) == 5:
++        return evaluate_five(cards)
++    if len(cards) == 6:
++        return max(evaluate_five(group) for group in combinations(cards, 5))
++    if len(cards) == 7:
++        return evaluate_seven(cards)
++    raise ValueError('expected five to seven already-visible cards')
++
++
++class BlueprintProvider:
++    __slots__ = ('_blueprint', '_identity')
++
++    def __init__(self, blueprint):
++        if type(blueprint) is not ImmutableBlueprintActionSource:
++            raise TypeError('provider requires an exact immutable blueprint')
++        self._blueprint = own_value(blueprint)
++        config = dict(provider='blueprint-v1', blueprint_sha256=self._blueprint.digest,
++                      version='pontius-decision-provider-config-v1')
++        self._identity = ProviderIdentity('blueprint-v1', canonical_sha256(config))
++
++    @property
++    def identity(self):
++        return self._identity
++
++    def propose(self, observation):
++        if type(observation) is not DecisionObservation:
++            raise TypeError('provider requires an exact observation')
++        result = self._blueprint.action_for(cards=observation.cards, betting=observation.betting,
++                                            decision=observation.decision)
++        return DecisionProposal(observation.decision_sha256, result.action,
++                                'blueprint_hit' if result.table_hit else 'blueprint_default')
++
++
++class BaselineProvider(BlueprintProvider):
++    __slots__ = ()
++
++    def __init__(self, blueprint):
++        super().__init__(blueprint)
++        config = dict(max_raises_per_street=1, playable_any_pair=True, playable_rank_min=10,
++            playable_suited_ace=True, postflop_pair_call_cap_bb=1, postflop_two_pair_call_cap_bb=2,
++            preflop_call_cap_bb=2, premium_ace_kickers=[12, 13], premium_call_cap_bb=None,
++            premium_pair_min=10, provider='baseline-rules-v1', raise_size='legal_minimum',
++            river_board_only='check_or_fold', version='pontius-decision-provider-config-v1')
++        self._identity = ProviderIdentity('baseline-rules-v1', canonical_sha256(config))
++
++    def propose(self, observation):
++        if type(observation) is not DecisionObservation:
++            raise TypeError('provider requires an exact observation')
++        cards, state, decision = observation.cards, observation.betting, observation.decision
++        raised = any(r.seat == cards.controlled_seat and r.street is state.street
++                     and r.action.kind is BettingActionKind.RAISE for r in state.history)
++        strong, call_cap, prefix = False, -1, ''
++        if state.street is BettingStreet.PREFLOP:
++            low, high = sorted(card // 4 + 2 for card in cards.private_hand)
++            strong = (low == high and low >= 10) or (high == 14 and low in (12, 13))
++            playable = low == high or low >= 10 or (
++                high == 14 and cards.private_hand[0] % 4 == cards.private_hand[1] % 4)
++            call_cap = decision.call_amount if strong else 2 * state.big_blind if playable else -1
++            prefix = 'premium' if strong else 'playable'
++        else:
++            rank = visible_rank(cards.known_cards)
++            board_only = state.street is BettingStreet.RIVER and rank == evaluate_five(cards.board)
++            if not board_only:
++                strong = rank[0] >= 2
++                call_cap = (2 if strong else 1 if rank[0] == 1 else -1) * state.big_blind
++                prefix = 'made_hand' if strong else 'pair'
++        if strong and not raised and decision.raise_bounds is not None:
++            action, reason = raise_to(decision.raise_bounds.minimum_raise_to), prefix + '_raise'
++        elif decision.can_call and decision.call_amount <= call_cap:
++            action, reason = CALL, prefix + '_call'
++        else:
++            action, reason = (CHECK, 'free_check') if decision.can_check else (FOLD, 'weak_fold')
++        return DecisionProposal(observation.decision_sha256, action, reason)
++
++
++def make_provider(kind, blueprint):
++    if type(kind) is not str or kind not in ('blueprint-v1', 'baseline-rules-v1'):
++        raise ValueError('unknown fixed provider')
++    return (BlueprintProvider if kind == 'blueprint-v1' else BaselineProvider)(blueprint)
+diff --git a/src/pontius/decision_provider/selection.py b/src/pontius/decision_provider/selection.py
+new file mode 100644
+index 0000000..7b1f1ea
+--- /dev/null
++++ b/src/pontius/decision_provider/selection.py
+@@ -0,0 +1,35 @@
++"""Engine-side structural projection, decision binding, and legal selection."""
++from __future__ import annotations
++
++from pontius.decision_provider.model import (
++    DecisionObservation, DecisionProposal, Selection, own_value, require_label,
++)
++from pontius.immutable_blueprint import require_legal_blueprint_action
++from pontius.no_limit_betting import BettingAction
++
++
++def resolve_proposal(observation, proposal, fallback_action, fallback_reason):
++    if type(observation) is not DecisionObservation or type(fallback_action) is not BettingAction:
++        raise TypeError('engine context and fallback must be exact')
++    observation = DecisionObservation(**{name: getattr(observation, name) for name in (
++        'version', 'hand_id', 'action_index', 'cards', 'betting', 'decision', 'remaining_work_ns')})
++    fallback = own_value(fallback_action)
++    require_label(fallback_reason, ('table_hit', 'passive_default'))
++    require_legal_blueprint_action(fallback, observation.decision)
++    safe, outcome = None, 'invalid'
++    try:
++        if type(proposal) is DecisionProposal:
++            safe = own_value(proposal)
++    except (TypeError, ValueError, AttributeError, RecursionError):
++        pass
++    if safe is not None and safe.decision_sha256 == observation.decision_sha256:
++        if safe.action is None:
++            outcome = 'abstained'
++        else:
++            try:
++                require_legal_blueprint_action(safe.action, observation.decision)
++            except (TypeError, ValueError):
++                pass
++            else:
++                return Selection(safe, 'proposed', 'provider_selected', 'provider', safe.action)
++    return Selection(safe, outcome, 'provider_' + outcome, 'blueprint_fallback', fallback)
+diff --git a/src/pontius/v0a/runtime.py b/src/pontius/v0a/runtime.py
+index 1c855b3..7f06705 100644
+--- a/src/pontius/v0a/runtime.py
++++ b/src/pontius/v0a/runtime.py
+@@ -2,21 +2,25 @@
+ 
+ The runtime consumes one public event at a time plus the controlled seat's
+ own cards. It never receives the dealer's complete deal, the future
+ schedule, an event iterator, or the replay host. The outer
+ ``ActionClockLedger`` is the sole response authority; the V2 spine's ledger
+ remains controller diagnostics.
+ """
+ 
+ from __future__ import annotations
+ 
+-from dataclasses import dataclass, fields
++from dataclasses import dataclass, fields, replace
++
++from ..decision_provider.model import DecisionObservation, ProviderDecisionRecord, ProviderIdentity
++from ..decision_provider.providers import make_provider
++from ..decision_provider.selection import Selection, resolve_proposal
+ 
+ from ..action_clock import ActionClockLedger
+ from ..holdem_cards import OneSeatCardState
+ from ..immutable_blueprint import (
+     BlueprintActionEntry,
+     BlueprintDecisionKey,
+     BlueprintSelection,
+     ImmutableBlueprintActionSource,
+     passive_blueprint_action,
+     require_legal_blueprint_action,
+@@ -318,22 +322,39 @@ class _OwnedInterval:
+         if error is not None or cleanup_failed or (self._required and not runtime.measurable):
+             # Only a trusted constant exception crosses the host handler. No
+             # caller str/__class__/__traceback__ hook participates in transfer.
+             raise OperationFailed("owned operation failed") from None
+         return False
+ 
+ 
+ class HandRuntime:
+     """One complete blueprint-only hand behind a strict public event boundary."""
+ 
+-    def __init__(self, *, blueprint: object, mailbox: object, clock: object | None = None) -> None:
++    def __init__(self, *, blueprint: object, mailbox: object, clock: object | None = None,
++                 strategy: str = "blueprint-v1", source_manifest_sha256: str | None = None) -> None:
+         admitted_blueprint = _admit_blueprint(blueprint)
++        if type(strategy) is not str or strategy not in ("blueprint-v1", "baseline-rules-v1"):
++            raise ValueError("unknown fixed strategy")
++        if strategy != "blueprint-v1" and (type(source_manifest_sha256) is not str
++                or len(source_manifest_sha256) != 64
++                or any(c not in "0123456789abcdef" for c in source_manifest_sha256)):
++            raise ValueError("baseline requires admitted source manifest")
++        self.strategy = strategy
++        self.source_manifest_sha256 = source_manifest_sha256
++        self._provider = None if strategy == "blueprint-v1" else make_provider(
++            strategy, admitted_blueprint)
++        self._provider_identity = None if self._provider is None else self._provider.identity
++        self._provider_binding = None if self._provider_identity is None else (
++            self._provider_identity.provider, self._provider_identity.config_sha256)
++        self._provider_type = type(self._provider)
++        self._provider_source = source_manifest_sha256
++        self._provider_context = None
+         if not hasattr(mailbox, "deliver"):
+             raise TypeError("runtime requires a host mailbox")
+         witness = clock if isinstance(clock, MonotonicWitness) else MonotonicWitness(clock)
+         self._witness = witness
+         self._blueprint = admitted_blueprint
+         self._mailbox = mailbox
+         self._outer: ActionClockLedger | None = None
+         self._spine: LegalDecisionSpineV2 | None = None
+         self._cards: OneSeatCardState | None = None
+         self._hand_id: str | None = None
+@@ -355,20 +376,24 @@ class HandRuntime:
+         self._blueprint_digest: str | None = None
+         self._known_cutoff: bool | None = None
+         self._known_deadline: bool | None = None
+         self._accepted_deliveries = 0
+         self._clock_dead = False
+         self._closure_failures: list[FailureCode] = []
+         self._retained_witness_failure: BaseException | None = None
+ 
+     # -- public observation ------------------------------------------------
+ 
++    @property
++    def provider_identity(self) -> ProviderIdentity | None:
++        return self._provider_identity
++
+     @property
+     def blueprint_sha256(self) -> str:
+         """Header identity comes from the same owned policy used for decisions."""
+         return (self._blueprint.digest if self._blueprint_digest is None
+                 else self._blueprint_digest)
+ 
+     @property
+     def betting_terminal(self) -> bool:
+         return self._spine is not None and self._spine.state.is_terminal
+ 
+@@ -841,21 +866,28 @@ class HandRuntime:
+         if not starts_action:
+             self._charge_interval(closed, terminal_at_entry=terminal_at_entry)
+             if state.is_terminal and state.terminal_reason is TerminalReason.FOLD:
+                 self._complete = True
+             return DispatchOutcome(status="accepted")
+         return self._decide(event, wall_start_ns)
+ 
+     def _decide(self, event: Event, wall_start_ns: int) -> DispatchOutcome:
+         self._action_index += 1
+         self._street_action_index += 1
+-        record = self._decide_inner(event, wall_start_ns, self._action_index)
++        self._provider_context = None
++        try:
++            record = self._decide_inner(event, wall_start_ns, self._action_index)
++        except _HandFailure as failure:
++            if self._provider_context is not None and failure.decision is None:
++                failure.decision = self._provider_record(
++                    event, failure.timing, failure.code, failure.delivery_status)
++            raise
+         spine = self._spine
+         assert spine is not None
+         if spine.state.is_terminal and spine.state.terminal_reason is TerminalReason.FOLD:
+             self._complete = True
+         return DispatchOutcome(status="decided", decision=record)
+ 
+     def _decide_inner(
+         self,
+         event: Event,
+         wall_start_ns: int,
+@@ -899,41 +931,52 @@ class HandRuntime:
+             raise _HandFailure(
+                 FailureCode.INVALID_DECISION_CONTEXT,
+                 timing=self._interrupted_timing(
+                     FailureCode.INVALID_DECISION_CONTEXT, wall_start_ns
+                 ),
+             ) from error
+ 
+         self._require_bound_selection(selection, cards, state_before, ticket.decision,
+                                       wall_start_ns)
+ 
+-        selected = HandAction.from_betting_action(selection.action)
++        action = selection.action
++        if self._provider_binding is not None:
++            action = self._select_provider(selection, cards, state_before, ticket.decision,
++                                           action_index, wall_start_ns)
++        selected = HandAction.from_betting_action(action)
+         envelope = ActionEnvelope(
+             hand_id=self._hand_id,
+             action_index=action_index,
+             seat=self._controlled_seat,
+             street=state_before.street.value,
+             action=selected,
+         )
+ 
+         # Ready-to-emit checkpoint: all decision work is complete.
+         try:
+             ready = outer.snapshot()
+         except (ClockInvalidError, ClockReversedError) as error:
+             raise self._clock_hand_failure(error, wall_start_ns) from error
+         self._record_established(ready)
+         work_cutoff_crossed = bool(self._known_cutoff) or ready.work_remaining_seconds <= 0.0
++        if self._provider_binding is not None:
++            self._require_provider_binding(wall_start_ns)
++        if self._provider_context is not None and work_cutoff_crossed:
++            self._provider_late()
++            action = selection.action
++            selected = HandAction.from_betting_action(action)
++            envelope = replace(envelope, action=selected)
+ 
+         try:
+             emitted = spine.emit_controlled_action(
+                 candidate=None,
+-                fallback=selection.action,
++                fallback=action,
+             )
+         except (ClockInvalidError, ClockReversedError) as error:
+             raise self._clock_hand_failure(error, wall_start_ns) from error
+         except (TypeError, ValueError, RuntimeError) as error:
+             raise _HandFailure(
+                 FailureCode.INVALID_BLUEPRINT_ENTRY,
+                 timing=self._interrupted_timing(
+                     FailureCode.INVALID_BLUEPRINT_ENTRY, wall_start_ns
+                 ),
+             ) from error
+@@ -1014,20 +1057,118 @@ class HandRuntime:
+         if failure_code is not None:
+             raise _HandFailure(
+                 failure_code,
+                 delivery_status=DeliveryStatus.ACCEPTED,
+                 delivered_action=selected,
+                 timing=timing,
+                 decision=record,
+             )
+         return record
+ 
++    def _require_provider_binding(self, wall_start_ns: int) -> None:
++        try:
++            identity = self._provider.identity
++            valid = (type(self._provider) is self._provider_type
++                     and type(identity) is ProviderIdentity
++                     and type(identity.provider) is str and type(identity.config_sha256) is str
++                     and (identity.provider, identity.config_sha256) == self._provider_binding
++                     and type(self.strategy) is str and self.strategy == identity.provider
++                     and type(self.source_manifest_sha256) is str
++                     and self.source_manifest_sha256 == self._provider_source)
++        except (ClockInvalidError, ClockReversedError) as error:
++            raise self._clock_hand_failure(error, wall_start_ns) from error
++        except Exception:
++            valid = False
++        if not valid:
++            raise _HandFailure(FailureCode.SOURCE_BINDING_MISMATCH,
++                timing=self._interrupted_timing(FailureCode.SOURCE_BINDING_MISMATCH, wall_start_ns))
++
++    def _select_provider(self, fallback, cards, betting, decision, action_index, wall_start_ns):
++        self._require_provider_binding(wall_start_ns)
++        try:
++            observation = DecisionObservation(
++                "pontius-decision-observation-v1", self._hand_id, action_index,
++                cards, betting, decision, 0)
++            ready = self._outer.snapshot()
++            self._record_established(ready)
++            observation = replace(observation, remaining_work_ns=max(
++                0, min(14_000_000_000, int(ready.work_remaining_seconds * 1_000_000_000))))
++            offered = replace(observation)
++        except (ClockInvalidError, ClockReversedError) as error:
++            raise self._clock_hand_failure(error, wall_start_ns) from error
++        except (TypeError, ValueError, AttributeError, RecursionError) as error:
++            raise _HandFailure(FailureCode.INVALID_DECISION_CONTEXT,
++                timing=self._interrupted_timing(FailureCode.INVALID_DECISION_CONTEXT,
++                                                wall_start_ns)) from error
++        reason = "table_hit" if fallback.table_hit else "passive_default"
++        result = Selection(None, "not_called", "provider_skipped_cutoff",
++                           "blueprint_fallback", fallback.action)
++        self._provider_context = (observation, fallback, result)
++        if not self._known_cutoff:
++            try:
++                proposal = self._provider.propose(offered)
++            except (ClockInvalidError, ClockReversedError) as error:
++                self._provider_context = (observation, fallback, Selection(
++                    None, "error", "provider_error", "blueprint_fallback", fallback.action))
++                raise self._clock_hand_failure(error, wall_start_ns) from error
++            except Exception:
++                result = Selection(None, "error", "provider_error",
++                                   "blueprint_fallback", fallback.action)
++            else:
++                try:
++                    result = resolve_proposal(observation, proposal, fallback.action, reason)
++                except (ClockInvalidError, ClockReversedError) as error:
++                    raise self._clock_hand_failure(error, wall_start_ns) from error
++                except (TypeError, ValueError, AttributeError, RecursionError) as error:
++                    self._provider_context = None
++                    raise _HandFailure(FailureCode.INVALID_DECISION_CONTEXT,
++                        timing=self._interrupted_timing(FailureCode.INVALID_DECISION_CONTEXT,
++                                                        wall_start_ns)) from error
++            self._provider_context = (observation, fallback, result)
++            self._require_provider_binding(wall_start_ns)
++        return result.selected_action
++
++    def _provider_late(self):
++        observation, fallback, result = self._provider_context
++        if result.provider_outcome != "not_called":
++            result = replace(result, selection_reason="provider_late",
++                             selection_origin="blueprint_fallback", selected_action=fallback.action)
++            self._provider_context = (observation, fallback, result)
++
++    def _provider_record(self, event, timing, failure_reason,
++                         delivery_status=DeliveryStatus.ACCEPTED):
++        observation, fallback, result = self._provider_context
++        after = self._spine.state
++        applied = after is not observation.betting and after != observation.betting
++        selected = HandAction.from_betting_action(result.selected_action)
++        return ProviderDecisionRecord(
++            schema_version="pontius-provider-decision-v1", hand_id=self._hand_id,
++            event_index=event.event_index, action_index=self._action_index,
++            street_action_index=self._street_action_index, seat=self._controlled_seat,
++            street=observation.betting.street.value,
++            state_before_sha256=public_betting_state_sha256(observation.betting),
++            state_after_sha256=public_betting_state_sha256(after) if applied else None,
++            visible_cards_sha256=visible_cards_sha256(observation.cards),
++            decision_sha256=observation.decision_sha256,
++            source_manifest_sha256=self._provider_source,
++            provider=self._provider_binding[0],
++            config_sha256=self._provider_binding[1],
++            fallback_blueprint_sha256=fallback.source_digest,
++            fallback_action=HandAction.from_betting_action(fallback.action),
++            fallback_reason="table_hit" if fallback.table_hit else "passive_default",
++            proposal=result.proposal, provider_outcome=result.provider_outcome,
++            selection_reason=result.selection_reason, selection_origin=result.selection_origin,
++            selected_action=selected, applied_action=selected if applied else None,
++            delivery_status=delivery_status,
++            delivered_action=selected if delivery_status is DeliveryStatus.ACCEPTED else None,
++            timing=timing, preparation_use=PreparationUseRecord(), failure_reason=failure_reason)
++
+     def _require_bound_selection(
+         self,
+         selection: BlueprintSelection,
+         cards: OneSeatCardState,
+         betting: NoLimitBettingState,
+         decision: LegalBettingDecision,
+         wall_start_ns: int,
+     ) -> None:
+         """The bound immutable policy is the only one permitted to answer.
+ 
+@@ -1104,20 +1245,22 @@ class HandRuntime:
+         state_before: NoLimitBettingState,
+         state_after: NoLimitBettingState,
+         selection: BlueprintSelection,
+         selected: HandAction,
+         spine_reason: str,
+         timing: TimingRecord,
+         failure_reason: FailureCode | None,
+     ) -> DecisionRecord:
+         assert self._cards is not None and self._hand_id is not None
+         assert self._controlled_seat is not None
++        if self._provider_context is not None:
++            return self._provider_record(event, timing, failure_reason)
+         return DecisionRecord(
+             hand_id=self._hand_id,
+             event_index=event.event_index,
+             action_index=action_index,
+             street_action_index=self._street_action_index,
+             seat=self._controlled_seat,
+             street=state_before.street.value,
+             state_before_sha256=public_betting_state_sha256(state_before),
+             state_after_sha256=public_betting_state_sha256(state_after),
+             visible_cards_sha256=visible_cards_sha256(self._cards),
+diff --git a/tests/fixtures/decision_provider/rules.json b/tests/fixtures/decision_provider/rules.json
+new file mode 100644
+index 0000000..bbacc8f
+--- /dev/null
++++ b/tests/fixtures/decision_provider/rules.json
+@@ -0,0 +1,43 @@
++[
++  {"hole":"As Ah","kind":"raise","amount":4,"reason":"premium_raise"},
++  {"hole":"Tc Td","kind":"raise","amount":4,"reason":"premium_raise"},
++  {"hole":"As Qh","kind":"raise","amount":4,"reason":"premium_raise"},
++  {"hole":"Ac Kc","kind":"raise","amount":4,"reason":"premium_raise"},
++  {"hole":"9c 9d","kind":"call","reason":"playable_call"},
++  {"hole":"2c 2d","kind":"call","reason":"playable_call"},
++  {"hole":"Ac 2c","kind":"call","reason":"playable_call"},
++  {"hole":"Ac 2d","kind":"fold","reason":"weak_fold"},
++  {"hole":"Tc Jh","kind":"call","reason":"playable_call"},
++  {"hole":"9c Th","kind":"fold","reason":"weak_fold"},
++  {"hole":"7c 2d","kind":"fold","reason":"weak_fold"},
++  {"hole":"9c 9d","cost":4,"kind":"call","reason":"playable_call"},
++  {"hole":"9c 9d","cost":5,"kind":"fold","reason":"weak_fold"},
++  {"hole":"As Ah","own_raise":true,"cost":100,"kind":"call","reason":"premium_call"},
++  {"hole":"As Ah","short":3,"kind":"raise","amount":3,"reason":"premium_raise"},
++  {"hole":"7c 2d","free":true,"kind":"check","reason":"free_check"},
++  {"hole":"As Ah","free":true,"kind":"raise","amount":4,"reason":"premium_raise"},
++  {"hole":"As Ah","board":"2c 2d 7s","kind":"raise","amount":2,"reason":"made_hand_raise"},
++  {"hole":"As Ah","board":"2c 2d 7s","own_raise":true,"cost":4,
++   "kind":"call","reason":"made_hand_call"},
++  {"hole":"As Ah","board":"2c 2d 7s","own_raise":true,"cost":5,"kind":"fold","reason":"weak_fold"},
++  {"hole":"As Ah","board":"2c 3d 7s","cost":2,"kind":"call","reason":"pair_call"},
++  {"hole":"As Ah","board":"2c 3d 7s","cost":3,"kind":"fold","reason":"weak_fold"},
++  {"hole":"As Ah","board":"2c 3d 7s","kind":"check","reason":"free_check"},
++  {"hole":"As Kh","board":"2c 3d 7s","cost":2,"kind":"fold","reason":"weak_fold"},
++  {"hole":"As Kh","board":"2c 3d 7s","kind":"check","reason":"free_check"},
++  {"hole":"Ac 9d","board":"2c 3c 4c 5c","kind":"raise","amount":2,"reason":"made_hand_raise"},
++  {"hole":"As Kh","board":"2c 2d 7s 7h","kind":"raise","amount":2,"reason":"made_hand_raise"},
++  {"hole":"As Kh","board":"2c 3d 7s Kd","cost":2,"kind":"call","reason":"pair_call"},
++  {"hole":"2c 3d","board":"Ts Js Qs Ks As","kind":"check","reason":"free_check"},
++  {"hole":"2c 3d","board":"Ts Js Qs Ks As","cost":2,"kind":"fold","reason":"weak_fold"},
++  {"hole":"Ac Ad","board":"2c 2d 7s 8h 9c","kind":"raise","amount":2,"reason":"made_hand_raise"},
++  {"hole":"As Ah","short":2,"kind":"call","reason":"premium_call"},
++  {"hole":"9c 9d","cost":5,"call_stack":3,"kind":"call","reason":"playable_call"},
++  {"hole":"As Ah","board":"2c 3d 7s","cost":5,"call_stack":3,"kind":"call","reason":"pair_call"},
++  {"hole":"As Ah","board":"2c 2d 7s","prior_raise":true,
++   "kind":"raise","amount":2,"reason":"made_hand_raise"},
++  {"hole":"As Kh","board":"2c 3d 7s","cost":1,"kind":"fold","reason":"weak_fold"},
++  {"hole":"As Ah","board":"2c 3d 7s","cost":1,"kind":"call","reason":"pair_call"},
++  {"hole":"As Ah","board":"2c 3d 7s Kd 9c","cost":2,"kind":"call","reason":"pair_call"},
++  {"hole":"Ac 2d","board":"3c 3d 7s 7h Ks","kind":"raise","amount":2,"reason":"made_hand_raise"}
++]
+diff --git a/tests/fixtures/decision_provider/session.json b/tests/fixtures/decision_provider/session.json
+new file mode 100644
+index 0000000..50cc7c7
+--- /dev/null
++++ b/tests/fixtures/decision_provider/session.json
+@@ -0,0 +1,130 @@
++{
++  "version": "pontius-v0a-table-session-v1",
++  "button": 0,
++  "controlled_seat": 3,
++  "starting_stacks": [
++    200,
++    200,
++    200,
++    200,
++    200,
++    200
++  ],
++  "small_blind": 1,
++  "big_blind": 2,
++  "opponents": [
++    "fold_to_bet",
++    "fold_to_bet",
++    "fold_to_bet",
++    null,
++    "fold_to_bet",
++    "fold_to_bet"
++  ],
++  "hands": [
++    {
++      "private_hands": [
++        [
++          0,
++          5
++        ],
++        [
++          8,
++          13
++        ],
++        [
++          16,
++          21
++        ],
++        [
++          50,
++          51
++        ],
++        [
++          24,
++          29
++        ],
++        [
++          32,
++          37
++        ]
++      ],
++      "board_runout": [
++        40,
++        45,
++        2,
++        7,
++        10
++      ]
++    },
++    {
++      "private_hands": [
++        [
++          4,
++          9
++        ],
++        [
++          12,
++          17
++        ],
++        [
++          24,
++          29
++        ],
++        [
++          1,
++          20
++        ],
++        [
++          34,
++          37
++        ],
++        [
++          40,
++          45
++        ]
++      ],
++      "board_runout": [
++        51,
++        46,
++        2,
++        7,
++        10
++      ]
++    },
++    {
++      "private_hands": [
++        [
++          0,
++          5
++        ],
++        [
++          8,
++          13
++        ],
++        [
++          16,
++          21
++        ],
++        [
++          44,
++          48
++        ],
++        [
++          24,
++          29
++        ],
++        [
++          32,
++          37
++        ]
++      ],
++      "board_runout": [
++        40,
++        46,
++        2,
++        7,
++        10
++      ]
++    }
++  ]
++}
+diff --git a/tests/test_decision_provider.py b/tests/test_decision_provider.py
+new file mode 100644
+index 0000000..bb2c59d
+--- /dev/null
++++ b/tests/test_decision_provider.py
+@@ -0,0 +1,267 @@
++"""Finite literal decision rules and exact engine-side provider admission."""
++import copy
++import hashlib
++import json
++from dataclasses import fields, replace
++from pathlib import Path
++import unittest
++import importlib.util
++
++from pontius.decision_provider.model import DecisionObservation, DecisionProposal
++from pontius.decision_provider.providers import make_provider, visible_rank
++from pontius.decision_provider.selection import resolve_proposal
++from pontius.holdem_cards import OneSeatCardState
++from pontius.immutable_blueprint import (
++    BlueprintActionEntry, BlueprintDecisionKey, ImmutableBlueprintActionSource,
++)
++from pontius.no_limit_betting import CALL, CHECK, FOLD, BettingStreet, NoLimitBettingState, raise_to
++from pontius.river import parse_cards
++
++
++def observation(case=None):
++    case = case or {'hole': 'As Ah'}
++    stacks = [200] * 6
++    if 'short' in case:
++        stacks[3] = case['short']
++    if 'call_stack' in case:
++        stacks[2 if 'board' in case else 4] = case['call_stack']
++    if case.get('cost') == 1:
++        stacks[1] = 3
++    state = NoLimitBettingState.new_hand(
++        button=0, starting_stacks=tuple(stacks), small_blind=1, big_blind=2)
++    board = tuple(parse_cards(*case.get('board', '').split()))
++    target = {0: BettingStreet.PREFLOP, 3: BettingStreet.FLOP,
++              4: BettingStreet.TURN, 5: BettingStreet.RIVER}[len(board)]
++    if case.get('prior_raise'):
++        state = state.apply_action(CALL)
++        state = state.apply_action(CALL)
++        state = state.apply_action(CALL)
++        state = state.apply_action(CALL)
++        state = state.apply_action(raise_to(4))
++    while state.street != target:
++        while not state.round_complete:
++            state = state.apply_action(CHECK if state.legal_decision().can_check else CALL)
++        state = state.advance_street()
++    if case.get('free'):
++        while state.acting_seat != 2:
++            state = state.apply_action(CALL)
++    if case.get('own_raise'):
++        actor = state.acting_seat
++        amount = state.legal_decision().raise_bounds.minimum_raise_to
++        state = state.apply_action(raise_to(amount))
++        state = state.apply_action(raise_to(amount + case['cost']))
++        while state.acting_seat != actor:
++            state = state.apply_action(CALL)
++    elif 'cost' in case:
++        state = state.apply_action(raise_to(case['cost']))
++    cards = OneSeatCardState(
++        controlled_seat=state.acting_seat,
++        private_hand=tuple(sorted(parse_cards(*case['hole'].split()))),
++        street=target, board=board)
++    return DecisionObservation(
++        version='pontius-decision-observation-v1',
++        hand_id='pontius-v0a-event-interface-v2-correctness-rules',
++        action_index=1, cards=cards, betting=state, decision=state.legal_decision(),
++        remaining_work_ns=13_000_000_000)
++
++
++class ProviderRulesTests(unittest.TestCase):
++    def setUp(self):
++        self.blueprint = ImmutableBlueprintActionSource(source_id='provider-test')
++        self.provider = make_provider('baseline-rules-v1', self.blueprint)
++
++    def test_literal_rule_partitions(self):
++        path = Path(__file__).parent / 'fixtures/decision_provider/rules.json'
++        cases = json.loads(path.read_text(encoding='utf-8'))
++        self.assertLessEqual(len(cases), 48)
++        self.assertLessEqual(path.stat().st_size, 32768)
++        for case in cases:
++            with self.subTest(case=case):
++                obs = observation(case)
++                proposal = self.provider.propose(obs)
++                self.assertEqual((proposal.action.kind.value, proposal.action.raise_to,
++                                  proposal.reason),
++                                 (case['kind'], case.get('amount'), case['reason']))
++                self.assertEqual(proposal.decision_sha256, obs.decision_sha256)
++                obs.betting.apply_action(proposal.action)
++
++    def test_turn_rank_independent_best_five(self):
++        self.assertEqual(visible_rank(parse_cards('Ac', '9d', '2c', '3c', '4c', '5c')),
++                         (8, 5))
++        self.assertEqual(visible_rank(parse_cards('As', 'Kh', '2c', '2d', '7s', '7h')),
++                         (2, 7, 2, 14))
++        with self.assertRaises(ValueError):
++            visible_rank(parse_cards('As', 'Kh'))
++
++    def test_blueprint_hit_and_default(self):
++        obs = observation()
++        default = make_provider('blueprint-v1', self.blueprint).propose(obs)
++        self.assertEqual((default.action, default.reason), (CALL, 'blueprint_default'))
++        key = BlueprintDecisionKey.from_state(
++            cards=obs.cards, betting=obs.betting, decision=obs.decision)
++        blueprint = ImmutableBlueprintActionSource(
++            source_id='provider-hit', entries=(BlueprintActionEntry(key, FOLD),))
++        hit = make_provider('blueprint-v1', blueprint).propose(obs)
++        self.assertEqual((hit.action, hit.reason), (FOLD, 'blueprint_hit'))
++
++    def test_fixed_configuration_identities(self):
++        config = dict(max_raises_per_street=1, playable_any_pair=True, playable_rank_min=10,
++                      playable_suited_ace=True, postflop_pair_call_cap_bb=1,
++                      postflop_two_pair_call_cap_bb=2, preflop_call_cap_bb=2,
++                      premium_ace_kickers=[12, 13], premium_call_cap_bb=None,
++                      premium_pair_min=10, provider='baseline-rules-v1',
++                      raise_size='legal_minimum', river_board_only='check_or_fold',
++                      version='pontius-decision-provider-config-v1')
++        def digest(value):
++            return hashlib.sha256(json.dumps(value, sort_keys=True,
++                                             separators=(',', ':')).encode('ascii')).hexdigest()
++        self.assertEqual(self.provider.identity.config_sha256, digest(config))
++        provider = make_provider('blueprint-v1', self.blueprint)
++        self.assertEqual(provider.identity.config_sha256, digest(dict(
++            provider='blueprint-v1', blueprint_sha256=self.blueprint.digest,
++            version='pontius-decision-provider-config-v1')))
++        for kind in ('baseline', None, lambda: None):
++            with self.assertRaises((ValueError, TypeError)):
++                make_provider(kind, self.blueprint)
++
++    def test_observation_digest_literal_legal_and_stable_hint(self):
++        obs = observation()
++        key = BlueprintDecisionKey.from_state(cards=obs.cards, betting=obs.betting,
++                                             decision=obs.decision)
++        legal = dict(street='preflop', acting_seat=3, stack=200, street_contribution=0,
++                     current_bet=2, to_call=2, call_amount=2,
++                     action_kinds=['fold', 'call', 'raise'], raise_bounds=dict(
++                         minimum_raise_to=4, maximum_raise_to=200, minimum_full_raise_to=4,
++                         maximum_contestable_raise_to=200, all_in_only=False))
++        payload = dict(version='pontius-decision-observation-v1', hand_id=obs.hand_id,
++                       action_index=1, key=json.loads(key.canonical_bytes()), legal=legal)
++        expected = hashlib.sha256(json.dumps(payload, sort_keys=True,
++                                             separators=(',', ':')).encode('ascii')).hexdigest()
++        self.assertEqual(obs.decision_sha256, expected)
++        self.assertEqual(replace(obs, remaining_work_ns=0).decision_sha256, expected)
++        self.assertNotEqual(replace(obs, action_index=2).decision_sha256, expected)
++        self.assertEqual({f.name for f in fields(obs)}, {
++            'version', 'hand_id', 'action_index', 'cards', 'betting', 'decision',
++            'remaining_work_ns'})
++
++    def test_observation_owns_graph_and_refuses_foreign_or_mutable_values(self):
++        obs = observation()
++        self.assertIsNot(obs.cards, observation().cards)
++        original = obs.betting
++        copied = replace(obs)
++        self.assertIsNot(original, copied.betting)
++        for changes in ({'remaining_work_ns': True}, {'remaining_work_ns': -1},
++                        {'remaining_work_ns': 14_000_000_001}, {'action_index': False},
++                        {'action_index': 0}, {'version': 'unknown'}):
++            with self.subTest(changes=changes), self.assertRaises((TypeError, ValueError)):
++                replace(obs, **changes)
++        for name, value in [('stack', True), ('action_kinds', ['fold', 'call', 'raise'])]:
++            bad = copy.copy(obs.decision)
++            object.__setattr__(bad, name, value)
++            with self.assertRaises((TypeError, ValueError)):
++                replace(obs, decision=bad)
++        bad_cards = copy.copy(obs.cards)
++        object.__setattr__(bad_cards, 'private_hand', list(obs.cards.private_hand))
++        with self.assertRaises((TypeError, ValueError)):
++            replace(obs, cards=bad_cards)
++
++    def test_proposal_admission_and_legal_binding(self):
++        obs = observation()
++        good = DecisionProposal(obs.decision_sha256, raise_to(4), 'premium_raise')
++        selected = resolve_proposal(obs, good, CALL, 'passive_default')
++        self.assertEqual((selected.provider_outcome, selected.selection_reason,
++                          selected.selection_origin, selected.selected_action),
++                         ('proposed', 'provider_selected', 'provider', raise_to(4)))
++        self.assertIsNot(selected.proposal, good)
++        for proposal in (DecisionProposal('0' * 64, CALL, 'premium_call'),
++                         DecisionProposal(obs.decision_sha256, CHECK, 'free_check'),
++                         DecisionProposal(obs.decision_sha256, raise_to(3), 'premium_raise')):
++            result = resolve_proposal(obs, proposal, CALL, 'passive_default')
++            self.assertEqual((result.provider_outcome, result.selection_reason,
++                              result.selection_origin, result.selected_action),
++                             ('invalid', 'provider_invalid', 'blueprint_fallback', CALL))
++            self.assertEqual(result.proposal, proposal)
++        abstain = DecisionProposal(obs.decision_sha256, None, 'abstain')
++        self.assertEqual(resolve_proposal(obs, abstain, CALL, 'passive_default').provider_outcome,
++                         'abstained')
++        malformed = copy.copy(good)
++        object.__setattr__(malformed, 'action', ['raise', 4])
++        class Foreign:
++            def __getattribute__(self, name):
++                raise AssertionError('caller code must never run')
++        for proposal in (None, {}, Foreign(), malformed):
++            result = resolve_proposal(obs, proposal, CALL, 'passive_default')
++            self.assertEqual(result.provider_outcome, 'invalid')
++            self.assertIsNone(result.proposal)
++        for action, reason in ((None, 'premium_call'), (CALL, 'abstain'), (CALL, 'anything')):
++            with self.assertRaises((TypeError, ValueError)):
++                DecisionProposal(obs.decision_sha256, action, reason)
++        with self.assertRaises((TypeError, ValueError)):
++            resolve_proposal(obs, good, CHECK, 'passive_default')
++
++    def test_nested_foreign_values_and_stale_abstention(self):
++        obs = observation()
++        class Integer(int):
++            pass
++        class ForeignObservation(DecisionObservation):
++            pass
++        for name, value in (('controlled_seat', Integer(3)), ('private_hand', (True, 51))):
++            cards = copy.copy(obs.cards)
++            object.__setattr__(cards, name, value)
++            with self.assertRaises((TypeError, ValueError)):
++                replace(obs, cards=cards)
++        foreign = ForeignObservation(**{f.name: getattr(obs, f.name) for f in fields(obs)})
++        with self.assertRaises(TypeError):
++            self.provider.propose(foreign)
++        malformed = copy.copy(obs)
++        object.__setattr__(malformed, 'remaining_work_ns', True)
++        with self.assertRaises(TypeError):
++            resolve_proposal(malformed, None, CALL, 'passive_default')
++        stale = DecisionProposal('0' * 64, None, 'abstain')
++        self.assertEqual(resolve_proposal(obs, stale, CALL, 'passive_default').provider_outcome,
++                         'invalid')
++        good = DecisionProposal(obs.decision_sha256, raise_to(4), 'premium_raise')
++        malformed = copy.copy(good)
++        action = copy.copy(good.action)
++        object.__setattr__(action, 'raise_to', Integer(4))
++        object.__setattr__(malformed, 'action', action)
++        self.assertIsNone(resolve_proposal(obs, malformed, CALL, 'passive_default').proposal)
++
++    def test_source_import_policy_finite_negative_controls(self):
++        repo = Path(__file__).resolve().parent.parent
++        spec = importlib.util.spec_from_file_location(
++            'provider_boundary_checks', repo / 'tools/check_stabilization_boundaries.py')
++        checker = importlib.util.module_from_spec(spec)
++        spec.loader.exec_module(checker)
++        provider = 'src/pontius/decision_provider/'
++        allowed = {
++            provider + '__init__.py': b'"""Inert."""\n',
++            provider + 'model.py': b'from pontius.holdem_cards import OneSeatCardState\n',
++            provider + 'providers.py': b'from pontius.river import evaluate_five\n',
++            provider + 'selection.py': b'from pontius.decision_provider.model import Selection\n',
++            provider + 'codec.py': b'from pontius.v0a.trace import action_payload\n',
++            'src/pontius/v0a/runtime.py': (
++                b'from pontius.decision_provider.model import Selection\n'),
++            'tools/v0a_event_adapter.py': b'import pontius.decision_provider.codec\n',
++        }
++        checker.enforce_decision_provider_import_policy(allowed)
++        for body in (b'import os\n', b'import pontius.v0a.runtime\n',
++                     b'from pontius.holdem_cards import SixSeatHoldemDeal\n',
++                     b'x = SixSeatHoldemDeal\n', b'x = cards.SixSeatHoldemDeal\n',
++                     b'eval("1")\n', b'exec("pass")\n', b'open("file")\n',
++                     b'__import__("os")\n'):
++            with self.subTest(body=body), self.assertRaises(checker.BoundaryError):
++                checker.enforce_decision_provider_import_policy({provider + 'model.py': body})
++        for origin in ('src/pontius/v0a/replay.py', 'tools/v0a_hand_adapter.py'):
++            with self.subTest(origin=origin), self.assertRaises(checker.BoundaryError):
++                checker.enforce_decision_provider_import_policy({
++                    origin: b'import pontius.decision_provider.model\n'})
++        with self.assertRaises(checker.BoundaryError):
++            checker.enforce_decision_provider_import_policy({
++                provider + '__init__.py': b'x = 1\n'})
++        with self.assertRaises(checker.BoundaryError):
++            checker.enforce_origin_classification({provider + 'extra.py': b''}, {})
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/tests/test_decision_provider_runtime.py b/tests/test_decision_provider_runtime.py
+new file mode 100644
+index 0000000..6717ce7
+--- /dev/null
++++ b/tests/test_decision_provider_runtime.py
+@@ -0,0 +1,413 @@
++"""Finite provider dispatch controls with independent mailbox observations."""
++from __future__ import annotations
++
++import unittest
++from unittest.mock import patch
++
++from pontius.immutable_blueprint import ImmutableBlueprintActionSource
++from pontius.no_limit_betting import CALL
++from pontius.river import parse_cards
++from pontius.v0a.clock import ClockInvalidError
++from pontius.v0a.model import (
++    DeliveryReceipt, DeliveryStatus, FailureCode, HandAction, HandStartedEvent,
++    MailboxRejectionError, OpponentActionEvent, StreetRevealedEvent,
++)
++from pontius.v0a.runtime import HandRuntime
++
++
++class Clock:
++    def __init__(self):
++        self.now = 0
++        self.reads = 0
++        self.jump_read = None
++
++    def __call__(self):
++        self.reads += 1
++        if self.reads == self.jump_read:
++            self.now = 14_000_000_000
++        return self.now
++
++
++class Mailbox:
++    def __init__(self):
++        self.envelopes = []
++
++    def deliver(self, envelope):
++        self.envelopes.append(envelope)
++        return DeliveryReceipt(envelope.hand_id, envelope.action_index)
++
++
++def started(cards="As Ah", seat=3):
++    return HandStartedEvent(
++        hand_id="pontius-v0a-event-interface-v2-correctness-runtime", event_index=0,
++        button=0, controlled_seat=seat, starting_stacks=(200,) * 6,
++        small_blind=1, big_blind=2, private_cards=tuple(sorted(parse_cards(*cards.split()))))
++
++
++class ProviderRuntimeTests(unittest.TestCase):
++    def assert_record(self, record):
++        from pontius.decision_provider.codec import decision_payload, validate_decision
++        self.assertEqual(validate_decision(decision_payload(record))["hand_id"], record.hand_id)
++
++    def runtime(self, mailbox=None, clock=None, **kwargs):
++        return HandRuntime(blueprint=ImmutableBlueprintActionSource(source_id="provider-test"),
++                           mailbox=mailbox or Mailbox(), clock=clock or Clock(),
++                           strategy="baseline-rules-v1", source_manifest_sha256="1" * 64, **kwargs)
++
++    def test_premium_dispatch_applies_and_delivers_one_legal_raise(self):
++        mailbox = Mailbox()
++        try:
++            runtime = HandRuntime(
++                blueprint=ImmutableBlueprintActionSource(source_id="provider-test"),
++                mailbox=mailbox, clock=Clock(), strategy="baseline-rules-v1",
++                source_manifest_sha256="1" * 64)
++        except TypeError as error:
++            self.fail(f"selectable runtime is unavailable: {error}")
++        result = runtime.dispatch(started())
++        self.assertEqual(result.status, "decided")
++        self.assertEqual(len(mailbox.envelopes), 1)
++        action = mailbox.envelopes[0].action
++        self.assertEqual((action.kind, action.raise_to), ("raise", 4))
++        self.assertEqual(result.decision.selection_origin, "provider")
++        self.assertEqual(result.decision.applied_action, action)
++        self.assertEqual(result.decision.delivered_action, action)
++        self.assertEqual(runtime.state.stacks[3], 196)
++
++    def test_fixed_preflop_actions_and_free_check(self):
++        for cards, kind, chips in (("9c 9d", "call", 198), ("7c 2d", "fold", 200)):
++            with self.subTest(cards=cards):
++                runtime = self.runtime()
++                result = runtime.dispatch(started(cards))
++                self.assertEqual(result.decision.selected_action.kind, kind)
++                self.assertEqual(runtime.state.stacks[3], chips)
++        runtime = self.runtime()
++        first = started("7c 2d", seat=2)
++        self.assertEqual(runtime.dispatch(first).status, "accepted")
++        for index, seat in enumerate((3, 4, 5, 0, 1), 1):
++            result = runtime.dispatch(OpponentActionEvent(
++                hand_id=first.hand_id, event_index=index, seat=seat, street="preflop",
++                action=HandAction("call", None)))
++        self.assertEqual(result.decision.selected_action.kind, "check")
++        self.assertEqual(result.decision.proposal.reason, "free_check")
++
++    def test_legacy_default_and_explicit_blueprint_are_equal(self):
++        results = []
++        for options in ({}, {"strategy": "blueprint-v1"}):
++            mailbox = Mailbox()
++            runtime = HandRuntime(
++                blueprint=ImmutableBlueprintActionSource(source_id="provider-test"),
++                mailbox=mailbox, clock=Clock(), **options)
++            results.append(runtime.dispatch(started()))
++        self.assertEqual(results[0], results[1])
++        self.assertEqual(results[0].decision.selected_action.kind, "call")
++
++    def test_provider_error_abstention_invalid_and_stale_fallback(self):
++        from pontius.decision_provider.model import DecisionProposal
++        from pontius.decision_provider.providers import BaselineProvider
++        def throwing(provider, observation):
++            raise ValueError("controlled provider failure")
++        cases = ((throwing, "error"),
++                 (lambda p, o: DecisionProposal(o.decision_sha256, None, "abstain"), "abstained"),
++                 (lambda p, o: object(), "invalid"),
++                 (lambda p, o: DecisionProposal("0" * 64, CALL, "premium_call"), "invalid"))
++        for behavior, expected in cases:
++            with self.subTest(outcome=expected), \
++                    patch.object(BaselineProvider, "propose", behavior):
++                mailbox = Mailbox()
++                result = self.runtime(mailbox).dispatch(started())
++                self.assertEqual(result.status, "decided")
++                self.assertEqual(result.decision.provider_outcome, expected)
++                self.assertEqual(result.decision.selection_origin, "blueprint_fallback")
++                self.assertEqual(result.decision.selected_action.kind, "call")
++                self.assertEqual(len(mailbox.envelopes), 1)
++                self.assert_record(result.decision)
++
++    def test_late_outcome_is_preserved_at_cutoff_edges(self):
++        from pontius.decision_provider.providers import BaselineProvider
++        original = BaselineProvider.propose
++        for elapsed in (13_999_999_999, 14_000_000_000, 14_000_000_001,
++                        15_000_000_000, 15_000_000_001):
++            for kind in ("proposed", "error", "invalid"):
++                with self.subTest(elapsed=elapsed, outcome=kind):
++                    clock, mailbox = Clock(), Mailbox()
++                    def scheduled(provider, observation):
++                        proposal = original(provider, observation)
++                        clock.now = elapsed
++                        if kind == "error":
++                            raise ValueError("scheduled")
++                        return object() if kind == "invalid" else proposal
++                    with patch.object(BaselineProvider, "propose", scheduled):
++                        result = self.runtime(mailbox, clock).dispatch(started())
++                    record = result.decision
++                    self.assert_record(record)
++                    self.assertEqual(record.provider_outcome, kind)
++                    self.assertEqual(len(mailbox.envelopes), 1)
++                    if elapsed >= 14_000_000_000:
++                        self.assertEqual(record.selection_reason, "provider_late")
++                        self.assertEqual(record.selected_action.kind, "call")
++                        self.assertEqual(result.status, "failed")
++                        code = (FailureCode.ACTION_DEADLINE_EXCEEDED if elapsed > 15_000_000_000
++                                else FailureCode.WORK_CUTOFF_EXCEEDED)
++                        self.assertEqual(result.failure.code, code)
++                    else:
++                        self.assertEqual(result.status, "decided")
++
++    def test_known_cutoff_skips_provider(self):
++        from pontius.decision_provider.providers import BaselineProvider
++        clock = Clock()
++        clock.jump_read = 3
++        with patch.object(BaselineProvider, "propose", side_effect=AssertionError) as propose:
++            result = self.runtime(clock=clock).dispatch(started())
++        self.assertEqual(propose.call_count, 0)
++        self.assertEqual(result.decision.provider_outcome, "not_called")
++        self.assertEqual(result.decision.selection_reason, "provider_skipped_cutoff")
++        self.assertEqual(result.failure.code, FailureCode.WORK_CUTOFF_EXCEEDED)
++        self.assert_record(result.decision)
++
++    def test_delivery_rejection_and_unknown_retain_local_application(self):
++        for error, expected in ((MailboxRejectionError(), DeliveryStatus.REJECTED),
++                                (RuntimeError(), DeliveryStatus.UNKNOWN)):
++            mailbox = Mailbox()
++            def delivery(envelope):
++                mailbox.envelopes.append(envelope)
++                raise error
++            mailbox.deliver = delivery
++            result = self.runtime(mailbox).dispatch(started())
++            self.assertEqual(result.status, "failed")
++            self.assertEqual(len(mailbox.envelopes), 1)
++            self.assertEqual(result.decision.delivery_status, expected)
++            self.assertEqual(result.decision.applied_action.kind, "raise")
++            self.assertIsNone(result.decision.delivered_action)
++            self.assert_record(result.decision)
++
++    def test_failure_after_accepted_delivery_remains_accepted(self):
++        mailbox, clock = Mailbox(), Clock()
++        original = mailbox.deliver
++        def delivery(envelope):
++            receipt = original(envelope)
++            clock.now = True
++            return receipt
++        mailbox.deliver = delivery
++        result = self.runtime(mailbox, clock).dispatch(started())
++        self.assertEqual(result.failure.code, FailureCode.CLOCK_INVALID)
++        self.assertEqual(result.decision.delivery_status, DeliveryStatus.ACCEPTED)
++        self.assertEqual(result.decision.delivered_action.kind, "raise")
++        self.assert_record(result.decision)
++
++    def test_clock_and_changed_identity_are_fatal_without_delivery(self):
++        from pontius.decision_provider.providers import BaselineProvider
++        for cause in ("clock", "identity", "reversal"):
++            mailbox, clock = Mailbox(), Clock()
++            clock.now = 100
++            runtime = self.runtime(mailbox, clock)
++            original = BaselineProvider.propose
++            def corrupt(provider, observation):
++                proposal = original(provider, observation)
++                if cause == "clock":
++                    raise ClockInvalidError("scheduled")
++                if cause == "reversal":
++                    clock.now = 99
++                else:
++                    runtime.source_manifest_sha256 = "2" * 64
++                return proposal
++            with patch.object(BaselineProvider, "propose", corrupt):
++                result = runtime.dispatch(started())
++            self.assertEqual(result.status, "failed")
++            self.assertEqual(len(mailbox.envelopes), 0)
++            expected = {"clock": FailureCode.CLOCK_INVALID, "reversal": FailureCode.CLOCK_REVERSED,
++                        "identity": FailureCode.SOURCE_BINDING_MISMATCH}[cause]
++            self.assertEqual(result.failure.code, expected)
++            self.assert_record(result.decision)
++
++    def test_codec_roundtrip_and_rejection(self):
++        from pontius.decision_provider.codec import decision_payload, validate_decision
++        record = self.runtime().dispatch(started()).decision
++        payload = decision_payload(record)
++        self.assertEqual(validate_decision(payload), payload)
++        self.assertEqual(payload["schema_version"], "pontius-provider-decision-v1")
++        for field, value in (("action_index", True), ("config_sha256", "bad"),
++                             ("provider_outcome", "error"),
++                             ("selection_origin", "blueprint_fallback"),
++                             ("delivered_action", None), ("unexpected", 1)):
++            broken = dict(payload, **{field: value})
++            with self.subTest(field=field), self.assertRaises((TypeError, ValueError)):
++                validate_decision(broken)
++
++    def test_removed_or_mutated_provider_binding_cannot_revert_to_legacy(self):
++        for mutation in ("removed", "identity"):
++            with self.subTest(mutation=mutation):
++                mailbox = Mailbox()
++                runtime = self.runtime(mailbox)
++                if mutation == "removed":
++                    runtime._provider = None
++                else:
++                    object.__setattr__(runtime._provider.identity, "config_sha256", "2" * 64)
++                result = runtime.dispatch(started())
++                self.assertEqual(result.status, "failed")
++                self.assertEqual(result.failure.code, FailureCode.SOURCE_BINDING_MISMATCH)
++                self.assertEqual(mailbox.envelopes, [])
++
++    def test_process_control_is_not_an_ordinary_provider_fallback(self):
++        from pontius.decision_provider.providers import BaselineProvider
++        for exception in (KeyboardInterrupt, SystemExit):
++            mailbox = Mailbox()
++            with patch.object(BaselineProvider, "propose", side_effect=exception), \
++                    self.assertRaises(exception):
++                self.runtime(mailbox).dispatch(started())
++            self.assertEqual(mailbox.envelopes, [])
++
++    def test_provider_cannot_mutate_engine_observation(self):
++        from pontius.decision_provider.providers import BaselineProvider
++        original = BaselineProvider.propose
++        def tamper(provider, observation):
++            object.__setattr__(observation, "remaining_work_ns", True)
++            return original(provider, observation)
++        with patch.object(BaselineProvider, "propose", tamper):
++            result = self.runtime().dispatch(started())
++        self.assertEqual(result.status, "decided")
++        self.assertEqual(result.decision.selected_action.kind, "raise")
++
++    def test_delivery_deadline_edges_preserve_selected_and_delivered_action(self):
++        for elapsed in (13_999_999_999, 14_000_000_000, 14_000_000_001,
++                        14_999_999_999, 15_000_000_000, 15_000_000_001):
++            with self.subTest(elapsed=elapsed):
++                mailbox, clock = Mailbox(), Clock()
++                original = mailbox.deliver
++                def delivery(envelope):
++                    receipt = original(envelope)
++                    clock.now = elapsed
++                    return receipt
++                mailbox.deliver = delivery
++                result = self.runtime(mailbox, clock).dispatch(started())
++                self.assertEqual(len(mailbox.envelopes), 1)
++                self.assertEqual(result.decision.selected_action.kind, "raise")
++                self.assertEqual(result.decision.delivered_action.kind, "raise")
++                self.assertEqual(result.decision.timing.work_cutoff_crossed, False)
++                self.assertEqual(result.status, "failed" if elapsed > 15_000_000_000 else "decided")
++                self.assert_record(result.decision)
++
++    def test_codec_rejects_completed_provider_selection_with_known_work_cutoff(self):
++        from copy import deepcopy
++        from pontius.decision_provider.codec import decision_payload, validate_decision
++        genuine = decision_payload(self.runtime().dispatch(started()).decision)
++        for elapsed in (14_000_000_000, 14_000_000_001, 15_000_000_000, 15_000_000_001):
++            with self.subTest(elapsed=elapsed):
++                value = deepcopy(genuine)
++                deadline = elapsed > 15_000_000_000
++                value["timing"].update(last_valid_observation_ns=elapsed,
++                    emission_observed_ns=elapsed, elapsed_ns=elapsed,
++                    response_compute_seconds=0.0, response_uninstrumented_seconds=elapsed / 1e9,
++                    work_cutoff_crossed=True, deadline_crossed=deadline)
++                value["failure_reason"] = (
++                    "action_deadline_exceeded" if deadline else "work_cutoff_exceeded")
++                with self.assertRaises(ValueError):
++                    validate_decision(value)
++
++    def test_interrupted_binding_fault_retains_unapplied_selection_at_cutoff(self):
++        from pontius.decision_provider.providers import BaselineProvider
++        class BindingClock(Clock):
++            armed = False
++            fired = False
++            def __call__(self):
++                if self.armed and not self.fired:
++                    self.fired = True
++                    self.now = 14_000_000_000
++                    runtime.source_manifest_sha256 = "2" * 64
++                return super().__call__()
++        clock, mailbox = BindingClock(), Mailbox()
++        runtime = self.runtime(mailbox, clock)
++        original = BaselineProvider.propose
++        def completed(provider, observation):
++            proposal = original(provider, observation)
++            clock.armed = True  # Next real clock observation occurs after provider return.
++            return proposal
++        with patch.object(BaselineProvider, "propose", completed):
++            result = runtime.dispatch(started())
++        self.assertEqual(result.status, "failed")
++        record = result.decision
++        self.assertEqual(record.failure_reason, FailureCode.SOURCE_BINDING_MISMATCH)
++        self.assertEqual(record.selection_reason, "provider_selected")
++        self.assertEqual(record.timing.status.value, "interrupted")
++        self.assertTrue(record.timing.work_cutoff_crossed)
++        self.assertIsNone(record.applied_action)
++        self.assertEqual(record.delivery_status, DeliveryStatus.NOT_ATTEMPTED)
++        self.assertEqual(mailbox.envelopes, [])
++        self.assert_record(record)
++
++    def _postflop_control(self, hole, public, expected_stacks, river_check=False, corrupt=False):
++        from pontius.decision_provider.model import DecisionProposal
++        from pontius.decision_provider.providers import BaselineProvider
++        from pontius.no_limit_betting import CHECK
++        mailbox, observations = Mailbox(), []
++        runtime, first, index = self.runtime(mailbox), started(hole), 0
++        original = BaselineProvider.propose
++        def propose(provider, observation):
++            observations.append(observation)
++            if corrupt and observation.betting.street.value == "flop":
++                return DecisionProposal(observation.decision_sha256, CHECK, "free_check")
++            return original(provider, observation)
++        def send(event_type, **fields):
++            nonlocal index
++            index += 1
++            return runtime.dispatch(event_type(hand_id=first.hand_id, event_index=index, **fields))
++        with patch.object(BaselineProvider, "propose", propose):
++            initial = runtime.dispatch(first)
++            self.assertEqual(initial.status, "decided")
++            for seat in (4, 5, 0, 1, 2):
++                kind = "check" if hole == "Qh Js" and seat == 2 else "call"
++                self.assertEqual(send(OpponentActionEvent, seat=seat, street="preflop",
++                    action=HandAction(kind, None)).status, "accepted")
++            self.assertEqual(runtime.state.stacks, (expected_stacks[0],) * 6)
++            self.assertTrue(runtime.state.round_complete)
++            visible = ()
++            for ordinal, (street, cards) in enumerate(zip(("flop", "turn", "river"), public), 2):
++                reveal = parse_cards(*cards.split())
++                visible += reveal
++                self.assertEqual(send(StreetRevealedEvent, street=street,
++                    cards=reveal).status, "accepted")
++                for seat in (1, 2):
++                    result = send(OpponentActionEvent, seat=seat, street=street,
++                                  action=HandAction("check", None))
++                checking = river_check and street == "river"
++                expected = ("check", None) if checking else ("raise", 2)
++                self.assertEqual(result.status, "decided")
++                record = result.decision
++                self.assertEqual((record.selected_action.kind, record.selected_action.raise_to),
++                                 expected, "postflop action")
++                self.assertEqual((record.street, record.action_index, record.street_action_index),
++                                 (street, ordinal, 1))
++                self.assertEqual(record.proposal.reason,
++                                 "free_check" if checking else "made_hand_raise")
++                self.assertEqual(len(mailbox.envelopes), ordinal)
++                self.assertEqual(record.applied_action, mailbox.envelopes[-1].action)
++                self.assertEqual(record.delivered_action, mailbox.envelopes[-1].action)
++                self.assertEqual(observations[-1].cards.board, visible)
++                self.assertEqual(runtime.state.stacks[3], expected_stacks[ordinal - 1])
++                self.assert_record(record)
++                for seat in ((4, 5, 0) if checking else (4, 5, 0, 1, 2)):
++                    self.assertEqual(send(OpponentActionEvent, seat=seat, street=street,
++                        action=HandAction("check" if checking else "call", None)).status,
++                        "accepted")
++                self.assertTrue(runtime.state.round_complete)
++                self.assertEqual(runtime.state.stacks, (expected_stacks[ordinal - 1],) * 6)
++                self.assertEqual(runtime.state.pot, (200 - expected_stacks[ordinal - 1]) * 6)
++
++    def test_real_postflop_streets_reset_raises_and_recognize_board_only_river(self):
++        self._postflop_control("As Ah", ("2c 2d 7s", "8h", "9c"), (196, 194, 192, 190))
++        self._postflop_control("Qh Js", ("Ac Kc Tc", "Jc", "Qc"),
++                               (198, 196, 194, 194), river_check=True)
++        with self.assertRaisesRegex(AssertionError, "postflop action"):
++            self._postflop_control("As Ah", ("2c 2d 7s", "8h", "9c"),
++                                   (196, 194, 192, 190), corrupt=True)
++
++    def test_strategy_and_manifest_admission(self):
++        for options in ({"strategy": "unregistered"}, {"strategy": True},
++                        {"strategy": "baseline-rules-v1"},
++                        {"strategy": "baseline-rules-v1", "source_manifest_sha256": "BAD"}):
++            with self.subTest(options=options), self.assertRaises((TypeError, ValueError)):
++                HandRuntime(blueprint=ImmutableBlueprintActionSource(source_id="provider-test"),
++                            mailbox=Mailbox(), clock=Clock(), **options)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_decision_provider_session.py b/tests/test_decision_provider_session.py
+new file mode 100644
+index 0000000..273ab5f
+--- /dev/null
++++ b/tests/test_decision_provider_session.py
+@@ -0,0 +1,95 @@
++"""Three literal deals and independently calculated session accounting."""
++import base64
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++import unittest
++
++REPO = Path(__file__).resolve().parents[1]
++PREFIX = 'pontius-v0a-table-session-v2-correctness-'
++
++
++def invoke(*extra, commands=b''):
++    process = subprocess.run([sys.executable, '-B', '-P',
++        str(REPO / 'tools/v0a_table_session.py'), '--session',
++        str(REPO / 'tests/fixtures/decision_provider/session.json'), '--blueprint',
++        str(REPO / 'tests/fixtures/table_host/empty_blueprint.json'), '--strategy',
++        'baseline-rules-v1', '--session-id', PREFIX + 'provider-fixture', *extra],
++        cwd=REPO, env=os.environ.copy(), input=commands, capture_output=True, timeout=150)
++    with tempfile.TemporaryDirectory() as capture:
++        Path(capture, 'stdout').write_bytes(process.stdout)
++        Path(capture, 'stderr').write_bytes(process.stderr)
++    return process
++
++
++class ProviderSessionTests(unittest.TestCase):
++    def test_legacy_omission_and_explicit_blueprint_preserve_results_and_fields(self):
++        reports = []
++        for extra in ([], ['--strategy','blueprint-v1']):
++            process = subprocess.run([sys.executable, '-B', '-P',
++                str(REPO/'tools/v0a_table_session.py'), '--session',
++                str(REPO/'tests/fixtures/table_session/two_hands.json'), '--blueprint',
++                str(REPO/'tests/fixtures/table_host/empty_blueprint.json'), '--session-id',
++                'pontius-v0a-table-session-v1-correctness-provider-legacy', '--auto',
++                '--format','json', *extra], cwd=REPO, env=os.environ.copy(),
++                capture_output=True, timeout=150)
++            self.assertEqual(process.returncode,0,(process.stdout,process.stderr))
++            report=json.loads(process.stdout)
++            self.assertEqual(report['version'],'pontius-v0a-table-session-result-v1')
++            self.assertNotIn('provider',report)
++            self.assertNotIn('config_sha256',report)
++            reports.append(report)
++        self.assertEqual(set(reports[0]),set(reports[1]))
++        self.assertEqual(reports[0]['carried_stacks'],reports[1]['carried_stacks'])
++        for left,right in zip(reports[0]['hands'],reports[1]['hands']):
++            self.assertEqual(set(left['result']),set(right['result']))
++            self.assertEqual(left['result']['applied_actions'],right['result']['applied_actions'])
++            self.assertEqual(left['result']['settlement'],right['result']['settlement'])
++
++    def test_three_hands_carry_independent_blind_profits_and_fixed_identity(self):
++        process = invoke('--auto', '--format', 'json')
++        self.assertEqual(process.returncode, 0, (process.stdout, process.stderr))
++        report = json.loads(process.stdout)
++        self.assertEqual(report['version'], 'pontius-v0a-table-session-result-v2')
++        self.assertEqual(report['completed_hands'], 3)
++        self.assertEqual(report['carried_stacks'], [200, 199, 197, 206, 198, 200])
++        self.assertEqual([hand['button'] for hand in report['hands']], [0, 1, 2])
++        stacks = [[200,199,198,203,200,200], [200,199,197,204,200,200],
++                  [200,199,197,206,198,200]]
++        reasons = []
++        for entry, final in zip(report['hands'], stacks):
++            hand = entry['result']
++            self.assertEqual(hand['version'], 'pontius-v0a-table-session-hand-result-v2')
++            self.assertEqual(hand['settlement']['final_stacks'], final)
++            self.assertEqual(hand['provider'], 'baseline-rules-v1')
++            self.assertEqual(hand['config_sha256'], report['config_sha256'])
++            self.assertEqual(hand['child_exit_code'], 0)
++            frames = [json.loads(row) for row in
++                      base64.b64decode(hand['child_stdout_base64']).splitlines()]
++            self.assertEqual(frames[0]['provider'], report['provider'])
++            self.assertEqual(frames[0]['config_sha256'], report['config_sha256'])
++            for frame in frames:
++                if frame['type'] == 'event_result' and frame['decision']:
++                    decision = frame['decision']
++                    self.assertEqual(decision['config_sha256'], report['config_sha256'])
++                    self.assertEqual(decision['selected_action'], decision['applied_action'])
++                    reasons.append(decision['proposal']['reason'])
++        self.assertEqual(reasons, ['premium_raise', 'premium_raise'])
++
++    def test_text_has_verified_reason_and_quit_keeps_first_settlement(self):
++        process = invoke('--format', 'text', commands=b'q\n')
++        self.assertEqual(process.returncode, 0, (process.stdout, process.stderr))
++        text = process.stdout.decode('ascii')
++        self.assertIn('Strategy: baseline-rules-v1', text)
++        self.assertIn('premium_raise', text)
++        self.assertIn('completed hands 1', text)
++        self.assertIn('Final stacks: 200 199 198 203 200 200', text)
++        self.assertNotIn('Hand 2/', text)
++        self.assertNotIn('Qc Kd', text)
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/tests/test_decision_provider_transport.py b/tests/test_decision_provider_transport.py
+new file mode 100644
+index 0000000..fd26a7d
+--- /dev/null
++++ b/tests/test_decision_provider_transport.py
+@@ -0,0 +1,410 @@
++"""Source admission and real child provider wire controls."""
++import json
++import importlib.util
++import os
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++import unittest
++
++REPO = Path(__file__).resolve().parents[1]
++
++
++class ProviderTransportTests(unittest.TestCase):
++    def invoke(self, repo=REPO, strategy='baseline-rules-v1', code=None, blueprint_path=None):
++        version = 'v2' if strategy == 'baseline-rules-v1' else 'v1'
++        identity = 'pontius-v0a-event-interface-' + version + '-correctness-provider-transport'
++        event = dict(kind='hand_started', schema_version='pontius-hand-event-v1',
++            hand_id=identity, event_index=0, button=0, controlled_seat=3,
++            starting_stacks=[200]*6, small_blind=1, big_blind=2, private_cards=[50,51])
++        command = ['-c', code] if code else [str(repo / 'tools/v0a_event_adapter.py')]
++        event['schema_version'] = 'pontius-v0a-event-v1'
++        return subprocess.run([sys.executable, '-B', '-P', *command, '--blueprint',
++            str(blueprint_path or REPO/'tests/fixtures/table_host/empty_blueprint.json'),
++            '--session-id',
++            identity, '--strategy', strategy], cwd=repo, env=os.environ.copy(),
++            input=(json.dumps(event)+'\n').encode(), capture_output=True, timeout=90)
++
++    def test_real_child_admits_new_population_then_readies_and_raises(self):
++        process = self.invoke()
++        rows = [json.loads(row) for row in process.stdout.splitlines()]
++        self.assertTrue(rows, process.stderr)
++        self.assertEqual(rows[0]['type'], 'ready')
++        self.assertEqual(rows[0]['provider'], 'baseline-rules-v1')
++        self.assertEqual(rows[0]['protocol'], 'pontius-v0a-event-interface-v2')
++        self.assertEqual(rows[1]['action'], {'kind':'raise', 'raise_to':4})
++        record = rows[2]['decision']
++        self.assertEqual(record['source_manifest_sha256'], rows[0]['source_manifest_sha256'])
++        self.assertEqual(record['config_sha256'], rows[0]['config_sha256'])
++        self.assertEqual(record['proposal']['reason'], 'premium_raise')
++
++    def test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            repo = Path(temporary) / 'source'
++            git = os.environ['PONTIUS_GIT']
++            subprocess.run([git, '-c', 'core.autocrlf=false', 'clone', '--quiet',
++                '--no-hardlinks', str(REPO), str(repo)], check=True, capture_output=True)
++            for relative in ('src/pontius/v0a/model.py',
++                             'src/pontius/decision_provider/extra.py',
++                             'src/pontius/decision_provider/__pycache__/extra.pyc'):
++                target = repo / relative
++                previous = target.read_bytes() if target.exists() else None
++                target.parent.mkdir(parents=True, exist_ok=True)
++                try:
++                    target.write_bytes((previous or b'') + b'\n# corruption\n')
++                    result = self.invoke(repo)
++                    self.assertNotIn(b'"type":"ready"', result.stdout)
++                    self.assertNotEqual(result.returncode, 0)
++                finally:
++                    target.unlink() if previous is None else target.write_bytes(previous)
++                    if '__pycache__' in relative:
++                        target.parent.rmdir()
++            target = repo / 'src/pontius/v0a/model.py'
++            target.write_bytes(target.read_bytes() + b'\n# unrelated committed drift\n')
++            subprocess.run([git, '-C', str(repo), 'add', str(target)], check=True)
++            subprocess.run([git, '-C', str(repo), '-c', 'user.name=Correctness', '-c',
++                'user.email=correctness@localhost', 'commit', '--quiet', '-m',
++                'Disposable source refusal control'], check=True)
++            self.assertNotIn(b'"type":"ready"', self.invoke(repo).stdout)
++
++    def test_unknown_strategy_refuses_before_readiness(self):
++        result = self.invoke(strategy='unknown')
++        self.assertNotEqual(result.returncode, 0)
++        self.assertNotIn(b'"type":"ready"', result.stdout)
++
++    def test_admitted_source_rejects_late_bytes_head_and_foreign_module_origin(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            repo = Path(temporary) / 'source'
++            git = os.environ['PONTIUS_GIT']
++            subprocess.run([git, '-c', 'core.autocrlf=false', 'clone', '--quiet',
++                '--no-hardlinks', str(REPO), str(repo)], check=True, capture_output=True)
++            prefix = """import runpy,sys,subprocess,os
++from pathlib import Path
++m = runpy.run_path(str(Path.cwd() / 'tools/v0a_table_host.py'))
++s = m['Source'](Path.cwd())
++s.load()
++print('SOURCE_ADMITTED', flush=True)
++"""
++            changes = ["""p=Path('src/pontius/v0a/model.py')
++raw=p.read_bytes()
++try:
++    p.write_bytes(raw+b'\\n# late drift\\n')
++    s.check()
++finally:
++    p.write_bytes(raw)
++""", """sys.modules['pontius.decision_provider.model'].__file__ = str(Path.cwd() / 'foreign.py')
++s.check()
++""", """subprocess.run([os.environ['PONTIUS_GIT'], '-c', 'user.name=Correctness',
++    '-c', 'user.email=correctness@localhost', 'commit', '--quiet', '--allow-empty',
++    '-m', 'Disposable HEAD drift'], check=True)
++s.check()
++"""]
++            for change in changes:
++                result = subprocess.run([sys.executable,'-B','-P','-c',prefix+change],
++                    cwd=repo,env=os.environ.copy(),capture_output=True,timeout=90)
++                self.assertIn(b'SOURCE_ADMITTED',result.stdout,result.stderr)
++                self.assertNotEqual(result.returncode,0)
++                self.assertIn(b'source_invalid',result.stderr)
++
++    def test_real_partial_pipe_action_retains_raw_prefix_and_fails(self):
++        code = """import runpy,os
++from pathlib import Path
++m=runpy.run_path(str(Path.cwd() / 'tools/v0a_event_adapter.py'))
++write=os.write
++def partial(fd, raw):
++    if b'"type":"action"' in raw:
++        return write(fd,raw[:12])
++    return write(fd,raw)
++os.write=partial
++raise SystemExit(m['main']())
++"""
++        result = self.invoke(code=code)
++        self.assertNotEqual(result.returncode,0)
++        ready, remainder=result.stdout.split(b'\n',1)
++        self.assertEqual(json.loads(ready)['type'],'ready')
++        self.assertTrue(remainder.startswith(b'{"action":{"'),remainder)
++        with self.assertRaises(json.JSONDecodeError):
++            json.loads(remainder.splitlines()[0])
++        self.assertIn(b'REFUSED',result.stderr)
++
++    def test_v1_readiness_and_action_keep_old_fields(self):
++        process = self.invoke(strategy='blueprint-v1')
++        rows = [json.loads(row) for row in process.stdout.splitlines()]
++        self.assertTrue(rows, process.stderr)
++        self.assertEqual(set(rows[0]), set(('protocol session_id type source_commit '
++            'source_manifest_sha256 blueprint_artifact_sha256 blueprint_sha256 '
++            'evidentiary').split()))
++        self.assertEqual(rows[0]['protocol'], 'pontius-v0a-event-interface-v1')
++        self.assertEqual(rows[1]['action'], {'kind':'call', 'raise_to':None})
++        self.assertNotIn('provider', rows[2]['decision'])
++
++    def consumer(self, rows, admitted_ready=None, blueprint_path=None):
++        admitted_ready = rows[0] if admitted_ready is None else admitted_ready
++        spec = importlib.util.spec_from_file_location('provider_transport_host',
++            REPO / 'tools/v0a_table_host.py')
++        host = importlib.util.module_from_spec(spec)
++        sys.modules[spec.name] = host
++        spec.loader.exec_module(host)
++        import pontius.blueprint_artifact.codec as codec
++        import pontius.no_limit_betting as betting
++        import pontius.holdem_cards as cards
++        import pontius.legal_decision_spine_v2 as spine
++        import pontius.v0a.model as model
++        import pontius.v0a.trace as trace
++        import pontius.decision_provider.model as provider_model
++        import pontius.decision_provider.providers as providers
++        import pontius.decision_provider.codec as provider_codec
++        modules = host.Modules(codec, betting, cards, spine, model, trace,
++                               provider_model, providers, provider_codec)
++        fixture = json.loads((REPO / 'tests/fixtures/decision_provider/session.json').read_bytes())
++        value = dict(fixture, **fixture['hands'][0], version=host.INPUT_VERSION)
++        del value['hands']
++        table = host.Table(host.TableInput.decode(json.dumps(value).encode(), modules),
++                           modules, rows[0]['session_id'])
++        class Source:
++            commit = admitted_ready['source_commit']
++            child_manifest = admitted_ready['source_manifest_sha256']
++        class Connection:
++            startup_deadline = 1
++            def __init__(self):
++                self.frames = iter(json.dumps(row).encode() + b'\n' for row in rows)
++            def receive(self, deadline):
++                return next(self.frames)
++            def deadline(self):
++                return 1
++            def send(self, raw, deadline):
++                self.sent = raw
++        blueprint = codec.decode_blueprint(
++            (blueprint_path or REPO/'tests/fixtures/table_host/empty_blueprint.json').read_bytes())
++        identity = providers.make_provider('baseline-rules-v1', blueprint).identity
++        consumer = host.WireConsumer(Connection(), Source(), table,
++            admitted_ready['blueprint_artifact_sha256'], blueprint.digest, identity, blueprint)
++        return host, table, consumer
++
++    def test_fallback_authority_binds_action_reason_and_selected_fallback(self):
++        with tempfile.TemporaryDirectory() as directory:
++            hit = Path(directory)/'hit.json'
++            hit.write_bytes((REPO/'tests/fixtures/event_adapter/fold_blueprint.json').read_bytes()
++                            .replace(b'[48, 49]', b'[50, 51]'))
++            for path, amount, reason in ((None, None, 'passive_default'), (hit, 8, 'table_hit')):
++                process = self.invoke(blueprint_path=path)
++                original = [json.loads(r) for r in process.stdout.splitlines()]
++                record = original[2]['decision']
++                self.assertEqual(record['fallback_action'],
++                                 dict(kind='call' if amount is None else 'raise', raise_to=amount))
++                self.assertEqual(record['fallback_reason'], reason)
++                host, table, consumer = self.consumer(original, blueprint_path=path)
++                consumer.ready()
++                consumer.exchange(table.start_event())
++                self.assertEqual(len(table.applied_actions), 1)
++                changes = [dict(fallback_action=dict(kind='fold', raise_to=None)),
++                           dict(fallback_reason=('table_hit' if amount is None
++                                                 else 'passive_default'))]
++                changes.append(dict(changes[0], **changes[1]))
++                for outcome in ('error', 'abstained', 'invalid'):
++                    proposal = (None if outcome == 'error' else dict(record['proposal'],
++                        **(dict(action=None, reason='abstain') if outcome == 'abstained'
++                           else dict(decision_sha256='0'*64))))
++                    changes.append(dict(fallback_action=record['selected_action'],
++                        proposal=proposal,
++                        provider_outcome=outcome, selection_reason='provider_'+outcome,
++                        selection_origin='blueprint_fallback'))
++                for change in changes:
++                    rows = json.loads(json.dumps(original))
++                    rows[2]['decision'].update(change)
++                    host, table, consumer = self.consumer(rows, blueprint_path=path)
++                    consumer.ready()
++                    with self.subTest(path=path, change=change), self.assertRaises(
++                            host.HostRefusal):
++                        consumer.exchange(table.start_event())
++                    self.assertEqual(len(table.applied_actions), 1)
++
++    def test_failed_consumer_rejects_completed_cutoff_with_provider_selection(self):
++        rows = [json.loads(r) for r in self.invoke().stdout.splitlines()]
++        record = rows[2]['decision']
++        timing = record['timing']
++        end = timing['wall_start_ns'] + 14_000_000_000
++        timing.update(last_valid_observation_ns=end, emission_observed_ns=end,
++            elapsed_ns=14_000_000_000, response_compute_seconds=0.0,
++            response_uninstrumented_seconds=14.0, work_cutoff_crossed=True, deadline_crossed=False)
++        record['failure_reason'] = 'work_cutoff_exceeded'
++        failure = {k: record[k] for k in ('hand_id','event_index','action_index',
++                                         'delivery_status','delivered_action','timing')}
++        rows[2].update(status='failed', failure=dict(failure, code='work_cutoff_exceeded'))
++        host, table, consumer = self.consumer(rows)
++        consumer.ready()
++        with self.assertRaises(host.HostRefusal) as error:
++            consumer.exchange(table.start_event())
++        self.assertEqual(error.exception.code, 'protocol_invalid')
++        self.assertEqual(len(table.applied_actions), 1)
++
++    def test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields(self):
++        process = self.invoke()
++        original = [json.loads(row) for row in process.stdout.splitlines()][:3]
++        self.assertEqual(len(original), 3, process.stderr)
++        for phase, key, value in [(0,'protocol','pontius-v0a-event-interface-v1'),
++                (0,'provider','blueprint-v1'), (0,'config_sha256','0'*64),
++                (0,'blueprint_sha256','0'*64),
++                (0,'source_manifest_sha256','0'*64), (0,'extra',True),
++                (2,'decision_sha256','0'*64), (2,'source_manifest_sha256','0'*64),
++                (2,'config_sha256','0'*64), (2,'extra',True),
++                (2,'applied_action',{'kind':'call','raise_to':None})]:
++            rows = json.loads(json.dumps(original))
++            (rows[phase] if phase == 0 else rows[2]['decision'])[key] = value
++            host, table, consumer = self.consumer(rows, original[0])
++            with self.subTest(phase=phase,key=key), self.assertRaises(host.HostRefusal):
++                consumer.ready()
++                consumer.exchange(table.start_event())
++            self.assertEqual(len(table.applied_actions), 0 if phase == 0 else 1)
++        host, table, consumer = self.consumer(original)
++        consumer.ready()
++        consumer.exchange(table.start_event())
++        self.assertEqual(table.applied_actions[0]['action'], {'kind':'raise','raise_to':4})
++        self.assertEqual(consumer.reasons, {1:'premium_raise'})
++        rows = json.loads(json.dumps(original))
++        rows[2]['decision'].update(provider_outcome='invalid',selection_reason='provider_invalid',
++            selection_origin='blueprint_fallback',fallback_action={'kind':'raise','raise_to':4})
++        host,table,consumer = self.consumer(rows)
++        consumer.ready()
++        with self.assertRaises(host.HostRefusal):
++            consumer.exchange(table.start_event())
++        self.assertEqual(len(table.applied_actions),1)
++
++    def test_duplicate_action_and_failure_preserve_received_application(self):
++        process = self.invoke()
++        original = [json.loads(row) for row in process.stdout.splitlines()]
++        self.assertGreaterEqual(len(original), 4, process.stderr)
++        duplicate = original[:2] + [original[1]]
++        host, table, consumer = self.consumer(duplicate)
++        consumer.ready()
++        with self.assertRaises(host.HostRefusal):
++            consumer.exchange(table.start_event())
++        self.assertEqual(len(table.applied_actions), 1)
++        # A real child EOF failure supplies its exact typed payload. Bind the failure
++        # to the opening event to control the before/after-action consumer boundary.
++        failure = next(row for row in original if row['type']=='event_result'
++                       and row['status']=='failed')
++        for after in (False, True):
++            failed = json.loads(json.dumps(failure))
++            failed['event_index'] = 0
++            failed['failure']['event_index'] = 0
++            rows = original[:2] + [failed] if after else original[:1] + [failed]
++            host, table, consumer = self.consumer(rows)
++            consumer.ready()
++            with self.assertRaises(host.HostRefusal) as error:
++                consumer.exchange(table.start_event())
++            self.assertEqual(error.exception.code, 'child_failed')
++            self.assertEqual(len(table.applied_actions), int(after))
++
++    def test_constructed_failure_record_before_and_after_action_is_truthful(self):
++        for before in (False, True):
++            code = """import runpy,os
++from pathlib import Path
++m=runpy.run_path(str(Path.cwd() / 'tools/v0a_event_adapter.py'))
++factory=m['runtime_type']
++class Clock:
++    now=0
++    def __call__(self): return self.now
++clock=Clock()
++def factory_with_clock(model,core,clock_module):
++    base=factory(model,core,clock_module)
++    class Runtime(base):
++        def __init__(self,**kwargs): super().__init__(clock=clock,**kwargs)
++    return Runtime
++m['main'].__globals__['runtime_type']=factory_with_clock
++write=os.write
++def controlled(fd,raw):
++    if b'"type":"action"' in raw:
++        if BEFORE:
++            raise OSError('controlled zero-byte action write failure')
++        count=write(fd,raw)
++        clock.now=15000000001
++        return count
++    return write(fd,raw)
++os.write=controlled
++raise SystemExit(m['main']())
++""".replace('BEFORE',repr(before))
++            result=self.invoke(code=code)
++            self.assertNotEqual(result.returncode,0)
++            rows=[json.loads(row) for row in result.stdout.splitlines()]
++            self.assertTrue(any(row['type']=='event_result' for row in rows),
++                            (before,result.stdout,result.stderr))
++            failed=next(row for row in rows if row['type']=='event_result')
++            self.assertEqual(failed['status'],'failed')
++            self.assertIsNotNone(failed['decision'])
++            self.assertEqual(failed['decision']['applied_action'],{'kind':'raise','raise_to':4})
++            self.assertEqual(failed['decision']['delivery_status'],
++                             'unknown' if before else 'accepted')
++            self.assertEqual(failed['decision']['delivered_action'],None if before else
++                             {'kind':'raise','raise_to':4})
++            host,table,consumer=self.consumer(rows)
++            consumer.ready()
++            with self.assertRaises(host.HostRefusal) as error:
++                consumer.exchange(table.start_event())
++            self.assertEqual(error.exception.code,'child_failed')
++            self.assertEqual(len(table.applied_actions),0 if before else 1)
++            for change in (dict(fallback_action=dict(kind='fold',raise_to=None)),
++                           dict(fallback_reason='table_hit')):
++                corrupt=json.loads(json.dumps(rows))
++                next(r for r in corrupt if r['type']=='event_result')['decision'].update(change)
++                host,table,consumer=self.consumer(corrupt)
++                consumer.ready()
++                with self.assertRaises(host.HostRefusal) as mismatch:
++                    consumer.exchange(table.start_event())
++                self.assertEqual(mismatch.exception.code,'state_mismatch')
++                self.assertEqual(len(table.applied_actions),0 if before else 1)
++            contradictory=json.loads(json.dumps(rows))
++            for row in contradictory:
++                if row['type']=='event_result':
++                    row['failure']['code']='invalid_event'
++            host,table,consumer=self.consumer(contradictory)
++            consumer.ready()
++            with self.assertRaises(host.HostRefusal) as error:
++                consumer.exchange(table.start_event())
++            self.assertEqual(error.exception.code,'protocol_invalid')
++            self.assertEqual(len(table.applied_actions),0 if before else 1)
++
++    def test_hidden_deal_pair_preserves_actual_propose_observation_and_visible_change_acts(self):
++        from unittest.mock import patch
++        from pontius.decision_provider.providers import BaselineProvider
++        from pontius.immutable_blueprint import ImmutableBlueprintActionSource
++        from pontius.holdem_cards import SixSeatHoldemDeal
++        from pontius.v0a.model import DeliveryReceipt, HandStartedEvent
++        from pontius.v0a.runtime import HandRuntime
++        # Three literal controls: two full deals differ only in unseen opponents;
++        # the third changes the bot's visible premium pair to a weak holding.
++        pairs = [((0,5),(8,13),(16,21),(50,51),(24,29),(32,37)),
++                 ((8,13),(0,5),(16,21),(50,51),(24,29),(32,37)),
++                 ((0,5),(8,13),(16,21),(1,20),(24,29),(32,37))]
++        observed, delivered = [], []
++        propose = BaselineProvider.propose
++        def capture(provider, observation):
++            observed.append(observation)
++            return propose(provider, observation)
++        class Mailbox:
++            def deliver(self, envelope):
++                delivered.append(envelope.action)
++                return DeliveryReceipt(envelope.hand_id,envelope.action_index)
++        for private in pairs:
++            deal=SixSeatHoldemDeal(private_hands=private,board_runout=(40,45,2,7,10))
++            runtime=HandRuntime(blueprint=ImmutableBlueprintActionSource(source_id='provider-test'),
++                mailbox=Mailbox(), strategy='baseline-rules-v1', source_manifest_sha256='1'*64)
++            event=HandStartedEvent(hand_id='pontius-v0a-event-interface-v2-correctness-hidden',
++                event_index=0,button=0,controlled_seat=3,starting_stacks=(200,)*6,
++                small_blind=1,big_blind=2,private_cards=deal.hand(3))
++            with patch.object(BaselineProvider,'propose',capture):
++                outcome=runtime.dispatch(event)
++            self.assertEqual(outcome.status,'decided')
++        self.assertEqual(observed[0].decision_sha256,observed[1].decision_sha256)
++        self.assertEqual(observed[0].cards,observed[1].cards)
++        self.assertEqual(observed[0].betting,observed[1].betting)
++        self.assertEqual(delivered[0],delivered[1])
++        self.assertEqual((delivered[0].kind,delivered[0].raise_to),('raise',4))
++        self.assertEqual(delivered[2].kind,'fold')
++        self.assertNotEqual(observed[0].decision_sha256,observed[2].decision_sha256)
++        self.assertFalse(hasattr(observed[0],'deal'))
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/tests/test_inventory_and_profiles.py b/tests/test_inventory_and_profiles.py
+index 4036ba9..e71a243 100644
+--- a/tests/test_inventory_and_profiles.py
++++ b/tests/test_inventory_and_profiles.py
+@@ -201,20 +201,22 @@ V7_RETAINED_OVERLAYS = {
+         7_858_857,
+         "78b2f8351ca49785756ec336d4f967bcc83a86f9ef96506a6144726cf3b312b3",
+     ),
+ }
+ 
+ STABILIZATION_TEST_FILES = (
+     "tests/evidence_test_support.py",
+     "tests/orchestration_test_support.py",
+     "tests/test_blueprint_artifact.py",
+     "tests/test_blueprint_artifact_boundary.py",
++    "tests/test_decision_provider.py", "tests/test_decision_provider_runtime.py",
++    "tests/test_decision_provider_session.py", "tests/test_decision_provider_transport.py",
+     "tests/test_evidence_authorization.py",
+     "tests/test_evidence_errors_and_model.py",
+     "tests/test_evidence_filesystem_and_git.py",
+     "tests/test_evidence_import_boundary.py",
+     "tests/test_evidence_manifest_generation.py",
+     "tests/test_evidence_manifests.py",
+     "tests/test_hand_adapter_boundary.py", "tests/test_hand_scenario.py",
+     "tests/test_inventory_and_profiles.py", "tests/test_retained_evidence_inventory.py",
+     "tests/test_retained_v7_assessment.py",
+     "tests/test_seeded_deals.py", "tests/test_seeded_deals_boundary.py",
+@@ -29908,36 +29910,36 @@ class CheckedInInventoryTests(unittest.TestCase):
+             item_universe=tuple(sorted(expected_universe)),
+         )
+         self.assertEqual(len(review["receipt"]["expanded_rows"]), 141)
+         self.assertEqual(
+             review["spec_capabilities_sha256"],
+             "d303a26e373f0b173a4283dcede5735fdae6b849fdb0cb0ffcddec9017e8012a",
+         )
+         self.assertEqual(
+             review["analysis_census"],
+             {
+-                "subprocess_direct_site_count": 55,
+-                "subprocess_helper_site_count": 17,
++                "subprocess_direct_site_count": 61,
++                "subprocess_helper_site_count": 19,
+                 "cross_file_helper_edge_count": 27,
+                 "cupy_call_node_count": 30,
+-                "string_sink_decoy_count": 591,
++                "string_sink_decoy_count": 592,
+                 "string_sink_decoy_sha256": (
+-                    "af1619822ecd6aece87be723b9718ff129bb86098d9ba027bc6d59537b8c9860"
++                    "2790fe5f3c7f16cf97e62baed60e1c2483cf207da71cfebd02e866858e7aff3c"
+                 ),
+                 "string_sink_decoy_partitions": {
+                     "design_production": 17,
+                     "historical_production": 6,
+-                    "prior_stabilization_synthetic": 37,
++                    "prior_stabilization_synthetic": 38,
+                     "task2_synthetic": 531,
+                 },
+                 "analyzed_sites_sha256": (
+-                    "ef54287f338ba6c4cf987546b77d325a7915cb5c7ec16112968182fb2b1b8bc9"
++                    "f9cc564c6751a167d7c4a3b189bc9b35423817be4a23d3e843f9403ec82f8c30"
+                 ),
+             },
+         )
+         receipt = review["receipt"]
+         expected_kind = {item_id: item_kind for item_kind, item_id in expected_universe}
+         expanded_items = {str(row["item_id"]) for row in receipt["expanded_rows"]}
+         deny_all = {
+             (str(row["item_kind"]), str(row["item_id"]))
+             for row in receipt["deny_all"]
+         }
+@@ -30013,29 +30015,29 @@ class CheckedInInventoryTests(unittest.TestCase):
+         self.assertIn(("stable_id", source_seal_id), deny_all)
+         self.assertEqual(
+             [
+                 row["reason"]
+                 for row in review["unresolved_dynamic_blockers"]
+                 if row["item_id"] == source_seal_id
+             ],
+             ["unsupported subprocess keyword: capture_output"],
+         )
+         blockers = review["unresolved_dynamic_blockers"]
+-        self.assertEqual(len(blockers), 646)
++        self.assertEqual(len(blockers), 678)
+         self.assertEqual(
+             Counter(row["reason"] for row in blockers),
+             Counter(
+                 {
+-                    "unsupported subprocess keyword: capture_output": 135,
+-                    "dynamic helper arguments prevent exact sink derivation": 132,
+-                    "unsupported subprocess keyword: input": 42,
+-                    "subprocess executable is not the active Python worker": 9,
++                    "unsupported subprocess keyword: capture_output": 139,
++                    "dynamic helper arguments prevent exact sink derivation": 145,
++                    "unsupported subprocess keyword: input": 55,
++                    "subprocess executable is not the active Python worker": 11,
+                     "helper binding has fewer positional parameters than defaults": 7,
+                     "CuPy action or view is outside the approved call scope": 11,
+                     "dynamic repetition prevents a finite call bound": 2,
+                     "dynamic repetition prevents a finite helper call bound": 1,
+                     "mixed protected receiver is dynamically unresolved": 61,
+                     "unsupported subprocess keyword: stdin": 15,
+                     "registered probe implementation is absent": 1,
+                     "dynamic sensitive call result is unresolved": 16,
+                     "unregistered CuPy call is unresolved": 2,
+                     "deferred generator consumption is dynamically unresolved": 53,
+@@ -30117,33 +30119,33 @@ class CheckedInInventoryTests(unittest.TestCase):
+                 ("tests/test_factorized_belief.py", 34),
+                 ("tests/test_factorized_belief.py", 34),
+                 ("tests/test_fresh_action_width_greedy.py", 229),
+                 ("tests/test_fresh_action_width_transfer_structures.py", 288),
+                 ("tests/test_fresh_action_width_transfer_structures.py", 292),
+                 ("tests/test_full_width_river_capacity_preflight.py", 54),
+                 ("tests/test_full_width_river_capacity_preflight_v2_result.py", 150),
+                 ("tests/test_h32_selector_stable_affine_certificate_audit.py", 110),
+                 ("tests/test_hand_scenario.py", 51),
+                 ("tests/test_incremental_leaf_adjoint_response.py", 276),
+-                ("tests/test_inventory_and_profiles.py", 1465),
+-                ("tests/test_inventory_and_profiles.py", 1472),
+-                ("tests/test_inventory_and_profiles.py", 2960),
+-                ("tests/test_inventory_and_profiles.py", 4172),
+-                ("tests/test_inventory_and_profiles.py", 4434),
+-                ("tests/test_inventory_and_profiles.py", 5667),
+-                ("tests/test_inventory_and_profiles.py", 12483),
+-                ("tests/test_inventory_and_profiles.py", 12483),
+-                ("tests/test_inventory_and_profiles.py", 12492),
+-                ("tests/test_inventory_and_profiles.py", 16223),
+-                ("tests/test_inventory_and_profiles.py", 18249),
+-                ("tests/test_inventory_and_profiles.py", 18249),
+-                ("tests/test_inventory_and_profiles.py", 4801),
++                ("tests/test_inventory_and_profiles.py", 1467),
++                ("tests/test_inventory_and_profiles.py", 1474),
++                ("tests/test_inventory_and_profiles.py", 2962),
++                ("tests/test_inventory_and_profiles.py", 4174),
++                ("tests/test_inventory_and_profiles.py", 4436),
++                ("tests/test_inventory_and_profiles.py", 5669),
++                ("tests/test_inventory_and_profiles.py", 12485),
++                ("tests/test_inventory_and_profiles.py", 12485),
++                ("tests/test_inventory_and_profiles.py", 12494),
++                ("tests/test_inventory_and_profiles.py", 16225),
++                ("tests/test_inventory_and_profiles.py", 18251),
++                ("tests/test_inventory_and_profiles.py", 18251),
++                ("tests/test_inventory_and_profiles.py", 4803),
+                 ("tests/test_linear_program_certificate.py", 157),
+                 ("tests/test_linear_program_certificate.py", 193),
+                 ("tests/test_native_simplex_audit_reanalysis.py", 404),
+                 ("tests/test_native_simplex_audit_reanalysis.py", 386),
+                 ("tests/test_native_simplex_audit_reanalysis.py", 298),
+                 ("tests/test_river_selective_screen.py", 320),
+                 ("tests/test_shared_resident_response_context.py", 71),
+                 ("tests/test_v0a_event_adapter_boundary.py", 197),
+                 ("tests/test_v0a_event_adapter_boundary.py", 207),
+             ],
+diff --git a/tests/test_v0a_table_session.py b/tests/test_v0a_table_session.py
+index c49f3a7..bd76678 100644
+--- a/tests/test_v0a_table_session.py
++++ b/tests/test_v0a_table_session.py
+@@ -475,20 +475,21 @@ class RegistrationPolicyTests(unittest.TestCase):
+         import importlib.util
+         spec = importlib.util.spec_from_file_location('session_boundary_checker',
+             REPO / 'tools/check_stabilization_boundaries.py')
+         checker = importlib.util.module_from_spec(spec)
+         spec.loader.exec_module(checker)
+         self.assertTrue(hasattr(checker, 'enforce_table_session_import_policy'),
+                         'the bounded session import policy is absent')
+         raw = TOOL.read_bytes()
+         key = 'tools/v0a_table_session.py'
+         checker.enforce_table_session_import_policy({key: raw})
++        self.assertEqual(raw.count(b'6ec8a162b053158203663c48e82314b10750f962'), 1)
+         for changed in (raw + b'\nimport signal\n', raw + b'\nimport pontius.v0a.runtime\n',
+                         raw + b'\nimport tools.v0a_event_adapter\n',
+                         raw.replace(b'tools/v0a_table_host.py', b'tools/v0a_event_adapter.py'),
+-                        raw.replace(b'0faa101f9be9940f9ae935df51f8c79e2eeb2b15', b'0'*40)):
++                        raw.replace(b'6ec8a162b053158203663c48e82314b10750f962', b'0'*40)):
+             with self.assertRaises(checker.BoundaryError):
+                 checker.enforce_table_session_import_policy({key: changed})
+ 
+ 
+ if __name__ == '__main__':
+     unittest.main()
+diff --git a/tools/check_stabilization_boundaries.py b/tools/check_stabilization_boundaries.py
+index 744b177..9cc2ae8 100644
+--- a/tools/check_stabilization_boundaries.py
++++ b/tools/check_stabilization_boundaries.py
+@@ -46,20 +46,27 @@ V0A_PERMITTED_INTERNAL = frozenset(
+         "pontius.action_clock",
+         "pontius.preparation_bank",
+         "pontius.legal_decision_spine_v2",
+         "pontius.no_limit_betting",
+         "pontius.holdem_cards",
+         "pontius.immutable_blueprint",
+     }
+ )
+ V0A_HOST_ONLY_INTERNAL = frozenset({"pontius.river"})
+ V0A_HOST_MODULE = "pontius.v0a.replay"
++DECISION_PROVIDER_ORIGIN_PATHS = frozenset(
++    f"src/pontius/decision_provider/{name}.py"
++    for name in ("__init__", "model", "providers", "selection", "codec")
++)
++_PROVIDER = "pontius.decision_provider"
++_PROVIDER_RUNTIME = {_PROVIDER + "." + name for name in ("model", "providers", "selection")}
++_PROVIDER_TRANSPORT = {_PROVIDER + "." + name for name in ("model", "providers", "codec")}
+ BLUEPRINT_ARTIFACT_ORIGIN_PATHS = frozenset(
+     {
+         "src/pontius/blueprint_artifact/__init__.py",
+         "src/pontius/blueprint_artifact/codec.py",
+     }
+ )
+ ORCHESTRATION_ORIGIN_PATHS = frozenset(
+     {
+         "tools/__init__.py",
+         "tools/check_stabilization_boundaries.py",
+@@ -171,20 +178,22 @@ def enforce_legacy_edges(baseline: object, current: object) -> None:
+     for added in sorted(current_modules - baseline_modules):
+         classified = (
+             added == "pontius.evidence"
+             or added.startswith("pontius.evidence.")
+             or added == "pontius.v0a"
+             or added.startswith("pontius.v0a.")
+             or added == "pontius.blueprint_artifact"
+             or added.startswith("pontius.blueprint_artifact.")
+             or added == "pontius.hand_scenario"
+             or added.startswith("pontius.hand_scenario.")
++            or added in {_BASELINE.module_name_for_path(path)
++                         for path in DECISION_PROVIDER_ORIGIN_PATHS}
+         )
+         if not classified:
+             violations.append(f"new source module lacks stabilization classification: {added}")
+     for origin in sorted(baseline_modules & current_modules):
+         removed = baseline_edges[origin] - current_edges[origin]
+         added = current_edges[origin] - baseline_edges[origin]
+         if removed or added:
+             detail = [f"legacy outgoing edges changed for {origin}"]
+             detail.extend(f"removed {origin} -> {target}" for target in sorted(removed))
+             detail.extend(f"added {origin} -> {target}" for target in sorted(added))
+@@ -243,20 +252,27 @@ def enforce_origin_classification(
+     )
+     violations.extend(
+         f"unclassified stabilization origin: {path}"
+         for path in sorted(current_sources)
+         if (
+             path == "src/pontius/v0a.py"
+             or path.startswith("src/pontius/v0a/")
+         )
+         and path not in V0A_ORIGIN_PATHS
+     )
++    violations.extend(
++        f"unclassified stabilization origin: {path}"
++        for path in sorted(current_sources)
++        if (path == "src/pontius/decision_provider.py"
++            or path.startswith("src/pontius/decision_provider/"))
++        and path not in DECISION_PROVIDER_ORIGIN_PATHS
++    )
+     violations.extend(
+         f"unclassified stabilization origin: {path}"
+         for path in sorted(tool_sources)
+         if path.startswith("tools/") and path not in ORCHESTRATION_ORIGIN_PATHS
+     )
+     _raise_violations(violations)
+ 
+ 
+ def enforce_evidence_import_policy(sources: Mapping[str, bytes]) -> None:
+     """Apply the exact active-evidence dependency allowlist."""
+@@ -336,20 +352,22 @@ def enforce_v0a_import_policy(sources: Mapping[str, bytes]) -> None:
+                     f"forbidden v0a import: {origin} -> {target} "
+                     "(the explicit-deal host is never imported by a policy module)"
+                 )
+             continue
+         if _is_stdlib(target):
+             continue
+         if target in V0A_PERMITTED_INTERNAL:
+             continue
+         if target in V0A_HOST_ONLY_INTERNAL and origin == V0A_HOST_MODULE:
+             continue
++        if origin == "pontius.v0a.runtime" and target in _PROVIDER_RUNTIME:
++            continue
+         violations.append(f"forbidden v0a import: {origin} -> {target}")
+     _raise_violations(violations)
+ 
+ 
+ def enforce_orchestration_import_policy(sources: Mapping[str, bytes]) -> None:
+     """Keep orchestration tools on the standard library and declared siblings."""
+ 
+     violations: list[str] = []
+     try:
+         edges = _BASELINE.import_edges(sources)
+@@ -369,26 +387,72 @@ def enforce_orchestration_import_policy(sources: Mapping[str, bytes]) -> None:
+         adapter_internal = origin == "tools.v0a_hand_adapter" and target in {
+             "pontius.hand_scenario.codec", "pontius.blueprint_artifact.codec",
+             "pontius.v0a.replay", "pontius.v0a.trace"}
+         event_internal = origin == "tools.v0a_event_adapter" and target in {
+             "pontius.blueprint_artifact.codec", "pontius.v0a.model",
+             "pontius.v0a.runtime", "pontius.v0a.clock", "pontius.v0a.trace"}
+         table_internal = origin == "tools.v0a_table_host" and target in {
+             "pontius.blueprint_artifact.codec", "pontius.no_limit_betting",
+             "pontius.holdem_cards", "pontius.legal_decision_spine_v2",
+             "pontius.v0a.model", "pontius.v0a.trace"}
++        provider_internal = (origin in {"tools.v0a_event_adapter", "tools.v0a_table_host"}
++                             and target in _PROVIDER_TRANSPORT)
+         if (not _is_stdlib(target) and not sibling and not driver_internal
+-                and not adapter_internal and not event_internal and not table_internal):
++                and not adapter_internal and not event_internal and not table_internal
++                and not provider_internal):
+             violations.append(f"forbidden orchestration import: {origin} -> {target}")
+     _raise_violations(violations)
+ 
+ 
++def enforce_decision_provider_import_policy(sources: Mapping[str, bytes]) -> None:
++    """ADR-0505: exact trusted provider sources, with no complete-deal or I/O routes."""
++    allowed = {
++        _PROVIDER: set(),
++        _PROVIDER + ".model": {"__future__", "dataclasses", "enum", "hashlib", "json", "math",
++            "pontius.holdem_cards", "pontius.no_limit_betting", "pontius.immutable_blueprint",
++            "pontius.v0a.model"},
++        _PROVIDER + ".providers": {"__future__", "itertools", _PROVIDER + ".model",
++            "pontius.immutable_blueprint", "pontius.no_limit_betting", "pontius.river"},
++        _PROVIDER + ".selection": {"__future__", _PROVIDER + ".model", _PROVIDER + ".providers",
++            "pontius.immutable_blueprint", "pontius.no_limit_betting"},
++        _PROVIDER + ".codec": {"__future__", "json", "math", _PROVIDER + ".model",
++            "pontius.v0a.model", "pontius.v0a.trace"},
++    }
++    incoming = {"pontius.v0a.runtime": _PROVIDER_RUNTIME,
++        "tools.v0a_event_adapter": _PROVIDER_TRANSPORT,
++        "tools.v0a_table_host": _PROVIDER_TRANSPORT}
++    violations = []
++    for origin, target in _BASELINE.import_edges(sources):
++        if origin in allowed and target not in allowed[origin]:
++            violations.append(f"forbidden decision provider import: {origin} -> {target}")
++        if (target == _PROVIDER or target.startswith(_PROVIDER + ".")) and not (
++            target in allowed.get(origin, set()) or target in incoming.get(origin, set())
++        ):
++            violations.append(f"forbidden decision provider incoming edge: {origin} -> {target}")
++    forbidden = {"SixSeatHoldemDeal", "__import__", "__builtins__", "eval", "exec", "compile",
++        "open", "input", "globals", "locals", "vars", "modules",
++        "import_module", "exec_module", "load_module", "run_module", "run_path"}
++    for path in sorted(DECISION_PROVIDER_ORIGIN_PATHS & sources.keys()):
++        tree = _BASELINE._parse_source(sources[path], relative_path=path)
++        if path.endswith("/__init__.py") and any(not (isinstance(node, ast.Expr)
++            and isinstance(node.value, ast.Constant) and type(node.value.value) is str)
++            for node in tree.body):
++            violations.append("decision_provider package initializer must be inert")
++        for node in ast.walk(tree):
++            if (isinstance(node, ast.Name) and node.id in forbidden or
++                isinstance(node, ast.Attribute) and node.attr in forbidden or
++                isinstance(node, ast.ImportFrom) and any(
++                    alias.name == "*" or alias.name in forbidden for alias in node.names)):
++                violations.append(f"forbidden decision provider route: {path}:{node.lineno}")
++    _raise_violations(violations)
++
++
+ def enforce_blueprint_artifact_import_policy(sources: Mapping[str, bytes]) -> None:
+     """Keep the portable codec inert and limited to its two value modules."""
+ 
+     try:
+         edges = _BASELINE.import_edges(sources)
+     except _BASELINE.BaselineError as error:
+         raise BoundaryError(f"blueprint artifact sources cannot be scanned: {error}") from error
+     violations = []
+     family = "pontius.blueprint_artifact"
+     allowed = {"__future__", "json", "pontius.immutable_blueprint",
+@@ -436,37 +500,39 @@ def enforce_hand_adapter_import_policy(sources: Mapping[str, bytes]) -> None:
+ 
+ def enforce_event_adapter_import_policy(sources: Mapping[str, bytes]) -> None:
+     """ADR-0495: one exact host tool with no generalized dependency opening."""
+     origin = "tools.v0a_event_adapter"
+     allowed = {
+         "__future__", "argparse", "hashlib", "io", "json", "msvcrt", "os",
+         "pathlib", "re", "stat", "subprocess", "sys",
+         "pontius.blueprint_artifact.codec", "pontius.v0a.model",
+         "pontius.v0a.runtime", "pontius.v0a.clock", "pontius.v0a.trace",
+     }
++    allowed |= _PROVIDER_TRANSPORT
+     violations = [
+         f"forbidden event adapter import: {edge_origin} -> {target}"
+         for edge_origin, target in _BASELINE.import_edges(sources)
+         if edge_origin == origin and target not in allowed
+     ]
+     _raise_violations(violations)
+ 
+ 
+ def enforce_table_host_import_policy(sources: Mapping[str, bytes]) -> None:
+     """ADR-0497: exact public game helpers and bounded native host transport."""
+     allowed = {
+         "__future__", "argparse", "base64", "ctypes", "dataclasses", "hashlib", "io",
+         "json", "math", "os", "pathlib", "queue", "re", "stat", "subprocess", "sys",
+         "threading", "time", "pontius.blueprint_artifact.codec", "pontius.no_limit_betting",
+         "pontius.holdem_cards", "pontius.legal_decision_spine_v2", "pontius.v0a.model",
+         "pontius.v0a.trace",
+     }
++    allowed |= _PROVIDER_TRANSPORT
+     _raise_violations([
+         f"forbidden table host import: {origin} -> {target}"
+         for origin, target in _BASELINE.import_edges(sources)
+         if origin == "tools.v0a_table_host" and target not in allowed
+     ])
+ 
+ 
+ def enforce_table_session_import_policy(sources: Mapping[str, bytes]) -> None:
+     """ADR-0499: closed imports and the one explicitly admitted host-source binding."""
+     allowed = {
+@@ -485,21 +551,21 @@ def enforce_table_session_import_policy(sources: Mapping[str, bytes]) -> None:
+         bindings = {name: [] for name in ("HOST", "HOST_BLOB")}
+         for node in tree.body:
+             if isinstance(node, ast.Assign):
+                 for target in node.targets:
+                     if isinstance(target, ast.Name) and target.id in bindings:
+                         bindings[target.id].append(
+                             node.value.value if isinstance(node.value, ast.Constant) else None
+                         )
+         if bindings != {
+             "HOST": ["tools/v0a_table_host.py"],
+-            "HOST_BLOB": ["0faa101f9be9940f9ae935df51f8c79e2eeb2b15"],
++            "HOST_BLOB": ["6ec8a162b053158203663c48e82314b10750f962"],
+         }:
+             violations.append("table session fixed host binding differs from ADR-0499")
+     _raise_violations(violations)
+ 
+ 
+ def enforce_seeded_deals_import_policy(sources: Mapping[str, bytes]) -> None:
+     """ADR-0502: exact inert dealer imports and no dynamic import/exec routes."""
+     path = "tools/v0a_seeded_deals.py"
+     if path not in sources:
+         return
+@@ -692,20 +758,21 @@ def check_repository(repository_root: Path) -> None:
+     )
+     try:
+         current_graph = _BASELINE.scan_sources(current_sources)
+     except _BASELINE.BaselineError as error:
+         raise BoundaryError(f"current dependency graph cannot be derived: {error}") from error
+     enforce_origin_classification(current_sources, tool_sources)
+     enforce_legacy_edges(parsed.graph, current_graph)
+     enforce_no_new_or_expanded_scc(parsed.graph, current_graph)
+     enforce_evidence_import_policy(current_sources)
+     enforce_v0a_import_policy(current_sources)
++    enforce_decision_provider_import_policy({**current_sources, **tool_sources})
+     enforce_blueprint_artifact_import_policy({**current_sources, **tool_sources})
+     enforce_hand_adapter_import_policy({**current_sources, **tool_sources})
+     enforce_event_adapter_import_policy({**current_sources, **tool_sources})
+     enforce_table_host_import_policy({**current_sources, **tool_sources})
+     enforce_table_session_import_policy({**current_sources, **tool_sources})
+     enforce_seeded_deals_import_policy(tool_sources)
+     enforce_orchestration_import_policy(tool_sources)
+     _revalidate_repository_snapshot(
+         baseline_snapshot, current_inventory, tool_inventory
+     )
+diff --git a/tools/generate_test_inventory.py b/tools/generate_test_inventory.py
+index 40f955f..2ac1413 100644
+--- a/tools/generate_test_inventory.py
++++ b/tools/generate_test_inventory.py
+@@ -147,20 +147,22 @@ DECLARED_SKIPS = {
+         "tests/test_h32_pre_bet_initial_row_cache_seed.py::"
+         "H32PreBetInitialRowCacheSeedTests::"
+         "test_small_gpu_seed_round_trips_both_distinct_arms_without_optimizer_work"
+     ): (
+         "ADR-0281 seed authority is revoked; its GPU path is never invoked",
+         "revoked_adr_0281_gpu_path_never_invoked",
+         "aa949216ccc291eab69a7eca888eb7e0fa5f43c804099bf6cf51c6fde9429909",
+     ),
+ }
+ STABILIZATION_TEST_FILES = frozenset({
++    "tests/test_decision_provider.py", "tests/test_decision_provider_runtime.py",
++    "tests/test_decision_provider_session.py", "tests/test_decision_provider_transport.py",
+     "tests/evidence_test_support.py",
+     "tests/orchestration_test_support.py",
+     "tests/test_blueprint_artifact.py", "tests/test_hand_scenario.py",
+     "tests/test_blueprint_artifact_boundary.py", "tests/test_hand_adapter_boundary.py",
+     "tests/test_evidence_errors_and_model.py",
+     "tests/test_evidence_manifests.py",
+     "tests/test_evidence_manifest_generation.py",
+     "tests/test_evidence_filesystem_and_git.py",
+     "tests/test_evidence_authorization.py",
+     "tests/test_retained_v7_assessment.py",
+diff --git a/tools/v0a_event_adapter.py b/tools/v0a_event_adapter.py
+index e241eb5..8c9e5ef 100644
+--- a/tools/v0a_event_adapter.py
++++ b/tools/v0a_event_adapter.py
+@@ -6,21 +6,25 @@ import hashlib
+ import io
+ import json
+ import msvcrt
+ import os
+ from pathlib import Path
+ import re
+ import stat
+ import subprocess
+ import sys
+ 
+-BASE = '5f90279ab3d7d78fe790b115a697c52262280c0d'
++BASE = 'e205cd8cd6f46a50db8b2d0cb1f39366da0f2767'
++ADDITIONS = tuple('src/pontius/decision_provider/' + name + '.py'
++                  for name in ('__init__', 'model', 'providers', 'selection', 'codec'))
++EXCEPTIONS = ('src/pontius/v0a/runtime.py', 'tools/v0a_hand_adapter.py',
++              'tools/v0a_event_adapter.py')
+ TOOLS = ('tools/v0a_event_adapter.py', 'tools/v0a_hand_adapter.py',
+          'tools/v0a_rehearsal_driver.py')
+ PROTOCOL = 'pontius-v0a-event-interface-v1'
+ PREFIX = PROTOCOL + '-correctness-'
+ FRAME_LIMIT = 16384
+ 
+ 
+ class AdapterRefusal(ValueError):
+     """An admission or byte-delivery refusal; no retry repairs retained output."""
+ 
+@@ -54,23 +58,23 @@ class Source:
+         require(not any(n == 'pontius' or n.startswith('pontius.') for n in sys.modules),
+                 'SOURCE: pontius must not be preloaded')
+         self.repo = checked_path(repo, directory=True)
+         require(Path(__file__).absolute() == self.repo / TOOLS[0],
+                 'SOURCE: executed tool origin differs')
+         self.git = checked_path(Path(os.environ.get('PONTIUS_GIT', '')), d_local=False)
+         self.env = {k: v for k, v in os.environ.items()
+                     if not k.upper().startswith(('GIT_', 'PYTHON', 'PONTIUS_'))}
+         self.commit = self.head()
+         current, inherited = self.inventory(self.commit), self.inventory(BASE)
+-        require(set(current) == set(inherited) | {TOOLS[0]},
++        require(set(current) == set(inherited) | set(ADDITIONS),
+                 'SOURCE: unexpected committed source population')
+-        require(all(current[p] == oid for p, oid in inherited.items()),
++        require(all(current[p] == oid for p, oid in inherited.items() if p not in EXCEPTIONS),
+                 'SOURCE: inherited source differs from pinned base')
+         stream = io.BytesIO(self.command('cat-file', '--batch',
+                             content=('\n'.join(current.values()) + '\n').encode('ascii')))
+         self.expected = {}
+         for path, oid in current.items():
+             header = stream.readline().split()
+             require(len(header) == 3 and header[:2] == [oid.encode(), b'blob'],
+                     'SOURCE: unexpected raw object')
+             content = stream.read(int(header[2]))
+             require(len(content) == int(header[2]) and stream.read(1) == b'\n',
+@@ -129,20 +133,23 @@ class Source:
+             actual[name] = checked_path(self.repo / name).read_bytes()
+         require(actual == self.expected, 'SOURCE: missing, changed, extra or cached source')
+ 
+     def load(self):
+         sys.path.insert(0, str(self.repo / 'src'))
+         import pontius.blueprint_artifact.codec as codec
+         import pontius.v0a.model as model
+         import pontius.v0a.runtime as core
+         import pontius.v0a.clock as clock
+         import pontius.v0a.trace as trace
++        import pontius.decision_provider.codec as provider_codec
++        import pontius.decision_provider.providers as providers
++        self.provider_codec, self.providers = provider_codec, providers
+         for name, module in tuple(sys.modules.items()):
+             if name == 'pontius' or name.startswith('pontius.'):
+                 relative = 'src/' + name.replace('.', '/')
+                 origin = Path(module.__file__).absolute()
+                 require(any(origin == self.repo / path and path in self.expected
+                             for path in (relative + '.py', relative + '/__init__.py')),
+                         'SOURCE: delayed import origin differs')
+         return codec, model, core, clock, trace
+ 
+ 
+@@ -252,27 +259,28 @@ def runtime_type(model, core, clock):
+                     self.record(failure.code)
+                 else:
+                     self._retain_error(failure.clock_error, otherwise=failure.code)
+                 self._release_boundary(boundary, terminal_at_entry)
+                 return self._from_failure(failure, admitted)
+     return FrameRuntime
+ 
+ 
+ class PipeOutput:
+     """A full-count local write is a receipt, not a consumer-application acknowledgement."""
+-    def __init__(self, session_id, model, trace, descriptor):
++    def __init__(self, session_id, model, trace, descriptor, protocol=PROTOCOL):
+         self.session_id, self.model, self.trace = session_id, model, trace
+         self.descriptor = descriptor
++        self.protocol = protocol
+         self.identities = set()
+ 
+     def frame(self, kind, **fields):
+-        value = dict(protocol=PROTOCOL, session_id=self.session_id, type=kind, **fields)
++        value = dict(protocol=self.protocol, session_id=self.session_id, type=kind, **fields)
+         raw = (json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
+                + '\n').encode('utf-8')
+         require(os.write(self.descriptor, raw) == len(raw), 'OUTPUT: incomplete frame write')
+ 
+     def deliver(self, envelope):
+         identity = envelope.hand_id, envelope.action_index
+         if identity in self.identities:
+             raise self.model.MailboxRejectionError('duplicate action identity')
+         self.identities.add(identity)
+         self.frame('action', hand_id=envelope.hand_id, action_index=envelope.action_index,
+@@ -287,44 +295,61 @@ def failures(codes):
+ 
+ 
+ def refuse(reason):
+     try:
+         os.write(sys.stderr.fileno(), ('REFUSED ' + reason + '\n').encode('ascii'))
+     except BaseException:
+         pass
+     return 1
+ 
+ 
+-def run_session(runtime, output, source, artifact_hash, core, trace, model):
++def run_session(runtime, output, source, artifact_hash, core, trace, model,
++                identity=None, provider_codec=None):
+     """Required host intervals, pre-publication cut, then a separate closing receipt."""
+     codes = model.FailureCode
+     settlement = None
+     try:
+         runtime.begin_host_accounting()
+         with runtime.owned_bookkeeping(body_failure=codes.TRACE_WRITE_FAILED, required=True):
+             output.frame('ready', source_commit=source.commit,
+                          source_manifest_sha256=source.manifest,
+                          blueprint_artifact_sha256=artifact_hash,
+-                         blueprint_sha256=runtime.blueprint_sha256, evidentiary=False)
++                         blueprint_sha256=runtime.blueprint_sha256, evidentiary=False,
++                         **({} if identity is None else dict(provider=identity.provider,
++                                                            config_sha256=identity.config_sha256)))
+         while not runtime.hand_complete:
+             try:
+                 raw = sys.stdin.buffer.readline(FRAME_LIMIT + 1)
+             except (OSError, ValueError):
+                 runtime.record(codes.INVALID_EVENT)
+                 break
+             outcome = runtime.dispatch_frame(raw)
+-            with runtime.owned_bookkeeping(body_failure=codes.TRACE_WRITE_FAILED, required=True):
++            attempted = False
++            def publish_event():
++                nonlocal attempted
++                attempted = True
+                 output.frame('event_result', event_index=runtime.event_index, status=outcome.status,
+                              decision=None if outcome.decision is None else
+-                             trace.decision_payload(outcome.decision),
++                             (provider_codec or trace).decision_payload(outcome.decision),
+                              failure=None if outcome.failure is None else
+                              trace.failure_payload(outcome.failure))
++            try:
++                with runtime.owned_bookkeeping(body_failure=codes.TRACE_WRITE_FAILED,
++                                               required=True):
++                    publish_event()
++            except core.OperationFailed:
++                if (provider_codec is None or outcome.status != 'failed' or attempted
++                        or outcome.decision is None):
++                    raise
++                # Retain a constructed v2 failure even when no further interval can
++                # open. Accounting stays incomplete; an attempted write is never retried.
++                publish_event()
+             if outcome.status == 'failed':
+                 break
+         if runtime.hand_complete and not runtime.closure_failures:
+             with runtime.owned_bookkeeping(body_failure=codes.SETTLEMENT_MISMATCH, required=True):
+                 settlement = runtime.settle()
+             with runtime.owned_bookkeeping(body_failure=codes.SOURCE_BINDING_MISMATCH,
+                                            required=True):
+                 source.check()
+     except core.OperationFailed:
+         pass  # The public owner has already retained the actual cause and cleanup faults.
+@@ -368,31 +393,40 @@ def run_session(runtime, output, source, artifact_hash, core, trace, model):
+     if completed:
+         return 0
+     causes = runtime.closure_failures
+     return refuse(causes[0].value if causes else 'incomplete_accounting')
+ 
+ 
+ def main(argv=None):
+     parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+     parser.add_argument('--blueprint', required=True)
+     parser.add_argument('--session-id', required=True)
++    parser.add_argument('--strategy', choices=('blueprint-v1', 'baseline-rules-v1'),
++                        default='blueprint-v1')
+     try:
+         args = parser.parse_args(argv)
+-        require(re.fullmatch(re.escape(PREFIX) + '[A-Za-z0-9_-]{1,64}', args.session_id),
++        baseline = args.strategy == 'baseline-rules-v1'
++        protocol = 'pontius-v0a-event-interface-v2' if baseline else PROTOCOL
++        require(re.fullmatch(re.escape(protocol + '-correctness-') + '[A-Za-z0-9_-]{1,64}',
++                             args.session_id),
+                 'IDENTITY: invalid correctness session')
+         source = Source(Path.cwd())
+         raw = checked_path(Path(args.blueprint)).read_bytes()
+         codec, model, core, clock, trace = source.load()
+         blueprint = codec.decode_blueprint(raw)
++        identity = (source.providers.make_provider(args.strategy, blueprint).identity
++                    if baseline else None)
+         msvcrt.setmode(sys.stdin.fileno(), os.O_BINARY)
+         msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
+-        output = PipeOutput(args.session_id, model, trace, sys.stdout.fileno())
++        output = PipeOutput(args.session_id, model, trace, sys.stdout.fileno(), protocol)
+         runtime = runtime_type(model, core, clock)(session_id=args.session_id,
+-                                                   blueprint=blueprint, mailbox=output)
++            blueprint=blueprint, mailbox=output, strategy=args.strategy,
++            source_manifest_sha256=source.manifest if baseline else None)
+         return run_session(runtime, output, source, hashlib.sha256(raw).hexdigest(),
+-                           core, trace, model)
++                           core, trace, model, identity,
++                           source.provider_codec if baseline else None)
+     except BaseException as error:
+         return refuse(type(error).__name__)
+ 
+ 
+ if __name__ == '__main__':
+     raise SystemExit(main())
+diff --git a/tools/v0a_hand_adapter.py b/tools/v0a_hand_adapter.py
+index ff77fb8..192dd46 100644
+--- a/tools/v0a_hand_adapter.py
++++ b/tools/v0a_hand_adapter.py
+@@ -5,22 +5,24 @@ import argparse
+ import hashlib
+ import io
+ import json
+ import os
+ from pathlib import Path
+ import re
+ import stat
+ import subprocess
+ import sys
+ 
+-BASE = '7a387e995e3b37232d2379332927247a4d49c64e'
+-ADDITIONS = ('src/pontius/hand_scenario/__init__.py', 'src/pontius/hand_scenario/codec.py')
++BASE = 'e205cd8cd6f46a50db8b2d0cb1f39366da0f2767'
++ADDITIONS = tuple('src/pontius/decision_provider/' + name + '.py'
++                  for name in ('__init__', 'model', 'providers', 'selection', 'codec'))
++EXCEPTIONS = ('src/pontius/v0a/runtime.py', 'tools/v0a_hand_adapter.py')
+ TOOLS = ('tools/v0a_hand_adapter.py', 'tools/v0a_rehearsal_driver.py')
+ PREFIX = 'pontius-v0a-hand-replay-v1-correctness-adapter-'
+ 
+ 
+ class AdapterRefusal(ValueError):
+     """A failed admission or acceptance boundary; retained bytes are never repaired."""
+ 
+ 
+ def require(condition, reason):
+     if not condition:
+@@ -53,21 +55,21 @@ class Source:
+         self.repo = checked_path(repo, directory=True)
+         require(Path(__file__).absolute() == self.repo / TOOLS[0],
+                 'SOURCE: executed adapter must be the declared tool origin')
+         self.git = checked_path(Path(os.environ.get('PONTIUS_GIT', '')), d_local=False)
+         self.env = {k: v for k, v in os.environ.items()
+                     if not k.upper().startswith(('GIT_', 'PYTHON', 'PONTIUS_'))}
+         self.commit = self.head()
+         current, inherited = self.inventory(self.commit), self.inventory(BASE)
+         require(set(current) == set(inherited) | set(ADDITIONS) | {TOOLS[0]},
+                 'SOURCE: unexpected committed source population')
+-        require(all(current[p] == oid for p, oid in inherited.items()),
++        require(all(current[p] == oid for p, oid in inherited.items() if p not in EXCEPTIONS),
+                 'SOURCE: inherited source differs from pinned base')
+         stream = io.BytesIO(self.command('cat-file', '--batch',
+                              content=('\n'.join(current.values()) + '\n').encode('ascii')))
+         self.expected = {}
+         for path, oid in current.items():
+             header = stream.readline().split()
+             require(len(header) == 3 and header[:2] == [oid.encode(), b'blob'],
+                     'SOURCE: raw object is not the requested blob')
+             content = stream.read(int(header[2]))
+             require(len(content) == int(header[2]) and stream.read(1) == b'\n',
+diff --git a/tools/v0a_table_host.py b/tools/v0a_table_host.py
+index 0faa101..6ec8a16 100644
+--- a/tools/v0a_table_host.py
++++ b/tools/v0a_table_host.py
+@@ -18,21 +18,25 @@ import subprocess
+ import sys
+ import threading
+ import time
+ 
+ INPUT_VERSION = 'pontius-v0a-table-input-v1'
+ PROTOCOL = 'pontius-v0a-event-interface-v1'
+ PREFIX = 'pontius-v0a-table-host-v1-correctness-'
+ POLICIES = ('passive', 'fold_to_bet', 'min_raise_once', 'shove_once')
+ EVENT_LIMIT = ACTION_LIMIT = 256
+ CREATE_SUSPENDED = 0x00000004
+-BASE = '1329c2c201bbf2f396946f2ebf460ee944ae4ece'
++BASE = 'e205cd8cd6f46a50db8b2d0cb1f39366da0f2767'
++ADDITIONS = tuple('src/pontius/decision_provider/' + name + '.py'
++                  for name in ('__init__', 'model', 'providers', 'selection', 'codec'))
++EXCEPTIONS = ('src/pontius/v0a/runtime.py', 'tools/v0a_hand_adapter.py',
++              'tools/v0a_event_adapter.py', 'tools/v0a_table_host.py')
+ TOOLS = ('tools/v0a_table_host.py', 'tools/v0a_event_adapter.py',
+          'tools/v0a_hand_adapter.py', 'tools/v0a_rehearsal_driver.py')
+ 
+ 
+ class HostRefusal(ValueError):
+     def __init__(self, code, connection=None, secondary=()):
+         super().__init__(code)
+         self.code = code
+         self.connection = connection
+         self.secondary = secondary
+@@ -94,20 +98,23 @@ def decode_json(raw, *, code, digits, floats=False):
+ 
+ 
+ @dataclass(frozen=True)
+ class Modules:
+     codec: object
+     betting: object
+     cards: object
+     spine: object
+     model: object
+     trace: object
++    provider_model: object = None
++    providers: object = None
++    provider_codec: object = None
+ 
+ 
+ def checked_path(path, *, directory=False, d_local=True):
+     require(path.is_absolute() and len(path.drive) == 2 and '..' not in path.parts
+             and (not d_local or path.drive.upper() == 'D:'), 'source_invalid')
+     for current in (*path.parents, path):
+         info = current.lstat()
+         want_dir = current != path or directory
+         require(not info.st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT
+                 and (stat.S_ISDIR(info.st_mode) if want_dir else stat.S_ISREG(info.st_mode)),
+@@ -148,22 +155,23 @@ class Source:
+         self.repo = checked_path(repo, directory=True)
+         self.python = checked_path(Path(sys.executable), d_local=False)
+         # Existing dependencies remain available without executing site/.pth startup hooks.
+         checked_path(self.python.parent.parent / 'Lib/site-packages', directory=True, d_local=False)
+         self.git = checked_path(Path(os.environ.get('PONTIUS_GIT', '')), d_local=False)
+         require(Path(__file__).absolute() == self.repo / TOOLS[0], 'source_invalid')
+         self.env = {k: v for k, v in os.environ.items()
+                     if not k.upper().startswith(('GIT_', 'PYTHON', 'PONTIUS_'))}
+         self.commit = self.head()
+         current, inherited = self.inventory(self.commit), self.inventory(BASE)
+-        require(set(current) == set(inherited) | {TOOLS[0]}
+-                and all(current[p] == oid for p, oid in inherited.items()), 'source_invalid')
++        require(set(current) == set(inherited) | set(ADDITIONS)
++                and all(current[p] == oid for p, oid in inherited.items()
++                        if p not in EXCEPTIONS), 'source_invalid')
+         stream = io.BytesIO(self.command('cat-file', '--batch',
+             content=('\n'.join(current.values()) + '\n').encode('ascii')))
+         self.expected = {}
+         for path, oid in current.items():
+             header = stream.readline().split()
+             require(len(header) == 3 and header[:2] == [oid.encode(), b'blob'], 'source_invalid')
+             size = int(header[2])
+             raw = stream.read(size)
+             require(len(raw) == size and stream.read(1) == b'\n', 'source_invalid')
+             self.expected[path] = raw
+@@ -223,22 +231,26 @@ class Source:
+                         'source_invalid')
+ 
+     def load(self):
+         sys.path.insert(0, str(self.repo / 'src'))
+         import pontius.blueprint_artifact.codec as codec
+         import pontius.no_limit_betting as betting
+         import pontius.holdem_cards as cards
+         import pontius.legal_decision_spine_v2 as spine
+         import pontius.v0a.model as model
+         import pontius.v0a.trace as trace
++        import pontius.decision_provider.model as provider_model
++        import pontius.decision_provider.providers as providers
++        import pontius.decision_provider.codec as provider_codec
+         self.check()
+-        return Modules(codec, betting, cards, spine, model, trace)
++        return Modules(codec, betting, cards, spine, model, trace,
++                       provider_model, providers, provider_codec)
+ 
+ 
+ @dataclass(frozen=True)
+ class TableInput:
+     button: int
+     controlled_seat: int
+     starting_stacks: tuple
+     small_blind: int
+     big_blind: int
+     deal: object
+@@ -504,38 +516,39 @@ BOOTSTRAP = (
+     "import os,sys; gate=os.read(0,1); "
+     "sys.exit(91) if gate != b'G' else None; "
+     "sys.path.append(os.path.join(os.path.dirname(os.path.dirname(sys.executable)),"
+     "'Lib','site-packages')); "
+     "import runpy; sys.argv=sys.argv[1:]; runpy.run_path(sys.argv[0],run_name='__main__')"
+ )
+ 
+ 
+ class ChildConnection:
+     """Bound all transport waits without moving game mutation into I/O workers."""
+-    def __init__(self, source, blueprint_path, child_id, failures):
++    def __init__(self, source, blueprint_path, child_id, failures, strategy='blueprint-v1'):
+         self.failures, self.proc, self.job = failures, None, None
+         self.frames, self.writes = queue.Queue(8), queue.Queue(1)
+         self.stop, self.threads = threading.Event(), []
+         self.stdout, self.stderr, self.truncated = bytearray(), bytearray(), False
+         self.exit_code, self.closed = None, False
+         self.hand_deadline = time.monotonic() + 300
+         phase = 'containment_failed'
+         try:
+             self.job = Job()
+             environment = {k: os.environ[k] for k in ('SystemRoot', 'WINDIR', 'SystemDrive',
+                 'COMSPEC', 'USERPROFILE', 'APPDATA', 'LOCALAPPDATA', 'TEMP', 'TMP')
+                 if k in os.environ}
+             environment['PONTIUS_GIT'] = str(source.git)
+             phase = 'process_start_failed'
+             self.proc = subprocess.Popen([str(source.python), '-B', '-P', '-S', '-c', BOOTSTRAP,
+                 str(source.repo / TOOLS[1]), '--blueprint', str(blueprint_path),
+-                '--session-id', child_id], cwd=source.repo, env=environment, stdin=subprocess.PIPE,
++                '--session-id', child_id, '--strategy', strategy], cwd=source.repo,
++                env=environment, stdin=subprocess.PIPE,
+                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0, close_fds=True,
+                 creationflags=subprocess.CREATE_NO_WINDOW | CREATE_SUSPENDED)
+             phase = 'containment_failed'
+             self.job.assign(self.proc)
+             self.job.resume(self.proc)
+             phase = 'transport_failed'
+             for function, args in ((self.read_stream, (self.proc.stdout, True)),
+                                    (self.read_stream, (self.proc.stderr, False)),
+                                    (self.writer, ())):
+                 thread = threading.Thread(target=function, args=args, daemon=True)
+@@ -687,36 +700,52 @@ WIRE_FIELDS = {
+     'session_result': 'status terminal_publication_compute_seconds accounting_complete '
+                       'failure_reason secondary_failures accounting_scope evidentiary',
+ }
+ 
+ 
+ def finite_seconds(value):
+     return type(value) is float and math.isfinite(value) and value >= 0
+ 
+ 
+ class WireConsumer:
+-    def __init__(self, connection, source, table, artifact_hash, policy_hash):
++    def __init__(self, connection, source, table, artifact_hash, policy_hash,
++                 identity=None, blueprint=None):
+         self.connection, self.source, self.table = connection, source, table
+         self.artifact_hash, self.policy_hash = artifact_hash, policy_hash
+         self.model = table.modules.model
++        self.identity = identity
++        self.protocol = 'pontius-v0a-event-interface-v2' if identity is not None else PROTOCOL
++        self.reasons = {}
++        if identity is not None:
++            try:
++                codec = table.modules.codec
++                self.blueprint = codec.decode_blueprint(codec.encode_blueprint(blueprint))
++            except (TypeError, ValueError) as error:
++                raise HostRefusal('source_invalid') from error
++            require(self.blueprint.digest == policy_hash, 'source_invalid')
+ 
+     def read(self, kind, deadline):
+         raw = self.connection.receive(deadline)
+         require(type(raw) is bytes and raw.endswith(b'\n'), 'protocol_invalid')
+         row = decode_json(raw, code='protocol_invalid', digits=640, floats=True)
+         require(type(row) is dict and type(row.get('type')) is str and row['type'] in WIRE_FIELDS)
+-        exact_object(row, 'protocol session_id type ' + WIRE_FIELDS[row['type']])
+-        require(row['protocol'] == PROTOCOL and row['session_id'] == self.table.child_id)
++        extra = (' provider config_sha256'
++                 if self.identity is not None and row['type'] == 'ready' else '')
++        exact_object(row, 'protocol session_id type ' + WIRE_FIELDS[row['type']] + extra)
++        require(row['protocol'] == self.protocol and row['session_id'] == self.table.child_id)
+         if kind == 'action' and row['type'] == 'event_result' and row['status'] == 'failed':
+             require(integer(row['event_index']) and row['event_index'] == self.table.event_index
+-                    and row['decision'] is None)
+-            self.failure(row['failure'])
++                    and (row['decision'] is None or self.identity is not None))
++            if row['decision'] is not None:
++                self.decision(row['decision'], self.pending_expected, successful=False)
++                require(row['decision']['delivery_status'] != 'accepted')
++            self.failure(row['failure'], row['decision'] if self.identity is not None else None)
+             raise HostRefusal('child_failed')
+         require(row['type'] == kind)
+         return row
+ 
+     def action(self, value):
+         exact_object(value, 'kind raise_to')
+         try:
+             return self.model.HandAction(**value)
+         except (ValueError, TypeError) as error:
+             raise HostRefusal('protocol_invalid') from error
+@@ -734,43 +763,107 @@ class WireConsumer:
+             result = self.model.TimingRecord(**parsed)
+         except (ValueError, TypeError) as error:
+             raise HostRefusal('protocol_invalid') from error
+         if successful and result.status == self.model.TimingStatus.COMPLETED:
+             require(result.work_cutoff_crossed is False and result.deadline_crossed is False
+                     and result.elapsed_ns <= 15000000000)
+             require(abs(result.response_compute_seconds + result.response_uninstrumented_seconds
+                         - result.elapsed_ns / 1e9) <= 2e-9)
+         return result
+ 
+-    def failure(self, value):
++    def failure(self, value, decision=None):
+         exact_object(value, 'hand_id event_index action_index code delivery_status '
+                      'delivered_action timing')
+         try:
+             parsed = dict(value)
+             parsed['code'] = self.model.FailureCode(parsed['code'])
+             parsed['delivery_status'] = self.model.DeliveryStatus(parsed['delivery_status'])
+             parsed['delivered_action'] = (None if value['delivered_action'] is None
+                                           else self.action(value['delivered_action']))
+             parsed['timing'] = (None if value['timing'] is None
+                                 else self.timing(value['timing'], successful=False))
+             self.model.FailureRecord(**parsed)
+         except (ValueError, TypeError) as error:
+             raise HostRefusal('protocol_invalid') from error
++        if decision is not None:
++            require(value['code'] == decision['failure_reason']
++                    and all(value[key] == decision[key] for key in (
++                        'hand_id', 'event_index', 'action_index', 'delivery_status',
++                        'delivered_action', 'timing')))
+ 
+     def ready(self):
+         row = self.read('ready', self.connection.startup_deadline)
+         require(row['source_commit'] == self.source.commit
+                 and row['source_manifest_sha256'] == self.source.child_manifest
+                 and row['blueprint_artifact_sha256'] == self.artifact_hash
+                 and row['blueprint_sha256'] == self.policy_hash and row['evidentiary'] is False)
++        if self.identity is not None:
++            require(row['provider'] == self.identity.provider
++                    and row['config_sha256'] == self.identity.config_sha256)
+ 
+-    def decision(self, value, expected):
++    def provider_expected(self):
++        table, modules = self.table, self.table.modules
++        self.context_state = table.state
++        observation = modules.provider_model.DecisionObservation(
++            version='pontius-decision-observation-v1', hand_id=table.child_id,
++            action_index=table.bot_index + 1, cards=table.views[table.config.controlled_seat],
++            betting=table.state, decision=table.state.legal_decision(), remaining_work_ns=0)
++        fallback = self.blueprint.action_for(cards=observation.cards, betting=observation.betting,
++                                            decision=observation.decision)
++        return dict(hand_id=table.child_id, event_index=table.event_index,
++            action_index=table.bot_index + 1, street_action_index=table.street_index + 1,
++            seat=table.config.controlled_seat, street=table.state.street.value,
++            state_before_sha256=modules.spine.public_betting_state_sha256(table.state),
++            visible_cards_sha256=modules.model.visible_cards_sha256(observation.cards),
++            decision_sha256=observation.decision_sha256,
++            source_manifest_sha256=self.source.child_manifest, provider=self.identity.provider,
++            config_sha256=self.identity.config_sha256, fallback_blueprint_sha256=self.policy_hash,
++            fallback_action=modules.trace.action_payload(
++                self.model.HandAction.from_betting_action(fallback.action)),
++            fallback_reason='table_hit' if fallback.table_hit else 'passive_default')
++
++    def decision(self, value, expected, *, successful=True):
++        if self.identity is not None:
++            try:
++                self.table.modules.provider_codec.validate_decision(value)
++                self.context_state.apply_action(
++                    self.action(value['fallback_action']).to_betting_action())
++                changed = self.context_state.apply_action(
++                    self.action(value['selected_action']).to_betting_action())
++            except (ValueError, TypeError) as error:
++                raise HostRefusal('protocol_invalid') from error
++            require(all(value[k] == v for k, v in expected.items()), 'state_mismatch')
++            proposal = value['proposal']
++            if proposal is not None:
++                valid = proposal['decision_sha256'] == value['decision_sha256']
++                if proposal['action'] is not None:
++                    try:
++                        self.context_state.apply_action(
++                            self.action(proposal['action']).to_betting_action())
++                    except (ValueError, TypeError):
++                        valid = False
++                require(valid == (value['provider_outcome'] in ('proposed', 'abstained')),
++                        'state_mismatch')
++            if value['applied_action'] is not None:
++                require(value['state_after_sha256'] ==
++                        self.table.modules.spine.public_betting_state_sha256(changed),
++                        'state_mismatch')
++            if successful:
++                timing = self.timing(value['timing'])
++                require(value['failure_reason'] is None
++                        and timing.status == self.model.TimingStatus.COMPLETED
++                        and value['delivery_status'] == 'accepted'
++                        and value['delivered_action'] == value['applied_action'])
++                reason = (value['proposal']['reason'] if value['selection_origin'] == 'provider'
++                          else 'fallback_' + value['selection_reason'])
++                self.reasons[value['action_index']] = reason
++            return
+         exact_object(value, 'hand_id event_index action_index street_action_index seat street '
+                      'state_before_sha256 state_after_sha256 visible_cards_sha256 blueprint_sha256 '
+                      'selected_action selection_reason spine_reason timing preparation_use '
+                      'failure_reason')
+         action, timing = self.action(value['selected_action']), self.timing(value['timing'])
+         prep = exact_object(value['preparation_use'],
+                             'producer_status artifact_sha256s credited_seconds')
+         require(prep['producer_status'] == 'producer_absent'
+                 and type(prep['artifact_sha256s']) is list
+                 and prep['artifact_sha256s'] == [] and integer(prep['credited_seconds'], 0, 0))
+@@ -784,43 +877,51 @@ class WireConsumer:
+         require(value['failure_reason'] is None
+                 and timing.status == self.model.TimingStatus.COMPLETED)
+         require(all(value[k] == v for k, v in expected.items()), 'state_mismatch')
+ 
+     def exchange(self, event):
+         table, modules = self.table, self.table.modules
+         deadline = self.connection.deadline()
+         self.connection.send((json.dumps(event, separators=(',', ':')) + '\n').encode(), deadline)
+         expected = None
+         if table.expects_action():
++            provider_expected = self.provider_expected() if self.identity is not None else None
++            self.pending_expected = provider_expected
+             row = self.read('action', deadline)
+             require(integer(row['action_index'], 1) and integer(row['seat'], 0, 5)
+                     and row['hand_id'] == table.child_id
+                     and row['action_index'] == table.bot_index + 1
+                     and row['seat'] == table.config.controlled_seat
+                     and row['street'] == table.state.street.value)
+             action = self.action(row['action'])
+             expected = dict(hand_id=table.child_id, event_index=table.event_index,
+                 action_index=table.bot_index + 1, street_action_index=table.street_index + 1,
+                 seat=table.config.controlled_seat, street=table.state.street.value,
+                 state_before_sha256=modules.spine.public_betting_state_sha256(table.state),
+                 visible_cards_sha256=modules.model.visible_cards_sha256(
+                     table.views[table.config.controlled_seat]),
+                 blueprint_sha256=self.policy_hash, selected_action=row['action'])
++            if provider_expected is not None:
++                expected = dict(provider_expected, selected_action=row['action'],
++                                applied_action=row['action'])
+             table.apply_bot(action)
+             expected['state_after_sha256'] = modules.spine.public_betting_state_sha256(table.state)
+         row = self.read('event_result', deadline)
+         require(integer(row['event_index']) and row['event_index'] == table.event_index
+                 and type(row['status']) is str
+                 and row['status'] in ('accepted', 'decided', 'failed'))
+         if row['status'] == 'failed':
+-            require(row['decision'] is None)
+-            self.failure(row['failure'])
++            require(row['decision'] is None or self.identity is not None)
++            if row['decision'] is not None:
++                require(expected is not None)
++                self.decision(row['decision'], expected, successful=False)
++            self.failure(row['failure'], row['decision'] if self.identity is not None else None)
+             raise HostRefusal('child_failed')
+         require(row['failure'] is None)
+         if expected is None:
+             require(row['status'] == 'accepted' and row['decision'] is None)
+         else:
+             require(row['status'] == 'decided')
+             self.decision(row['decision'], expected)
+ 
+     def closure_fields(self, row):
+         require(type(row['accounting_complete']) is bool and row['evidentiary'] is False
+@@ -883,44 +984,57 @@ def main(argv=None):
+         blueprint_artifact_sha256=None,
+         blueprint_sha256=None, source_commit=None, applied_actions=[], settlement=None,
+         child_exit_code=None, child_stdout_base64='', child_stderr_base64='',
+         capture_truncated=False)
+     connection, table, provisional = None, None, None
+     phase = 'input_invalid'
+     try:
+         parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False, add_help=False)
+         for flag in ('table', 'blueprint', 'session-id'):
+             parser.add_argument('--' + flag, required=True)
++        parser.add_argument('--strategy', choices=('blueprint-v1', 'baseline-rules-v1'),
++                            default='blueprint-v1')
+         args = parser.parse_args(argv)
++        baseline = args.strategy == 'baseline-rules-v1'
++        prefix = 'pontius-v0a-table-host-v2-correctness-' if baseline else PREFIX
++        protocol = 'pontius-v0a-event-interface-v2' if baseline else PROTOCOL
++        if baseline:
++            report.update(version='pontius-v0a-table-result-v2', provider=None, config_sha256=None)
+         report['session_id'] = args.session_id
+-        require(re.fullmatch(re.escape(PREFIX) + '[A-Za-z0-9_-]{1,48}', args.session_id),
++        require(re.fullmatch(re.escape(prefix) + '[A-Za-z0-9_-]{1,48}', args.session_id),
+                 'input_invalid')
+-        child_id = PROTOCOL + '-correctness-table-' + args.session_id[len(PREFIX):]
++        child_id = protocol + '-correctness-table-' + args.session_id[len(prefix):]
+         phase = 'source_invalid'
+         source = Source(Path.cwd())
+         report['source_commit'] = source.commit
+         phase = 'input_invalid'
+         table_input, blueprint_input = OwnedInput(Path(args.table), 16384), OwnedInput(
+             Path(args.blueprint), 1048576)
+         report['input_sha256'] = hashlib.sha256(table_input.raw).hexdigest()
+         report['blueprint_artifact_sha256'] = hashlib.sha256(blueprint_input.raw).hexdigest()
+         phase = 'source_invalid'
+         modules = source.load()
+         phase = 'input_invalid'
+         config = TableInput.decode(table_input.raw, modules)
+         blueprint = modules.codec.decode_blueprint(blueprint_input.raw)
+         report['blueprint_sha256'] = blueprint.digest
++        identity = (modules.providers.make_provider(args.strategy, blueprint).identity
++                    if baseline else None)
++        if baseline:
++            report.update(provider=identity.provider, config_sha256=identity.config_sha256)
+         table = Table(config, modules, child_id)
+         phase = 'process_start_failed'
+-        connection = ChildConnection(source, blueprint_input.path, child_id, failures)
++        connection = ChildConnection(source, blueprint_input.path, child_id,
++                                     failures, args.strategy)
+         consumer = WireConsumer(connection, source, table, report['blueprint_artifact_sha256'],
+-                                report['blueprint_sha256'])
++                                report['blueprint_sha256'], identity,
++                                blueprint if baseline else None)
+         phase = 'protocol_invalid'
+         consumer.ready()
+         event = table.start_event()
+         while event is not None:
+             consumer.exchange(event)
+             event = table.next_event()
+         provisional = consumer.complete()
+         phase = 'source_invalid'
+         source.check()
+         phase = 'input_invalid'
+diff --git a/tools/v0a_table_session.py b/tools/v0a_table_session.py
+index 34a93d3..a5e0582 100644
+--- a/tools/v0a_table_session.py
++++ b/tools/v0a_table_session.py
+@@ -10,21 +10,21 @@ from pathlib import Path
+ import re
+ import stat
+ import subprocess
+ import sys
+ import types
+ 
+ VERSION = 'pontius-v0a-table-session-v1'
+ PREFIX = VERSION + '-correctness-'
+ HOST = 'tools/v0a_table_host.py'
+ SELF = 'tools/v0a_table_session.py'
+-HOST_BLOB = '0faa101f9be9940f9ae935df51f8c79e2eeb2b15'
++HOST_BLOB = '6ec8a162b053158203663c48e82314b10750f962'
+ ALIAS = 'pontius_v0a_table_session_host'
+ 
+ 
+ class Refusal(ValueError):
+     def __init__(self, code):
+         super().__init__(code)
+         self.code = code
+ 
+ 
+ def require(condition, code='source_invalid'):
+@@ -217,103 +217,125 @@ def command_kind(raw):
+     if raw == b'':
+         return 'eof'
+     raise Refusal('command_invalid')
+ 
+ 
+ class Session:
+     def __init__(self, args, renderer=None, command=None):
+         self.args, self.renderer, self.command = args, renderer, command
+         self.admission, self.active = None, None
+         self.failures = []
++        self.strategy = getattr(args, 'strategy', 'blueprint-v1')
++        self.baseline = self.strategy == 'baseline-rules-v1'
++        self.prefix = 'pontius-v0a-table-session-v2-correctness-' if self.baseline else PREFIX
++        self.identity = None
+         self.report = dict(version='pontius-v0a-table-session-result-v1',
+             session_id=args.session_id, status='failed', stop_reason=None, failure_reason=None,
+             secondary_failures=[], source_commit=None, input_sha256=None,
+             blueprint_artifact_sha256=None, blueprint_sha256=None, requested_hands=None,
+             completed_hands=0, next_button=None, carried_stacks=None, hands=[])
++        if self.baseline:
++            self.report.update(version='pontius-v0a-table-session-result-v2',
++                               provider=None, config_sha256=None)
+ 
+     def add_error(self, error, failures, phase):
+         if isinstance(error, KeyboardInterrupt):
+             code, secondary = 'interrupted', ()
+         elif isinstance(error, Refusal) or (self.admission is not None
+                 and isinstance(error, self.admission.host.HostRefusal)):
+             code, secondary = error.code, getattr(error, 'secondary', ())
+         else:
+             code, secondary = phase, ()
+         for item in (code, *secondary):
+             if item not in failures:
+                 failures.append(item)
+ 
+     def prepare(self):
+-        require(re.fullmatch(re.escape(PREFIX) + '[A-Za-z0-9_-]{1,40}', self.args.session_id),
++        require(re.fullmatch(re.escape(self.prefix) + '[A-Za-z0-9_-]{1,40}', self.args.session_id),
+                 'input_invalid')
+         self.admission = Admission(Path.cwd())
+         self.host, self.modules = self.admission.host, self.admission.modules
+         self.report['source_commit'] = self.admission.commit
+         self.session_input = self.host.OwnedInput(Path(self.args.session), 16384)
+         self.blueprint_input = self.host.OwnedInput(Path(self.args.blueprint), 1048576)
+         self.report.update(input_sha256=hashlib.sha256(self.session_input.raw).hexdigest(),
+             blueprint_artifact_sha256=hashlib.sha256(self.blueprint_input.raw).hexdigest())
+         self.schedule = Schedule(self.session_input.raw, self.host, self.modules)
+         try:
+             blueprint = self.modules.codec.decode_blueprint(self.blueprint_input.raw)
+         except (ValueError, TypeError) as error:
+             raise Refusal('input_invalid') from error
+         self.report['blueprint_sha256'] = blueprint.digest
++        self.blueprint = blueprint
++        if self.baseline:
++            self.identity = self.modules.providers.make_provider(self.strategy, blueprint).identity
++            self.report.update(provider=self.identity.provider,
++                               config_sha256=self.identity.config_sha256)
++            if self.renderer is not None:
++                self.renderer.line('Strategy: ' + self.identity.provider)
+         self.report.update(requested_hands=len(self.schedule.hands),
+             next_button=self.schedule.common['button'],
+             carried_stacks=list(self.schedule.common['starting_stacks']))
+ 
+     def validate(self):
+         self.admission.check()
+         self.session_input.check()
+         self.blueprint_input.check()
+ 
+     def play_hand(self, index):
+         self.validate()
+         config, raw = self.schedule.derive(index, self.report['carried_stacks'],
+                                            self.report['next_button'])
+-        suffix = self.args.session_id[len(PREFIX):] + '-h%02d' % (index + 1)
+-        child_id = self.host.PROTOCOL + '-correctness-table-' + suffix
++        suffix = self.args.session_id[len(self.prefix):] + '-h%02d' % (index + 1)
++        protocol = 'pontius-v0a-event-interface-v2' if self.baseline else self.host.PROTOCOL
++        child_id = protocol + '-correctness-table-' + suffix
+         table = self.host.Table(config, self.modules, child_id)
+         hand = dict(version='pontius-v0a-table-session-hand-result-v1',
+             session_id='pontius-v0a-table-host-v1-correctness-' + suffix, status='failed',
+             failure_reason=None, secondary_failures=[],
+             input_sha256=hashlib.sha256(raw).hexdigest(),
+             blueprint_artifact_sha256=self.report['blueprint_artifact_sha256'],
+             blueprint_sha256=self.report['blueprint_sha256'], source_commit=self.admission.commit,
+             applied_actions=table.applied_actions, settlement=None, child_exit_code=None,
+             child_stdout_base64='', child_stderr_base64='', capture_truncated=False)
++        if self.baseline:
++            hand.update(version='pontius-v0a-table-session-hand-result-v2',
++                session_id='pontius-v0a-table-host-v2-correctness-' + suffix,
++                provider=self.identity.provider, config_sha256=self.identity.config_sha256)
+         entry = dict(ordinal=index + 1, button=config.button,
+                      starting_stacks=list(config.starting_stacks), result=hand)
+         self.report['hands'].append(entry)
+         self.active = entry
+         failures, connection, provisional, cursor = self.host.Failures(), None, None, 0
+         phase = 'process_start_failed'
+         try:
+             connection = self.host.ChildConnection(self.admission.source, self.blueprint_input.path,
+-                                                   child_id, failures)
++                                                   child_id, failures, self.strategy)
+             consumer = self.host.WireConsumer(connection, self.admission.source, table,
+-                self.report['blueprint_artifact_sha256'], self.report['blueprint_sha256'])
++                self.report['blueprint_artifact_sha256'], self.report['blueprint_sha256'],
++                self.identity, self.blueprint if self.baseline else None)
+             phase = 'protocol_invalid'
+             consumer.ready()
+             if self.renderer is not None:
+                 phase = 'output_failed'
+                 self.renderer.heading(visible(table, index + 1, 0), self.report['requested_hands'])
+             event = table.start_event()
+             while event is not None:
+                 phase = 'protocol_invalid'
+                 consumer.exchange(event)
+                 if self.renderer is not None:
+                     phase = 'output_failed'
+                     view = visible(table, index + 1, cursor)
+                     cursor = len(table.applied_actions)
+                     self.renderer.update(view)
++                    if self.baseline and table.bot_index in consumer.reasons:
++                        self.renderer.line('Reason: ' + consumer.reasons.pop(table.bot_index))
+                 phase = 'protocol_invalid'
+                 event = table.next_event()
+             provisional = consumer.complete()
+             self.validate()
+         except BaseException as error:
+             if isinstance(error, self.host.HostRefusal) and error.connection is not None:
+                 connection = error.connection
+             self.add_error(error, failures.items, phase)
+         finally:
+             if connection is not None:
+@@ -392,20 +414,22 @@ class Session:
+                 failure_reason=self.failures[0], secondary_failures=list(self.failures[1:]),
+                 stop_reason=None)
+         return self.report
+ 
+ 
+ def arguments(argv=None):
+     parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+     for flag in ('session', 'blueprint', 'session-id'):
+         parser.add_argument('--' + flag, required=True)
+     parser.add_argument('--auto', action='store_true')
++    parser.add_argument('--strategy', choices=('blueprint-v1', 'baseline-rules-v1'),
++                        default='blueprint-v1')
+     parser.add_argument('--format', choices=('text', 'json'), default='text')
+     args = parser.parse_args(argv)
+     if args.format == 'json' and not args.auto:
+         parser.error('--format json requires --auto')
+     return args
+ 
+ 
+ def main(argv=None):
+     args = arguments(argv)
+     renderer = Renderer(sys.stdout.fileno()) if args.format == 'text' else None

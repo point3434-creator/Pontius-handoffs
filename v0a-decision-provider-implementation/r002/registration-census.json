@@ -1,0 +1,1032 @@
+{
+  "baseline_review_sha256": "520fac3687a28dade92cba0ba94e67388028b0c943a11b5b86805ceb74e2df72",
+  "blocker_reasons_after": {
+    "CuPy action or view is outside the approved call scope": 11,
+    "callback closure": 1,
+    "deferred generator consumption is dynamically unresolved": 53,
+    "dynamic helper arguments prevent exact sink derivation": 145,
+    "dynamic repetition prevents a finite call bound": 2,
+    "dynamic repetition prevents a finite helper call bound": 1,
+    "dynamic sensitive call result is unresolved": 16,
+    "helper binding has fewer positional parameters than defaults": 7,
+    "local class decorator runtime target is dynamically unresolved": 4,
+    "max/min comparison dispatch is dynamically unresolved": 36,
+    "max/min iterable contents are dynamically unresolved": 102,
+    "mixed protected receiver is dynamically unresolved": 61,
+    "protected value store target is dynamically unresolved": 6,
+    "registered probe implementation is absent": 1,
+    "subprocess executable is not the active Python worker": 11,
+    "unittest instance or class binding is dynamically unresolved": 10,
+    "unregistered CuPy call is unresolved": 2,
+    "unsupported subprocess keyword: capture_output": 139,
+    "unsupported subprocess keyword: input": 55,
+    "unsupported subprocess keyword: stdin": 15
+  },
+  "both_interpreters_byte_equal": true,
+  "candidate_review_sha256": "56d1392a4dda104c829f3a33ef5edbc07af5588b97dbb7335375d3e7ae63f07f",
+  "census_after": {
+    "analyzed_sites_sha256": "f9cc564c6751a167d7c4a3b189bc9b35423817be4a23d3e843f9403ec82f8c30",
+    "cross_file_helper_edge_count": 27,
+    "cupy_call_node_count": 30,
+    "string_sink_decoy_count": 592,
+    "string_sink_decoy_partitions": {
+      "design_production": 17,
+      "historical_production": 6,
+      "prior_stabilization_synthetic": 38,
+      "task2_synthetic": 531
+    },
+    "string_sink_decoy_sha256": "2790fe5f3c7f16cf97e62baed60e1c2483cf207da71cfebd02e866858e7aff3c",
+    "subprocess_direct_site_count": 61,
+    "subprocess_helper_site_count": 19
+  },
+  "census_before": {
+    "analyzed_sites_sha256": "ef54287f338ba6c4cf987546b77d325a7915cb5c7ec16112968182fb2b1b8bc9",
+    "cross_file_helper_edge_count": 27,
+    "cupy_call_node_count": 30,
+    "string_sink_decoy_count": 591,
+    "string_sink_decoy_partitions": {
+      "design_production": 17,
+      "historical_production": 6,
+      "prior_stabilization_synthetic": 37,
+      "task2_synthetic": 531
+    },
+    "string_sink_decoy_sha256": "af1619822ecd6aece87be723b9718ff129bb86098d9ba027bc6d59537b8c9860",
+    "subprocess_direct_site_count": 55,
+    "subprocess_helper_site_count": 17
+  },
+  "changed_old_derivation_sources": [
+    "tests/test_inventory_and_profiles.py",
+    "tests/test_v0a_table_session.py"
+  ],
+  "new_analyzed_sites": [
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_session.py::invoke",
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_text_has_verified_reason_and_quit_keeps_first_settlement",
+      "line": 16,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_session.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_session.py::invoke",
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_three_hands_carry_independent_blind_profits_and_fixed_identity",
+      "line": 16,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_session.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 0,
+      "closure_helper_key": null,
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_legacy_omission_and_explicit_blueprint_preserve_results_and_fields",
+      "line": 32,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_session.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_failed_consumer_rejects_completed_cutoff_with_provider_selection",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_child_admits_new_population_then_readies_and_raises",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_partial_pipe_action_retains_raw_prefix_and_fails",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_unknown_strategy_refuses_before_readiness",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 1,
+      "closure_helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_v1_readiness_and_action_keep_old_fields",
+      "line": 23,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 0,
+      "closure_helper_key": null,
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 46,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 0,
+      "closure_helper_key": null,
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 65,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 0,
+      "closure_helper_key": null,
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 66,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 0,
+      "closure_helper_key": null,
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_admitted_source_rejects_late_bytes_head_and_foreign_module_origin",
+      "line": 80,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    },
+    {
+      "closure_depth": 0,
+      "closure_helper_key": null,
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_admitted_source_rejects_late_bytes_head_and_foreign_module_origin",
+      "line": 104,
+      "qualified_name": "subprocess.run",
+      "relative_path": "tests/test_decision_provider_transport.py",
+      "sink_kind": "subprocess"
+    }
+  ],
+  "new_blockers": [
+    {
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_legacy_omission_and_explicit_blueprint_preserve_results_and_fields",
+      "line": 32,
+      "reason": "unsupported subprocess keyword: capture_output",
+      "relative_path": "tests/test_decision_provider_session.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_text_has_verified_reason_and_quit_keeps_first_settlement",
+      "line": 16,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_session.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_text_has_verified_reason_and_quit_keeps_first_settlement",
+      "line": 83,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_session.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_three_hands_carry_independent_blind_profits_and_fixed_identity",
+      "line": 16,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_session.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_three_hands_carry_independent_blind_profits_and_fixed_identity",
+      "line": 53,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_session.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_admitted_source_rejects_late_bytes_head_and_foreign_module_origin",
+      "line": 80,
+      "reason": "unsupported subprocess keyword: capture_output",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_admitted_source_rejects_late_bytes_head_and_foreign_module_origin",
+      "line": 104,
+      "reason": "unsupported subprocess keyword: capture_output",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 328,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+      "line": 275,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_failed_consumer_rejects_completed_cutoff_with_provider_selection",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_failed_consumer_rejects_completed_cutoff_with_provider_selection",
+      "line": 224,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+      "line": 191,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_child_admits_new_population_then_readies_and_raises",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_child_admits_new_population_then_readies_and_raises",
+      "line": 30,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 243,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_partial_pipe_action_retains_raw_prefix_and_fails",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_partial_pipe_action_retains_raw_prefix_and_fails",
+      "line": 122,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 46,
+      "reason": "unsupported subprocess keyword: capture_output",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 56,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 65,
+      "reason": "subprocess executable is not the active Python worker",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 66,
+      "reason": "subprocess executable is not the active Python worker",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 69,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_unknown_strategy_refuses_before_readiness",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_unknown_strategy_refuses_before_readiness",
+      "line": 72,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_v1_readiness_and_action_keep_old_fields",
+      "line": 23,
+      "reason": "unsupported subprocess keyword: input",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    },
+    {
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_v1_readiness_and_action_keep_old_fields",
+      "line": 132,
+      "reason": "dynamic helper arguments prevent exact sink derivation",
+      "relative_path": "tests/test_decision_provider_transport.py"
+    }
+  ],
+  "new_decoys": [
+    {
+      "line": 98,
+      "parent": "List",
+      "path": "tests/test_decision_provider_transport.py",
+      "tokens": [
+        "subprocess.run("
+      ]
+    }
+  ],
+  "new_helper_edges": [
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_literal_rule_partitions",
+      "line": 80
+    },
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_blueprint_hit_and_default",
+      "line": 97
+    },
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_observation_digest_literal_legal_and_stable_hint",
+      "line": 128
+    },
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_observation_owns_graph_and_refuses_foreign_or_mutable_values",
+      "line": 148
+    },
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_observation_owns_graph_and_refuses_foreign_or_mutable_values",
+      "line": 149
+    },
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_proposal_admission_and_legal_binding",
+      "line": 169
+    },
+    {
+      "callee_function": "observation",
+      "callee_path": "tests/test_decision_provider.py",
+      "caller_path": "tests/test_decision_provider.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider.py::observation",
+      "item_id": "tests/test_decision_provider.py::ProviderRulesTests::test_nested_foreign_values_and_stale_abstention",
+      "line": 203
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_premium_dispatch_applies_and_delivers_one_legal_raise",
+      "line": 58
+    },
+    {
+      "callee_function": "runtime",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::runtime",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_fixed_preflop_actions_and_free_check",
+      "line": 79
+    },
+    {
+      "callee_function": "started",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::started",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_fixed_preflop_actions_and_free_check",
+      "line": 80
+    },
+    {
+      "callee_function": "runtime",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::runtime",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_fixed_preflop_actions_and_free_check",
+      "line": 83
+    },
+    {
+      "callee_function": "started",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::started",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_fixed_preflop_actions_and_free_check",
+      "line": 84
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_legacy_default_and_explicit_blueprint_are_equal",
+      "line": 96
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_provider_error_abstention_invalid_and_stale_fallback",
+      "line": 116
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Clock",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_late_outcome_is_preserved_at_cutoff_edges",
+      "line": 132
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Clock",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_known_cutoff_skips_provider",
+      "line": 157
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_delivery_rejection_and_unknown_retain_local_application",
+      "line": 170
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_failure_after_accepted_delivery_remains_accepted",
+      "line": 184
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_clock_and_changed_identity_are_fatal_without_delivery",
+      "line": 200
+    },
+    {
+      "callee_function": "runtime",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::runtime",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_codec_roundtrip_and_rejection",
+      "line": 224
+    },
+    {
+      "callee_function": "started",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::started",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_codec_roundtrip_and_rejection",
+      "line": 224
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_removed_or_mutated_provider_binding_cannot_revert_to_legacy",
+      "line": 239
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_process_control_is_not_an_ordinary_provider_fallback",
+      "line": 253
+    },
+    {
+      "callee_function": "runtime",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::runtime",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_provider_cannot_mutate_engine_observation",
+      "line": 266
+    },
+    {
+      "callee_function": "started",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::started",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_provider_cannot_mutate_engine_observation",
+      "line": 266
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_delivery_deadline_edges_preserve_selected_and_delivered_action",
+      "line": 274
+    },
+    {
+      "callee_function": "runtime",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::runtime",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_codec_rejects_completed_provider_selection_with_known_work_cutoff",
+      "line": 292
+    },
+    {
+      "callee_function": "started",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::started",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_codec_rejects_completed_provider_selection_with_known_work_cutoff",
+      "line": 292
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_interrupted_binding_fault_retains_unapplied_selection_at_cutoff",
+      "line": 317
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 1,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+      "line": 341
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 1,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+      "line": 341
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 1,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+      "line": 341
+    },
+    {
+      "callee_function": "_postflop_control",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::_postflop_control",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+      "line": 396
+    },
+    {
+      "callee_function": "_postflop_control",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::_postflop_control",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+      "line": 397
+    },
+    {
+      "callee_function": "_postflop_control",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::_postflop_control",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+      "line": 400
+    },
+    {
+      "callee_function": "__init__",
+      "callee_path": "tests/test_decision_provider_runtime.py",
+      "caller_path": "tests/test_decision_provider_runtime.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_runtime.py::Mailbox",
+      "item_id": "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_strategy_and_manifest_admission",
+      "line": 409
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_session.py",
+      "caller_path": "tests/test_decision_provider_session.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_session.py::invoke",
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_three_hands_carry_independent_blind_profits_and_fixed_identity",
+      "line": 53
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_session.py",
+      "caller_path": "tests/test_decision_provider_session.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_session.py::invoke",
+      "item_id": "tests/test_decision_provider_session.py::ProviderSessionTests::test_text_has_verified_reason_and_quit_keeps_first_settlement",
+      "line": 83
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_child_admits_new_population_then_readies_and_raises",
+      "line": 30
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 56
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+      "line": 69
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_unknown_strategy_refuses_before_readiness",
+      "line": 72
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_partial_pipe_action_retains_raw_prefix_and_fails",
+      "line": 122
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_v1_readiness_and_action_keep_old_fields",
+      "line": 132
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+      "line": 191
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+      "line": 197
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+      "line": 216
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_failed_consumer_rejects_completed_cutoff_with_provider_selection",
+      "line": 224
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_failed_consumer_rejects_completed_cutoff_with_provider_selection",
+      "line": 235
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 243
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 255
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 260
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+      "line": 268
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+      "line": 275
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+      "line": 279
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+      "line": 293
+    },
+    {
+      "callee_function": "invoke",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::invoke",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 328
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 341
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 351
+    },
+    {
+      "callee_function": "consumer",
+      "callee_path": "tests/test_decision_provider_transport.py",
+      "caller_path": "tests/test_decision_provider_transport.py",
+      "closure_depth": 0,
+      "helper_key": "tests/test_decision_provider_transport.py::ProviderTransportTests::consumer",
+      "item_id": "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+      "line": 361
+    }
+  ],
+  "new_inventory_ids": [
+    "tests/test_decision_provider.py::ProviderRulesTests::test_blueprint_hit_and_default",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_fixed_configuration_identities",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_literal_rule_partitions",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_nested_foreign_values_and_stale_abstention",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_observation_digest_literal_legal_and_stable_hint",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_observation_owns_graph_and_refuses_foreign_or_mutable_values",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_proposal_admission_and_legal_binding",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_source_import_policy_finite_negative_controls",
+    "tests/test_decision_provider.py::ProviderRulesTests::test_turn_rank_independent_best_five",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_clock_and_changed_identity_are_fatal_without_delivery",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_codec_rejects_completed_provider_selection_with_known_work_cutoff",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_codec_roundtrip_and_rejection",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_delivery_deadline_edges_preserve_selected_and_delivered_action",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_delivery_rejection_and_unknown_retain_local_application",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_failure_after_accepted_delivery_remains_accepted",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_fixed_preflop_actions_and_free_check",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_interrupted_binding_fault_retains_unapplied_selection_at_cutoff",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_known_cutoff_skips_provider",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_late_outcome_is_preserved_at_cutoff_edges",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_legacy_default_and_explicit_blueprint_are_equal",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_premium_dispatch_applies_and_delivers_one_legal_raise",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_process_control_is_not_an_ordinary_provider_fallback",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_provider_cannot_mutate_engine_observation",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_provider_error_abstention_invalid_and_stale_fallback",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_real_postflop_streets_reset_raises_and_recognize_board_only_river",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_removed_or_mutated_provider_binding_cannot_revert_to_legacy",
+    "tests/test_decision_provider_runtime.py::ProviderRuntimeTests::test_strategy_and_manifest_admission",
+    "tests/test_decision_provider_session.py::ProviderSessionTests::test_legacy_omission_and_explicit_blueprint_preserve_results_and_fields",
+    "tests/test_decision_provider_session.py::ProviderSessionTests::test_text_has_verified_reason_and_quit_keeps_first_settlement",
+    "tests/test_decision_provider_session.py::ProviderSessionTests::test_three_hands_carry_independent_blind_profits_and_fixed_identity",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_admitted_source_rejects_late_bytes_head_and_foreign_module_origin",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_constructed_failure_record_before_and_after_action_is_truthful",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_duplicate_action_and_failure_preserve_received_application",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_failed_consumer_rejects_completed_cutoff_with_provider_selection",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_fallback_authority_binds_action_reason_and_selected_fallback",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_hidden_deal_pair_preserves_actual_propose_observation_and_visible_change_acts",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_child_admits_new_population_then_readies_and_raises",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_exchange_rejects_protocol_identity_digest_action_and_extra_fields",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_real_partial_pipe_action_retains_raw_prefix_and_fails",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_source_refuses_changed_extra_cached_and_unrelated_committed_bytes",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_unknown_strategy_refuses_before_readiness",
+    "tests/test_decision_provider_transport.py::ProviderTransportTests::test_v1_readiness_and_action_keep_old_fields"
+  ],
+  "new_rows": [],
+  "old_analyzed_sites_preserved_with_exact_line_mapping": 388,
+  "old_blockers_preserved_with_exact_line_mapping": 646,
+  "old_decoys_preserved_with_exact_line_mapping": 591,
+  "old_expanded_rows_preserved": 141,
+  "old_helper_edges_preserved_with_exact_line_mapping": 4269,
+  "old_inventory_entries_preserved": 2999,
+  "old_payloads_and_order_preserved": 436
+}
