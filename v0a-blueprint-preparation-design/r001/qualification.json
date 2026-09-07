@@ -1,0 +1,47 @@
+{
+  "candidate": {
+    "base": "363c9fb669e19a30375537ee5e92ea338a840a2d",
+    "commit": "ddf652d00e68a84e1eef03d5bd4df37c5a022b79",
+    "date": "2026-09-07",
+    "manifest_sha256": "e68bf5eb2bf2338c9217717a960d79a5624abdb62b09c0914609fa6a3fc35aa4",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-design/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-design",
+    "tree": "0fb36b3958b88a50b9398009516cb62088ca5973"
+  },
+  "decision_commit_authorized": false,
+  "final_gates_after_review_closure": true,
+  "helper_sha256": "07d734a1f01d1b20e438b8735758a7db6bfba08c30dc380fb9bd76033021cb32",
+  "interpreters": [
+    "3.11.15",
+    "3.14.6"
+  ],
+  "previous_decision": {
+    "commit": "363c9fb669e19a30375537ee5e92ea338a840a2d",
+    "pushed": true,
+    "remote_branch": "origin/master"
+  },
+  "publication_destination": "https://github.com/point3434-creator/Pontius-handoffs",
+  "publication_reason": "Automatic approval review could not establish trusted user authorization for this new design packet payload and external destination.",
+  "qualification_root": "D:\\Pontius\\tmp\\blueprint-preparation-design-20260907-001",
+  "remote_packet_publication": "DEFERRED_AUTO_REVIEW_REJECTION",
+  "reviews": [
+    {
+      "defect": "CLEAN",
+      "design": "SOUND",
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-design\\r001\\reviews\\review-cold-a.md",
+      "sha256": "dbc87906f2d5b0e83232519b67d6f754132c5f8d2cf0be10379e8370866d9024"
+    },
+    {
+      "defect": "CLEAN",
+      "design": "SOUND",
+      "path": "D:\\Pontius-handoffs\\v0a-blueprint-preparation-design\\r001\\reviews\\review-cold-b.md",
+      "sha256": "43d3314f028ca02f48b7932310c643b746c76df9b56d12f2d05c1187a137e35e"
+    }
+  ],
+  "scope": "six-file documentation-only source-opening proposal",
+  "skips": 0,
+  "source_implementation_started": false,
+  "tests_per_interpreter": 12
+}

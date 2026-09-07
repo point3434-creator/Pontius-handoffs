@@ -87,3 +87,10 @@ in [the task ledger](v0a-i01-prereg/progress.md).
   r001-r004 retained after adoption of ADR-0512 as 363c9fb. Original review types,
   verdicts and qualification wording are preserved; measurement evidence remains
   at its retained paths.
+
+## Immutable blueprint preparation design
+
+- [Design r001](v0a-blueprint-preparation-design/r001/publication.md): ADR-0513
+  adopted as c9a8aa9; two CLEAN/SOUND reviews and floor-first status receipts.
+  Remote publication follows the user's explicit packet authorization; original
+  pre-authorization records remain unchanged.

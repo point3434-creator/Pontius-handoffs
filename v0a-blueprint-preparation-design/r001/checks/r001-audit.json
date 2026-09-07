@@ -1,0 +1,79 @@
+{
+  "candidate": {
+    "base": "363c9fb669e19a30375537ee5e92ea338a840a2d",
+    "commit": "ddf652d00e68a84e1eef03d5bd4df37c5a022b79",
+    "date": "2026-09-07",
+    "manifest_sha256": "e68bf5eb2bf2338c9217717a960d79a5624abdb62b09c0914609fa6a3fc35aa4",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-design/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-design",
+    "tree": "0fb36b3958b88a50b9398009516cb62088ca5973"
+  },
+  "exact_six_file_scope": true,
+  "exception_base_pins": [
+    {
+      "base_blob": "7f067058188e792b59770f94c974cf7f372b31a6",
+      "path": "src/pontius/v0a/runtime.py"
+    },
+    {
+      "base_blob": "192dd469a7b315d3247a899df19700e1aabb02cf",
+      "path": "tools/v0a_hand_adapter.py"
+    },
+    {
+      "base_blob": "8c9e5ef288d426bb64ce72547ab100505c8f682e",
+      "path": "tools/v0a_event_adapter.py"
+    },
+    {
+      "base_blob": "6ec8a162b053158203663c48e82314b10750f962",
+      "path": "tools/v0a_table_host.py"
+    },
+    {
+      "base_blob": "a5e058260fa56e29f06e38074d59dc55f420c5ee",
+      "path": "tools/v0a_table_session.py"
+    },
+    {
+      "base_blob": "b1f36842f71641fc8fbe86c58bc90c8c00f43725",
+      "path": "tools/check_stabilization_boundaries.py"
+    },
+    {
+      "base_blob": "b036ee34f4709c5306e18966015f2e797eb0924b",
+      "path": "tools/generate_test_inventory.py"
+    },
+    {
+      "base_blob": "e54391e724e507066a7cc4c037cff8717a3d6a6b",
+      "path": "tests/test-inventory.json"
+    },
+    {
+      "base_blob": "194afe9a55ef72ebc84b55f794904d370b697a67",
+      "path": "tests/test-profiles.toml"
+    },
+    {
+      "base_blob": "84a92441c0d3d77f4b67ca8d6f9b794e181bf278",
+      "path": "tests/test_inventory_and_profiles.py"
+    },
+    {
+      "base_blob": "bd7667885cc5bc0e2914409afc3b333c5c3281ad",
+      "path": "tests/test_v0a_table_session.py"
+    },
+    {
+      "base_blob": "4045887ca578f46c6c61e9d71ec058c6b99a7f4a",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "base_blob": "15bba1a3f0800da12ce339455461c7725b18ca66",
+      "path": "docs/architecture/historical-blobs.toml"
+    },
+    {
+      "base_blob": "a9abbb6ec8055316b21922600510b20ee8289fbe",
+      "path": "tools/generate_evidence_manifests.py"
+    },
+    {
+      "base_blob": "7bd0e4b5706586b59da506435aa2bdf88528fede",
+      "path": "tests/test_evidence_manifest_generation.py"
+    }
+  ],
+  "line_endings": "LF/no-BOM",
+  "raw_manifest_verified": true,
+  "workspace_and_packet_equal_frozen_blobs": true
+}

@@ -1,0 +1,113 @@
+{
+  "adopted_commit": "c9a8aa95a1c8f65bcfb15288cbc5e4492314e457",
+  "adoption_copies": [
+    {
+      "bytes": 5228,
+      "destination": "r001/adoption/adopt_authorized.py",
+      "sha256": "9ddc98452aca1627f38ff3703e3dba030ccccd189649cb7d334e6b12931c8c29",
+      "source": "D:\\Pontius\\tmp\\blueprint-preparation-design-20260907-001\\adoption\\adopt_authorized.py"
+    },
+    {
+      "bytes": 930,
+      "destination": "r001/adoption/authorization.json",
+      "sha256": "8b27554e51bb3b1b11c0f6f8aa3be54345ebc901a630b7913d44c432b3d7e7c0",
+      "source": "D:\\Pontius\\tmp\\blueprint-preparation-design-20260907-001\\adoption\\authorization.json"
+    },
+    {
+      "bytes": 828,
+      "destination": "r001/adoption/commit.json",
+      "sha256": "15ca2387719ee144a2865e695d62013376d04f7ee554a24942c8e99882188056",
+      "source": "D:\\Pontius\\tmp\\blueprint-preparation-design-20260907-001\\adoption\\commit.json"
+    },
+    {
+      "bytes": 481,
+      "destination": "r001/adoption/result.json",
+      "sha256": "3b6f82b73618d40a2656cbcd7cd22c000e3156a56d208bb98ede55e4c44ced0b",
+      "source": "D:\\Pontius\\tmp\\blueprint-preparation-design-20260907-001\\adoption\\result.json"
+    }
+  ],
+  "candidate": {
+    "base": "363c9fb669e19a30375537ee5e92ea338a840a2d",
+    "commit": "ddf652d00e68a84e1eef03d5bd4df37c5a022b79",
+    "date": "2026-09-07",
+    "manifest_sha256": "e68bf5eb2bf2338c9217717a960d79a5624abdb62b09c0914609fa6a3fc35aa4",
+    "ref": "refs/heads/review/v0a-blueprint-preparation-design/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-blueprint-preparation-design",
+    "tree": "0fb36b3958b88a50b9398009516cb62088ca5973"
+  },
+  "new_authorization": {
+    "approval_question": "Do you approve committing and pushing this exact ADR-0513 candidate, publishing its review packet to the private Pontius-handoffs repository, and proceeding with the scoped implementation?",
+    "recorded_utc": "2026-09-07T18:26:02.414193+00:00",
+    "sha256": "8b27554e51bb3b1b11c0f6f8aa3be54345ebc901a630b7913d44c432b3d7e7c0",
+    "source": "r001/adoption/authorization.json",
+    "user_message": "Commit and push then next"
+  },
+  "original_packet_inventory_sha256": "1dc552c2d7325a77614e918c9c3418180bcd30f32e8fc38995eff4ddcfe35b8d",
+  "original_progress_sha256": "70f04b53a0989dca824d72be272247cb865a47dcf37f422fd577745dd1cbf472",
+  "original_qualification_sha256": "3318c5a33b4652d97bc63ea621c7688f8a0fd8c2b4bbc1e49a2d4e6fe71806b9",
+  "original_ready_sha256": "b6a2735b640d60ccfd4acba12a6be4ac50763e430937352c7967f7052e0a97de",
+  "original_wording_preserved": true,
+  "prior_egress": "Automatic approval review rejected the earlier publication because payload and destination authorization was not established",
+  "prior_handoff_commit": "6eaf7767f0f86dbaf00ef6aa5d43f142f090dd23",
+  "private_origin": "https://github.com/point3434-creator/Pontius-handoffs.git",
+  "private_origin_verification": {
+    "default_branch": "main",
+    "repository_id": "1351227533",
+    "tool": "GitHub github_get_repo",
+    "visibility": "private"
+  },
+  "publication_timing": "Remote publication after review, qualification and decision adoption",
+  "published_at_utc": "2026-09-07T18:30:01.001781+00:00",
+  "round": "r001",
+  "schema_version": "pontius-handoff-authorized-publication-v1",
+  "source_review_ref_preserved": true,
+  "task_id": "v0a-blueprint-preparation-design",
+  "tests_or_owners_executed": false,
+  "verified_candidate_blobs": [
+    {
+      "bytes": 9395,
+      "path": "STATUS.md",
+      "sha256": "f09877441f0ab3f271e0cdb4235ee44582dc0e1280a2a20a064552470227ca20"
+    },
+    {
+      "bytes": 3774,
+      "path": "docs/architecture/v0a-blueprint-preparation-r001/brief.md",
+      "sha256": "39a528d0a31ac8f4dd89fd6f2174ad0ae36199b53051108b74cff63ecdd3cb38"
+    },
+    {
+      "bytes": 7230,
+      "path": "docs/architecture/v0a-blueprint-preparation-r001/design.md",
+      "sha256": "cd997f4e659998a6960c39656256a10f2511fcebcf5471c64f7fba7118167d8f"
+    },
+    {
+      "bytes": 13592,
+      "path": "docs/architecture/v0a-blueprint-preparation-r001/source-contract.md",
+      "sha256": "cff78ab31b6c76c541c54795028f97efb673862bb5a4ea3e8f6b942d09cdb698"
+    },
+    {
+      "bytes": 4669,
+      "path": "docs/decisions/ADR-0513-open-the-immutable-blueprint-preparation-source-round.md",
+      "sha256": "a3460318bc77bc7923f806a9bc1c473563211de8d81987554e4cc03ce49e8650"
+    },
+    {
+      "bytes": 11646,
+      "path": "docs/superpowers/plans/2026-09-07-blueprint-preparation.md",
+      "sha256": "a8cd6744ecce686eb8881b0e1a0d5b5caf59a39b1e29ccffb9582cf53fde3f0d"
+    }
+  ],
+  "verified_original_inventory_rows": 42,
+  "verified_reviews": [
+    {
+      "bytes": 13496,
+      "path": "r001/reviews/review-cold-a.md",
+      "sha256": "dbc87906f2d5b0e83232519b67d6f754132c5f8d2cf0be10379e8370866d9024"
+    },
+    {
+      "bytes": 13415,
+      "path": "r001/reviews/review-cold-b.md",
+      "sha256": "43d3314f028ca02f48b7932310c643b746c76df9b56d12f2d05c1187a137e35e"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+- 2026-09-07 /root/blueprint_design_cold_a: initial Tier C cold design review CLEAN / SOUND; candidate ddf652d00e68a84e1eef03d5bd4df37c5a022b79; manifest e68bf5eb2bf2338c9217717a960d79a5624abdb62b09c0914609fa6a3fc35aa4; report r001/reviews/review-cold-a.md; no tests or owners executed.
+2026-09-07 | r001 | /root/blueprint_design_cold_b | CLEAN / SOUND | candidate ddf652d00e68a84e1eef03d5bd4df37c5a022b79 | manifest e68bf5eb2bf2338c9217717a960d79a5624abdb62b09c0914609fa6a3fc35aa4 | reviews/review-cold-b.md
