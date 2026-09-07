@@ -1,0 +1,36 @@
+{
+  "added_blockers": [
+    {
+      "item_id": "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_stable_bytes_tokens_and_cap_boundaries",
+      "line": 35,
+      "reason": "max/min comparison dispatch is dynamically unresolved",
+      "relative_path": "tests/test_v0a_evaluation_v2.py"
+    },
+    {
+      "item_id": "tests/test_v0a_evaluation_v2.py::SuccessorBoundaryTests::test_import_guard_requires_each_exact_origin_and_loader",
+      "line": 219,
+      "reason": "mixed protected receiver is dynamically unresolved",
+      "relative_path": "tests/test_v0a_evaluation_v2.py"
+    }
+  ],
+  "added_test_ids": [
+    "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_ancestor_replacement_refuses_with_same_file_identity",
+    "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_create_file_round_trip_and_no_overwrite",
+    "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_read_request_respects_observed_size_ceiling",
+    "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_real_growth_shrink_and_named_replacement_refuse",
+    "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_restored_growth_discriminates_missing_extra_byte",
+    "tests/test_v0a_evaluation_v2.py::BoundedReadTests::test_stable_bytes_tokens_and_cap_boundaries",
+    "tests/test_v0a_evaluation_v2.py::SuccessorBoundaryTests::test_exact_source_admission_and_sealed_helper",
+    "tests/test_v0a_evaluation_v2.py::SuccessorBoundaryTests::test_import_guard_requires_each_exact_origin_and_loader"
+  ],
+  "analyzed_census_unchanged": true,
+  "existing_blockers_unchanged": true,
+  "existing_inventory_entries_unchanged": true,
+  "explanation": "The analyzer cannot statically resolve the new ordinary max() expression or the per-wrapper read_bytes receiver. These are test-only native byte/cap and source-text controls, not new subprocess/GPU capability grants.",
+  "granted_capability_rows_unchanged": true,
+  "historical_baseline_unchanged": true,
+  "new_capture": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\dev311\\temp\\census-test.json",
+  "new_sha256": "50aa346898f4e019997308995c6c2af2f2f75277cfe6521339ef08d70e411294",
+  "old_capture": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\process-temp\\c-post1-t-311\\census-test.json",
+  "old_sha256": "d26b1e067536432f5cdcabff5af14f4b41c052c7ca219ffd22fa71324bf5e7cf"
+}

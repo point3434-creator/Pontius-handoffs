@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "C:/Users/point/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe",
+    "-NoProfile",
+    "-File",
+    "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\ci-rehearsal\\ci-block.ps1"
+  ],
+  "candidate": "2f8e540204dc41521d447a158f0da8c7983125f6",
+  "cwd": "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius",
+  "environment": {
+    "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+    "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+    "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONPATH": "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius\\src",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\windows",
+    "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\ci-rehearsal\\temp",
+    "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\ci-rehearsal\\temp",
+    "USERPROFILE": "C:\\Users\\point",
+    "WINDIR": "C:\\windows"
+  },
+  "frozen_block_sha256": "2d895f140b40a389efd10adf131cfcc331edf01a16a2aca6761a36f2f66d9572",
+  "path_and_commit_substitutions": [
+    [
+      "C:\\px\\Pontius\\.venv\\Scripts\\python.exe",
+      "C:/Users/point/AppData/Roaming/uv/python/cpython-3.11.15-windows-x86_64-none/python.exe"
+    ],
+    [
+      "C:\\px\\Pontius",
+      "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius"
+    ],
+    [
+      "${{ github.sha }}",
+      "2f8e540204dc41521d447a158f0da8c7983125f6"
+    ]
+  ],
+  "rehearsed_block_sha256": "c4bbdef8b7114510a8a6efd581abbbe36c6f4a407e54b621028c393304e5618b",
+  "scope": "Local-path rehearsal, not hosted GitHub CI"
+}

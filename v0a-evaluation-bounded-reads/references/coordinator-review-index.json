@@ -1,0 +1,89 @@
+{
+  "corrected_candidate": {
+    "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+    "commit": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+    "manifest_sha256": "facede42f50a7c62b36665c9641712b0b3f6091a2fe6f47b495768ec6ff89287",
+    "paths": [
+      ".github/workflows/ci.yml",
+      "STATUS.md",
+      "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "tests/test-inventory.json",
+      "tests/test-profiles.toml",
+      "tests/test_inventory_and_profiles.py",
+      "tests/test_v0a_evaluation_v2.py",
+      "tools/check_stabilization_boundaries.py",
+      "tools/generate_test_inventory.py",
+      "tools/v0a_evaluation_v2.py"
+    ],
+    "ref": "refs/review/bounded-reads-v2-20260907/final-r004",
+    "tree": "10cc82ff78a84ef901242b2f69540f6a74ec498b"
+  },
+  "earlier_round_history": "r001 source reviews required CI D-local admission, LF status and registration widths; r002 follow-up left only CI width; r003 established new fresh substantive anchors. Those earlier reports remain in task history.",
+  "eligibility": "Two fresh substantive Tier C passes with only mechanical findings",
+  "final_mechanical_verdicts": "CLEAN; design SOUND",
+  "independence_note": "Reviewer B disclosed the width check was confirmatory after a late note",
+  "mechanical_delta": [
+    "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+    "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+    "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+    "STATUS.md"
+  ],
+  "original_substantive_verdicts": "NOT CLEAN solely for Markdown width; design SOUND",
+  "reports": [
+    {
+      "bytes": 4920,
+      "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\handoff\\reviews\\cold-a-r003.md",
+      "sha256": "6f6db8984aca29897e69abb7baea8d7e7bb848b8862d42afa77ad96323d9738f"
+    },
+    {
+      "bytes": 6841,
+      "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\handoff\\reviews\\cold-b-r003.md",
+      "sha256": "fb1dcce45cc65a407ccfa77c70744f9a7907d09ab40187b266452ff7db958bce"
+    },
+    {
+      "bytes": 3188,
+      "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\handoff\\reviews\\mechanical-a-r004.md",
+      "sha256": "475b306a7af79e5016a85a8ca9f541937b46cfec5834d809470ddc08d489a53f"
+    },
+    {
+      "bytes": 4026,
+      "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\handoff\\reviews\\mechanical-b-r004.md",
+      "sha256": "3161f2b6dd21b66046df42130d2eb7ad4e75fa846578dbe2954e6a76a7d32e27"
+    }
+  ],
+  "required_review_corrections_remaining": 0,
+  "reviewers": [
+    "/root/bounded_final_cold_a",
+    "/root/bounded_final_cold_b"
+  ],
+  "scope": "Coordinator index of copied reviewer messages; not newly issued verdicts",
+  "substantive_anchor": {
+    "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+    "commit": "df6c896e8511e22281110aa7890cc36383dcd47a",
+    "manifest_sha256": "6bb8ecaff056d203e93f5085ce3dd44c3fda2e152ba1db0aa656a057201e8f2f",
+    "paths": [
+      ".github/workflows/ci.yml",
+      "STATUS.md",
+      "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "tests/test-inventory.json",
+      "tests/test-profiles.toml",
+      "tests/test_inventory_and_profiles.py",
+      "tests/test_v0a_evaluation_v2.py",
+      "tools/check_stabilization_boundaries.py",
+      "tools/generate_test_inventory.py",
+      "tools/v0a_evaluation_v2.py"
+    ],
+    "ref": "refs/review/bounded-reads-v2-20260907/candidate-r003",
+    "tree": "8667d42ba1a88c3f2fdd85b7e3a898c5016cde8c"
+  }
+}

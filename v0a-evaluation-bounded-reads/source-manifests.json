@@ -1,0 +1,648 @@
+{
+  "candidate_blobs": [
+    {
+      "bytes": 8653,
+      "destination": "r001/blobs/.github/workflows/ci.yml",
+      "git_blob": "2e03fefe98b4b8682bee68c6b3b7a93811aecbb4",
+      "path": ".github/workflows/ci.yml",
+      "round": "r001",
+      "sha256": "4cb6e2cacc48093d7e5aec4cce551f7660cc8f95824a9ae103bec49c48cf3af8"
+    },
+    {
+      "bytes": 9286,
+      "destination": "r001/blobs/STATUS.md",
+      "git_blob": "410925217204f01e8190eb86c16e323715d40009",
+      "path": "STATUS.md",
+      "round": "r001",
+      "sha256": "88f826bca3764bd3298c992071e60173b47504060b23a7490b8eb1e50f5d2155"
+    },
+    {
+      "bytes": 5694,
+      "destination": "r001/blobs/docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "git_blob": "8b4bca8374e5121de18ca7883224c190a7200fc5",
+      "path": "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "round": "r001",
+      "sha256": "7655ca39947731f7a24e1552369d4bd50521080faae61568afa3e935161bb508"
+    },
+    {
+      "bytes": 3083,
+      "destination": "r001/blobs/docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "git_blob": "68aa1b64ded6aab3a59929d70c973ccfe5a0a8f6",
+      "path": "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "round": "r001",
+      "sha256": "b738c9df2f542958781164e3b1a3930953d5f6b694419e3db2d41b03a8c01a4b"
+    },
+    {
+      "bytes": 6211,
+      "destination": "r001/blobs/docs/architecture/v0a-bounded-reads-r001/design.md",
+      "git_blob": "46ed05c4426ce13ef7a7e440e767f516e496032b",
+      "path": "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "round": "r001",
+      "sha256": "f01b7a2fbc75298f69521514307e3f1baa5a6ca3d29ab2f71eb0e9a7b3a0d805"
+    },
+    {
+      "bytes": 2016,
+      "destination": "r001/blobs/docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "git_blob": "cd13ddf723c85725ece4b55f103253426163b615",
+      "path": "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "round": "r001",
+      "sha256": "df9b039d463e3308e731a50c9f0e9b4cd958e7747d6a7d835a06b4f935b21f72"
+    },
+    {
+      "bytes": 5468,
+      "destination": "r001/blobs/docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "git_blob": "149f812beaadd58c9dcdd4c400a136c4ef20853f",
+      "path": "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "round": "r001",
+      "sha256": "2d59114777f1eeb69d7c86f92f1c39381c34c4f56a843e00251ea3387c8c893a"
+    },
+    {
+      "bytes": 6835,
+      "destination": "r001/blobs/docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "git_blob": "14f701d67cf4411021b1a33cfdb023f4b477e9e1",
+      "path": "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "round": "r001",
+      "sha256": "11b837823d1d0ad2991618f6e808e6e9275a8c90b0107e869f5407f409e5887b"
+    },
+    {
+      "bytes": 1802823,
+      "destination": "r001/blobs/tests/test-inventory.json",
+      "git_blob": "e54391e724e507066a7cc4c037cff8717a3d6a6b",
+      "path": "tests/test-inventory.json",
+      "round": "r001",
+      "sha256": "9f57d9088feb1048e5ea4a5de939a9b0db49e5aee944dfcc6e8b58d7ea9d4cac"
+    },
+    {
+      "bytes": 469931,
+      "destination": "r001/blobs/tests/test-profiles.toml",
+      "git_blob": "194afe9a55ef72ebc84b55f794904d370b697a67",
+      "path": "tests/test-profiles.toml",
+      "round": "r001",
+      "sha256": "0e604d826e5787021796c5a44c4c8497c2819e865191b88557e8a21f502f99e6"
+    },
+    {
+      "bytes": 1201406,
+      "destination": "r001/blobs/tests/test_inventory_and_profiles.py",
+      "git_blob": "4eb52e4a74752b6d0ced78d47cf3b52354b8b2b3",
+      "path": "tests/test_inventory_and_profiles.py",
+      "round": "r001",
+      "sha256": "39e4f96d57e6b73479fed5bee7a8e9ff9e27497b8f9a77c13da5254b42d06660"
+    },
+    {
+      "bytes": 10405,
+      "destination": "r001/blobs/tests/test_v0a_evaluation_v2.py",
+      "git_blob": "477001e2407a9d097359622716b36183d37bb679",
+      "path": "tests/test_v0a_evaluation_v2.py",
+      "round": "r001",
+      "sha256": "76121d42cb8646ea5d47e9f5076cec646a0ea0558c20921ec5b148aac93210cd"
+    },
+    {
+      "bytes": 38970,
+      "destination": "r001/blobs/tools/check_stabilization_boundaries.py",
+      "git_blob": "b1f36842f71641fc8fbe86c58bc90c8c00f43725",
+      "path": "tools/check_stabilization_boundaries.py",
+      "round": "r001",
+      "sha256": "709bc49ff34b1740b489e181b3d05e7e43eb55e9bbd38300a6da9206bb7cc0b4"
+    },
+    {
+      "bytes": 984514,
+      "destination": "r001/blobs/tools/generate_test_inventory.py",
+      "git_blob": "aa59237df8d458c52ffd7e2d5ff60e13765f3ce1",
+      "path": "tools/generate_test_inventory.py",
+      "round": "r001",
+      "sha256": "296c289a949c91d7da7486cdad37cef2eda21bc2f66495eb0cc3d4bc92b69e9b"
+    },
+    {
+      "bytes": 32540,
+      "destination": "r001/blobs/tools/v0a_evaluation_v2.py",
+      "git_blob": "03e6dd38c920656769571598eee408c18ae05c41",
+      "path": "tools/v0a_evaluation_v2.py",
+      "round": "r001",
+      "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+    },
+    {
+      "bytes": 9405,
+      "destination": "r002/blobs/.github/workflows/ci.yml",
+      "git_blob": "8fcf4d613977a20578d488ee60a36bd1e79ee1c8",
+      "path": ".github/workflows/ci.yml",
+      "round": "r002",
+      "sha256": "5828c82c2b544a8c29918ecb5843c97b70c970065b94bb101f2b9b43a1966487"
+    },
+    {
+      "bytes": 9196,
+      "destination": "r002/blobs/STATUS.md",
+      "git_blob": "dd22ed909c969db3487c088c347c68f540e64d21",
+      "path": "STATUS.md",
+      "round": "r002",
+      "sha256": "27667021530a9a58d31113222b2e0382fb50837016b85e048ecf2b56d201a4ba"
+    },
+    {
+      "bytes": 5694,
+      "destination": "r002/blobs/docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "git_blob": "e451e84610b0d766cae664e39cd82791f103ca49",
+      "path": "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "round": "r002",
+      "sha256": "80b40e571e10480e9b0eecf24796f1afb46c7dba34dec550545604596acb04c0"
+    },
+    {
+      "bytes": 3083,
+      "destination": "r002/blobs/docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "git_blob": "68aa1b64ded6aab3a59929d70c973ccfe5a0a8f6",
+      "path": "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "round": "r002",
+      "sha256": "b738c9df2f542958781164e3b1a3930953d5f6b694419e3db2d41b03a8c01a4b"
+    },
+    {
+      "bytes": 6211,
+      "destination": "r002/blobs/docs/architecture/v0a-bounded-reads-r001/design.md",
+      "git_blob": "46ed05c4426ce13ef7a7e440e767f516e496032b",
+      "path": "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "round": "r002",
+      "sha256": "f01b7a2fbc75298f69521514307e3f1baa5a6ca3d29ab2f71eb0e9a7b3a0d805"
+    },
+    {
+      "bytes": 2016,
+      "destination": "r002/blobs/docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "git_blob": "cd13ddf723c85725ece4b55f103253426163b615",
+      "path": "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "round": "r002",
+      "sha256": "df9b039d463e3308e731a50c9f0e9b4cd958e7747d6a7d835a06b4f935b21f72"
+    },
+    {
+      "bytes": 5468,
+      "destination": "r002/blobs/docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "git_blob": "149f812beaadd58c9dcdd4c400a136c4ef20853f",
+      "path": "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "round": "r002",
+      "sha256": "2d59114777f1eeb69d7c86f92f1c39381c34c4f56a843e00251ea3387c8c893a"
+    },
+    {
+      "bytes": 6835,
+      "destination": "r002/blobs/docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "git_blob": "14f701d67cf4411021b1a33cfdb023f4b477e9e1",
+      "path": "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "round": "r002",
+      "sha256": "11b837823d1d0ad2991618f6e808e6e9275a8c90b0107e869f5407f409e5887b"
+    },
+    {
+      "bytes": 1802823,
+      "destination": "r002/blobs/tests/test-inventory.json",
+      "git_blob": "e54391e724e507066a7cc4c037cff8717a3d6a6b",
+      "path": "tests/test-inventory.json",
+      "round": "r002",
+      "sha256": "9f57d9088feb1048e5ea4a5de939a9b0db49e5aee944dfcc6e8b58d7ea9d4cac"
+    },
+    {
+      "bytes": 469931,
+      "destination": "r002/blobs/tests/test-profiles.toml",
+      "git_blob": "194afe9a55ef72ebc84b55f794904d370b697a67",
+      "path": "tests/test-profiles.toml",
+      "round": "r002",
+      "sha256": "0e604d826e5787021796c5a44c4c8497c2819e865191b88557e8a21f502f99e6"
+    },
+    {
+      "bytes": 1201406,
+      "destination": "r002/blobs/tests/test_inventory_and_profiles.py",
+      "git_blob": "84a92441c0d3d77f4b67ca8d6f9b794e181bf278",
+      "path": "tests/test_inventory_and_profiles.py",
+      "round": "r002",
+      "sha256": "09515131a707528a37f0856ece088c77880c474f6f228ad8c3e3f147b92873ab"
+    },
+    {
+      "bytes": 10405,
+      "destination": "r002/blobs/tests/test_v0a_evaluation_v2.py",
+      "git_blob": "477001e2407a9d097359622716b36183d37bb679",
+      "path": "tests/test_v0a_evaluation_v2.py",
+      "round": "r002",
+      "sha256": "76121d42cb8646ea5d47e9f5076cec646a0ea0558c20921ec5b148aac93210cd"
+    },
+    {
+      "bytes": 38970,
+      "destination": "r002/blobs/tools/check_stabilization_boundaries.py",
+      "git_blob": "b1f36842f71641fc8fbe86c58bc90c8c00f43725",
+      "path": "tools/check_stabilization_boundaries.py",
+      "round": "r002",
+      "sha256": "709bc49ff34b1740b489e181b3d05e7e43eb55e9bbd38300a6da9206bb7cc0b4"
+    },
+    {
+      "bytes": 984514,
+      "destination": "r002/blobs/tools/generate_test_inventory.py",
+      "git_blob": "b036ee34f4709c5306e18966015f2e797eb0924b",
+      "path": "tools/generate_test_inventory.py",
+      "round": "r002",
+      "sha256": "a8fcbee90cb813db53693e502ddfb089ca07014c010d8ce3ddbf77f7616a16d4"
+    },
+    {
+      "bytes": 32540,
+      "destination": "r002/blobs/tools/v0a_evaluation_v2.py",
+      "git_blob": "03e6dd38c920656769571598eee408c18ae05c41",
+      "path": "tools/v0a_evaluation_v2.py",
+      "round": "r002",
+      "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+    },
+    {
+      "bytes": 9439,
+      "destination": "r003/blobs/.github/workflows/ci.yml",
+      "git_blob": "4045887ca578f46c6c61e9d71ec058c6b99a7f4a",
+      "path": ".github/workflows/ci.yml",
+      "round": "r003",
+      "sha256": "a49d9e1c01e5dc560307de63f1d7f0e2f888686958f458cd7282ea2bd99e159d"
+    },
+    {
+      "bytes": 9196,
+      "destination": "r003/blobs/STATUS.md",
+      "git_blob": "dd22ed909c969db3487c088c347c68f540e64d21",
+      "path": "STATUS.md",
+      "round": "r003",
+      "sha256": "27667021530a9a58d31113222b2e0382fb50837016b85e048ecf2b56d201a4ba"
+    },
+    {
+      "bytes": 5694,
+      "destination": "r003/blobs/docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "git_blob": "e451e84610b0d766cae664e39cd82791f103ca49",
+      "path": "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "round": "r003",
+      "sha256": "80b40e571e10480e9b0eecf24796f1afb46c7dba34dec550545604596acb04c0"
+    },
+    {
+      "bytes": 3083,
+      "destination": "r003/blobs/docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "git_blob": "68aa1b64ded6aab3a59929d70c973ccfe5a0a8f6",
+      "path": "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "round": "r003",
+      "sha256": "b738c9df2f542958781164e3b1a3930953d5f6b694419e3db2d41b03a8c01a4b"
+    },
+    {
+      "bytes": 6211,
+      "destination": "r003/blobs/docs/architecture/v0a-bounded-reads-r001/design.md",
+      "git_blob": "46ed05c4426ce13ef7a7e440e767f516e496032b",
+      "path": "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "round": "r003",
+      "sha256": "f01b7a2fbc75298f69521514307e3f1baa5a6ca3d29ab2f71eb0e9a7b3a0d805"
+    },
+    {
+      "bytes": 2016,
+      "destination": "r003/blobs/docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "git_blob": "cd13ddf723c85725ece4b55f103253426163b615",
+      "path": "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "round": "r003",
+      "sha256": "df9b039d463e3308e731a50c9f0e9b4cd958e7747d6a7d835a06b4f935b21f72"
+    },
+    {
+      "bytes": 5468,
+      "destination": "r003/blobs/docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "git_blob": "149f812beaadd58c9dcdd4c400a136c4ef20853f",
+      "path": "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "round": "r003",
+      "sha256": "2d59114777f1eeb69d7c86f92f1c39381c34c4f56a843e00251ea3387c8c893a"
+    },
+    {
+      "bytes": 6835,
+      "destination": "r003/blobs/docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "git_blob": "14f701d67cf4411021b1a33cfdb023f4b477e9e1",
+      "path": "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "round": "r003",
+      "sha256": "11b837823d1d0ad2991618f6e808e6e9275a8c90b0107e869f5407f409e5887b"
+    },
+    {
+      "bytes": 1802823,
+      "destination": "r003/blobs/tests/test-inventory.json",
+      "git_blob": "e54391e724e507066a7cc4c037cff8717a3d6a6b",
+      "path": "tests/test-inventory.json",
+      "round": "r003",
+      "sha256": "9f57d9088feb1048e5ea4a5de939a9b0db49e5aee944dfcc6e8b58d7ea9d4cac"
+    },
+    {
+      "bytes": 469931,
+      "destination": "r003/blobs/tests/test-profiles.toml",
+      "git_blob": "194afe9a55ef72ebc84b55f794904d370b697a67",
+      "path": "tests/test-profiles.toml",
+      "round": "r003",
+      "sha256": "0e604d826e5787021796c5a44c4c8497c2819e865191b88557e8a21f502f99e6"
+    },
+    {
+      "bytes": 1201406,
+      "destination": "r003/blobs/tests/test_inventory_and_profiles.py",
+      "git_blob": "84a92441c0d3d77f4b67ca8d6f9b794e181bf278",
+      "path": "tests/test_inventory_and_profiles.py",
+      "round": "r003",
+      "sha256": "09515131a707528a37f0856ece088c77880c474f6f228ad8c3e3f147b92873ab"
+    },
+    {
+      "bytes": 10405,
+      "destination": "r003/blobs/tests/test_v0a_evaluation_v2.py",
+      "git_blob": "477001e2407a9d097359622716b36183d37bb679",
+      "path": "tests/test_v0a_evaluation_v2.py",
+      "round": "r003",
+      "sha256": "76121d42cb8646ea5d47e9f5076cec646a0ea0558c20921ec5b148aac93210cd"
+    },
+    {
+      "bytes": 38970,
+      "destination": "r003/blobs/tools/check_stabilization_boundaries.py",
+      "git_blob": "b1f36842f71641fc8fbe86c58bc90c8c00f43725",
+      "path": "tools/check_stabilization_boundaries.py",
+      "round": "r003",
+      "sha256": "709bc49ff34b1740b489e181b3d05e7e43eb55e9bbd38300a6da9206bb7cc0b4"
+    },
+    {
+      "bytes": 984514,
+      "destination": "r003/blobs/tools/generate_test_inventory.py",
+      "git_blob": "b036ee34f4709c5306e18966015f2e797eb0924b",
+      "path": "tools/generate_test_inventory.py",
+      "round": "r003",
+      "sha256": "a8fcbee90cb813db53693e502ddfb089ca07014c010d8ce3ddbf77f7616a16d4"
+    },
+    {
+      "bytes": 32540,
+      "destination": "r003/blobs/tools/v0a_evaluation_v2.py",
+      "git_blob": "03e6dd38c920656769571598eee408c18ae05c41",
+      "path": "tools/v0a_evaluation_v2.py",
+      "round": "r003",
+      "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+    },
+    {
+      "bytes": 9439,
+      "destination": "r004/blobs/.github/workflows/ci.yml",
+      "git_blob": "4045887ca578f46c6c61e9d71ec058c6b99a7f4a",
+      "path": ".github/workflows/ci.yml",
+      "round": "r004",
+      "sha256": "a49d9e1c01e5dc560307de63f1d7f0e2f888686958f458cd7282ea2bd99e159d"
+    },
+    {
+      "bytes": 9139,
+      "destination": "r004/blobs/STATUS.md",
+      "git_blob": "1634115f3863d2b47a2914c7943cef8cc31294a0",
+      "path": "STATUS.md",
+      "round": "r004",
+      "sha256": "ba407a7c4732308b5c1e87d70c219d6c6e281d60004bc3feb45a92bb0c7a5969"
+    },
+    {
+      "bytes": 5694,
+      "destination": "r004/blobs/docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "git_blob": "e451e84610b0d766cae664e39cd82791f103ca49",
+      "path": "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "round": "r004",
+      "sha256": "80b40e571e10480e9b0eecf24796f1afb46c7dba34dec550545604596acb04c0"
+    },
+    {
+      "bytes": 3034,
+      "destination": "r004/blobs/docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "git_blob": "542e4e05bbce9eccefbbcbfef5a1ed91361274b7",
+      "path": "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "round": "r004",
+      "sha256": "2b8e6dc990cc5db7c6b58fe4fedfb2cd9feb20e293f3143201d7fd03f0079855"
+    },
+    {
+      "bytes": 6211,
+      "destination": "r004/blobs/docs/architecture/v0a-bounded-reads-r001/design.md",
+      "git_blob": "46ed05c4426ce13ef7a7e440e767f516e496032b",
+      "path": "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "round": "r004",
+      "sha256": "f01b7a2fbc75298f69521514307e3f1baa5a6ca3d29ab2f71eb0e9a7b3a0d805"
+    },
+    {
+      "bytes": 2016,
+      "destination": "r004/blobs/docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "git_blob": "cd13ddf723c85725ece4b55f103253426163b615",
+      "path": "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "round": "r004",
+      "sha256": "df9b039d463e3308e731a50c9f0e9b4cd958e7747d6a7d835a06b4f935b21f72"
+    },
+    {
+      "bytes": 5538,
+      "destination": "r004/blobs/docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "git_blob": "437740ce4f45ff69f4d86beb9b9c3ebff4697656",
+      "path": "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "round": "r004",
+      "sha256": "a053083ac7195b48abae004892c6edb12d7d4cbc6723d99d3db4a3bfcea8dc32"
+    },
+    {
+      "bytes": 6778,
+      "destination": "r004/blobs/docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "git_blob": "7a3d0a6ef54da741ce840acc769535ff329a3bfc",
+      "path": "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "round": "r004",
+      "sha256": "2535483d31d51a3809a8fcb4eb4799571d1e006a914be9ff7c5108a63d95401a"
+    },
+    {
+      "bytes": 1802823,
+      "destination": "r004/blobs/tests/test-inventory.json",
+      "git_blob": "e54391e724e507066a7cc4c037cff8717a3d6a6b",
+      "path": "tests/test-inventory.json",
+      "round": "r004",
+      "sha256": "9f57d9088feb1048e5ea4a5de939a9b0db49e5aee944dfcc6e8b58d7ea9d4cac"
+    },
+    {
+      "bytes": 469931,
+      "destination": "r004/blobs/tests/test-profiles.toml",
+      "git_blob": "194afe9a55ef72ebc84b55f794904d370b697a67",
+      "path": "tests/test-profiles.toml",
+      "round": "r004",
+      "sha256": "0e604d826e5787021796c5a44c4c8497c2819e865191b88557e8a21f502f99e6"
+    },
+    {
+      "bytes": 1201406,
+      "destination": "r004/blobs/tests/test_inventory_and_profiles.py",
+      "git_blob": "84a92441c0d3d77f4b67ca8d6f9b794e181bf278",
+      "path": "tests/test_inventory_and_profiles.py",
+      "round": "r004",
+      "sha256": "09515131a707528a37f0856ece088c77880c474f6f228ad8c3e3f147b92873ab"
+    },
+    {
+      "bytes": 10405,
+      "destination": "r004/blobs/tests/test_v0a_evaluation_v2.py",
+      "git_blob": "477001e2407a9d097359622716b36183d37bb679",
+      "path": "tests/test_v0a_evaluation_v2.py",
+      "round": "r004",
+      "sha256": "76121d42cb8646ea5d47e9f5076cec646a0ea0558c20921ec5b148aac93210cd"
+    },
+    {
+      "bytes": 38970,
+      "destination": "r004/blobs/tools/check_stabilization_boundaries.py",
+      "git_blob": "b1f36842f71641fc8fbe86c58bc90c8c00f43725",
+      "path": "tools/check_stabilization_boundaries.py",
+      "round": "r004",
+      "sha256": "709bc49ff34b1740b489e181b3d05e7e43eb55e9bbd38300a6da9206bb7cc0b4"
+    },
+    {
+      "bytes": 984514,
+      "destination": "r004/blobs/tools/generate_test_inventory.py",
+      "git_blob": "b036ee34f4709c5306e18966015f2e797eb0924b",
+      "path": "tools/generate_test_inventory.py",
+      "round": "r004",
+      "sha256": "a8fcbee90cb813db53693e502ddfb089ca07014c010d8ce3ddbf77f7616a16d4"
+    },
+    {
+      "bytes": 32540,
+      "destination": "r004/blobs/tools/v0a_evaluation_v2.py",
+      "git_blob": "03e6dd38c920656769571598eee408c18ae05c41",
+      "path": "tools/v0a_evaluation_v2.py",
+      "round": "r004",
+      "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+    }
+  ],
+  "convention": "SHA256 of whole-row byte-sorted lowercase SHA256 + two spaces + POSIX path + LF",
+  "freezes": [
+    {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "16dea9dcaef757c620a223dac334132184891083",
+      "exact_published_manifest": true,
+      "label": "r001",
+      "manifest_sha256": "90d7f77090c4e4ff87fb280dddb40bf3957c5bde8fc0774963fa3a83cf0c5412",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "STATUS.md",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+        "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+        "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+        "tests/test-inventory.json",
+        "tests/test-profiles.toml",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "recomputed_manifest_sha256": "90d7f77090c4e4ff87fb280dddb40bf3957c5bde8fc0774963fa3a83cf0c5412",
+      "ref": "refs/review/bounded-reads-v2-20260907/candidate-r001",
+      "retained_folder": "candidate-r001",
+      "row_count": 15,
+      "tree": "f8b485155be7ca3fdf2b1c3d2be9c52e6d9d1cfd"
+    },
+    {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "2f8e540204dc41521d447a158f0da8c7983125f6",
+      "exact_published_manifest": true,
+      "label": "r002",
+      "manifest_sha256": "a30a50f4713e89679ad1d0c0d160d1b1155b8a04315ff9908b08b57ff7104269",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "STATUS.md",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+        "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+        "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+        "tests/test-inventory.json",
+        "tests/test-profiles.toml",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "recomputed_manifest_sha256": "a30a50f4713e89679ad1d0c0d160d1b1155b8a04315ff9908b08b57ff7104269",
+      "ref": "refs/review/bounded-reads-v2-20260907/candidate-r002",
+      "retained_folder": "candidate-r002",
+      "row_count": 15,
+      "tree": "5967c400038f15d03aad05e1b5a024750a59e5cb"
+    },
+    {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "df6c896e8511e22281110aa7890cc36383dcd47a",
+      "exact_published_manifest": true,
+      "label": "r003",
+      "manifest_sha256": "6bb8ecaff056d203e93f5085ce3dd44c3fda2e152ba1db0aa656a057201e8f2f",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "STATUS.md",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+        "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+        "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+        "tests/test-inventory.json",
+        "tests/test-profiles.toml",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "recomputed_manifest_sha256": "6bb8ecaff056d203e93f5085ce3dd44c3fda2e152ba1db0aa656a057201e8f2f",
+      "ref": "refs/review/bounded-reads-v2-20260907/candidate-r003",
+      "retained_folder": "candidate-r003",
+      "row_count": 15,
+      "tree": "8667d42ba1a88c3f2fdd85b7e3a898c5016cde8c"
+    },
+    {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+      "exact_published_manifest": true,
+      "label": "r004",
+      "manifest_sha256": "facede42f50a7c62b36665c9641712b0b3f6091a2fe6f47b495768ec6ff89287",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "STATUS.md",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+        "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+        "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+        "tests/test-inventory.json",
+        "tests/test-profiles.toml",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "recomputed_manifest_sha256": "facede42f50a7c62b36665c9641712b0b3f6091a2fe6f47b495768ec6ff89287",
+      "ref": "refs/review/bounded-reads-v2-20260907/final-r004",
+      "retained_folder": "final-r004",
+      "row_count": 15,
+      "tree": "10cc82ff78a84ef901242b2f69540f6a74ec498b"
+    },
+    {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "0bf9e71c62c51626d49e7f75dc9a0217afb6e761",
+      "exact_published_manifest": true,
+      "label": "auxiliary/red",
+      "manifest_sha256": "d1958a3742f70ba0e686b2fd7319f20e27fe96912d45c3893892126a072a3e34",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "recomputed_manifest_sha256": "d1958a3742f70ba0e686b2fd7319f20e27fe96912d45c3893892126a072a3e34",
+      "ref": "refs/review/bounded-reads-v2-20260907/red",
+      "retained_folder": "red",
+      "row_count": 8,
+      "tree": "7404db3a17c8c6167857c583da9ec75f0acbd13e"
+    },
+    {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "356f87e1352eca92c863442638de080687939998",
+      "exact_published_manifest": true,
+      "label": "auxiliary/green-preinventory",
+      "manifest_sha256": "61e04311b429b156697b7d971c075627e09313a188653c9c061d1419536d0614",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "recomputed_manifest_sha256": "61e04311b429b156697b7d971c075627e09313a188653c9c061d1419536d0614",
+      "ref": "refs/review/bounded-reads-v2-20260907/green-preinventory",
+      "retained_folder": "green-preinventory",
+      "row_count": 8,
+      "tree": "0bae4307919b50b3398aeb5cc046d1a3c90af093"
+    }
+  ],
+  "verified_at_utc": "2026-09-07T17:42:26.644833+00:00"
+}

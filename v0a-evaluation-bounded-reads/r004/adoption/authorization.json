@@ -1,0 +1,31 @@
+{
+  "approval_question": "May I commit and push reviewed candidate ab318584 as Adopt bounded reads in paired evaluation v2 (ADR-0512)?",
+  "candidate": {
+    "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+    "commit": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+    "manifest_sha256": "facede42f50a7c62b36665c9641712b0b3f6091a2fe6f47b495768ec6ff89287",
+    "paths": [
+      ".github/workflows/ci.yml",
+      "STATUS.md",
+      "docs/architecture/v0a-bounded-reads-r001/brief.md",
+      "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+      "docs/architecture/v0a-bounded-reads-r001/design.md",
+      "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+      "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+      "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+      "tests/test-inventory.json",
+      "tests/test-profiles.toml",
+      "tests/test_inventory_and_profiles.py",
+      "tests/test_v0a_evaluation_v2.py",
+      "tools/check_stabilization_boundaries.py",
+      "tools/generate_test_inventory.py",
+      "tools/v0a_evaluation_v2.py"
+    ],
+    "ref": "refs/review/bounded-reads-v2-20260907/final-r004",
+    "tree": "10cc82ff78a84ef901242b2f69540f6a74ec498b"
+  },
+  "decision": "ADR-0512",
+  "qualification_sha256": "f4d69491b5771d753e7c2a2d557db1979109e81e686751b2ce7b97910e8b236e",
+  "recorded_utc": "2026-09-07T17:22:05.704392+00:00",
+  "user_message": "Let's commit push and go to next step"
+}

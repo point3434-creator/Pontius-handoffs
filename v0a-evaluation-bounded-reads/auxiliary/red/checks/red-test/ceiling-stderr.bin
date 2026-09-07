@@ -1,0 +1,19 @@
+F
+======================================================================
+FAIL: test_read_request_respects_observed_size_ceiling (__main__.BoundedReadTests.test_read_request_respects_observed_size_ceiling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius\tmp\bounded-reads-v2-20260907-001\red-test\snapshot\tests\test_v0a_evaluation_v2.py", line 70, in test_read_request_respects_observed_size_ceiling
+    self.assertEqual(self.r.read_stable(path)[0], raw)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Pontius\tmp\bounded-reads-v2-20260907-001\red-test\snapshot\tools\v0a_evaluation_v2.py", line 68, in read_stable
+    raw = stream.read(cap + 1)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Pontius\tmp\bounded-reads-v2-20260907-001\red-test\snapshot\tests\test_v0a_evaluation_v2.py", line 64, in read
+    raise AssertionError('read request exceeds observed size plus one')
+AssertionError: read request exceeds observed size plus one
+
+----------------------------------------------------------------------
+Ran 1 test in 0.022s
+
+FAILED (failures=1)

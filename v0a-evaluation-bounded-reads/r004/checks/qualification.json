@@ -1,0 +1,1417 @@
+{
+  "checked_at_utc": "2026-09-07T16:57:13.458486+00:00",
+  "ci_rehearsal": {
+    "exact_final_snapshot": "D:/pv4",
+    "hosted_ci": false,
+    "intent": {
+      "argv": [
+        "C:/Users/point/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\ci-rehearsal-final\\ci-block.ps1"
+      ],
+      "candidate": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+      "cwd": "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius",
+      "environment": {
+        "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+        "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+        "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+        "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL",
+        "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONNOUSERSITE": "1",
+        "PYTHONPATH": "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius\\src",
+        "SystemDrive": "C:",
+        "SystemRoot": "C:\\windows",
+        "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\ci-rehearsal-final\\temp",
+        "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\ci-rehearsal-final\\temp",
+        "USERPROFILE": "C:\\Users\\point",
+        "WINDIR": "C:\\windows"
+      },
+      "frozen_block_sha256": "d0e22087a748c582e3f57dabf9959c88c8166e358b164ca4304645061990f8ca",
+      "path_and_commit_substitutions": [
+        [
+          "C:\\px\\Pontius\\.venv\\Scripts\\python.exe",
+          "C:/Users/point/AppData/Roaming/uv/python/cpython-3.11.15-windows-x86_64-none/python.exe"
+        ],
+        [
+          "C:\\px\\Pontius",
+          "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius"
+        ],
+        [
+          "${{ github.sha }}",
+          "ab318584db351fdb2d19b3669b12e2975e18f6df"
+        ],
+        [
+          "D:\\pv2",
+          "D:\\pv4"
+        ],
+        [
+          "D:\\ptv2",
+          "D:\\ptv4"
+        ]
+      ],
+      "rehearsed_block_sha256": "3619180668ebaceb05900cbc836af878a2fd36d23e0aa7bd7f7145996ecf0b12",
+      "scope": "Local-path rehearsal, not hosted GitHub CI"
+    },
+    "receipt": {
+      "exit_code": 0,
+      "wall_seconds": 4.8376187
+    },
+    "skips": 0,
+    "tests": 8,
+    "tracked_source_unchanged": true
+  },
+  "diagnostic_pins": {
+    "bytes": 3209,
+    "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\diagnostic-pins.json",
+    "sha256": "649163c05e5aceaab255383ba701a6e26b43d15c6f23eedc0324211a0cbad4f2"
+  },
+  "earlier_ci_attempts": {
+    "cause": "Local stripped PowerShell environment omitted PATHEXT, so native Git did not execute synchronously and LASTEXITCODE remained null",
+    "diagnosis": "Read-only Git control succeeded synchronously only with PATHEXT restored; final rehearsal passed with shell environment repaired",
+    "outcome": "Incomplete launcher attempts retained; not test passes despite outer exit zero",
+    "paths": [
+      "ci-rehearsal",
+      "ci-rehearsal-r003"
+    ],
+    "production_or_ci_change_for_this_cause": false
+  },
+  "earlier_qualification": {
+    "accounting": "Earlier broad runs are retained as development evidence. Final exact broad runs above close the post-review candidate-bound Stage 4/5 requirement. Source equivalence is not substituted for those required final executions.",
+    "equivalence_record": {
+      "bytes": 710,
+      "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\source-equivalence.json",
+      "sha256": "dae1f287741d658549927a1f90238a71ab3a1d6bb67e635c5e2304ac6fa8e80b"
+    },
+    "paths": [
+      "accept311",
+      "accept314",
+      "final311",
+      "final314"
+    ]
+  },
+  "exact_final_acceptance": {
+    "311": {
+      "completion": {
+        "all_gates_passed": true,
+        "candidate": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+        "qualification": "Exact-final broad gates after Stage 4 review closure",
+        "tracked_source_unchanged": true
+      },
+      "gates": [
+        {
+          "artifacts": [
+            {
+              "bytes": 80,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-check-receipt.json",
+              "sha256": "9fc0997c3542de9bd97bee7786622f3645947857f705d00924498ead3207ddeb"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-check-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-check-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tools/check_stabilization_boundaries.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "boundary-check",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 17.9930845
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 81,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-policy-receipt.json",
+              "sha256": "3a6d8e09a7d80b464135206839581717b4b712d136477fd28c5d849fd3d7bb19"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-policy-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 2609,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-policy-stderr.bin",
+              "sha256": "3a99cecbc3208897fd7f1a10cc0cc77ce689cf58dac643df409999c898a010db"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_stabilization_boundaries.py",
+              "StabilizationPolicyTests"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "boundary-policy",
+          "skips": 0,
+          "tests": 15,
+          "wall_seconds": 59.1052098
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 75,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-receipt.json",
+              "sha256": "f3cf5af8427a989e7e4416c063c928f43d517214c71b8b3368591ed0dcc48aba"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 125,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\boundary-stderr.bin",
+              "sha256": "fe2badb65b4d57108a337e45ccff61db9d64f26c9c56e44caa5c17f0d611cb5e"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_boundary.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "boundary",
+          "skips": 0,
+          "tests": 19,
+          "wall_seconds": 209.7305061
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 73,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\contract-receipt.json",
+              "sha256": "f5b31748d9c49b72a4598bb6520c9381fc40c8dd6837504a13c72ee1198bcd26"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\contract-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 128,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\contract-stderr.bin",
+              "sha256": "ea47d59f50a19e4d2582541cb8a095dcd54331eb1e5f6e7eee20f7da3b5a90d8"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_contract.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "contract",
+          "skips": 0,
+          "tests": 24,
+          "wall_seconds": 0.1798171
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 81,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\inventory-check-receipt.json",
+              "sha256": "76240332cf6635b2e19377a823a7d8e2deb919da1e6b32b3834652ab21259ce4"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\inventory-check-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\inventory-check-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tools/generate_test_inventory.py",
+              "--check"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "inventory-check",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 65.2676752
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 84,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\inventory-profile-receipt.json",
+              "sha256": "e87a82175e2f867341ee26d22cf401a5924eb13337e35066641e2ca6213b3885"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\inventory-profile-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 1298,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\inventory-profile-stderr.bin",
+              "sha256": "a71a19ae5f882662f8dd25b65f630e5612350872e4d6237837faf1d2681d99a7"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_inventory_and_profiles.py",
+              "CheckedInInventoryTests",
+              "CheckedInProfileTests"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "inventory-profile",
+          "skips": 0,
+          "tests": 18,
+          "wall_seconds": 124.5833268
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 73,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\runner-receipt.json",
+              "sha256": "e3b43a6ba724347128ec815fc71320eda5d9d3e31053bc265eb14310aba74321"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\runner-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 308,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\runner-stderr.bin",
+              "sha256": "430f300beb7d25fd656c3934aa592035c638bfe5214eaf578b444ca6a985e80b"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_runner.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "runner",
+          "skips": 0,
+          "tests": 28,
+          "wall_seconds": 254.8561084
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 72,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\runtime-receipt.json",
+              "sha256": "1a8aa953ae1c8da97f234bb37692a347c9c52645bda5693757f71e9ae0edbecf"
+            },
+            {
+              "bytes": 702,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\runtime-stdout.bin",
+              "sha256": "0d61e2a9f068bc7dbb75adb0a686a2c75c651dab39acd31dca7a22427d660e08"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\runtime-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\probe_runtime.py",
+              "311",
+              "ab318584db351fdb2d19b3669b12e2975e18f6df"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "runtime",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 0.1418204
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 77,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\status-check-receipt.json",
+              "sha256": "dfbbe37fe3554ec9bc95a75765cb295b414885865680ba32abcf8068d901f74f"
+            },
+            {
+              "bytes": 22,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\status-check-stdout.bin",
+              "sha256": "2c85a199d84984a0b917667d03622c2e33a1ad050479bb81d4736d4ffd91d3fc"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\status-check-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "-m",
+              "pontius.status_generation",
+              "--check"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "status-check",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 1.4449321
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 77,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\status-tests-receipt.json",
+              "sha256": "3be081ec5e33ecc32a514ef9e765ba9120b204110fdaff9cb2cefad942af1384"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\status-tests-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 116,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\status-tests-stderr.bin",
+              "sha256": "f33160f8949cb35cb1b78614be1848775209fc6e115f7661232612f4727080b8"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_status_generation.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "status-tests",
+          "skips": 0,
+          "tests": 12,
+          "wall_seconds": 0.4636098
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 67,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\v2-receipt.json",
+              "sha256": "6ef567b086901e55ecff31d918c8cc8ea49253240b3476637f12a567c611b01b"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\v2-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 111,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\v2-stderr.bin",
+              "sha256": "276eb4e8f0654274f9665496146832c9dc099480e45394583a3772a6783bae8f"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius-tools/py311/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_v2.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "v2",
+          "skips": 0,
+          "tests": 8,
+          "wall_seconds": 4.1688009
+        }
+      ],
+      "runtime": {
+        "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot",
+        "executable": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+        "head": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+        "origins": {
+          "runner": {
+            "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\tools\\v0a_evaluation_v2.py",
+            "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+          },
+          "status": {
+            "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified311\\snapshot\\src\\pontius\\status_generation.py",
+            "sha256": "c1d38c8a2470f44e36bc7afbc9aa64a6d9ceffb9c67234696162f01849b1e806"
+          }
+        },
+        "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]"
+      },
+      "skips": 0,
+      "source": {
+        "commit": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+        "tree": "10cc82ff78a84ef901242b2f69540f6a74ec498b"
+      },
+      "tests": 124
+    },
+    "314": {
+      "completion": {
+        "all_gates_passed": true,
+        "candidate": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+        "qualification": "Exact-final broad gates after Stage 4 review closure",
+        "tracked_source_unchanged": true
+      },
+      "gates": [
+        {
+          "artifacts": [
+            {
+              "bytes": 80,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-check-receipt.json",
+              "sha256": "ac42944e1ad66e781ed0a4c39d9bd2481bb8cb5220ab43375ef6c47a36cea398"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-check-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-check-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tools/check_stabilization_boundaries.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "boundary-check",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 20.7313742
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 81,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-policy-receipt.json",
+              "sha256": "5d5dbc0456157a6bc9b005882e87381b6a63646faa887eab6e343c7ec4380327"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-policy-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 2609,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-policy-stderr.bin",
+              "sha256": "30cf13dcfbdf5d56bf544bcf6bd3ecc6d4c7efa3dc309e80e8ca5e5ed29833f9"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_stabilization_boundaries.py",
+              "StabilizationPolicyTests"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "boundary-policy",
+          "skips": 0,
+          "tests": 15,
+          "wall_seconds": 65.5081133
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 75,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-receipt.json",
+              "sha256": "f80a3affb0f7fc02a628edd4e78b55b2826ea3e4a96a6d6fd8ef54cd8584179e"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 125,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\boundary-stderr.bin",
+              "sha256": "3e67aa7be275d68eaf711ba09f96a0e87d2d6a01246a57c6526dd435938927a1"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_boundary.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "boundary",
+          "skips": 0,
+          "tests": 19,
+          "wall_seconds": 207.3792873
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 72,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\contract-receipt.json",
+              "sha256": "7c7b45780685cb0f857c82bf232df9ac7699661710fb565bcdcf9855d45c66b1"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\contract-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 436,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\contract-stderr.bin",
+              "sha256": "ee7791dcd806bcbb585e6fc40923f7b5f6cc1c9645e4dac3a8220ed495ef4b0f"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_contract.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "contract",
+          "skips": 0,
+          "tests": 24,
+          "wall_seconds": 0.198404
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 81,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\inventory-check-receipt.json",
+              "sha256": "85fbea89cea37a5d909a55f744554ede298af9dc5f0ef4508641bdd777eb9406"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\inventory-check-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 964,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\inventory-check-stderr.bin",
+              "sha256": "aa83ecf7d0788729ce2243df85447f72085ef0591321dc3e62b9f8ed8c4b79f4"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tools/generate_test_inventory.py",
+              "--check"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "inventory-check",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 63.5505755
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 84,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\inventory-profile-receipt.json",
+              "sha256": "1bf52e9e05bcc1271bb006f9c7d1ed42b5609061cd4c102229cf7391cb561005"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\inventory-profile-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 1984,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\inventory-profile-stderr.bin",
+              "sha256": "5f749bcf3b866adc1ee6982b16d68e83f72ad6fb4b0165486621094b7d407fdf"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_inventory_and_profiles.py",
+              "CheckedInInventoryTests",
+              "CheckedInProfileTests"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "inventory-profile",
+          "skips": 0,
+          "tests": 18,
+          "wall_seconds": 122.5754466
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 73,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\runner-receipt.json",
+              "sha256": "62d81e27f0bc5b0588b8cb7bcabb0801d98db70a57e9511ebbc292aa3c4dfee6"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\runner-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 308,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\runner-stderr.bin",
+              "sha256": "7e0aa0ccdcb87d017d925d8da208c8371f623e9b2f33983aa4a5e9788ffec769"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_runner.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "runner",
+          "skips": 0,
+          "tests": 28,
+          "wall_seconds": 249.7113888
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 72,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\runtime-receipt.json",
+              "sha256": "5d42ef79ec9ff10e67c38a7d2636757b9a4500430b8a73a19cfeeeb00ff1dedc"
+            },
+            {
+              "bytes": 711,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\runtime-stdout.bin",
+              "sha256": "dd4f9ed5570f3a6d8ced82892a8dad39e4907b53f3edda816a98e31be940c216"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\runtime-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\probe_runtime.py",
+              "314",
+              "ab318584db351fdb2d19b3669b12e2975e18f6df"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "runtime",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 0.1465498
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 77,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\status-check-receipt.json",
+              "sha256": "ef2c489c52935cb77f590549ae71addb54799a23a12cc236f380605750d47f61"
+            },
+            {
+              "bytes": 22,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\status-check-stdout.bin",
+              "sha256": "2c85a199d84984a0b917667d03622c2e33a1ad050479bb81d4736d4ffd91d3fc"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\status-check-stderr.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "-m",
+              "pontius.status_generation",
+              "--check"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "status-check",
+          "skips": 0,
+          "tests": null,
+          "wall_seconds": 1.4383629
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 77,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\status-tests-receipt.json",
+              "sha256": "a0698a8a1efdae6fae35a027983af25a4aea3d0d7ffbf89c52701b69953f9ac1"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\status-tests-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 116,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\status-tests-stderr.bin",
+              "sha256": "9caa88f236d6dbe125a5fc09aeb642209646fe451cfb2989ef72b204053bb73c"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_status_generation.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "status-tests",
+          "skips": 0,
+          "tests": 12,
+          "wall_seconds": 0.5055213
+        },
+        {
+          "artifacts": [
+            {
+              "bytes": 67,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\v2-receipt.json",
+              "sha256": "9bf5a6f029be3b954b22177d18e78e7d55c7712945a4f7dabe280ea70896c13c"
+            },
+            {
+              "bytes": 0,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\v2-stdout.bin",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "bytes": 111,
+              "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\v2-stderr.bin",
+              "sha256": "a2cc93bb7671f0e79f3c225fed688aef5b761d77fac82e8509ba9f3de757affa"
+            }
+          ],
+          "exit_code": 0,
+          "intent": {
+            "argv": [
+              "D:/Pontius/.venv/Scripts/python.exe",
+              "-B",
+              "-P",
+              "tests/test_v0a_evaluation_v2.py"
+            ],
+            "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+            "env": {
+              "APPDATA": "C:\\Users\\point\\AppData\\Roaming",
+              "COMSPEC": "C:\\windows\\system32\\cmd.exe",
+              "LOCALAPPDATA": "C:\\Users\\point\\AppData\\Local",
+              "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+              "PYTHONIOENCODING": "utf-8",
+              "PYTHONNOUSERSITE": "1",
+              "PYTHONPATH": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src",
+              "SystemDrive": "C:",
+              "SystemRoot": "C:\\windows",
+              "TEMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "TMP": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\temp",
+              "USERPROFILE": "C:\\Users\\point",
+              "WINDIR": "C:\\windows"
+            },
+            "timeout_seconds": 1200
+          },
+          "phase": "v2",
+          "skips": 0,
+          "tests": 8,
+          "wall_seconds": 4.0783886
+        }
+      ],
+      "runtime": {
+        "cwd": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot",
+        "executable": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+        "head": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+        "origins": {
+          "runner": {
+            "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\tools\\v0a_evaluation_v2.py",
+            "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+          },
+          "status": {
+            "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\qualified314\\snapshot\\src\\pontius\\status_generation.py",
+            "sha256": "c1d38c8a2470f44e36bc7afbc9aa64a6d9ceffb9c67234696162f01849b1e806"
+          }
+        },
+        "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]"
+      },
+      "skips": 0,
+      "source": {
+        "commit": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+        "tree": "10cc82ff78a84ef901242b2f69540f6a74ec498b"
+      },
+      "tests": 124
+    }
+  },
+  "final_integrity": {
+    "authoring_helpers": "Untracked and excluded from the decision candidate",
+    "branch": "codex/evaluation-bounded-reads",
+    "candidate": {
+      "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "commit": "ab318584db351fdb2d19b3669b12e2975e18f6df",
+      "manifest_sha256": "facede42f50a7c62b36665c9641712b0b3f6091a2fe6f47b495768ec6ff89287",
+      "paths": [
+        ".github/workflows/ci.yml",
+        "STATUS.md",
+        "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+        "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+        "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+        "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+        "tests/test-inventory.json",
+        "tests/test-profiles.toml",
+        "tests/test_inventory_and_profiles.py",
+        "tests/test_v0a_evaluation_v2.py",
+        "tools/check_stabilization_boundaries.py",
+        "tools/generate_test_inventory.py",
+        "tools/v0a_evaluation_v2.py"
+      ],
+      "ref": "refs/review/bounded-reads-v2-20260907/final-r004",
+      "tree": "10cc82ff78a84ef901242b2f69540f6a74ec498b"
+    },
+    "checked_at_utc": "2026-09-07T16:57:13.298013+00:00",
+    "decision_commit_created": false,
+    "diagnostic_pins_reverified": 14,
+    "diff_check_exit": 0,
+    "heads": {
+      "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+      "D:\\Pontius": "5845f32f010a44d924abc2f50ae142d1c6adec1b"
+    },
+    "primary_tracked_clean": true,
+    "prior_comparison_pins_unchanged": {
+      "comparison-report.json": "74e83b9473d06f1ad20fc932e964710bb2738bec66803eb0f632f058d5faf84a",
+      "descriptive-result.json": "26e904e8a8d06deffe781937d70628071422b81d93080caabeb7672d60ce79b0"
+    },
+    "pushed": false,
+    "sealed_source_unchanged": true,
+    "tracked_changed_paths": [
+      ".github/workflows/ci.yml",
+      "STATUS.md",
+      "tests/test-inventory.json",
+      "tests/test-profiles.toml",
+      "tests/test_inventory_and_profiles.py",
+      "tools/check_stabilization_boundaries.py",
+      "tools/generate_test_inventory.py"
+    ],
+    "v2_exactly_two_substitutions": true,
+    "workspace_files": [
+      {
+        "bytes": 9439,
+        "path": ".github/workflows/ci.yml",
+        "sha256": "a49d9e1c01e5dc560307de63f1d7f0e2f888686958f458cd7282ea2bd99e159d"
+      },
+      {
+        "bytes": 9139,
+        "path": "STATUS.md",
+        "sha256": "ba407a7c4732308b5c1e87d70c219d6c6e281d60004bc3feb45a92bb0c7a5969"
+      },
+      {
+        "bytes": 5694,
+        "path": "docs/architecture/v0a-bounded-reads-r001/brief.md",
+        "sha256": "80b40e571e10480e9b0eecf24796f1afb46c7dba34dec550545604596acb04c0"
+      },
+      {
+        "bytes": 3034,
+        "path": "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+        "sha256": "2b8e6dc990cc5db7c6b58fe4fedfb2cd9feb20e293f3143201d7fd03f0079855"
+      },
+      {
+        "bytes": 6211,
+        "path": "docs/architecture/v0a-bounded-reads-r001/design.md",
+        "sha256": "f01b7a2fbc75298f69521514307e3f1baa5a6ca3d29ab2f71eb0e9a7b3a0d805"
+      },
+      {
+        "bytes": 2016,
+        "path": "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+        "sha256": "df9b039d463e3308e731a50c9f0e9b4cd958e7747d6a7d835a06b4f935b21f72"
+      },
+      {
+        "bytes": 5538,
+        "path": "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+        "sha256": "a053083ac7195b48abae004892c6edb12d7d4cbc6723d99d3db4a3bfcea8dc32"
+      },
+      {
+        "bytes": 6778,
+        "path": "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+        "sha256": "2535483d31d51a3809a8fcb4eb4799571d1e006a914be9ff7c5108a63d95401a"
+      },
+      {
+        "bytes": 1802823,
+        "path": "tests/test-inventory.json",
+        "sha256": "9f57d9088feb1048e5ea4a5de939a9b0db49e5aee944dfcc6e8b58d7ea9d4cac"
+      },
+      {
+        "bytes": 469931,
+        "path": "tests/test-profiles.toml",
+        "sha256": "0e604d826e5787021796c5a44c4c8497c2819e865191b88557e8a21f502f99e6"
+      },
+      {
+        "bytes": 1201406,
+        "path": "tests/test_inventory_and_profiles.py",
+        "sha256": "09515131a707528a37f0856ece088c77880c474f6f228ad8c3e3f147b92873ab"
+      },
+      {
+        "bytes": 10405,
+        "path": "tests/test_v0a_evaluation_v2.py",
+        "sha256": "76121d42cb8646ea5d47e9f5076cec646a0ea0558c20921ec5b148aac93210cd"
+      },
+      {
+        "bytes": 38970,
+        "path": "tools/check_stabilization_boundaries.py",
+        "sha256": "709bc49ff34b1740b489e181b3d05e7e43eb55e9bbd38300a6da9206bb7cc0b4"
+      },
+      {
+        "bytes": 984514,
+        "path": "tools/generate_test_inventory.py",
+        "sha256": "a8fcbee90cb813db53693e502ddfb089ca07014c010d8ce3ddbf77f7616a16d4"
+      },
+      {
+        "bytes": 32540,
+        "path": "tools/v0a_evaluation_v2.py",
+        "sha256": "7f4be74b84e65634e027766b1cd3095958d5a4a466466cff47ee26276b285946"
+      }
+    ],
+    "workspace_matches_final_blobs": true
+  },
+  "limitations": [
+    "Finite local cost/compatibility observations, not playing-strength evidence",
+    "No worst-case action-latency, full-evaluation resource or process-RSS bound",
+    "No hosted GitHub CI run; local exact-block rehearsal only",
+    "No native engine migration, training or blueprint caching/index implementation",
+    "No decision commit or push; only frozen review objects exist"
+  ],
+  "measurement_summary": {
+    "bytes": 51942,
+    "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\measurement-summary.json",
+    "sha256": "5937446dc9d39c6ac001f487c354350bc56ac13ac9c0f74a0a0f5a3479d3e21b"
+  },
+  "observations": "Existing invalid-escape warnings in the unchanged legacy contract test; expected refusal messages from negative tests. No skips, waivers or new warnings.",
+  "red_green": {
+    "green": {
+      "exit_code": 0,
+      "phase": "v2-suite",
+      "wall_seconds": 4.1988399
+    },
+    "red": {
+      "exit_code": 1,
+      "phase": "ceiling",
+      "wall_seconds": 0.2044791
+    }
+  },
+  "result": "Implementation and exact-final review/acceptance complete; decision authorization pending",
+  "review_index": {
+    "bytes": 4175,
+    "path": "D:\\Pontius\\tmp\\bounded-reads-v2-20260907-001\\handoff\\coordinator-review-index.json",
+    "sha256": "ec3021ec40d0b7bde92b57620706a8684265fe5075f2abf5612f08fea7b6fddf"
+  }
+}

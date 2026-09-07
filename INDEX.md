@@ -80,3 +80,10 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Source progress](v0a-evaluation-source/progress.md): scoped checkpoints and whole-source review/acceptance; source seal and evaluation remain pending.
 
 - [Paired evaluation source-seal metadata r001](v0a-evaluation-seal/r001/handoff.md): exact source incorporation; decision commit and remote upload pending.
+
+## Bounded reads in paired evaluation v2
+
+- [Review and qualification packet](v0a-evaluation-bounded-reads/publication.md):
+  r001-r004 retained after adoption of ADR-0512 as 363c9fb. Original review types,
+  verdicts and qualification wording are preserved; measurement evidence remains
+  at its retained paths.

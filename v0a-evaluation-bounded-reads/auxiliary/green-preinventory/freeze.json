@@ -1,0 +1,17 @@
+{
+  "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+  "commit": "356f87e1352eca92c863442638de080687939998",
+  "manifest_sha256": "61e04311b429b156697b7d971c075627e09313a188653c9c061d1419536d0614",
+  "paths": [
+    ".github/workflows/ci.yml",
+    "docs/architecture/v0a-bounded-reads-r001/brief.md",
+    "docs/architecture/v0a-bounded-reads-r001/design.md",
+    "tests/test_inventory_and_profiles.py",
+    "tests/test_v0a_evaluation_v2.py",
+    "tools/check_stabilization_boundaries.py",
+    "tools/generate_test_inventory.py",
+    "tools/v0a_evaluation_v2.py"
+  ],
+  "ref": "refs/review/bounded-reads-v2-20260907/green-preinventory",
+  "tree": "0bae4307919b50b3398aeb5cc046d1a3c90af093"
+}

@@ -1,0 +1,24 @@
+{
+  "base": "5845f32f010a44d924abc2f50ae142d1c6adec1b",
+  "commit": "16dea9dcaef757c620a223dac334132184891083",
+  "manifest_sha256": "90d7f77090c4e4ff87fb280dddb40bf3957c5bde8fc0774963fa3a83cf0c5412",
+  "paths": [
+    ".github/workflows/ci.yml",
+    "STATUS.md",
+    "docs/architecture/v0a-bounded-reads-r001/brief.md",
+    "docs/architecture/v0a-bounded-reads-r001/coverage.md",
+    "docs/architecture/v0a-bounded-reads-r001/design.md",
+    "docs/architecture/v0a-bounded-reads-r001/diagnostic-plan.md",
+    "docs/architecture/v0a-bounded-reads-r001/performance-report.md",
+    "docs/decisions/ADR-0512-adopt-bounded-reads-in-paired-evaluation-v2.md",
+    "tests/test-inventory.json",
+    "tests/test-profiles.toml",
+    "tests/test_inventory_and_profiles.py",
+    "tests/test_v0a_evaluation_v2.py",
+    "tools/check_stabilization_boundaries.py",
+    "tools/generate_test_inventory.py",
+    "tools/v0a_evaluation_v2.py"
+  ],
+  "ref": "refs/review/bounded-reads-v2-20260907/candidate-r001",
+  "tree": "f8b485155be7ca3fdf2b1c3d2be9c52e6d9d1cfd"
+}
