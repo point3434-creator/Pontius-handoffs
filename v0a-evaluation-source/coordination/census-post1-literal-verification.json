@@ -1,0 +1,36 @@
+{
+  "source_sha256": "b1bb450f8e38c9f5365b1195f9f048fe6da810cf4f37d54f2e6e54ed9845e0f0",
+  "checks": [
+    {
+      "slot": "311",
+      "capture": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\process-temp\\c-post1-t-311\\census-test.json",
+      "assertions": [
+        "len(review['receipt']['expanded_rows'])",
+        "review['spec_capabilities_sha256']",
+        "review['analysis_census']",
+        "len(blockers)",
+        "Counter((row['reason'] for row in blockers))",
+        "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'dynamic sensitive call result is unresolved']",
+        "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'unregistered CuPy call is unresolved']",
+        "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'deferred generator consumption is dynamically unresolved']"
+      ],
+      "capture_sha256": "d26b1e067536432f5cdcabff5af14f4b41c052c7ca219ffd22fa71324bf5e7cf"
+    },
+    {
+      "slot": "314",
+      "capture": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\process-temp\\c-post1-t-314\\census-test.json",
+      "assertions": [
+        "len(review['receipt']['expanded_rows'])",
+        "review['spec_capabilities_sha256']",
+        "review['analysis_census']",
+        "len(blockers)",
+        "Counter((row['reason'] for row in blockers))",
+        "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'dynamic sensitive call result is unresolved']",
+        "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'unregistered CuPy call is unresolved']",
+        "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'deferred generator consumption is dynamically unresolved']"
+      ],
+      "capture_sha256": "c60aa83869abe03e3d519381e6ee617f099c7d681dacb7953d512112213e0be8"
+    }
+  ],
+  "standing": "All eight literal expectation blocks equal actual complete captures; not a test run"
+}

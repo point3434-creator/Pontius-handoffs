@@ -1,0 +1,34 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\rgcheck1-311",
+    "snapshot_head": "0b7a46f31d94024ab1d3eb973a2aa663797e6c95",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\rgcheck1-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\rgcheck1-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T09:52:42.2912559Z",
+    "finished_utc": "2026-09-07T09:52:42.3547693Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\rgcheck1-311",
+    "snapshot_head": "0b7a46f31d94024ab1d3eb973a2aa663797e6c95",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tools/check_stabilization_boundaries.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "started_utc": "2026-09-07T09:52:42.3557074Z",
+    "finished_utc": "2026-09-07T09:53:00.8621320Z"
+  }
+]

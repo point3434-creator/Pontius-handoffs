@@ -1,0 +1,140 @@
+{
+  "candidate": {
+    "base": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "commit": "4f6096f274e4c8c8c05e4607651bf426d3b1ad9c",
+    "date": "2026-09-07",
+    "manifest_sha256": "983ed0dbf779f7fa96755ef4d87081506d0293cebcc8273aa187c6a3126dcc47",
+    "ref": "refs/heads/review/v0a-evaluation-seal/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-evaluation-seal",
+    "tree": "54a257f4f2957696b9d33e7338ce140206a3f578"
+  },
+  "full_change_paths": [
+    ".github/workflows/ci.yml",
+    "STATUS.md",
+    "docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md",
+    "tests/fixtures/evaluation/controls.json",
+    "tests/test-inventory.json",
+    "tests/test-profiles.toml",
+    "tests/test_inventory_and_profiles.py",
+    "tests/test_v0a_evaluation_boundary.py",
+    "tests/test_v0a_evaluation_contract.py",
+    "tests/test_v0a_evaluation_runner.py",
+    "tools/check_stabilization_boundaries.py",
+    "tools/generate_test_inventory.py",
+    "tools/v0a_evaluation.py",
+    "tools/v0a_evaluation_contract.py"
+  ],
+  "incorporated_paths": [
+    {
+      "bytes": 8490,
+      "path": ".github/workflows/ci.yml",
+      "sha256": "e5520b7394fbfe8c027bb617c25f74e2891ec4183e293f550ea6ffbbb1eddf58"
+    },
+    {
+      "bytes": 20335,
+      "path": "tests/fixtures/evaluation/controls.json",
+      "sha256": "9204a8aec4a4d6558381b246385495201d64c33e67732e2d3ab21feed31c7eea"
+    },
+    {
+      "bytes": 1799485,
+      "path": "tests/test-inventory.json",
+      "sha256": "0f1630a13519b65b08ca5981e555d709c08d3cd54f34edaf14edb8b04c033f87"
+    },
+    {
+      "bytes": 469465,
+      "path": "tests/test-profiles.toml",
+      "sha256": "93736964834390a1c1e111043595b048a89678127ce556bff152044edb533954"
+    },
+    {
+      "bytes": 1201371,
+      "path": "tests/test_inventory_and_profiles.py",
+      "sha256": "b1bb450f8e38c9f5365b1195f9f048fe6da810cf4f37d54f2e6e54ed9845e0f0"
+    },
+    {
+      "bytes": 34935,
+      "path": "tests/test_v0a_evaluation_boundary.py",
+      "sha256": "4a7e323c021c1dace35345782873d8ac2a302eeb6bb7b00df7b9d3445c5f980c"
+    },
+    {
+      "bytes": 26456,
+      "path": "tests/test_v0a_evaluation_contract.py",
+      "sha256": "6a3b8be9cd071738df37599b8f24c0de0698e5e4dd5622b527f227e0d48af45b"
+    },
+    {
+      "bytes": 29624,
+      "path": "tests/test_v0a_evaluation_runner.py",
+      "sha256": "9fa3adcd5b350bdcfccfaba251999579e8a37d9d2d63bc7d8789c982ffd3774a"
+    },
+    {
+      "bytes": 38654,
+      "path": "tools/check_stabilization_boundaries.py",
+      "sha256": "42a7a05c923b433c1cc366d6b6ef4eef76f3bcd137eac5882762114b43e69353"
+    },
+    {
+      "bytes": 984479,
+      "path": "tools/generate_test_inventory.py",
+      "sha256": "57ac80f1142bb728b9e4347b87aa13e08e092f65c2e710c1be70225c8dedfb99"
+    },
+    {
+      "bytes": 32531,
+      "path": "tools/v0a_evaluation.py",
+      "sha256": "3a041143fb1ef7e0ac84cfb5306d619873fec3f7d8ac0079c791637e113389f5"
+    },
+    {
+      "bytes": 35588,
+      "path": "tools/v0a_evaluation_contract.py",
+      "sha256": "b62170553c20acce17bead44391904c53be43cf0cc59c0fd2fb9b47743e988ad"
+    }
+  ],
+  "incorporated_source": {
+    "base": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "commit": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "date": "2026-09-07",
+    "manifest_sha256": "02f06a3ae8a7cefb5ba8f5a5abaf94f2a91a661a1d5f1ade3e1b3f8c4ae02860",
+    "ref": "refs/heads/review/v0a-evaluation-source/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-evaluation-source",
+    "tree": "5eec124adf1de52da1e36c50848c5d55f8866b75"
+  },
+  "metadata_paths": [
+    "STATUS.md",
+    "docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md"
+  ],
+  "source_acceptance_summary": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\packets\\r001\\checks\\final-acceptance-summary.json",
+  "source_acceptance_summary_sha256": "de8544829b01d05d5f2ff2d3b3b5168bdff20b8de40355368aeb000af03e9bcb",
+  "source_acceptance_totals": {
+    "311": {
+      "commands": 16,
+      "skips": 0,
+      "tests": 296
+    },
+    "314": {
+      "commands": 16,
+      "skips": 0,
+      "tests": 296
+    }
+  },
+  "source_reviews": {
+    "review-a.md": "034bc3a780b0e83c34519707183dff5dc33fedab6289efa4a0407f554b4e09cc",
+    "review-b.md": "255af51e120b379e371083724f011c5edc314a577a1b4a3655ed7b34d4786346"
+  },
+  "standing": "Exact source incorporation and metadata scope only; light review and four gates pending",
+  "status_generation": {
+    "copied_sha256": "fb13f499663e0a7fcf0ca5ec491fe50207ab3cfc4fc23cdabf4c656f17f36593",
+    "destination": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\authoring\\STATUS.md",
+    "generated_raw_sha256": "5683e1e9be833b1376b25ca27026657daaf7237001321d5fb36664a013ec2438",
+    "previous_sha256": "49a019e9dd96ce46fed383b9a41f2e7b760f1d2f182e85ec654d83ef9a1cf9b2",
+    "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\run-records\\mgen1-311.json",
+    "receipt_sha256": "892bda7876e2486d4d03f4406599ce11fcdb11056a705b93f4e39048b65eff8c",
+    "retained_coordinator_refusal": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\metadata-preparation-refusal-001.json",
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311",
+    "snapshot_head": "d72e7b021c1c99a2155ef56eb45baf3f4f106760",
+    "source": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311\\STATUS.md",
+    "standing": "Generated metadata only; exact-candidate final checks remain pending",
+    "transformation": "Only generated Windows CRLF to governance LF; no content edit"
+  },
+  "verdict": "PASS"
+}

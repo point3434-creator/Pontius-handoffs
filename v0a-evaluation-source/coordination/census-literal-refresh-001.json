@@ -1,0 +1,158 @@
+{
+  "version": "pontius-evaluation-mechanical-census-literals-v1",
+  "capture": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\process-temp\\c-pre1-t-311\\census-test.json",
+  "capture_sha256": "a1913fcd1238560233b6c0d9e1bd3716339940d304fc16f37a4b15af636165d3",
+  "comparison": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\census-pre1-test\\explained-comparison.json",
+  "before_sha256": "7de9bf2bb307ba5890516964ebf663abed3f7b7598682a9d57f44e2cb385dcfd",
+  "after_sha256": "b1bb450f8e38c9f5365b1195f9f048fe6da810cf4f37d54f2e6e54ed9845e0f0",
+  "changes": [
+    {
+      "purpose": "review['analysis_census'].subprocess_direct_site_count",
+      "before": "61",
+      "after": "67",
+      "offset": 1165358
+    },
+    {
+      "purpose": "review['analysis_census'].string_sink_decoy_count",
+      "before": "592",
+      "after": "593",
+      "offset": 1165553
+    },
+    {
+      "purpose": "review['analysis_census'].string_sink_decoy_sha256",
+      "before": "\"2790fe5f3c7f16cf97e62baed60e1c2483cf207da71cfebd02e866858e7aff3c\"",
+      "after": "\"b0e2968fc6a8c5aee068283735cde2e792d953f498068ecae740095a8176f763\"",
+      "offset": 1165624
+    },
+    {
+      "purpose": "review['analysis_census'].string_sink_decoy_partitions.prior_stabilization_synthetic",
+      "before": "38",
+      "after": "39",
+      "offset": 1165906
+    },
+    {
+      "purpose": "review['analysis_census'].analyzed_sites_sha256",
+      "before": "\"f9cc564c6751a167d7c4a3b189bc9b35423817be4a23d3e843f9403ec82f8c30\"",
+      "after": "\"77e0ca5c2b4669be41445fc898a8d84db901422d1cec3085501a3a397aa4d159\"",
+      "offset": 1166036
+    },
+    {
+      "purpose": "len(blockers)",
+      "before": "678",
+      "after": "693",
+      "offset": 1169592
+    },
+    {
+      "purpose": "Counter((row['reason'] for row in blockers)).unsupported subprocess keyword: capture_output",
+      "before": "139",
+      "after": "145",
+      "offset": 1169788
+    },
+    {
+      "purpose": "Counter((row['reason'] for row in blockers)).mixed protected receiver is dynamically unresolved",
+      "before": "61",
+      "after": "67",
+      "offset": 1170420
+    },
+    {
+      "purpose": "Counter((row['reason'] for row in blockers)): added counted reasons",
+      "before": "",
+      "after": "                    \"protected namespace member mutation is dynamically unresolved\": 3,\n",
+      "offset": 1171238
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "1467",
+      "after": "1469",
+      "offset": 1175424
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "1474",
+      "after": "1476",
+      "offset": 1175488
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "2962",
+      "after": "2964",
+      "offset": 1175552
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "4174",
+      "after": "4176",
+      "offset": 1175616
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "4436",
+      "after": "4438",
+      "offset": 1175680
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "5669",
+      "after": "5671",
+      "offset": 1175744
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "12485",
+      "after": "12487",
+      "offset": 1175808
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "12485",
+      "after": "12487",
+      "offset": 1175873
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "12494",
+      "after": "12496",
+      "offset": 1175938
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "16225",
+      "after": "16227",
+      "offset": 1176003
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "18251",
+      "after": "18253",
+      "offset": 1176068
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "18251",
+      "after": "18253",
+      "offset": 1176133
+    },
+    {
+      "purpose": "deferred generator consumption is dynamically unresolved: source line",
+      "before": "4803",
+      "after": "4805",
+      "offset": 1176198
+    }
+  ],
+  "source_position_digest_predictions": {
+    "analyzed_sites_sha256": "77e0ca5c2b4669be41445fc898a8d84db901422d1cec3085501a3a397aa4d159",
+    "string_sink_decoy_sha256": "b0e2968fc6a8c5aee068283735cde2e792d953f498068ecae740095a8176f763"
+  },
+  "prediction_basis": "Complete captured rows remapped only through exact equal source lines",
+  "matched_assertions": [
+    "len(review['receipt']['expanded_rows'])",
+    "review['spec_capabilities_sha256']",
+    "review['analysis_census']",
+    "len(blockers)",
+    "Counter((row['reason'] for row in blockers))",
+    "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'dynamic sensitive call result is unresolved']",
+    "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'unregistered CuPy call is unresolved']",
+    "[(row['relative_path'], row['line']) for row in blockers if row['reason'] == 'deferred generator consumption is dynamically unresolved']"
+  ],
+  "standing": "Requires fresh complete post-edit census verification"
+}

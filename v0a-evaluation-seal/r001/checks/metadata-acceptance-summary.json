@@ -1,0 +1,80 @@
+{
+  "candidate": {
+    "base": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "commit": "4f6096f274e4c8c8c05e4607651bf426d3b1ad9c",
+    "date": "2026-09-07",
+    "manifest_sha256": "983ed0dbf779f7fa96755ef4d87081506d0293cebcc8273aa187c6a3126dcc47",
+    "ref": "refs/heads/review/v0a-evaluation-seal/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-evaluation-seal",
+    "tree": "54a257f4f2957696b9d33e7338ce140206a3f578"
+  },
+  "commands": 4,
+  "errors": 0,
+  "failures": 0,
+  "incorporation_audit_sha256": "2bfbb3cdcb35560d0c4b87d4ed8f5735d75a0ba0552bc77e8ecb42c2c2a4cbff",
+  "receipts": [
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "-m",
+        "pontius.status_generation",
+        "--check"
+      ],
+      "finished_utc": "2026-09-07T11:48:31.3676252Z",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\run-records\\mcheck1-311.json",
+      "sha256": "108c3985c7e3ea57f9aaf44a6efb0906dc856dd283b083280002b7c9e761f22c",
+      "slot": "311",
+      "started_utc": "2026-09-07T11:48:30.0115923Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_status_generation.py"
+      ],
+      "finished_utc": "2026-09-07T11:48:35.5826385Z",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\run-records\\mtest1-311.json",
+      "sha256": "6dcab9a29b1e5115fa50176d35f5738f5d0964ea9dfc7d5c63ffd4442a762201",
+      "slot": "311",
+      "started_utc": "2026-09-07T11:48:34.0513435Z",
+      "tests": 12
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "-m",
+        "pontius.status_generation",
+        "--check"
+      ],
+      "finished_utc": "2026-09-07T11:48:39.8159395Z",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\run-records\\mcheck1-314.json",
+      "sha256": "4f4d83d5bec458af5f646a6e31e673bf6b858ca1cd36f97c2d6b0619fdf309f1",
+      "slot": "314",
+      "started_utc": "2026-09-07T11:48:38.4073708Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_status_generation.py"
+      ],
+      "finished_utc": "2026-09-07T11:48:43.5253487Z",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\run-records\\mtest1-314.json",
+      "sha256": "b25f0f3205eee6181a60120d7578889a5e72a1440676be32e4cb98d6fc2a88e6",
+      "slot": "314",
+      "started_utc": "2026-09-07T11:48:41.9496057Z",
+      "tests": 12
+    }
+  ],
+  "review": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\packets\\r001\\reviews\\review-light.md",
+  "review_sha256": "5450a674f148419f160e071d738a812f275015cba0381af42f142c25f7de5ee7",
+  "skips": 0,
+  "standing": "Reviewed and checked metadata; decision commit and upload await exact authorization; no evaluation",
+  "tests": 24
+}

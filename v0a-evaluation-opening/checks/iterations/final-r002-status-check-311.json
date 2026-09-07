@@ -1,0 +1,33 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\snapshots\\final-r002-status-check-311",
+    "snapshot_head": "cb47f22c3bf140351564316344d6596a1a81d433",
+    "exact_candidate": true,
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys, pathlib, pontius.status_generation as m; assert sys.implementation.name == 'cpython'; assert sys.version_info[:3] == (3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path(m.__file__).resolve() == pathlib.Path('src/pontius/status_generation.py').resolve(); print(sys.version); print(m.__file__)"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\snapshots\\final-r002-status-check-311\\src\\pontius\\status_generation.py\r\n",
+    "stderr": ""
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\snapshots\\final-r002-status-check-311",
+    "snapshot_head": "cb47f22c3bf140351564316344d6596a1a81d433",
+    "exact_candidate": true,
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "STATUS.md is current\r\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "failed_coordinator_script": "C:\\Users\\point\\.codex\\worktrees\\fa55\\Pontius\\generate-evaluation-seal-status.ps1",
+  "failed_script_sha256": "df4ed6a7d124d9217dd08fd863c27afa02fef49ecb06329e09397f75e715b5de",
+  "failure": "Generated status encoding; after generator passed, before copying STATUS",
+  "cause": "Culture-sensitive .NET StartsWith treats U+FEFF as ignorable and returns true for plain text",
+  "minimal_reproduction": {
+    "plain_text_culture_starts_with_bom": true,
+    "plain_text_ordinal_starts_with_bom": false
+  },
+  "actual_bytes": {
+    "first_12": [
+      35,
+      32,
+      80,
+      114,
+      111,
+      106,
+      101,
+      99,
+      116,
+      32,
+      83,
+      116
+    ],
+    "crlf_count": 90,
+    "utf8_bom": false,
+    "normalized_cr_count": 0
+  },
+  "disposition": "Preserve successful generation and original failed helper; copy its exact bytes with only CRLF-to-LF normalization using explicit byte predicates. No payload rerun or production/source change."
+}

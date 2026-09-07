@@ -73,3 +73,10 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Publication map](v0a-hand-adapter-design/publication-map.md): original-path mappings.
 - [Publication complete](v0a-hand-adapter-open/r001/publication-result.md):
   four archive refs and all retained packets verified on the private remotes.
+
+## Paired local evaluation
+
+- [Source opening r002](v0a-evaluation-opening/r002/handoff.md): adopted ADR-0508,34616938; r001 retained unchanged.
+- [Source progress](v0a-evaluation-source/progress.md): scoped checkpoints and whole-source review/acceptance; source seal and evaluation remain pending.
+
+- [Paired evaluation source-seal metadata r001](v0a-evaluation-seal/r001/handoff.md): exact source incorporation; decision commit and remote upload pending.

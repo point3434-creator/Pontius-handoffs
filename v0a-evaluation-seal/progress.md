@@ -1,0 +1,2 @@
+- Local preservation batch001: publications/batch001.json.
+- Local preservation batch002: publications/batch002.json.

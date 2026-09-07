@@ -1,0 +1,35 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\bregred1-311",
+    "snapshot_head": "24fc18693497bae476fd0f0df7b7a20b7f1cfad2",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\bregred1-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\bregred1-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T09:50:23.0750606Z",
+    "finished_utc": "2026-09-07T09:50:23.1376312Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\bregred1-311",
+    "snapshot_head": "24fc18693497bae476fd0f0df7b7a20b7f1cfad2",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_boundary.py",
+      "RegistrationBoundaryTests"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "F\r\n======================================================================\r\nFAIL: test_exact_loader_and_import_controls (__main__.RegistrationBoundaryTests.test_exact_loader_and_import_controls)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\bregred1-311\\tests\\test_v0a_evaluation_boundary.py\", line 29, in test_exact_loader_and_import_controls\r\n    self.assertTrue(callable(policy), 'Exact evaluation registration policy is absent')\r\nAssertionError: False is not true : Exact evaluation registration policy is absent\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.042s\r\n\r\nFAILED (failures=1)\r\n",
+    "started_utc": "2026-09-07T09:50:23.1385610Z",
+    "finished_utc": "2026-09-07T09:50:23.4633982Z"
+  }
+]

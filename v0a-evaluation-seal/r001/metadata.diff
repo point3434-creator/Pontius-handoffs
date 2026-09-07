@@ -1,0 +1,311 @@
+diff --git a/STATUS.md b/STATUS.md
+index 6b7f873..f68480d 100644
+--- a/STATUS.md
++++ b/STATUS.md
+@@ -8,64 +8,54 @@
+ Latest accepted research result: [ADR-0280](docs/decisions/ADR-0280-exact-pre-bet-row-cache-passes-cpu-h2-fail-closed-control.md) — Exact pre-bet row cache passes CPU/h2 fail-closed control.
+ 
+ Status: accepted label-free engineering control; cache mechanics pass and timed capacity remains closed.
+ 
+ ## Governing runtime contract
+ 
+ [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md) — Make the action clock and preparation bank authoritative.
+ 
+ ## Current decision
+ 
+-Open the CPU-only paired local evaluation source increment under the brief, design
+-and source-contract in docs/architecture/v0a-evaluation-r001/ and implementation plan
+-docs/superpowers/plans/2026-09-07-paired-local-evaluation.md. The controller requested
+-preparation of this bounded proposal; it has no effect until its exact decision
+-commit is expressly authorized and made. No implementation occurs before adoption.
+-
+-The deliverable is a reproducible outer loop comparing baseline-rules-v1 and
+-blueprint-v1 through the unchanged public session CLI. Each matched pair shares
+-identical one-hand input, resets six 200-chip stacks, and uses the existing opponent
+-scripts. Every deal/lineup covers all six seats. Alternating strategy order is fixed
+-before outcomes. Source acceptance judges the comparison machinery, not profitability.
+-
+-Reports preserve applied actions, baseline fallback and legacy choice distinctions,
+-timing observations, incomplete captures and separate action/hand/session failure
+-observations. A complete aggregate requires
+-the complete planned population; no survivor-only score or missing-as-zero result.
+-Every partial attempt remains retained and cannot be resumed or rerolled. Whole-run
+-deadline, native descendant containment and final publication have explicit contracts.
+-The deadline covers verification of both closed/read-back final files and publication
+-commit; subsequent visibility release and CLI return may be later. Consumers require
+-the absent pending guard and fully validated bound files, not process exit alone.
++Accept the exact reviewed paired local evaluation source as a CPU-only asset,
++closing the source increment opened by ADR-0508. The outer loop fixes matched
++baseline-rules-v1 and blueprint-v1 trials before execution, reuses the unchanged
++public session CLI, and reports paired chip differences only for the complete
++planned population. This source decision makes no playing-strength claim.
++
++Effect requires this exact decision's separately authorized commit. Draft metadata,
++review refs and passing correctness controls do not activate a source seal.
++Incorporate only the twelve bound source paths, this new ADR and generated STATUS.
++The six prospective registration exceptions close with these accepted versions;
++all files outside the permitted source surface remain unchanged.
++Source acceptance grants no actual comparative evaluation or demonstration.
+ 
+ ## Active next
+ 
+-Implement the bounded paired evaluation loop after exact adoption
++Preregister a bounded paired evaluation population and invocation
+ 
+ ## Revoked authorities
+ 
+ - [ADR-0281](docs/decisions/ADR-0281-preregister-temporally-separated-pre-bet-row-cache-seed.md) — revoked by [ADR-0283](docs/decisions/ADR-0283-withdraw-v1-seed-authority-and-install-v2-trust-controls.md).
+ - [ADR-0468](docs/decisions/ADR-0468-authorize-one-deferred-import-calibration-invocation.md) — revoked by [ADR-0469](docs/decisions/ADR-0469-retain-the-deferred-import-authorization-gate-rejection.md).
+ - [ADR-0472](docs/decisions/ADR-0472-authorize-one-v6-retained-attempt-calibration-invocation.md) — revoked by [ADR-0473](docs/decisions/ADR-0473-retain-the-v6-authorization-phase-gate-rejection.md).
+ - [ADR-0475](docs/decisions/ADR-0475-authorize-one-v7-authorization-phase-calibration-invocation.md) — revoked by [ADR-0476](docs/decisions/ADR-0476-retain-the-v7-laboratory-wall-rejection.md).
+ 
+ ## Evidence protocol
+ 
+-Latest process decision: [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md) — Open the paired local evaluation source round.
++Latest process decision: [ADR-0509](docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md) — Source-seal the paired local evaluation loop.
+ 
+ Canonical rules: [PROJECT.md](PROJECT.md#evidence-and-dissent-protocol).
+ 
+ ## Recent decision ledger
+ 
+ | ADR | Date | Status | Decision |
+ |---:|---|---|---|
+-| [ADR-0485](docs/decisions/ADR-0485-preregister-the-blueprint-only-v0a-hand-contract.md) | 2026-08-30 | accepted prospective contract preregistration and explicit bootstrap-sequencing clarification; only the additive CPU blueprint-hand source contract is opened, an outer ActionClockLedger measures through offline-host delivery without altering the sealed V2 spine, operating budgets and an authoritative replay population remain unadmitted until a separate measured closure, and no source seal, rehearsal, owner invocation, integration result, timing result, or strategy result is asserted | Preregister the blueprint-only v0a hand contract |
+ | [ADR-0486](docs/decisions/ADR-0486-park-the-slice-c-capability-analyzer-repair.md) | 2026-09-04 | accepted scope correction; the slice C capability-analyzer soundness repair is parked as its own bounded task and removed from v0a increment-one acceptance scope, increment one's obligation to the inventory machinery is reduced to registration and mechanical regeneration, the Gate 13 freeze lane is paused at its rejected revision 23, and no source seal, rehearsal, invocation, integration, timing, or strategy result is asserted or authorized | Park the slice C capability-analyzer repair |
+ | [ADR-0487](docs/decisions/ADR-0487-source-seal-the-blueprint-only-v0a-hand-runtime.md) | 2026-09-04 | accepted library-only source seal upon its separately authorized decision commit; exact r004 source and r007 core are preserved, bounded CPU acceptance is complete, the inherited Windows fixture caveat remains open, and no rehearsal, invocation, timing, strategy, or strength result is authorized or asserted | Source-seal the blueprint-only v0a hand runtime |
+ | [ADR-0488](docs/decisions/ADR-0488-source-seal-the-non-evidentiary-v0a-driver.md) | 2026-09-04 | accepted driver-only source seal upon controller approval and its separately authorized decision commit; this draft remains inactive until those conditions hold, two independent cold reviews and bounded v0a regression checks pass, no reviewed implementation byte changes, and no rehearsal or operational invocation is authorized | Source-seal the non-evidentiary v0a driver |
+ | [ADR-0489](docs/decisions/ADR-0489-close-the-v0a-engineering-milestone.md) | 2026-09-04 | accepted engineering-only closure upon its separately authorized decision commit | Close the v0a engineering milestone |
+ | [ADR-0490](docs/decisions/ADR-0490-open-the-portable-blueprint-artifact-source-round.md) | 2026-09-05 | accepted source-opening decision upon its separately authorized decision commit | Open the portable blueprint artifact source round |
+ | [ADR-0491](docs/decisions/ADR-0491-source-seal-the-portable-blueprint-artifact.md) | 2026-09-05 | accepted source-only seal upon its separately authorized decision commit | Source-seal the portable blueprint artifact |
+ | [ADR-0492](docs/decisions/ADR-0492-adopt-proportionate-engineering-review.md) | 2026-09-05 | accepted prospective workflow amendment upon its authorized decision commit | Adopt proportionate engineering review |
+ | [ADR-0493](docs/decisions/ADR-0493-open-the-one-hand-file-adapter-source-round.md) | 2026-09-05 | accepted source-opening decision upon its separately authorized commit | Open the one-hand file adapter source round |
+ | [ADR-0494](docs/decisions/ADR-0494-source-seal-the-one-hand-file-adapter.md) | 2026-09-05 | accepted source-only seal upon its separately authorized decision commit | Source-seal the one-hand file adapter |
+ | [ADR-0495](docs/decisions/ADR-0495-open-the-one-hand-event-interface-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the one-hand event interface source round |
+@@ -75,25 +65,26 @@ Canonical rules: [PROJECT.md](PROJECT.md#evidence-and-dissent-protocol).
+ | [ADR-0499](docs/decisions/ADR-0499-open-the-watch-first-table-session-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the watch-first table session source round |
+ | [ADR-0500](docs/decisions/ADR-0500-source-seal-the-watch-first-table-session.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the watch-first table session |
+ | [ADR-0501](docs/decisions/ADR-0501-permit-one-watch-first-demonstration.md) | 2026-09-06 | accepted demonstration-only exception upon its separately authorized decision commit | Permit one watch-first demonstration |
+ | [ADR-0502](docs/decisions/ADR-0502-open-the-seeded-deal-generator-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the seeded-deal generator source round |
+ | [ADR-0503](docs/decisions/ADR-0503-source-seal-the-seeded-deal-generator.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the seeded-deal generator |
+ | [ADR-0504](docs/decisions/ADR-0504-permit-one-seeded-watch-demonstration.md) | 2026-09-06 | accepted demonstration-only exception upon its separately authorized decision commit | Permit one seeded watch demonstration |
+ | [ADR-0505](docs/decisions/ADR-0505-open-the-selectable-decision-provider-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the selectable decision-provider source round |
+ | [ADR-0506](docs/decisions/ADR-0506-source-seal-the-selectable-decision-provider.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the selectable decision provider |
+ | [ADR-0507](docs/decisions/ADR-0507-permit-one-baseline-watch-demonstration.md) | 2026-09-07 | accepted demonstration-only exception upon its separately authorized decision commit | Permit one baseline watch demonstration |
+ | [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md) | 2026-09-07 | accepted source-opening decision upon its separately authorized commit | Open the paired local evaluation source round |
++| [ADR-0509](docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md) | 2026-09-07 | accepted source-only seal upon its separately authorized decision commit | Source-seal the paired local evaluation loop |
+ 
+ ## Repository snapshot
+ 
+-- Latest ADR: [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md) — Open the paired local evaluation source round.
++- Latest ADR: [ADR-0509](docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md) — Source-seal the paired local evaluation loop.
+ - Governing runtime contract: [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md) — Make the action clock and preparation bank authoritative.
+-- Numbered decisions: 508.
+-- ADR-header SHA-256: `a34e76789b9a927eff2621858187c50643b129ec1c991a7e4f3eb7d79134408d`.
+-- Current blockers: evaluation source acceptance pending; no evaluation population admitted.
++- Numbered decisions: 509.
++- ADR-header SHA-256: `300870b1d751c1de31a34ad6d134bc51d1b9c3bf54172dfea863739ae53124ad`.
++- Current blockers: evaluation population and invocation remain unadmitted.
+ 
+ ## Required reading before continuation
+ 
+ 1. [PROJECT.md](PROJECT.md)
+ 2. [STATUS.md](STATUS.md)
+ 3. [ROADMAP.md](ROADMAP.md)
+-4. [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md), [ADR-0280](docs/decisions/ADR-0280-exact-pre-bet-row-cache-passes-cpu-h2-fail-closed-control.md), [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md), and their dependencies
++4. [ADR-0509](docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md), [ADR-0280](docs/decisions/ADR-0280-exact-pre-bet-row-cache-passes-cpu-h2-fail-closed-control.md), [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md), and their dependencies
+diff --git a/docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md b/docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md
+new file mode 100644
+index 0000000..69acbb4
+--- /dev/null
++++ b/docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md
+@@ -0,0 +1,190 @@
++# ADR-0509: Source-seal the paired local evaluation loop
++
++- Status: accepted source-only seal upon its separately authorized decision commit
++- Date: 2026-09-07
++- Follows: ADR-0508
++- Base-Commit: 34616938c708b1ca306b9d8a17b9d98e2f9e451f
++- Invocation-Authority: none; no comparative evaluation or new demonstration
++- Front-Door-Kind: controller-v1
++- Front-Door-Research: ADR-0280
++- Front-Door-Process: ADR-0509
++- Front-Door-Contract: ADR-0307
++- Front-Door-Revoked: ADR-0281, ADR-0468, ADR-0472, ADR-0475
++- Front-Door-Active-Next: Preregister a bounded paired evaluation population and invocation
++- Front-Door-Blockers: evaluation population and invocation remain unadmitted
++
++## Decision
++
++Accept the exact reviewed paired local evaluation source as a CPU-only asset,
++closing the source increment opened by ADR-0508. The outer loop fixes matched
++baseline-rules-v1 and blueprint-v1 trials before execution, reuses the unchanged
++public session CLI, and reports paired chip differences only for the complete
++planned population. This source decision makes no playing-strength claim.
++
++Effect requires this exact decision's separately authorized commit. Draft metadata,
++review refs and passing correctness controls do not activate a source seal.
++Incorporate only the twelve bound source paths, this new ADR and generated STATUS.
++The six prospective registration exceptions close with these accepted versions;
++all files outside the permitted source surface remain unchanged.
++Source acceptance grants no actual comparative evaluation or demonstration.
++
++## Bound source and behavior
++
++Task: v0a-evaluation-source/r001.
++Commit: bca326c6bfedd71324a19c809f617e267cc9e0a2.
++Base: 34616938c708b1ca306b9d8a17b9d98e2f9e451f.
++Tree: 5eec124adf1de52da1e36c50848c5d55f8866b75.
++Manifest SHA-256:
++02f06a3ae8a7cefb5ba8f5a5abaf94f2a91a661a1d5f1ade3e1b3f8c4ae02860.
++
++The complete twelve-path population is the source contract under
++docs/architecture/v0a-evaluation-r001/: two new stdlib tools, three new finite
++correctness suites, one literal fixture and six exact registration exceptions.
++Every incorporated path must equal its reviewed raw Git blob. The complete sorted
++manifest and raw payload copies are retained at
++D:/Pontius-handoffs/v0a-evaluation-source/r001/ and at
++D:/Pontius/tmp/v0a-evaluation-source-r001/packets/r001/.
++The inherited semantic base B remains e043f81ecec3ac16128720b42c3312bb41a4ed67.
++All paths outside the twelve-path source increment equal the adopted opening base.
++
++Canonical request bytes fix deal/lineup/seat order, alternating strategy order,
++all six positions, identical saved input for both arms, and six fresh 200-chip
++stacks per trial. Original physical cards remain fixed across seat rotations.
++The parent uses only the accepted seeded recipe and native host Job through three
++fixed admitted raw-buffer aliases; the unchanged public session owns poker actions,
++source admission, legal fallback, timing, host application and settlement.
++
++The wrapper creates the complete plan before play, retains intent before process
++creation and captures failures without retrying or starting later units. Native
++suspended creation, Job assignment before resume, bounded parallel stream capture
++and descendant cleanup preserve explicit unknown outcomes. Source and saved-input
++checks share the whole-run clock, including full trial plus cleanup reserve at
++admission. The exact unchanged child CLI and scrubbed environment remain bound.
++
++Strict versioned observation distinguishes baseline selections from host-applied
++actions and legacy choices. Valid incomplete observations remain unverified prefixes;
++action failure observations and propagated hand/session causes retain separate scopes.
++Unknown values remain null, and incomplete trials cannot supply a score. Aggregate
++arithmetic uses the full planned denominator with no survivor-only result.
++
++Final publication creates an exclusive pending guard before either final file.
++Actual write, flush, fsync, close, readback, source/input revalidation and the final
++shared-clock check precede irreversible commit. Only then may the writer attempt
++one empty-guard removal. Release failure does not revoke committed bytes. Consumers
++require absent guard and stable, schema-valid, hash-bound result/completion files;
++exit status, marker existence and prepared timestamps alone establish nothing.
++This provides no visibility-by-deadline or universal OS-blocking hard-wall claim.
++
++## Review and verification
++
++Both fresh independent Tier C whole-source reviews bind the source commit and
++manifest above, with CLEAN, specification PASS, engineering PASS and design SOUND.
++No required source corrections remain. Each reviewer recorded an independent
++census/assertion inventory before reading authored census explanations.
++Reports under the permanent packet's reviews directory:
++
++- review-a.md, issuer Codex /root/evaluation_source_review_a, SHA-256
++  034bc3a780b0e83c34519707183dff5dc33fedab6289efa4a0407f554b4e09cc.
++- review-b.md, issuer Codex /root/evaluation_source_review_b, SHA-256
++  255af51e120b379e371083724f011c5edc314a577a1b4a3655ed7b34d4786346.
++
++After both CLEAN reviews, all 32 prescribed acceptance commands passed: all sixteen
++on actual CPython 3.11.15 first, followed by all sixteen on actual 3.14.6.
++There were 296 tests per interpreter, 592 total test executions,
++with zero failures, errors or skips in the final selected population. Each command
++and its actual-version/flags/cwd preflight used a fresh exact-candidate D-local
++snapshot, -B -P, snapshot cwd/src, scrubbed environment and absolute native Git.
++The unchanged status, boundaries and inventory gates, all three new suites and
++the named seeded-deal, host, session and provider regressions passed.
++
++The full receipt index is
++D:/Pontius/tmp/v0a-evaluation-source-r001/packets/r001/checks/final-acceptance-summary.json,
++SHA-256 de8544829b01d05d5f2ff2d3b3b5168bdff20b8de40355368aeb000af03e9bcb.
++It binds the exact candidate, harness, all 32 passing receipts and all retained
++prior command receipts. Correctness receipts make no hosted-CI or performance claim.
++
++The new finite population contains 71 tests: 24 contract, 28 runner and 19 boundary.
++The fixture contains one distinct literal full deal and synthetic request/report/wire
++examples. One all-zero-seed twelve-session matrix and two real single-session
++retention controls total fourteen poker starts per complete new-suite execution,
++within the authorized twenty-four. Contract and boundary suites start zero poker
++sessions. Non-poker native controls exercise real process/Job/descendant behavior;
++publication-only synthetic records exercise real files and guard release. Independent
++literal arithmetic and controlled negative mutants test matrix, scoring, action-cause,
++assignment and final-clock oracles. None is an evaluation population.
++
++Source audit SHA-256:
++d9b949942d44643d228a544d50c5dcf71b656967dca1cb47a54a198a06464167.
++The delta is 1,232/1,250 production lines, 1,656/1,800 new test lines,
++138/160 manual registration added/removed lines and 20,335/32,768 fixture bytes.
++Generated inventory/profile output is counted separately. Exact scope, raw blobs,
++LF/BOM/width/whitespace and preservation checks passed. The controller explicitly
++approved increasing the original 1,200-line production cap to 1,250 and routine
++small adjustments on 2026-09-07. The retained ruling SHA-256 is
++82c997a7b7702adc5d35389b27234107177caf49c3ebf6e794597b52ea32e0d9.
++This changes neither the correctness contract nor source/execution authority.
++
++All 3,041 old inventory records and 440 old payload records remain exact and ordered.
++The three new suites add 71 IDs; both installed capability hashes remain zero.
++Complete baseline/candidate test and production census captures were compared on
++both actual interpreters before literal refresh and again afterward. Every old row,
++ordered duplicate, assertion chain and grant survives exact source-line mapping.
++The full populations preserve 141 expanded rows and add 15 typed blockers,
++6 analyzed sites, 146 helper edges, one decoy and 72 universe/deny-all rows.
++No analyzer behavior, inference or capability grant changed. All 312 occurrence
++additions in each comparison have exact source/line/closure explanations.
++
++Final complete comparison records under the source task root:
++
++- census-post1-test/explained-comparison.json, SHA-256
++  1bf46c9f01fb4a62a2c94248858e1c28784e6fcb28030e4dd6af2c98a8c35cad.
++- census-post1-production/explained-comparison.json, SHA-256
++  81fe7ddaec4c7c1d6bf7b75d39ea7bb3747a7afc5a24ac1f534ed63098e7a317.
++
++These records bind all raw captures and complete populations. Their final census
++snapshot 6f59993ba2e5229e2d8ffdbb8de4187b576450b4 has an identical whole source tree
++to the reviewed candidate, with the distinct commit identity explicitly retained.
++
++## Retained development outcomes
++
++All original checkpoints, reports, RED/GREEN receipts, snapshots and partial roots
++remain retained. Two bounded substantive source FIX rounds were used. FIX01 moved
++cross-row conflict checks before prefix mutation. FIX02 validated captured native Git
++bytes before every Git launch and cleared scoring/completion flags after a later
++retention failure, while preserving the actual completed unit record and stopped
++prefix. Each correction has retained independent review and executable controls.
++Earlier NOT CLEAN outcomes remain unchanged; the final whole-source reviews cover
++the complete corrected candidate.
++
++Pre-review boundary iterations retained an insufficient non-deadline test-helper
++budget failure and an inventory refusal of inherited unittest classes. The finite
++helper allowance became 30,000 ms while exact deadline-edge controls kept their
++explicit clocks; boundary tests were flattened into direct TestCase classes without
++changing their bodies/oracles. The existing inventory analyzer remained unchanged.
++Earlier harness/setup refusals and deliberately failing controls remain distinct
++in the receipt index. No failed root was cleaned up, rerolled or relabeled successful.
++
++Permanent local coordination packets are preserved byte-exactly. During preparation,
++automatic approval review rejected the separate GitHub handoff upload, leaving its
++explicit authorization pending at metadata freeze. Local preservation is not a
++remote-upload claim; any later upload receives its own disposition. Retained evidence
++remains at its original D-local paths.
++
++## Metadata integration and next boundary
++
++Following the prior source-seal integration procedure, the metadata candidate
++requires one fresh independent Tier A light review, exact incorporation of all
++twelve source blobs and the unchanged status generator --check plus all twelve
++status tests on actual 3.11.15 first and then 3.14.6, in four fresh exact-candidate
++snapshots. The complete integration delta is exactly fourteen paths. These metadata
++checks replace no source review or source acceptance gate. The controller separately
++authorizes the exact decision commit; neither draft status nor local review refs
++claim adoption.
++
++The next step is a separately preregistered population: seed, distinct lineups,
++size, resource budgets, metrics, stopping/retention and interpretation must be fixed
++prospectively. An exact invocation then needs its own authority. No comparative
++evaluation, tuning, neural loading, training, self-play, league, new opponents,
++human play, operating/research claim, cleanup, export or ref retirement follows
++from this source seal. Earlier demonstration owners remain consumed and closed.
++The research/operating prerequisites and ADR-0307 runtime contract remain binding.

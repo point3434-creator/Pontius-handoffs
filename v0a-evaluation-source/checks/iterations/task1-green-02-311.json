@@ -1,0 +1,35 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\task1-green-02-311",
+    "snapshot_head": "058fe6bb6e3895e8972f7c949cea9dfc7a7459ed",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\task1-green-02-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\task1-green-02-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T05:29:56.9056878Z",
+    "finished_utc": "2026-09-07T05:29:56.9686364Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\task1-green-02-311",
+    "snapshot_head": "058fe6bb6e3895e8972f7c949cea9dfc7a7459ed",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_contract.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_bad_schema_identity_settlement_capture_and_type_refused (__main__.ContractTests.test_bad_schema_identity_settlement_capture_and_type_refused) ... ok\r\ntest_complete_versioned_reports_keep_execution_and_selection_separate (__main__.ContractTests.test_complete_versioned_reports_keep_execution_and_selection_separate) ... ok\r\ntest_conflicting_failure_copies_refuse_without_double_count (__main__.ContractTests.test_conflicting_failure_copies_refuse_without_double_count) ... ok\r\ntest_delivery_rejected_preserved_separately_from_both_scopes (__main__.ContractTests.test_delivery_rejected_preserved_separately_from_both_scopes) ... ok\r\ntest_failure_duplicate_timing_coalesced_and_host_timeout_not_action_clock (__main__.ContractTests.test_failure_duplicate_timing_coalesced_and_host_timeout_not_action_clock) ... ok\r\ntest_invalid_outer_bytes_yield_unknown_metrics (__main__.ContractTests.test_invalid_outer_bytes_yield_unknown_metrics) ... ok\r\ntest_literal_matrix_seats_buttons_order_cards_and_hashes (__main__.ContractTests.test_literal_matrix_seats_buttons_order_cards_and_hashes) ... ok\r\ntest_matrix_limits_and_bad_inputs (__main__.ContractTests.test_matrix_limits_and_bad_inputs) ... ok\r\ntest_matrix_lineup_placement_and_deal_blocks (__main__.ContractTests.test_matrix_lineup_placement_and_deal_blocks) ... ok\r\ntest_missing_decision_retains_unattributed_applied_action (__main__.ContractTests.test_missing_decision_retains_unattributed_applied_action) ... ok\r\ntest_missing_invalid_failure_and_malformed_tail_keep_honest_prefix (__main__.ContractTests.test_missing_invalid_failure_and_malformed_tail_keep_honest_prefix) ... ok\r\ntest_null_failure_identity_is_preserved_and_not_merged_across_frames (__main__.ContractTests.test_null_failure_identity_is_preserved_and_not_merged_across_frames) ... ok\r\ntest_reducer_independent_arithmetic_and_no_survivor_denominator (__main__.ContractTests.test_reducer_independent_arithmetic_and_no_survivor_denominator) ... ok\r\ntest_request_literal_and_canonical_encoding (__main__.ContractTests.test_request_literal_and_canonical_encoding) ... ok\r\ntest_request_refuses_raw_encoding_and_extra_fields (__main__.ContractTests.test_request_refuses_raw_encoding_and_extra_fields) ... ok\r\ntest_request_refuses_types_domains_and_budget (__main__.ContractTests.test_request_refuses_types_domains_and_budget) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 16 tests in 0.017s\r\n\r\nOK\r\n",
+    "started_utc": "2026-09-07T05:29:56.9694730Z",
+    "finished_utc": "2026-09-07T05:29:57.1209804Z"
+  }
+]

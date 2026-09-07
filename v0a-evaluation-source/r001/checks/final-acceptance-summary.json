@@ -1,0 +1,729 @@
+{
+  "acceptance_receipts": [
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "-m",
+        "pontius.status_generation",
+        "--check"
+      ],
+      "finished_utc": "2026-09-07T11:01:04.3376893Z",
+      "name": "status",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-01-311.json",
+      "sha256": "29f724dcbecf9d3e0e774b6e939dbf427e48f878ea18e0fa90578f87067a2b06",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:01:02.5466051Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_status_generation.py"
+      ],
+      "finished_utc": "2026-09-07T11:01:08.3532738Z",
+      "name": "status-tests",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-02-311.json",
+      "sha256": "d727a8bc72fdd873b9e8523dfaf03c89a39039bec0588ac8ed54416e3a0e02d8",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:01:06.6814336Z",
+      "tests": 12
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tools/check_stabilization_boundaries.py"
+      ],
+      "finished_utc": "2026-09-07T11:01:29.9914805Z",
+      "name": "boundaries",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-03-311.json",
+      "sha256": "9e95c03a6f3343c02c43f3952304fe3134d0f5991fca37638d554e599717e946",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:01:10.8291290Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tools/generate_test_inventory.py",
+        "--check"
+      ],
+      "finished_utc": "2026-09-07T11:02:28.6488596Z",
+      "name": "inventory-check",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-04-311.json",
+      "sha256": "ba76af4cab04c27f194d04d2b7ebf82c94085ad9ca31b206e0cafa151c0e17e2",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:01:31.8103174Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_inventory_and_profiles.py"
+      ],
+      "finished_utc": "2026-09-07T11:04:38.1436884Z",
+      "name": "inventory-tests",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-05-311.json",
+      "sha256": "e9021da5348a5c53b119a67fb746c93a5a4992de522257b1397f6cc24efbd13a",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:02:31.1385316Z",
+      "tests": 91
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_evaluation_contract.py"
+      ],
+      "finished_utc": "2026-09-07T11:04:40.3382374Z",
+      "name": "evaluation-contract",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-06-311.json",
+      "sha256": "7daed83b38c0606c72536abe235c71faed3edfe1830b02c1328e0189e0a5bfe8",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:04:40.1459896Z",
+      "tests": 24
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_evaluation_runner.py"
+      ],
+      "finished_utc": "2026-09-07T11:09:09.3944732Z",
+      "name": "evaluation-runner",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-07-311.json",
+      "sha256": "2b9a2a9607e917e06e8b1a75c144fc79c320d23504c9939fe5dc655bf26fae7d",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:04:42.9534061Z",
+      "tests": 28
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_evaluation_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:12:53.6360421Z",
+      "name": "evaluation-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-08-311.json",
+      "sha256": "3e6318aed33f7471d81a7ffb068e8564ae793899a9e4af623d10c84dc02898cf",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:09:11.8255739Z",
+      "tests": 19
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_seeded_deals.py"
+      ],
+      "finished_utc": "2026-09-07T11:13:01.6913237Z",
+      "name": "seeded",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-09-311.json",
+      "sha256": "f0742c4f1ef67a7ced315b6d46eb5a17a8bd8aac2570fc14d0a8370074e0aeed",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:12:56.1316387Z",
+      "tests": 8
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_seeded_deals_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:13:10.3586407Z",
+      "name": "seeded-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-10-311.json",
+      "sha256": "6ef0e2199b4dd5a3540ed7ea21c0465c75d2a7a1cdd94003b9165366a22f1083",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:13:04.1981093Z",
+      "tests": 19
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_host.py"
+      ],
+      "finished_utc": "2026-09-07T11:13:22.6004443Z",
+      "name": "host",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-11-311.json",
+      "sha256": "47a67bed18f9fde474aa23c5837a56780c6a05621355ebb2d01e2db784addd46",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:13:13.0140952Z",
+      "tests": 13
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_host_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:15:07.1204949Z",
+      "name": "host-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-12-311.json",
+      "sha256": "a205494e629134fb402f99cdf615301fa3cbb37e7e20f1344003a6b4469a0dee",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:13:25.1289376Z",
+      "tests": 37
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_session.py"
+      ],
+      "finished_utc": "2026-09-07T11:16:29.2592926Z",
+      "name": "session",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-13-311.json",
+      "sha256": "e6d0c7a7e12de291ada553111868cb5fcd8a2580a28c40df6d3f752983186aaf",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:15:09.0199227Z",
+      "tests": 19
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_session_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:17:26.5213966Z",
+      "name": "session-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-14-311.json",
+      "sha256": "124b1ff5e80d5f94cad682a240e5cba7b9c5dafee38dd8c52515821192d7e4a5",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:16:32.1567440Z",
+      "tests": 11
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_decision_provider_session.py"
+      ],
+      "finished_utc": "2026-09-07T11:17:44.7919012Z",
+      "name": "provider-session",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-15-311.json",
+      "sha256": "c1e2dd9d8eb972290c07b14f13cfb3b3abef96f359931398b1544fc2bac3c0b9",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:17:28.9609827Z",
+      "tests": 3
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_decision_provider_transport.py"
+      ],
+      "finished_utc": "2026-09-07T11:18:05.8591100Z",
+      "name": "provider-transport",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-16-311.json",
+      "sha256": "82eefb68cb4214e289a6d15fb1bb1c1f03b6a8883835b47f9d28730f81ae2393",
+      "skips": 0,
+      "slot": "311",
+      "started_utc": "2026-09-07T11:17:46.3813756Z",
+      "tests": 12
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "-m",
+        "pontius.status_generation",
+        "--check"
+      ],
+      "finished_utc": "2026-09-07T11:18:09.8292725Z",
+      "name": "status",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-01-314.json",
+      "sha256": "d73df30231a14dbb9bdcf61c377f0d2eb4498b79cf8fd666bac461f6ba56fc20",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:18:08.1501329Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_status_generation.py"
+      ],
+      "finished_utc": "2026-09-07T11:18:12.9868343Z",
+      "name": "status-tests",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-02-314.json",
+      "sha256": "cca5d92578cf7f6667ceb06bb48e37997143d13e29b8a90c621731e2704b178e",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:18:11.3257510Z",
+      "tests": 12
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tools/check_stabilization_boundaries.py"
+      ],
+      "finished_utc": "2026-09-07T11:18:35.8187838Z",
+      "name": "boundaries",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-03-314.json",
+      "sha256": "567abf087d0bc675957b68314b98a3b92499afd0e5ec52a826f75be7dbd70fad",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:18:14.6696204Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tools/generate_test_inventory.py",
+        "--check"
+      ],
+      "finished_utc": "2026-09-07T11:19:36.2197734Z",
+      "name": "inventory-check",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-04-314.json",
+      "sha256": "a8a08e29414718921c84b5773d307c1f651d2d7200c71c76b0c70ad348d66e0a",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:18:37.3439368Z",
+      "tests": 0
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_inventory_and_profiles.py"
+      ],
+      "finished_utc": "2026-09-07T11:22:04.3826330Z",
+      "name": "inventory-tests",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-05-314.json",
+      "sha256": "48cb009bcf19af5b75e3ca8a17aaffdaddee41e761533295d023cdc89cde8c4f",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:19:38.5421646Z",
+      "tests": 91
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_evaluation_contract.py"
+      ],
+      "finished_utc": "2026-09-07T11:22:06.9589204Z",
+      "name": "evaluation-contract",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-06-314.json",
+      "sha256": "4b1c410f0e97632f321141eb2163a25ffca2cdc2dab3557773f66a3cfab583fc",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:22:06.7629146Z",
+      "tests": 24
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_evaluation_runner.py"
+      ],
+      "finished_utc": "2026-09-07T11:26:27.9924928Z",
+      "name": "evaluation-runner",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-07-314.json",
+      "sha256": "67f5bc9772fb6821c6781909be9e345fb33d00f90856a56f04bbdbfdf5f9397b",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:22:08.6790869Z",
+      "tests": 28
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_evaluation_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:30:02.2007069Z",
+      "name": "evaluation-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-08-314.json",
+      "sha256": "7ad9d89d0c3653219bf190a2704051dfeb40a26a715345814dbbae7b06827670",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:26:29.8209565Z",
+      "tests": 19
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_seeded_deals.py"
+      ],
+      "finished_utc": "2026-09-07T11:30:09.8635257Z",
+      "name": "seeded",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-09-314.json",
+      "sha256": "b993ef2cce7d599820f87d19ff38a126a03a0253189dc1b5628ca97329fa3450",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:30:04.4231086Z",
+      "tests": 8
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_seeded_deals_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:30:18.2509119Z",
+      "name": "seeded-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-10-314.json",
+      "sha256": "c8ceb18b3bd589af8a01ba37041aae869cf47a8e80767d84642b219ebfbe66a0",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:30:11.5146313Z",
+      "tests": 19
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_host.py"
+      ],
+      "finished_utc": "2026-09-07T11:30:31.2489393Z",
+      "name": "host",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-11-314.json",
+      "sha256": "4ab87e210efaf10fa218b24183c20f46a889317e128567d8fe6ebed28bdbf836",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:30:20.9124908Z",
+      "tests": 13
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_host_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:32:20.6898125Z",
+      "name": "host-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-12-314.json",
+      "sha256": "802479eea2a06a37bbc7c2ac7cb2c66f28fbd41d2d6f02a4b3e6a53c62367fde",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:30:33.5011788Z",
+      "tests": 37
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_session.py"
+      ],
+      "finished_utc": "2026-09-07T11:33:43.1032216Z",
+      "name": "session",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-13-314.json",
+      "sha256": "dd96a531175d914feccfdef53c00b2dc0900603e030731dbe5333d07755fc045",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:32:22.1705996Z",
+      "tests": 19
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_v0a_table_session_boundary.py"
+      ],
+      "finished_utc": "2026-09-07T11:34:42.4002446Z",
+      "name": "session-boundary",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-14-314.json",
+      "sha256": "934991dbb6b0eda7f55ebcb0d29354386543b112280daf6d0a29110580ac318d",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:33:45.1214687Z",
+      "tests": 11
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_decision_provider_session.py"
+      ],
+      "finished_utc": "2026-09-07T11:35:00.4171676Z",
+      "name": "provider-session",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-15-314.json",
+      "sha256": "aa5368ada5e0b2ae3800bcb86c08618814f86e2c6bd6e3198fe14b5c48c67ffe",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:34:44.8297974Z",
+      "tests": 3
+    },
+    {
+      "argv": [
+        "-B",
+        "-P",
+        "tests/test_decision_provider_transport.py"
+      ],
+      "finished_utc": "2026-09-07T11:35:22.4851755Z",
+      "name": "provider-transport",
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\a-r001-16-314.json",
+      "sha256": "863059c6718a8e624043dcde65329d2b428bac12540517ed71c6a71b0ca86d8a",
+      "skips": 0,
+      "slot": "314",
+      "started_utc": "2026-09-07T11:35:02.8620754Z",
+      "tests": 12
+    }
+  ],
+  "candidate": {
+    "base": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "commit": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "date": "2026-09-07",
+    "manifest_sha256": "02f06a3ae8a7cefb5ba8f5a5abaf94f2a91a661a1d5f1ade3e1b3f8c4ae02860",
+    "ref": "refs/heads/review/v0a-evaluation-source/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-evaluation-source",
+    "tree": "5eec124adf1de52da1e36c50848c5d55f8866b75"
+  },
+  "harness": {
+    "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-source-snapshot-v2.ps1",
+    "sha256": "51c6bbcf838d83e320538e7f804bbd647d4bcc7c5b47e55bbd288cde84c49f1e"
+  },
+  "retained_prior_receipts": [
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\badmit1-311.json",
+      "sha256": "83b9b5366cd9ced4ee5f6fd8ac99608527513161669a4915a0830ba8f377e230"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\baseline-census-production-311.json",
+      "sha256": "20e139eb4bceacc509cccf36624b142b2eef9f0ec9514610955a32b3b55dd38c"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\baseline-census-production-314.json",
+      "sha256": "dec21682486aff8a0aa794cea0774fd6fda8586adce6ede4efa7adcb4c9afc96"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\baseline-census-test-311.json",
+      "sha256": "f1216dbe2aa5f259d26920f33cddbda524076fefae0168844a386c428e93c119"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\baseline-census-test-314.json",
+      "sha256": "ea18a12f7768a04bbc9a24caa1e130672b6eac3861b1447773b8b5218fec0374"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\baseline-inventory-311.json",
+      "sha256": "52bda0abd680eda206cebc859b0d9bc48800907a353d7cefcfb58f5cd3cbd7a2"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\baseline-status-311.json",
+      "sha256": "bab10a14ac59a0b8bde23f36171608f01b1ef54c089b9156345f7d8ee957b7f3"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\bflat1-311.json",
+      "sha256": "a6f3d2f8506f51c88f889baae40470f0ab5bb5c1d767a03de842e387389eb7b8"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\bfull1-311.json",
+      "sha256": "2181d7e97106ae25f2354ed35fcf30466e8690f76dfe47ffaaa18d748c510c91"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\bpub1-311.json",
+      "sha256": "4d03b513390acd5e807b64cb4bf47a4f77c98cf13ff366f76291083f0ea00cf1"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\bregred1-311.json",
+      "sha256": "3d8a2884f1b72304a0c2f16846e176ec90b0c082dd08310def8f46a1b1f1373d"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-post1-p-311.json",
+      "sha256": "8c949300bda72f2f06e0e291e7eeb70cad6567c67b3d35bba8801240744ede5b"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-post1-p-314.json",
+      "sha256": "76cf322f1d105896f7143e18f87b8212a7638075d852919b1900c9c6b001a275"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-post1-t-311.json",
+      "sha256": "7015b4037859f50a454f2a96e3b393a64481a414d64a3d500805d1371743af5a"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-post1-t-314.json",
+      "sha256": "ec22253a308d7c8b0de065caf0672324f4baaa3c8e14e0bbe4861cf8057f02a2"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-pre1-p-311.json",
+      "sha256": "9dcc40d44d4596854dd80920569b13e9048c383779a94495bbbf41182e8ce4a6"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-pre1-p-314.json",
+      "sha256": "fae8c2d49ba14cb46ad4f7f2158634710afab890edd6da7f72d3c015d3bc9d2e"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-pre1-t-311.json",
+      "sha256": "d0540c173ae6bce2384ed764b6d1b5e02b565a0648d900473d9411606c62fd00"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\c-pre1-t-314.json",
+      "sha256": "e5eedfcc8db271c911a8b7e11b624238e644a0ef5a2d16fcba0b7c6daff5e676"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\igen1-311.json",
+      "sha256": "fb6ede93966367a8e88b1b6571a91a88f79844aa24ae0e8b1f7eca19d5c3c5ab"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\igen2-311.json",
+      "sha256": "b71dfc6ad0427cf9af45b4ca5cf1dddebdfd038e3a55ec32524a9c239b8e89f8"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\rgcheck1-311.json",
+      "sha256": "4e7ef76d77e5951881e3371f3a0c663a37ccb100212516d2d0b540c877149cf2"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-f2-full01-311.json",
+      "sha256": "a05538120a902eccc508f290d96fa0a3012f286be671b1f8a15923148ce5b67b"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-f2-green01-311.json",
+      "sha256": "d977e488986bc1a26ab4f0cdf2ef44fa4cfe0053bcfb2836c3f62ad5e17455f1"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-f2-red01-311.json",
+      "sha256": "0f8a2fadb7d78be256c54753171a95d7a6b875fc20fb3105712513eca2947cac"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green01-311.json",
+      "sha256": "8f29db1be740b696694be7fa7ae6101bf1fb8455e250de8976ac622be23b2af1"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green02-311.json",
+      "sha256": "58e80215e03cd36aab3f8c6a6b41abe8570d13351362bb604feb11518e86bc45"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green03-311.json",
+      "sha256": "2719ef08c57d7f1e61a44393df035c7a05593ae01c54382b53d55ccd974050a6"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green04-311.json",
+      "sha256": "04ec915df7b571b27ea37e3f25e45cfffd82d9e727f5e4bcd2b71cb8528ed496"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green05-311.json",
+      "sha256": "9d6ab32b7a8d106d470bb4b405b3fa78609d9fd0dd18a72730fb6c40ea23857a"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green06-311.json",
+      "sha256": "0ebdd32ca96eb16089cf310788e49df61db452babda385c2453f98ff90ee2627"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green07-311.json",
+      "sha256": "55d05ed5e55282349205348468ab4cbdd96e54aeb2d2db4e184961731ff685aa"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green08-311.json",
+      "sha256": "0041326c5ae4f024d3f4ec82ee3251a1a92c803be189e725ed537b21e5b6fe00"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green09-311.json",
+      "sha256": "ff8dfaf50d4b6b5f5483f6c025badc838a9cabee823e7e2cac510f069aa2e229"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-green10-311.json",
+      "sha256": "aaf078cc2a52f6977eef4ecd005833caea6cd78ad6f166019d3127850ccc1a1f"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red01-311.json",
+      "sha256": "fd33ea4d299500a5d41a0797e16c7b3635c49a4857bf2e4f1bebb0aa3890de09"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red02-311.json",
+      "sha256": "b40bf7f68b8867c4397ff74c8f12a2fbfe95e7870f2b1e7ea46c738154dd1290"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red03-311.json",
+      "sha256": "17b96a2b836f7673faf79b3dbb42cdfdf0a7648c46994953bcaf2184858911ef"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red04-311.json",
+      "sha256": "9856c0ab11b1bb7e99eb05c5665ffaeaf1898c6bfea2a573e7f134a0ca423ecb"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red05-311.json",
+      "sha256": "8cfd54e8166ef3ae4309a62856f667f90e316c4b72f7011fda474cc89ddabe2c"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red06-311.json",
+      "sha256": "09f83126f9ce3b89397f74f2ec35648f3b9215eb36fb8cf01408f605611cfdaf"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\t2-red07-311.json",
+      "sha256": "93b9acf5ef04b4505fb9425c419c31dc47c6521e187c80ad43a0c3d02d580195"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-fix01-green-311.json",
+      "sha256": "9a35a50a866e7d45fcef66cb3c59ec3825cd34b9d76279393da35a5a543f809b"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-fix01-red-late-row-311.json",
+      "sha256": "2b76e882dacdbfc076c7c1b4df4d28413a9e89aea4f4ea1a2e7cd49562f9c6d0"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-green-01-311.json",
+      "sha256": "286c0e295120fc05db53e54c0bba4ee3517b09915758353434a04831f51a4752"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-green-02-311.json",
+      "sha256": "bd5665d8fd374e7b5523304857049a85360e2a9e8981d1b3e5f021ecabb280ba"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-green-final-311.json",
+      "sha256": "6a7781596acdaf13cfdc1609f9c84ed8ee110bbb2ed890835845f5aacd0ef451"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-green-prefix-311.json",
+      "sha256": "b559ef009a1829203449dcabcd2f9ff3bbc303502fa94624e3337a388024ea18"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-red-attribution-311.json",
+      "sha256": "3427a8d5b768c2c4716ff5c7f3bf0bd81678ab17f42ebbf1b14590b99d89292d"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-red-closing-311.json",
+      "sha256": "3f37e677c857655c46bd565d3a82b1e03b1fc7b374ba8e08cb184ec6d8f02488"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-red-contract-311.json",
+      "sha256": "4a7f0009159d1699698d449545e76f5dc12b64e1851566252ed3b60424c10944"
+    },
+    {
+      "path": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-records\\task1-red-prefix-311.json",
+      "sha256": "da58128805ea37386244ba86f532cd0f2a4e0cc091fbf0c941716cd8b6c5162c"
+    }
+  ],
+  "standing": "Source correctness checks only; no evaluation or source-seal authority.",
+  "totals": {
+    "311": {
+      "commands": 16,
+      "skips": 0,
+      "tests": 296
+    },
+    "314": {
+      "commands": 16,
+      "skips": 0,
+      "tests": 296
+    }
+  },
+  "version": "pontius-evaluation-final-acceptance-summary-v1"
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\c-pre1-t-311",
+    "snapshot_head": "951728590c4fd50b7d858a3e18435dda99f3c9c9",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\c-pre1-t-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\c-pre1-t-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T10:05:50.1124998Z",
+    "finished_utc": "2026-09-07T10:05:50.1835757Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\c-pre1-t-311",
+    "snapshot_head": "951728590c4fd50b7d858a3e18435dda99f3c9c9",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "D:/Pontius/tmp/v0a-evaluation-source-r001/capture-census.py",
+      "test"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"analysis_census\": {\"analyzed_sites_sha256\": \"77e0ca5c2b4669be41445fc898a8d84db901422d1cec3085501a3a397aa4d159\", \"cross_file_helper_edge_count\": 27, \"cupy_call_node_count\": 30, \"string_sink_decoy_count\": 593, \"string_sink_decoy_partitions\": {\"design_production\": 17, \"historical_production\": 6, \"prior_stabilization_synthetic\": 39, \"task2_synthetic\": 531}, \"string_sink_decoy_sha256\": \"b0e2968fc6a8c5aee068283735cde2e792d953f498068ecae740095a8176f763\", \"subprocess_direct_site_count\": 67, \"subprocess_helper_site_count\": 19}, \"blockers\": 693, \"expanded_rows\": 141, \"path\": \"D:\\\\Pontius\\\\tmp\\\\v0a-evaluation-source-r001\\\\process-temp\\\\c-pre1-t-311\\\\census-test.json\", \"population\": \"test\", \"sha256\": \"a1913fcd1238560233b6c0d9e1bd3716339940d304fc16f37a4b15af636165d3\", \"source_commit\": \"951728590c4fd50b7d858a3e18435dda99f3c9c9\"}\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T10:05:50.1845406Z",
+    "finished_utc": "2026-09-07T10:08:47.1777750Z"
+  }
+]

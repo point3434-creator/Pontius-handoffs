@@ -1,0 +1,35 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen1-311",
+    "snapshot_head": "a5a17d6cecc1ff0875c5657047c7bcc66395b7c8",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen1-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen1-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T10:01:13.0490528Z",
+    "finished_utc": "2026-09-07T10:01:13.1206744Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen1-311",
+    "snapshot_head": "a5a17d6cecc1ff0875c5657047c7bcc66395b7c8",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tools/generate_test_inventory.py",
+      "--write"
+    ],
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "test inventory generation failed: aliased or inherited unittest class is unsupported: tests/test_v0a_evaluation_boundary.py::PublicationBoundaryTests\r\n",
+    "started_utc": "2026-09-07T10:01:13.1214233Z",
+    "finished_utc": "2026-09-07T10:01:18.3850068Z"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green02-311",
+    "snapshot_head": "2ac4596f6bd3ca83692250193583cdff4d2bc00a",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green02-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green02-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T06:10:31.8923005Z",
+    "finished_utc": "2026-09-07T06:10:31.9524117Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green02-311",
+    "snapshot_head": "2ac4596f6bd3ca83692250193583cdff4d2bc00a",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_runner.py",
+      "-v",
+      "NativeTests"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_assignment_failure_never_executes_child (__main__.NativeTests.test_assignment_failure_never_executes_child) ... ok\r\ntest_partial_json_keeps_raw_capture_and_refuses_report (__main__.NativeTests.test_partial_json_keeps_raw_capture_and_refuses_report) ... ok\r\ntest_stderr_overflow_is_capped_and_stopped (__main__.NativeTests.test_stderr_overflow_is_capped_and_stopped) ... ok\r\ntest_stdout_overflow_is_capped_and_stopped (__main__.NativeTests.test_stdout_overflow_is_capped_and_stopped) ... ok\r\ntest_timeout_stops_child (__main__.NativeTests.test_timeout_stops_child) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 5 tests in 22.915s\r\n\r\nOK\r\n",
+    "started_utc": "2026-09-07T06:10:31.9533383Z",
+    "finished_utc": "2026-09-07T06:10:55.0110571Z"
+  }
+]

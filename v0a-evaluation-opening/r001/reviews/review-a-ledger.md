@@ -1,0 +1,1 @@
+2026-09-07 | Codex /root/evaluation_review_a | candidate 96aad82a482a0f37b13490df1bf03c1c74a860ca | manifest 6f388fbcc7c7bff9d99ba69fcac5287ad9e30e72d20bc1d1e02fe76ee8a06129 | NOT CLEAN | specification NOT CLEAN; engineering NOT CLEAN; design STRAINED | C/I/M 0/2/0 | report review-a.md

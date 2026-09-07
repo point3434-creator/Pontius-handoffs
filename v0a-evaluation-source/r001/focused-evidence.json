@@ -1,0 +1,38 @@
+[
+  {
+    "kind": "helper",
+    "receipt": "D:/Pontius/tmp/v0a-evaluation-source-r001/run-records/task1-fix01-green-311.json",
+    "sha256": "9a35a50a866e7d45fcef66cb3c59ec3825cd34b9d76279393da35a5a543f809b",
+    "snapshot": "2fe913fe95096cf9647fb2998ba856385ed0c99b",
+    "paths": [
+      "tools/v0a_evaluation_contract.py",
+      "tests/test_v0a_evaluation_contract.py",
+      "tests/fixtures/evaluation/controls.json"
+    ]
+  },
+  {
+    "kind": "runner",
+    "receipt": "D:/Pontius/tmp/v0a-evaluation-source-r001/run-records/t2-f2-full01-311.json",
+    "sha256": "a05538120a902eccc508f290d96fa0a3012f286be671b1f8a15923148ce5b67b",
+    "snapshot": "f30eb99d86bf67b1052583aefb5a338b05115b16",
+    "paths": [
+      "tools/v0a_evaluation.py",
+      "tools/v0a_evaluation_contract.py",
+      "tests/test_v0a_evaluation_runner.py",
+      "tests/fixtures/evaluation/controls.json"
+    ]
+  },
+  {
+    "kind": "boundary",
+    "receipt": "D:/Pontius/tmp/v0a-evaluation-source-r001/run-records/bflat1-311.json",
+    "sha256": "a6f3d2f8506f51c88f889baae40470f0ab5bb5c1d767a03de842e387389eb7b8",
+    "snapshot": "01a6b96e503ecb922be55ccdb03b03c9815f4ca4",
+    "paths": [
+      "tools/v0a_evaluation.py",
+      "tools/v0a_evaluation_contract.py",
+      "tests/test_v0a_evaluation_boundary.py",
+      "tests/fixtures/evaluation/controls.json",
+      "tools/check_stabilization_boundaries.py"
+    ]
+  }
+]

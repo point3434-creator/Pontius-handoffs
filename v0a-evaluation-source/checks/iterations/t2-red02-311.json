@@ -1,0 +1,37 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311",
+    "snapshot_head": "c562eb40f8177a2dbd83a77cd094e75acbd40dec",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T06:08:36.9497505Z",
+    "finished_utc": "2026-09-07T06:08:37.0115262Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311",
+    "snapshot_head": "c562eb40f8177a2dbd83a77cd094e75acbd40dec",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_runner.py",
+      "-v",
+      "NativeTests",
+      "MatrixTests"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "test_assignment_failure_never_executes_child (__main__.NativeTests.test_assignment_failure_never_executes_child) ... FAIL\r\ntest_partial_json_keeps_raw_capture_and_refuses_report (__main__.NativeTests.test_partial_json_keeps_raw_capture_and_refuses_report) ... FAIL\r\ntest_stderr_overflow_is_capped_and_stopped (__main__.NativeTests.test_stderr_overflow_is_capped_and_stopped) ... FAIL\r\ntest_stdout_overflow_is_capped_and_stopped (__main__.NativeTests.test_stdout_overflow_is_capped_and_stopped) ... FAIL\r\ntest_timeout_stops_child (__main__.NativeTests.test_timeout_stops_child) ... FAIL\r\ntest_one_zero_seed_twelve_public_sessions (__main__.MatrixTests.test_one_zero_seed_twelve_public_sessions) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_assignment_failure_never_executes_child (__main__.NativeTests.test_assignment_failure_never_executes_child)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\\tests\\test_v0a_evaluation_runner.py\", line 71, in setUp\r\n    self.assertTrue(callable(getattr(self.runner, 'run_trial', None)),\r\nAssertionError: False is not true : The native trial boundary is absent\r\n\r\n======================================================================\r\nFAIL: test_partial_json_keeps_raw_capture_and_refuses_report (__main__.NativeTests.test_partial_json_keeps_raw_capture_and_refuses_report)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\\tests\\test_v0a_evaluation_runner.py\", line 71, in setUp\r\n    self.assertTrue(callable(getattr(self.runner, 'run_trial', None)),\r\nAssertionError: False is not true : The native trial boundary is absent\r\n\r\n======================================================================\r\nFAIL: test_stderr_overflow_is_capped_and_stopped (__main__.NativeTests.test_stderr_overflow_is_capped_and_stopped)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\\tests\\test_v0a_evaluation_runner.py\", line 71, in setUp\r\n    self.assertTrue(callable(getattr(self.runner, 'run_trial', None)),\r\nAssertionError: False is not true : The native trial boundary is absent\r\n\r\n======================================================================\r\nFAIL: test_stdout_overflow_is_capped_and_stopped (__main__.NativeTests.test_stdout_overflow_is_capped_and_stopped)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\\tests\\test_v0a_evaluation_runner.py\", line 71, in setUp\r\n    self.assertTrue(callable(getattr(self.runner, 'run_trial', None)),\r\nAssertionError: False is not true : The native trial boundary is absent\r\n\r\n======================================================================\r\nFAIL: test_timeout_stops_child (__main__.NativeTests.test_timeout_stops_child)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\\tests\\test_v0a_evaluation_runner.py\", line 71, in setUp\r\n    self.assertTrue(callable(getattr(self.runner, 'run_trial', None)),\r\nAssertionError: False is not true : The native trial boundary is absent\r\n\r\n======================================================================\r\nFAIL: test_one_zero_seed_twelve_public_sessions (__main__.MatrixTests.test_one_zero_seed_twelve_public_sessions)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red02-311\\tests\\test_v0a_evaluation_runner.py\", line 175, in test_one_zero_seed_twelve_public_sessions\r\n    self.assertEqual(completed.returncode, 0, (completed.stdout, completed.stderr, str(root)))\r\nAssertionError: 1 != 0 : (b'', b'', 'D:\\\\Pontius\\\\tmp\\\\v0a-evaluation-source-r001\\\\process-temp\\\\t2-red02-311\\\\ev-matrix-itl91rb5\\\\out')\r\n\r\n----------------------------------------------------------------------\r\nRan 6 tests in 9.820s\r\n\r\nFAILED (failures=6)\r\n",
+    "started_utc": "2026-09-07T06:08:37.0124923Z",
+    "finished_utc": "2026-09-07T06:08:46.9778409Z"
+  }
+]

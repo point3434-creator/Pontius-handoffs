@@ -1,0 +1,47 @@
+{
+  "base": "e043f81ecec3ac16128720b42c3312bb41a4ed67",
+  "rows": [
+    {
+      "path": "tools/check_stabilization_boundaries.py",
+      "base_blob": "9cc2ae8d8e82ccc77648ade4eb79ae9c34c88a9f",
+      "prior_sha256": "69a7325ad16b97a7045de3886f943ac62fc89cb89255452bd158416d1b591bab",
+      "restored_sha256": "6cd484c333a5c49e12ad476e58e534ced3e56e8a1021a258f82d141fcfbafb54",
+      "prior_crlf": 798
+    },
+    {
+      "path": "tools/generate_test_inventory.py",
+      "base_blob": "2ac1413b0f89fa848f1ee5df0814b58dcbfa15b8",
+      "prior_sha256": "e05ec4702396920b518ab14c11eb1811323e5b5279b52454c1d6521630cc74de",
+      "restored_sha256": "6b7d7d8762c18529bdd817b765940e7da0de342bfe886e812ab71aca11b84c59",
+      "prior_crlf": 25468
+    },
+    {
+      "path": "tests/test-inventory.json",
+      "base_blob": "c28445aa4b77a98cfd706672d955be4570b98a15",
+      "prior_sha256": "3d7a5108d1a88c0bf8d61f3069ae0ed3e6abb36f68330c6cc6169aac217ecd62",
+      "restored_sha256": "3d7a5108d1a88c0bf8d61f3069ae0ed3e6abb36f68330c6cc6169aac217ecd62",
+      "prior_crlf": 0
+    },
+    {
+      "path": "tests/test-profiles.toml",
+      "base_blob": "4469bf813b2e97116667c206784a7bc212f6eef5",
+      "prior_sha256": "bc633dac69410c1257683e822677b691527b512b21317bd598abf1901e696c18",
+      "restored_sha256": "bc633dac69410c1257683e822677b691527b512b21317bd598abf1901e696c18",
+      "prior_crlf": 0
+    },
+    {
+      "path": "tests/test_inventory_and_profiles.py",
+      "base_blob": "e71a24322878361fb2feb44437d9210cff79c89e",
+      "prior_sha256": "9b86da7bfc7dc72967ea49253659a8fa27608cea68e6def8b39345b56b4426fc",
+      "restored_sha256": "b866ee675fcb3dfe5507e6da1841a4e10b7bb28ec8d85cbf26f0423195462550",
+      "prior_crlf": 30708
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "base_blob": "3d873a2f75ff1b155bf3533583eddf971eb7790a",
+      "prior_sha256": "3965f25ffe803d80b791e128547dc45e97213660f5dd25b3d82698b6f031394d",
+      "restored_sha256": "7787926b82985b0fe525b5b7d67d4711ede09eda8650d62d5aad83d63d9060ff",
+      "prior_crlf": 194
+    }
+  ]
+}

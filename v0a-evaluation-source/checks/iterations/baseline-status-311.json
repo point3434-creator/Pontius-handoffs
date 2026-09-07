@@ -1,0 +1,36 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\baseline-status-311",
+    "snapshot_head": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\baseline-status-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\baseline-status-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T05:17:02.7963988Z",
+    "finished_utc": "2026-09-07T05:17:02.9323650Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\baseline-status-311",
+    "snapshot_head": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-m",
+      "pontius.status_generation",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "STATUS.md is current\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T05:17:02.9332428Z",
+    "finished_utc": "2026-09-07T05:17:05.2467405Z"
+  }
+]

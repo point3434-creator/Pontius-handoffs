@@ -1,0 +1,34 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-10-311",
+    "snapshot_head": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-10-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-10-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T11:13:04.1307734Z",
+    "finished_utc": "2026-09-07T11:13:04.1978839Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-10-311",
+    "snapshot_head": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_seeded_deals_boundary.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "...................\r\n----------------------------------------------------------------------\r\nRan 19 tests in 5.968s\r\n\r\nOK\r\n",
+    "started_utc": "2026-09-07T11:13:04.1981093Z",
+    "finished_utc": "2026-09-07T11:13:10.3586407Z"
+  }
+]

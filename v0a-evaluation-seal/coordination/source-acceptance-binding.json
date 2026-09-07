@@ -1,0 +1,34 @@
+{
+  "source_candidate": {
+    "base": "34616938c708b1ca306b9d8a17b9d98e2f9e451f",
+    "commit": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "date": "2026-09-07",
+    "manifest_sha256": "02f06a3ae8a7cefb5ba8f5a5abaf94f2a91a661a1d5f1ade3e1b3f8c4ae02860",
+    "ref": "refs/heads/review/v0a-evaluation-source/r001",
+    "round": "r001",
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-evaluation-source",
+    "tree": "5eec124adf1de52da1e36c50848c5d55f8866b75"
+  },
+  "summary": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\packets\\r001\\checks\\final-acceptance-summary.json",
+  "summary_sha256": "de8544829b01d05d5f2ff2d3b3b5168bdff20b8de40355368aeb000af03e9bcb",
+  "adapters": [
+    {
+      "original": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\run-source-snapshot-v2.ps1",
+      "original_sha256": "51c6bbcf838d83e320538e7f804bbd647d4bcc7c5b47e55bbd288cde84c49f1e",
+      "adapter": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\run-seal-snapshot.ps1",
+      "adapter_sha256": "1e5a2c82091ca2dc21bbaecf9e9535dbeec31cf5492cb3f6a704b5e99c946805"
+    },
+    {
+      "original": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\freeze-source-v3.ps1",
+      "original_sha256": "c63f3e457ef12606f78bca276ae5b4aab4fb36a2c92cd36c6f34703c2926ae26",
+      "adapter": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\freeze-seal.ps1",
+      "adapter_sha256": "a94a74237520d28b16764ff6800b76f0fc52f4e868343a57e4647438726d1e00"
+    }
+  ],
+  "metadata_paths": [
+    "docs/decisions/ADR-0509-source-seal-the-paired-local-evaluation-loop.md",
+    "STATUS.md"
+  ],
+  "standing": "Metadata preparation only; no decision commit, source seal or evaluation"
+}

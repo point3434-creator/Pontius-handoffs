@@ -1,0 +1,214 @@
+diff --git a/tests/test_v0a_evaluation_runner.py b/tests/test_v0a_evaluation_runner.py
+index d08c051..edd186c 100644
+--- a/tests/test_v0a_evaluation_runner.py
++++ b/tests/test_v0a_evaluation_runner.py
+@@ -334,20 +334,159 @@ class NativeTests(unittest.TestCase):
+             gate.write_text('go')
+         self.source.host.Job.resume = observe
+         self.addCleanup(setattr, self.source.host.Job, 'resume', original)
+         self.addCleanup(lambda: [api.CloseHandle(h) for h in observed])
+         result = self.trial()
+         self.assertEqual(result['failure_reason'], cause)
+         self.assertEqual(len(observed), 1)
+         exitcode = ctypes.c_ulong()
+         self.assertTrue(api.GetExitCodeProcess(observed[0], ctypes.byref(exitcode)))
+         self.assertNotEqual(exitcode.value, 259, 'Native descendant is still active')
++
++class NativeIdentityTests(unittest.TestCase):
++    def setUp(self):
++        self.runner = load()
++        self.original_run = subprocess.run
++        self.original_command = self.runner.SourceBinding.command
++        self.original_git = os.environ['PONTIUS_GIT']
++        self.addCleanup(setattr, subprocess, 'run', self.original_run)
++        self.addCleanup(os.environ.__setitem__, 'PONTIUS_GIT', self.original_git)
++
++    def disposable(self):
++        import shutil
++        native = Path(self.original_git).parent.parent / 'mingw64/bin'
++        self.assertTrue((native / 'git.exe').is_file(), 'Native Git copy layout unavailable')
++        base = Path(tempfile.mkdtemp(prefix='ev-git-'))
++        folder = base / 'bin'
++        folder.mkdir()
++        for path in [native / 'git.exe', native / 'zlib1.dll', *native.glob('lib*.dll')]:
++            shutil.copyfile(path, folder / path.name)
++        self.git = folder / 'git.exe'
++        os.environ['PONTIUS_GIT'] = str(self.git)
++        for alias in self.runner.ALIASES:
++            sys.modules.pop(alias, None)
++        self.drifted, self.changed_launches = False, []
++        def record(argv, *args, **kwargs):
++            if str(argv[0]) == str(self.git) and self.drifted:
++                self.changed_launches.append(list(argv))
++            return self.original_run(argv, *args, **kwargs)
++        subprocess.run = record
++
++    def drift(self, kind):
++        import shutil
++        if kind == 'bytes':
++            with self.git.open('ab') as stream:
++                stream.write(b'finite identity drift\n')
++        elif kind == 'file':
++            preserved = self.git.with_name('preserved.exe')
++            self.git.rename(preserved)
++            shutil.copyfile(preserved, self.git)
++        else:
++            parent = self.git.parent
++            preserved = parent.with_name('preserved')
++            parent.rename(preserved)
++            parent.mkdir()
++            for path in preserved.iterdir():
++                os.link(path, parent / path.name)
++        self.drifted = True
++
++    def test_unchanged_disposable_native_admits_and_rechecks(self):
++        self.disposable()
++        source = self.runner.admit_source(ROOT)
++        source.check()
++        self.assertEqual(source.git, self.git)
++        self.assertEqual(self.changed_launches, [])
++
++    def test_admitted_native_drift_refuses_before_execution(self):
++        for kind in ('bytes', 'file', 'ancestor'):
++            with self.subTest(kind=kind):
++                self.disposable()
++                source = self.runner.admit_source(ROOT)
++                self.drift(kind)
++                with self.assertRaises((ValueError, OSError)):
++                    source.check()
++                self.assertEqual(self.changed_launches, [], 'Changed native was executed')
++
++    def test_each_initial_native_command_revalidates_captured_identity(self):
++        for boundary in range(1, 7):
++            with self.subTest(boundary=boundary):
++                self.disposable()
++                reached = []
++                def inject(source, *args, **kwargs):
++                    reached.append(args)
++                    if len(reached) == boundary:
++                        self.drift('bytes')
++                    return self.original_command(source, *args, **kwargs)
++                self.runner.SourceBinding.command = inject
++                with self.assertRaises((ValueError, OSError)):
++                    self.runner.admit_source(ROOT)
++                self.assertGreaterEqual(len(reached), boundary, 'Drift boundary not reached')
++                self.assertEqual(self.changed_launches, [], 'Changed native was executed')
++        self.runner.SourceBinding.command = self.original_command
++
++
++class RetentionTests(unittest.TestCase):
++    def test_completed_trial_retention_fault_clears_score(self):
++        self.retention_control(OSError, 'failed', 'trial_failed', 1, 'stdout.bin')
++
++    def test_completed_trial_retention_interrupt_clears_score(self):
++        self.retention_control(KeyboardInterrupt, 'interrupted', 'interrupted', 130, 'result.json')
++
++    def retention_control(self, error, state, cause, exit_code, target):
++        runner = load()
++        for alias in runner.ALIASES:
++            sys.modules.pop(alias, None)
++        source = runner.admit_source(ROOT)
++        base = Path(tempfile.mkdtemp(prefix='ev-retention-'))
++        request_path, root = base / 'request.json', base / 'out'
++        request_path.write_bytes(runner.encode(dict(version='pontius-v0a-evaluation-request-v1',
++            seed='0' * 64, deal_count=1, lineups=[['passive'] * 5], seat_start=0,
++            initial_button=0, trial_budget_ms=60000, total_budget_ms=900000)))
++        original_trial, original_read = runner.run_trial, runner.read_stable
++        completed, fired = [], []
++        def real_trial(*args, **kwargs):
++            value = original_trial(*args, **kwargs)
++            self.assertEqual(value['state'], 'completed', 'Real completed trial not exercised')
++            completed.append(value)
++            return value
++        def fault(path, *args, **kwargs):
++            if completed and not fired and path == root / 'u001' / target:
++                fired.append(str(path))
++                raise error('finite late retention trigger')
++            return original_read(path, *args, **kwargs)
++        runner.run_trial, runner.read_stable = real_trial, fault
++        args = runner.argparse.Namespace(request=request_path, output_root=root,
++            evaluation_id='pontius-v0a-evaluation-v1-correctness-retention')
++        code = runner.execute(args, source)
++        result = json.loads((root / 'result.json').read_bytes())
++        unit = json.loads((root / 'u001/result.json').read_bytes())
++        row = result['trials'][0]
++        self.assertEqual((len(completed), len(fired)), (1, 1))
++        self.assertEqual((code, result['status'], row['state']), (exit_code, state, state))
++        self.assertEqual((result['failure_reason'], row['failure_reason']), (cause, cause))
++        self.assertEqual(unit['state'], 'completed')
++        self.assertIs(type(unit['net_chips']), int)
++        self.assertTrue(unit['report_complete'] and unit['observation_complete'])
++        self.assertTrue((root / 'u001/stdout.bin').read_bytes())
++        for key in row.keys() - {'state', 'failure_reason', 'report_complete',
++                                 'observation_complete', 'net_chips'}:
++            self.assertEqual(row[key], unit[key], key)
++        self.assertFalse(row['report_complete'])
++        self.assertFalse(row['observation_complete'])
++        self.assertIsNone(row['net_chips'])
++        self.assertEqual([t['state'] for t in result['trials'][1:]], ['unstarted'] * 11)
++        self.assertEqual(result['completed_trials'], 0)
++        self.assertIsNone(result['aggregate'])
++        self.assertTrue(all(not p['complete'] for p in result['pairs']))
++        self.assertEqual([p.name for p in root.glob('u*')], ['u001'])
++        self.assertTrue((root / '.publication-pending').is_dir())
++        self.assertFalse((root / 'completion.json').exists())
+ class MatrixTests(unittest.TestCase):
+     def test_one_zero_seed_twelve_public_sessions(self):
+         runner = load()
+         base = Path(tempfile.mkdtemp(prefix='ev-matrix-'))
+         request = dict(version='pontius-v0a-evaluation-request-v1', seed='0' * 64,
+             deal_count=1, lineups=[['passive'] * 5], seat_start=0, initial_button=0,
+             trial_budget_ms=60000, total_budget_ms=900000)
+         request_path, root = base / 'request.json', base / 'out'
+         request_path.write_bytes(runner.encode(request))
+         args = [sys.executable, '-B', '-P', str(TOOL), '--request', str(request_path),
+diff --git a/tools/v0a_evaluation.py b/tools/v0a_evaluation.py
+index ca6cf6e..10a4872 100644
+--- a/tools/v0a_evaluation.py
++++ b/tools/v0a_evaluation.py
+@@ -79,20 +79,21 @@ def create_file(path, raw):
+         require(stream.write(raw) == len(raw), 'output_failed')
+         stream.flush()
+         os.fsync(stream.fileno())
+         token = identity(os.fstat(stream.fileno())), directory_ids(path)
+     require(read_stable(path) == (raw, token), 'output_failed')
+     return raw, token
+ 
+ 
+ class SourceBinding:
+     def command(self, *args, content=None):
++        require(read_stable(self.git) == self.captured[self.git])
+         result = subprocess.run([str(self.git), '--no-replace-objects', '--no-optional-locks',
+             '-C', str(self.repo), *args], input=content, env=self.env,
+             capture_output=True, timeout=30)
+         require(result.returncode == 0)
+         return result.stdout
+ 
+     def inventory(self, commit):
+         rows = self.command('ls-tree', '-r', '-z', commit, '--', 'src/pontius', *OLD,
+                             BLUEPRINT, *NEW)
+         result = {}
+@@ -577,21 +578,22 @@ def execute(args, source):
+                 trial = {k: outcome[k] for k in TRIAL_FIELDS.split()}
+                 if outcome['state'] != 'completed':
+                     causes = [outcome['failure_reason'], *outcome['secondary_failures']]
+                 names = ('intent.json', 'launch.json', 'stdout.bin', 'stderr.bin', 'result.json')
+                 for name in names:
+                     if (unit_root/name).exists():
+                         saved[unit_root/name] = read_stable(unit_root/name)
+             except BaseException as error:
+                 add_cause(causes, error, 'trial_failed')
+                 trial.update(state='interrupted' if 'interrupted' in causes else 'failed',
+-                             failure_reason=causes[0])
++                             failure_reason=causes[0], report_complete=False,
++                             observation_complete=False, net_chips=None)
+         trials.append(trial)
+     reduced = source.contract.reduce_trials(plan, trials)
+     complete = reduced['aggregate'] is not None and not causes
+     result = dict(version=PREFIX+'result-v1', evaluation_id=args.evaluation_id,
+         status='completed' if complete else 'interrupted' if 'interrupted' in causes else 'failed',
+         comparison_complete=complete, source_commit=source.commit,
+         source_manifest_sha256=source.manifest, request_sha256=sha(request_raw),
+         plan_sha256=sha(saved[root/'plan.json'][0]), planned_pairs=len(plan['pairs']),
+         completed_pairs=sum(p['complete'] for p in reduced['pairs']), planned_trials=len(trials),
+         completed_trials=sum(t['state'] == 'completed' for t in trials), trials=trials, **reduced,

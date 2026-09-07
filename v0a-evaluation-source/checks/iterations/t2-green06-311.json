@@ -1,0 +1,37 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green06-311",
+    "snapshot_head": "6b9785844273df8c43d333aa2143b7e5a3cd910f",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green06-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green06-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T06:34:20.7449885Z",
+    "finished_utc": "2026-09-07T06:34:20.8059264Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-green06-311",
+    "snapshot_head": "6b9785844273df8c43d333aa2143b7e5a3cd910f",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_runner.py",
+      "-v",
+      "AdmissionTests",
+      "NativeTests"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_admit_exact_source_without_poker_imports (__main__.AdmissionTests.test_admit_exact_source_without_poker_imports) ... ok\r\ntest_existing_output_root_refuses_without_overwrite (__main__.AdmissionTests.test_existing_output_root_refuses_without_overwrite) ... REFUSED [WinError 183] Cannot create a file when that file already exists: 'D:\\\\Pontius\\\\tmp\\\\v0a-evaluation-source-r001\\\\process-temp\\\\t2-green06-311\\\\ev-admit-h15ixi6r\\\\consumed'\nok\r\ntest_preloaded_alias_refuses (__main__.AdmissionTests.test_preloaded_alias_refuses) ... ok\r\ntest_assignment_failure_never_executes_child (__main__.NativeTests.test_assignment_failure_never_executes_child) ... ok\r\ntest_bypassing_assignment_fails_independent_marker_check (__main__.NativeTests.test_bypassing_assignment_fails_independent_marker_check) ... ok\r\ntest_cleanup_refusal_is_retained_after_actual_close (__main__.NativeTests.test_cleanup_refusal_is_retained_after_actual_close) ... ok\r\ntest_creation_exception_keeps_cleanup_unknown (__main__.NativeTests.test_creation_exception_keeps_cleanup_unknown) ... ok\r\ntest_intent_then_capture_failure_retains_unknown_launch (__main__.NativeTests.test_intent_then_capture_failure_retains_unknown_launch) ... ok\r\ntest_interrupt_after_real_resume_stops_child (__main__.NativeTests.test_interrupt_after_real_resume_stops_child) ... ok\r\ntest_observation_finishes_after_trial_deadline (__main__.NativeTests.test_observation_finishes_after_trial_deadline) ... ok\r\ntest_overflow_stops_observed_native_descendant (__main__.NativeTests.test_overflow_stops_observed_native_descendant) ... ok\r\ntest_partial_json_keeps_raw_capture_and_refuses_report (__main__.NativeTests.test_partial_json_keeps_raw_capture_and_refuses_report) ... ok\r\ntest_stderr_overflow_is_capped_and_stopped (__main__.NativeTests.test_stderr_overflow_is_capped_and_stopped) ... ok\r\ntest_stdout_overflow_is_capped_and_stopped (__main__.NativeTests.test_stdout_overflow_is_capped_and_stopped) ... ok\r\ntest_timeout_stops_child (__main__.NativeTests.test_timeout_stops_child) ... ok\r\ntest_timeout_stops_observed_native_descendant (__main__.NativeTests.test_timeout_stops_observed_native_descendant) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 16 tests in 75.779s\r\n\r\nOK\r\n",
+    "started_utc": "2026-09-07T06:34:20.8068670Z",
+    "finished_utc": "2026-09-07T06:35:36.7300005Z"
+  }
+]

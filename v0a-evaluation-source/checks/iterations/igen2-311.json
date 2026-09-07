@@ -1,0 +1,35 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen2-311",
+    "snapshot_head": "4f4c187b3fbaf4b951b015d6a9bae509813207a3",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen2-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen2-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T10:02:58.8723334Z",
+    "finished_utc": "2026-09-07T10:02:58.9454708Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\igen2-311",
+    "snapshot_head": "4f4c187b3fbaf4b951b015d6a9bae509813207a3",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tools/generate_test_inventory.py",
+      "--write"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "started_utc": "2026-09-07T10:02:58.9464632Z",
+    "finished_utc": "2026-09-07T10:04:11.5299770Z"
+  }
+]

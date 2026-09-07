@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "candidate": "cb47f22c3bf140351564316344d6596a1a81d433",
+  "base": "e043f81ecec3ac16128720b42c3312bb41a4ed67",
+  "tree": "09d9a3bce37071bab9e8679e9924221aba075dbf",
+  "manifest_sha256": "bf109d6dee99f76f860c5e0eeefa0c18c3bdcf82844cd6279dc4b04ca6789025",
+  "review_c_sha256": "52be9cd7964ce3d7b3beba711e732de50bc8ae25333e6eee61339cd48d018d6f",
+  "review_d_sha256": "ea9a4cabed2133b4647ba1800f43aa2f7f775659079a048574b954916e985d52",
+  "commands_passed": 4,
+  "tests_per_interpreter": 12,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "identity_audit": {
+    "status": "PASS",
+    "candidate": "cb47f22c3bf140351564316344d6596a1a81d433",
+    "base": "e043f81ecec3ac16128720b42c3312bb41a4ed67",
+    "tree": "09d9a3bce37071bab9e8679e9924221aba075dbf",
+    "manifest_sha256": "bf109d6dee99f76f860c5e0eeefa0c18c3bdcf82844cd6279dc4b04ca6789025",
+    "exact_paths": 6,
+    "raw_base_pins": 9,
+    "primary_tracked_clean": true,
+    "evaluation_population_created": false,
+    "source_implementation_performed": false,
+    "poker_payload_executed": false
+  },
+  "commands": [
+    {
+      "slot": "311",
+      "actual_version": "3.11.15",
+      "name": "status-check",
+      "tests": 0,
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\run-records\\final-r002-status-check-311.json",
+      "receipt_sha256": "63bf1bf24f80eb14be5e75e059a735c8ab499e592d71835d2c5c57992032b4e1",
+      "exit_code": 0
+    },
+    {
+      "slot": "311",
+      "actual_version": "3.11.15",
+      "name": "status-suite",
+      "tests": 12,
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\run-records\\final-r002-status-suite-311.json",
+      "receipt_sha256": "0f02dc763a03c7e613a6e9a388978804c3d71087f0da28c9724ec8d2d08706ae",
+      "exit_code": 0
+    },
+    {
+      "slot": "314",
+      "actual_version": "3.14.6",
+      "name": "status-check",
+      "tests": 0,
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\run-records\\final-r002-status-check-314.json",
+      "receipt_sha256": "025be3d1cbab0f00601f7fde23e96c4e53acfc023f122d7d45d4166b82615d51",
+      "exit_code": 0
+    },
+    {
+      "slot": "314",
+      "actual_version": "3.14.6",
+      "name": "status-suite",
+      "tests": 12,
+      "receipt": "D:\\Pontius\\tmp\\v0a-evaluation-opening-r001\\run-records\\final-r002-status-suite-314.json",
+      "receipt_sha256": "f7169a0857b818d6e3142e4e6686ae9b4be13ab72833da88fa809c806ec412dc",
+      "exit_code": 0
+    }
+  ],
+  "poker_payload_executed": false,
+  "decision_commit_authorized": false,
+  "evaluation_launch_authorized": false
+}

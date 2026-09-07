@@ -1,0 +1,968 @@
+diff --git a/STATUS.md b/STATUS.md
+index 06b2def..63347bb 100644
+--- a/STATUS.md
++++ b/STATUS.md
+@@ -8,66 +8,59 @@
+ Latest accepted research result: [ADR-0280](docs/decisions/ADR-0280-exact-pre-bet-row-cache-passes-cpu-h2-fail-closed-control.md) — Exact pre-bet row cache passes CPU/h2 fail-closed control.
+ 
+ Status: accepted label-free engineering control; cache mechanics pass and timed capacity remains closed.
+ 
+ ## Governing runtime contract
+ 
+ [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md) — Make the action clock and preparation bank authoritative.
+ 
+ ## Current decision
+ 
+-Prospectively permit one separately authorized supervised demonstration that joins
+-the sealed seeded-deal generator to the accepted baseline-rules-v1 session. Save three
+-shuffled hands from the exact seed below, then display that schedule once in
+-automatic text mode. The controller can follow it on a phone without terminal
+-input. Preserve the existing six-seat setup, passive opponents and empty blueprint.
+-The baseline uses the accepted fixed-rule provider with blueprint fallback. This is
+-visible product behavior, not correctness acceptance or a strength result.
+-
+-The proposal has no effect before its exact decision commit is authorized and made.
+-The commit alone grants no launch. One approval may explicitly name commit/push and
+-the exact complete generation-and-session sequence; otherwise launch needs its own
+-approval. Neither a generic historical approval nor the existence of source grants it.
+-
+-This is a narrow prospective exception to the execution closures in ADR-0489,
+-ADR-0500, ADR-0503 and ADR-0506, and to ADR-0485's operational prerequisites solely for this
+-named non-evidentiary display. Formal operating, rehearsal, experimental, resource
+-calibration, training and research prerequisites remain binding. ADR-0501 and ADR-0504's earlier
+-demonstrations are completed and consumed; neither identity is reused.
+-
+-As in ADR-0501, permit the unchanged executable correctness namespace solely under
+-this external demonstration authority. Preserve literal IDs, trace modes, fields
+-and evidentiary=false. A correctness name does not turn this display into a test;
+-no new machine-enforced scientific authorization interface is claimed or patched.
++Open the CPU-only paired local evaluation source increment under the brief, design
++and source-contract in docs/architecture/v0a-evaluation-r001/ and implementation plan
++docs/superpowers/plans/2026-09-07-paired-local-evaluation.md. The controller requested
++preparation of this bounded proposal; it has no effect until its exact decision
++commit is expressly authorized and made. No implementation occurs before adoption.
++
++The deliverable is a reproducible outer loop comparing baseline-rules-v1 and
++blueprint-v1 through the unchanged public session CLI. Each matched pair shares
++identical one-hand input, resets six 200-chip stacks, and uses the existing opponent
++scripts. Every deal/lineup covers all six seats. Alternating strategy order is fixed
++before outcomes. Source acceptance judges the comparison machinery, not profitability.
++
++Reports preserve applied actions, baseline fallback and legacy choice distinctions,
++timing observations, incomplete captures and failures. A complete aggregate requires
++the complete planned population; no survivor-only score or missing-as-zero result.
++Every partial attempt remains retained and cannot be resumed or rerolled. Whole-run
++deadline, native descendant containment and final publication have explicit contracts.
+ 
+ ## Active next
+ 
+-Authorize one baseline watch demo; formal operation/research closed
++Implement the bounded paired evaluation loop after exact adoption
+ 
+ ## Revoked authorities
+ 
+ - [ADR-0281](docs/decisions/ADR-0281-preregister-temporally-separated-pre-bet-row-cache-seed.md) — revoked by [ADR-0283](docs/decisions/ADR-0283-withdraw-v1-seed-authority-and-install-v2-trust-controls.md).
+ - [ADR-0468](docs/decisions/ADR-0468-authorize-one-deferred-import-calibration-invocation.md) — revoked by [ADR-0469](docs/decisions/ADR-0469-retain-the-deferred-import-authorization-gate-rejection.md).
+ - [ADR-0472](docs/decisions/ADR-0472-authorize-one-v6-retained-attempt-calibration-invocation.md) — revoked by [ADR-0473](docs/decisions/ADR-0473-retain-the-v6-authorization-phase-gate-rejection.md).
+ - [ADR-0475](docs/decisions/ADR-0475-authorize-one-v7-authorization-phase-calibration-invocation.md) — revoked by [ADR-0476](docs/decisions/ADR-0476-retain-the-v7-laboratory-wall-rejection.md).
+ 
+ ## Evidence protocol
+ 
+-Latest process decision: [ADR-0507](docs/decisions/ADR-0507-permit-one-baseline-watch-demonstration.md) — Permit one baseline watch demonstration.
++Latest process decision: [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md) — Open the paired local evaluation source round.
+ 
+ Canonical rules: [PROJECT.md](PROJECT.md#evidence-and-dissent-protocol).
+ 
+ ## Recent decision ledger
+ 
+ | ADR | Date | Status | Decision |
+ |---:|---|---|---|
+-| [ADR-0484](docs/decisions/ADR-0484-clarify-the-v0a-increment-split-and-instrumentation.md) | 2026-08-30 | accepted prospective clarification of the ADR-0483 opening directive before any v0a lifecycle exists; increment one of the v0a lane is the blueprint-only complete hand — the ADR-0308 exact spine joined to the ADR-0290 explicit-deal loop with every controlled action answered by the immutable blueprint inside its own 15,000 ms wall, no h32 decision, no GPU dependency, and no resolver — while the prepared h32 certified river decision and the would-be base-producer bridge instrumentation belong to increment two, because a blueprint-only hand executes no base-structure machinery and instrumentation obligations attach where that machinery first executes; increment one records the frozen decision-record fields for every controlled action, the input boundary admits only public events and the controlled seat's own cards so the dealer's complete deal never reaches policy selection, the campaign increment's qualifying-h32 minimums must later be met by a declared, seed-sealed, steered or prepared-context deal schedule and never by weakening qualification, each landed increment's clone-safe suite subset joins the continuous-integration wall, and the reviewed increment-one brief at `docs/briefs/v0a-increment-1-brief.md` bounds the work without conferring any experiment authority | Clarify the v0a increment split and instrumentation |
+ | [ADR-0485](docs/decisions/ADR-0485-preregister-the-blueprint-only-v0a-hand-contract.md) | 2026-08-30 | accepted prospective contract preregistration and explicit bootstrap-sequencing clarification; only the additive CPU blueprint-hand source contract is opened, an outer ActionClockLedger measures through offline-host delivery without altering the sealed V2 spine, operating budgets and an authoritative replay population remain unadmitted until a separate measured closure, and no source seal, rehearsal, owner invocation, integration result, timing result, or strategy result is asserted | Preregister the blueprint-only v0a hand contract |
+ | [ADR-0486](docs/decisions/ADR-0486-park-the-slice-c-capability-analyzer-repair.md) | 2026-09-04 | accepted scope correction; the slice C capability-analyzer soundness repair is parked as its own bounded task and removed from v0a increment-one acceptance scope, increment one's obligation to the inventory machinery is reduced to registration and mechanical regeneration, the Gate 13 freeze lane is paused at its rejected revision 23, and no source seal, rehearsal, invocation, integration, timing, or strategy result is asserted or authorized | Park the slice C capability-analyzer repair |
+ | [ADR-0487](docs/decisions/ADR-0487-source-seal-the-blueprint-only-v0a-hand-runtime.md) | 2026-09-04 | accepted library-only source seal upon its separately authorized decision commit; exact r004 source and r007 core are preserved, bounded CPU acceptance is complete, the inherited Windows fixture caveat remains open, and no rehearsal, invocation, timing, strategy, or strength result is authorized or asserted | Source-seal the blueprint-only v0a hand runtime |
+ | [ADR-0488](docs/decisions/ADR-0488-source-seal-the-non-evidentiary-v0a-driver.md) | 2026-09-04 | accepted driver-only source seal upon controller approval and its separately authorized decision commit; this draft remains inactive until those conditions hold, two independent cold reviews and bounded v0a regression checks pass, no reviewed implementation byte changes, and no rehearsal or operational invocation is authorized | Source-seal the non-evidentiary v0a driver |
+ | [ADR-0489](docs/decisions/ADR-0489-close-the-v0a-engineering-milestone.md) | 2026-09-04 | accepted engineering-only closure upon its separately authorized decision commit | Close the v0a engineering milestone |
+ | [ADR-0490](docs/decisions/ADR-0490-open-the-portable-blueprint-artifact-source-round.md) | 2026-09-05 | accepted source-opening decision upon its separately authorized decision commit | Open the portable blueprint artifact source round |
+ | [ADR-0491](docs/decisions/ADR-0491-source-seal-the-portable-blueprint-artifact.md) | 2026-09-05 | accepted source-only seal upon its separately authorized decision commit | Source-seal the portable blueprint artifact |
+ | [ADR-0492](docs/decisions/ADR-0492-adopt-proportionate-engineering-review.md) | 2026-09-05 | accepted prospective workflow amendment upon its authorized decision commit | Adopt proportionate engineering review |
+ | [ADR-0493](docs/decisions/ADR-0493-open-the-one-hand-file-adapter-source-round.md) | 2026-09-05 | accepted source-opening decision upon its separately authorized commit | Open the one-hand file adapter source round |
+ | [ADR-0494](docs/decisions/ADR-0494-source-seal-the-one-hand-file-adapter.md) | 2026-09-05 | accepted source-only seal upon its separately authorized decision commit | Source-seal the one-hand file adapter |
+@@ -77,25 +70,26 @@ Canonical rules: [PROJECT.md](PROJECT.md#evidence-and-dissent-protocol).
+ | [ADR-0498](docs/decisions/ADR-0498-source-seal-the-one-hand-table-host.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the one-hand table host |
+ | [ADR-0499](docs/decisions/ADR-0499-open-the-watch-first-table-session-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the watch-first table session source round |
+ | [ADR-0500](docs/decisions/ADR-0500-source-seal-the-watch-first-table-session.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the watch-first table session |
+ | [ADR-0501](docs/decisions/ADR-0501-permit-one-watch-first-demonstration.md) | 2026-09-06 | accepted demonstration-only exception upon its separately authorized decision commit | Permit one watch-first demonstration |
+ | [ADR-0502](docs/decisions/ADR-0502-open-the-seeded-deal-generator-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the seeded-deal generator source round |
+ | [ADR-0503](docs/decisions/ADR-0503-source-seal-the-seeded-deal-generator.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the seeded-deal generator |
+ | [ADR-0504](docs/decisions/ADR-0504-permit-one-seeded-watch-demonstration.md) | 2026-09-06 | accepted demonstration-only exception upon its separately authorized decision commit | Permit one seeded watch demonstration |
+ | [ADR-0505](docs/decisions/ADR-0505-open-the-selectable-decision-provider-source-round.md) | 2026-09-06 | accepted source-opening decision upon its separately authorized commit | Open the selectable decision-provider source round |
+ | [ADR-0506](docs/decisions/ADR-0506-source-seal-the-selectable-decision-provider.md) | 2026-09-06 | accepted source-only seal upon its separately authorized decision commit | Source-seal the selectable decision provider |
+ | [ADR-0507](docs/decisions/ADR-0507-permit-one-baseline-watch-demonstration.md) | 2026-09-07 | accepted demonstration-only exception upon its separately authorized decision commit | Permit one baseline watch demonstration |
++| [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md) | 2026-09-07 | accepted source-opening decision upon its separately authorized commit | Open the paired local evaluation source round |
+ 
+ ## Repository snapshot
+ 
+-- Latest ADR: [ADR-0507](docs/decisions/ADR-0507-permit-one-baseline-watch-demonstration.md) — Permit one baseline watch demonstration.
++- Latest ADR: [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md) — Open the paired local evaluation source round.
+ - Governing runtime contract: [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md) — Make the action clock and preparation bank authoritative.
+-- Numbered decisions: 507.
+-- ADR-header SHA-256: `7c53cb64da1a3bd68f1d88b5e614582a94ffff1a21d5cf28325171b2e870e7c6`.
+-- Current blockers: exact demo launch approval pending; formal operating prerequisites open.
++- Numbered decisions: 508.
++- ADR-header SHA-256: `a34e76789b9a927eff2621858187c50643b129ec1c991a7e4f3eb7d79134408d`.
++- Current blockers: evaluation source acceptance pending; no evaluation population admitted.
+ 
+ ## Required reading before continuation
+ 
+ 1. [PROJECT.md](PROJECT.md)
+ 2. [STATUS.md](STATUS.md)
+ 3. [ROADMAP.md](ROADMAP.md)
+-4. [ADR-0507](docs/decisions/ADR-0507-permit-one-baseline-watch-demonstration.md), [ADR-0280](docs/decisions/ADR-0280-exact-pre-bet-row-cache-passes-cpu-h2-fail-closed-control.md), [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md), and their dependencies
++4. [ADR-0508](docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md), [ADR-0280](docs/decisions/ADR-0280-exact-pre-bet-row-cache-passes-cpu-h2-fail-closed-control.md), [ADR-0307](docs/decisions/ADR-0307-make-action-clock-and-preparation-bank-authoritative.md), and their dependencies
+diff --git a/docs/architecture/v0a-evaluation-r001/brief.md b/docs/architecture/v0a-evaluation-r001/brief.md
+new file mode 100644
+index 0000000..e7fd1db
+--- /dev/null
++++ b/docs/architecture/v0a-evaluation-r001/brief.md
+@@ -0,0 +1,73 @@
++# Paired local evaluation loop: brief
++
++Date: 2026-09-07. Task: v0a-evaluation-opening. Finalizer: Codex coordinator.
++Tier C: population identity, paired comparison, process ownership and evidence meaning.
++Base B: e043f81ecec3ac16128720b42c3312bb41a4ed67 in D:/Pontius.
++
++The controller said "Let's Begin" to preparing a bounded design and source-opening
++proposal for reproducible tables, matched baseline/blueprint comparisons and a clear
++report. This authorizes proposal work, not source implementation, evaluation cards,
++an evaluation run, source acceptance, a decision commit or remote publication.
++
++## Outcome and acceptance
++
++Deliver a CPU-only outer evaluation loop that compares baseline-rules-v1 against
++blueprint-v1 through the unchanged public session CLI. Each trial is one hand with
++fresh 200-chip stacks. The same full table bytes serve both strategies. Every planned
++deal/lineup covers all six controlled seats; starting button is configurable. This
++is a reusable correctness asset whose actual evaluation populations remain unadmitted.
++
++1. Strict canonical requests determine the complete ordered trial matrix before play.
++2. Existing seeded-deal recipe and four opponent scripts are reused unchanged.
++3. Every matched pair has identical cards, board, button, stacks and opponents; only
++   strategy/protocol/run identity differs. Six-seat rotation does not rotate away
++   relative position. Stack resets prevent policy-dependent dropout of later deals.
++4. Public session admission, legal engine, provider, fallback and action clock remain
++   authoritative. The parent never selects poker actions or delivers full deals to policy.
++5. A fresh create-only output root, per-trial intent and retained raw captures make
++   failures observable. No resume, retry, replacement arm, dropped row or silent success.
++6. Reports separate completed-pair chip deltas, applied action counts, provider fallback,
++   legacy blueprint choices, observed timing flags and incomplete observations.
++7. Windows descendants are contained before executable work, captures have byte caps,
++   and one shared monotonic deadline governs trial admission and completed publication.
++8. Finite independent correctness controls and both supported interpreters establish
++   the machinery; no observed profitability is a source-acceptance gate.
++
++## Scope and ground truth
++
++Add two tools, three tests and one literal fixture, as named in source-contract.md.
++Only six existing registration files may change under exact prospective exceptions.
++No changes to src/pontius, host/session/generator, old tests other than the registration
++census, old fixtures, policies, transport or source-admission pins.
++
++Ground truth: accepted B contracts and raw source for public CLI, dealing, reporting
++and native Job behavior; independently written literal matrices, counts and arithmetic
++for the new wrapper. Paired comparison is an experimental-design choice, not an
++optimal-poker oracle. Old displayed deals are not a development population.
++
++Seams: request/planner, fixed raw source loader, subprocess/native Job, session JSON
++and wire captures, raw retained artifacts, reducer, deadline and final publication.
++Only this evaluation increment depends on the proposal. Training, self-play, human
++play, GUI, new opponents, H32 and all previous consumed owners remain separate.
++
++## Budget and stop rule
++
++Production ceiling: 1,200 added lines across two new tools. Tests: 1,800 added lines;
++literal fixtures: 32 KiB. Manual registration: 160 added/removed lines, with generated
++inventory/profile bytes counted separately. Native process code is reused from the
++accepted host Job; no general scheduler, plugin system or new transport framework.
++The report reducer protects denominators and honest failure accounting, justifying
++its size within this cap. Split the design if these bounds cannot be met.
++
++One initial proposal/source candidate and up to three within-scope correction rounds
++at each stage. Preserve every round and review. A second residual on one contract
++requires the workflow root-cause/redesign treatment; source scope, population semantics,
++line budget or round-budget expansion returns to the controller. No source edits occur
++until the exact source-opening decision is adopted. Source acceptance/seal and actual
++evaluation launch each remain later separately authorized decisions.
++
++Proposal acceptance: freeze the six documentation paths, obtain two fresh independent
++Tier C reviews covering design and source contract, then status --check and all twelve
++status tests on actual 3.11.15 first and 3.14.6 second, each fresh D-local exact-candidate
++snapshot under the accepted scrubbed -B -P procedure. Verify base pins and no population
++creation. No poker/generator/inventory payload runs during this documentation task.
+diff --git a/docs/architecture/v0a-evaluation-r001/design.md b/docs/architecture/v0a-evaluation-r001/design.md
+new file mode 100644
+index 0000000..4dcd8c3
+--- /dev/null
++++ b/docs/architecture/v0a-evaluation-r001/design.md
+@@ -0,0 +1,153 @@
++# Paired local evaluation loop: design
++
++## Goals and comparison unit
++
++The complete unit is a matched pair of independently reset one-hand sessions: one
++baseline-rules-v1, one blueprint-v1. Both use the same canonical session input and
++the accepted empty blueprint. A pair's chip delta is baseline controlled-seat net
++chips minus blueprint controlled-seat net chips. There is no stack carry between
++trials. A policy can therefore go all-in without removing later comparison units.
++
++This first version reports exact integer sums and rational means over the complete
++fixed matrix. It supplies no confidence interval, statistical significance, general
++win-rate estimate, opponent-strength assertion or policy-selection recommendation.
++Scripted opponents are explicit scenarios. Actual result collection requires a later
++preregistration and invocation authorization; a correctness name grants neither.
++
++## Population before outcomes
++
++A canonical request supplies one retained external 32-byte seed, one to four deals,
++one to four ordered five-opponent lineups, seat_start and initial_button, plus resource
++caps. Allowed opponent strings are passive, fold_to_bet, min_raise_once and shove_once.
++Repeated lineups refuse. The runner creates no entropy and offers no seed search.
++
++For each deal index d, use the unchanged seeded generator's deal_for_hand(seed, d).
++Keep its six private pairs in their original physical seats and its board unchanged.
++For each lineup l and rotation r=0..5, controlled seat s=(seat_start+r)%6 and button
++b=(initial_button+d)%6. Assign lineup[j] to seat (s+1+j)%6 for j=0..4, and null to s.
++Thus all six relative positions and private pairs are covered; rotating button along
++with the controlled seat would defeat this and is forbidden. Changing seat_start
++only changes execution order, not the comparison population.
++
++Enumerate pairs in d, l, r order. Let p be the zero-based pair ordinal. Even pairs
++execute baseline then blueprint; odd pairs reverse that order. Input bytes are
++identical inside each pair. This balances execution order without selecting outcomes.
++Each trial starts with six 200-chip stacks and blinds 1/2. A one-hand session always
++uses the existing v1 input schema, including when the selected strategy uses v2 wire.
++
++Create the complete plan and one input per pair before any poker child. Retain the
++request, seed-derived deals and input hashes locally. Plan/input publication errors
++stop before play. A fixed seed is reproducibility, not proof of randomness quality.
++The generated full deals never enter the provider observation or public summary.
++
++## Source and native process boundary
++
++Two new stdlib-only tools own the wrapper. v0a_evaluation_contract.py owns strict
++request parsing, deterministic matrix expansion, report observation and arithmetic.
++v0a_evaluation.py owns source admission, fixed loaders, retained files, process and CLI.
++The old generator, host, session and all src/pontius bytes stay unchanged.
++
++Before loading helpers or deriving cards, verify current tracked raw bytes for both
++new tools and the entire inherited engine source closure. Old dependencies must also
++equal their exact B blobs. The new tool bytes bind to the current candidate commit.
++No preloaded pontius or helper aliases; no PATH Git; no import overlay. Validate native
++regular non-reparse paths and repeat identity checks before/after every trial.
++
++The parent raw-loads only three fixed verified tools into fresh private module aliases:
++the pure contract, accepted generator and accepted host. It calls the generator's
++deal_for_hand and host.Job only. It never constructs host.Source, host.Table or
++Session, calls a private game loader, or imports pontius. Host module import is inert
++stdlib definition loading; the separate session subprocess starts with a clean module
++table and performs its own complete public admission. This avoids copying native Job
++ownership code or weakening session admission to accommodate a preloaded evaluator.
++
++Launch the current interpreter with -B -P and the unchanged session CLI in JSON/auto
++mode. Cwd is the exact D-local snapshot; PYTHONPATH is its src, Git is absolute native
++C:\Program Files\Git\cmd\git.exe, and environment follows the accepted allowlist.
++Create the session process suspended, assign the accepted kill-on-close Job, then
++resume it. Do not launch if Job creation/assignment/resume or source admission fails.
++The Job contains session descendants, including nested host children. No breakaway.
++
++Drain raw stdout/stderr concurrently into create-new files, with per-trial caps.
++Stop the Job on overflow, deadline, interrupt or wrapper failure; preserve bytes
++already captured and record the actual exit or explicit unknown. Wait for zero active
++Job processes before successful cleanup. A cleanup failure remains a failure even if
++the session produced a success report. Every resource is registered before the next
++fallible operation; preserve primary and secondary causes.
++
++## Whole-run budget and retained progression
++
++The caller supplies total_budget_ms and trial_budget_ms. Neither is an admitted
++operating budget or a performance claim. Correctness tests use literal finite caps;
++a future population must justify its operational budget before execution.
++
++Start one monotonic total deadline before plan generation. Before every trial,
++require its complete trial_budget_ms plus the fixed cleanup reserve to fit. Check
++again after source/input validation immediately before creating the suspended child.
++The trial deadline includes startup, child execution, capture and validation; the
++same total deadline also covers plan creation, reduction and final publication.
++There is no reset when changing strategies, seats, lineups or deals. Deadline crossing
++cannot be relabeled complete by a later report. Cleanup may continue after the budget
++only to stop owned resources and retain an incomplete outcome, never to launch work.
++Blocking OS/filesystem operations prevent a universal hard wall claim.
++
++The output root is absent and create-new, disjoint from source and request paths.
++Reservation consumes it. Copy request bytes, save planned inputs/identities, then
++write/flush intent before each launch. Every trial gets its own raw captures and
++result record. Stop on the first incomplete, stopped, failed or refused trial; do
++not run a replacement arm or continue collecting selected successes. Missing final
++publication leaves a retained incomplete root, never implicit success. No resume,
++retry, root cleanup or adoption of an old result is provided.
++
++Final publication is create-new, flushed, reread and byte-compared under the shared
++deadline. It names every planned trial and its state, including unstarted trials.
++If publication fails, retain the original files and an error record when possible.
++A partial or late final file does not carry complete standing. Publication success
++is separately recorded after readback; all consumers require that completion record.
++
++## Facts, metrics and missing observations
++
++Accept a trial for paired scoring only when exit is zero, captures are complete,
++the exact session/hand schema and identities match, one hand completed, settlement
++is consistent with session final stacks, and cleanup/source/input checks pass.
++Check integer chip conservation and host-applied action ordinals/seats. Reuse the
++host's successful report as the engine authority; do not claim a second poker solver.
++
++Executed actions come from host applied_actions with origin bot, not provider proposals
++or merely selected actions. Baseline fallback selections come from versioned decisions
++with selection_origin blueprint_fallback. Link selections to applied bot actions by
++per-hand controlled-action ordinal and exact action equality; retain unassigned applied
++actions. Legacy table_hit/passive_default choices are separate counters, not provider
++fallbacks. Missing or invalid decision records never become zero fallback use.
++
++Raw child output is base64-encoded LF JSON frames. A failed capture may include rows
++the host never validated. Record a strictly parsed observed prefix separately as
++unverified/incomplete; do not treat valid-looking rows as a successful hand. Extract
++only version/schema/identity-valid observations and preserve missing coverage.
++
++Deduplicate timing observations by child hand ID and action_index because a decision
++and its failure can carry the same timing. Keep work cutoff and action deadline flags
++separate. A host_limit or outer timeout is not an action-clock deadline observation.
++Cause lists give presence, not the number of all underlying incidents. Separate
++trial status, hand/session causes, action failures and transport/capture deficiencies.
++
++All planned pairs must complete for the global comparative result. Otherwise chips
++comparison and means are null, with completed-pair diagnostic rows retained. Never
++silently divide by only the surviving rows or use zero for unobserved outcomes.
++Reports omit hole cards and board runouts; raw inputs remain local retained artifacts.
++
++## Alternatives and project fit
++
++Carried multi-hand matches are useful product sessions but create policy-dependent
++dropout and stack histories, so they are not the first comparison unit. Directly
++calling Session would entangle admission/module state and native ownership; public
++subprocesses preserve the existing boundary. A second poker simulator would duplicate
++the established engine and oracle. New opponent policies and neural/self-play systems
++would mix evaluation plumbing with behavior changes; they remain later increments.
++
++The failure risks are population/order drift, selection bias from dropped failures,
++mislabeling missing records, and orphaned descendants. Each has a direct fixture or
++native-boundary check in the source contract. There is no redesign of game code,
++action timing or transport, and no machine-enforced scientific authorization claim.
++This asset makes future comparisons possible after separate authorization; it does
++not itself open a population, infer an operating ceiling or promise a stronger bot.
+diff --git a/docs/architecture/v0a-evaluation-r001/source-contract.md b/docs/architecture/v0a-evaluation-r001/source-contract.md
+new file mode 100644
+index 0000000..864aa25
+--- /dev/null
++++ b/docs/architecture/v0a-evaluation-r001/source-contract.md
+@@ -0,0 +1,318 @@
++# Paired evaluation source contract
++
++Normative only upon adoption of ADR-0508. Base B is
++e043f81ecec3ac16128720b42c3312bb41a4ed67. This opens a correctness-only source
++increment; implementation, source acceptance and population execution are distinct.
++
++## Exact source surface
++
++Create tools/v0a_evaluation.py and tools/v0a_evaluation_contract.py. The first owns
++CLI/admission/native orchestration and retained publication; the second owns pure
++canonical schemas, matrix planning and observable-report reduction. No src addition.
++Create tests/test_v0a_evaluation_contract.py, tests/test_v0a_evaluation_runner.py,
++tests/test_v0a_evaluation_boundary.py and tests/fixtures/evaluation/controls.json.
++
++The six current-file exceptions below are limited prospective supersessions of
++CLAUDE rule 1. Verify each B blob before its first edit; no other current file changes.
++
++- tools/check_stabilization_boundaries.py
++  B blob: 9cc2ae8d8e82ccc77648ade4eb79ae9c34c88a9f.
++  Register two exact tool origins and their bounded imports/loaders only.
++- tools/generate_test_inventory.py
++  B blob: 2ac1413b0f89fa848f1ee5df0814b58dcbfa15b8.
++  Register three new CPU suites only.
++- tests/test-inventory.json
++  B blob: c28445aa4b77a98cfd706672d955be4570b98a15.
++  Mechanical regeneration, preserving old IDs/records.
++- tests/test-profiles.toml
++  B blob: 4469bf813b2e97116667c206784a7bc212f6eef5.
++  Mechanical new membership, preserving old order/grants.
++- tests/test_inventory_and_profiles.py
++  B blob: e71a24322878361fb2feb44437d9210cff79c89e.
++  New registration expectations and mechanically derived census values only.
++- .github/workflows/ci.yml
++  B blob: 3d873a2f75ff1b155bf3533583eddf971eb7790a.
++  Three explicit CPU suite steps; preserve old gates.
++
++All game/provider/source-admission code, old source pins, policies, fixtures and
++historical decisions remain byte-identical. In particular preserve:
++
++- tools/v0a_seeded_deals.py: 2963004e38c6e66f76ae9ce3bd474063eee870fe.
++- tools/v0a_table_session.py: a5e058260fa56e29f06e38074d59dc55f420c5ee.
++- tools/v0a_table_host.py: 6ec8a162b053158203663c48e82314b10750f962.
++
++The old session's literal host pin is unchanged. No tests/test_v0a_table_session.py
++exception is opened. Historical rehearsal owners remain consumed/closed; no source
++manifest or correctness identifier transfers a scientific or operational authority.
++
++## Public request and matrix
++
++CLI: -B -P tools/v0a_evaluation.py --request ABS --output-root ABS
++--evaluation-id pontius-v0a-evaluation-v1-correctness-SUFFIX.
++SUFFIX is 1..16 ASCII letters/digits/underscore/hyphen. No default seed, random API,
++resume, force, retry, policy loading, table overlay or alternative output-root option.
++The source snapshot cwd is D-local; the output root must be absent, non-reparse and
++disjoint from source and request. A source-valid invocation consumes its new root.
++
++Canonical UTF-8 compact sorted-key JSON plus one LF, no BOM/CR/duplicate/unknown keys,
++no floats, bool-as-int or nonfinite constants. Request cap 4,096 bytes, depth at most
++4, integer tokens at most 8 digits. Its exact field set is:
++
++version seed deal_count lineups seat_start initial_button total_budget_ms trial_budget_ms
++
++- version = pontius-v0a-evaluation-request-v1.
++- seed = 64 lowercase hex characters, externally saved before any evaluation cards.
++- deal_count: exact int 1..4. seat_start and initial_button: exact int 0..5.
++- lineups: list of 1..4 distinct lists, each five strings from the existing four
++  opponent policies. List order is meaningful; do not sort lineups or their members.
++- trial_budget_ms: exact int 1..3,600,000; total_budget_ms: exact int 1..86,400,000,
++  with total_budget_ms >= trial_budget_ms + 5,000. No operating adequacy is inferred.
++
++For d=0..deal_count-1, l in request lineup order, r=0..5: p=6*(d*L+l)+r,
++s=(seat_start+r)%6, b=(initial_button+d)%6. Generator deal_for_hand(seed,d) fixes
++physical private pairs and board. For j=0..4, opponents[(s+1+j)%6]=lineups[l][j];
++opponents[s]=null. All stacks are 200, small_blind=1, big_blind=2.
++Canonical pair input uses version pontius-v0a-table-session-v1 and exactly one hands
++entry. Both strategies consume the same saved pair input bytes. Never rotate the
++button with r, rotate the cards, carry stacks or change a lineup inside a pair.
++
++Pair order is d/l/r. Strategy order is baseline then blueprint when p is even,
++blueprint then baseline otherwise. Unit ordinal u=2*p+a+1 for ordered arm a=0,1.
++At most 96 pairs / 192 trials. The exact plan is fixed before any trial starts.
++Session suffix is eval-SUFFIX-uUUU with three-digit u; its prefix is
++pontius-v0a-table-session-v2-correctness- for baseline and
++pontius-v0a-table-session-v1-correctness- for blueprint. The existing session derives
++the corresponding host/event IDs and -h01 suffix. No identity of an old owner is used.
++
++Each child vector is exactly -B -P tools/v0a_table_session.py --session PAIR_INPUT
++--blueprint SNAPSHOT/tests/fixtures/table_host/empty_blueprint.json --session-id ID
++--strategy STRATEGY --format json --auto. No child sees request/seed or all-pair plan.
++
++## Admission, resources and source loader
++
++The evaluator requires actual Windows CPython 3.11+ with -B -P and its exact tool
++path under the D-local snapshot. Acceptance uses actual 3.11.15 then 3.14.6. Reject
++preloaded pontius or fixed helper aliases before loading. Native executables/inputs
++and all ancestor directories are regular/non-reparse and have stable read identities.
++
++Admit every tracked src/pontius blob plus tools/v0a_rehearsal_driver.py,
++tools/v0a_hand_adapter.py, tools/v0a_event_adapter.py, tools/v0a_table_host.py,
++tools/v0a_table_session.py, tools/v0a_seeded_deals.py, and the empty blueprint against
++their exact B raw blobs. Reject added/missing src Python/source paths, not just edits.
++Both new tools must equal current HEAD raw blobs; their exact two-name population is
++part of the manifest. Current commit, raw byte identity and path identity must hold
++before helper loading, before/after each child and before final publication. Manifest
++rows use sorted whole digest/two-space/POSIX-path/LF bytes. No replace objects or PATH Git.
++
++The wrapper source manifest is distinct from child source_manifest_sha256. Derive
++the latter exactly as accepted host.Source does: whole-row hashes over all tracked
++src/pontius blobs and the unchanged hand adapter, event adapter and rehearsal driver;
++exclude table host, table session, seeded generator and both new tools. Compare child
++ready/decision manifests with that derived value, not with the wrapper manifest.
++Root/nested/ready/decision provider configuration and blueprint policy digests must
++agree under their versioned field names; raw empty-blueprint artifact hash is pinned
++independently. The fixed admitted child source establishes their semantic identities.
++
++Raw-load only the three exact verified tool files: contract helper, seeded generator,
++and host, into distinct fresh fixed aliases. Host use is limited to Job and its native
++ownership operations; generator use is deal_for_hand. These fixed exec/compile routes
++must operate exclusively on the admitted captured bytes, never arbitrary input paths.
++Do not instantiate Source/Table/Session, call game loaders, or import pontius in the
++parent. Child source admission remains untouched in its separate interpreter.
++
++Contract tool import allowlist: __future__, base64, hashlib, json, math, re.
++CLI tool allowlist: __future__, argparse, ctypes, hashlib, json, os, pathlib, re,
++stat, subprocess, sys, threading, time, types. No external or optional dependencies.
++Boundary tooling registers only these two origins/allowlists and named loader edges;
++existing graph, SCC, origins, analyzer inference and dynamic-route restrictions remain.
++Static loader checks are bounded structural controls, not a general soundness claim.
++
++Child environment keeps SystemRoot, WINDIR, SystemDrive, COMSPEC, USERPROFILE, APPDATA,
++LOCALAPPDATA only, then sets task-local TEMP/TMP, native absolute PONTIUS_GIT,
++PYTHONPATH=SNAPSHOT/src, PYTHONNOUSERSITE=1, PYTHONIOENCODING=utf-8. Same interpreter
++as the wrapper. Never inherit arbitrary GIT_/PYTHON/PONTIUS_ values.
++
++Reuse the accepted host Job: create suspended process, assign before resume, contain
++all descendants, and refuse on containment failure. Register Job/process/streams and
++capture threads immediately, before later fallible work. Drain raw stdout/stderr in
++parallel. Per-trial caps: 4 MiB stdout and 64 KiB stderr; retain at most those bytes,
++flag overflow and stop the Job. Capture storage is bounded by the planned 192 trials,
++not claimed as an aggregate disk or process-memory guarantee. Child stdout base64
++decodes to at most 2 MiB and stderr to 64 KiB; frame bytes at most 16,384 each.
++
++One monotonic total deadline begins before card/plan generation. Whole trial budget
++plus 5,000 ms cleanup reserve must fit before each launch; the same deadline covers
++all arms/seats/lineups and final write/readback. Trial deadline covers startup, capture
++and validation. On expiry/interrupt/failure, stop the Job, wait for inactive status
++under a 5,000 ms cleanup grace, close resources, retain any unknown/cleanup failure.
++Never launch another trial after such a stop. Grace grants no extra payload work or
++late success. OS calls can block; no universal hard wall or calibrated ceiling is claimed.
++
++## Retained files and publication
++
++Use create-only reservation.json, request.json, plan.json and per-pair input files;
++per-unit uUUU directories contain intent.json, stdout.bin, stderr.bin and result.json.
++Flush intent before process creation. Record exact argv/environment/source/input
++identities, launch status, actual exit or null, capture completeness, timing and causes.
++Root or file collision refuses and preserves all existing state. No cleanup/deletion,
++root recovery, concurrent runner or automatic resumption. At first non-success trial,
++stop all later units. A prelaunch failure leaves later units explicitly unstarted.
++
++Use canonical JSON for plan and wrapper records with exact typed versions. The plan's
++exact fields: version, request_sha256, source_commit, source_manifest_sha256,
++blueprint_artifact_sha256, pairs, units. Each pair: pair_index, deal_index, lineup_index,
++rotation, controlled_seat, button, input_path, input_sha256. Each unit: ordinal,
++pair_index, strategy, session_id, input_path, input_sha256. Paths are root-relative
++POSIX strings from the fixed layout only. plan version is pontius-v0a-evaluation-plan-v1.
++
++Result version is pontius-v0a-evaluation-result-v1. Exact top-level fields: version,
++evaluation_id, status, comparison_complete, source_commit, source_manifest_sha256,
++request_sha256, plan_sha256, planned_pairs, completed_pairs, planned_trials,
++completed_trials, trials, pairs, aggregate, failure_reason, secondary_failures,
++total_elapsed_ns, deadline_met, evidentiary. Status is completed/failed/interrupted;
++evidentiary is false. Internal reservation/intent/result records use separate v1
++versions. reservation.json fields are version, evaluation_id, request_sha256,
++source_commit, started_ns, deadline_ns; version is pontius-v0a-evaluation-reservation-v1.
++Each intent fields are version, ordinal, pair_index, strategy, session_id, argv,
++environment, source_commit, source_manifest_sha256, request_sha256, input_sha256,
++intent_ns, trial_deadline_ns; version is pontius-v0a-evaluation-intent-v1.
++An additional create-new launch.json records version, ordinal, pid, created_suspended,
++assigned, resumed; version is pontius-v0a-evaluation-launch-v1. Emit it after successful
++resume; a missing launch record after intent is unknown launch, never retry authority.
++Trial result.json is the trial-summary field set below plus version, launched,
++cleanup_complete, primary_phase, secondary_failures and elapsed_ns; its version is
++pontius-v0a-evaluation-trial-v1. launched is true/false/null (null is unknown), and
++cleanup_complete is exact bool. Do not turn an unknown launch into unstarted state.
++These coordination fields create no alternative launch or success authority.
++
++Final result is create-new, flushed, reread and byte-compared under the total deadline.
++Then create-new completion.json with exact fields version, status, result_sha256,
++result_bytes, completed_elapsed_ns, deadline_met; version is
++pontius-v0a-evaluation-completion-v1, status is completed, deadline_met is true.
++Success requires both files, their exact bytes/hash binding and all-complete result.
++Incomplete roots may retain final failed diagnostic JSON without a success completion.
++Never rewrite a partially published file to say failed or grant success from existence.
++Return CLI 0 only after complete publication, 130 for interruption, 1 for any other stop.
++
++## Report extraction and honest denominators
++
++Outer/nested session and wire field sets are the exact accepted B v1/v2 schemas,
++documented in design.md and the implementation plan. Version dispatch, duplicate-key
++rejection, depth/byte limits, exact integer/bool types and finite floating timings
++are required. Bound outer JSON nesting to 16 and decoded frame nesting to 8, with
++integer tokens at most 640 digits, as in the inherited wire decoder. Do not import
++source codecs to bypass clean parent admission. Successful frame captures must have
++one opening ready, ordered event/action correspondence, one terminal hand_result and
++one closing session_result with no trailing partial/extra frames, and all identities
++and counters must match the public report and host-applied actions.
++
++For a complete trial require exact identity/strategy/source/blueprint/input matches,
++exit 0, status completed, one requested/completed hand, nested completed status,
++child exit 0, no capture truncation, no primary/secondary failures, valid settlement,
++session/hand final-stack equality and integer chip conservation at 1,200. Verify the
++nested table-input digest by canonical one-hand-to-table conversion, not session hash.
++Verify all action ordinals and the origin/controlled-seat relationship. Accepted host
++source establishes legality/settlement; this observer does not replace it with a solver.
++
++Each trial summary has exact fields ordinal, pair_index, strategy, state, exit_code,
++capture_complete, report_complete, net_chips, applied_actions_by_kind,
++baseline_fallback_selections, baseline_fallback_applied, legacy_choices,
++unattributed_applied_actions, work_cutoff_actions, action_deadline_actions,
++observation_complete, failure_reason, hand_failure_codes, session_failure_codes,
++capture_deficiencies, stdout_sha256, stderr_sha256. state is
++unstarted/refused/failed/interrupted/completed. Unknown scalar metrics are null;
++unstarted capture hashes/exit are null. Observed action counters in incomplete rows
++are explicit prefixes; observation_complete=false. Net chips requires complete trial.
++
++Applied bot action counts use host applied_actions where origin=bot. Baseline fallback
++selections use valid v2 decision.selection_origin=blueprint_fallback, grouped by
++selection_reason; applied fallback matches the nth decision to the nth host bot action
++and exact action value. Legacy choices count table_hit/passive_default separately.
++Unmatched applied actions increment unattributed_applied_actions; absent/invalid records
++never imply zero fallback. Group work_cutoff_crossed and deadline_crossed independently
++by (child hand_id, action_index), coalescing decision/failure duplicates. Conflicting
++duplicate observations are a report refusal, not arbitrarily resolved.
++
++Baseline reasons: provider_selected, provider_abstained, provider_error, provider_invalid,
++provider_late, provider_skipped_cutoff. Outcomes: not_called/proposed/abstained/error/invalid.
++Legacy decisions have no provider fallback origin. Baseline proposal is never an applied
++action count. host_limit and wrapper timeout remain transport/resource causes; they are
++not invented action-clock deadline events. Hand/session cause arrays count code presence
++at that scope; no total incident multiplicity or causal ordering is claimed.
++
++A failed capture's valid-looking frame prefix remains unverified: byte/schema/identity
++checks only establish an observed prefix, not that the host consumed/accepted every row.
++No paired scoring from failed/refused/stopped/partial/unknown cases. Preserve malformed
++tails and repeated/unknown rows as capture_deficiencies; expose no raw cards in summary.
++
++Each pair row: pair_index, complete, baseline_net_chips, blueprint_net_chips, delta_chips.
++Incomplete pair scores/delta are null. Aggregate is null unless every planned pair and
++trial completed with full required observations and successful cleanup/publication.
++Complete aggregate fields: baseline_net_chips, blueprint_net_chips, delta_chips,
++mean_delta_numerator, mean_delta_denominator, by_lineup, by_seat. Mean numerator is
++summed pair delta; denominator is planned_pairs. Group rows use the same five numeric
++fields plus lineup_index or controlled_seat. All sums are exact integers; no rounding,
++confidence interval, statistical winner, generalization or strategy-selection claim.
++
++## Finite correctness population and acceptance
++
++controls.json contains at most two manually specified distinct full deals, synthetic
++valid/invalid session-report and wire examples, and literal request vectors. No random
++sampling or entropy. Pure planner/reducer tests may use those full deals directly.
++One named all-zero-seed generator vector may exercise the complete public pipeline
++only after adoption; it is a correctness vector, never an evaluation population.
++Maximum actual poker session starts across all new suites: 24 per complete suite-set
++execution. At most one full 12-trial matrix uses the generator vector; other native
++controls use finite non-poker subprocess fixtures or at most 12 additional sessions.
++Record exact fixture counts and new test IDs at freeze. No suite discovery/wildcard runs.
++
++Contract controls: strict request/type/size/depth/unknown/duplicate/lineup/cap refusal;
++all six seats, all positions, original physical cards, deterministic order and identical
++pair hashes; independent integer/rational arithmetic; mismatched/partial/failed pairs;
++legacy vs baseline fallback, unmatched applied actions, propagated timing deduplication,
++host timeout distinction, schema/capture/identity refusal and no hidden-card summary.
++
++Runner controls: one complete 12-trial real public matrix, exact reset/input/source/
++strategy/namespace/argv/env binding, retained intents/captures, and independently
++calculated summary arithmetic. Native non-poker fixtures exercise suspended assignment,
++overflow of both streams, partial final JSON, timeout, interrupt and descendants.
++Use the real Job/process/file/publication path; injected children test wrapper resource
++handling and malformed report admission, never certify poker or fabricate a successful
++engine oracle. Child descendants must actually be observed stopped on overflow/timeout.
++
++Boundary controls: absent-root reservation collision; raw source, request, plan and
++pair-input drift before/after a trial; extra src paths; missing/cached helpers; invalid
++Git/interpreter/env/module origins; full trial cannot fit; exact deadline edges using
++a deterministic clock seam; final short-write/readback/flush/completion failure;
++stop-before-later-units and retained unknown launch/cleanup outcomes. A deliberately
++wrong matrix/scoring/publication behavior must fail an independent real contract check.
++
++Source acceptance after two fresh Tier C CLEAN reviews runs these exact commands on
++actual 3.11.15 first then 3.14.6, each fresh exact-candidate D-local snapshot, -B -P,
++scrubbed env, snapshot cwd/src, origin checks and absolute native Git:
++
++```text
++-m pontius.status_generation --check
++tests/test_status_generation.py
++tools/check_stabilization_boundaries.py
++tools/generate_test_inventory.py --check
++tests/test_inventory_and_profiles.py
++tests/test_v0a_evaluation_contract.py
++tests/test_v0a_evaluation_runner.py
++tests/test_v0a_evaluation_boundary.py
++tests/test_seeded_deals.py
++tests/test_seeded_deals_boundary.py
++tests/test_v0a_table_host.py
++tests/test_v0a_table_host_boundary.py
++tests/test_v0a_table_session.py
++tests/test_v0a_table_session_boundary.py
++tests/test_decision_provider_session.py
++tests/test_decision_provider_transport.py
++```
++
++Existing unchanged CI gates remain. Compare complete B/candidate analyzer output on
++both interpreters before census refresh; preserve every old assertion, test ID, payload
++order, grant and inference. Account mechanically for all new records and source-line
++shifts. Unexplained drift or a needed new capability/analyzer repair stops for a separate
++ruling. No weakening a census gate. Production/test/registration budgets and round
++ceilings are those in the brief and ADR-0508; source seal is a later exact decision.
+diff --git a/docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md b/docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md
+new file mode 100644
+index 0000000..324a7b4
+--- /dev/null
++++ b/docs/decisions/ADR-0508-open-the-paired-local-evaluation-source-round.md
+@@ -0,0 +1,87 @@
++# ADR-0508: Open the paired local evaluation source round
++
++- Status: accepted source-opening decision upon its separately authorized commit
++- Date: 2026-09-07
++- Follows: ADR-0507
++- Base-Commit: e043f81ecec3ac16128720b42c3312bb41a4ed67
++- Invocation-Authority: finite named correctness controls after adoption; no evaluation run
++- Front-Door-Kind: controller-v1
++- Front-Door-Research: ADR-0280
++- Front-Door-Process: ADR-0508
++- Front-Door-Contract: ADR-0307
++- Front-Door-Revoked: ADR-0281, ADR-0468, ADR-0472, ADR-0475
++- Front-Door-Active-Next: Implement the bounded paired evaluation loop after exact adoption
++- Front-Door-Blockers: evaluation source acceptance pending; no evaluation population admitted
++
++## Decision
++
++Open the CPU-only paired local evaluation source increment under the brief, design
++and source-contract in docs/architecture/v0a-evaluation-r001/ and implementation plan
++docs/superpowers/plans/2026-09-07-paired-local-evaluation.md. The controller requested
++preparation of this bounded proposal; it has no effect until its exact decision
++commit is expressly authorized and made. No implementation occurs before adoption.
++
++The deliverable is a reproducible outer loop comparing baseline-rules-v1 and
++blueprint-v1 through the unchanged public session CLI. Each matched pair shares
++identical one-hand input, resets six 200-chip stacks, and uses the existing opponent
++scripts. Every deal/lineup covers all six seats. Alternating strategy order is fixed
++before outcomes. Source acceptance judges the comparison machinery, not profitability.
++
++Reports preserve applied actions, baseline fallback and legacy choice distinctions,
++timing observations, incomplete captures and failures. A complete aggregate requires
++the complete planned population; no survivor-only score or missing-as-zero result.
++Every partial attempt remains retained and cannot be resumed or rerolled. Whole-run
++deadline, native descendant containment and final publication have explicit contracts.
++
++## Bounded source permissions
++
++Prospectively supersede CLAUDE rule 1 only for the six exact current registration
++blobs and limited changes in source-contract.md. Add exactly two stdlib tools,
++three finite correctness suites and one literal fixture named there. No src/pontius,
++existing host/session/generator, policy, old fixture, action clock, engine, transport
++or current source pin changes. The parent reuses accepted host.Job and the seeded
++recipe from exact verified raw buffers; child sessions retain their own source admission.
++
++Keep 1,200 new production lines, 1,800 new test lines, 160 manual registration
++added/removed lines and 32 KiB fixtures. Generated inventory/profile output and these
++documentation files are excluded from source line counts. One initial proposal and
++up to three within-scope corrections; one initial source candidate and up to three
++within-scope corrections. Preserve normal residual/root-cause rules and all rounds.
++Scope, budget or required source expansion needs a separate controller ruling.
++
++After adoption, permit only the finite named correctness controls and unchanged
++regressions in source-contract.md. They use at most two literal full deals, the one
++declared all-zero-seed correctness vector, and at most 24 actual session starts per
++execution of the new suite set. These tests may run only in fresh disposable D-local
++snapshots under the accepted scrubbed -B -P procedure, actual 3.11.15 first then3.14.6.
++No entropy, uncontrolled sampling, outcome-selected fixtures or evaluation follows.
++
++Two independent fresh Tier C CLEAN source reviews precede the sixteen listed
++acceptance commands on both actual interpreters. Preserve every old source byte
++outside the six exact exceptions, all old test IDs/assertions/order/grants and the
++full mechanically explained census. No analyzer repair, capability expansion or
++weakened gate is authorized. A separately reviewed source seal is a later decision.
++
++## Proposal acceptance and retained prior outcome
++
++This proposal changes exactly six paths: this ADR, brief.md, design.md,
++source-contract.md, the implementation plan and generated STATUS.md. Two fresh
++independent Tier C reviews cover the whole candidate's design and source-opening
++contract. Then run unchanged status --check and all twelve status tests on actual
++3.11.15 first then3.14.6, each fresh exact-candidate D-local snapshot. Verify raw base
++pins, exact scope and absence of new population/launch artifacts. No generator,
++poker, evaluation, inventory or source test runs during proposal preparation.
++
++ADR-0507's one generation and one baseline session are completed and consumed.
++All three hands completed with zero exit codes; the retained non-evidentiary
++disposition is D:/Pontius/tmp/v0a-baseline-watch-run-r001/final-disposition.json,
++SHA-256 2f9d99f1aaca32252680a80b80e9b7a0ef1ad6d51b9482af0b42d849b1382c5f.
++It establishes no playing-strength result and supplies no evaluation/tuning population.
++The source-opening task does not alter that owner or repeat its demonstration.
++
++Future population seed, lineups, size, resource budgets, metrics and interpretation
++must be fixed prospectively and separately authorized after source acceptance.
++Correctness-only namespaces and evidentiary=false remain unchanged in existing
++children. This opening grants no formal operation, actual comparative evaluation,
++calibration, demonstration, training, self-play, league, neural loading, new opponents,
++human play, GUI, H32, compiled work, analyzer repair, cleanup, export or ref retirement.
+diff --git a/docs/superpowers/plans/2026-09-07-paired-local-evaluation.md b/docs/superpowers/plans/2026-09-07-paired-local-evaluation.md
+new file mode 100644
+index 0000000..f832ed1
+--- /dev/null
++++ b/docs/superpowers/plans/2026-09-07-paired-local-evaluation.md
+@@ -0,0 +1,185 @@
++# Paired Local Evaluation Implementation Plan
++
++> For agentic workers: use superpowers:subagent-driven-development or
++> superpowers:executing-plans after the exact source-opening adoption. Repository
++> freeze/review/snapshot/commit rules override any generic frequent-commit guidance.
++
++**Goal:** Deliver the bounded matched-table comparison and honest result report.
++
++**Architecture:** Two new stdlib tools wrap the unchanged public session subprocess.
++The pure contract plans identical paired inputs and reduces observable reports. The
++outer CLI admits exact source, reuses the accepted native Job and retains one-shot
++artifacts. No game/provider/host/session/generator changes.
++
++**Tech stack:** Windows PowerShell, CPython 3.11.15 first and 3.14.6 second, unittest,
++absolute native Git, existing Windows Job implementation and exact raw JSON contracts.
++
++**Spec:** docs/architecture/v0a-evaluation-r001/brief.md, design.md, source-contract.md.
++
++## Global constraints
++
++- Base B e043f81ecec3ac16128720b42c3312bb41a4ed67; recheck all six raw exceptions.
++- No implementation until ADR-0508's exact authorized adoption; no actual evaluation.
++- Source ceilings: 1,200 production, 1,800 test, 160 manual registration changed lines;
++  fixtures 32 KiB. No src/pontius or existing poker tool edits.
++- Correctness: at most two literal deals, one all-zero-seed end-to-end vector, and
++  at most 24 actual poker session starts across the three new suites per execution.
++- No helper can confer scientific/operating authority. All old owners stay closed.
++- Every test command uses its fresh D-local snapshot, -B -P, scrubbed env, cwd/src,
++  native absolute Git and actual-version/origin checks; preserve failure receipts.
++- No ceremonial commit/push without its exact controller authorization. Local immutable
++  review commit-tree objects are coordination, not decision adoption.
++
++## Task 1: strict contract, matrix and observable report reducer
++
++Create tools/v0a_evaluation_contract.py, tests/test_v0a_evaluation_contract.py and
++tests/fixtures/evaluation/controls.json. Do not read or execute poker to pick fixtures.
++
++Interfaces owned by the contract tool:
++
++```python
++def decode_request(raw: bytes) -> dict: ...
++def encode(value: object) -> bytes: ...
++def build_matrix(request: dict, deals: list, suffix: str) -> dict: ...
++def observe_trial(binding: dict, stdout: bytes, stderr: bytes,
++                  exit_code: int | None, capture_complete: bool) -> dict: ...
++def reduce_trials(plan: dict, trials: list) -> dict: ...
++```
++
++Here signatures declare the required interface, not placeholder implementation code.
++build_matrix returns pairs and units. Internal pair rows include canonical input_bytes
++alongside the contract's pair metadata; publication removes input_bytes after saving
++the exact file. Paths are pairs/pPPP.json, three-digit zero-based pair ordinal.
++Each unit metadata matches the public plan. binding contains its unit metadata plus
++source_commit, source_manifest_sha256, blueprint identities, controlled_seat, table
++input hash and cleanup outcome. observe_trial has no I/O or authority to launch.
++reduce_trials returns the pairs and aggregate fields from the source contract.
++
++- [ ] Before implementation, record independently expected matrix/order/count cases
++  and fixture meanings in the task packet. Use this literal synthetic deal for pure
++  planning controls; it is not an evaluation or selected strategic scenario:
++
++```python
++DEAL = {"private_hands": [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9], [10, 11]],
++        "board_runout": [12, 13, 14, 15, 16]}
++REQUEST = {"version": "pontius-v0a-evaluation-request-v1", "seed": "0" * 64,
++           "deal_count": 1, "lineups": [["passive"] * 5], "seat_start": 2,
++           "initial_button": 3, "total_budget_ms": 900000,
++           "trial_budget_ms": 60000}
++```
++
++- [ ] Write focused REDs before adding the contract. Load the standalone helper in
++  snapshot tests using an explicit path under the snapshot, with no pontius import.
++  Required independent literal expectations for the matrix above: seats
++  [2,3,4,5,0,1], buttons [3,3,3,3,3,3], six pairs, twelve units, strategy order
++  [baseline,blueprint,blueprint,baseline] repeated three times; all original private
++  pairs/board unchanged; two units per pair have exactly equal input bytes/hash.
++- [ ] Add exact request refusal controls for bool integers, duplicate/unknown fields,
++  noncanonical encodings, repeated lineups, wrong lengths, fourth nesting level plus
++  one, deal-count bounds and budget overflow/insufficient full-trial reserve.
++- [ ] Implement parsing/encoding and matrix construction under source-contract.md.
++  The algorithm is its exact d/l/r/p/s/b enumeration; do not derive expected tests by
++  calling that algorithm or replace all-seat coverage with rotating the whole table.
++- [ ] Build finite synthetic report/frame controls before reducer code. Example scoring
++  oracle: baseline net [4,-2], blueprint net [1,3], pair deltas [3,-5], total -2,
++  mean numerator -2 and denominator 2. If either pair is incomplete, global aggregate
++  is null; it must not become 3/1 by silently omitting the failed pair.
++- [ ] Implement version-dispatched extraction. Successful host-applied actions own
++  execution counts; retain missing attribution and incomplete observed prefixes.
++  Coalesce duplicate action timing from decision/failure, distinguish host timeout,
++  keep legacy choice and baseline fallback categories separate. Do not double-count
++  propagated hand/session failure codes or expose hidden cards in summaries.
++- [ ] GREEN the focused contract suite in a fresh floor snapshot; retain actual output
++  and verify each deliberate wrong matrix/count/denominator behavior fails its oracle.
++
++## Task 2: outer CLI, native lifetime and retained run
++
++Create tools/v0a_evaluation.py and tests/test_v0a_evaluation_runner.py.
++Consumes all Task 1 interfaces; produces the CLI/artifact contracts in source-contract.md.
++Internal entry points are admit_source(repo), run_trial(binding, paths, deadline_ns)
++and main(argv=None). Source admission returns only verified raw buffers, identities
++and fixed helper handles; it does not open a poker state. run_trial returns the exact
++trial-summary plus lifecycle fields; it does not independently pick the next unit.
++
++- [ ] Write source/admission and absent-root REDs; no fixture may point at primary or
++  an existing consumed root. Bind B old closure and both new committed raw tool blobs.
++- [ ] Implement exact source checks and fixed alias loaders. Reuse host.Job only for
++  native containment; never instantiate host.Source/Table/Session in the parent.
++  Confirm a separately spawned public session has clean module state.
++- [ ] Implement exclusive reservation, retained request and complete plan publication.
++  Generate only the declared finite deal vector after source/request admission. Save
++  every input and plan before the first intent. Never create entropy or accept overlays.
++- [ ] Write native REDs using finite non-poker workers: descendant creation, stdout/
++  stderr overflow, malformed/partial final JSON, pre-resume assignment failure,
++  interrupt, timeout and cleanup refusal. These control the trigger at the subprocess
++  seam while exercising the real Job, streams, writer and result observer.
++- [ ] Implement suspended creation, Job assignment/resume and bounded concurrent raw
++  drains. Register resources before fallible probes. Use shared deadline checks before
++  and after admission, terminate the Job on any stop, and record incomplete cleanup.
++- [ ] Implement fixed matrix execution with per-unit intent/result and stop-on-first
++  non-success. Keep unknown launches and unstarted units distinct; never retry.
++- [ ] Add the one end-to-end zero-seed 12-trial public matrix correctness control.
++  Verify exact inputs, all-seat reset, strategy protocol/namespace, exits/cleanup,
++  retained records and independent reduction of actual host-accepted integer stacks.
++  This checks pipeline behavior, not strategic profitability or a new poker oracle.
++- [ ] GREEN runner/native controls in fresh floor snapshots. Demonstrate that bypassing
++  pre-resume containment, completing on partial capture or scoring a missing arm fails.
++
++## Task 3: boundary faults, registration and source acceptance
++
++Create tests/test_v0a_evaluation_boundary.py. Modify only the six registration paths
++and exact scopes in source-contract.md. Preserve the complete old source population.
++
++- [ ] Add deterministic raw-source/input/plan drift, root collision, wrong interpreter/
++  Git/env, extra source and preloaded helper controls. Verify refusal before forbidden
++  downstream work and retained prefixes after a started unit.
++- [ ] Add deterministic clock edges for full-unit admission, total deadline during
++  reduction, short final write, flush/readback and completion-marker failure. Exercise
++  real files and the public consumer acceptance predicate; injected clocks/faults do
++  not replace successful publication/cleanup or claim measured OS behavior.
++- [ ] Complete the acceptance matrix from every numbered brief criterion to its finite
++  real/synthetic cases, limits, expected failures and counterexamples.
++- [ ] Register exact tools/edges and three CPU suites; add their CI steps. Use the
++  unchanged inventory analyzer to compare all B/candidate records on both interpreters.
++  Preserve the old ID/order/grant/assertion chain and account for each mechanical shift.
++  Analyzer repair, new grants or unexplained drift stop the task.
++- [ ] Freeze all source changes as a new immutable review ref/whole-row raw manifest.
++  Obtain two fresh independent Tier C reviews. Corrections use new rounds, finite
++  RED/GREEN evidence, deferred coverage claims and normal residual rules.
++- [ ] After CLEAN, run all sixteen source-contract acceptance commands on actual
++  3.11.15 first then 3.14.6, each a fresh exact-candidate snapshot. Check source limits,
++  fixture/session counts, raw base exceptions, old protected bytes and full census.
++- [ ] Retain receipts/reviews/dispositions. Prepare a separate source-seal decision
++  and its required metadata review/gates for exact controller approval. No source
++  acceptance result, design approval or committed opening launches an evaluation.
++
++## Accepted-schema reference for the reducer
++
++The exact v1 session fields are version, session_id, status, stop_reason, failure_reason,
++secondary_failures, source_commit, input_sha256, blueprint_artifact_sha256,
++blueprint_sha256, requested_hands, completed_hands, next_button, carried_stacks, hands.
++V2 adds provider/config_sha256 only. Each hand entry is ordinal/button/starting_stacks/
++result. Its nested result has version, session_id, status, failure_reason,
++secondary_failures, input_sha256, blueprint_artifact_sha256, blueprint_sha256,
++source_commit, applied_actions, settlement, child_exit_code, child_stdout_base64,
++child_stderr_base64, capture_truncated; v2 adds provider/config_sha256 only.
++
++Settlement: payouts/final_stacks/pots; each pot amount/seats. Applied action:
++index/seat/street/action/origin; action kind/raise_to. Every wire frame has
++protocol/session_id/type plus accepted B host.WIRE_FIELDS for that type; only v2
++ready adds provider/config_sha256. Child records are LF JSON frames, not a JSON array.
++Timing keys: status, interruption_reason, wall_start_ns, last_valid_observation_ns,
++emission_observed_ns, elapsed_ns, response_compute_seconds, response_uninstrumented_seconds,
++work_cutoff_crossed, deadline_crossed. Exact nested decision/failure/preparation keys
++are the immutable B v0a trace/provider-codec/model declarations. Freeze copied field
++sets against those raw declarations and enforce the relationships used by metrics;
++do not claim revalidation of full hidden state or an independent legality engine.
++
++## Plan self-review
++
++Criteria 1-3 map to Task 1 matrix controls; 4 to Task 2 unchanged public subprocess;
++5 and 7 to Tasks 2-3 lifetime/deadline/publication controls; 6 to Task 1 reducer;
++8 to Task 3 finite suites and separate authority. Source exceptions, file/API ownership,
++fixture limits and execution order are explicit. The architecture introduces one outer
++runner, not independent projects. No source/fixture/test payload is run while preparing
++this plan; its next executable step depends on exact ADR-0508 adoption.

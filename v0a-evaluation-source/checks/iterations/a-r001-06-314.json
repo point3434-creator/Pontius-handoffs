@@ -1,0 +1,34 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-06-314",
+    "snapshot_head": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "interpreter": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 14, 6); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-06-314"
+    ],
+    "exit_code": 0,
+    "stdout": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius\\.venv\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-06-314\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T11:22:06.6927967Z",
+    "finished_utc": "2026-09-07T11:22:06.7627020Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-06-314",
+    "snapshot_head": "bca326c6bfedd71324a19c809f617e267cc9e0a2",
+    "interpreter": "D:\\Pontius\\.venv\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_contract.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\a-r001-06-314\\tests\\test_v0a_evaluation_contract.py:80: SyntaxWarning: \"\\u\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\u\"? A raw string is also an option.\r\n  canonical.replace(b'passive', b'pass\\u0069ve')]\r\n........................\r\n----------------------------------------------------------------------\r\nRan 24 tests in 0.057s\r\n\r\nOK\r\n",
+    "started_utc": "2026-09-07T11:22:06.7629146Z",
+    "finished_utc": "2026-09-07T11:22:06.9589204Z"
+  }
+]

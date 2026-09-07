@@ -1,0 +1,37 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red07-311",
+    "snapshot_head": "856db1b5494071e4737a87757d1acd4940c78425",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red07-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red07-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T09:04:55.2926768Z",
+    "finished_utc": "2026-09-07T09:04:55.3557821Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red07-311",
+    "snapshot_head": "856db1b5494071e4737a87757d1acd4940c78425",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_runner.py",
+      "-v",
+      "AdmissionTests.test_cli_parse_error_uses_failure_exit",
+      "NativeTests.test_constructor_secondary_cleanup_failure_is_not_complete"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "test_cli_parse_error_uses_failure_exit (__main__.AdmissionTests.test_cli_parse_error_uses_failure_exit) ... FAIL\r\ntest_constructor_secondary_cleanup_failure_is_not_complete (__main__.NativeTests.test_constructor_secondary_cleanup_failure_is_not_complete) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_cli_parse_error_uses_failure_exit (__main__.AdmissionTests.test_cli_parse_error_uses_failure_exit)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red07-311\\tests\\test_v0a_evaluation_runner.py\", line 58, in test_cli_parse_error_uses_failure_exit\r\n    self.assertEqual(process.returncode, 1, process.stderr)\r\nAssertionError: 2 != 1 : b'usage: v0a_evaluation.py [-h] --request REQUEST --output-root OUTPUT_ROOT\\r\\n                         --evaluation-id EVALUATION_ID\\r\\nv0a_evaluation.py: error: the following arguments are required: --request, --output-root, --evaluation-id\\r\\n'\r\n\r\n======================================================================\r\nFAIL: test_constructor_secondary_cleanup_failure_is_not_complete (__main__.NativeTests.test_constructor_secondary_cleanup_failure_is_not_complete)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red07-311\\tests\\test_v0a_evaluation_runner.py\", line 238, in test_constructor_secondary_cleanup_failure_is_not_complete\r\n    self.assertFalse(result['cleanup_complete'])\r\nAssertionError: True is not false\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 9.480s\r\n\r\nFAILED (failures=2)\r\n",
+    "started_utc": "2026-09-07T09:04:55.3568139Z",
+    "finished_utc": "2026-09-07T09:05:04.9805247Z"
+  }
+]

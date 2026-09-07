@@ -1,0 +1,35 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311",
+    "snapshot_head": "d72e7b021c1c99a2155ef56eb45baf3f4f106760",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); import pontius.status_generation as m; assert pathlib.Path(m.__file__).resolve()==pathlib.Path('src/pontius/status_generation.py').resolve(); print(sys.version); print(sys.executable); print(pathlib.Path.cwd()); print(m.__file__)",
+      "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311\r\nD:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311\\src\\pontius\\status_generation.py\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T11:36:29.7217976Z",
+    "finished_utc": "2026-09-07T11:36:30.0432909Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311",
+    "snapshot_head": "d72e7b021c1c99a2155ef56eb45baf3f4f106760",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-m",
+      "pontius.status_generation"
+    ],
+    "exit_code": 0,
+    "stdout": "wrote D:\\Pontius\\tmp\\v0a-evaluation-seal-r001\\snapshots\\mgen1-311\\STATUS.md\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T11:36:30.0443097Z",
+    "finished_utc": "2026-09-07T11:36:31.4656228Z"
+  }
+]

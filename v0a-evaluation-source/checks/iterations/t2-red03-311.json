@@ -1,0 +1,38 @@
+[
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311",
+    "snapshot_head": "86f01f57b1b421a78e663877a1280c371e7b84a8",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "-c",
+      "import sys,pathlib; assert sys.implementation.name=='cpython'; assert sys.version_info[:3]==(3, 11, 15); assert sys.flags.safe_path and sys.dont_write_bytecode; assert pathlib.Path.cwd()==pathlib.Path(sys.argv[1]); print(sys.version); print(sys.executable); print(pathlib.Path.cwd())",
+      "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311"
+    ],
+    "exit_code": 0,
+    "stdout": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]\r\nD:\\Pontius-tools\\py311\\Scripts\\python.exe\r\nD:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311\r\n",
+    "stderr": "",
+    "started_utc": "2026-09-07T06:16:03.3360162Z",
+    "finished_utc": "2026-09-07T06:16:03.3975523Z"
+  },
+  {
+    "snapshot": "D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311",
+    "snapshot_head": "86f01f57b1b421a78e663877a1280c371e7b84a8",
+    "interpreter": "D:\\Pontius-tools\\py311\\Scripts\\python.exe",
+    "argv": [
+      "-B",
+      "-P",
+      "tests/test_v0a_evaluation_runner.py",
+      "-v",
+      "NativeTests.test_intent_then_capture_failure_retains_unknown_launch",
+      "NativeTests.test_creation_exception_keeps_cleanup_unknown",
+      "NativeTests.test_observation_finishes_after_trial_deadline"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "test_intent_then_capture_failure_retains_unknown_launch (__main__.NativeTests.test_intent_then_capture_failure_retains_unknown_launch) ... FAIL\r\ntest_creation_exception_keeps_cleanup_unknown (__main__.NativeTests.test_creation_exception_keeps_cleanup_unknown) ... FAIL\r\ntest_observation_finishes_after_trial_deadline (__main__.NativeTests.test_observation_finishes_after_trial_deadline) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_intent_then_capture_failure_retains_unknown_launch (__main__.NativeTests.test_intent_then_capture_failure_retains_unknown_launch)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311\\tests\\test_v0a_evaluation_runner.py\", line 166, in test_intent_then_capture_failure_retains_unknown_launch\r\n    self.assertIsNone(result['launched'])\r\nAssertionError: False is not None\r\n\r\n======================================================================\r\nFAIL: test_creation_exception_keeps_cleanup_unknown (__main__.NativeTests.test_creation_exception_keeps_cleanup_unknown)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311\\tests\\test_v0a_evaluation_runner.py\", line 179, in test_creation_exception_keeps_cleanup_unknown\r\n    self.assertFalse(result['cleanup_complete'])\r\nAssertionError: True is not false\r\n\r\n======================================================================\r\nFAIL: test_observation_finishes_after_trial_deadline (__main__.NativeTests.test_observation_finishes_after_trial_deadline)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\Pontius\\tmp\\v0a-evaluation-source-r001\\snapshots\\t2-red03-311\\tests\\test_v0a_evaluation_runner.py\", line 193, in test_observation_finishes_after_trial_deadline\r\n    self.assertEqual(result['failure_reason'], 'trial_timeout')\r\nAssertionError: 'report_refused' != 'trial_timeout'\r\n- report_refused\r\n+ trial_timeout\r\n\r\n\r\n----------------------------------------------------------------------\r\nRan 3 tests in 13.590s\r\n\r\nFAILED (failures=3)\r\n",
+    "started_utc": "2026-09-07T06:16:03.3985499Z",
+    "finished_utc": "2026-09-07T06:16:17.1357653Z"
+  }
+]
