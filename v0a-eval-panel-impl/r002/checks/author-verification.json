@@ -1,0 +1,25 @@
+{
+  "candidate": "b13709ffddbf3000e019641fd123239a24f2cd75",
+  "manifest_sha256": "98df5d549736200115732bc2a49f8cc1d3e9ec5e61c7083d710b8af87b1f0822",
+  "base": "46f45298a405b967976413a4b8e45e7837602316",
+  "tree": "a29d1db3f4c03b8d9c19edb02cfa93af4b0fb7e7",
+  "prior_candidate": "e39d3b93695bfc601d051e8e71f334eef4d10d19",
+  "changed_paths": [
+    "docs/architecture/v0a-eval-panel-impl-r001/brief.md",
+    "docs/architecture/v0a-eval-panel-impl-r001/design.md"
+  ],
+  "coverage_sha256": "5ed7ea17934391594f07526c283bc58e4ce8711384760c5c739fdf7ca0bea118",
+  "direct_dependency_count": 34,
+  "dependency_blobs_recomputed": true,
+  "input_sha256": {
+    "workflow.md": "c71e3963ff726e06158878bcc10dd7dd761b32597af1c8ed39e21ebf60b58a37",
+    "controller-rulings.md": "2649ae254b3cd7692082920a2cc07d9b85dac2360cbcd71d375d0faa56a6ebd6",
+    "parent-disposition.md": "218fdf7b80470d862084a9523022bc15de5dfd49ba91694191fee659f900e0bd",
+    "dependencies.json": "ce6c5a918a4c57c35de70c7e986e4a0f8f9c681221ff1a09f8fa7a122f17be3f",
+    "prior-disposition.md": "7d3396967f86f16977ab3134e75372af15b839aa0fffdc94788c0d2ba55c2896"
+  },
+  "candidate_text": "LF; no BOM; <=100 columns; no trailing whitespace",
+  "arithmetic_receipt": "checks/author-arithmetic.json",
+  "execution": "Static source/blob/text and native arithmetic only; no Python, host, solver or tests",
+  "verdict": "Author verification only; independent cold reviews pending"
+}

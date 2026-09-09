@@ -103,3 +103,5 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 ## Evaluation panel Slice A implementation design
 
 - [Slice A r001](v0a-eval-panel-impl/r001/handoff.md): Codex draft; cold reviews pending.
+
+- [Slice A r002](v0a-eval-panel-impl/r002/handoff.md): FIX; two cold reviews pending.

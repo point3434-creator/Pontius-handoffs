@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-09",
+  "method": "Native binary64 illustration; exact BigInteger inequality checks",
+  "error_bound": "E = 1/2^40 chips",
+  "normalization_accumulation_bound": "4*(u+(1+u)*gamma_989) < 4*gamma_1000 < E",
+  "bound_verified": "4000*2^40 < 2^53-1000",
+  "lattice_uniqueness_verified": "1980 < 2^40, hence 2*E < 1/990",
+  "cases": [
+    {
+      "first_sign": 1,
+      "exact_totals": [
+        0,
+        0
+      ],
+      "check_sum": "-3.122502256758253E-17",
+      "bet_sum": "-6.245004513516506E-17",
+      "float_argmax": "CHECK",
+      "zero_validated_by_exact_rational_inequality": true,
+      "adjacent_wrong_totals_rejected": true
+    },
+    {
+      "first_sign": -1,
+      "exact_totals": [
+        0,
+        0
+      ],
+      "check_sum": "3.122502256758253E-17",
+      "bet_sum": "6.245004513516506E-17",
+      "float_argmax": "BET",
+      "zero_validated_by_exact_rational_inequality": true,
+      "adjacent_wrong_totals_rejected": true
+    }
+  ],
+  "exit_code": 0,
+  "limits": [
+    "Not a legal poker-hand witness or Python sum test",
+    "No runtime implementation, solver, host, tests or measurement executed",
+    "Arithmetic only; future code and both supported interpreters remain unverified"
+  ]
+}
