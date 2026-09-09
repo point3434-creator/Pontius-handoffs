@@ -90,3 +90,5 @@ manifest fc9b71e953da8bec6e4919376aed3687efc4ac02da0b77cab2473152246d7df2;
 v0a-eval-panel-timing/r002/disposition.md; local packet, no adoption or public push.
 
 2026-09-09 | v0a-eval-panel-timing/r002 | Codex finalizer | ADOPTED LOCALLY as beb84be566aa28029284bd35c526d33cd27af369 on codex/eval-panel-timing; exact reviewed tree d26c3fb14959562a03b10e09fd746e317009d91b; two CLEAN/SOUND reviews and retained focused/broad gates; push blocked by automatic approval review pending destination-specific authorization; no retained preflight run | v0a-eval-panel-timing/r002/adoption-result.md
+
+2026-09-09 | v0a-eval-panel-timing/r002 | Codex finalizer | ADOPTED AND PUBLISHED; source beb84be566aa28029284bd35c526d33cd27af369 and packet cac03cb31c3a2c8afde23272aed4d43dbac326ae verified on explicitly authorized origins; four timing archives verified; review-ref retirement blocked by approval review, refs retained | v0a-eval-panel-timing/r002/publication-result.md

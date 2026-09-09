@@ -140,3 +140,7 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Timing r002 adoption](v0a-eval-panel-timing/r002/adoption-result.md):
   adopted locally as beb84be on codex/eval-panel-timing, exact reviewed tree;
   remote publication pending destination approval; review refs retained.
+
+- [Timing r002 publication](v0a-eval-panel-timing/r002/publication-result.md):
+  source adoption and handoff packets pushed and remote hashes verified;
+  four candidate archives published; review refs retained pending deletion approval.
