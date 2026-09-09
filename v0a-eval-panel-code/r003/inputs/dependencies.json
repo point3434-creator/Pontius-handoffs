@@ -1,0 +1,142 @@
+{
+  "base": "f647a7989394f084875a040b20c41891168163ed",
+  "scope": "direct semantic inventory, not transitive closure",
+  "paths": [
+    {
+      "path": "README.md",
+      "blob": "99bc05dcfcbbf1786e1ea2e70bfbb1894b68151f"
+    },
+    {
+      "path": "docs/workflow.md",
+      "blob": "503fd1701800710e344905589f3ccadbd002b980"
+    },
+    {
+      "path": "docs/workflow-amendment-2026-08-30.md",
+      "blob": "4b1c87ba793438b91e394074abc08286e1b07ff0"
+    },
+    {
+      "path": "experiments/research-roadmap.md",
+      "blob": "08fb65f04459b9b485287ba9cadca60590de4570"
+    },
+    {
+      "path": "tests/cases.json",
+      "blob": "53497f56ab0ac4b05c4dba7ca21e022f5bf62813"
+    },
+    {
+      "path": "tests/test_pontius.py",
+      "blob": "e97f8c1bc211e7c3e9311063079d7295f21c10fa"
+    },
+    {
+      "path": "tests/test_legal_river_continuation.py",
+      "blob": "d4944382295d3ead8c4dd3bc779e9e7f626b8b15"
+    },
+    {
+      "path": "src/pontius/legal_river_continuation.py",
+      "blob": "dc82aa748a195391143a09958e4e0dade827c45b"
+    },
+    {
+      "path": "src/pontius/evaluation.py",
+      "blob": "d5fb3b2a3c765febc9b8c5e630943133907434bc"
+    },
+    {
+      "path": "src/pontius/game.py",
+      "blob": "25c219d8bfe9b09b23ab7ed559a255498d31c518"
+    },
+    {
+      "path": "src/pontius/river.py",
+      "blob": "308279dddb7cad74a7af153fed45e2c92265bd71"
+    },
+    {
+      "path": "src/pontius/no_limit_betting.py",
+      "blob": "c4adbb0212fbaf144bcb51b14923028f69ea0eea"
+    },
+    {
+      "path": "src/pontius/holdem_cards.py",
+      "blob": "25c64168ae46c835efce95050ef52cc9ac3734a5"
+    },
+    {
+      "path": "src/pontius/immutable_blueprint.py",
+      "blob": "0defb13caad0e8e11ef78b8aa85a83667147ac09"
+    },
+    {
+      "path": "src/pontius/blueprint_artifact/codec.py",
+      "blob": "c8a21b91cc4d285ff6e82b1f1b187c4e178bb5ce"
+    },
+    {
+      "path": "src/pontius/blueprint_preparation/lookup.py",
+      "blob": "8d70e3014a6d1af2fe53e7ddfb15bbe30f8b2cb1"
+    },
+    {
+      "path": "src/pontius/legal_decision_spine_v2.py",
+      "blob": "824f4938788769be4165dcad04926bf9f2ec22e8"
+    },
+    {
+      "path": "src/pontius/decision_provider/model.py",
+      "blob": "6cce376e73594a6836d146cd53022fdb250a04f5"
+    },
+    {
+      "path": "src/pontius/decision_provider/providers.py",
+      "blob": "c456a6953d32d1d28c4bef587c736b8971a69df4"
+    },
+    {
+      "path": "src/pontius/decision_provider/selection.py",
+      "blob": "7b1f1eac2b53cca87cdec5e8f8a4ea9f50b63ebb"
+    },
+    {
+      "path": "src/pontius/decision_provider/codec.py",
+      "blob": "f5795bc1d7f723a569b76732cf195b2ef9d69eaf"
+    },
+    {
+      "path": "src/pontius/v0a/runtime.py",
+      "blob": "57c028eb737e424eb9fc0534b9c238d3eee92569"
+    },
+    {
+      "path": "src/pontius/v0a/model.py",
+      "blob": "3602989e3a3d5f36c9a0bd5d102797b8e349191d"
+    },
+    {
+      "path": "src/pontius/v0a/trace.py",
+      "blob": "8440aa0274b642af3e03326813989ff5b3333766"
+    },
+    {
+      "path": "src/pontius/v0a/clock.py",
+      "blob": "32cdc99e2e8e6c074dd925410c39330fa413af18"
+    },
+    {
+      "path": "src/pontius/action_clock.py",
+      "blob": "844643c5497b1bb18d5a9346dd35f77cf7aabb0a"
+    },
+    {
+      "path": "src/pontius/preparation_bank.py",
+      "blob": "75c381fbcb7222db2db2e64339cafbdbee43fa91"
+    },
+    {
+      "path": "src/pontius/execution.py",
+      "blob": "c46cd0e8a7f88b8cfe564ed23fda19cbfba63d8b"
+    },
+    {
+      "path": "src/pontius/status_generation.py",
+      "blob": "23909996fb78afa1cb5f1ecca2e2635eee9c562f"
+    },
+    {
+      "path": "tools/v0a_event_adapter.py",
+      "blob": "3e36eb42450ae328282737aeb20798078ccf16e2"
+    },
+    {
+      "path": "tools/v0a_table_host.py",
+      "blob": "a6b00ec3886065e7bd31b9f5936b702c92ec023e"
+    },
+    {
+      "path": "tools/v0a_table_session.py",
+      "blob": "80b934b1c2d5782d0805fa5cae9d8270320107e6"
+    },
+    {
+      "path": "tools/v0a_seeded_deals.py",
+      "blob": "2963004e38c6e66f76ae9ce3bd474063eee870fe"
+    },
+    {
+      "path": "tools/v0a_blueprint_workload.py",
+      "blob": "18b3ada0920088efac36d5bb2ff70f2ecb36e036"
+    }
+  ]
+}

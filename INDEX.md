@@ -108,4 +108,6 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 
 ## Evaluation panel Slice A first source checkpoint
 
-- [Code r001](v0a-eval-panel-code/r001/handoff.md): Claude draft (capacity, per-hand T1, singleton reference, preflight tool); cold reviews pending.
+- [Code r001](v0a-eval-panel-code/r001/handoff.md): Claude draft; NOT CLEAN under two Codex reviews, all accepted.
+- [Code r002](v0a-eval-panel-code/r002/disposition.md): withdrawn by the drafter before review (test-fixture receipt failure).
+- [Code r003](v0a-eval-panel-code/r003/handoff.md): FIX of r001; cold reviews pending.
