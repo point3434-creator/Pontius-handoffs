@@ -112,6 +112,7 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Code r002](v0a-eval-panel-code/r002/disposition.md): withdrawn by the drafter before review (test-fixture receipt failure).
 - [Code r003](v0a-eval-panel-code/r003/handoff.md): FIX of r001; NOT CLEAN under two Codex reviews, all three accepted in disposition.md.
 - [Code r004](v0a-eval-panel-code/r004/handoff.md): FIX of r003 (0bc19bca); NOT CLEAN under two Codex reviews; second residual on cleanup and sample contracts — separate candidates by Codex next, root-cause note in disposition.md.
+- [Prerequisite run 2026-09-09](v0a-eval-panel-completion/prerequisite-run-20260909/measured-report.md): authorized retained capacity (H=1,081, all fit) and preflight (5/5 agree, royal tie) on beb84be5; journal rows at 642858d on claude/eval-panel-prerequisite; awaiting the controller's resource decision.
 
 - [Evaluation panel ownership correction r001](v0a-eval-panel-ownership/r001/handoff.md): separate contract candidate; focused verification complete; cold review pending.
 

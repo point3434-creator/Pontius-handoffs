@@ -1,0 +1,57 @@
+{
+  "kind": "rehearsal-receipt",
+  "evidence": false,
+  "label": [
+    "rehearsal only; feeds nothing",
+    "the snapshot was removed after these records were copied"
+  ],
+  "date": "2026-09-09",
+  "source_commit": "beb84be566aa28029284bd35c526d33cd27af369",
+  "snapshot": "D:/Pontius-worktrees/eval-panel-rehearsal-20260909 (detached, disposable, removed)",
+  "python": "<snapshot>/.venv/Scripts/python.exe",
+  "version": "3.14.6",
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "tools/v0a_eval_panel.py",
+    "run",
+    "--reviewed-commit",
+    "beb84be566aa28029284bd35c526d33cd27af369",
+    "--plan",
+    "rehearsal/<phase>.json"
+  ],
+  "phases": [
+    {
+      "phase": "capacity",
+      "plan_sha256": "6ad3e205058de941a695e04a966cb966d255369b0f910cfcee25a3426636bae1",
+      "exit": 0,
+      "wall_seconds": 6,
+      "stdout_sha256": "fcd4d71eec4dcb689795295c292d9840f606f7626b047c91a3a90fded5a7a451",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "boundary_artifact": {
+        "path": "capacity-boundary-1081.blueprint.json",
+        "bytes": 1012625,
+        "sha256": "078171ff7ce1b5bb1b335b8fcaba9a7db367ca56655b97cc3bcf566d37e5e60a"
+      }
+    },
+    {
+      "phase": "preflight",
+      "plan_sha256": "d2e5c04cf5c4ba2543aca91b6705b5593464989a331bc0400a76a966e59253c5",
+      "exit": 0,
+      "wall_seconds": 31,
+      "stdout_sha256": "9a034c9ea687a327de13a6ae63be9293c3549fbea883c4a2576f9282fdb499e9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "journal_rows_sha256": "1ed5bf6e156b88a8d9dc3662ac863de2d434f7f5cc8f8f082a78b670d92df51e"
+}
