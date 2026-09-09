@@ -1,0 +1,28 @@
+{
+  "candidate": "ee98f51f5b6a4af3ef11c2f17d14f6087a1b1f1c",
+  "snapshot": "D:/Pontius-worktrees/eval-repair-check-ownership-signal-red",
+  "python": "D:\\Pontius-worktrees\\eval-repair-check-ownership-signal-red\\.venv\\Scripts\\python.exe",
+  "version": "3.14.6",
+  "exit": 1,
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "tests/test_pontius.py",
+    "-k",
+    "eval_bridge or eval_panel_tool"
+  ]
+}

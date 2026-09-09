@@ -1,0 +1,28 @@
+{
+  "candidate": "beb069455a6d3ce20f202c0b4398683548631a33",
+  "snapshot": "D:/Pontius-worktrees/eval-repair-check-sample-red",
+  "python": "D:\\Pontius-worktrees\\eval-repair-check-sample-red\\.venv\\Scripts\\python.exe",
+  "version": "3.14.6",
+  "exit": 1,
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "tests/test_pontius.py",
+    "-k",
+    "eval_bridge or eval_panel_tool"
+  ]
+}

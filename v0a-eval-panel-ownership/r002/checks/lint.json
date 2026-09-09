@@ -1,0 +1,18 @@
+{
+  "candidate": "d8d291cc1f813ce798f2d3a990b2a8bf2297e124",
+  "python": "D:/Pontius-worktrees/eval-repair-check-ownership-r002/.venv/Scripts/python.exe",
+  "version": "3.14.6",
+  "arguments": [
+    "-I",
+    "-B",
+    "-m",
+    "ruff",
+    "check",
+    "--no-cache",
+    "tools/v0a_eval_panel.py",
+    "tests/test_eval_panel_tool.py"
+  ],
+  "exit": 0,
+  "stdout": "All checks passed!\n",
+  "stderr": ""
+}

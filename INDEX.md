@@ -114,3 +114,9 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Code r004](v0a-eval-panel-code/r004/handoff.md): FIX of r003 (0bc19bca); NOT CLEAN under two Codex reviews; second residual on cleanup and sample contracts — separate candidates by Codex next, root-cause note in disposition.md.
 
 - [Evaluation panel ownership correction r001](v0a-eval-panel-ownership/r001/handoff.md): separate contract candidate; focused verification complete; cold review pending.
+
+- [Evaluation panel sample r001](v0a-eval-panel-sample/r001/handoff.md): one CLEAN/SOUND
+  Codex pass and Claude cold review 02 CLEAN/SOUND; 33 focused cases pass; published with controller approval.
+- [Evaluation panel ownership r002](v0a-eval-panel-ownership/r002/handoff.md): final combined
+  source, one CLEAN/SOUND Codex pass and Claude cold review 02 CLEAN/SOUND (two Minors); 35 focused cases pass; published with controller approval.
+  [Ownership r001 disposition](v0a-eval-panel-ownership/r001/disposition.md) retains the rejected round.
