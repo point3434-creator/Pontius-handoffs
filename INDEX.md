@@ -120,3 +120,23 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Evaluation panel ownership r002](v0a-eval-panel-ownership/r002/handoff.md): final combined
   source, one CLEAN/SOUND Codex pass and Claude cold review 02 CLEAN/SOUND (two Minors); 35 focused cases pass; published with controller approval.
   [Ownership r001 disposition](v0a-eval-panel-ownership/r001/disposition.md) retains the rejected round.
+
+- [Evaluation panel verification correction r001](v0a-eval-panel-verification/r001/disposition.md):
+  two independent CLEAN/SOUND reviews; focused and post-review broad gates pass;
+  local packet only, source adoption and public publication pending.
+
+- [Timing finalizer ruling I-01](v0a-eval-panel-ownership/r002/finalizer-ruling-01.md):
+  Important confirmed; d8d291cc and descendant 9fce4bf are NOT CLEAN for the intended
+  cost-preflight decision. Earlier bounded reviews and passing receipts remain recorded.
+
+- [Timing correction r001](v0a-eval-panel-timing/r001/handoff.md):
+  withdrawn before review; original failed cutoff-fixture receipt retained.
+- [Timing correction r002](v0a-eval-panel-timing/r002/disposition.md):
+  two cold CLEAN/SOUND passes; focused and post-review broad gates pass;
+  I-01 resolved on a40e29ca only; local packet, adoption/publication pending.
+  [Historical closure ruling](v0a-eval-panel-ownership/r002/finalizer-ruling-02.md)
+  preserves the original I-01 ruling on earlier source.
+
+- [Timing r002 adoption](v0a-eval-panel-timing/r002/adoption-result.md):
+  adopted locally as beb84be on codex/eval-panel-timing, exact reviewed tree;
+  remote publication pending destination approval; review refs retained.

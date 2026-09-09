@@ -74,3 +74,19 @@ records round dispositions, not duplicate reviewer verdicts.
 2026-09-09 | v0a-eval-panel-sample/r001 | Claude reviewer | Cold review 02: CLEAN / SOUND on 72954e1331c9b191d927c1c4b82f277bcd322a4c (manifest d7903549…); one advisory (A-01 exception type on malformed sample); inventory 52b87992… recorded before deferred inputs; ledger-tail exposure at session start disclosed; not committed pending controller publication approval.
 2026-09-09 | v0a-eval-panel-ownership/r002 | Claude reviewer | Cold review 02: CLEAN / SOUND on d8d291cc1f813ce798f2d3a990b2a8bf2297e124 (manifest 86a583d2…); C/I/M 0/0/2 (M-01 defer_interrupts None sentinel; M-02 unguarded stderr reader) plus two advisories; both second-residual contracts closed by shape change; inventory 52b87992… recorded before deferred inputs; ledger-tail exposure disclosed; not committed pending controller publication approval.
 2026-09-09 | v0a-eval-panel | controller | Alternation for the next checkpoint: Codex drafts design steps 4-7, Claude reviews; the following checkpoint returns to Claude. Ceremonial commit of d8d291cc not yet requested.
+2026-09-09 | v0a-eval-panel-verification/r001 | review-01-codex | CLEAN | SOUND | commit 9fce4bfba3acf1c34938aa47f37f9743e5011cea | manifest d05fd7b821fec534044eeb80acdf23a4fe09767373a67e4cde20bc5ba1bed088 | No required corrections; focused receipts inspected; broad gate pending.
+2026-09-09 | v0a-eval-panel-verification/r001 | Codex review 02 | 9fce4bfba3acf1c34938aa47f37f9743e5011cea | d05fd7b821fec534044eeb80acdf23a4fe09767373a67e4cde20bc5ba1bed088 | CLEAN | SOUND | reviews/review-02-codex.md | broad gate pending
+2026-09-09 | v0a-eval-panel-verification/r001 | Codex finalizer | CLEAN / SOUND under two independent cold passes; focused 66 cases, 0 skipped; post-review broad 588 cases, 10 optional SciPy skips, exit 0, source_verified true on 9fce4bfba3acf1c34938aa47f37f9743e5011cea; no adoption, public push or retained prerequisite run.
+2026-09-09 | v0a-eval-panel-ownership/r002 and v0a-eval-panel-verification/r001 | Codex finalizer | I-01 CONFIRMED Important; combined preflight readiness NOT CLEAN on d8d291cc and unchanged descendant 9fce4bf. Synthetic diagnostic 3.21x, no measured solver ratio. Prior bounded reviews and test receipts retained; no source change, adoption, public push or retained run.
+
+2026-09-09 | v0a-eval-panel-timing/r001 | Codex drafter | WITHDRAWN before cold review;
+candidate cedc41f76d63fa50040334cb363c227168c6474e; focused receipt retained as failed;
+two cutoff fixtures reached completion before their assumed deadline.
+2026-09-09 | v0a-eval-panel-timing/r002 | Codex finalizer | CLEAN / SOUND;
+two independent cold passes; focused 40 cases, 0 skipped; broad 593 cases,
+583 passed, 10 optional SciPy skips, exit 0, source_verified true;
+CPython 3.14.6; I-01 resolved only on a40e29ca432fa6024a29033efebdaa5b8a31f968;
+manifest fc9b71e953da8bec6e4919376aed3687efc4ac02da0b77cab2473152246d7df2;
+v0a-eval-panel-timing/r002/disposition.md; local packet, no adoption or public push.
+
+2026-09-09 | v0a-eval-panel-timing/r002 | Codex finalizer | ADOPTED LOCALLY as beb84be566aa28029284bd35c526d33cd27af369 on codex/eval-panel-timing; exact reviewed tree d26c3fb14959562a03b10e09fd746e317009d91b; two CLEAN/SOUND reviews and retained focused/broad gates; push blocked by automatic approval review pending destination-specific authorization; no retained preflight run | v0a-eval-panel-timing/r002/adoption-result.md

@@ -1,0 +1,36 @@
+{
+  "candidate": "a40e29ca432fa6024a29033efebdaa5b8a31f968",
+  "manifest_sha256": "fc9b71e953da8bec6e4919376aed3687efc4ac02da0b77cab2473152246d7df2",
+  "snapshot": "D:/Pontius-worktrees/eval-timing-check-r002-broad",
+  "output": "experiments/results/20260909T182400-cc21db36.json",
+  "output_sha256": "a243d39b48729d4adf76064b2e16920db782f22417072d24371855d85e8e0a41",
+  "source_verified": true,
+  "exit": 0,
+  "cases": 593,
+  "passed": 583,
+  "skipped": 10,
+  "reviews": [
+    {
+      "path": "review-01-codex.md",
+      "sha256": "65ceae1b9cdf699e04708d21f51344d70d96b3d00fd390f4d6842e6c7b184ee1"
+    },
+    {
+      "path": "review-02-codex.md",
+      "sha256": "bffcbe0789c2fec7ae0d30a1b65889640a54ac6e71ab9951247d0502442953c3"
+    }
+  ],
+  "skip_suites": [
+    {
+      "module": "test_sparse_open_mode_factor_tt",
+      "skipped": 2
+    },
+    {
+      "module": "test_leaf_adjoint_cfr",
+      "skipped": 5
+    },
+    {
+      "module": "test_leaf_adjoint_evaluation",
+      "skipped": 3
+    }
+  ]
+}

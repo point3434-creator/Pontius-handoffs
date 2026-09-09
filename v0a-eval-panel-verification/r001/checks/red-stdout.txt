@@ -1,0 +1,174 @@
+.F                                                                       [100%]
+================================== FAILURES ===================================
+_______________ test_behavior[test_blueprint_workload_session] ________________
+
+module_name = 'test_blueprint_workload_session'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+        module = importlib.import_module(module_name)
+        suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+        assert suite.countTestCases(), f"Empty suite: {module_name}"
+        output = io.StringIO()
+        result = unittest.TextTestRunner(stream=output, verbosity=2).run(suite)
+        OUTCOMES.append(
+            dict(
+                module=module_name,
+                tests=result.testsRun,
+                skipped=len(result.skipped),
+                passed=result.wasSuccessful(),
+                output=output.getvalue(),
+            )
+        )
+        if result.testsRun == len(result.skipped):
+            pytest.skip(output.getvalue())
+>       assert result.wasSuccessful(), output.getvalue()
+E       AssertionError: test_assignment_failure_does_not_leave_suspended_worker (test_blueprint_workload_session.PersistentWorkerTests.test_assignment_failure_does_not_leave_suspended_worker) ... FAIL
+E         test_budget_stops_worker_during_startup_and_cleans_job (test_blueprint_workload_session.PersistentWorkerTests.test_budget_stops_worker_during_startup_and_cleans_job) ... FAIL
+E         test_changed_cell_input_is_refused_before_grant (test_blueprint_workload_session.PersistentWorkerTests.test_changed_cell_input_is_refused_before_grant) ... FAIL
+E         test_closed_stdout_still_retains_session_outcome (test_blueprint_workload_session.PersistentWorkerTests.test_closed_stdout_still_retains_session_outcome) ... ok
+E         test_expired_input_check_does_not_grant_a_cell (test_blueprint_workload_session.PersistentWorkerTests.test_expired_input_check_does_not_grant_a_cell) ... FAIL
+E         test_pipe_close_error_withholds_cleanup_certificate (test_blueprint_workload_session.PersistentWorkerTests.test_pipe_close_error_withholds_cleanup_certificate) ... FAIL
+E         test_session_admissions_reuse_loaded_host_without_reading_it (test_blueprint_workload_session.PersistentWorkerTests.test_session_admissions_reuse_loaded_host_without_reading_it) ... ok
+E         test_stderr_drained_after_exit_prevents_success (test_blueprint_workload_session.PersistentWorkerTests.test_stderr_drained_after_exit_prevents_success) ... FAIL
+E         test_two_cells_use_one_worker_and_two_in_memory_grants (test_blueprint_workload_session.PersistentWorkerTests.test_two_cells_use_one_worker_and_two_in_memory_grants) ... FAIL
+E         test_worker_rejects_wrong_nonce (test_blueprint_workload_session.PersistentWorkerTests.test_worker_rejects_wrong_nonce) ... ok
+E         test_changed_assertions_and_manifest_change_run_identity (test_blueprint_workload_session.SourceBoundaryTests.test_changed_assertions_and_manifest_change_run_identity) ... ok
+E         test_extra_and_missing_source_files_are_rejected (test_blueprint_workload_session.SourceBoundaryTests.test_extra_and_missing_source_files_are_rejected) ... ok
+E         test_inherited_context_performs_no_git_or_file_reads (test_blueprint_workload_session.SourceBoundaryTests.test_inherited_context_performs_no_git_or_file_reads) ... ok
+E         test_one_final_output_and_journal_line_no_child_write (test_blueprint_workload_session.SourceBoundaryTests.test_one_final_output_and_journal_line_no_child_write) ... ok
+E         test_reviewed_source_matches_and_drift_is_rejected (test_blueprint_workload_session.SourceBoundaryTests.test_reviewed_source_matches_and_drift_is_rejected) ... ok
+E         test_staged_source_additions_are_not_hidden_by_the_index (test_blueprint_workload_session.SourceBoundaryTests.test_staged_source_additions_are_not_hidden_by_the_index) ... ok
+E         
+E         ======================================================================
+E         FAIL: test_assignment_failure_does_not_leave_suspended_worker (test_blueprint_workload_session.PersistentWorkerTests.test_assignment_failure_does_not_leave_suspended_worker)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 248, in test_assignment_failure_does_not_leave_suspended_worker
+E             report = self.supervise()
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ======================================================================
+E         FAIL: test_budget_stops_worker_during_startup_and_cleans_job (test_blueprint_workload_session.PersistentWorkerTests.test_budget_stops_worker_during_startup_and_cleans_job)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 240, in test_budget_stops_worker_during_startup_and_cleans_job
+E             report = self.supervise(0.01)
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ======================================================================
+E         FAIL: test_changed_cell_input_is_refused_before_grant (test_blueprint_workload_session.PersistentWorkerTests.test_changed_cell_input_is_refused_before_grant)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 211, in test_changed_cell_input_is_refused_before_grant
+E             report = self.supervise()
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ======================================================================
+E         FAIL: test_expired_input_check_does_not_grant_a_cell (test_blueprint_workload_session.PersistentWorkerTests.test_expired_input_check_does_not_grant_a_cell)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 259, in test_expired_input_check_does_not_grant_a_cell
+E             report = self.supervise(0.8)
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ======================================================================
+E         FAIL: test_pipe_close_error_withholds_cleanup_certificate (test_blueprint_workload_session.PersistentWorkerTests.test_pipe_close_error_withholds_cleanup_certificate)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 193, in test_pipe_close_error_withholds_cleanup_certificate
+E             report = self.supervise(close_error=True)
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ======================================================================
+E         FAIL: test_stderr_drained_after_exit_prevents_success (test_blueprint_workload_session.PersistentWorkerTests.test_stderr_drained_after_exit_prevents_success)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 232, in test_stderr_drained_after_exit_prevents_success
+E             report = self.supervise()
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ======================================================================
+E         FAIL: test_two_cells_use_one_worker_and_two_in_memory_grants (test_blueprint_workload_session.PersistentWorkerTests.test_two_cells_use_one_worker_and_two_in_memory_grants)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 200, in test_two_cells_use_one_worker_and_two_in_memory_grants
+E             report = self.supervise()
+E           File "D:\Pontius-worktrees\eval-verification-check-final-red\tests\test_blueprint_workload_session.py", line 186, in supervise
+E             self.assertTrue(
+E             ~~~~~~~~~~~~~~~^
+E                 all(getattr(process, name).closed for name in ("stdin", "stdout", "stderr")),
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                 "supervision returned with an open real worker pipe",
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             )
+E             ^
+E         AssertionError: False is not true : supervision returned with an open real worker pipe
+E         
+E         ----------------------------------------------------------------------
+E         Ran 16 tests in 7.965s
+E         
+E         FAILED (failures=7)
+E         
+E       assert False
+E        +  where False = wasSuccessful()
+E        +    where wasSuccessful = <unittest.runner.TextTestResult run=16 errors=0 failures=7>.wasSuccessful
+
+tests\test_pontius.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_pontius.py::test_behavior[test_blueprint_workload_session]
+1 failed, 1 passed, 44 deselected in 26.05s

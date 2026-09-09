@@ -1,0 +1,30 @@
+{
+  "candidate": "9fce4bfba3acf1c34938aa47f37f9743e5011cea",
+  "snapshot": "D:/Pontius-worktrees/eval-verification-check-r001-broad",
+  "python": "D:\\Pontius-worktrees\\eval-verification-check-r001-broad\\.venv\\Scripts\\python.exe",
+  "version": "3.14.6",
+  "exit": 0,
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-W",
+    "error::pytest.PytestUnraisableExceptionWarning",
+    "-q",
+    "-o",
+    "pythonpath=. src tests",
+    "tests/test_pontius.py"
+  ]
+}

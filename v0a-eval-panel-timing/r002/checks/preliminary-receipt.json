@@ -1,0 +1,32 @@
+{
+  "candidate": "cedc41f76d63fa50040334cb363c227168c6474e",
+  "snapshot": "D:/Pontius-worktrees/eval-timing-check-r001",
+  "python": "D:\\Pontius-worktrees\\eval-timing-check-r001\\.venv\\Scripts\\python.exe",
+  "version": "3.14.6",
+  "exit": 1,
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-W",
+    "error::pytest.PytestUnraisableExceptionWarning",
+    "-q",
+    "-o",
+    "pythonpath=. src tests",
+    "tests/test_pontius.py",
+    "-k",
+    "eval_panel_tool or eval_bridge"
+  ]
+}
