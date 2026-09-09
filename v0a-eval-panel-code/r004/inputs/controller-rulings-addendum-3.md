@@ -13,3 +13,8 @@ Recorded as: the controller reauthorizes the Tier C cold review of
 `v0a-eval-panel-code/r004` = `0bc19bca` (two independent Codex passes).
 Not granted by this ruling: retained measurement, full-pool solve, ceremonial
 commit, integration, or implementation beyond design steps 1–3.
+
+## Restated the same day
+
+Controller, verbatim: "i authorize it explicitly hows that". Same ruling, restated
+in the brief's own terms; nothing else changes.
