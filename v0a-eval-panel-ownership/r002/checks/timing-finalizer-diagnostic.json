@@ -1,0 +1,19 @@
+{
+  "kind": "finalizer-standalone-diagnostic",
+  "date": "2026-09-09",
+  "python": "C:/Users/point/AppData/Local/Python/pythoncore-3.14-64/python.exe",
+  "version": "3.14.6",
+  "arguments": [
+    "-I",
+    "-B",
+    "D:/Pontius-handoffs/v0a-eval-panel-ownership/r002/checks/tracemalloc-overhead.py"
+  ],
+  "script_sha256": "5e71dcaaaf47de57f933518d9bf6bff21ae892764cf3b473c3881772bf2609f4",
+  "exit": 0,
+  "plain_best_of_200_ms": 0.352,
+  "traced_best_of_200_ms": 1.132,
+  "ratio": 3.21,
+  "overhead_ms": 0.78,
+  "scope": "synthetic allocation loop only; no project imports or retained preflight",
+  "ruling_sha256": "472e2dbb890999b9d38cd23be2683b33399d0e76b81c5ad5a4259dfc0af3ab38"
+}
