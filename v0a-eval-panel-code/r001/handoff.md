@@ -139,3 +139,11 @@ Tests during development used `D:/Pontius/.venv` (3.14.6 + numpy) via
 bare 3.14 interpreter lacks numpy; the receipt run used a venv synced inside the
 disposable snapshot instead of touching the main one. Implementation, retained
 measurement, ceremonial commit, and integration remain ungranted gates.
+
+## Correction (2026-09-09)
+
+`checks/focused-snapshot-3.14.6.txt` was captured with CRLF line endings and
+normalized to LF when stored; the digest in the receipts table above is of the
+working file. The authoritative stored-blob SHA-256 is
+`71852648acf012cac609c144d3c669390e4bcf710e89aed0e50f86f87e7235c2`. Content identical modulo line endings; the file in the
+packet is now LF.
