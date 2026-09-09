@@ -23,3 +23,13 @@ unchanged; only the number moved, twice.
 Not granted by this ruling: review assignment, retained measurement, full-pool
 solve, ceremonial commit, or integration. Reviewers should treat the budget as
 a controller decision, as both r001 reviews already did.
+
+## Controller clarification (same day)
+
+Controller, verbatim: "im not too worried as long as it doesnt balloon to 3000 or
+something then i might".
+
+Recorded as a **hard ceiling of 3,000 production lines for the whole slice**,
+stated by the controller; the drafter's 1,200 / 600 remains the working figure
+that each freeze reports against. Approaching the ceiling, not merely exceeding
+the working figure, is what returns the slice to the controller.
