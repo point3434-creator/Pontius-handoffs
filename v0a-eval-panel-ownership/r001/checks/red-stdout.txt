@@ -1,0 +1,89 @@
+.F                                                                       [100%]
+================================== FAILURES ===================================
+_____________________ test_behavior[test_eval_panel_tool] _____________________
+
+module_name = 'test_eval_panel_tool'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+        module = importlib.import_module(module_name)
+        suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+        assert suite.countTestCases(), f"Empty suite: {module_name}"
+        output = io.StringIO()
+        result = unittest.TextTestRunner(stream=output, verbosity=2).run(suite)
+        OUTCOMES.append(
+            dict(
+                module=module_name,
+                tests=result.testsRun,
+                skipped=len(result.skipped),
+                passed=result.wasSuccessful(),
+                output=output.getvalue(),
+            )
+        )
+        if result.testsRun == len(result.skipped):
+            pytest.skip(output.getvalue())
+>       assert result.wasSuccessful(), output.getvalue()
+E       AssertionError: test_completed_run_records_exactly_once_with_its_result_directory (test_eval_panel_tool.OwnershipTests.test_completed_run_records_exactly_once_with_its_result_directory) ... ok
+E         test_interrupted_supervisor_still_records_its_drained_observations (test_eval_panel_tool.OwnershipTests.test_interrupted_supervisor_still_records_its_drained_observations) ... ok
+E         test_nonfinite_plan_starts_no_worker_and_still_records_one_failure (test_eval_panel_tool.OwnershipTests.test_nonfinite_plan_starts_no_worker_and_still_records_one_failure) ... ok
+E         test_parse_refuses_size_nonfinite_numbers_and_constants (test_eval_panel_tool.PlanAdmissionTests.test_parse_refuses_size_nonfinite_numbers_and_constants) ... ok
+E         test_validate_refuses_every_wrong_or_missing_member (test_eval_panel_tool.PlanAdmissionTests.test_validate_refuses_every_wrong_or_missing_member) ... ok
+E         test_failed_last_release_cannot_certify_cleanup (test_eval_panel_tool.RealRunOwnershipTests.test_failed_last_release_cannot_certify_cleanup) ... FAIL
+E         test_interrupt_after_cleanup_retains_real_drained_stages (test_eval_panel_tool.RealRunOwnershipTests.test_interrupt_after_cleanup_retains_real_drained_stages) ... FAIL
+E         test_interrupt_after_native_rename_keeps_final_file_bound (test_eval_panel_tool.RealRunOwnershipTests.test_interrupt_after_native_rename_keeps_final_file_bound) ... FAIL
+E         test_assignment_refusal_kills_the_suspended_worker_and_keeps_the_cause (test_eval_panel_tool.RealSupervisorTests.test_assignment_refusal_kills_the_suspended_worker_and_keeps_the_cause) ... ok
+E         test_budget_kill_during_reference_keeps_the_completed_production_stage (test_eval_panel_tool.RealSupervisorTests.test_budget_kill_during_reference_keeps_the_completed_production_stage) ... ok
+E         test_capacity_runs_to_completion_under_containment (test_eval_panel_tool.RealSupervisorTests.test_capacity_runs_to_completion_under_containment) ... ok
+E         test_cleanup_faults_do_not_skip_later_releases_or_retained_stages (test_eval_panel_tool.RealSupervisorTests.test_cleanup_faults_do_not_skip_later_releases_or_retained_stages) ... ok
+E         test_interrupt_during_cleanup_keeps_the_partial_report (test_eval_panel_tool.RealSupervisorTests.test_interrupt_during_cleanup_keeps_the_partial_report) ... ok
+E         test_capacity_phase_emits_boundary_bytes (test_eval_panel_tool.WorkerTests.test_capacity_phase_emits_boundary_bytes) ... ok
+E         test_exhausted_budget_stops_before_the_next_hand (test_eval_panel_tool.WorkerTests.test_exhausted_budget_stops_before_the_next_hand) ... ok
+E         test_full_pool_estimate_needs_every_declared_hand_complete (test_eval_panel_tool.WorkerTests.test_full_pool_estimate_needs_every_declared_hand_complete) ... ok
+E         test_json_safe_tags_nonfinite_values (test_eval_panel_tool.WorkerTests.test_json_safe_tags_nonfinite_values) ... ok
+E         test_preflight_emits_one_stage_per_measured_step (test_eval_panel_tool.WorkerTests.test_preflight_emits_one_stage_per_measured_step) ... ok
+E         test_retention_failure_keeps_bound_artifacts_and_unwritten_encodings (test_eval_panel_tool.WorkerTests.test_retention_failure_keeps_bound_artifacts_and_unwritten_encodings) ... ok
+E         
+E         ======================================================================
+E         FAIL: test_failed_last_release_cannot_certify_cleanup (test_eval_panel_tool.RealRunOwnershipTests.test_failed_last_release_cannot_certify_cleanup)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-repair-check-ownership-red\tests\test_eval_panel_tool.py", line 412, in test_failed_last_release_cannot_certify_cleanup
+E             self.assertFalse(result["cleanup_verified"], result["cleanup"])
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: True is not false : {'close job': 'OSError: controlled post-release failure', 'close stderr': 'ok', 'close stdin': 'ok', 'close stdout': 'ok', 'drain': 'ok', 'join thread 0': 'ok', 'join thread 1': 'ok', 'join thread 2': 'ok', 'kill process': 'ok', 'terminate job': 'ok', 'verify': 'ok', 'wait': 'ok'}
+E         
+E         ======================================================================
+E         FAIL: test_interrupt_after_cleanup_retains_real_drained_stages (test_eval_panel_tool.RealRunOwnershipTests.test_interrupt_after_cleanup_retains_real_drained_stages)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-repair-check-ownership-red\tests\test_eval_panel_tool.py", line 443, in test_interrupt_after_cleanup_retains_real_drained_stages
+E             self.assertEqual(len(rows), 1, result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 0 != 1 : {'cleanup': {'close job': 'ok', 'close stderr': 'ok', 'close stdin': 'ok', 'close stdout': 'ok', 'drain': 'ok', 'join thread 0': 'ok', 'join thread 1': 'ok', 'join thread 2': 'ok', 'kill process': 'ok', 'terminate job': 'ok', 'verify': 'ok', 'wait': 'ok'}, 'cleanup_verified': True, 'error': 'interrupted before completion', 'errors': [], 'observations': [], 'peak_job_memory_bytes': 814108672, 'plan_sha256': 'b8ac2d74e34abde981dde72c30166f7c9471c15447ab38f3d38a2aeacc91a883', 'ready': {'event': 'ready', 'executable': 'D:\\Pontius-worktrees\\eval-repair-check-ownership-red\\.venv\\Scripts\\python.exe', 'initialization_cost': {'cpu_seconds': 0.0, 'elapsed_seconds': 0.0010518000017327722, 'traced_peak_bytes': 4928}, 'python': '3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]', 'work': {'sealed_evaluator': 'not_instrumented'}}, 'status': 'interrupted', 'summary': 'plan interrupted; 0 observations', 'worker_exit_code': 1}
+E         
+E         ======================================================================
+E         FAIL: test_interrupt_after_native_rename_keeps_final_file_bound (test_eval_panel_tool.RealRunOwnershipTests.test_interrupt_after_native_rename_keeps_final_file_bound)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-repair-check-ownership-red\tests\test_eval_panel_tool.py", line 466, in test_interrupt_after_native_rename_keeps_final_file_bound
+E             self.assertIn(path.name, bindings)
+E             ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'capacity-boundary-1081.blueprint.json' not found in {}
+E         
+E         ----------------------------------------------------------------------
+E         Ran 19 tests in 105.602s
+E         
+E         FAILED (failures=3)
+E         
+E       assert False
+E        +  where False = wasSuccessful()
+E        +    where wasSuccessful = <unittest.runner.TextTestResult run=19 errors=0 failures=3>.wasSuccessful
+
+tests\test_pontius.py:76: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"cleanup_verified": true, "coverage": null, "errors": [], "full_pool_estimate": null, "observations": [], "permutation_sha256": "344e7eeb06d72b97313f470880b8d169c4674e83bb440de827fa6fb87d97648a", "phase": "capacity", "plan": {"board": ["2c", "7d", "9h", "Js", "Qc"], "hand_count": 1081, "hand_universe_sha256": "18953f113d65c6e25111ac9c2441942e4145051e169261fecd0ed0b9e5be41ed", "phase": "capacity", "pool_seed": "5e4f7c2a9b1d3e6f8a0c2b4d6e8f1a3c5b7d9e0f2a4c6e8b1d3f5a7c9e0b2d4f", "prefix": [[3, "fold"], [4, "fold"], [5, "fold"], [0, "fold"], [1, "call"], [2, "check"], null, [1, "check"], [2, "check"], null, [1, "check"], [2, "check"], null, [1, "check"]], "resource": {"memory_mib": 2048, "seconds": 600}, "runtime": {"python": "3.14.6"}, "stacks": 4, "version": "pontius-eval-panel-plan-v2"}, "plan_sha256": "6ad3e205058de941a695e04a966cb966d255369b0f910cfcee25a3426636bae1", "status": "completed", "summary": "capacity completed; 0 observations"}
+{"error": "interrupted before completion", "errors": [], "observations": [{"board": ["2c", "7d", "9h", "Js", "Qc"], "complete": false, "hand": "AsAd", "kind": "preflight", "label": "development", "stages": {}}], "plan_sha256": "6ad3e205058de941a695e04a966cb966d255369b0f910cfcee25a3426636bae1", "status": "interrupted", "summary": "plan interrupted; 1 observations"}
+{"error": "ValueError: plan contains a nonfinite number", "errors": [], "observations": [], "plan_sha256": "e895d9ddf716837642fbe74561e7ff85d6dcfaef38bc23813985500f4089b5c4", "status": "failed", "summary": "plan failed; 0 observations"}
+=========================== short test summary info ===========================
+FAILED tests/test_pontius.py::test_behavior[test_eval_panel_tool] - Assertion...
+1 failed, 1 passed, 44 deselected in 122.31s (0:02:02)
