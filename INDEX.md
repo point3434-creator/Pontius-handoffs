@@ -111,4 +111,4 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Code r001](v0a-eval-panel-code/r001/handoff.md): Claude draft; NOT CLEAN under two Codex reviews, all accepted.
 - [Code r002](v0a-eval-panel-code/r002/disposition.md): withdrawn by the drafter before review (test-fixture receipt failure).
 - [Code r003](v0a-eval-panel-code/r003/handoff.md): FIX of r001; NOT CLEAN under two Codex reviews, all three accepted in disposition.md.
-- [Code r004](v0a-eval-panel-code/r004/handoff.md): FIX of r003 (0bc19bca); frozen and receipted; review awaits controller reauthorization.
+- [Code r004](v0a-eval-panel-code/r004/handoff.md): FIX of r003 (0bc19bca); NOT CLEAN under two Codex reviews; second residual on cleanup and sample contracts — separate candidates by Codex next, root-cause note in disposition.md.
