@@ -144,3 +144,6 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Timing r002 publication](v0a-eval-panel-timing/r002/publication-result.md):
   source adoption and handoff packets pushed and remote hashes verified;
   four candidate archives published; review refs retained pending deletion approval.
+
+- [Timing review-ref retirement](v0a-eval-panel-timing/r002/retirement-result.md):
+  authorized cleanup complete; all four candidates remain in verified remote archives.
