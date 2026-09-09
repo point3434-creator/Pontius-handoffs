@@ -1,0 +1,14 @@
+3.14.6
+w=l=495, t=0, 2000 orderings
+  naive loop  : residual >0:  901  <0: 1009  ==0:   90   S_bet==2*S_check exactly: 2000/2000
+  builtin sum : residual >0:    0  <0:    0  ==0: 2000   S_bet==2*S_check exactly: 2000/2000
+w=l=300, t=390, 2000 orderings
+  naive loop  : residual >0:  807  <0:  771  ==0:  422   S_bet==2*S_check exactly: 2000/2000
+  builtin sum : residual >0:    0  <0:    0  ==0: 2000   S_bet==2*S_check exactly: 2000/2000
+w=l=100, t=790, 2000 orderings
+  naive loop  : residual >0:  148  <0:  164  ==0: 1688   S_bet==2*S_check exactly: 2000/2000
+  builtin sum : residual >0:    0  <0:    0  ==0: 2000   S_bet==2*S_check exactly: 2000/2000
+w=l=450, t=90, 2000 orderings
+  naive loop  : residual >0:  884  <0:  980  ==0:  136   S_bet==2*S_check exactly: 2000/2000
+  builtin sum : residual >0:    0  <0:    0  ==0: 2000   S_bet==2*S_check exactly: 2000/2000
+reference selects BET on an exact production tie iff residual > 0
