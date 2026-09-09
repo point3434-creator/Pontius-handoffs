@@ -1,0 +1,1 @@
+2026-09-08 | r001 | Codex reviewer 02 | CLEAN / SOUND | candidate e39d3b93695bfc601d051e8e71f334eef4d10d19 | manifest 4f16c97f50734f06cc6bcd5286a87d355aaf4f8589f8796de1e33a8c5b47c405 | reviews/review-02-codex.md | static Stage 0/0b cold review; no execution
