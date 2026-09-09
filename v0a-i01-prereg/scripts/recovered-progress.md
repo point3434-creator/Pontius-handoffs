@@ -1,0 +1,8 @@
+2026-08-30 | r1 | /root/cold_review_a | NOT CLEAN | candidate 073f0c5b8e6ad4f8d6e10dd9118b722186968ddf | manifest 4b01560395285a30fb65530fb776598d076c4a7bc687eed89d32e650c18dbdc0 | r1-review-a.md
+2026-08-30 | r1 | /root/cold_review_b | NOT CLEAN | candidate 073f0c5b8e6ad4f8d6e10dd9118b722186968ddf | manifest 4b01560395285a30fb65530fb776598d076c4a7bc687eed89d32e650c18dbdc0 | r1-review-b.md
+2026-08-30 | r2 | /root/cold_review_a | CLEAN | candidate 119411fda2376d61d9ff310bada71f25aa64de70 | manifest da3c4ad5290a49f9d6e600b61e3190047ca6221394a4fc4ad06e40af727d799c | r2-review-a.md
+2026-08-30 | r2 | /root/cold_review_b | CLEAN | candidate 119411fda2376d61d9ff310bada71f25aa64de70 | manifest da3c4ad5290a49f9d6e600b61e3190047ca6221394a4fc4ad06e40af727d799c | r2-review-b.md
+2026-08-30 | r2 | /root | PARTIAL: prepared, independent reviews and scoped checks pass; external CodeRabbit transfer and controller authorization pending | candidate 119411fda2376d61d9ff310bada71f25aa64de70 | manifest da3c4ad5290a49f9d6e600b61e3190047ca6221394a4fc4ad06e40af727d799c | preregistration-report.md
+2026-08-30 | r2 | claude/cold_review_c | CLEAN | candidate 119411fda2376d61d9ff310bada71f25aa64de70 | manifest da3c4ad5290a49f9d6e600b61e3190047ca6221394a4fc4ad06e40af727d799c | r2-review-claude.md
+- 2026-08-30 | r3 | issuer=/root/cold_review_r3_a | CLEAN (documentation contract only) | commit=953b8703ef93fe261a6857b57bca196b2b8ded9b | manifest=f5e5d7a3071518e139e8bdffdbe0f813a510ae80c477fdd9a88fb537be4d6fff | report=r3-review-a.md
+2026-08-30 | r3 | /root/cold_review_r3_b | NOT CLEAN | candidate 953b8703ef93fe261a6857b57bca196b2b8ded9b | manifest f5e5d7a3071518e139e8bdffdbe0f813a510ae80c477fdd9a88fb537be4d6fff | r3-review-b.md
