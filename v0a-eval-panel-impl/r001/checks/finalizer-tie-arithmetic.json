@@ -1,0 +1,32 @@
+{
+  "kind": "finalizer arithmetic illustration, not a poker reproduction",
+  "candidate": "e39d3b93695bfc601d051e8e71f334eef4d10d19",
+  "manifest_sha256": "4f16c97f50734f06cc6bcd5286a87d355aaf4f8589f8796de1e33a8c5b47c405",
+  "method": "PowerShell/.NET binary64 sequential addition; weight = 1.0 / 990",
+  "command_exit": 0,
+  "cases": [
+    {
+      "order": "495 positive terms, then 495 negative terms",
+      "exact_check_total": 0,
+      "exact_bet_total": 0,
+      "check_float": "-3.122502256758253E-17",
+      "bet_float": "-6.245004513516506E-17",
+      "bet_equals_twice_check": true,
+      "float_choice": "CHECK"
+    },
+    {
+      "order": "495 negative terms, then 495 positive terms",
+      "exact_check_total": 0,
+      "exact_bet_total": 0,
+      "check_float": "3.122502256758253E-17",
+      "bet_float": "6.245004513516506E-17",
+      "bet_equals_twice_check": true,
+      "float_choice": "BET"
+    }
+  ],
+  "limits": [
+    "No legal board/hero hand or sorted villain ordering is established by these terms.",
+    "No project evaluator, ranker, solver, host, tests or Python interpreter was invoked.",
+    "No incidence or frequency in the declared poker population is established."
+  ]
+}
