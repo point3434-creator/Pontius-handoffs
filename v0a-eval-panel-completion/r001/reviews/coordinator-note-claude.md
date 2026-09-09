@@ -17,12 +17,11 @@ their SHA-256 digests; the coordinator copied those bytes unchanged into
 `reviews/review-NN-claude.md` and `checks/inventory-NN-claude.md` and re-verified
 the digests after copying:
 
-| File | SHA-256 |
-|---|---|
-| `reviews/review-01-claude.md` | `726a8c6b3b7849acbe2e3c1e81b513ca34ec6a6ef7c0ea92637c0b2653eebdb2` |
-| `checks/inventory-01-claude.md` | `290949bacfaf50c43021bcf1f4a233245beba349dd3aaa25b8192e9d739783e9` |
-| `reviews/review-02-claude.md` | `2a8dd035afceee12…` (full digest in the ledger line) |
-| `checks/inventory-02-claude.md` | `d27bf264c12253cb…` |
+- `reviews/review-01-claude.md`: `726a8c6b3b7849acbe2e3c1e81b513ca34ec6a6ef7c0ea92637c0b2653eebdb2`
+- `checks/inventory-01-claude.md`:
+  `290949bacfaf50c43021bcf1f4a233245beba349dd3aaa25b8192e9d739783e9`
+- `reviews/review-02-claude.md`: `2a8dd035afceee12…` (full digest in the ledger line)
+- `checks/inventory-02-claude.md`: `d27bf264c12253cb…`
 
 Verdicts: **01 CLEAN / SOUND; 02 CLEAN / SOUND.** Neither raised a Critical or
 Important finding, so the adversarial verification stage (three lenses per material
