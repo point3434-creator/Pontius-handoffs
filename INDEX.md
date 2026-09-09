@@ -99,3 +99,7 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 
 - [Source r001/r002](v0a-blueprint-preparation-source/r002/disposition.md): retained reviews, mechanical closure and complete source qualification.
 - [Source-seal metadata r001/r002](v0a-blueprint-preparation-seal/r002/publication.md): ADR-0514 adopted as 7242891b; exact approval, review, checks and dispositions.
+
+## Evaluation panel Slice A implementation design
+
+- [Slice A r001](v0a-eval-panel-impl/r001/handoff.md): Codex draft; cold reviews pending.

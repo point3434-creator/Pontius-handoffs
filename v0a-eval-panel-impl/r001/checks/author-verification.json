@@ -1,0 +1,21 @@
+{
+  "candidate": "e39d3b93695bfc601d051e8e71f334eef4d10d19",
+  "manifest_sha256": "4f16c97f50734f06cc6bcd5286a87d355aaf4f8589f8796de1e33a8c5b47c405",
+  "base": "46f45298a405b967976413a4b8e45e7837602316",
+  "tree": "353e9626ee00ecf1c45b17b04d748d4990d99b8e",
+  "changed_paths": [
+    "docs/architecture/v0a-eval-panel-impl-r001/brief.md",
+    "docs/architecture/v0a-eval-panel-impl-r001/design.md"
+  ],
+  "parent_specification_byte_identical": true,
+  "candidate_text": "LF-only; no BOM; no trailing whitespace; <=100 columns",
+  "input_sha256": {
+    "workflow.md": "c71e3963ff726e06158878bcc10dd7dd761b32597af1c8ed39e21ebf60b58a37",
+    "controller-rulings.md": "2649ae254b3cd7692082920a2cc07d9b85dac2360cbcd71d375d0faa56a6ebd6",
+    "parent-disposition.md": "218fdf7b80470d862084a9523022bc15de5dfd49ba91694191fee659f900e0bd",
+    "dependencies.json": "ce6c5a918a4c57c35de70c7e986e4a0f8f9c681221ff1a09f8fa7a122f17be3f"
+  },
+  "direct_dependency_count": 34,
+  "execution": "Static Git/blob/text inspection only; no runtime, solver, host or tests",
+  "verdict": "Author checks only; independent cold reviews pending"
+}
