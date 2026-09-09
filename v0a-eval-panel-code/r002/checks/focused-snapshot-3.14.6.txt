@@ -1,0 +1,114 @@
+.F                                                                       [100%]
+================================== FAILURES ===================================
+_____________________ test_behavior[test_eval_panel_tool] _____________________
+
+module_name = 'test_eval_panel_tool'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+        module = importlib.import_module(module_name)
+        suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+        assert suite.countTestCases(), f"Empty suite: {module_name}"
+        output = io.StringIO()
+        result = unittest.TextTestRunner(stream=output, verbosity=2).run(suite)
+        OUTCOMES.append(
+            dict(
+                module=module_name,
+                tests=result.testsRun,
+                skipped=len(result.skipped),
+                passed=result.wasSuccessful(),
+                output=output.getvalue(),
+            )
+        )
+        if result.testsRun == len(result.skipped):
+            pytest.skip(output.getvalue())
+>       assert result.wasSuccessful(), output.getvalue()
+E       AssertionError: test_completed_run_records_exactly_once_with_its_result_directory (test_eval_panel_tool.OwnershipTests.test_completed_run_records_exactly_once_with_its_result_directory) ... ERROR
+E         test_nonfinite_plan_starts_no_worker_and_still_records_one_failure (test_eval_panel_tool.OwnershipTests.test_nonfinite_plan_starts_no_worker_and_still_records_one_failure) ... ERROR
+E         test_parse_refuses_size_nonfinite_numbers_and_constants (test_eval_panel_tool.PlanAdmissionTests.test_parse_refuses_size_nonfinite_numbers_and_constants) ... ok
+E         test_validate_refuses_every_wrong_or_missing_member (test_eval_panel_tool.PlanAdmissionTests.test_validate_refuses_every_wrong_or_missing_member) ... ok
+E         test_assignment_refusal_kills_the_suspended_worker_and_keeps_the_cause (test_eval_panel_tool.RealSupervisorTests.test_assignment_refusal_kills_the_suspended_worker_and_keeps_the_cause) ... ok
+E         test_budget_kill_during_reference_keeps_the_completed_production_stage (test_eval_panel_tool.RealSupervisorTests.test_budget_kill_during_reference_keeps_the_completed_production_stage) ... ok
+E         test_capacity_runs_to_completion_under_containment (test_eval_panel_tool.RealSupervisorTests.test_capacity_runs_to_completion_under_containment) ... ok
+E         test_capacity_phase_emits_boundary_bytes (test_eval_panel_tool.WorkerTests.test_capacity_phase_emits_boundary_bytes) ... ok
+E         test_exhausted_budget_stops_before_the_next_hand (test_eval_panel_tool.WorkerTests.test_exhausted_budget_stops_before_the_next_hand) ... ok
+E         test_json_safe_tags_nonfinite_values (test_eval_panel_tool.WorkerTests.test_json_safe_tags_nonfinite_values) ... ok
+E         test_preflight_emits_one_stage_per_measured_step (test_eval_panel_tool.WorkerTests.test_preflight_emits_one_stage_per_measured_step) ... ok
+E         
+E         ======================================================================
+E         ERROR: test_completed_run_records_exactly_once_with_its_result_directory (test_eval_panel_tool.OwnershipTests.test_completed_run_records_exactly_once_with_its_result_directory)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius\tmp\eval-panel-code-r002-snapshot\tests\test_eval_panel_tool.py", line 185, in setUp
+E             subprocess.run(["git", "-C", str(self.root), *args], check=True, capture_output=True)
+E             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 555, in run
+E             with Popen(*popenargs, **kwargs) as process:
+E                  ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1039, in __init__
+E             self._execute_child(args, executable, preexec_fn, close_fds,
+E             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                                 pass_fds, cwd, env,
+E                                 ^^^^^^^^^^^^^^^^^^^
+E             ...<5 lines>...
+E                                 gid, gids, uid, umask,
+E                                 ^^^^^^^^^^^^^^^^^^^^^^
+E                                 start_new_session, process_group)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1553, in _execute_child
+E             hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+E                                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+E                                      # no special security
+E                                      ^^^^^^^^^^^^^^^^^^^^^
+E             ...<4 lines>...
+E                                      cwd,
+E                                      ^^^^
+E                                      startupinfo)
+E                                      ^^^^^^^^^^^^
+E         FileNotFoundError: [WinError 2] The system cannot find the file specified
+E         
+E         ======================================================================
+E         ERROR: test_nonfinite_plan_starts_no_worker_and_still_records_one_failure (test_eval_panel_tool.OwnershipTests.test_nonfinite_plan_starts_no_worker_and_still_records_one_failure)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius\tmp\eval-panel-code-r002-snapshot\tests\test_eval_panel_tool.py", line 185, in setUp
+E             subprocess.run(["git", "-C", str(self.root), *args], check=True, capture_output=True)
+E             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 555, in run
+E             with Popen(*popenargs, **kwargs) as process:
+E                  ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1039, in __init__
+E             self._execute_child(args, executable, preexec_fn, close_fds,
+E             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                                 pass_fds, cwd, env,
+E                                 ^^^^^^^^^^^^^^^^^^^
+E             ...<5 lines>...
+E                                 gid, gids, uid, umask,
+E                                 ^^^^^^^^^^^^^^^^^^^^^^
+E                                 start_new_session, process_group)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1553, in _execute_child
+E             hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+E                                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+E                                      # no special security
+E                                      ^^^^^^^^^^^^^^^^^^^^^
+E             ...<4 lines>...
+E                                      cwd,
+E                                      ^^^^
+E                                      startupinfo)
+E                                      ^^^^^^^^^^^^
+E         FileNotFoundError: [WinError 2] The system cannot find the file specified
+E         
+E         ----------------------------------------------------------------------
+E         Ran 11 tests in 51.879s
+E         
+E         FAILED (errors=2)
+E         
+E       assert False
+E        +  where False = wasSuccessful()
+E        +    where wasSuccessful = <unittest.runner.TextTestResult run=11 errors=2 failures=0>.wasSuccessful
+
+tests\test_pontius.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_pontius.py::test_behavior[test_eval_panel_tool] - Assertion...
+1 failed, 1 passed, 44 deselected in 67.25s (0:01:07)

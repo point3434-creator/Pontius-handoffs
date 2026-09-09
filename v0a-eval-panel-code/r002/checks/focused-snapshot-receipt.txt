@@ -1,0 +1,7 @@
+snapshot_commit=e398f83359702dcac4b64f845aa26fddb575662d
+snapshot_tree=1e949062e9f9444917b3937b56a01a1fdd7b31ae
+python=3.14.6 (uv sync --group dev inside the disposable snapshot)
+git=C:\Program Files\Git\mingw64\bin\git.exe
+pytest_exit=1
+invocation=python -B -P -W error::ResourceWarning -m pytest -p no:cacheprovider -q tests/test_pontius.py -k "eval_bridge or eval_panel_tool"
+environment=env -i SystemRoot TEMP TMP PONTIUS_GIT PYTHONDONTWRITEBYTECODE
