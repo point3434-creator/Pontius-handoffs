@@ -1,0 +1,50 @@
+{
+  "scope": "two requested independent plan reviews; no additional review agents",
+  "launcher_sha256": "71c2094772b1ae32aa7278075ded62e2f4474bb626926e00943066d44916c274",
+  "reviewers": [
+    {
+      "reviewer": "01",
+      "thread_id": "01a08944-6b2c-7302-b437-d9d03b18a869",
+      "scratch": "D:/Pontius/tmp/solve-plan-cold-20260910/reviewer-01",
+      "probe": "CONTEXT_PROBE_NONE\n\nMy inherited context contains only the current task, generic tools, environment and safety instructions, and the supplied AGENTS.md instruction. I have no injected memory summaries, prior project history, candidate verdicts, or findings. I\u2019ll read `handoff.md` first and follow its allowed-input order, keeping all checks read-only and writing only the two requested artifacts in my exclusive scratch directory.\n",
+      "files": {
+        "inventory-01-codex.md": "e70a8fd36d9bd6b87d756a5234ae58c76589663ab726248a98cb37f7067b8c20",
+        "review-01-codex.md": "865b326c070ef4db3fd80d10bf107c33362879a8c768a89d160dae6be1067a6e"
+      },
+      "inventory_seal_seen_before_final": true,
+      "events_sha256": "90c4bd80797313cd81ddb0329b86c4933b66010c20c3fb3d4b7e24e7f4440557",
+      "final_sha256": "06bf153919157583d634aeb8402d27b534efd87d4310584924bfe13c7de4deaf",
+      "command_count": 24,
+      "usage": {
+        "input_tokens": 1689013,
+        "cached_input_tokens": 1551488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 18966,
+        "reasoning_output_tokens": 1945
+      },
+      "exit": 0
+    },
+    {
+      "reviewer": "02",
+      "thread_id": "01a08944-6c5c-7560-b7a6-93ad3fd03ea2",
+      "scratch": "D:/Pontius/tmp/solve-plan-cold-20260910/reviewer-02",
+      "probe": "CONTEXT_PROBE_NONE\n\nI checked my inherited context and found no memory summaries, prior project history, candidate verdicts, or findings. I\u2019ll follow the handoff\u2019s read order, seal the invariant inventory before reading rehearsal evidence, and write only the two authorized artifacts in my exclusive scratch directory.",
+      "files": {
+        "inventory-02-codex.md": "2f4812ee10c32b998c37cdb9c20baf4b01b3ac98ed5ebc15eb89d4042dd125d9",
+        "review-02-codex.md": "7116d055c57d7d687454feb38e4858d059244f4b07032aecba39ed84de48a13e"
+      },
+      "inventory_seal_seen_before_final": true,
+      "events_sha256": "561136431a520f5e69c5f9914265f38514b9e63f78871a58f99c60b76ce4e7ea",
+      "final_sha256": "b0844f5291eb0c574f4c5c20bf5165ecebaa27077d742320bf84b425a92f1f5c",
+      "command_count": 26,
+      "usage": {
+        "input_tokens": 1957050,
+        "cached_input_tokens": 1832448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 18548,
+        "reasoning_output_tokens": 1791
+      },
+      "exit": 0
+    }
+  ]
+}
