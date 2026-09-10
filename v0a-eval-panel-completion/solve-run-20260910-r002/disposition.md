@@ -1,0 +1,38 @@
+# Disposition: solve-run-20260910-r002 (drafter and checkpoint finalizer: Claude)
+
+Verdict of record: **CLEAN / SOUND for the bound retained-solve use** (Codex,
+`reviews/review-01-codex.md`; inventory `checks/review-01-inventory.md`; receipt
+`checks/review-01-verification.json`). No Critical or Important finding remains. The six
+r001 findings are closed by executable predicates; Codex independently verified the
+whole-row manifest, every packet file against the published blobs, the helper pin, the
+unchanged plan and prerequisite bindings, the six attribution cases on isolated synthetic
+journals, and the rehearsal teacher digest and census reconstructed from the captures.
+
+## Minor observations and rulings
+
+| Finding | Ruling | Handling |
+|---|---|---|
+| M-01 helper trusts the journal producer and exclusive checkout ownership; it does not prove path containment or that a result belongs to this attempt | Accepted; by design | The adopted tool is the sole journal producer in the retained checkout, which only the wrapper drives; the claim serializes callers. Recorded as a stated assumption, not fixed here. |
+| M-02 check runner prints rather than asserts, does not propagate failures via exit status, and does not inject claim/start or post-launch recording failures | Accepted, follow-up | Carry to the export packet's wrapper checks: assert observables, nonzero exit on any failure, and injected record-write failures. |
+| M-03 prose says exit 99 for all incomplete evidence; the code returns a nonzero child exit first | Accepted, follow-up | Both paths fail closed. The wording is corrected in the export packet's wrapper; the frozen r002 script is not edited, so the reviewed bytes run. |
+| M-04 `REHEARSAL` other than 0 or 1 yields malformed JSON in the log | Accepted, follow-up | Retained mode never sets it; the export wrapper validates the value. |
+
+No script byte is changed by this disposition: editing `invoke.sh` after a CLEAN review
+would require a new freeze and rehearsal for wording-level gains, and the retained
+invocation runs the reviewed bytes `f311ea90…`.
+
+## Review-count and coldness disclosure
+
+This round had one review, as the controller's reciprocal-review ruling prescribes. Codex
+states it was a follow-up in the reviewer's existing session with the r001 findings in
+context, not a cold pass, and that it does not satisfy a literal cold-review requirement.
+Whether that follow-up meets the gate for a FIX round is the controller's decision; the
+finalizer records it as disclosed and recommends acceptance, because the corrections were
+verified against the frozen bytes and by executed checks rather than trusted.
+
+## Status and next gate
+
+The packet is closed CLEAN. The next gate is the controller's exact one-shot authorization
+in the wording of `authorization-request.md`. Nothing has been invoked; the retained
+checkout, plan and source are unchanged. Follow-ups M-02, M-03 and M-04 carry to the export
+packet's wrapper.

@@ -1,0 +1,97 @@
+{
+  "publication": "6cae4f810e5a8d0ccde6918fea444392d64e6854",
+  "source": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "original_packet_hashes": {
+    "checks/refusal-c5.txt": "1a70931ce4c61d14f25745dca036476f2cd849712d67e80370c146cb6b1e7abc",
+    "checks/refusal-c4.txt": "2f9c50fdca02a06c4ae4e08bf21b3f9820e31f537cf8d5d66cf81f39bdd2e8ba",
+    "rehearsal/receipt.json": "3a5a7b80e88d84f6dbdb2d634d6e8be07aacb9a41ec2f82a82062936ba66b1f9",
+    "rehearsal/claim.d/claim.json": "3df8016940c8fcac519bc7a0c298c53cb3e192e2a3c9f8a623716f2fa55d39a4",
+    "identity.json": "4128196e7934b7eb3435b13d2f698d9dab7b355cb5bca441ff588a69248bcc4e",
+    "checks/wrapper-checks.jsonl": "4ae3cf9124e002aed2b617affd4bf1f63a4dcc6abd2c764fe1b85cab9bfc7029",
+    "authorization-request.md": "537e6840d500b34e81913aa802c5c8f0352c68fa1771f2c1fa1379cbd0b0afcb",
+    "rehearsal/journal-attribution.txt": "56912027ba2f226862f931b29d57b0f20143e4d0158b50bf81decf95fe913f68",
+    "checks/wrapper-checks.sh": "69cbda1b41da53fcfa2cd8b1eab94b3afda74258bbec6d7c68e0a9c784eb1dca",
+    "checks/refusal-c6.txt": "7978887caf74e8c4a9ac1f7b461d04e960ccf62970996e43275f0e634102f8f9",
+    "rehearsal/solve-stdout.json": "83ea709c37276fab537a7e19466e380c648527d2dbb8314f641d250fa05b231a",
+    "rehearsal/solve-journal-row.jsonl": "94a2b01c74c73e8b362a9012bcbdfcce35c3dcae0cfe5a56bd0e12acc25af969",
+    "checks/race-caller-a.txt": "9d414767aa3505497f58095733def553a68551bb434c6cd2a381cb02b819c977",
+    "checks/refusal-c3.txt": "a1e6e1f1ae973dc615853806ef67e176f0d65c44051f81fd8bec45052da2c210",
+    "journal_attribution.py": "a20e760a7e97eb5e37432b81e0dc3e3048bd582299c7e938fc83c8d319d00b14",
+    "checks/refusal-c2.txt": "aa08d55e89389753b8c0cf3fd871f569a46dec6ce128501d10cc3bb4b4e22279",
+    "rehearsal/chain-receipt.json": "ac6ff15aafb933c3de64abbbda64953da544c4907550d6995632013a8bc1dbd2",
+    "campaign-note.md": "bc168e12ee9ae567d3802ef0c05fc00116cbfbc656f1487b8dbc3c2550d5ad08",
+    "plans/solve.json": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+    "rehearsal/invocation-log.jsonl": "cad96d4f77c53460c2929b6fc3806c5052f2bb278dfb2236dd4e60f131113912",
+    "checks/race-caller-b.txt": "cef9e0a2b2d9d7a671a376e3b65417f7fb47756389509ff1feed0a8c7702d1a6",
+    "checks/refusal-c1.txt": "d5f981d415aa04cdef1c3b018e9cf9b9ffb63ef0b23013a76c65c002bb885afc",
+    "checks/refusal-c7.txt": "dc8df039777aee9411a26b2f1102b36721d457f0f8f03f80ff12e2abdce0c6d9",
+    "rehearsal/retained-files.txt": "e14ba222453541ac128e7f395f28683e5c42c1926de97ac944d352298f34b38e",
+    "rehearsal/solve-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "invoke.sh": "f311ea90f4e4d8b10fb9e7d7f92a1f11ebbe734983854dd2898854f5d543e67d",
+    "manifest.sha256": "8acaaa389fc152e4127e98fe879df758fd819961085c717dd5c2601b9d145f1a",
+    "handoff.md": "4c7f022465d73d73c21df72d889ae25b62055dba0376a6a3ade3101c34faf174",
+    "candidate.json": "5f5c06bcfa324c91b30de75b90517073ecc7db5d0f5524c5f48efc664600c314"
+  },
+  "manifest_sha256": "8acaaa389fc152e4127e98fe879df758fd819961085c717dd5c2601b9d145f1a",
+  "plan_sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+  "helper_sha256": "a20e760a7e97eb5e37432b81e0dc3e3048bd582299c7e938fc83c8d319d00b14",
+  "prerequisites": {
+    "capacity": "29f532a900289c3e7b274646a7fc7332ff1a0aa9e6d74c332319668783d89e53",
+    "decision": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf",
+    "preflight": "8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f"
+  },
+  "status": "?? plans/",
+  "journal_rows_before": 59,
+  "journal_sha256_before": "a9dca06b66472b567f0957d7f054e4bad330eb83b534818901eb079cdc36c66e",
+  "index_sha256": "4e52cbc3617eec2e9d0af6102ec557a8df2f2952784179be3abcdc0c01c73743",
+  "retained_status_sha256": "b1d86ba73b2fb6e83d3fd8517e456c2f213ab52c424b41cf717cf4a47e36e619",
+  "teacher_sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3",
+  "hands": 1081,
+  "action_counts": {
+    "check": 536,
+    "raise-to-2": 545
+  },
+  "ties": 0,
+  "peak_mib": 786.9140625,
+  "receipt_cases": 14,
+  "independent_helper_checks": [
+    {
+      "case": "absent",
+      "exit": 3,
+      "stdout": "ABSENT 1",
+      "row_written": false
+    },
+    {
+      "case": "extra",
+      "exit": 4,
+      "stdout": "EXTRA 3",
+      "row_written": false
+    },
+    {
+      "case": "wrong_commit",
+      "exit": 5,
+      "stdout": "MISMATCH source_commit wrong",
+      "row_written": false
+    },
+    {
+      "case": "wrong_digest",
+      "exit": 5,
+      "stdout": "MISMATCH output_sha256 result.json",
+      "row_written": false
+    },
+    {
+      "case": "bound",
+      "exit": 0,
+      "stdout": "BOUND result.json bb157861a164e35cdde9d726b0af9ce2765a8f530c35d9e45732b94ee65e9557",
+      "row_written": true
+    },
+    {
+      "case": "bound_crlf",
+      "exit": 0,
+      "stdout": "BOUND result.json bb157861a164e35cdde9d726b0af9ce2765a8f530c35d9e45732b94ee65e9557",
+      "row_written": true
+    }
+  ],
+  "context": "follow-up with r001 context; not cold",
+  "retained_run_invoked": false
+}
