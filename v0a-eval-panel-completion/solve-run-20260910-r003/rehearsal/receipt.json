@@ -1,0 +1,114 @@
+{
+ "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+ "census": {
+  "action_categories": {
+   "check": 536,
+   "raise-to-2": 545
+  },
+  "completed_hands": 1081,
+  "exact_ties": 0,
+  "nonzero_tie": "absent_in_completed_pool",
+  "production_seconds_max": 0.0668,
+  "production_seconds_mean": 0.014,
+  "production_seconds_min": 0.0131,
+  "production_seconds_sum": 15.12
+ },
+ "claim": {
+  "claimed_utc": "2026-09-10T05:05:46Z",
+  "pid": 346,
+  "rehearsal": 1,
+  "root": "/d/Pontius-worktrees/eval-panel-rehearsal-20260910c"
+ },
+ "command": "invoke.sh with REHEARSAL=1 and SOLVE_ROOT=<snapshot>: the same arguments, environment and plan bytes as the retained invocation",
+ "date": "2026-09-10",
+ "ended_utc": "2026-09-10T05:06:03Z",
+ "envelope": {
+  "memory_mib": 2048,
+  "observed": "wall 16 s (2.7% of 600); peak 787 MiB (38% of 2048)",
+  "seconds": 600
+ },
+ "environment": [
+  "SystemRoot",
+  "TEMP",
+  "TMP",
+  "PONTIUS_GIT",
+  "PYTHONDONTWRITEBYTECODE"
+ ],
+ "evidence": false,
+ "executable": "<snapshot>/.venv/Scripts/python.exe",
+ "exit": 0,
+ "journal_attribution": "BOUND experiments/results/runs/4640ac77cd9f47b3a804f7840e07b781/result.json 0c451c97b1725cb98e574740f8a3c9629d52893bc2670aa58c686dcc06fdefa4",
+ "journal_row": {
+  "duration_seconds": 16.07,
+  "output": "experiments/results/runs/4640ac77cd9f47b3a804f7840e07b781/result.json",
+  "output_sha256": "0c451c97b1725cb98e574740f8a3c9629d52893bc2670aa58c686dcc06fdefa4",
+  "source_verified": true,
+  "status": "completed",
+  "summary": "solve completed; 1083 observations"
+ },
+ "journal_row_sha256": "a2355a5abc5ed139c902362de361f815f839b3a94344aca62a9ec6b618246242",
+ "journal_rows": {
+  "after": "60",
+  "before": 59
+ },
+ "kind": "rehearsal-receipt",
+ "label": [
+  "rehearsal only; feeds nothing",
+  "produced by the winning caller of the two-caller race check C9 (checks/)",
+  "r003 wrapper: prose aligned to the executable exit precedence; REHEARSAL validated",
+  "the snapshot was removed after these records were copied"
+ ],
+ "plan_sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+ "python": "3.14.6",
+ "result": {
+  "cleanup_verified": true,
+  "coverage": "declared-full",
+  "errors": [],
+  "observations": 1083,
+  "peak_job_memory_mib": 787.1,
+  "permutation_sha256": "344e7eeb06d72b97313f470880b8d169c4674e83bb440de827fa6fb87d97648a",
+  "phase": "solve",
+  "phase_complete": true,
+  "plan_sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+  "resource_state_verified": true,
+  "status": "completed",
+  "worker_exit_code": 0,
+  "worker_seconds": 15.69
+ },
+ "retained_files": {
+  "result.json": {
+   "bytes": 527216,
+   "sha256": "0c451c97b1725cb98e574740f8a3c9629d52893bc2670aa58c686dcc06fdefa4"
+  },
+  "runtimes.json": {
+   "bytes": 343,
+   "sha256": "20681b3efc866d8fbd34f1e10fd6a82ffafa795e9f2a267211844bbee8f7b0fc"
+  },
+  "teacher.json": {
+   "bytes": 241587,
+   "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+  }
+ },
+ "snapshot": "D:/Pontius-worktrees/eval-panel-rehearsal-20260910c (detached, disposable, removed)",
+ "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+ "source_sha256_observed": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+ "started_utc": "2026-09-10T05:05:46Z",
+ "stderr_bytes": 0,
+ "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "stdout_sha256_lf_normalized": "0c451c97b1725cb98e574740f8a3c9629d52893bc2670aa58c686dcc06fdefa4",
+ "stdout_sha256_raw_crlf": "836c4f8da6446460b575bbcc8098474cd90508b5d038336cb907825ef4fb309d",
+ "teacher": {
+  "bytes": 241587,
+  "name": "teacher.json",
+  "note": "identical to the r001 and r002 rehearsal teacher digests (deterministic); a later retained run may be compared as a diagnostic only",
+  "retention": "complete",
+  "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+ },
+ "wall_seconds": 16,
+ "wrapper_checks": {
+  "cases": 18,
+  "failures": 0,
+  "file": "checks/wrapper-checks.jsonl"
+ },
+ "wrapper_evidence": "complete"
+}
