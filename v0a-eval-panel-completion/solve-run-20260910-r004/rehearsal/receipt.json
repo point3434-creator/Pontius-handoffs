@@ -1,0 +1,115 @@
+{
+ "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+ "census": {
+  "action_categories": {
+   "check": 536,
+   "raise-to-2": 545
+  },
+  "completed_hands": 1081,
+  "exact_ties": 0,
+  "nonzero_tie": "absent_in_completed_pool",
+  "production_seconds_max": 0.0713,
+  "production_seconds_mean": 0.0146,
+  "production_seconds_min": 0.0137,
+  "production_seconds_sum": 15.74
+ },
+ "claim": {
+  "claimed_utc": "2026-09-10T05:43:32Z",
+  "pid": 1461,
+  "rehearsal": 1,
+  "root": "/d/Pontius-worktrees/eval-panel-rehearsal-20260910e"
+ },
+ "command": "invoke.sh with REHEARSAL=1 and SOLVE_ROOT=<snapshot>: the same arguments, environment and plan bytes as the retained invocation",
+ "date": "2026-09-10",
+ "ended_utc": "2026-09-10T05:43:51Z",
+ "envelope": {
+  "memory_mib": 2048,
+  "observed": "wall 17 s (2.8% of 600); peak 786 MiB (38% of 2048)",
+  "seconds": 600
+ },
+ "environment": [
+  "SystemRoot",
+  "TEMP",
+  "TMP",
+  "PONTIUS_GIT",
+  "PYTHONDONTWRITEBYTECODE"
+ ],
+ "evidence": false,
+ "executable": "<snapshot>/.venv/Scripts/python.exe",
+ "exit": 0,
+ "journal_attribution": "BOUND experiments/results/runs/016953eb9b264857a3338a7ceb82f841/result.json 9add88b2210c038cc0d473d513d98e027858baf056e612c50f85a3be0f373662",
+ "journal_row": {
+  "duration_seconds": 16.97,
+  "output": "experiments/results/runs/016953eb9b264857a3338a7ceb82f841/result.json",
+  "output_sha256": "9add88b2210c038cc0d473d513d98e027858baf056e612c50f85a3be0f373662",
+  "source_verified": true,
+  "status": "completed",
+  "summary": "solve completed; 1083 observations"
+ },
+ "journal_row_sha256": "a41ef415a6483f25ca9a60b4671aba485424cd15b85de575e0dbbe1478fd2eac",
+ "journal_rows": {
+  "after": "60",
+  "before": 59
+ },
+ "kind": "rehearsal-receipt",
+ "label": [
+  "rehearsal only; feeds nothing",
+  "produced by the winning caller of the two-caller race check C9 (checks/)",
+  "r004 wrapper: unset and empty REHEARSAL distinguished; claim-consumption scope stated; race case asserts the caller-status pair",
+  "the snapshot was removed after these records were copied"
+ ],
+ "plan_sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+ "python": "3.14.6",
+ "result": {
+  "cleanup_verified": true,
+  "coverage": "declared-full",
+  "errors": [],
+  "observations": 1083,
+  "peak_job_memory_mib": 786.5,
+  "permutation_sha256": "344e7eeb06d72b97313f470880b8d169c4674e83bb440de827fa6fb87d97648a",
+  "phase": "solve",
+  "phase_complete": true,
+  "plan_sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+  "resource_state_verified": true,
+  "status": "completed",
+  "worker_exit_code": 0,
+  "worker_seconds": 16.4
+ },
+ "retained_files": {
+  "result.json": {
+   "bytes": 527344,
+   "sha256": "9add88b2210c038cc0d473d513d98e027858baf056e612c50f85a3be0f373662"
+  },
+  "runtimes.json": {
+   "bytes": 343,
+   "sha256": "7a3a7429cb68cfc19094555e93ea118eeab91dbc6ac763b6585533f420bba763"
+  },
+  "teacher.json": {
+   "bytes": 241587,
+   "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+  }
+ },
+ "snapshot": "D:/Pontius-worktrees/eval-panel-rehearsal-20260910e (detached, disposable, removed)",
+ "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+ "source_sha256_observed": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+ "started_utc": "2026-09-10T05:43:32Z",
+ "stderr_bytes": 0,
+ "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "stdout_sha256_lf_normalized": "9add88b2210c038cc0d473d513d98e027858baf056e612c50f85a3be0f373662",
+ "stdout_sha256_raw_crlf": "a064e50c4975f6f0912b1b52564ae296c7857be0d3e73e58542f1a0da85cb87a",
+ "teacher": {
+  "bytes": 241587,
+  "name": "teacher.json",
+  "note": "identical to the r001, r002 and r003 rehearsal digests (deterministic); the retained run may be compared as a diagnostic only",
+  "retention": "complete",
+  "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+ },
+ "wall_seconds": 17,
+ "wrapper_checks": {
+  "cases": 20,
+  "failures": 0,
+  "file": "checks/wrapper-checks.jsonl",
+  "gate_negative_control": "checks/gate-negative-control.jsonl"
+ },
+ "wrapper_evidence": "complete"
+}

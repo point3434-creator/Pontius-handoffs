@@ -1,0 +1,11 @@
+--- D:/Pontius-handoffs/v0a-eval-panel-completion/solve-run-20260910-r004/invoke.sh	2026-09-10 01:39:42.296717900 -0400
++++ D:/Pontius/tmp/solve-r004-checks/mutant-start-record-failure.sh	2026-09-10 01:43:23.686115600 -0400
+@@ -68,7 +68,7 @@
+   "$GITEXE" -C "$ROOT" symbolic-ref -q HEAD > /dev/null \
+     && stop 85 "rehearsal root must be a detached disposable worktree"
+ fi
+-LOG="$OUT/invocation-log.jsonl"
++LOG="$OUT/claim.d"  # MUTANT: unwritable start record
+ 
+ # --- preconditions: minimal predicates, each its own exit code ------------------------
+ [ -d "$ROOT" ] || stop 90 "checkout missing"

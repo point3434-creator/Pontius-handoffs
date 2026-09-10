@@ -1,0 +1,188 @@
+{
+  "kind": "retained-solve-invocation-binding",
+  "status": "prepared and rehearsed (r004, FIX of solve-run-20260910-r003: the race check asserts its caller-status pair, an explicitly empty REHEARSAL is refused, and the claim-consumption scope is stated); awaiting one cold Codex review and then the controller's explicit one-shot authorization; not executed",
+  "date": "2026-09-10",
+  "drafter": "Claude",
+  "design_step": "7, first of three retained phases (solve, export, agreement); each phase has its own plan, rehearsal, review and one-shot authorization",
+  "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "source_tree": "3d2fe79d2af20125e322dd4a668335e789810863",
+  "source_branch": "codex/eval-panel-completion-adopted",
+  "source_adoption": [
+    "r003/adoption.md; controller: \"I approve all.\" in r003/adoption-authorization.md",
+    "tree identical to the reviewed completion/r003 candidate 7ca821802c949b047becf6599d603b3b63d51fa7"
+  ],
+  "source_sha256_observed": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+  "source_sha256_note": "begin_run's source digest as observed in the rehearsal runtimes.json; the retained invocation must report the same value with source_verified true",
+  "execution_checkout": {
+    "root": "D:/Pontius-worktrees/eval-panel-solve-20260910",
+    "branch": "claude/eval-panel-solve",
+    "head": "1c7067448106cfa2aca3d57be879842d72293c61",
+    "environment": [
+      "uv sync --locked --offline --group dev",
+      "--python C:/Users/point/AppData/Local/Python/pythoncore-3.14-64/python.exe"
+    ],
+    "interpreter": "D:/Pontius-worktrees/eval-panel-solve-20260910/.venv/Scripts/python.exe",
+    "interpreter_version": "3.14.6",
+    "numpy": "2.5.2",
+    "source_scope_status": "clean; only the untracked out-of-scope plans/ directory is present",
+    "tracked_run_directories_at_head": [
+      "0c238b5079b546989b8157b8e77720cd",
+      "548e9da4e12e425ab3d18cd22fa89deb",
+      "5d1744d5bc9140f19faceada52e8b62b",
+      "6cb7f0f8bfb6416d8c7474040e0d7f36",
+      "7121fdab7d184a08b47c3c9ff6608711",
+      "a241f95ab909419084aff596c2a79b8f",
+      "b7e55f19f6434ece899d58e2f98fd3cf"
+    ],
+    "preserved": "permanently; to be mirrored under the existing C:/PontiusBackup/Pontius-worktrees convention"
+  },
+  "plan": {
+    "phase": "solve",
+    "version": "pontius-eval-panel-completion-plan-v1",
+    "path": "D:/Pontius-worktrees/eval-panel-solve-20260910/plans/solve.json",
+    "packet_copy": "plans/solve.json (byte-identical to r001, r002 and r003)",
+    "sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+    "bytes": 12365,
+    "coverage": "declared-full",
+    "pool_count": 1081,
+    "hand_count": 1081,
+    "board": [
+      "2c",
+      "7d",
+      "9h",
+      "Js",
+      "Qc"
+    ],
+    "stacks": 4,
+    "pool_seed": "5e4f7c2a9b1d3e6f8a0c2b4d6e8f1a3c5b7d9e0f2a4c6e8b1d3f5a7c9e0b2d4f",
+    "permutation_sha256": "344e7eeb06d72b97313f470880b8d169c4674e83bb440de827fa6fb87d97648a",
+    "hand_universe_sha256": "18953f113d65c6e25111ac9c2441942e4145051e169261fecd0ed0b9e5be41ed",
+    "resource": {
+      "seconds": 600,
+      "memory_mib": 2048
+    },
+    "runtime": {
+      "python": "3.14.6"
+    },
+    "inputs": {},
+    "written_from": [
+      "the adopted bridge at the source commit: prefix_document(), hand_universe_digest(),",
+      "strength_blind_permutation() with the retained capacity run's pool_seed;",
+      "indent=1 sort_keys ASCII JSON, LF; board, prefix, universe digest and permutation",
+      "digest equal the retained capacity run's plan and result",
+      "(prerequisite-run-20260909, run a89932e7)"
+    ],
+    "admission": "admitted by the adopted validate_plan (rehearsal: plan_sha256 in result.json equals this digest)"
+  },
+  "prerequisites": {
+    "note": "absolute path plus SHA-256, exactly the digests baked into PREREQUISITES in tools/v0a_eval_panel_completion.py at the source commit; the validator refuses any other bytes and re-derives the pool order from pool_seed against the capacity result",
+    "capacity": {
+      "path": "D:/Pontius-worktrees/eval-panel-prerequisite-20260909/experiments/results/runs/a89932e7730e47b8b26b3dafad4f0c41/result.json",
+      "sha256": "29f532a900289c3e7b274646a7fc7332ff1a0aa9e6d74c332319668783d89e53",
+      "bound_by": "journal row at 642858d on claude/eval-panel-prerequisite; prerequisite-run-20260909/invocations/retained-files.txt"
+    },
+    "preflight": {
+      "path": "D:/Pontius-worktrees/eval-panel-prerequisite-20260909/experiments/results/runs/7ce5ab4fb1304abfa592e780d675d9b7/result.json",
+      "sha256": "8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f",
+      "bound_by": "journal row at 642858d on claude/eval-panel-prerequisite; prerequisite-run-20260909/invocations/retained-files.txt"
+    },
+    "decision": {
+      "path": "D:/Pontius-handoffs/v0a-eval-panel-completion/prerequisite-run-20260909/resource-decision.md",
+      "sha256": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf",
+      "bound_by": "handoffs commit 2943f93; controller: \"that envelope looks reasonable we will adopt it.\""
+    }
+  },
+  "command": [
+    "<checkout>/.venv/Scripts/python.exe",
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "<checkout>/tools/v0a_eval_panel.py",
+    "run",
+    "--reviewed-commit",
+    "1c7067448106cfa2aca3d57be879842d72293c61",
+    "--plan",
+    "<checkout>/plans/solve.json"
+  ],
+  "environment": {
+    "scrubbed": true,
+    "retained": [
+      "SystemRoot",
+      "TEMP",
+      "TMP"
+    ],
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "cwd": "<checkout>",
+    "development_flag": false,
+    "inherited_run_context": false
+  },
+  "invocation": {
+    "script": "invoke.sh (SHA-256 160cfcecfb96ee8e565594c998704648b9ad0d1516f3fd53dbcedae1bb95287b); helper journal_attribution.py (SHA-256 pinned inside the script)",
+    "retained_mode": [
+      "REHEARSAL takes the default 0 only when it is unset; any set value other than 0 or 1, including an empty string, is refused (exit 84)",
+      "checkout and packet are fixed constants; SOLVE_ROOT or REHEARSAL_PK in the environment is refused (88)",
+      "authorization.md must exist (89)",
+      "read-only preconditions, each with its own exit code: checkout present (90), HEAD equals the source commit (91), plan digest (92), prerequisite digests (93), helper digest (82), CPython 3.14.6 (94), no run directory beyond those tracked at HEAD (95), clean source scope (96), no prior claim or capture (97), journal readable (81)",
+      "exclusive claim: mkdir invocations/claim.d (atomic; a second caller exits 97; the claim survives interruption and is never removed by the script). A refused mkdir is a refusal to claim whether the cause is an existing claim or an unwritable record directory; both keep the launch from happening and the message states the observed cause",
+      "checked claim and start records before the launch; a failed record stops without a launch (98)",
+      "exactly one launch with noclobber captures; afterwards every capture, digest and retained-file write is checked and the journal row is attributed by the helper (BOUND / ABSENT / EXTRA / MISMATCH)"
+    ],
+    "rehearsal_mode": [
+      "REHEARSAL=1 requires an explicit SOLVE_ROOT (87) that is not the retained checkout (86) and is a detached worktree (85); records go under rehearsal/ (or REHEARSAL_PK/rehearsal/ for fault-path checks)",
+      "the same preconditions, claim, launch and evidence path as retained mode; not evidence"
+    ],
+    "one_shot": "an interrupted, failed or ambiguous invocation consumes the authorization; its records are kept; it is never retried as if it had not happened; an abandoned claim is the controller's decision",
+    "fault_path_checks": "checks/wrapper-checks.sh: 20 executed cases, 0 failures, the runner asserting each observable and exiting nonzero on any failure. It opens with a negative control that feeds the gate a deliberate mismatch and confirms it records a failing row (checks/gate-negative-control.jsonl), so the suite is known to depend on its comparisons. 11 refusals before launch (including three rejected REHEARSAL values, one of them empty), 6 attribution outcomes, 1 child-failure precedence case on a deliberately broken venv, 1 two-caller race asserting both the caller-status pair and the single launch. One case (C12) runs a labeled single-line mutant, whose diff and digest are retained, because the host filesystem offers no reliable way to deny a write to a directory this user owns.",
+    "exit_status": [
+      "1. any nonzero status from the solve child is returned unchanged, whether or not the evidence is complete; the end record still states which evidence is missing",
+      "2. otherwise a child that exited 0 with incomplete captures, digests, retained-file listing or journal attribution yields 99 (EVIDENCE INCOMPLETE)",
+      "3. otherwise 0. No path reports success with incomplete evidence"
+    ],
+    "claim_scope": "A precondition refusal (exits 81-97 in the mode and precondition sections) happens before claim.d exists: it consumes nothing, and the packet may be called again once the refused condition is corrected. Every failure from the successful claim onward leaves the claim consumed and is never retried. What an abandoned claim means is the controller's decision."
+  },
+  "retention": {
+    "run_directory": [
+      "<checkout>/experiments/results/runs/<uuid>/ with result.json, runtimes.json, teacher.json",
+      "gitignored by /experiments/results/runs/; preserved on disk and mirrored"
+    ],
+    "journal": [
+      "<checkout>/execution_journal.jsonl",
+      "tracked; one row per invocation; binds result.json by sha256"
+    ],
+    "status": "<checkout>/STATUS.md (tracked; regenerated by finish_run)",
+    "captured": [
+      "stdout",
+      "stderr",
+      "exit code",
+      "wall time",
+      "plan sha256",
+      "claim record",
+      "journal attribution (BOUND row copied only when it binds this checkout's result file)",
+      "result.json, runtimes.json and teacher.json sha256 (invocations/retained-files.txt)"
+    ],
+    "commit": [
+      "journal and STATUS.md committed on claude/eval-panel-solve",
+      "after the invocation, never before"
+    ]
+  },
+  "expected_outputs": {
+    "teacher.json": "retained artifact: canonical pontius-river-teacher-v1 JSON with the board, the full permutation, 1081 hands and 1081 rows; deterministic for identical source and plan",
+    "result.json": "one report: phase solve, coverage declared-full, phase_complete true, cleanup_verified true, nonzero_tie validated_first or absent_in_completed_pool, teacher_sha256",
+    "journal": "exactly one row, source_verified true"
+  },
+  "rehearsal": [
+    "rehearsal/ (receipt.json, invocation-log.jsonl, claim.d/claim.json, journal-attribution.txt, captures); rehearsal/chain-receipt.json carried unchanged",
+    "disposable detached snapshot D:/Pontius-worktrees/eval-panel-rehearsal-20260910e at the same commit; produced by the winning caller of race check C9; a second snapshot (...f) with a deliberately broken venv served the child-failure case; NOT evidence; both removed after the records were copied"
+  ],
+  "next_phases": "campaign-note.md: export binds this run's teacher.json and result.json by absolute path and sha256; agreement binds the export's teacher.json, blueprint.json and result.json plus a pre-registered witness bank; neither is requested or authorized here",
+  "supersedes": "solve-run-20260910-r003 (cold review NOT CLEAN over three Minors; plan bytes unchanged)",
+  "manifest_rule": "manifest.sha256 rows are \"<sha256>  <path>\" over raw file bytes, sorted as whole rows in byte order (LC_ALL=C), LF; the packet digest is the SHA-256 of that file; handoff.md, candidate.json, disposition-related files and the manifest itself are outside it",
+  "review_history": [
+    "solve-run-20260910: two Codex cold reviews NOT CLEAN (four Important wrapper defects)",
+    "solve-run-20260910-r002: follow-up review CLEAN / SOUND; cold review NOT CLEAN over one Minor (exit-99 prose omitted child-status precedence), engineering verdict SOUND",
+    "solve-run-20260910-r003: cold review NOT CLEAN over three Minors (unasserted race pair, empty REHEARSAL normalised, blanket claim-consumption wording), engineering verdict operationally SOUND for the bound retained solve",
+    "solve-run-20260910-r004: this packet; plan bytes unchanged throughout"
+  ]
+}
