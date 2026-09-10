@@ -1,0 +1,677 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+______________________ test_behavior[test_eval_protocol] ______________________
+
+module_name = 'test_eval_protocol'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+        module = importlib.import_module(module_name)
+        suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+        assert suite.countTestCases(), f"Empty suite: {module_name}"
+        output = io.StringIO()
+        result = unittest.TextTestRunner(stream=output, verbosity=2).run(suite)
+        OUTCOMES.append(
+            dict(
+                module=module_name,
+                tests=result.testsRun,
+                skipped=len(result.skipped),
+                passed=result.wasSuccessful(),
+                output=output.getvalue(),
+            )
+        )
+        if result.testsRun == len(result.skipped):
+            pytest.skip(output.getvalue())
+>       assert result.wasSuccessful(), output.getvalue()
+E       AssertionError: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) ... 
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ready_evidentiary', value=True) ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ready_evidentiary', value=None) ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ready_evidentiary', value='false') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='interrupted_response_count', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='interrupted_response_count', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='requested_hands', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='requested_hands', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='completed_hands', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='completed_hands', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ordinal', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ordinal', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='button', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='button', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='index', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='index', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='seat', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='seat', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='action_index', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='action_index', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='missing_preparation', value='credited_seconds') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='missing_preparation', value='producer_status') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='preparation_artifacts', value='') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ready_evidentiary', value=True) ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ready_evidentiary', value=None) ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ready_evidentiary', value='false') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='interrupted_response_count', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='interrupted_response_count', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='requested_hands', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='requested_hands', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='completed_hands', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='completed_hands', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ordinal', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ordinal', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='button', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='button', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='index', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='index', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='seat', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='seat', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='action_index', value='bool') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='action_index', value='float') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_preparation', value='credited_seconds') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_preparation', value='producer_status') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_preparation', value='artifact_sha256s') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='preparation_artifacts', value='') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='schema_version') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='provider') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='provider_outcome') ... FAIL
+E           test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='preparation_use') ... FAIL
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ready_evidentiary', value=True)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ready_evidentiary', value=None)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ready_evidentiary', value='false')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='interrupted_response_count', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='interrupted_response_count', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='requested_hands', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='requested_hands', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='completed_hands', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='completed_hands', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ordinal', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='ordinal', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='button', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='button', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='index', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='index', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='seat', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='seat', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='action_index', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='action_index', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='missing_preparation', value='credited_seconds')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='missing_preparation', value='producer_status')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='blueprint-v1', mutation='preparation_artifacts', value='')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'hit' != 'excluded'
+E         - hit
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': True, 'classification': 'hit', 'causes': [], 'river_hand': '5s8h', 'observed_table_hits': 1, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ready_evidentiary', value=True)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ready_evidentiary', value=None)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ready_evidentiary', value='false')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='interrupted_response_count', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='interrupted_response_count', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='requested_hands', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='requested_hands', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='completed_hands', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='completed_hands', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ordinal', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='ordinal', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='button', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='button', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='index', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='index', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='seat', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='seat', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='action_index', value='bool')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='action_index', value='float')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_preparation', value='credited_seconds')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_preparation', value='producer_status')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_preparation', value='artifact_sha256s')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='preparation_artifacts', value='')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='schema_version')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='provider')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='provider_outcome')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ======================================================================
+E         FAIL: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) (strategy='baseline-rules-v1', mutation='missing_decision', value='preparation_use')
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002-red\tests\test_eval_protocol.py", line 99, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             self.assertEqual(result['classification'], 'excluded', result)
+E             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         AssertionError: 'unsupported' != 'excluded'
+E         - unsupported
+E         + excluded
+E          : {'chip_eligible': True, 'chips': -2, 'agreement_eligible': False, 'classification': 'unsupported', 'causes': ['agreement:baseline_outside_declared_root'], 'river_hand': '5s8h', 'observed_table_hits': 0, 'river_records': 1}
+E         
+E         ----------------------------------------------------------------------
+E         Ran 1 test in 1.720s
+E         
+E         FAILED (failures=49)
+E         
+E       assert False
+E        +  where False = wasSuccessful()
+E        +    where wasSuccessful = <unittest.runner.TextTestResult run=1 errors=0 failures=49>.wasSuccessful
+
+tests\test_pontius.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_pontius.py::test_behavior[test_eval_protocol] - AssertionEr...
+1 failed, 49 deselected in 7.86s

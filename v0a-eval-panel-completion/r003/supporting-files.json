@@ -1,0 +1,130 @@
+[
+  {
+    "path": "inputs/accepted-brief.md",
+    "sha256": "e100b0e77bb05ceafafa557553ccacae5952627c8becdb1d3d726228d97e7128"
+  },
+  {
+    "path": "inputs/accepted-design.md",
+    "sha256": "6c69179ba114dfe83c9ef27121c7819e34ebda5cd0f7057265e1e5aa789c43d6"
+  },
+  {
+    "path": "inputs/completion-brief.md",
+    "sha256": "1822e87a2b150b0d2a13f1b3e9cf1eb3d0a83c48468f3b100718c29407a8e987"
+  },
+  {
+    "path": "inputs/continuation-authorization.md",
+    "sha256": "6b09e33b6bff0f4599cc3dd804ae55bfa6aaa1f45e8831040becebbf187783d5"
+  },
+  {
+    "path": "inputs/controller-rulings-addendum-2.md",
+    "sha256": "0b708f7619c25167a51d55f8af00baa3cedc3e8a85e0a80511c18bd178e93dfa"
+  },
+  {
+    "path": "inputs/correction-authorization.md",
+    "sha256": "b88a16216550509adb3b0e30b55370c580024a8116ee1bd583112d884634a7f7"
+  },
+  {
+    "path": "inputs/dependencies.json",
+    "sha256": "1296b75d25fefb10eefc8a3d98bfe847aa2544f4c2d98d7709cb2ae499d97956"
+  },
+  {
+    "path": "inputs/parent-manifest.sha256",
+    "sha256": "6e36bb41bcab8c47aed1fc87066e40cde857bee24e2f08bfdc5cb80d28604cd5"
+  },
+  {
+    "path": "inputs/r003-authorization.md",
+    "sha256": "bd1d340f851c8b6189ffe05d46bce34a38bdaec7e1bc8a31f145dfd7c9ac0d99"
+  },
+  {
+    "path": "inputs/README.md",
+    "sha256": "358f92ae693fe9f916fe7d6d3f4df85b8edcec5c2f3d58c4a3849cd24309e109"
+  },
+  {
+    "path": "inputs/resource-decision.md",
+    "sha256": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf"
+  },
+  {
+    "path": "inputs/workflow.md",
+    "sha256": "9dba2830b9a9854556f87cdb2cd00e007c1a7a807e9ee60522dc40877147e630"
+  },
+  {
+    "path": "checks/boundary-plan.md",
+    "sha256": "2e0536055164d7d12bd69f736f34428816fb1e1d7ed4aaaa8f268df697e00dd3"
+  },
+  {
+    "path": "checks/focused-journal.jsonl",
+    "sha256": "a8da0257b08f3b3ed91f2cfa4ae199cca75994dae329622e1a505c59b869c61f"
+  },
+  {
+    "path": "checks/focused-receipt.json",
+    "sha256": "0f38faa9a436483943ea9392f27bac932eda2f9a76985e067ef618aa62b87c7e"
+  },
+  {
+    "path": "checks/focused-result.json",
+    "sha256": "906fe72e7ee8c2229e0b50ea5ec46040819a0f2312fa116864fb821d0a863633"
+  },
+  {
+    "path": "checks/focused-stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "checks/focused-stdout.txt",
+    "sha256": "cdf5eba0150cbf6351f5deda7ce19d65204ca38c52e6f6b4a4415ab84878efc6"
+  },
+  {
+    "path": "checks/freeze-r003.py",
+    "sha256": "ef1c46ebc6c999879c479b90610545720102840c02173d3499f13cafe4920964"
+  },
+  {
+    "path": "checks/parent-disposition.md",
+    "sha256": "47ce1088fb6c51124e82d05e953aaf607ba0c9064e3cd9aeedbd77c06ad4dac0"
+  },
+  {
+    "path": "checks/parent-finalizer-framing-diagnostic.json",
+    "sha256": "87c5496b7ee9ecd695cb2d57d72c76ca7a2ffa6702f7a4f1ddcea7d1fe028b5b"
+  },
+  {
+    "path": "checks/parent-finalizer-framing-diagnostic.py",
+    "sha256": "377c5e083fd3355a0e29c66cde372a888557132b53afc04c5e81912bd93bc242"
+  },
+  {
+    "path": "checks/parent-finalizer-framing-journal.jsonl",
+    "sha256": "21b0086eacdc170cd8567d01a59949d4b868df8f8ac55125fae4ccad98769b2f"
+  },
+  {
+    "path": "checks/parent-finalizer-framing-result.json",
+    "sha256": "4d9f5bc4b3121c5849f3b3b61f2ab6243e5f131e1c001c27bda137a74ff8a437"
+  },
+  {
+    "path": "checks/parent-repair-plan.md",
+    "sha256": "864b39fb13d34b024c62175c1b193161bd4bef9dbd6e614349e6e08290afc9ba"
+  },
+  {
+    "path": "checks/red-journal.jsonl",
+    "sha256": "eba0b658a1eeabb631211fd582851cda5b76c83a83c5d05d42c4f8bce89ab218"
+  },
+  {
+    "path": "checks/red-receipt.json",
+    "sha256": "81facab3df93f471a951005034871f367dd8f6ad9420ccd7809a998c81a62964"
+  },
+  {
+    "path": "checks/red-result.json",
+    "sha256": "401da4bdfa11598c44fb4bf51dee8551c45a0884237da5ae3f6703b0f605f973"
+  },
+  {
+    "path": "checks/red-stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "checks/red-stdout.txt",
+    "sha256": "ceb753e279707563b12a0d4c527cf0b7d965b6e74027fb2a0a1cd4d33b5818ff"
+  },
+  {
+    "path": "checks/scope.json",
+    "sha256": "9ea12d21edccb8feb1dbd1ec1c2c44e8fd1e5b9699e28377a53f4d529639ba28"
+  },
+  {
+    "path": "checks/snapshot.ps1",
+    "sha256": "eed8cc6f481da2b895c0185aceb4928eda28967bd8d451804ae224c2b13d884c"
+  }
+]

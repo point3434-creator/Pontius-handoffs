@@ -1,0 +1,136 @@
+{
+  "status": "completed",
+  "summary": "Confirmed 4 malformed streams retain hit/chip credit",
+  "candidate": "430ad75de79cec13d66ff3dc4981dd3770a371b7",
+  "source_verified": true,
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "diagnostic_sha256": "377c5e083fd3355a0e29c66cde372a888557132b53afc04c5e81912bd93bc242",
+  "capture_path": "D:\\Pontius-handoffs\\v0a-eval-panel-completion\\r001\\checks\\classifier-red-real-host.txt",
+  "capture_sha256": "a5baa5185b3b33ba8b64ae02ca023bde4e0ebfb2832f10332ae0450464716bf8",
+  "provenance": "Existing actual host capture; no new host launch. Only retained wire bytes mutate.",
+  "ground_truth": "Unchanged host decode_json on LF-delimited physical frames",
+  "baseline": {
+    "chip_eligible": true,
+    "chips": -2,
+    "agreement_eligible": true,
+    "classification": "hit",
+    "causes": [],
+    "river_hand": "5s8h",
+    "observed_table_hits": 1,
+    "river_records": 1
+  },
+  "observations": [
+    {
+      "mutation": "CRLF",
+      "raw_sha256": "8296d62740b44c1813940e47ff01826748f512600fe6f75d06686245b75c7d93",
+      "raw_length": 9993,
+      "host_parser": "rejected:protocol_invalid",
+      "classifier": {
+        "chip_eligible": true,
+        "chips": -2,
+        "agreement_eligible": true,
+        "classification": "hit",
+        "causes": [],
+        "river_hand": "5s8h",
+        "observed_table_hits": 1,
+        "river_records": 1
+      },
+      "summary": {
+        "scheduled": 1,
+        "observed": 1,
+        "missing": 0,
+        "completed": 1,
+        "agreement_eligible": 1,
+        "hits": 1,
+        "disagreements": 0,
+        "unsupported": 0,
+        "excluded": 0,
+        "complete": true
+      }
+    },
+    {
+      "mutation": "record_separator",
+      "raw_sha256": "a78dd4c31e2d2014557ae15dc96ca92225dbe3a19094a33040007d30e7098f5a",
+      "raw_length": 9973,
+      "host_parser": "rejected:protocol_invalid",
+      "classifier": {
+        "chip_eligible": true,
+        "chips": -2,
+        "agreement_eligible": true,
+        "classification": "hit",
+        "causes": [],
+        "river_hand": "5s8h",
+        "observed_table_hits": 1,
+        "river_records": 1
+      },
+      "summary": {
+        "scheduled": 1,
+        "observed": 1,
+        "missing": 0,
+        "completed": 1,
+        "agreement_eligible": 1,
+        "hits": 1,
+        "disagreements": 0,
+        "unsupported": 0,
+        "excluded": 0,
+        "complete": true
+      }
+    },
+    {
+      "mutation": "unicode_line_separator",
+      "raw_sha256": "a9587d9f99df2b7f700f8ae8c6eaf7265bb43635770f38e80ee3de81bda1fb73",
+      "raw_length": 9975,
+      "host_parser": "rejected:protocol_invalid",
+      "classifier": {
+        "chip_eligible": true,
+        "chips": -2,
+        "agreement_eligible": true,
+        "classification": "hit",
+        "causes": [],
+        "river_hand": "5s8h",
+        "observed_table_hits": 1,
+        "river_records": 1
+      },
+      "summary": {
+        "scheduled": 1,
+        "observed": 1,
+        "missing": 0,
+        "completed": 1,
+        "agreement_eligible": 1,
+        "hits": 1,
+        "disagreements": 0,
+        "unsupported": 0,
+        "excluded": 0,
+        "complete": true
+      }
+    },
+    {
+      "mutation": "oversized_ready_frame",
+      "raw_sha256": "409c5b8c3362569e3ff50de1112602cd31d949b5124d01ffad2c45e3d22a2da2",
+      "raw_length": 26357,
+      "host_parser": "rejected:protocol_invalid",
+      "classifier": {
+        "chip_eligible": true,
+        "chips": -2,
+        "agreement_eligible": true,
+        "classification": "hit",
+        "causes": [],
+        "river_hand": "5s8h",
+        "observed_table_hits": 1,
+        "river_records": 1
+      },
+      "summary": {
+        "scheduled": 1,
+        "observed": 1,
+        "missing": 0,
+        "completed": 1,
+        "agreement_eligible": 1,
+        "hits": 1,
+        "disagreements": 0,
+        "unsupported": 0,
+        "excluded": 0,
+        "complete": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "check": "admission_only_no_phase_invoked",
+  "source": "449a2a3c1fa1f5a7f5f04adca32e499faaf81e13",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "pool_count": 1081,
+  "resource": {
+    "memory_mib": 2048,
+    "seconds": 600
+  },
+  "prerequisites": {
+    "capacity": {
+      "path": "D:\\Pontius-worktrees\\eval-panel-prerequisite-20260909\\experiments\\results\\runs\\a89932e7730e47b8b26b3dafad4f0c41\\result.json",
+      "sha256": "29f532a900289c3e7b274646a7fc7332ff1a0aa9e6d74c332319668783d89e53"
+    },
+    "preflight": {
+      "path": "D:\\Pontius-worktrees\\eval-panel-prerequisite-20260909\\experiments\\results\\runs\\7ce5ab4fb1304abfa592e780d675d9b7\\result.json",
+      "sha256": "8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f"
+    },
+    "decision": {
+      "path": "D:\\Pontius-handoffs\\v0a-eval-panel-completion\\prerequisite-run-20260909\\resource-decision.md",
+      "sha256": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf"
+    }
+  },
+  "admitted": true,
+  "rejected_changed_fields": [
+    "pool_count",
+    "resource",
+    "pool_seed"
+  ]
+}

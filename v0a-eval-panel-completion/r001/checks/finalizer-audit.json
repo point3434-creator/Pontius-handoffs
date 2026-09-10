@@ -1,0 +1,60 @@
+{
+  "candidate": "449a2a3c1fa1f5a7f5f04adca32e499faaf81e13",
+  "manifest": "f58d6ed822787f0766c23ee63540ddc999784ad11d03dc103a1cbf80f68c0194",
+  "published_reports": [
+    {
+      "path": "reviews/review-01-claude.md",
+      "published_commit": "1ac08f1",
+      "sha256": "726a8c6b3b7849acbe2e3c1e81b513ca34ec6a6ef7c0ea92637c0b2653eebdb2"
+    },
+    {
+      "path": "reviews/review-02-claude.md",
+      "published_commit": "1ac08f1",
+      "sha256": "2a8dd035afceee124075e35b89e5e737ae2d91421252f90609729073e85f06d0"
+    },
+    {
+      "path": "checks/inventory-01-claude.md",
+      "published_commit": "1ac08f1",
+      "sha256": "290949bacfaf50c43021bcf1f4a233245beba349dd3aaa25b8192e9d739783e9"
+    },
+    {
+      "path": "checks/inventory-02-claude.md",
+      "published_commit": "1ac08f1",
+      "sha256": "d27bf264c12253cbd3fea131861305b487a3018143a665ab38e3bf13e8e05781"
+    },
+    {
+      "path": "reviews/completeness-critique.md",
+      "published_commit": "1ac08f1",
+      "sha256": "b46973f57c7909062a460d297d13963287b8ec945f23e442730142e670248704"
+    },
+    {
+      "path": "reviews/coordinator-note-claude.md",
+      "published_commit": "e47d200",
+      "sha256": "f5cc6e064446b207931b774c2c641cc7e33afc82ac357f29b967b203429cc533"
+    }
+  ],
+  "prerequisites": [
+    {
+      "phase": "capacity",
+      "path": "D:\\Pontius-worktrees\\eval-panel-prerequisite-20260909\\experiments\\results\\runs\\a89932e7730e47b8b26b3dafad4f0c41\\result.json",
+      "sha256": "29f532a900289c3e7b274646a7fc7332ff1a0aa9e6d74c332319668783d89e53",
+      "source_commit": "beb84be566aa28029284bd35c526d33cd27af369",
+      "source_verified": true,
+      "runtime_sha256": "1b058fba88c1724da49a36f1802c6c581a057f4acc50f8a6680b89dc64381dd0",
+      "completed": true
+    },
+    {
+      "phase": "preflight",
+      "path": "D:\\Pontius-worktrees\\eval-panel-prerequisite-20260909\\experiments\\results\\runs\\7ce5ab4fb1304abfa592e780d675d9b7\\result.json",
+      "sha256": "8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f",
+      "source_commit": "beb84be566aa28029284bd35c526d33cd27af369",
+      "source_verified": true,
+      "runtime_sha256": "1b058fba88c1724da49a36f1802c6c581a057f4acc50f8a6680b89dc64381dd0",
+      "completed": true
+    }
+  ],
+  "decision_sha256": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf",
+  "method": "read-only raw Git and retained-file verification",
+  "no_project_execution": true,
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]"
+}

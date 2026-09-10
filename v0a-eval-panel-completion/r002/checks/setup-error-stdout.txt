@@ -1,0 +1,53 @@
+.....F                                                                   [100%]
+================================== FAILURES ===================================
+______________________ test_behavior[test_eval_protocol] ______________________
+
+module_name = 'test_eval_protocol'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+        module = importlib.import_module(module_name)
+        suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+        assert suite.countTestCases(), f"Empty suite: {module_name}"
+        output = io.StringIO()
+        result = unittest.TextTestRunner(stream=output, verbosity=2).run(suite)
+        OUTCOMES.append(
+            dict(
+                module=module_name,
+                tests=result.testsRun,
+                skipped=len(result.skipped),
+                passed=result.wasSuccessful(),
+                output=output.getvalue(),
+            )
+        )
+        if result.testsRun == len(result.skipped):
+            pytest.skip(output.getvalue())
+>       assert result.wasSuccessful(), output.getvalue()
+E       AssertionError: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit) ... ERROR
+E         
+E         ======================================================================
+E         ERROR: test_real_captures_reject_malformed_schema_before_successful_credit (test_eval_protocol.RetainedProtocolTests.test_real_captures_reject_malformed_schema_before_successful_credit)
+E         ----------------------------------------------------------------------
+E         Traceback (most recent call last):
+E           File "D:\Pontius-worktrees\eval-completion-check-r002\tests\test_eval_protocol.py", line 27, in test_real_captures_reject_malformed_schema_before_successful_credit
+E             candidate = dealer.deal_for_hand('0' * 64, index)
+E           File "D:\Pontius-worktrees\eval-completion-check-r002\tools\v0a_seeded_deals.py", line 60, in deal_for_hand
+E             require(type(hand_index) is int and 0 <= hand_index <= 15)
+E             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "D:\Pontius-worktrees\eval-completion-check-r002\tools\v0a_seeded_deals.py", line 25, in require
+E             raise Refusal(code)
+E         pontius_eval_completion_v0a_seeded_deals.Refusal: input_invalid
+E         
+E         ----------------------------------------------------------------------
+E         Ran 1 test in 0.001s
+E         
+E         FAILED (errors=1)
+E         
+E       assert False
+E        +  where False = wasSuccessful()
+E        +    where wasSuccessful = <unittest.runner.TextTestResult run=1 errors=1 failures=0>.wasSuccessful
+
+tests\test_pontius.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_pontius.py::test_behavior[test_eval_protocol] - AssertionEr...
+1 failed, 5 passed, 44 deselected in 145.25s (0:02:25)

@@ -1,0 +1,17 @@
+................F....
+======================================================================
+FAIL: test_retained_source_artifact_and_session_identities_cannot_be_swapped (test_eval_agreement.AgreementTests.test_retained_source_artifact_and_session_identities_cannot_be_swapped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\codex-eval-panel-completion\tests\test_eval_agreement.py", line 376, in test_retained_source_artifact_and_session_identities_cannot_be_swapped
+    self.assertEqual(self.classify(report, args)['classification'], 'excluded', changed)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'hit' != 'excluded'
+- hit
++ excluded
+ : ready_commit
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.074s
+
+FAILED (failures=1)

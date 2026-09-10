@@ -148,3 +148,8 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 
 - [Timing review-ref retirement](v0a-eval-panel-timing/r002/retirement-result.md):
   authorized cleanup complete; all four candidates remain in verified remote archives.
+
+## Current controller review policy and completion adoption
+
+- [One reciprocal review; no automatic fan-out](controller-review-policy-20260909.md)
+- [Completion r003 adopted at 1c70674](v0a-eval-panel-completion/r003/adoption.md)

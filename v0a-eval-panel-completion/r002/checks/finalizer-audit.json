@@ -1,0 +1,56 @@
+{
+  "identity": {
+    "schema_version": "pontius-handoff-candidate-v1",
+    "task_id": "v0a-eval-panel-completion",
+    "round": "r002",
+    "ref": "refs/heads/review/v0a-eval-panel-completion/r002-verified",
+    "commit": "430ad75de79cec13d66ff3dc4981dd3770a371b7",
+    "base": "449a2a3c1fa1f5a7f5f04adca32e499faaf81e13",
+    "tree": "c531d0b93520cd69704aa14842cea32d5b31ca51",
+    "manifest_sha256": "6e36bb41bcab8c47aed1fc87066e40cde857bee24e2f08bfdc5cb80d28604cd5",
+    "date": "2026-09-09"
+  },
+  "published_commit": "b850cafd6291121af8fd5cb69552a3b2dfef6620",
+  "published": [
+    {
+      "path": "reviews/review-01-claude.md",
+      "sha256": "5e3bb9f4290f94f5722e027de06f5e5f89a6049277f21794b3caddecfd57ebeb"
+    },
+    {
+      "path": "reviews/review-02-claude.md",
+      "sha256": "8f425227e9c7af3f3247355335c78bb8e5350423b0a69f72f6af87ec8e3ea6d0"
+    },
+    {
+      "path": "checks/inventory-01-claude.md",
+      "sha256": "af8323913bd1acc9fd77c8d987b90079292584189e8b2d7af1f00a15eefe03b6"
+    },
+    {
+      "path": "checks/inventory-02-claude.md",
+      "sha256": "fb8c8c8a8db96179739d39a917aa87930e4b868391276fdd285058b587a124d1"
+    },
+    {
+      "path": "reviews/prosecutor-claude.md",
+      "sha256": "518a51efc9413af4bba7513ed7f7db0cbec85e514abc16153eeb8880d7009d55"
+    },
+    {
+      "path": "checks/inventory-prosecutor-claude.md",
+      "sha256": "ab3ed87a121bc7395a17fbfbed34778685dd06d42c1f41c24c82f79cc85872ef"
+    },
+    {
+      "path": "reviews/completeness-critique.md",
+      "sha256": "e1549eaa24609efcd30733e46158e76aa79dcf431ef2ab071f6873a35889986c"
+    },
+    {
+      "path": "reviews/coordinator-note-claude.md",
+      "sha256": "bdf155aa4d7c1b6c9cacaf0d64951df2c2e1aa186cd3736aedc4ab8bc1b00ee9"
+    }
+  ],
+  "supporting_files": 35,
+  "dependencies": 51,
+  "diagnostic_result_sha256": "4d9f5bc4b3121c5849f3b3b61f2ab6243e5f131e1c001c27bda137a74ff8a437",
+  "diagnostic_journal_sha256": "21b0086eacdc170cd8567d01a59949d4b868df8f8ac55125fae4ccad98769b2f",
+  "outcome": "four host-rejected malformed streams retain hit/chip/completed credit",
+  "source_modified": false,
+  "broad_gate_run": false,
+  "adopted": false
+}

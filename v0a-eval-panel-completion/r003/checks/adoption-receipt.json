@@ -1,0 +1,28 @@
+{
+  "candidate": "7ca821802c949b047becf6599d603b3b63d51fa7",
+  "adopted_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "tree": "3d2fe79d2af20125e322dd4a668335e789810863",
+  "parent": "beb84be566aa28029284bd35c526d33cd27af369",
+  "branch": "codex/eval-panel-completion-adopted",
+  "worktree": "D:/Pontius-worktrees/codex-eval-panel-completion-adopted",
+  "remote_verified": true,
+  "changed_paths": [
+    "src/pontius/eval_agreement.py",
+    "src/pontius/eval_bridge.py",
+    "tests/cases.json",
+    "tests/test_eval_agreement.py",
+    "tests/test_eval_completion_tool.py",
+    "tests/test_eval_export.py",
+    "tests/test_eval_protocol.py",
+    "tools/v0a_eval_panel.py",
+    "tools/v0a_eval_panel_completion.py"
+  ],
+  "master_unchanged": "b6f8b08f6ebacc50d1c9f6fea094ef487a2fb65b",
+  "protected_working_files_sha256": {
+    "STATUS.md": "9b580cecba22b1bc48fd844b9cdca0e5bb37fc3c09fd20116176ad6e6e3bdc12",
+    "execution_journal.jsonl": "672e8d8334af89fd5ba6906265203a66d05c0373566290cb2ef31d68e731801b"
+  },
+  "broad_result_sha256": "3b9442a447501540168b3e755ae7d389c5bd8e3a3ae128e87bf0d4e5775e1152",
+  "tests": "Existing exact-tree broad receipt verified; no redundant rerun",
+  "commit_output": "[codex/eval-panel-completion-adopted 1c70674] Complete eval-panel bridge and raw-frame validation\n 9 files changed, 2187 insertions(+), 5 deletions(-)\n create mode 100644 src/pontius/eval_agreement.py\n create mode 100644 tests/test_eval_agreement.py\n create mode 100644 tests/test_eval_completion_tool.py\n create mode 100644 tests/test_eval_export.py\n create mode 100644 tests/test_eval_protocol.py\n create mode 100644 tools/v0a_eval_panel_completion.py\n"
+}

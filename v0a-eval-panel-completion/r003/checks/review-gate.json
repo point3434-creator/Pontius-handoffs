@@ -1,0 +1,28 @@
+{
+  "candidate": "7ca821802c949b047becf6599d603b3b63d51fa7",
+  "manifest_sha256": "1f48c97abcf4a0555418cd033bc9517292aac5d0188b1dfcf70b5e2b160d57fd",
+  "review_stage": "CLEAN / SOUND",
+  "qualifying_cold_reviews": [
+    {
+      "number": "03",
+      "inventory_sha256": "178e8d8f6502ad649c463c41893bb271c125327c152daf7b4a8782887f7e3eb4",
+      "review_sha256": "7c4b9ad683b1a27574160ec17ddf4bcfa4ce7b7a31b36e60a03c58e0494fc24b",
+      "context_probe_precedes_command": true,
+      "launch_log_path": "D:/Pontius/tmp/eval-completion-r003-cli-03-72ad817e/events.jsonl",
+      "launch_log_sha256": "fe2b4054ce4aeccdaa4164bdd281e8d0e3e422606a4332b78a7a7888313e99c2"
+    },
+    {
+      "number": "04",
+      "inventory_sha256": "924ebb2c8da26352778b5e237555b9aa357b9941636b80b9a41fa2ba44186caf",
+      "review_sha256": "a268690c96a54de02ce41b74fdc058dfcfa1768f1c6c3955c6d277bcad8c72a0",
+      "context_probe_precedes_command": true,
+      "launch_log_path": "D:/Pontius/tmp/eval-completion-r003-cli-04-72ad817e/events.jsonl",
+      "launch_log_sha256": "2a8b00db915a3585e234b59eeb66d2680f854811d31f7ffa4c50834ccdb5080a"
+    }
+  ],
+  "initial_reviews_01_02": "Technical evidence only; injected unrelated memory disclosed.",
+  "broad": "Not yet run",
+  "claude_review": "Requested by controller; pending",
+  "adoption_authorized": false,
+  "retained_phase_authorized": false
+}

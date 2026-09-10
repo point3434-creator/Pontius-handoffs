@@ -1,0 +1,28 @@
+{
+  "functions": {
+    "src/pontius/eval_bridge.py": {
+      "existing_functions": 21,
+      "changed_existing": []
+    },
+    "tools/v0a_eval_panel.py": {
+      "existing_functions": 20,
+      "changed_existing": [
+        "validate_plan",
+        "run_plan",
+        "supervise",
+        "main"
+      ]
+    }
+  },
+  "numstat": [
+    "326\t0\tsrc/pontius/eval_agreement.py",
+    "189\t1\tsrc/pontius/eval_bridge.py",
+    "4\t1\ttests/cases.json",
+    "383\t0\ttests/test_eval_agreement.py",
+    "297\t0\ttests/test_eval_completion_tool.py",
+    "153\t0\ttests/test_eval_export.py",
+    "44\t3\ttools/v0a_eval_panel.py",
+    "487\t0\ttools/v0a_eval_panel_completion.py"
+  ],
+  "protected_semantic_blobs_unchanged": true
+}

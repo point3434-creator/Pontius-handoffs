@@ -1,0 +1,90 @@
+{
+  "candidate": "7ca821802c949b047becf6599d603b3b63d51fa7",
+  "manifest_sha256": "1f48c97abcf4a0555418cd033bc9517292aac5d0188b1dfcf70b5e2b160d57fd",
+  "gate": "BROAD GREEN",
+  "python": "3.14.6",
+  "source_verified": true,
+  "source_sha256": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+  "pytest_exit": 0,
+  "suites": 50,
+  "unittest_cases_total": 633,
+  "unittest_cases_passed": 623,
+  "unittest_cases_skipped": 10,
+  "skip_details": [
+    {
+      "module": "test_sparse_open_mode_factor_tt",
+      "detail": "test_generic_tt_batch_matches_numpy_with_rank_slicing_and_weights (test_sparse_open_mode_factor_tt.SparseOpenModeFactorTTTests.test_generic_tt_batch_matches_numpy_with_rank_slicing_and_weights) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_sparse_open_mode_factor_tt",
+      "detail": "test_generic_tt_contract_rejects_wrong_topology_and_empty_batch (test_sparse_open_mode_factor_tt.SparseOpenModeFactorTTTests.test_generic_tt_contract_rejects_wrong_topology_and_empty_batch) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_cfr",
+      "detail": "test_complete_leaf_adjoint_dcfr_step_matches_dense_solver (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_complete_leaf_adjoint_dcfr_step_matches_dense_solver) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_cfr",
+      "detail": "test_external_axis_topology_matches_dense_deal_layout_step (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_external_axis_topology_matches_dense_deal_layout_step) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_cfr",
+      "detail": "test_heterogeneous_leaf_batch_matches_independent_terminal_reads (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_heterogeneous_leaf_batch_matches_independent_terminal_reads) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_cfr",
+      "detail": "test_target_omitted_leaf_adjoint_matches_every_dense_action_table (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_target_omitted_leaf_adjoint_matches_every_dense_action_table) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_cfr",
+      "detail": "test_terminal_library_and_probability_contract_are_strict (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_terminal_library_and_probability_contract_are_strict) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_evaluation",
+      "detail": "test_every_selected_leaf_response_attains_the_dense_best_value (test_leaf_adjoint_evaluation.LeafAdjointEvaluationTests.test_every_selected_leaf_response_attains_the_dense_best_value) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_evaluation",
+      "detail": "test_profile_utilities_responses_and_nashconv_match_dense_oracle (test_leaf_adjoint_evaluation.LeafAdjointEvaluationTests.test_profile_utilities_responses_and_nashconv_match_dense_oracle) ... skipped 'optional SciPy screen'"
+    },
+    {
+      "module": "test_leaf_adjoint_evaluation",
+      "detail": "test_seat_contract_rejects_wrong_target_and_external_axes (test_leaf_adjoint_evaluation.LeafAdjointEvaluationTests.test_seat_contract_rejects_wrong_target_and_external_axes) ... skipped 'optional SciPy screen'"
+    }
+  ],
+  "duration_seconds": 226.40054470000177,
+  "snapshot": "D:/Pontius-worktrees/eval-completion-check-r003-broad",
+  "result_path": "D:/Pontius-worktrees/eval-completion-check-r003-broad/experiments/results/20260910T011324-75e2e73e.json",
+  "result_sha256": "3b9442a447501540168b3e755ae7d389c5bd8e3a3ae128e87bf0d4e5775e1152",
+  "journal_path": "D:/Pontius-worktrees/eval-completion-check-r003-broad/execution_journal.jsonl",
+  "journal_last_line_sha256": "706422aac57622cf6a0ae01672198d4d4165bcd030320491d17a137713064f7b",
+  "runner_receipt_path": "D:/Pontius/tmp/eval-completion/r003-broad-receipt.json",
+  "runner_receipt_sha256": "3d7aae82b40210cab963972521768daf58014d032982d82ed32290d44249c687",
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-W",
+    "error::pytest.PytestUnraisableExceptionWarning",
+    "-q",
+    "-o",
+    "pythonpath=. src tests",
+    "tests/test_pontius.py"
+  ],
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "raw_evidence_location": "Retained in the isolated evidence snapshot, not copied here.",
+  "claude_review": "Pending controller-requested pass",
+  "adoption_authorized": false,
+  "retained_phase_authorized": false
+}

@@ -1,0 +1,17 @@
+..........F........
+======================================================================
+FAIL: test_noninteger_settlement_cannot_compare_equal_to_kernel (test_eval_agreement.AgreementTests.test_noninteger_settlement_cannot_compare_equal_to_kernel)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\codex-eval-panel-completion\tests\test_eval_agreement.py", line 339, in test_noninteger_settlement_cannot_compare_equal_to_kernel
+    self.assertEqual(self.classify(report, args)['classification'], 'excluded')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'hit' != 'excluded'
+- hit
++ excluded
+
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.068s
+
+FAILED (failures=1)

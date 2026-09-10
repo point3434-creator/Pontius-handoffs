@@ -1,0 +1,32 @@
+{
+  "candidate": "64526c1a427bae9742b1c318107625f7c01e709f",
+  "snapshot": "D:/Pontius-worktrees/eval-completion-check-r002-red",
+  "python": "D:\\Pontius-worktrees\\eval-completion-check-r002-red\\.venv\\Scripts\\python.exe",
+  "version": "3.14.6",
+  "exit": 1,
+  "environment": [
+    "SystemRoot",
+    "TEMP",
+    "TMP",
+    "PONTIUS_GIT",
+    "PYTHONDONTWRITEBYTECODE"
+  ],
+  "arguments": [
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-W",
+    "error::pytest.PytestUnraisableExceptionWarning",
+    "-q",
+    "-o",
+    "pythonpath=. src tests",
+    "tests/test_pontius.py",
+    "-k",
+    "test_eval_protocol"
+  ]
+}

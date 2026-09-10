@@ -1,0 +1,17 @@
+...........F........
+======================================================================
+FAIL: test_nonnull_false_failure_and_missing_failure_field_are_excluded (test_eval_agreement.AgreementTests.test_nonnull_false_failure_and_missing_failure_field_are_excluded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\codex-eval-panel-completion\tests\test_eval_agreement.py", line 347, in test_nonnull_false_failure_and_missing_failure_field_are_excluded
+    self.assertEqual(self.classify(report, args)['classification'], 'excluded')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'hit' != 'excluded'
+- hit
++ excluded
+
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.069s
+
+FAILED (failures=1)

@@ -1,0 +1,65 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\Pontius-worktrees\\eval-timing-check-r002-broad\\.venv\\Scripts\\python.exe",
+  "rows": [
+    {
+      "path": "src/pontius/eval_bridge.py",
+      "lines": 521,
+      "sha256": "b50470c539a689829f70063a2c97ab45bcc2ebfad3843ed9d4e531f00bd2d43f"
+    },
+    {
+      "path": "src/pontius/eval_agreement.py",
+      "lines": 326,
+      "sha256": "4ff5e7ae44ed6995ddfba07408ab600d31b43cd1912c9cbc9cb5758101e61d51"
+    },
+    {
+      "path": "tools/v0a_eval_panel.py",
+      "lines": 674,
+      "sha256": "5d5db5f29f387c1c43b7a740f7b5c89edebe62bcb88a860a6d9e59253e82b31b"
+    },
+    {
+      "path": "tools/v0a_eval_panel_completion.py",
+      "lines": 487,
+      "sha256": "841ec00c0d42f52d557655242cc1cba1a005383e59f8240cbb4c0397f31de7f5"
+    },
+    {
+      "path": "tests/test_eval_bridge.py",
+      "lines": 198,
+      "sha256": "7ac0b02ba34b292c72b98df5aa14394386ef14e7ea23a5e83d277b87998ec0d1"
+    },
+    {
+      "path": "tests/test_eval_panel_tool.py",
+      "lines": 750,
+      "sha256": "48b39b4bd8b62cd75baf1a1ac07f9f86c6a96517ad805b773c96189313b5cc45"
+    },
+    {
+      "path": "tests/test_eval_export.py",
+      "lines": 153,
+      "sha256": "f75a853943ef0ecd5e435829e9dc7384198eb4657d011f8a10a961d5caccb43b"
+    },
+    {
+      "path": "tests/test_eval_agreement.py",
+      "lines": 383,
+      "sha256": "6eecda01e3ba543fe284b734982fff6a68e9e239e1131d3f656731c2c9c5b03c"
+    },
+    {
+      "path": "tests/test_eval_completion_tool.py",
+      "lines": 297,
+      "sha256": "baf278a4e6e67d57a54e74f3de715bf416729b4999814a517cd5c3b803ccc369"
+    }
+  ],
+  "counts": {
+    "production": 2008,
+    "tests": 1781
+  },
+  "ceiling_production": 3000,
+  "working_figures": {
+    "production": 1200,
+    "tests": 600
+  },
+  "lint": {
+    "exit": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  }
+}
