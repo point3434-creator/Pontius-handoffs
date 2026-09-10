@@ -1,0 +1,89 @@
+{
+  "cases": 9,
+  "failures": 0,
+  "source_sha256": "5a71394b6c777fa1a13e40f73e4eb852e612eb0e4c3eb4f7a61632a5a44ea68c",
+  "slice_sha256": "39c86b6f30d9885897e0b9d04a401965490d4a0f4c8912f7d2af8f1cedbdd3f2",
+  "results": [
+    {
+      "statuses": [
+        0,
+        97
+      ],
+      "captures": 1,
+      "accepted": true,
+      "expected": true
+    },
+    {
+      "statuses": [
+        97,
+        0
+      ],
+      "captures": 1,
+      "accepted": true,
+      "expected": true
+    },
+    {
+      "statuses": [
+        1,
+        97
+      ],
+      "captures": 1,
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "statuses": [
+        97,
+        1
+      ],
+      "captures": 1,
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "statuses": [
+        99,
+        97
+      ],
+      "captures": 1,
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "statuses": [
+        0,
+        0
+      ],
+      "captures": 1,
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "statuses": [
+        97,
+        97
+      ],
+      "captures": 1,
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "statuses": [
+        0,
+        97
+      ],
+      "captures": 0,
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "statuses": [
+        0,
+        97
+      ],
+      "captures": 2,
+      "accepted": false,
+      "expected": false
+    }
+  ]
+}

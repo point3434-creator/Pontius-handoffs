@@ -1,0 +1,336 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "cases": 31,
+  "failures": 3,
+  "results": [
+    {
+      "case": "mode-None",
+      "expected": 88,
+      "actual": 88,
+      "passed": true,
+      "stdout": "PRECONDITION root or packet overrides are refused in retained mode\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-'0'",
+      "expected": 88,
+      "actual": 88,
+      "passed": true,
+      "stdout": "PRECONDITION root or packet overrides are refused in retained mode\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-'1'",
+      "expected": 87,
+      "actual": 87,
+      "passed": true,
+      "stdout": "PRECONDITION rehearsal requires an explicit EXPORT_ROOT\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-''",
+      "expected": 84,
+      "actual": 84,
+      "passed": true,
+      "stdout": "PRECONDITION REHEARSAL, when set, must be exactly 0 or 1 (empty is not 0)\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-'2'",
+      "expected": 84,
+      "actual": 84,
+      "passed": true,
+      "stdout": "PRECONDITION REHEARSAL, when set, must be exactly 0 or 1 (empty is not 0)\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-'yes'",
+      "expected": 84,
+      "actual": 84,
+      "passed": true,
+      "stdout": "PRECONDITION REHEARSAL, when set, must be exactly 0 or 1 (empty is not 0)\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-'00'",
+      "expected": 84,
+      "actual": 84,
+      "passed": true,
+      "stdout": "PRECONDITION REHEARSAL, when set, must be exactly 0 or 1 (empty is not 0)\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-' 0'",
+      "expected": 84,
+      "actual": 84,
+      "passed": true,
+      "stdout": "PRECONDITION REHEARSAL, when set, must be exactly 0 or 1 (empty is not 0)\n",
+      "stderr": ""
+    },
+    {
+      "case": "mode-'0\\n'",
+      "expected": 84,
+      "actual": 84,
+      "passed": true,
+      "stdout": "PRECONDITION REHEARSAL, when set, must be exactly 0 or 1 (empty is not 0)\n",
+      "stderr": ""
+    },
+    {
+      "case": "empty-override-EXPORT_ROOT",
+      "expected": 88,
+      "actual": 88,
+      "passed": true,
+      "stdout": "PRECONDITION root or packet overrides are refused in retained mode\n"
+    },
+    {
+      "case": "empty-override-REHEARSAL_PK",
+      "expected": 88,
+      "actual": 88,
+      "passed": true,
+      "stdout": "PRECONDITION root or packet overrides are refused in retained mode\n"
+    },
+    {
+      "case": "no-authorization",
+      "expected": 89,
+      "actual": 89,
+      "passed": true,
+      "stdout": "PRECONDITION authorization.md missing\n"
+    },
+    {
+      "case": "no-retained-records",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "case": "producer-bound",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "producer-teacher-mismatch",
+      "expected": 80,
+      "actual": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "producer-producer-mismatch",
+      "expected": 80,
+      "actual": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "producer-teacher-missing",
+      "expected": 80,
+      "actual": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "attribution-absent",
+      "expected": [
+        3,
+        "ABSENT",
+        true
+      ],
+      "actual": [
+        3,
+        "ABSENT",
+        true
+      ],
+      "passed": true,
+      "stdout": "ABSENT 1\n",
+      "stderr": ""
+    },
+    {
+      "case": "attribution-extra",
+      "expected": [
+        4,
+        "EXTRA",
+        true
+      ],
+      "actual": [
+        4,
+        "EXTRA",
+        true
+      ],
+      "passed": true,
+      "stdout": "EXTRA 3\n",
+      "stderr": ""
+    },
+    {
+      "case": "attribution-wrong-commit",
+      "expected": [
+        5,
+        "MISMATCH",
+        true
+      ],
+      "actual": [
+        5,
+        "MISMATCH",
+        true
+      ],
+      "passed": true,
+      "stdout": "MISMATCH source_commit wrong\n",
+      "stderr": ""
+    },
+    {
+      "case": "attribution-wrong-digest",
+      "expected": [
+        5,
+        "MISMATCH",
+        true
+      ],
+      "actual": [
+        5,
+        "MISMATCH",
+        true
+      ],
+      "passed": true,
+      "stdout": "MISMATCH output_sha256 experiments/results/runs/new/result.json\n",
+      "stderr": ""
+    },
+    {
+      "case": "attribution-bound",
+      "expected": [
+        0,
+        "BOUND",
+        true
+      ],
+      "actual": [
+        0,
+        "BOUND",
+        true
+      ],
+      "passed": true,
+      "stdout": "BOUND experiments/results/runs/new/result.json ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356\n",
+      "stderr": ""
+    },
+    {
+      "case": "attribution-bound-crlf",
+      "expected": [
+        0,
+        "BOUND",
+        true
+      ],
+      "actual": [
+        0,
+        "BOUND",
+        true
+      ],
+      "passed": true,
+      "stdout": "BOUND experiments/results/runs/new/result.json ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356\n",
+      "stderr": ""
+    },
+    {
+      "case": "exit-0-complete",
+      "expected": [
+        0,
+        false
+      ],
+      "actual": [
+        0,
+        false
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-0-incomplete",
+      "expected": [
+        99,
+        true
+      ],
+      "actual": [
+        99,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-1-complete",
+      "expected": [
+        1,
+        false
+      ],
+      "actual": [
+        1,
+        false
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-1-incomplete",
+      "expected": [
+        1,
+        true
+      ],
+      "actual": [
+        1,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-7-complete",
+      "expected": [
+        7,
+        false
+      ],
+      "actual": [
+        7,
+        false
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-7-incomplete",
+      "expected": [
+        7,
+        true
+      ],
+      "actual": [
+        7,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-99-complete",
+      "expected": [
+        99,
+        false
+      ],
+      "actual": [
+        99,
+        false
+      ],
+      "passed": true
+    },
+    {
+      "case": "exit-99-incomplete",
+      "expected": [
+        99,
+        true
+      ],
+      "actual": [
+        99,
+        true
+      ],
+      "passed": true
+    }
+  ],
+  "source_sha256": "8edd61520f838de99afde315a19065e3e1c5e0d08c63fa9975673af97a3a43b6",
+  "slices_sha256": {
+    "producer_guard": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit_tail": "b86dd771098b30c5c25d90f76d1ef60f9a8ead9ff3039273b2e7da8acba2b6b8"
+  },
+  "no_project_invocation": true
+}

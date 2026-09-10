@@ -1,0 +1,55 @@
+{
+  "verified_at_utc": "2026-09-10T08:47:36.470891+00:00",
+  "run_id": "cf3bcdda9eed4031938c214959b1e10c",
+  "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "source_verified": true,
+  "plan_sha256": "c55f26f635f9512c5e5f4a57ab6d64f3327de0697253422e7230296a46fd1c5a",
+  "status": "completed",
+  "phase": "export",
+  "phase_complete": true,
+  "cleanup_verified": true,
+  "resource_state_verified": true,
+  "errors": [],
+  "journal_rows_before": 59,
+  "journal_rows_after": 60,
+  "exactly_one_new_row": true,
+  "attribution": "BOUND",
+  "wrapper_seconds": 17,
+  "journal_seconds": 16.235946500004502,
+  "worker_seconds": 12.576549000004889,
+  "peak_worker_job_mib": 788.078125,
+  "membership_hits": 1081,
+  "membership_disagreements": 0,
+  "membership_unsupported": 0,
+  "off_pool_control_exercised": false,
+  "scope": "exhaustive_library_provider_root",
+  "wire_bytes": 1010990,
+  "cap": 1048576,
+  "wire_bytes_below_cap": 37586,
+  "files": {
+    "teacher.json": {
+      "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/teacher.json",
+      "bytes": 241587,
+      "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+    },
+    "blueprint.json": {
+      "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/blueprint.json",
+      "bytes": 1010990,
+      "sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+    },
+    "result.json": {
+      "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/result.json",
+      "bytes": 194697,
+      "sha256": "00d9b9a003248011cabba58d22e0eb144e90599c150ddb6cf8780ec2e05879fb"
+    },
+    "runtimes.json": {
+      "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/runtimes.json",
+      "bytes": 339,
+      "sha256": "1963e99704e2d2976ee9f37eaf5e93d846183003038bfdfd7cece4a808fe898a"
+    }
+  },
+  "all_preexisting_packet_bytes_preserved": true,
+  "authorization_consumed": true,
+  "committed": false,
+  "pushed": false
+}

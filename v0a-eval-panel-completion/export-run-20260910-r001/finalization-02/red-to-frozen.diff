@@ -1,0 +1,24 @@
+--- reconstructed-red-invoke.sh
++++ frozen-invoke.sh
+@@ -41,6 +41,10 @@
+ PRE_SHA=8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f
+ DEC=D:/Pontius-handoffs/v0a-eval-panel-completion/prerequisite-run-20260909/resource-decision.md
+ DEC_SHA=037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf
++TEACHER=D:/Pontius-worktrees/eval-panel-solve-20260910/experiments/results/runs/ded0fe697fbe424aa40ffd5320940d4b/teacher.json
++TEACHER_SHA=c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3
++PRODUCER=D:/Pontius-worktrees/eval-panel-solve-20260910/experiments/results/runs/ded0fe697fbe424aa40ffd5320940d4b/result.json
++PRODUCER_SHA=e6db93c081f64adec23c947c5b256fbf792b7e22e928206d7f6e531e65ef70f6
+ # Only an UNSET variable takes the default; an explicitly empty value is rejected below.
+ REHEARSAL="${REHEARSAL-0}"
+ now() { date -u +%Y-%m-%dT%H:%M:%SZ; }
+@@ -78,6 +82,10 @@
+   && [ "$(sha "$DEC")" = "$DEC_SHA" ]; } \
+   || stop 93 "prerequisite bytes differ from the bound digests"
+ [ "$(sha "$ATTRIBUTE")" = "$ATTRIBUTE_SHA" ] || stop 82 "journal_attribution.py hash"
++# --- producer input digests (before claim acquisition) ---------------------------------
++{ [ "$(sha "$TEACHER")" = "$TEACHER_SHA" ] && [ "$(sha "$PRODUCER")" = "$PRODUCER_SHA" ]; } \
++  || stop 80 "retained solve inputs differ from the bound digests"
++# --- end producer input digests ---------------------------------------------------------
+ PY="$ROOT/.venv/Scripts/python.exe"
+ "$PY" -I -B -c "import sys; assert sys.version_info[:3] == (3, 14, 6)" || stop 94 "python"
+ # No run directory beyond those tracked in the adopted tree (the tree tracks old runs).

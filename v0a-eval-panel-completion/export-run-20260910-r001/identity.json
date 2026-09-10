@@ -1,0 +1,111 @@
+{
+  "kind": "retained-export-invocation-binding",
+  "date": "2026-09-10",
+  "drafter": "Codex",
+  "status": "prepared and rehearsed; awaiting Claude review and controller authorization; not invoked",
+  "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "source_tree": "3d2fe79d2af20125e322dd4a668335e789810863",
+  "source_ref": "refs/heads/codex/eval-panel-completion-adopted",
+  "execution_checkout": "D:/Pontius-worktrees/eval-panel-export-20260910",
+  "execution_branch": "codex/eval-panel-export",
+  "interpreter": "D:/Pontius-worktrees/eval-panel-export-20260910/.venv/Scripts/python.exe",
+  "python": "3.14.6",
+  "environment_setup": "uv sync --locked --offline --group dev --python <base CPython 3.14.6>",
+  "plan": {
+    "path": "D:/Pontius-worktrees/eval-panel-export-20260910/plans/export.json",
+    "packet_copy": "plans/export.json",
+    "sha256": "c55f26f635f9512c5e5f4a57ab6d64f3327de0697253422e7230296a46fd1c5a",
+    "bytes": 12838,
+    "phase": "export",
+    "coverage": "declared-full",
+    "pool_count": 1081,
+    "inputs": {
+      "producer_result": {
+        "path": "D:/Pontius-worktrees/eval-panel-solve-20260910/experiments/results/runs/ded0fe697fbe424aa40ffd5320940d4b/result.json",
+        "sha256": "e6db93c081f64adec23c947c5b256fbf792b7e22e928206d7f6e531e65ef70f6"
+      },
+      "teacher": {
+        "path": "D:/Pontius-worktrees/eval-panel-solve-20260910/experiments/results/runs/ded0fe697fbe424aa40ffd5320940d4b/teacher.json",
+        "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+      }
+    },
+    "prerequisites": {
+      "capacity": {
+        "path": "D:/Pontius-worktrees/eval-panel-prerequisite-20260909/experiments/results/runs/a89932e7730e47b8b26b3dafad4f0c41/result.json",
+        "sha256": "29f532a900289c3e7b274646a7fc7332ff1a0aa9e6d74c332319668783d89e53"
+      },
+      "decision": {
+        "path": "D:/Pontius-handoffs/v0a-eval-panel-completion/prerequisite-run-20260909/resource-decision.md",
+        "sha256": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf"
+      },
+      "preflight": {
+        "path": "D:/Pontius-worktrees/eval-panel-prerequisite-20260909/experiments/results/runs/7ce5ab4fb1304abfa592e780d675d9b7/result.json",
+        "sha256": "8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f"
+      }
+    }
+  },
+  "proposed_resource": {
+    "seconds": 600,
+    "memory_mib": 2048,
+    "status": "new export proposal; not inherited solve authorization",
+    "worker_job_only": true,
+    "parent_memory_measured": false
+  },
+  "invocation": {
+    "script": "invoke.sh",
+    "sha256": "c70c9deab4cb51263a2df134da1dc11b422392bf1309cc5da8f91cf4e9db105b",
+    "helper": "journal_attribution.py",
+    "helper_sha256": "a20e760a7e97eb5e37432b81e0dc3e3048bd582299c7e938fc83c8d319d00b14",
+    "authorization_file": "D:/Pontius-handoffs/v0a-eval-panel-completion/export-run-20260910-r001/authorization.md",
+    "unset_mode": "retained",
+    "valid_set_modes": [
+      "0",
+      "1"
+    ],
+    "root_overrides": "retained mode refuses any set EXPORT_ROOT or REHEARSAL_PK, even empty",
+    "input_guard": "both retained solve input digests checked before claim (exit 80)",
+    "claim": "atomic mkdir; existing claim stays consumed; script never removes a claim",
+    "exit_precedence": [
+      "precondition/claim/write failures use their explicit codes",
+      "after launch: nonzero child status returned unchanged",
+      "otherwise incomplete evidence returns 99; otherwise 0"
+    ]
+  },
+  "producer": {
+    "journal_commit": "0872ba841fb254d7cd15c443f881275f3e85c09a",
+    "journal_branch": "claude/eval-panel-solve",
+    "retained_run": "ded0fe697fbe424aa40ffd5320940d4b"
+  },
+  "residuals": [
+    "exclusive checkout and journal ownership; no direct or concurrent unrelated launchers",
+    "the unchanged helper trusts the adopted producer; it is not a hostile-journal validator",
+    "operator authenticates authorization and preserves/mirrors outputs and abandoned claims",
+    "worker Job limit does not bound parent memory",
+    "snapshot artifacts are rehearsal only; agreement needs future retained export bytes"
+  ],
+  "command": [
+    "D:/Pontius-worktrees/eval-panel-export-20260910/.venv/Scripts/python.exe",
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "D:/Pontius-worktrees/eval-panel-export-20260910/tools/v0a_eval_panel.py",
+    "run",
+    "--reviewed-commit",
+    "1c7067448106cfa2aca3d57be879842d72293c61",
+    "--plan",
+    "D:/Pontius-worktrees/eval-panel-export-20260910/plans/export.json"
+  ],
+  "child_environment": {
+    "retained": [
+      "SystemRoot",
+      "TEMP",
+      "TMP"
+    ],
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "inherited_run_context": false
+  },
+  "deferred_history": "coverage.md and predecessor packets; no verdict inherited",
+  "manifest_rule": "whole-row byte sort, LF; handoff.md, candidate.json and manifest.sha256 excluded"
+}

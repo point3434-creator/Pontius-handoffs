@@ -1,0 +1,78 @@
+{
+  "evidence": false,
+  "purpose": "snapshot rehearsal; no retained export",
+  "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "wrapper_sha256": "c70c9deab4cb51263a2df134da1dc11b422392bf1309cc5da8f91cf4e9db105b",
+  "plan_sha256": "c55f26f635f9512c5e5f4a57ab6d64f3327de0697253422e7230296a46fd1c5a",
+  "snapshot": "D:/Pontius-worktrees/eval-panel-export-rehearsal-20260910",
+  "snapshot_retained_for_review": true,
+  "invocation_count": 1,
+  "caller_statuses": [
+    0,
+    97
+  ],
+  "caller_wall_seconds": 16.608421564102173,
+  "wrapper_wall_seconds": 15,
+  "journal_seconds": 14.179410699998698,
+  "worker_seconds": 11.26451040000029,
+  "peak_worker_job_mib": 787.8125,
+  "parent_memory": "not measured; outside worker Job limit",
+  "cleanup_verified": true,
+  "resource_state_verified": true,
+  "phase_complete": true,
+  "source_verified": true,
+  "source_sha256": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+  "journal_rows_before": 59,
+  "journal_rows_after": 60,
+  "attribution": "BOUND",
+  "encoding": {
+    "actions_equal": true,
+    "cap": 1048576,
+    "hands_count": 1081,
+    "keys_equal": true,
+    "passed": true,
+    "source_id": "t1:c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3",
+    "source_sha256": "38dc88b85d905f29b1212664aa5572179a42054d87ad5b0891219f1769971fe9",
+    "teacher_sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3",
+    "wire_bytes": 1010990,
+    "wire_sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+  },
+  "membership": {
+    "disagreements": 0,
+    "exact_entries": true,
+    "hands_count": 1081,
+    "hits": 1081,
+    "passed": true,
+    "scope": "exhaustive_library_provider_root",
+    "teacher_sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3",
+    "universe_count": 1081,
+    "unsupported": 0,
+    "wire_sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+  },
+  "files": {
+    "teacher.json": {
+      "bytes": 241587,
+      "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+    },
+    "blueprint.json": {
+      "bytes": 1010990,
+      "sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+    },
+    "result.json": {
+      "bytes": 194696,
+      "sha256": "8852a9e6f5a1216a54c8d4cb2a45d64995f5a4ba59772c5524251998df670f06"
+    },
+    "runtimes.json": {
+      "bytes": 349,
+      "sha256": "539d33e11f0c608a3e2d1894fa210d6b6d2bce56049cab232f6349034e92faf0"
+    },
+    "export-stdout.json": {
+      "bytes": 194697,
+      "sha256": "4900fcbd1ea1a239dab29b2b043eb6243d4b9861eac21f2acce0a09ef6e9a7ba"
+    },
+    "export-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
