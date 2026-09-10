@@ -10,12 +10,18 @@ journals, and the rehearsal teacher digest and census reconstructed from the cap
 
 ## Minor observations and rulings
 
-| Finding | Ruling | Handling |
-|---|---|---|
-| M-01 helper trusts the journal producer and exclusive checkout ownership; it does not prove path containment or that a result belongs to this attempt | Accepted; by design | The adopted tool is the sole journal producer in the retained checkout, which only the wrapper drives; the claim serializes callers. Recorded as a stated assumption, not fixed here. |
-| M-02 check runner prints rather than asserts, does not propagate failures via exit status, and does not inject claim/start or post-launch recording failures | Accepted, follow-up | Carry to the export packet's wrapper checks: assert observables, nonzero exit on any failure, and injected record-write failures. |
-| M-03 prose says exit 99 for all incomplete evidence; the code returns a nonzero child exit first | Accepted, follow-up | Both paths fail closed. The wording is corrected in the export packet's wrapper; the frozen r002 script is not edited, so the reviewed bytes run. |
-| M-04 `REHEARSAL` other than 0 or 1 yields malformed JSON in the log | Accepted, follow-up | Retained mode never sets it; the export wrapper validates the value. |
+- **M-01** (the helper trusts the journal producer and exclusive checkout ownership; it does
+  not prove path containment or that a result belongs to this attempt): accepted as a stated
+  assumption. The adopted tool is the sole journal producer in the retained checkout, which
+  only the wrapper drives, and the claim serializes callers. Not changed here.
+- **M-02** (the check runner prints rather than asserts, does not propagate failures through
+  its exit status, and injects no claim/start or post-launch recording failures): accepted,
+  follow-up for the export packet's wrapper checks.
+- **M-03** (prose promises exit 99 for all incomplete evidence while the code returns a
+  nonzero child exit first; both fail closed): accepted, wording corrected in the export
+  packet's wrapper; the frozen r002 script is not edited.
+- **M-04** (a `REHEARSAL` value other than 0 or 1 yields malformed JSON in the log; retained
+  mode never sets it): accepted, the export wrapper validates the value.
 
 No script byte is changed by this disposition: editing `invoke.sh` after a CLEAN review
 would require a new freeze and rehearsal for wording-level gains, and the retained
