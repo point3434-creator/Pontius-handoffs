@@ -1,0 +1,14 @@
+{"case":"C1-retained-override-refused","expected_exit":88,"actual_exit":88,"pass":true,"note":"PRECONDITION root or packet overrides are refused in retained mode; no-launch","utc":"2026-09-10T03:24:05Z"}
+{"case":"C2-retained-no-authorization","expected_exit":89,"actual_exit":89,"pass":true,"note":"PRECONDITION authorization.md missing; no-launch","utc":"2026-09-10T03:24:05Z"}
+{"case":"C3-rehearsal-no-root","expected_exit":87,"actual_exit":87,"pass":true,"note":"PRECONDITION rehearsal requires an explicit SOLVE_ROOT; no-launch","utc":"2026-09-10T03:24:05Z"}
+{"case":"C4-rehearsal-root-is-retained","expected_exit":86,"actual_exit":86,"pass":true,"note":"PRECONDITION rehearsal root is the retained checkout; no-launch","utc":"2026-09-10T03:24:06Z"}
+{"case":"C5-rehearsal-root-not-detached","expected_exit":85,"actual_exit":85,"pass":true,"note":"PRECONDITION rehearsal root must be a detached disposable worktree; no-launch","utc":"2026-09-10T03:24:06Z"}
+{"case":"C6-prior-claim","expected_exit":97,"actual_exit":97,"pass":true,"note":"PRECONDITION an invocation was already started (claim.d exists); no-launch","utc":"2026-09-10T03:24:06Z"}
+{"case":"C7-record-dir-unwritable","expected_exit":83,"actual_exit":83,"pass":true,"note":"PRECONDITIONS ok at 2026-09-10T03:24:07Z; journal rows before: 59; no-launch","utc":"2026-09-10T03:24:07Z"}
+{"case":"C8-absent","expected_exit":3,"actual_exit":3,"pass":true,"note":"ABSENT 1; row-written=no","utc":"2026-09-10T03:24:07Z"}
+{"case":"C8-extra","expected_exit":4,"actual_exit":4,"pass":true,"note":"EXTRA 3; row-written=no","utc":"2026-09-10T03:24:07Z"}
+{"case":"C8-mismatch-commit","expected_exit":5,"actual_exit":5,"pass":true,"note":"MISMATCH source_commit deadbeef; row-written=no","utc":"2026-09-10T03:24:07Z"}
+{"case":"C8-mismatch-sha","expected_exit":5,"actual_exit":5,"pass":true,"note":"MISMATCH output_sha256 experiments/results/runs/aa/result.json; row-written=no","utc":"2026-09-10T03:24:07Z"}
+{"case":"C8-bound","expected_exit":0,"actual_exit":0,"pass":true,"note":"BOUND experiments/results/runs/aa/result.json bb157861a164e35cdde9d726b0af9ce2765a8f530c35d9e45732b94ee65e9557; row-written=yes","utc":"2026-09-10T03:24:07Z"}
+{"case":"C8-bound-crlf","expected_exit":0,"actual_exit":0,"pass":true,"note":"BOUND experiments/results/runs/aa/result.json bb157861a164e35cdde9d726b0af9ce2765a8f530c35d9e45732b94ee65e9557; row-written=yes","utc":"2026-09-10T03:24:08Z"}
+{"case":"C9-race-one-claim","expected_exit":0,"actual_exit":0,"pass":true,"note":"exit A=97 B=0; launches=1; claim.d=present","utc":"2026-09-10T03:24:28Z"}

@@ -1,0 +1,294 @@
+{
+ "evidence": false,
+ "kind": "rehearsal-chain-receipt",
+ "label": [
+  "rehearsal only; feeds nothing; measures later-phase mechanics and cost",
+  "stdout captures kept only in the coordinator scratchpad; snapshot removed"
+ ],
+ "phases": [
+  {
+   "artifacts": {
+    "blueprint.json": {
+     "bytes": 1010990,
+     "retention": "complete",
+     "sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+    },
+    "teacher.json": {
+     "bytes": 241587,
+     "retention": "complete",
+     "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+    }
+   },
+   "cleanup_verified": true,
+   "coverage": "declared-full",
+   "errors": [],
+   "exit": 0,
+   "export_encoding": {
+    "report": {
+     "actions_equal": true,
+     "cap": 1048576,
+     "hands_count": 1081,
+     "keys_equal": true,
+     "passed": true,
+     "source_id": "t1:c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3",
+     "source_sha256": "38dc88b85d905f29b1212664aa5572179a42054d87ad5b0891219f1769971fe9",
+     "teacher_sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3",
+     "wire_bytes": 1010990,
+     "wire_sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+    },
+    "seconds": 0.27
+   },
+   "membership": {
+    "passed": true,
+    "report_keys": [
+     "disagreements",
+     "exact_entries",
+     "hands_count",
+     "hits",
+     "passed",
+     "rows",
+     "scope",
+     "teacher_sha256",
+     "universe_count",
+     "unsupported",
+     "wire_sha256"
+    ],
+    "seconds": 10.565
+   },
+   "name": "export-full",
+   "peak_job_mib": 787.5,
+   "phase": "export",
+   "phase_complete": true,
+   "plan_sha256": "72efd4341fc3228e79fb521fcac0a466852fac3d87e4534c7374fa1d9093c088",
+   "pool_count": 1081,
+   "result_bytes": 194701,
+   "result_sha256": "a73e2a8483e9d19e332273d6987c9c3755894b1111a461f4026317c4fce9a7b9",
+   "source_verified": true,
+   "status": "completed",
+   "stderr_bytes": 0,
+   "wall_seconds": 12.4,
+   "worker_seconds": 11.63
+  },
+  {
+   "artifacts": {
+    "teacher.json": {
+     "bytes": 8897,
+     "retention": "complete",
+     "sha256": "e0f9c016545b310e1bf392d667b4b6faabda792bc2b82045484423a030acd6f7"
+    }
+   },
+   "cleanup_verified": true,
+   "coverage": "test-subset",
+   "errors": [],
+   "exit": 0,
+   "name": "subset-solve",
+   "peak_job_mib": 774.0,
+   "phase": "solve",
+   "phase_complete": true,
+   "plan_sha256": "6d3c6c6e5af39aa5405606b94cac9d655ac3dd3355c56019564bfd2785f8221e",
+   "pool_count": 4,
+   "result_bytes": 3846,
+   "result_sha256": "0e513f7ee35215d8adeec90e3dc88213ae198cb1e4cd6117bf754044f45ebe6c",
+   "source_verified": true,
+   "status": "completed",
+   "stderr_bytes": 0,
+   "wall_seconds": 1.3,
+   "worker_seconds": 0.6
+  },
+  {
+   "artifacts": {
+    "blueprint.json": {
+     "bytes": 3880,
+     "retention": "complete",
+     "sha256": "a64c2dcb42a07fa50b0ddca893cf49dd3fe6dea428d5d8ac664385f0f32f9435"
+    },
+    "teacher.json": {
+     "bytes": 8897,
+     "retention": "complete",
+     "sha256": "e0f9c016545b310e1bf392d667b4b6faabda792bc2b82045484423a030acd6f7"
+    }
+   },
+   "cleanup_verified": true,
+   "coverage": "test-subset",
+   "errors": [],
+   "exit": 0,
+   "name": "subset-export",
+   "peak_job_mib": 786.6,
+   "phase": "export",
+   "phase_complete": true,
+   "plan_sha256": "b5fa4e9419152471433d918ed9e49831996362365c610c2c72211851d2420883",
+   "pool_count": 4,
+   "result_bytes": 203684,
+   "result_sha256": "158b02a74f8dd8bd19c221b541cf88b87ca57e5490e096572e7f2ac3cc57181e",
+   "source_verified": true,
+   "status": "completed",
+   "stderr_bytes": 0,
+   "wall_seconds": 1.7,
+   "worker_seconds": 0.95
+  },
+  {
+   "accounting": {
+    "missing_outcomes": 0,
+    "missing_pool_hands": [],
+    "observed_attempts": 7,
+    "primary": {
+     "agreement_eligible": 4,
+     "complete": true,
+     "completed": 4,
+     "disagreements": 0,
+     "excluded": 0,
+     "hits": 4,
+     "missing": 0,
+     "observed": 4,
+     "scheduled": 4,
+     "unsupported": 0
+    },
+    "scheduled_attempts": 7
+   },
+   "agreement_summary": {
+    "action_categories": [
+     "check",
+     "raise-to-2"
+    ],
+    "complete": true,
+    "controls": 3,
+    "coverage": "test-subset",
+    "host_complement": "one off-pool host control; complete complement checked through provider",
+    "kind": "agreement_summary",
+    "primary": {
+     "agreement_eligible": 4,
+     "complete": true,
+     "completed": 4,
+     "disagreements": 0,
+     "excluded": 0,
+     "hits": 4,
+     "missing": 0,
+     "observed": 4,
+     "scheduled": 4,
+     "unsupported": 0
+    }
+   },
+   "artifacts": {
+    "control-check-hit.json": {
+     "bytes": 1034,
+     "retention": "complete",
+     "sha256": "384631fef8c2dbfe939a0d75cbc612ef1b70eab718858a86941076863e2ce2cd"
+    },
+    "control-off-pool.json": {
+     "bytes": 2900,
+     "retention": "complete",
+     "sha256": "8fd7163bcd8474dc6847ecd8a974e62de9971b4054cc5086f3124bad1825c417"
+    }
+   },
+   "cleanup_verified": true,
+   "coverage": "test-subset",
+   "errors": [],
+   "exit": 0,
+   "host_attempts": [
+    {
+     "classification": "hit",
+     "hand": "ThKc",
+     "label": "primary",
+     "seconds": 0.52,
+     "session_status": "completed"
+    },
+    {
+     "classification": "hit",
+     "hand": "8h9c",
+     "label": "primary",
+     "seconds": 0.48,
+     "session_status": "completed"
+    },
+    {
+     "classification": "hit",
+     "hand": "3h8d",
+     "label": "primary",
+     "seconds": 0.51,
+     "session_status": "completed"
+    },
+    {
+     "classification": "hit",
+     "hand": "6cQd",
+     "label": "primary",
+     "seconds": 0.52,
+     "session_status": "completed"
+    },
+    {
+     "classification": "unsupported",
+     "hand": "ThKc",
+     "label": "off-pool",
+     "seconds": 0.5,
+     "session_status": "completed"
+    },
+    {
+     "classification": "hit",
+     "hand": "ThKc",
+     "label": "check-hit",
+     "seconds": 0.48,
+     "session_status": "completed"
+    },
+    {
+     "classification": "unsupported",
+     "hand": "ThKc",
+     "label": "changed-stack",
+     "seconds": 0.5,
+     "session_status": "completed"
+    }
+   ],
+   "name": "subset-agreement",
+   "peak_job_mib": 1560.2,
+   "phase": "agreement",
+   "phase_complete": true,
+   "plan_sha256": "440fd12e8e2fcd81b9d81a3188a465e79b2d5b60dd8c55a24c4236a22d434e91",
+   "pool_count": 4,
+   "result_bytes": 20128357,
+   "result_sha256": "1de2f735be5210f8fe1444bc070ec2e1b2e0ced2b5e117fe0ec76a0e79045bea",
+   "source_verified": true,
+   "status": "completed",
+   "stderr_bytes": 0,
+   "wall_seconds": 6.8,
+   "witness_bank": {
+    "holdout_seed_count": 1,
+    "holdout_seed_start": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "seed_count": 4096,
+    "seed_start": "0000000000000000000000000000000000000000000000000000000000000001",
+    "sizing_rationale": "Rehearsal bank for a four-hand test subset: 4,096 seeds x 16 indices = 65,536 draws. Collision-free fraction C(47,12)/C(52,12) = 0.2532; per-draw probability of a given hero hand 0.2532/1081 = 2.34e-4; expected 15.3 witnesses per required hand; IID union bound on any missing required hand 4*exp(-15.3) = 9e-7. Planning estimate only; seeded draws may be dependent; acceptance uses the actual census."
+   },
+   "witness_scan": {
+    "complete": true,
+    "counts": {
+     "collision": 48746,
+     "unused": 16786,
+     "witness": 4
+    },
+    "draws": 65536,
+    "missing": [],
+    "planning": {
+     "assumptions": "IID approximation only; seeded draws may be dependent; acceptance uses the actual complete census",
+     "iid_missing_union_bound_estimate": 8.614008612430459e-07
+    },
+    "seconds": 1.56
+   },
+   "worker_seconds": 5.69
+  }
+ ],
+ "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61"
+}
