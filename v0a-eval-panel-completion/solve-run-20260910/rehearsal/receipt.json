@@ -1,0 +1,94 @@
+{
+ "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+ "census": {
+  "action_categories": {
+   "check": 536,
+   "raise-to-2": 545
+  },
+  "completed_hands": 1081,
+  "exact_ties": 0,
+  "nonzero_tie": "absent_in_completed_pool",
+  "production_seconds_max": 0.066,
+  "production_seconds_mean": 0.0143,
+  "production_seconds_min": 0.0131,
+  "production_seconds_sum": 15.47
+ },
+ "command": "invoke.sh with REHEARSAL=1 and SOLVE_ROOT=<snapshot>: the same arguments, environment and plan bytes as the retained invocation",
+ "date": "2026-09-10",
+ "ended_utc": "2026-09-10T02:46:02Z",
+ "envelope": {
+  "memory_mib": 2048,
+  "observed": "wall 19 s (3.2% of 600); peak 787 MiB (38% of 2048)",
+  "seconds": 600
+ },
+ "environment": [
+  "SystemRoot",
+  "TEMP",
+  "TMP",
+  "PONTIUS_GIT",
+  "PYTHONDONTWRITEBYTECODE"
+ ],
+ "evidence": false,
+ "executable": "<snapshot>/.venv/Scripts/python.exe",
+ "exit": 0,
+ "journal_row": {
+  "duration_seconds": 18.88,
+  "output": "experiments/results/runs/dff6319577964101aabd2eb5facb8102/result.json",
+  "output_sha256": "02bb208ee1dbf619c09bf21aa9b55200d243d6029bd6ced8156f20c035771ece",
+  "source_verified": true,
+  "status": "completed",
+  "summary": "solve completed; 1083 observations"
+ },
+ "journal_row_sha256": "d1d8ff72ea87d2c349d4cc2700fc22ab382e32036158cc7ef36b882259dea712",
+ "kind": "rehearsal-receipt",
+ "label": [
+  "rehearsal only; feeds nothing",
+  "the snapshot was removed after these records were copied"
+ ],
+ "plan_sha256": "c1a6af606cc80841d61b5824913c8a1b6c896988ae4c578127c1dfc08b4f8982",
+ "python": "3.14.6",
+ "result": {
+  "cleanup_verified": true,
+  "coverage": "declared-full",
+  "errors": [],
+  "observations": 1083,
+  "peak_job_memory_mib": 787.2,
+  "permutation_sha256": "344e7eeb06d72b97313f470880b8d169c4674e83bb440de827fa6fb87d97648a",
+  "phase": "solve",
+  "phase_complete": true,
+  "resource_state_verified": true,
+  "status": "completed",
+  "worker_exit_code": 0,
+  "worker_seconds": 16.02
+ },
+ "retained_files": {
+  "result.json": {
+   "bytes": 527286,
+   "sha256": "02bb208ee1dbf619c09bf21aa9b55200d243d6029bd6ced8156f20c035771ece"
+  },
+  "runtimes.json": {
+   "bytes": 342,
+   "sha256": "eec892962089a187e2958a8fe85dd4deb8dc2eb04011f757db3d113abcabd52b"
+  },
+  "teacher.json": {
+   "bytes": 241587,
+   "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+  }
+ },
+ "snapshot": "D:/Pontius-worktrees/eval-panel-rehearsal-20260910 (detached, disposable, removed)",
+ "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+ "source_sha256_observed": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+ "started_utc": "2026-09-10T02:45:43Z",
+ "stderr_bytes": 0,
+ "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "stdout_sha256_lf_normalized": "02bb208ee1dbf619c09bf21aa9b55200d243d6029bd6ced8156f20c035771ece",
+ "stdout_sha256_raw_crlf": "e4a77d2a3face936ec0b892a46968c5fcc61ea54fa6c16909e3ec1fd81b816c0",
+ "teacher": {
+  "bytes": 241587,
+  "name": "teacher.json",
+  "note": "deterministic; a later retained run may be compared to this digest as a diagnostic only; the retained bytes are the identity",
+  "retention": "complete",
+  "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+ },
+ "wall_seconds": 19
+}
