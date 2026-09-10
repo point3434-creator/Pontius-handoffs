@@ -1,0 +1,47 @@
+{
+  "base_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "base_tree": "3d2fe79d2af20125e322dd4a668335e789810863",
+  "branch": "codex/eval-runner-consolidation",
+  "implementation_checkout": "D:\\Pontius-worktrees\\eval-runner-consolidation",
+  "python": "3.14.6",
+  "source_overrides": [
+    {
+      "bytes": 7385,
+      "path": "README.md",
+      "sha256": "b40530b021d026cfebcf4e37b3541ec336cb348521d2a9626f69698571b99676"
+    },
+    {
+      "bytes": 12171,
+      "path": "docs/eval-runner.md",
+      "sha256": "1360e481578d0cba5bb4f140e7f02fe550572e64c2d8e7db1a33dce9f504c5da"
+    },
+    {
+      "bytes": 1657,
+      "path": "tests/cases.json",
+      "sha256": "e36bcdb2b3b217c51d9915227a8e50a3a773a6f3d34a6cd4ace0f0746abf5eed"
+    },
+    {
+      "bytes": 18991,
+      "path": "tests/test_eval_completion_tool.py",
+      "sha256": "e2a9ad71870c245567f2994dde2fe246f52383586142141b44bc2d763c52e61d"
+    },
+    {
+      "bytes": 25934,
+      "path": "tests/test_retained_eval_run.py",
+      "sha256": "ea31899080595965b2e33257f5a23847d88e95625a04ccb11cca1049c549f79e"
+    },
+    {
+      "bytes": 17189,
+      "path": "tools/retained_eval_run.py",
+      "sha256": "6a8a0ca080866f3441a3ff64ad13e7529a64c30ef1a8f7bb53f432388a5e1538"
+    },
+    {
+      "bytes": 26675,
+      "path": "tools/v0a_eval_panel_completion.py",
+      "sha256": "0b67243de95065ebfe0827036251a20a503d69c08b905c6c3ab90c9cffa08417"
+    }
+  ],
+  "source_rule": "Apply exactly these raw files to the base commit; all others remain base blobs.",
+  "status": "Prepared for one opposing review; not committed, adopted or authorized for a run.",
+  "version": "pontius-source-overlay-review-v1"
+}

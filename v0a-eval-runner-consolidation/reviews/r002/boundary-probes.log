@@ -1,0 +1,305 @@
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmp3mc9m6v0\\records"}
+{"state": "incomplete", "exit": 7, "records": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmpd_p4phrx\\records"}
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmp645ds_y_\\records"}
+{"state": "incomplete", "exit": 7, "records": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmpnzj7l_fq\\records"}
+{
+  "passed": 16,
+  "probes": [
+    {
+      "boundary": "deferred-evidence",
+      "child_exit": 0,
+      "diagnostic": "REFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": null,
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "stop-transition",
+      "child_exit": 0,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [2]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": null,
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "fsync-written",
+      "child_exit": 0,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [2]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": {
+        "binding_sha256": "d3dd35051819152adb5c62df6f43c288958154b61c2ec9b9e4aab32c00f2e8e0",
+        "child_exit": 0,
+        "errors": [],
+        "evidence": {
+          "inventory.json": {
+            "bytes": 393,
+            "sha256": "83fda8fdd1e1145d1fe6b7ccdec9308514938cedea81c23195b17fe9e5529b89"
+          },
+          "journal-row.jsonl": {
+            "bytes": 319,
+            "sha256": "b8b8b6838a6895ab565ed5fc6b493f9dad3daeb8e6673ee7c94cb6977427f71a"
+          },
+          "stderr.txt": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stdout.json": {
+            "bytes": 208,
+            "sha256": "718238e744a2ce0edfa43c042fefa76b6ed562dcb8481915a1a54333c25040f7"
+          }
+        },
+        "evidence_complete": true,
+        "exit": 0,
+        "finished_utc": "2026-09-10T21:54:58.036935+00:00",
+        "mode": "rehearsal",
+        "phase": "solve",
+        "plan_sha256": "5e4eb83e6136a5a3afc7c449dda448c188ceca8fbe9d1431965814836d5d4bbf",
+        "resource": {
+          "memory_mib": 128,
+          "seconds": 10
+        },
+        "run_directory": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmpc52y3b6a\\checkout\\experiments\\results\\runs\\run-solve",
+        "signals": [],
+        "source_commit": "e549ea3b5182b5db80bc9646d9fe21f0b0d8e998",
+        "started_utc": "2026-09-10T21:54:57.924390+00:00",
+        "state": "verified",
+        "wall_seconds": 0.06659719999879599
+      },
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "summary-print",
+      "child_exit": 0,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [2]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": null,
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "deferred-evidence",
+      "child_exit": 7,
+      "diagnostic": "REFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": null,
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "stop-transition",
+      "child_exit": 7,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [2]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": null,
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "fsync-written",
+      "child_exit": 7,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [2]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": {
+        "binding_sha256": "c39b58715264000fe5b608d459c65ed221e2471c81c1ca5f6fa7edb6d900f427",
+        "child_exit": 7,
+        "errors": [],
+        "evidence": {
+          "inventory.json": {
+            "bytes": 393,
+            "sha256": "ae961946e470e26cef5448e149ac0c6a9c194844100e78429c39bdafad5caf92"
+          },
+          "journal-row.jsonl": {
+            "bytes": 319,
+            "sha256": "a8e0729e2379c347eb284256d1fffdd65b07f0c98c3e58b3a28be0da4603991a"
+          },
+          "stderr.txt": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stdout.json": {
+            "bytes": 206,
+            "sha256": "a10f9ae6efdfaaf5b94046ecda559d7a252d384d7424d151333eb09e913ea629"
+          }
+        },
+        "evidence_complete": true,
+        "exit": 7,
+        "finished_utc": "2026-09-10T21:55:01.078839+00:00",
+        "mode": "rehearsal",
+        "phase": "solve",
+        "plan_sha256": "2dfb5ed6506b6715a1f9066dbf57abf6b74bbb662991b6db69010ed1d307a033",
+        "resource": {
+          "memory_mib": 128,
+          "seconds": 10
+        },
+        "run_directory": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmpnpqw0rlr\\checkout\\experiments\\results\\runs\\run-solve",
+        "signals": [],
+        "source_commit": "e0ffce7500616a69c61e7bccf93d012716afc3ed",
+        "started_utc": "2026-09-10T21:55:00.828590+00:00",
+        "state": "failed",
+        "wall_seconds": 0.1386622999998508
+      },
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "summary-print",
+      "child_exit": 7,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [2]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": null,
+      "passed": true,
+      "signal": 2
+    },
+    {
+      "boundary": "deferred-evidence",
+      "child_exit": 0,
+      "diagnostic": "REFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": null,
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "stop-transition",
+      "child_exit": 0,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [21]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": null,
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "fsync-written",
+      "child_exit": 0,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [21]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": {
+        "binding_sha256": "6b7ab4442aae0d36620b12cea6ef45280dc818948a29c5425027ae34926fe9d9",
+        "child_exit": 0,
+        "errors": [],
+        "evidence": {
+          "inventory.json": {
+            "bytes": 393,
+            "sha256": "83fda8fdd1e1145d1fe6b7ccdec9308514938cedea81c23195b17fe9e5529b89"
+          },
+          "journal-row.jsonl": {
+            "bytes": 319,
+            "sha256": "edcaf531ecaa560b11a3e70da83cb535aa770d0338ec7b383acec3221382c56b"
+          },
+          "stderr.txt": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stdout.json": {
+            "bytes": 208,
+            "sha256": "718238e744a2ce0edfa43c042fefa76b6ed562dcb8481915a1a54333c25040f7"
+          }
+        },
+        "evidence_complete": true,
+        "exit": 0,
+        "finished_utc": "2026-09-10T21:55:03.956280+00:00",
+        "mode": "rehearsal",
+        "phase": "solve",
+        "plan_sha256": "5e4eb83e6136a5a3afc7c449dda448c188ceca8fbe9d1431965814836d5d4bbf",
+        "resource": {
+          "memory_mib": 128,
+          "seconds": 10
+        },
+        "run_directory": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmp1yd_gh7r\\checkout\\experiments\\results\\runs\\run-solve",
+        "signals": [],
+        "source_commit": "3b93ec6140c4de2d659f7a67e9ec84054326788a",
+        "started_utc": "2026-09-10T21:55:03.792388+00:00",
+        "state": "verified",
+        "wall_seconds": 0.06923360000655521
+      },
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "summary-print",
+      "child_exit": 0,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [21]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 99,
+      "outcome": null,
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "deferred-evidence",
+      "child_exit": 7,
+      "diagnostic": "REFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": null,
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "stop-transition",
+      "child_exit": 7,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [21]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": null,
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "fsync-written",
+      "child_exit": 7,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [21]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": {
+        "binding_sha256": "284c7169eb181dd4507ddbc6afd108ba0519ca6a31b72703440b8b7b7ff54bfd",
+        "child_exit": 7,
+        "errors": [],
+        "evidence": {
+          "inventory.json": {
+            "bytes": 393,
+            "sha256": "ae961946e470e26cef5448e149ac0c6a9c194844100e78429c39bdafad5caf92"
+          },
+          "journal-row.jsonl": {
+            "bytes": 319,
+            "sha256": "11ff86589ea861b624f71794aaf49f99ff683074147b2609d301c2c88e11c1f8"
+          },
+          "stderr.txt": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stdout.json": {
+            "bytes": 206,
+            "sha256": "a10f9ae6efdfaaf5b94046ecda559d7a252d384d7424d151333eb09e913ea629"
+          }
+        },
+        "evidence_complete": true,
+        "exit": 7,
+        "finished_utc": "2026-09-10T21:55:07.156375+00:00",
+        "mode": "rehearsal",
+        "phase": "solve",
+        "plan_sha256": "2dfb5ed6506b6715a1f9066dbf57abf6b74bbb662991b6db69010ed1d307a033",
+        "resource": {
+          "memory_mib": 128,
+          "seconds": 10
+        },
+        "run_directory": "D:\\Pontius\\tmp\\eval-runner-r002-cold01-20260910\\test-temp\\tmpf3f2_bey\\checkout\\experiments\\results\\runs\\run-solve",
+        "signals": [],
+        "source_commit": "f07b28dfeb825199bb386d98c3c2ccaaf8e329ff",
+        "started_utc": "2026-09-10T21:55:07.034143+00:00",
+        "state": "failed",
+        "wall_seconds": 0.09854609999456443
+      },
+      "passed": true,
+      "signal": 21
+    },
+    {
+      "boundary": "summary-print",
+      "child_exit": 7,
+      "diagnostic": "FINALIZATION INTERRUPTED; claim consumed; signals: [21]\nREFUSED: record directory already used; claim is never retried",
+      "invocation_exit": 7,
+      "outcome": null,
+      "passed": true,
+      "signal": 21
+    }
+  ]
+}

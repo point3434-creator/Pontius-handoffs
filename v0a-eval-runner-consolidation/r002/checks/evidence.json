@@ -1,0 +1,23 @@
+{
+  "authority": {
+    "pushes": 0,
+    "repository_work_commits": 0,
+    "retained_invocations": 0
+  },
+  "broad_manifest": "r001 evidence only; not repeated for this finalization-only change",
+  "cases": 44,
+  "environment": {
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+    "PYTHONPATH": "D:\\Pontius-worktrees\\eval-runner-consolidation;D:\\Pontius-worktrees\\eval-runner-consolidation\\src;D:\\Pontius-worktrees\\eval-runner-consolidation\\tests"
+  },
+  "green_command": "python -B -P -W error::ResourceWarning -m pytest -q -p no:cacheprovider -k \"retained_eval_run or eval_completion_tool or eval_protocol\"",
+  "original_review_sha256": "cbbd10c39197c9d0266411806e4e229c054676304d58ea464a9fb64f90013bc5",
+  "outcome_sha256": "f428c56e9b74970ccf1c453de83a19113f57286b2001024545583b6aefe8eb14",
+  "pytest_exit": 0,
+  "python": "3.14.6",
+  "red_command": "python -I -B -W error::ResourceWarning checks/red-source/tests/test_retained_eval_run.py RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure",
+  "red_failures": 8,
+  "same_regression_bytes_on_red_and_green": true,
+  "skipped": 0,
+  "suite_count": 3
+}

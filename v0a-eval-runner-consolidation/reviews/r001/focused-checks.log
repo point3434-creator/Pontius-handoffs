@@ -1,0 +1,65 @@
+3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]
+test_absent_extra_wrong_source_and_changed_output_are_refused (test_retained_eval_run.EvidenceTests.test_absent_extra_wrong_source_and_changed_output_are_refused) ... ok
+test_child_failure_precedes_evidence_failure (test_retained_eval_run.EvidenceTests.test_child_failure_precedes_evidence_failure) ... ok
+test_create_only_output_preserves_existing_evidence (test_retained_eval_run.EvidenceTests.test_create_only_output_preserves_existing_evidence) ... ok
+test_enumeration_error_never_returns_a_partial_list (test_retained_eval_run.EvidenceTests.test_enumeration_error_never_returns_a_partial_list) ... ok
+test_exact_new_row_is_copied_without_rewriting (test_retained_eval_run.EvidenceTests.test_exact_new_row_is_copied_without_rewriting) ... ok
+test_file_read_error_never_returns_success (test_retained_eval_run.EvidenceTests.test_file_read_error_never_returns_success) ... ok
+test_inventory_contains_every_nested_file_and_exact_bytes (test_retained_eval_run.EvidenceTests.test_inventory_contains_every_nested_file_and_exact_bytes) ... ok
+test_links_are_refused_not_silently_omitted (test_retained_eval_run.EvidenceTests.test_links_are_refused_not_silently_omitted) ... ok
+test_missing_runtime_identity_is_refused (test_retained_eval_run.EvidenceTests.test_missing_runtime_identity_is_refused) ... ok
+test_no_files_cannot_be_a_complete_inventory (test_retained_eval_run.EvidenceTests.test_no_files_cannot_be_a_complete_inventory) ... ok
+test_old_journal_rewrite_is_not_one_new_row (test_retained_eval_run.EvidenceTests.test_old_journal_rewrite_is_not_one_new_row) ... ok
+test_old_run_or_another_unattributed_run_cannot_pass (test_retained_eval_run.EvidenceTests.test_old_run_or_another_unattributed_run_cannot_pass) ... ok
+test_capture_flush_failure_does_not_erase_nonzero_child_exit (test_retained_eval_run.RunnerTests.test_capture_flush_failure_does_not_erase_nonzero_child_exit) ... ok
+test_capture_open_failure_starts_no_child (test_retained_eval_run.RunnerTests.test_capture_open_failure_starts_no_child) ... ok
+test_changed_plan_or_journal_refuses_before_claim (test_retained_eval_run.RunnerTests.test_changed_plan_or_journal_refuses_before_claim) ... REFUSED: bound bytes differ: D:\Pontius\tmp\eval-runner-cold01-20260910\test-temp\tmpp66_d5b_\checkout\plan.json
+REFUSED: journal differs from prepared baseline
+ok
+test_check_only_does_not_claim_or_launch (test_retained_eval_run.RunnerTests.test_check_only_does_not_claim_or_launch) ... ok
+test_child_failure_keeps_its_status_even_with_failed_inventory (test_retained_eval_run.RunnerTests.test_child_failure_keeps_its_status_even_with_failed_inventory) ... ok
+test_failed_child_with_complete_evidence_is_not_a_verified_success (test_retained_eval_run.RunnerTests.test_failed_child_with_complete_evidence_is_not_a_verified_success) ... ok
+test_final_record_failure_returns_failure (test_retained_eval_run.RunnerTests.test_final_record_failure_returns_failure) ... FINAL RECORD FAILED; claim consumed: end record failed
+ok
+test_interrupt_before_process_creation_does_not_start_child (test_retained_eval_run.RunnerTests.test_interrupt_before_process_creation_does_not_start_child) ... ok
+test_inventory_fault_cannot_record_success (test_retained_eval_run.RunnerTests.test_inventory_fault_cannot_record_success) ... ok
+test_launch_failure_is_recorded_and_never_retried (test_retained_eval_run.RunnerTests.test_launch_failure_is_recorded_and_never_retried) ... REFUSED: record directory already used; claim is never retried
+ok
+test_missing_environment_refuses_before_claim (test_retained_eval_run.RunnerTests.test_missing_environment_refuses_before_claim) ... REFUSED: TEMP required
+ok
+test_missing_or_changed_bound_input_refuses_before_claim (test_retained_eval_run.RunnerTests.test_missing_or_changed_bound_input_refuses_before_claim) ... REFUSED: [WinError 2] The system cannot find the file specified: 'D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmp057exq9m\\missing'
+ok
+test_retained_requires_authorization_bound_to_this_document (test_retained_eval_run.RunnerTests.test_retained_requires_authorization_bound_to_this_document) ... REFUSED: [Errno 2] No such file or directory: 'D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpujcajchw\\authorization.json'
+REFUSED: authorization binding missing
+ok
+test_second_campaign_uses_the_same_executable_with_a_new_binding (test_retained_eval_run.RunnerTests.test_second_campaign_uses_the_same_executable_with_a_new_binding) ... ok
+test_start_record_failure_starts_no_child (test_retained_eval_run.RunnerTests.test_start_record_failure_starts_no_child) ... START RECORD FAILED; claim consumed: start record failed
+ok
+test_success_records_nested_inventory_and_consumes_claim (test_retained_eval_run.RunnerTests.test_success_records_nested_inventory_and_consumes_claim) ... REFUSED: record directory already used; claim is never retried
+ok
+test_two_callers_pass_preflight_but_only_one_can_launch (test_retained_eval_run.RunnerTests.test_two_callers_pass_preflight_but_only_one_can_launch) ... CLAIM REFUSED: [WinError 183] Cannot create a file when that file already exists: 'D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpnuz0rfk9\\records\\claim.d'
+ok
+test_zero_child_without_journal_is_incomplete (test_retained_eval_run.RunnerTests.test_zero_child_without_journal_is_incomplete) ... ok
+test_full_campaign_uses_its_bound_prerequisites_and_resource_plan (test_eval_completion_tool.CompletionAdmissionTests.test_full_campaign_uses_its_bound_prerequisites_and_resource_plan) ... ok
+test_full_solve_cannot_borrow_subset_or_missing_prerequisites (test_eval_completion_tool.CompletionAdmissionTests.test_full_solve_cannot_borrow_subset_or_missing_prerequisites) ... ok
+test_new_solve_phase_is_explicit_and_immutable (test_eval_completion_tool.CompletionAdmissionTests.test_new_solve_phase_is_explicit_and_immutable) ... ok
+test_witness_scan_retains_twelve_cards_and_finite_bank_failures (test_eval_completion_tool.CompletionAdmissionTests.test_witness_scan_retains_twelve_cards_and_finite_bank_failures) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 9.468s
+
+OK
+{"state": "incomplete", "exit": 7, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpjc3id2l8\\records"}
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpk_6behj7\\records"}
+{"state": "preflight", "phase": "solve", "binding_sha256": "367f7388487a0afa62e1d1b1f7468793da3948be31ab3403eb2588585afec7a0"}
+{"state": "incomplete", "exit": 7, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpxckwvq_4\\records"}
+{"state": "failed", "exit": 7, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpngxml82d\\records"}
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpqr0v4gb0\\records"}
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmp0p4v3ft5\\records"}
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpm8nb9vgq\\records"}
+{"state": "verified", "exit": 0, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpujcajchw\\records"}
+{"state": "verified", "exit": 0, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpmbbcc4ne\\records"}
+{"state": "verified", "exit": 0, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpmbbcc4ne\\second-records"}
+{"state": "verified", "exit": 0, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpht30gk07\\records"}
+{"state": "verified", "exit": 0, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpnuz0rfk9\\records"}
+{"state": "incomplete", "exit": 99, "records": "D:\\Pontius\\tmp\\eval-runner-cold01-20260910\\test-temp\\tmpx2ege99u\\records"}

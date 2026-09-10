@@ -1,0 +1,55 @@
+{
+  "controller_words": "Let's commit and push",
+  "destination_verification": {
+    "admin": true,
+    "authenticated_user": "point3434-creator",
+    "owner_matches_authenticated_user": true,
+    "push": true,
+    "repositories": [
+      "point3434-creator/Pontius",
+      "point3434-creator/Pontius-handoffs"
+    ]
+  },
+  "initial_approval_review": "Commit launch was initially rejected because destination ownership was not established. GitHub connector verified ownership and permissions; the same commit was then approved and succeeded.",
+  "reviewed_source_verification": [
+    {
+      "path": "README.md",
+      "reviewed_raw_sha256": "b40530b021d026cfebcf4e37b3541ec336cb348521d2a9626f69698571b99676",
+      "staged_blob": "a2bf4d8acc5ef9b82bba07705baa1d54e7685d7f"
+    },
+    {
+      "path": "docs/eval-runner.md",
+      "reviewed_raw_sha256": "5d9c314bf9ec7b99d300b443ebf16eb2193a677db9ab4df634fc05efbb34e6d1",
+      "staged_blob": "bf8c1cbab936b1d6a7561936056f179c033fd1bc"
+    },
+    {
+      "path": "tests/cases.json",
+      "reviewed_raw_sha256": "e36bcdb2b3b217c51d9915227a8e50a3a773a6f3d34a6cd4ace0f0746abf5eed",
+      "staged_blob": "eae50e3b41ab82445e6799e09a167a2c23e25717"
+    },
+    {
+      "path": "tests/test_eval_completion_tool.py",
+      "reviewed_raw_sha256": "e2a9ad71870c245567f2994dde2fe246f52383586142141b44bc2d763c52e61d",
+      "staged_blob": "e1138c0bc173983e6bdb501c7c659f7ed53b0f0a"
+    },
+    {
+      "path": "tests/test_retained_eval_run.py",
+      "reviewed_raw_sha256": "1a0a5e9aa43b05714b592fb0f74c0d39a5562db1441a3ce6324908a1e2b958b8",
+      "staged_blob": "203de61954cbae819313b58b5d7053225c0299d7"
+    },
+    {
+      "path": "tools/retained_eval_run.py",
+      "reviewed_raw_sha256": "0997c186fd9441d281a14f60fb7ce1fec953048237d8bdd55ed67bf4e0b4faf7",
+      "staged_blob": "a7b0b4ef25bd24f9a033812c144a5542ff6f3b95"
+    },
+    {
+      "path": "tools/v0a_eval_panel_completion.py",
+      "reviewed_raw_sha256": "0b67243de95065ebfe0827036251a20a503d69c08b905c6c3ab90c9cffa08417",
+      "staged_blob": "f41106b068f15d75f4140d6d676072cca5172b4b"
+    }
+  ],
+  "source_branch": "codex/eval-runner-consolidation",
+  "source_commit": "d4488fee970e10ac96a5b4a33f8d3fc9ff86c05b",
+  "source_tree": "ca5fec797e3bd06a22ba3bcb8e14101321128b32",
+  "source_url": "https://github.com/point3434-creator/Pontius/commit/d4488fee970e10ac96a5b4a33f8d3fc9ff86c05b"
+}

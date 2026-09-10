@@ -1,0 +1,85 @@
+FFFFFFFF
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGINT: 2>, child_failed=False, boundary='before-open')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 426, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertEqual(case.invoke(), 7 if failed else 99)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 99
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGINT: 2>, child_failed=False, boundary='during-fsync')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 426, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertEqual(case.invoke(), 7 if failed else 99)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 99
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGINT: 2>, child_failed=True, boundary='before-open')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 427, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertIn('FINALIZATION INTERRUPTED', diagnostic.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'FINALIZATION INTERRUPTED' not found in ''
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGINT: 2>, child_failed=True, boundary='during-fsync')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 427, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertIn('FINALIZATION INTERRUPTED', diagnostic.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'FINALIZATION INTERRUPTED' not found in ''
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGBREAK: 21>, child_failed=False, boundary='before-open')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 426, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertEqual(case.invoke(), 7 if failed else 99)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 99
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGBREAK: 21>, child_failed=False, boundary='during-fsync')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 426, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertEqual(case.invoke(), 7 if failed else 99)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 99
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGBREAK: 21>, child_failed=True, boundary='before-open')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 427, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertIn('FINALIZATION INTERRUPTED', diagnostic.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'FINALIZATION INTERRUPTED' not found in ''
+
+======================================================================
+FAIL: test_finalization_interrupt_cannot_return_success_or_replace_child_failure (__main__.RunnerTests.test_finalization_interrupt_cannot_return_success_or_replace_child_failure) (signal=<Signals.SIGBREAK: 21>, child_failed=True, boundary='during-fsync')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_retained_eval_run.py", line 427, in test_finalization_interrupt_cannot_return_success_or_replace_child_failure
+    self.assertIn('FINALIZATION INTERRUPTED', diagnostic.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'FINALIZATION INTERRUPTED' not found in ''
+
+----------------------------------------------------------------------
+Ran 1 test in 4.659s
+
+FAILED (failures=8)
+{"state": "verified", "exit": 0, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmpk76zwqlu\\records"}
+{"state": "verified", "exit": 0, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmpvrm4bb4_\\records"}
+{"state": "failed", "exit": 7, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmp8zxdwi32\\records"}
+{"state": "failed", "exit": 7, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmpl7h58kiu\\records"}
+{"state": "verified", "exit": 0, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmp2z2gmo2y\\records"}
+{"state": "verified", "exit": 0, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmpaa6ul2u8\\records"}
+{"state": "failed", "exit": 7, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmpua4_1wir\\records"}
+{"state": "failed", "exit": 7, "records": "C:\\Users\\point\\AppData\\Local\\Temp\\tmp4kiysd96\\records"}

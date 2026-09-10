@@ -1,0 +1,265 @@
+............................F.......FF.FF..........                      [100%]
+================================== FAILURES ===================================
+_______________ test_behavior[test_sparse_open_mode_factor_tt] ________________
+
+module_name = 'test_sparse_open_mode_factor_tt'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+>       module = importlib.import_module(module_name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pontius.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1406: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:759: in exec_module
+    ???
+<frozen importlib._bootstrap>:491: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from __future__ import annotations
+    
+    import importlib.util
+    import math
+    import unittest
+    
+    import numpy as np
+    
+    from pontius.open_mode_factor_tt import contract_open_mode_batch
+    from pontius.sparse_incidence_open_mode import SparseBidirectionalIncidence
+    from pontius.sparse_open_mode_factor_tt import contract_sparse_open_mode_batch
+    from pontius.tensor_train import TensorTrain
+>   from tests.test_open_mode_factor_tt import _belief, _compile
+E   ModuleNotFoundError: No module named 'tests'
+
+tests\test_sparse_open_mode_factor_tt.py:13: ModuleNotFoundError
+____ test_behavior[test_legal_river_quotient_cuda_shared_direct_device_v2] ____
+
+module_name = 'test_legal_river_quotient_cuda_shared_direct_device_v2'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+>       module = importlib.import_module(module_name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pontius.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1406: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:759: in exec_module
+    ???
+<frozen importlib._bootstrap>:491: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from __future__ import annotations
+    
+    from copy import deepcopy
+    from hashlib import sha256
+    import os
+    from pathlib import Path
+    import subprocess
+    import sys
+    import unittest
+    from unittest.mock import patch
+    
+    from pontius.durable_evidence_journal import (
+        JournalRecordEnvelope,
+        JournalRecordKind,
+        build_journal_record_body,
+        canonical_journal_json_bytes,
+        recover_journal_bytes,
+    )
+    from pontius import legal_river_quotient_cuda_shared_direct_device_result as v1_reader
+    from pontius import legal_river_quotient_cuda_shared_direct_device_v2_result as reader
+>   from tests import test_legal_river_quotient_cuda_shared_direct_device as v1_controls
+E   ModuleNotFoundError: No module named 'tests'
+
+tests\test_legal_river_quotient_cuda_shared_direct_device_v2.py:21: ModuleNotFoundError
+____ test_behavior[test_legal_river_quotient_cuda_shared_direct_device_v3] ____
+
+module_name = 'test_legal_river_quotient_cuda_shared_direct_device_v3'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+>       module = importlib.import_module(module_name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pontius.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1406: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:759: in exec_module
+    ???
+<frozen importlib._bootstrap>:491: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from __future__ import annotations
+    
+    from copy import deepcopy
+    from dataclasses import FrozenInstanceError
+    from hashlib import sha256
+    import json
+    import os
+    from pathlib import Path
+    import subprocess
+    import sys
+    from types import MappingProxyType, SimpleNamespace
+    import unittest
+    from unittest.mock import patch
+    
+    from pontius.durable_evidence_journal import (
+        JournalRecordEnvelope,
+        build_journal_record_body,
+        canonical_journal_json_bytes,
+        recover_journal_bytes,
+    )
+    from pontius import legal_river_quotient_cuda_compensated_tiles as paired
+    from pontius import legal_river_quotient_cuda_compensated_work_preflight as v4
+    from pontius import legal_river_quotient_cuda_shared_direct_device as parent
+    from pontius import legal_river_quotient_cuda_shared_direct_device_v2_result as v2_reader
+    from pontius import legal_river_quotient_cuda_shared_direct_device_v3_result as reader
+    from pontius import legal_river_quotient_cuda_shared_direct_sample_plan as sample_plan
+>   from tests import test_legal_river_quotient_cuda_shared_direct_device_v2 as v2_controls
+E   ModuleNotFoundError: No module named 'tests'
+
+tests\test_legal_river_quotient_cuda_shared_direct_device_v3.py:27: ModuleNotFoundError
+____________________ test_behavior[test_leaf_adjoint_cfr] _____________________
+
+module_name = 'test_leaf_adjoint_cfr'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+>       module = importlib.import_module(module_name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pontius.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1406: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:759: in exec_module
+    ???
+<frozen importlib._bootstrap>:491: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from __future__ import annotations
+    
+    import importlib.util
+    import unittest
+    
+    import numpy as np
+    
+    from pontius.game import TERMINAL_PLAYER
+    from pontius.incremental_policy_tt import compile_policy_probability_tape
+    from pontius.heterogeneous_leaf_contraction import (
+        HeterogeneousLeafTerm,
+        contract_heterogeneous_leaf_terms,
+    )
+    from pontius.leaf_adjoint_cfr import (
+        LeafAdjointPublicTreeCFR,
+        _parent_metadata,
+        _target_omitted_path_factors,
+        build_leaf_adjoint_terminal_automata,
+        leaf_adjoint_cfr_traverser,
+    )
+    from pontius.open_mode_cfr_bridge import dense_cfr_action_comparisons
+    from pontius.public_tree_tensor_cfr import PublicTreeTensorCFR
+    from pontius.public_policy_tt import _terminal_keys_by_slot
+    from pontius.public_policy_tt import representative_public_tree
+    from pontius.showdown_value_rank_screen import _rank_codes
+    from pontius.sparse_incidence_open_mode import contract_sparse_open_mode_showdown_batch
+>   import tests.test_sparse_open_mode_cfr as sparse_fixture
+E   ModuleNotFoundError: No module named 'tests'
+
+tests\test_leaf_adjoint_cfr.py:27: ModuleNotFoundError
+_________________ test_behavior[test_leaf_adjoint_evaluation] _________________
+
+module_name = 'test_leaf_adjoint_evaluation'
+
+    @pytest.mark.parametrize("module_name", SUITES, ids=SUITES)
+    def test_behavior(module_name):
+>       module = importlib.import_module(module_name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pontius.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1406: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:759: in exec_module
+    ???
+<frozen importlib._bootstrap>:491: in _call_with_frames_removed
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from __future__ import annotations
+    
+    import importlib.util
+    import unittest
+    
+    from pontius.leaf_adjoint_cfr import build_leaf_adjoint_terminal_automata
+    from pontius.leaf_adjoint_evaluation import (
+        evaluate_leaf_adjoint_profile,
+        evaluate_leaf_adjoint_seat,
+    )
+    from pontius.public_policy_tt import representative_public_tree
+    from pontius.showdown_value_rank_screen import _rank_codes
+>   import tests.test_sparse_open_mode_cfr as sparse_fixture
+E   ModuleNotFoundError: No module named 'tests'
+
+tests\test_leaf_adjoint_evaluation.py:13: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_pontius.py::test_behavior[test_sparse_open_mode_factor_tt]
+FAILED tests/test_pontius.py::test_behavior[test_legal_river_quotient_cuda_shared_direct_device_v2]
+FAILED tests/test_pontius.py::test_behavior[test_legal_river_quotient_cuda_shared_direct_device_v3]
+FAILED tests/test_pontius.py::test_behavior[test_leaf_adjoint_cfr] - ModuleNo...
+FAILED tests/test_pontius.py::test_behavior[test_leaf_adjoint_evaluation] - M...
+5 failed, 46 passed in 255.42s (0:04:15)

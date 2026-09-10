@@ -1,0 +1,21 @@
+.......................................ss..........                      [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_pontius.py:75: test_complete_leaf_adjoint_dcfr_step_matches_dense_solver (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_complete_leaf_adjoint_dcfr_step_matches_dense_solver) ... skipped 'optional SciPy screen'
+test_external_axis_topology_matches_dense_deal_layout_step (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_external_axis_topology_matches_dense_deal_layout_step) ... skipped 'optional SciPy screen'
+test_heterogeneous_leaf_batch_matches_independent_terminal_reads (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_heterogeneous_leaf_batch_matches_independent_terminal_reads) ... skipped 'optional SciPy screen'
+test_target_omitted_leaf_adjoint_matches_every_dense_action_table (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_target_omitted_leaf_adjoint_matches_every_dense_action_table) ... skipped 'optional SciPy screen'
+test_terminal_library_and_probability_contract_are_strict (test_leaf_adjoint_cfr.LeafAdjointCFRTests.test_terminal_library_and_probability_contract_are_strict) ... skipped 'optional SciPy screen'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK (skipped=5)
+SKIPPED [1] tests\test_pontius.py:75: test_every_selected_leaf_response_attains_the_dense_best_value (test_leaf_adjoint_evaluation.LeafAdjointEvaluationTests.test_every_selected_leaf_response_attains_the_dense_best_value) ... skipped 'optional SciPy screen'
+test_profile_utilities_responses_and_nashconv_match_dense_oracle (test_leaf_adjoint_evaluation.LeafAdjointEvaluationTests.test_profile_utilities_responses_and_nashconv_match_dense_oracle) ... skipped 'optional SciPy screen'
+test_seat_contract_rejects_wrong_target_and_external_axes (test_leaf_adjoint_evaluation.LeafAdjointEvaluationTests.test_seat_contract_rejects_wrong_target_and_external_axes) ... skipped 'optional SciPy screen'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK (skipped=3)
+49 passed, 2 skipped in 257.11s (0:04:17)

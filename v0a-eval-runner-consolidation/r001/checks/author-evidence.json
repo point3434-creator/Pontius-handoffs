@@ -1,0 +1,23 @@
+{
+  "command": "python -B -P -W error::ResourceWarning -m pytest -q -p no:cacheprovider",
+  "commits": 0,
+  "compatibility": "Two disposable campaigns, 1 and 2 hands, each solve/export/agreement; old child source and new recorder. Full-plan admission is checked separately.",
+  "environment": {
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+    "PYTHONPATH": "D:\\Pontius-worktrees\\eval-runner-consolidation;D:\\Pontius-worktrees\\eval-runner-consolidation\\src;D:\\Pontius-worktrees\\eval-runner-consolidation\\tests"
+  },
+  "first_broad_attempt": "46 suites passed; five imports failed because -P omitted the root needed for tests.* fixture imports. No source remedy was needed.",
+  "journal_row_sha256": "bf61c07e1d443a84e6cc9d703a2961adaaf5c4680647c97bb4f06a57039d2576",
+  "low_memory_failure": "1536 MiB caused a host OpenBLAS allocation failure. The recorder retained child exit 1 and complete failure evidence. 3072 MiB passed.",
+  "pushes": 0,
+  "pytest_suites": 51,
+  "regression_history": "Before fixes, capture flush lost child exit 7, a failed child was labeled verified, and a pre-launch signal still allowed launch. Their regression tests now pass. RED tool history is a development claim, not retained executable RED proof in this packet.",
+  "result_sha256": "b56e95bc1a06739933fd72251a972316a7f3006e4833ead60490d19cf2718d24",
+  "retained_invocations": 0,
+  "retained_reference": {
+    "path": "D:\\Pontius-worktrees\\eval-panel-export-20260910\\experiments\\results\\runs\\cf3bcdda9eed4031938c214959b1e10c\\teacher.json",
+    "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+  },
+  "skipped": 10,
+  "unittest_cases": 665
+}
