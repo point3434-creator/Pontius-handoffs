@@ -1,0 +1,59 @@
+{
+ "date": "2026-09-10",
+ "defect": {
+  "consequence": "a completed phase with a bound journal row was recorded as incomplete evidence and the wrapper exited 99; on the retained run that would have consumed the authorization and left a record contradicting the phase",
+  "failed_closed": true,
+  "fix": "the collector now walks every regular file below the run root in a stable order; the block carries slice markers and checks/wrapper-checks.py exercises it as a regression guard",
+  "observed": "sha256sum: experiments/results/runs/.../host-inputs: Is a directory",
+  "summary": "the retained-file collector globbed the run directory and handed sha256sum a directory, because the agreement phase writes a host-inputs/ subdirectory that solve and export never did",
+  "wrapper_before": null
+ },
+ "evidence": false,
+ "kind": "wrapper-rehearsal-receipt",
+ "label": [
+  "the first wrapper-driven rehearsal, retained because it found a real defect",
+  "the phase itself completed; the wrapper miscounted its own evidence",
+  "the 48.9 MB stdout duplicate stays in the snapshot, bound by digest"
+ ],
+ "outcome": "RED",
+ "phase_outcome": {
+  "cleanup_verified": true,
+  "errors": [],
+  "peak_job_memory_mib": 1623.6,
+  "phase_complete": true,
+  "primary": {
+   "agreement_eligible": 1081,
+   "complete": true,
+   "completed": 1081,
+   "disagreements": 0,
+   "excluded": 0,
+   "hits": 1081,
+   "missing": 0,
+   "observed": 1081,
+   "scheduled": 1081,
+   "unsupported": 0
+  },
+  "status": "completed",
+  "worker_exit_code": 0,
+  "worker_seconds": 1147.5
+ },
+ "race": {
+  "caller_statuses": [
+   97,
+   99
+  ],
+  "launches": 1,
+  "loser_refused_at": "the atomic mkdir: both callers passed the read-only preconditions in the same second and one lost with \"File exists\", which is the concurrent-acquisition window",
+  "note": "the export round recorded that its own race receipt covered only the pre-claim existence check, not this window"
+ },
+ "run_directory": "17e2cd744e3a45c19cd69e4c9f05efb5",
+ "snapshot": "D:/Pontius-worktrees/eval-panel-agreement-rehearsal-b",
+ "wrapper": {
+  "evidence": "incomplete",
+  "exit": 0,
+  "journal_row": "BOUND",
+  "stdout_bytes": 48933294,
+  "stdout_sha256": "908bf5457212647fbcc24d7c8ddc9731042adc42ea9b2fbcdb9ec84764a48dc2",
+  "wall_seconds": 1152
+ }
+}

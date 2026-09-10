@@ -1,0 +1,123 @@
+{
+ "accounting": {
+  "missing_outcomes": 0,
+  "missing_pool_hands": [],
+  "observed_attempts": 1084,
+  "primary": {
+   "agreement_eligible": 1081,
+   "complete": true,
+   "completed": 1081,
+   "disagreements": 0,
+   "excluded": 0,
+   "hits": 1081,
+   "missing": 0,
+   "observed": 1081,
+   "scheduled": 1081,
+   "unsupported": 0
+  },
+  "scheduled_attempts": 1084
+ },
+ "attempts": {
+  "controls": 3,
+  "primary": 1081,
+  "seconds_max": 1.626,
+  "seconds_mean": 1.058,
+  "seconds_min": 0.502,
+  "total": 1084
+ },
+ "census": {
+  "complete": true,
+  "counts": {
+   "collision": 73226,
+   "unused": 23997,
+   "witness": 1081
+  },
+  "missing": 0,
+  "scan_seconds": 2.5
+ },
+ "date": "2026-09-10",
+ "envelope": {
+  "headroom": "2.1x on time, 1.89x on memory",
+  "memory_mib": 3072,
+  "observed": "1157 s wrapper, 1151.2 s worker, 1626.8 MiB peak",
+  "seconds": 2400
+ },
+ "evidence": false,
+ "kind": "wrapper-rehearsal-receipt",
+ "label": [
+  "full-pool agreement rehearsal driven by the FINAL frozen wrapper as a two-caller race, the FINAL wrapper, re-run after all three corrections, including the redirection guard, rather than inherited",
+  "feeds nothing; the retained phase must produce its own records",
+  "reads the retained export outputs read-only, exactly as the retained run will",
+  "the 48.9 MB stdout duplicate of result.json stays in the snapshot, bound by digest"
+ ],
+ "outcome": "GREEN",
+ "outcome_detail": {
+  "cleanup_verified": true,
+  "coverage": "declared-full",
+  "errors": [],
+  "observations": 100476,
+  "peak_job_memory_mib": 1626.8,
+  "phase": "agreement",
+  "phase_complete": true,
+  "resource_state_verified": true,
+  "result_bytes": 48933302,
+  "status": "completed",
+  "worker_exit_code": 0,
+  "worker_seconds": 1151.2
+ },
+ "plan_sha256": "525944ae6185ec683bb09dcd15727e665d9c9b2911048bd8bec210580ff60b01",
+ "race": {
+  "caller_statuses": [
+   0,
+   97
+  ],
+  "launches": 1,
+  "loser_refused_at": "the pre-claim existence check (claim.d exists)",
+  "note": "rehearsal-red/ holds the other refusal path, where both callers passed the read-only preconditions in the same second and the loser lost at the atomic mkdir; the two receipts together cover both windows"
+ },
+ "retained_files": {
+  "control-check-hit.json": {
+   "bytes": 1034,
+   "sha256": "384631fef8c2dbfe939a0d75cbc612ef1b70eab718858a86941076863e2ce2cd"
+  },
+  "control-off-pool.json": {
+   "bytes": 1010010,
+   "sha256": "93fbc34218160b8aa92437686b594c6fc9f2a53e1cd856871dacf7ddfc3bd90d"
+  },
+  "host-inputs/host-blueprint.json": {
+   "bytes": 1010990,
+   "sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+  },
+  "host-inputs/host-input.json": {
+   "bytes": 330,
+   "sha256": "72ca4d965ec27e1d01f74e2230ce298f12d5ed6807f98de5e34666531ba32951"
+  },
+  "result.json": {
+   "bytes": 48933302,
+   "sha256": "d38cfd7190a56924b64cc72f8acaf564522a3c0db0703d7554bfd412a07b7d75"
+  },
+  "runtimes.json": {
+   "bytes": 345,
+   "sha256": "7973f083ff0c148233d96400c1e36bcfd7b3aa150067a6ca74c9095ce7265c6e"
+  }
+ },
+ "run_directory": "769280ae3fa747c6a879cca6fb83441e",
+ "snapshot": "D:/Pontius-worktrees/eval-panel-agreement-rehearsal-f",
+ "snapshot_retained_for_review": true,
+ "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+ "wrapper": {
+  "evidence": "complete",
+  "exit": 0,
+  "inventory_entries": 6,
+  "journal_row": "BOUND",
+  "journal_rows": [
+   59,
+   "60"
+  ],
+  "stderr_bytes": 0,
+  "stdout_bytes": 48933303,
+  "stdout_sha256": "94cb362d02d2c2abe3c8589810e93b81af93f887b4074d2685a32e6cb67a6f36",
+  "wall_seconds": 1157
+ },
+ "wrapper_sha256": "d030bcba4b5f12da7a82a54e4293e70f8ed6f7cd0072301adfb57de7759ee229"
+}

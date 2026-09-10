@@ -1,0 +1,174 @@
+{
+  "kind": "retained-agreement-invocation-binding",
+  "date": "2026-09-10",
+  "drafter": "Claude",
+  "status": "prepared and rehearsed through the frozen wrapper; awaiting one Codex review and then the controller's explicit one-shot authorization; not invoked",
+  "design_step": "7, third and last of the three retained phases",
+  "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "source_tree": "3d2fe79d2af20125e322dd4a668335e789810863",
+  "source_ref": "refs/heads/codex/eval-panel-completion-adopted",
+  "source_changed": false,
+  "execution_checkout": "D:/Pontius-worktrees/eval-panel-agreement-20260910",
+  "execution_branch": "claude/eval-panel-agreement",
+  "interpreter": "D:/Pontius-worktrees/eval-panel-agreement-20260910/.venv/Scripts/python.exe",
+  "python": "3.14.6",
+  "environment_setup": "uv sync --locked --offline --group dev --python <base CPython 3.14.6>",
+  "plan": {
+    "path": "D:/Pontius-worktrees/eval-panel-agreement-20260910/plans/agreement.json",
+    "packet_copy": "plans/agreement.json",
+    "sha256": "525944ae6185ec683bb09dcd15727e665d9c9b2911048bd8bec210580ff60b01",
+    "bytes": 14462,
+    "phase": "agreement",
+    "coverage": "declared-full",
+    "pool_count": 1081,
+    "board": [
+      "2c",
+      "7d",
+      "9h",
+      "Js",
+      "Qc"
+    ],
+    "pool_seed": "5e4f7c2a9b1d3e6f8a0c2b4d6e8f1a3c5b7d9e0f2a4c6e8b1d3f5a7c9e0b2d4f",
+    "resource": {
+      "memory_mib": 3072,
+      "seconds": 2400
+    },
+    "inputs": {
+      "blueprint": {
+        "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/blueprint.json",
+        "sha256": "666021c448c622caf235b304128d17de02823c12966c66510f5a1ec483814d17"
+      },
+      "producer_result": {
+        "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/result.json",
+        "sha256": "00d9b9a003248011cabba58d22e0eb144e90599c150ddb6cf8780ec2e05879fb"
+      },
+      "teacher": {
+        "path": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c/teacher.json",
+        "sha256": "c3ffab403eb7e939857cc31b0f21b255cefdffd8b0d26d078b703c1fe956b3e3"
+      }
+    },
+    "prerequisites": {
+      "capacity": {
+        "path": "D:/Pontius-worktrees/eval-panel-prerequisite-20260909/experiments/results/runs/a89932e7730e47b8b26b3dafad4f0c41/result.json",
+        "sha256": "29f532a900289c3e7b274646a7fc7332ff1a0aa9e6d74c332319668783d89e53"
+      },
+      "decision": {
+        "path": "D:/Pontius-handoffs/v0a-eval-panel-completion/prerequisite-run-20260909/resource-decision.md",
+        "sha256": "037a0de1b8605dc182cdc99ef0ef146e8c5ab08f73d984e4497e5a7a94afe2cf"
+      },
+      "preflight": {
+        "path": "D:/Pontius-worktrees/eval-panel-prerequisite-20260909/experiments/results/runs/7ce5ab4fb1304abfa592e780d675d9b7/result.json",
+        "sha256": "8a17325eaa07e0f8774dcb7bc2050a3ae233cf47bebfc63a6b59574031fb742f"
+      }
+    },
+    "witness_bank": {
+      "holdout_seed_count": 65536,
+      "holdout_seed_start": "ffffffffffffffff000000000000000000000000000000000000000000000000",
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "seed_count": 6144,
+      "seed_start": "000000000000000000000000000000000000000000000000a900000000000000"
+    }
+  },
+  "envelope_authority": {
+    "decision": "resource-decision-20260910.md, adopted by the controller 2026-09-10",
+    "packet_copy": "inputs/resource-decision-20260910.md",
+    "seconds": 2400,
+    "memory_mib": 3072,
+    "basis": "full-pool rehearsal at 1,199 s and 1,625.1 MiB; 2.0x and 1.89x",
+    "note": "the 2026-09-09 decision covered the solve only; its file is still pinned by digest and is unchanged, because the adopted tool re-reads and re-hashes it"
+  },
+  "producer": {
+    "phase": "export",
+    "run": "cf3bcdda9eed4031938c214959b1e10c",
+    "run_directory": "D:/Pontius-worktrees/eval-panel-export-20260910/experiments/results/runs/cf3bcdda9eed4031938c214959b1e10c",
+    "journal_commit_branch": "the export checkout journal, rows 59 to 60",
+    "packet": "export-run-20260910-r001"
+  },
+  "invocation": {
+    "script": "invoke.sh",
+    "sha256": "d030bcba4b5f12da7a82a54e4293e70f8ed6f7cd0072301adfb57de7759ee229",
+    "helpers": {
+      "journal_attribution.py": "a20e760a7e97eb5e37432b81e0dc3e3048bd582299c7e938fc83c8d319d00b14",
+      "verify_plan_inputs.py": "3e85adaed78e56657c447161c172a7d3ef3ca67c32c10691593e4e5cef023d5c"
+    },
+    "authorization_file": "D:/Pontius-handoffs/v0a-eval-panel-completion/agreement-run-20260910-r001/authorization.md",
+    "unset_mode": "retained",
+    "valid_set_modes": [
+      "0",
+      "1"
+    ],
+    "required_environment": "SystemRoot or SYSTEMROOT, TEMP and TMP are checked before anything is claimed (exit 79); the export round recorded this as an Advisory because its wrapper expanded them below the claim",
+    "root_overrides": "retained mode refuses any set AGREEMENT_ROOT or REHEARSAL_PK, even empty",
+    "input_guard": "every member of the plan inputs object is verified against its file before the claim, by verify_plan_inputs.py, exit 80; the plan is the single source of truth rather than a second set of wrapper constants",
+    "claim": "atomic mkdir; an existing claim stays consumed; the script never removes one",
+    "claim_scope": "a refusal before acquisition consumes nothing and leaves the packet callable once corrected; every failure after acquisition leaves the claim consumed and is never retried",
+    "exit_precedence": [
+      "preconditions and record failures use their explicit codes, before any launch",
+      "after launch: a nonzero child status is returned unchanged",
+      "otherwise incomplete evidence returns 99; otherwise 0"
+    ],
+    "retained_file_inventory": "the enumeration is captured and its status checked before any output is used, an empty enumeration is refused, and every regular file below the run root is listed in a stable order; rehearsal-red/ records the subdirectory defect and disposition.md records the silent-failure defect that a process substitution would have hidden"
+  },
+  "acceptance": {
+    "primary": "one real host session per hand, all 1,081 must classify as hit",
+    "controls": "off-pool must be chip-eligible and unsupported, CHECK-hit must hit, changed-stack must be chip-eligible with zero table hits",
+    "census": "the witness scan must cover every hand in the pool or the run fails",
+    "schedule": "every scheduled attempt reconciled against the admitted order"
+  },
+  "residuals": [
+    "exclusive checkout and journal ownership; no concurrent or direct launchers",
+    "the unchanged attribution helper trusts the adopted producer as sole journal writer",
+    "the operator authenticates the authorization and preserves and mirrors the outputs",
+    "the worker Job limit does not bound the parent process or disk",
+    "the full pool has no off-pool complement, so the default path is exercised only by the single synthetic off-pool control, not by a population",
+    "retaining all 98,304 witness draws dominates memory and result size; recorded as a carried finding for the Slice B interface, not changed here"
+  ],
+  "command": [
+    "D:/Pontius-worktrees/eval-panel-agreement-20260910/.venv/Scripts/python.exe",
+    "-B",
+    "-P",
+    "-W",
+    "error::ResourceWarning",
+    "D:/Pontius-worktrees/eval-panel-agreement-20260910/tools/v0a_eval_panel.py",
+    "run",
+    "--reviewed-commit",
+    "1c7067448106cfa2aca3d57be879842d72293c61",
+    "--plan",
+    "D:/Pontius-worktrees/eval-panel-agreement-20260910/plans/agreement.json"
+  ],
+  "child_environment": {
+    "retained": [
+      "SystemRoot",
+      "TEMP",
+      "TMP"
+    ],
+    "PONTIUS_GIT": "C:/Program Files/Git/cmd/git.exe",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "inherited_run_context": false
+  },
+  "manifest_rule": "whole-row byte sort, LF; handoff.md, candidate.json and manifest.sha256 excluded",
+  "rehearsal": [
+    "rehearsal/ GREEN: the final frozen wrapper driven as a two-caller race, re-run after both corrections; exit 0, evidence complete, 1,081 primary hits, complete census",
+    "rehearsal-red/ RED: the first wrapper-driven race, retained because it found the subdirectory defect and because its loser lost at the atomic mkdir",
+    "rehearsal-prev/ superseded: ran an earlier wrapper; kept and labelled, not claimed",
+    "rehearsal/driver-rehearsal-receipt.json: the earlier envelope measurement, run without the wrapper, which the adopted resource decision rests on",
+    "all snapshots are retained for read-only review; their 48.9 MB results stay there and are bound here by digest"
+  ]
+}

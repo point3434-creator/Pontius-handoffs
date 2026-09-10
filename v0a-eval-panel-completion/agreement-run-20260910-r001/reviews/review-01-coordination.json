@@ -1,0 +1,27 @@
+{
+  "recorded_utc": "2026-09-10T17:22:38.412788+00:00",
+  "packet": "D:/Pontius-handoffs/v0a-eval-panel-completion/agreement-run-20260910-r001",
+  "reviewer": "/root/agreement_r001_cold",
+  "fork_turns": "none",
+  "reviews_dispatched": 1,
+  "original_file_count": 46,
+  "all_preexisting_bytes_preserved": true,
+  "review_publication_authorized": false,
+  "authority_file_exists": false,
+  "retained_invocations_exist": false,
+  "context_disclosure": "Reviewer reported injected general repository-history summaries; no candidate findings or verdicts. Candidate-blind, not wholly history-free. Coordinator did not inspect the reviewer initial prompt independently.",
+  "deliverables": [
+    {
+      "path": "reviews/review-01-codex.md",
+      "source": "D:/Pontius/tmp/agreement-r001-codex-cold-20260910-c9c00207c4274b7b8dbaa18149a23e9f/review-01-codex.md",
+      "sha256": "a349cbda554820f254b25d27cd42ce8fab1c01c99d048359750ad5f8273f903c"
+    },
+    {
+      "path": "checks/review-01-inventory.md",
+      "source": "D:/Pontius/tmp/agreement-r001-codex-cold-20260910-c9c00207c4274b7b8dbaa18149a23e9f/review-01-inventory.md",
+      "sha256": "0a33bbf821f915b62d512ed82c11edf616849482208ab0a2e6c9b67c210be872"
+    }
+  ],
+  "committed": false,
+  "pushed": false
+}

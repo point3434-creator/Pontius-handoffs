@@ -1,0 +1,41 @@
+{
+ "exit": 0,
+ "wall_seconds": 1198.9,
+ "stderr_bytes": 0,
+ "parent": {
+  "peak_working_set_mib": 4.5,
+  "peak_pagefile_mib": 0.8,
+  "samples": 23823,
+  "error": null
+ },
+ "journal_row": {
+  "timestamp": "2026-09-10T14:15:39.722098+00:00",
+  "command": "v0a_eval_panel run",
+  "status": "completed",
+  "summary": "agreement completed; 100476 observations",
+  "duration_seconds": 1197.9085580000028,
+  "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61",
+  "source_sha256": "bac14bea3e9a4e4c8c120556311447262d7775de54e39ef121c02bb2c59eb204",
+  "source_scope": [
+   "src",
+   "tools",
+   "tests",
+   ".github",
+   "pyproject.toml",
+   "uv.lock",
+   ".gitattributes"
+  ],
+  "source_verified": true,
+  "source_check_seconds": 3.1342245999985607,
+  "output": "experiments/results/runs/21d70d36051f48dfb3d27b5a8f703d2b/result.json",
+  "output_sha256": "2352b0cb087abe94df5c69df8b0aa215c3dbc262b4452cb3d0028df46efaa4c1",
+  "runtimes_sha256": "2d7d9f0dd8553eb107fd6290635cd78a1dacb653c5480bf83568c3a1b2727a90"
+ },
+ "result_bytes": 48934237,
+ "plan_sha256": "80b5c45d38751bdfba9e8a029f72f85ca7a2a98f59e826967ac175bd9210a01e",
+ "bank": {
+  "seeds": 6144,
+  "indices": 16,
+  "draws": 98304
+ }
+}

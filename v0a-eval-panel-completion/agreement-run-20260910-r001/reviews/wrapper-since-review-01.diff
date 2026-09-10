@@ -1,0 +1,42 @@
+--- reviews/reviewed-invoke-6581341a.sh	2026-09-10 14:03:49.428943700 -0400
++++ invoke.sh	2026-09-10 14:43:35.176265400 -0400
+@@ -163,16 +163,38 @@
+ fi
+ # --- retained file inventory ---------------------------------------------------------
+ (
++  # A phase that produced no new run directory has retained nothing, so an empty inventory
++  # is not a complete one. Without this counter the loop would skip every tracked directory,
++  # write nothing and leave the evidence recorded as complete. Other predicates defend the
++  # same ground, since a zero-status child always creates its run directory and journal
++  # attribution refuses a missing or unmatched row, but this file is the inventory's own
++  # claim and it must stand on its own.
++  seen=0
+   for d in experiments/results/runs/*/; do
+     name=$(basename "$d"); echo "$TRACKED_RUNS" | grep -qx "$name" && continue
++    seen=$((seen + 1))
+     # A phase may leave subdirectories in its run directory: agreement writes host-inputs/
+     # for the sessions it plays, which solve and export never did. List every regular file
+     # below the run root, in a stable order, so the inventory is what it claims to be.
++    #
++    # The enumeration is captured and its status checked BEFORE any of its output is used.
++    # A process substitution feeding the loop would not do that: its failure status is not
++    # collected, even under pipefail, so an enumeration that returned nothing or only part
++    # of the tree and then failed would still leave this subshell exiting zero and the
++    # evidence recorded as complete. Command substitution does propagate, and pipefail
++    # covers both find and sort. An empty enumeration for a new run directory is itself an
++    # anomaly and is refused rather than accepted as an empty inventory.
++    listing=$(find "$d" -type f | LC_ALL=C sort) || exit 1
++    [ -n "$listing" ] || exit 1
+     while IFS= read -r f; do
+       h=$(sha "$f") || exit 1; n=$(wc -c < "$f") || exit 1
+       printf '%s  %s  %s\n' "$h" "$n" "$f" || exit 1
+-    done < <(find "$d" -type f | LC_ALL=C sort)
++    # The redirection itself can fail before the body runs, and a while loop that never
++    # executed its body returns zero, so without this guard the later seen check would mask
++    # it and the block would report a complete inventory it never wrote.
++    done <<< "$listing" || exit 1
+   done
++  [ "$seen" -gt 0 ] || exit 1
+ ) > "$OUT/retained-files.txt" || EVIDENCE=incomplete
+ # --- end retained file inventory -------------------------------------------------------
+ printf '{"phase":"agreement","event":"end","utc":"%s","exit":%s,"wall_seconds":%s,"journal_rows_before":%s,"journal_rows_after":"%s","journal_row":"%s","journal_row_sha256":"%s","stdout_sha256":"%s","stderr_sha256":"%s","evidence":"%s"}\n' \

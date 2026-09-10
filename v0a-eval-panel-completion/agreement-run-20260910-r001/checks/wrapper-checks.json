@@ -1,0 +1,375 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "cases": 40,
+  "failures": 0,
+  "results": [
+    {
+      "case": "S0-gate-records-failures",
+      "expected": "0",
+      "actual": "0",
+      "condition": "mismatch-recorded",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "env-missing-systemroot",
+      "expected": "79",
+      "actual": "79",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "env-missing-temp",
+      "expected": "79",
+      "actual": "79",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "env-missing-tmp",
+      "expected": "79",
+      "actual": "79",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-None",
+      "expected": "88",
+      "actual": "88",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-'0'",
+      "expected": "88",
+      "actual": "88",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-'1'",
+      "expected": "87",
+      "actual": "87",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-''",
+      "expected": "84",
+      "actual": "84",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-'2'",
+      "expected": "84",
+      "actual": "84",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-'yes'",
+      "expected": "84",
+      "actual": "84",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-'00'",
+      "expected": "84",
+      "actual": "84",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-' 0'",
+      "expected": "84",
+      "actual": "84",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "mode-'0\\n'",
+      "expected": "84",
+      "actual": "84",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "empty-override-AGREEMENT_ROOT",
+      "expected": "88",
+      "actual": "88",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "empty-override-REHEARSAL_PK",
+      "expected": "88",
+      "actual": "88",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "no-authorization",
+      "expected": "89",
+      "actual": "89",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "rehearsal-root-is-retained",
+      "expected": "86",
+      "actual": "86",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "rehearsal-root-not-detached",
+      "expected": "85",
+      "actual": "85",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "input-guard-bound",
+      "expected": "0",
+      "actual": "0",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "input-guard-wrong-digest",
+      "expected": "80",
+      "actual": "80",
+      "condition": "launch",
+      "condition_expected": "no-launch",
+      "condition_actual": "no-launch",
+      "passed": true
+    },
+    {
+      "case": "inventory-walks-subdirectories",
+      "expected": "0",
+      "actual": "0",
+      "condition": "files listed",
+      "condition_expected": "host-input.json,result.json",
+      "condition_actual": "host-input.json,result.json",
+      "passed": true
+    },
+    {
+      "case": "inventory-normal-keeps-evidence",
+      "expected": "0",
+      "actual": "0",
+      "condition": "evidence",
+      "condition_expected": "EVIDENCE=complete",
+      "condition_actual": "EVIDENCE=complete",
+      "passed": true
+    },
+    {
+      "case": "inventory-no-new-run-directory",
+      "expected": "0",
+      "actual": "0",
+      "condition": "evidence",
+      "condition_expected": "EVIDENCE=incomplete",
+      "condition_actual": "EVIDENCE=incomplete",
+      "passed": true
+    },
+    {
+      "case": "inventory-no-new-run-directory-empty",
+      "expected": "0",
+      "actual": "0",
+      "condition": "files listed",
+      "condition_expected": "",
+      "condition_actual": "",
+      "passed": true
+    },
+    {
+      "case": "inventory-loop-redirection-failure-detected",
+      "expected": "0",
+      "actual": "0",
+      "condition": "block status",
+      "condition_expected": "STATUS=1",
+      "condition_actual": "STATUS=1",
+      "passed": true
+    },
+    {
+      "case": "inventory-redirection-guard-is-load-bearing",
+      "expected": "0",
+      "actual": "0",
+      "condition": "unguarded block status",
+      "condition_expected": "STATUS=0",
+      "condition_actual": "STATUS=0",
+      "passed": true
+    },
+    {
+      "case": "inventory-enumeration-fails",
+      "expected": "0",
+      "actual": "0",
+      "condition": "evidence",
+      "condition_expected": "EVIDENCE=incomplete",
+      "condition_actual": "EVIDENCE=incomplete",
+      "passed": true
+    },
+    {
+      "case": "inventory-enumeration-fails-no-partial-output",
+      "expected": "0",
+      "actual": "0",
+      "condition": "files listed",
+      "condition_expected": "",
+      "condition_actual": "",
+      "passed": true
+    },
+    {
+      "case": "inventory-enumeration-partial-then-fails",
+      "expected": "0",
+      "actual": "0",
+      "condition": "evidence",
+      "condition_expected": "EVIDENCE=incomplete",
+      "condition_actual": "EVIDENCE=incomplete",
+      "passed": true
+    },
+    {
+      "case": "inventory-enumeration-partial-then-fails-no-partial-output",
+      "expected": "0",
+      "actual": "0",
+      "condition": "files listed",
+      "condition_expected": "",
+      "condition_actual": "",
+      "passed": true
+    },
+    {
+      "case": "inventory-enumeration-returns-no-names",
+      "expected": "0",
+      "actual": "0",
+      "condition": "evidence",
+      "condition_expected": "EVIDENCE=incomplete",
+      "condition_actual": "EVIDENCE=incomplete",
+      "passed": true
+    },
+    {
+      "case": "inventory-enumeration-returns-no-names-no-partial-output",
+      "expected": "0",
+      "actual": "0",
+      "condition": "files listed",
+      "condition_expected": "",
+      "condition_actual": "",
+      "passed": true
+    },
+    {
+      "case": "exit-0-complete",
+      "expected": "0",
+      "actual": "0",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "False",
+      "condition_actual": "False",
+      "passed": true
+    },
+    {
+      "case": "exit-0-incomplete",
+      "expected": "99",
+      "actual": "99",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "exit-1-complete",
+      "expected": "1",
+      "actual": "1",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "False",
+      "condition_actual": "False",
+      "passed": true
+    },
+    {
+      "case": "exit-1-incomplete",
+      "expected": "1",
+      "actual": "1",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "exit-7-complete",
+      "expected": "7",
+      "actual": "7",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "False",
+      "condition_actual": "False",
+      "passed": true
+    },
+    {
+      "case": "exit-7-incomplete",
+      "expected": "7",
+      "actual": "7",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "exit-99-complete",
+      "expected": "99",
+      "actual": "99",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "False",
+      "condition_actual": "False",
+      "passed": true
+    },
+    {
+      "case": "exit-99-incomplete",
+      "expected": "99",
+      "actual": "99",
+      "condition": "incomplete-evidence-message",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    }
+  ],
+  "wrapper_sha256": "d030bcba4b5f12da7a82a54e4293e70f8ed6f7cd0072301adfb57de7759ee229",
+  "slices_sha256": {
+    "input_guard": "481edd452c6729dbe7edbe30e85fb06e20a80166793bc0adb8c1a14842e6dd09",
+    "inventory": "0de5a1622f9e88fcc7141847467e7a06932a2004c2882543fa7f6f46b0767669",
+    "exit_tail": "b86dd771098b30c5c25d90f76d1ef60f9a8ead9ff3039273b2e7da8acba2b6b8"
+  },
+  "scope": "wrapper refusals and source slices; the two-caller race and the end-to-end path are covered by the wrapper-driven rehearsal",
+  "no_project_invocation": true
+}

@@ -1,0 +1,100 @@
+{
+ "accounting": {
+  "missing_outcomes": 0,
+  "missing_pool_hands": [],
+  "observed_attempts": 1084,
+  "primary": {
+   "agreement_eligible": 1081,
+   "complete": true,
+   "completed": 1081,
+   "disagreements": 0,
+   "excluded": 0,
+   "hits": 1081,
+   "missing": 0,
+   "observed": 1081,
+   "scheduled": 1081,
+   "unsupported": 0
+  },
+  "scheduled_attempts": 1084
+ },
+ "bank": {
+  "draws": 98304,
+  "indices": 16,
+  "seeds": 6144
+ },
+ "census": {
+  "complete": true,
+  "counts": {
+   "collision": 73226,
+   "unused": 23997,
+   "witness": 1081
+  },
+  "missing": 0,
+  "scan_seconds": 2.4
+ },
+ "date": "2026-09-10",
+ "evidence": false,
+ "kind": "rehearsal-receipt",
+ "label": [
+  "full-pool agreement rehearsal; feeds nothing",
+  "consumed the export rehearsal snapshot copies, never retained export outputs",
+  "ran under a deliberately generous 5400 s / 12288 MiB so the true peak was observed",
+  "the snapshot is retained for review; the 48.9 MB stdout capture stays there, bound by digest"
+ ],
+ "measured": {
+  "observations": 100476,
+  "peak_worker_job_mib": 1625.1,
+  "result_bytes": 48934237,
+  "stdout_capture": {
+   "bytes": 48934238,
+   "location": "snapshot only",
+   "sha256": "75da99205e37c2212d1012c662d0e1f10c04125c7c9f2e189f08b6ceab1d718e"
+  },
+  "wall_seconds": 1198.9,
+  "worker_seconds": 1194.4
+ },
+ "outcome": {
+  "cleanup_verified": true,
+  "coverage": "declared-full",
+  "errors": [],
+  "phase": "agreement",
+  "phase_complete": true,
+  "resource_state_verified": true,
+  "status": "completed",
+  "worker_exit_code": 0
+ },
+ "parent_memory": {
+  "live_sample": "FAILED and void: the venv python.exe is a launcher stub, so the sampler measured the stub for the whole run and reported a constant 4.5 MiB; confirmed by pointing the same sampler at a process that touched 600 MiB and reading 4.5 MiB again",
+  "note": "reconstruction of parse, serialise and encode, self-measured; not a live sample",
+  "reconstruction_baseline_mib": 16.2,
+  "reconstruction_peak_mib": 286.4
+ },
+ "plan_sha256": "80b5c45d38751bdfba9e8a029f72f85ca7a2a98f59e826967ac175bd9210a01e",
+ "proposed_envelope": {
+  "basis": "2.0x the observed 1199 s and 1.89x the observed 1625.1 MiB",
+  "inherited_envelope_would_fail": "600 s kills the run mid-campaign; 2048 MiB leaves only 1.26x",
+  "memory_mib": 3072,
+  "seconds": 2400
+ },
+ "retained_files": {
+  "control-check-hit.json": {
+   "bytes": 1034,
+   "sha256": "384631fef8c2dbfe939a0d75cbc612ef1b70eab718858a86941076863e2ce2cd"
+  },
+  "control-off-pool.json": {
+   "bytes": 1010010,
+   "sha256": "93fbc34218160b8aa92437686b594c6fc9f2a53e1cd856871dacf7ddfc3bd90d"
+  },
+  "result.json": {
+   "bytes": 48934237,
+   "sha256": "2352b0cb087abe94df5c69df8b0aa215c3dbc262b4452cb3d0028df46efaa4c1"
+  },
+  "runtimes.json": {
+   "bytes": 352,
+   "sha256": "2d7d9f0dd8553eb107fd6290635cd78a1dacb653c5480bf83568c3a1b2727a90"
+  }
+ },
+ "run_directory": "21d70d36051f48dfb3d27b5a8f703d2b",
+ "snapshot": "D:/Pontius-worktrees/eval-panel-agreement-rehearsal-20260910",
+ "source_commit": "1c7067448106cfa2aca3d57be879842d72293c61"
+}

@@ -1,0 +1,218 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "cases": 23,
+  "failures": 0,
+  "results": [
+    {
+      "case": "S0-gate-records-failures",
+      "expected": "0",
+      "actual": "0",
+      "condition": "mismatch-recorded",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "attribution-absent",
+      "expected": "3",
+      "actual": "3",
+      "condition": "label/written/bytes",
+      "condition_expected": "ABSENT/False/True",
+      "condition_actual": "ABSENT/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-extra",
+      "expected": "4",
+      "actual": "4",
+      "condition": "label/written/bytes",
+      "condition_expected": "EXTRA/False/True",
+      "condition_actual": "EXTRA/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-wrong-commit",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-wrong-digest",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-bound",
+      "expected": "0",
+      "actual": "0",
+      "condition": "label/written/bytes",
+      "condition_expected": "BOUND/True/True",
+      "condition_actual": "BOUND/True/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-bound-crlf",
+      "expected": "0",
+      "actual": "0",
+      "condition": "label/written/bytes",
+      "condition_expected": "BOUND/True/True",
+      "condition_actual": "BOUND/True/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-unparsable-row",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-output-absent",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-output-not-string",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-output-file-missing",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-runtimes-mismatch",
+      "expected": "5",
+      "actual": "5",
+      "condition": "label/written/bytes",
+      "condition_expected": "MISMATCH/False/True",
+      "condition_actual": "MISMATCH/False/True",
+      "passed": true
+    },
+    {
+      "case": "attribution-runtimes-bound",
+      "expected": "0",
+      "actual": "0",
+      "condition": "label/written/bytes",
+      "condition_expected": "BOUND/True/True",
+      "condition_actual": "BOUND/True/True",
+      "passed": true
+    },
+    {
+      "case": "guard-all-bound",
+      "expected": "0",
+      "actual": "0",
+      "condition": "reports BOUND",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-wrong-digest",
+      "expected": "3",
+      "actual": "3",
+      "condition": "reports DIGEST",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-missing-file",
+      "expected": "3",
+      "actual": "3",
+      "condition": "reports MISSING",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-relative-path",
+      "expected": "3",
+      "actual": "3",
+      "condition": "reports NOT-ABSOLUTE",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-malformed-member",
+      "expected": "3",
+      "actual": "3",
+      "condition": "reports MALFORMED",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-extra-member-key",
+      "expected": "3",
+      "actual": "3",
+      "condition": "reports MALFORMED",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-short-digest",
+      "expected": "3",
+      "actual": "3",
+      "condition": "reports MALFORMED",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-empty-inputs",
+      "expected": "2",
+      "actual": "2",
+      "condition": "reports PLAN-NO-INPUTS",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-unreadable-plan",
+      "expected": "2",
+      "actual": "2",
+      "condition": "reports PLAN-UNREADABLE",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    },
+    {
+      "case": "guard-no-argument",
+      "expected": "2",
+      "actual": "2",
+      "condition": "usage-printed",
+      "condition_expected": "True",
+      "condition_actual": "True",
+      "passed": true
+    }
+  ],
+  "journal_attribution_sha256": "a20e760a7e97eb5e37432b81e0dc3e3048bd582299c7e938fc83c8d319d00b14",
+  "verify_plan_inputs_sha256": "3e85adaed78e56657c447161c172a7d3ef3ca67c32c10691593e4e5cef023d5c",
+  "scope": "helpers only; the wrapper-level suite runs against the filled wrapper at freeze",
+  "no_project_invocation": true
+}

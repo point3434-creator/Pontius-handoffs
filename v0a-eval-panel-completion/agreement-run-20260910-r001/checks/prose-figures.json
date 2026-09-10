@@ -1,0 +1,72 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "checks": 10,
+  "failures": 0,
+  "results": [
+    {
+      "check": "authorization-request: no stale wrapper digest",
+      "expected": "set()",
+      "actual": "set()",
+      "passed": true
+    },
+    {
+      "check": "coverage: no stale wrapper digest",
+      "expected": "set()",
+      "actual": "set()",
+      "passed": true
+    },
+    {
+      "check": "review-scope: no stale wrapper digest",
+      "expected": "set()",
+      "actual": "set()",
+      "passed": true
+    },
+    {
+      "check": "authorization-request names the current wrapper",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "authorization-request total case count",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "authorization-request helper case count",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "authorization-request wrapper case count",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "suites report zero failures",
+      "expected": "(0, 0)",
+      "actual": "(0, 0)",
+      "passed": true
+    },
+    {
+      "check": "coverage inventory-control count",
+      "expected": "12",
+      "actual": "12",
+      "passed": true
+    },
+    {
+      "check": "review-scope inventory-case count",
+      "expected": "12",
+      "actual": "12",
+      "passed": true
+    }
+  ],
+  "wrapper_sha256": "d030bcba4b5f12da7a82a54e4293e70f8ed6f7cd0072301adfb57de7759ee229",
+  "helper_cases": 23,
+  "wrapper_cases": 40,
+  "total_cases": 63,
+  "inventory_cases": 12
+}
