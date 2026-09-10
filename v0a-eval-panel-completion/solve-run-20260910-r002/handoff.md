@@ -109,3 +109,24 @@ Append one line to `D:/Pontius-handoffs/progress.md`
 A material finding returns to the drafter for a further corrected packet; a CLEAN verdict
 is followed by the controller's one-shot authorization in the wording
 `authorization-request.md` suggests, then the invocation.
+
+## Addendum for cold review 02 (controller ruling 2026-09-10)
+
+The controller ruled: "well run a cold review first if it still clean we will publish";
+Codex runs it. This review is a fresh-session cold pass on the same frozen bytes (manifest
+`8acaaa38…`). In addition to the read order above:
+
+- Do NOT open `reviews/`, `disposition.md`, `checks/review-01-inventory.md`,
+  `checks/review-01-verification.json`, `../solve-run-20260910/reviews/`,
+  `../solve-run-20260910/disposition.md`, or any ledger (`progress.md` at either level)
+  before your own inventory is written and hashed. After the inventory, the deferred
+  inputs remain only those named in step 6 above (the r001 reviews and disposition);
+  the r002 follow-up review and its disposition stay closed for the whole pass.
+- Read predecessor records (adoption, authorization, prerequisite packet) for identity
+  only; their verdict language is not an input.
+- Report to `reviews/review-02-codex.md`; inventory to `checks/review-02-inventory.md`;
+  one ledger line in `D:/Pontius-handoffs/progress.md`
+  (`date | v0a-eval-panel-completion/solve-run-20260910-r002 | Codex reviewer 02 | text`).
+  State the coldness probe result and any exposure explicitly.
+- If CLEAN, the controller authorizes the retained solve in the wording of
+  `authorization-request.md`; if NOT CLEAN, the packet returns to the drafter.
