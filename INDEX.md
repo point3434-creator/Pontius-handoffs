@@ -114,7 +114,7 @@ in [the task ledger](v0a-i01-prereg/progress.md).
 - [Code r004](v0a-eval-panel-code/r004/handoff.md): FIX of r003 (0bc19bca); NOT CLEAN under two Codex reviews; second residual on cleanup and sample contracts — separate candidates by Codex next, root-cause note in disposition.md.
 - [Prerequisite run 2026-09-09](v0a-eval-panel-completion/prerequisite-run-20260909/measured-report.md): authorized retained capacity (H=1,081, all fit) and preflight (5/5 agree, royal tie) on beb84be5; journal rows at 642858d on claude/eval-panel-prerequisite; awaiting the controller's resource decision.
 - [Solve run plan 2026-09-10](v0a-eval-panel-completion/solve-run-20260910/handoff.md): Claude's bound plan for one retained full-pool solve on the adopted 1c706744; two Codex cold reviews NOT CLEAN on the invocation wrapper (plan, identities, envelope and rehearsal census passed); disposition.md accepts all findings; corrected in r002.
-- [Solve run plan r002](v0a-eval-panel-completion/solve-run-20260910-r002/handoff.md): FIX of the wrapper; Codex review CLEAN / SOUND (disclosed follow-up, four Minors carried to the export wrapper); disposition.md; awaiting the controller's one-shot authorization for the retained solve.
+- [Solve run plan r002](v0a-eval-panel-completion/solve-run-20260910-r002/handoff.md): FIX of the wrapper; follow-up review CLEAN / SOUND and cold review 02 NOT CLEAN over one Minor (exit-99 prose omits child-status precedence; behaviour fails closed either way); both labels preserved in disposition-addendum-01.md; corrected in r003.
 
 - [Evaluation panel ownership correction r001](v0a-eval-panel-ownership/r001/handoff.md): separate contract candidate; focused verification complete; cold review pending.
 
