@@ -1,0 +1,14 @@
+...................F................................................................................................
+======================================================================
+FAIL: test_one_real_serialization_per_provider_and_no_repeated_warm_serialization (test_blueprint_preparation.PreparedBlueprintProviderTests.test_one_real_serialization_per_provider_and_no_repeated_warm_serialization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_blueprint_preparation.py", line 511, in test_one_real_serialization_per_provider_and_no_repeated_warm_serialization
+    self.assertEqual(len(calls), 17)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 1 != 17
+
+----------------------------------------------------------------------
+Ran 116 tests in 0.395s
+
+FAILED (failures=1)

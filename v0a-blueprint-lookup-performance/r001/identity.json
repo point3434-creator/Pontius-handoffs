@@ -1,0 +1,23 @@
+{
+  "authorization": "User authorized highest-value fixes, then return to research.",
+  "base_commit": "d4488fee970e10ac96a5b4a33f8d3fc9ff86c05b",
+  "base_tree": "ca5fec797e3bd06a22ba3bcb8e14101321128b32",
+  "branch": "codex/blueprint-lookup-performance",
+  "checkout": "D:\\Pontius-worktrees\\eval-runner-consolidation",
+  "generated_worktree_records": [
+    "STATUS.md",
+    "execution_journal.jsonl"
+  ],
+  "manifest_rule": "Every packet file except manifest.sha256; whole-row ASCII byte sort, LF",
+  "overrides": {
+    "docs/blueprint-lookup-performance.md": "7af61a95e971be4b343915523219b2c02bca04fdecc7595a3cfece9eebffbe22",
+    "src/pontius/immutable_blueprint.py": "2ee8b75f94b3c11fd46ffd684391f1a02255f0e2d198f3f1c91c04b1d94d0d6c",
+    "tests/test_blueprint_preparation.py": "5bc76246ae21cef5f1b731343a6fea98fe1e08728927f8804afcd7304fc7a3a5",
+    "tests/test_eval_completion_tool.py": "9a66aef44fcf90a02f67680e5202a60279ecca81b2ec87892f77c3deca1af5f5",
+    "tests/test_immutable_blueprint.py": "df948322042586620dd6557e0060eb193fbda603b4bbe63d3e4b71d533267b45"
+  },
+  "python": "3.14.6",
+  "source_archive_scope": "base-src.zip contains src only; other base paths are frozen Git blobs",
+  "status": "candidate only; no commit, push, adoption or retained invocation",
+  "version": "pontius-blueprint-lookup-performance-review-v1"
+}

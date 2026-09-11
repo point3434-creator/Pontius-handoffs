@@ -1,0 +1,16 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "tests": 347,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "excluded_modules": [
+    "test_blueprint_workload_session",
+    "test_eval_protocol"
+  ],
+  "excluded_methods": [
+    "test_real_host_check_hit_default_and_changed_stack_are_distinct",
+    "test_supervised_three_phase_subset_and_bound_input_failures"
+  ],
+  "reason": "Keep execution pure; excluded suites use Git commits or execution-host phases."
+}

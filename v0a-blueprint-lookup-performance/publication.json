@@ -1,0 +1,21 @@
+{
+  "authenticated_github_owner": "point3434-creator",
+  "base_commit": "d4488fee970e10ac96a5b4a33f8d3fc9ff86c05b",
+  "coldness": "Qualified as disclosed in unchanged report; not an unqualified cold pass",
+  "confirmed_repository_push_permission": true,
+  "controller_authorization": "Commit and push them",
+  "master_merge": false,
+  "packet_manifest_sha256": "14ee03389d41e63fc3a4303fbc55df380cb778347c9d0ee06695a529d504f6fe",
+  "retained_invocation": false,
+  "review_report_sha256": "8540522299c7dd583810371c7c249038782f9efba50b9169539c4263cb1c5b4a",
+  "reviewer_inventory_sha256": "b689ca0be8447c4691086fe6742c0b24b9cb85a536013ab9ccac7f31b38be6f6",
+  "reviewer_verdict": "PASS within declared frozen-graph and pure-check scope",
+  "source_branch": "codex/blueprint-lookup-performance",
+  "source_overrides": {
+    "docs/blueprint-lookup-performance.md": "7af61a95e971be4b343915523219b2c02bca04fdecc7595a3cfece9eebffbe22",
+    "src/pontius/immutable_blueprint.py": "2ee8b75f94b3c11fd46ffd684391f1a02255f0e2d198f3f1c91c04b1d94d0d6c",
+    "tests/test_blueprint_preparation.py": "5bc76246ae21cef5f1b731343a6fea98fe1e08728927f8804afcd7304fc7a3a5",
+    "tests/test_eval_completion_tool.py": "9a66aef44fcf90a02f67680e5202a60279ecca81b2ec87892f77c3deca1af5f5",
+    "tests/test_immutable_blueprint.py": "df948322042586620dd6557e0060eb193fbda603b4bbe63d3e4b71d533267b45"
+  }
+}

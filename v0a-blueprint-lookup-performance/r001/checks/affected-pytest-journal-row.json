@@ -1,0 +1,22 @@
+{
+  "command": "pytest -q -p no:cacheprovider -k blueprint or decision_provider or v0a or eval_bridge or eval_agreement or eval_protocol",
+  "duration_seconds": 30.733996699986164,
+  "output": "experiments/results/20260910T230453-dae8a319.json",
+  "output_sha256": "a71fb59149593b2885ae8421205695e9b3dba21bc5299306d5793662827ae995",
+  "source_check_seconds": 0.4254934999917168,
+  "source_commit": "d4488fee970e10ac96a5b4a33f8d3fc9ff86c05b",
+  "source_scope": [
+    "src",
+    "tools",
+    "tests",
+    ".github",
+    "pyproject.toml",
+    "uv.lock",
+    ".gitattributes"
+  ],
+  "source_sha256": "af3260355570226b25381c61e2a906a551ae1215c93b43f75a5cbeed082f697f",
+  "source_verified": false,
+  "status": "passed",
+  "summary": "349 unittest cases exercised; 0 skipped; pytest exit 0",
+  "timestamp": "2026-09-10T23:04:53.468482+00:00"
+}

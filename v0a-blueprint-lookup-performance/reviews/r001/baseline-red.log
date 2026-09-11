@@ -1,0 +1,36 @@
+test_repeated_identity_reads_do_not_repeat_serialization (test_immutable_blueprint.ImmutableBlueprintTests.test_repeated_identity_reads_do_not_repeat_serialization) ... FAIL
+
+======================================================================
+FAIL: test_repeated_identity_reads_do_not_repeat_serialization (test_immutable_blueprint.ImmutableBlueprintTests.test_repeated_identity_reads_do_not_repeat_serialization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius/tmp/lookup-r001-cold01-20260910/candidate/tests\test_immutable_blueprint.py", line 77, in test_repeated_identity_reads_do_not_repeat_serialization
+    self.assertEqual((key.digest, source.digest), (expected_key, expected_source))
+                      ^^^^^^^^^^
+  File "D:\Pontius/tmp/lookup-r001-cold01-20260910/base/src\pontius\immutable_blueprint.py", line 251, in digest
+    return sha256(self.canonical_bytes()).hexdigest()
+                  ~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Pontius/tmp/lookup-r001-cold01-20260910/base/src\pontius\immutable_blueprint.py", line 242, in canonical_bytes
+    return json.dumps(
+           ~~~~~~~~~~^
+        payload,
+        ^^^^^^^^
+    ...<2 lines>...
+        sort_keys=True,
+        ^^^^^^^^^^^^^^^
+    ).encode("ascii")
+    ^
+  File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\point\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+AssertionError: identity reserialized after first read
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)

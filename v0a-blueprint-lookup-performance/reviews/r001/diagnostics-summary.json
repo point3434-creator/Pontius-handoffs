@@ -1,0 +1,72 @@
+{
+  "commands": [
+    {
+      "script": "benchmark.py",
+      "variant": "base",
+      "exit_code": 0,
+      "command": [
+        "D:\\Pontius-worktrees\\eval-runner-consolidation\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys,runpy;sys.path.insert(0,sys.argv.pop(1));p=sys.argv.pop(1);sys.argv[0]=p;runpy.run_path(p,run_name=\"__main__\")",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\base\\src",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\checks\\benchmark.py",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\benchmark-base.json"
+      ]
+    },
+    {
+      "script": "benchmark.py",
+      "variant": "candidate",
+      "exit_code": 0,
+      "command": [
+        "D:\\Pontius-worktrees\\eval-runner-consolidation\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys,runpy;sys.path.insert(0,sys.argv.pop(1));p=sys.argv.pop(1);sys.argv[0]=p;runpy.run_path(p,run_name=\"__main__\")",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\candidate\\src",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\checks\\benchmark.py",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\benchmark-candidate.json"
+      ]
+    },
+    {
+      "script": "retained-parity.py",
+      "variant": "base",
+      "exit_code": 0,
+      "command": [
+        "D:\\Pontius-worktrees\\eval-runner-consolidation\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys,runpy;sys.path.insert(0,sys.argv.pop(1));p=sys.argv.pop(1);sys.argv[0]=p;runpy.run_path(p,run_name=\"__main__\")",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\base\\src",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\checks\\retained-parity.py",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\inputs\\blueprint.json",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\inputs\\teacher.json",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\retained-parity-base.json"
+      ]
+    },
+    {
+      "script": "retained-parity.py",
+      "variant": "candidate",
+      "exit_code": 0,
+      "command": [
+        "D:\\Pontius-worktrees\\eval-runner-consolidation\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys,runpy;sys.path.insert(0,sys.argv.pop(1));p=sys.argv.pop(1);sys.argv[0]=p;runpy.run_path(p,run_name=\"__main__\")",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\candidate\\src",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\checks\\retained-parity.py",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\inputs\\blueprint.json",
+        "D:\\Pontius-handoffs\\v0a-blueprint-lookup-performance\\r001\\inputs\\teacher.json",
+        "D:\\Pontius\\tmp\\lookup-r001-cold01-20260910\\retained-parity-candidate.json"
+      ]
+    }
+  ],
+  "parity_comparison": {
+    "canonical_sha256": true,
+    "result": true,
+    "source_digest": true,
+    "teacher_sha256": true,
+    "wire_bytes": true,
+    "wire_sha256": true
+  }
+}

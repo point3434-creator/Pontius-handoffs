@@ -1,0 +1,3183 @@
+{
+  "explanation": "Executed Git archive materialized line endings; raw review archive uses cat-file. All differences are CRLF/LF only; both original byte sets retained.",
+  "files": [
+    {
+      "exact": false,
+      "executed_sha256": "3af85ef6f1e59abd4c04fe1dd97116cf58f735c8140a3cca694d4bf7f4e634ba",
+      "git_blob": "32f2bbd3f3022fb902ee1e58f1bbc7b0640b4b7e",
+      "path": "src/pontius/__init__.py",
+      "raw_sha256": "5dd4371cf5f30af8ccd637a1650da55700baf23be2665f16975cd5167f469031"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "728d8f0159a9f210f816a821fd856131c8009a96e58c2f302ac91ed372f14e97",
+      "git_blob": "cf82da56acbbbe0fa8ec0151ec0e5d9f472f8373",
+      "path": "src/pontius/action_abstraction_confirmation.py",
+      "raw_sha256": "cb45608e1f60f0e8e5276e453a35c1fa8079e8d119abfd8215950142887753ef"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "12e5f4ec46363a077e368e331fe2e0068b70209c73ed6e3b8fa43e6b21b29a23",
+      "git_blob": "844643c5497b1bb18d5a9346dd35f77cf7aabb0a",
+      "path": "src/pontius/action_clock.py",
+      "raw_sha256": "d1540ec3ce25b8247cf990b8649e3af0ebe9f3d25a98322aaf141afddf9a55bb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f878509e6c56d7788ec95073276288003badbe4e839cf7abb1947b89be5185fd",
+      "git_blob": "a84787cab28c2745fa1b0afefd6caf649c317ff4",
+      "path": "src/pontius/affine_resident_heterogeneous_leaf_contraction.py",
+      "raw_sha256": "f5f48f594b38ee3781398f666ce707217343cc62399df6b035d2823ea3dfd8e8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1956331f160a321668f0724a357df29338e0840669efc30da6dc4abd27f5ce62",
+      "git_blob": "35519cfd0ca1299a353bbecad1a8351576303b67",
+      "path": "src/pontius/atomic_json_checkpoint.py",
+      "raw_sha256": "d0bcacac2f6c96616fcc8f61478755d868dd6dbb95fadd53575b42ef55c36bb1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "647bfc0ad56df54bb6b5ba4249aae07643ebaf519618b5861f400b43c6aa5510",
+      "git_blob": "707c046225eb7f4dc914df4d7f632774aa7eea04",
+      "path": "src/pontius/axis_cfr_checkpoint.py",
+      "raw_sha256": "6f80342371bf280a03126af9043f061daaae27b4fb99f130edf3565f029af4c2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "484bc9e2a90186632b1cf23594e0c00a3702ec1b70e04088f7f2d18fc1760e31",
+      "git_blob": "4b7b15875f77def2b39893b925a4fb37914dbbe4",
+      "path": "src/pontius/axis_public_cfr.py",
+      "raw_sha256": "8915465478a1459d811a3ae8b069c6082e12fb93058864bb85cde6db8b62131c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "71c370572ccc487ad30c7c499f5104088bf27ed67eacc1c69c34179ff0c1c749",
+      "git_blob": "89f7ad0ad6ae841963074dfe5b3aa1c4a4e2482f",
+      "path": "src/pontius/batched_factor_tt_contraction.py",
+      "raw_sha256": "e4dd1615cc535674116932fc420e6fb745f4e3ed9e7777f0a7453d435ad422cf"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "82dc33ef6d0d95044f98c13e48161de0d503c1819bdbc51d4e739fb84d0cc7a3",
+      "git_blob": "1ad40fac554ab487fe3962428d399ae091fc5a64",
+      "path": "src/pontius/batched_selector_stable_affine_response.py",
+      "raw_sha256": "d5d9203dffb33124fd35cecebe388975b5eea2ebfb981eebf8e434b0723a2e4e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "36d24a2704d053747185b81dddfbff752098e5e81ba86c456edc6b5a237c4672",
+      "git_blob": "d0f919e9f674b3c8894590b4cae447f72927de4b",
+      "path": "src/pontius/behavioral_one_seat_master.py",
+      "raw_sha256": "6c832e5e741bf4b3f2781f637b4a98bc5119eec26fdfefd07146121e850c3bea"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3cd42f6151b96b0f1ec7534e97c40830f2acb6f4f0885251d216869e2a49d15f",
+      "git_blob": "05a15591152b50f1f2b7dbad15dc4c72315091d5",
+      "path": "src/pontius/behavioral_one_seat_master_v2.py",
+      "raw_sha256": "71059c9ec56a56a8696430270efbfc6b39c89bad411dd5da803d0a60396d1cdb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9b2c79ef3bb9a1b64f135e61721cd5e45a9ccb173003dce2194e16abb2672014",
+      "git_blob": "6a6a32eb9355689085d447f9fd52e450df0594fe",
+      "path": "src/pontius/behavioral_open_axis.py",
+      "raw_sha256": "382b3d15542f29fde07ffb43500f29f93c3ec9503736e5093383206b0e0e3f24"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7105dfdc710d84cfdf28b0a13301f9d806c7bdf5c718352fe95f36f9ca706e71",
+      "git_blob": "bfbba1dbff64facf6244d3d5c4641605522842c7",
+      "path": "src/pontius/benefit_experiment.py",
+      "raw_sha256": "465867accde51797d157965861f593d5f8833d5635ebf0f6fa750ef6842e6d33"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7cf482fb65c1b5947abf90f014c8ce15970e320a491e128227ac1dbbddbcde5c",
+      "git_blob": "c51ac7d9688ec1c49eccfcd0f1855959af68463c",
+      "path": "src/pontius/benefit_matrix.py",
+      "raw_sha256": "5f08466509ec6b1d817bdece4b10ec882b493ee97ab4f6057b52b723e7ba44d1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d2263359c4d4e5a97eaa8805d1830d894d5ea81b8f3fcfe288226963645e3ae8",
+      "git_blob": "453127f9b7ef0b7a4220375307701b29579d1229",
+      "path": "src/pontius/benefit_trajectory.py",
+      "raw_sha256": "6178de7932601e206475d38166152bde2448404771f72aac4d0669b6752ac4f3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "149f1897be7b8b188ba769d31a2e7583e482d097d880a4df216273c0c6d183ad",
+      "git_blob": "cf635d0614e20c910c0986e51da7f913b3f97b1c",
+      "path": "src/pontius/blueprint_artifact/__init__.py",
+      "raw_sha256": "5519e7440308e1600659bb9ed5f2ce27a40c4abc338b1cf2b7ec66f7f52671c3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b94352c59d746f55405125d91debeff9e15e50c21378cf0bd159f1a878eebe4f",
+      "git_blob": "c8a21b91cc4d285ff6e82b1f1b187c4e178bb5ce",
+      "path": "src/pontius/blueprint_artifact/codec.py",
+      "raw_sha256": "72539c0b977b3fb46d6a25e44f5a9355b957978cd305bce7c56c5b5d3470fde2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0dc2368d340dd8edcf747c9d449078bd92341e4522b641c7706f8a216ed145f2",
+      "git_blob": "0d05fd764882b321ad10ee5267d07001730ef299",
+      "path": "src/pontius/blueprint_preparation/__init__.py",
+      "raw_sha256": "fc070c4f6f074a61ca8e4df4486bd092cfedeb4b9c3373d45f62554f0d252771"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6a9f57d88cdab22dd96b624dfc104b576f0d0728919aaf0762a2cfc61470b901",
+      "git_blob": "8d70e3014a6d1af2fe53e7ddfb15bbe30f8b2cb1",
+      "path": "src/pontius/blueprint_preparation/lookup.py",
+      "raw_sha256": "f2fe6b489519bf374c4ad53aa7511dd5cf09fc6e3bcf37882e0d830b82b4c07d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e590e775ae9017029171d2e59543de0b92d12d334b63879c2bc8b0b0f0b1e867",
+      "git_blob": "1855bf961746492c4af83cbb60d65d0919fe7d6b",
+      "path": "src/pontius/campaign_deadline.py",
+      "raw_sha256": "ee0eaa861a4a15e3da53db343d90e1704050c0d927ba146b0b3cd9dda4f87871"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "511d8f4966bf59adf26c592555c016cc883dfca213f553670d16125432103fe5",
+      "git_blob": "1a7ec636c22ad076aa8d2ab41aefd4307c9d53ef",
+      "path": "src/pontius/canonical_affine_resident_automaton_cache.py",
+      "raw_sha256": "5d722bff2dd55b76957c4d178a0b3aadf0f9e37f019204741894ef70875c1258"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9a42115446aa036ebc77acb64dd8f48042be1805fd96c02abc776c8d14776a59",
+      "git_blob": "dc145f4d9e6dd5148202d260484371478088d440",
+      "path": "src/pontius/capacity_filling_action_abstraction.py",
+      "raw_sha256": "032cee37c74156ea37fc7e9fa64d90857e543e674ce83a09a7ab83eb21fd06fe"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "07435d461d434e530d9c4a68509430cbde031c9c3dccd8267dc1ec7da99f8270",
+      "git_blob": "6da52c8b134f3701602f2b09c103ccfeeacb3911",
+      "path": "src/pontius/certified_reduced_sizing_consumer_v2.py",
+      "raw_sha256": "931d6aa2d919efc3fc39e3d404dfa4bf0f6ced756acc2a918dc6c0cde8b4210a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3ecd4b21516b48a35c5e347c73d81317d127c38a96d597cc71af7ad9c9323a51",
+      "git_blob": "2ebdfaa836a8d0f9b0a810c465a5ed3949f7a3fc",
+      "path": "src/pontius/certified_reduced_sizing_consumer_v2_seal.py",
+      "raw_sha256": "c4257cc79f15de3192eea8920fecf18dbb77f2e3a06eb6ad237489717b1e701a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3ceda7491019f0664d498e5d5c8a167fcccde165e55e82a9a49ee5674bbadd99",
+      "git_blob": "91a9ca3d4db3eb81d472fa3e1bba9677eb8d8635",
+      "path": "src/pontius/certified_reduced_sizing_highs.py",
+      "raw_sha256": "4723a7b153b6285081c67e8e5c20b0f1097c7d8acf9ab4c5482373984947e80f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cf04ab88c40c0a23f2a42230bd99bf93fa19e0a52170a133637bc5cdb76f41bb",
+      "git_blob": "fe0ed00174eea075c7b1a13c7f9d828f64691e75",
+      "path": "src/pontius/certified_reduced_sizing_highs_seal.py",
+      "raw_sha256": "25acaef5776044b56ad370d42616200cc39d3d662a7ab1bc45f3366a6ae1c0b0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2a9ba92db8a40b459396c937f53eb696cfc1251b2bf52956a50db0cf5ccacb54",
+      "git_blob": "8151209d4d22490d3ebfa718354697ba02ed527d",
+      "path": "src/pontius/certified_sizing_validation_runner.py",
+      "raw_sha256": "5116c1d4b2632da76cf83e6d7d015b190e061330094d27b3c9719631a89252e1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fc471af2abe1f66951127a701f86b2ac993507b7463ef34c4c9388973d46d98a",
+      "git_blob": "4345a64462ea7cec524b207f1c0684930676be76",
+      "path": "src/pontius/certified_sizing_validation_seal.py",
+      "raw_sha256": "40c7828e8e3f18843a56ef9c6c89c25785a96b145d31c4a00d413cf0a93993db"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c46c1a98eceedb69a666916201a0cbfba6793eb139440afa95b729047384496f",
+      "git_blob": "f5ac7beb8beb7ddb3e0503ec9ba70efaaec87787",
+      "path": "src/pontius/cfr.py",
+      "raw_sha256": "d0e3c8fbc983a9863ec3feaa47cf1b932942623dd9f03eaed88d6e356e34051e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "20468f4e2cec8d75701549a19dc139cec9e40bce133949573d17089fb4d3a62d",
+      "git_blob": "e2cf055bab782f32a4ee83957663265f9db5e29e",
+      "path": "src/pontius/clean_fringe_tt.py",
+      "raw_sha256": "1592aa8412bc6fd50865d26521e98c3d6c78eb15564f6248a7c52c7f6288f74c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "eb8cd737a8fba4fa87612cf4739309f3a65981c486e2195f06cf2604e7c99fe0",
+      "git_blob": "f9deb38d91ec8de2ba22eb7676d9a3489ee7833d",
+      "path": "src/pontius/coalition.py",
+      "raw_sha256": "6aee741a2f90d42c935bb85d6b8ac616bbcbbc3d90ef588112529c27133c86a3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e024126abb7b451fa790c6619a20fc3ace0d6fcd23f524911192dc4a34a71e86",
+      "git_blob": "a68217a7013a9bdb56b992ef22e4419d429e9f07",
+      "path": "src/pontius/collision_repair_action_abstraction.py",
+      "raw_sha256": "a5a82eb42d786e357a629c0de851a5e464ebde1f2f4ce439bac61533b2053670"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5043971f7b2f09f01a27f5e8a56dfde59fe6c33ade7070493af2396aa3ec0a00",
+      "git_blob": "f2dcc249cb325a6edb7be644fc25b5766f6238af",
+      "path": "src/pontius/collision_repair_v3_evaluation.py",
+      "raw_sha256": "ddc5899af25b465c301e9d431a8367c67736051d4276e5500d70addd041b84ea"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "20cce73c2d064826ec74f01aa0b0a9bd5dfc30a8ecfdb8ecef94a270bc2ddacd",
+      "git_blob": "e76d23d6abb82841270cf683b17aee83ff89de22",
+      "path": "src/pontius/complete_factorized_affine_evidence.py",
+      "raw_sha256": "27fbf408143ec10e4cc25b76b60bc6eaf42eee5e8a957c616042588faebe20d8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f68f0900d301932574c7bc3bb522a07a0681aab89935075a49b4bcd7ecb31f17",
+      "git_blob": "cbaf045075bde5319ccf12df20e8cfed084166bc",
+      "path": "src/pontius/composition_experiment.py",
+      "raw_sha256": "4b2c96e2a9fe4cd0252757b02861d27e8fa35bb44e6e2b0a20980d4b8f6e95ff"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3118fd65463e6bb291e93707f10f89b427dbd0acaf916e53648b4de92006de41",
+      "git_blob": "f6a63b9bfb3ed82b8cf80355bedd4bdfe9becd9d",
+      "path": "src/pontius/composition_matrix.py",
+      "raw_sha256": "3b7041d3fee01471a82c2301e36b66eb1c69682b5b52059ab4d5d433d0528877"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a87c85d2afcb8f84600aa1eb9d64ae92409896221ae509a22db7426da871ebb0",
+      "git_blob": "2a70c11c50146fb04d1b8700b7f80b37cb02d012",
+      "path": "src/pontius/constrained_generation.py",
+      "raw_sha256": "304e67988219e9094c4429cc27c50cb16326b109d1ef8f49b4c4ab04e611f00c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fe4c264b5758498558e44dc53e1292b0d828d5c490c710c344899e05fc9917b5",
+      "git_blob": "4cce78daffce5e503ee0f1aafba4298de5457020",
+      "path": "src/pontius/constrained_generation_experiment.py",
+      "raw_sha256": "9b9172baabf2c7d9683548f294080e10397b126422db8e84a7594dc23655044f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "01c6785961ea511edf5eabe6be1d3660f947d67e314cd73617c809bc0a807f4f",
+      "git_blob": "0c67ac93a29f1ddcee416aaaa91ddf23d319a487",
+      "path": "src/pontius/constrained_generation_matrix.py",
+      "raw_sha256": "406f3b66dd48ec35dcb333be06fb9450615d989fb9eadf7764a101ff5d320271"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c567b9c8ea01312a6e33f7768c4a2884f148c3ba0b37a589e5dbd4d3c542b16d",
+      "git_blob": "e3b9c628b5af1bfece9414cbae35dc1c39626e13",
+      "path": "src/pontius/continual.py",
+      "raw_sha256": "7c1aa59db05a11938f2553751fadb1cac54d1c840f9a5a0683d79c6bb06185b9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "103cd0d6759af1efda868464e0a59dc927c6ded7f77a9ae18395ee9b393c4b94",
+      "git_blob": "43b77e8aaee78b78e38a4b17439da43517be9a77",
+      "path": "src/pontius/continuation_public_tree_tensor.py",
+      "raw_sha256": "3c04447963e77099dfca505e75e3d9c028e48a1ebd7dc465df30467270187118"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7268981400a18b8383972ef0903894b3738b87c30bccff194e21a698abe09753",
+      "git_blob": "90ebdda29a482acb9c84fb88ebb02e47604576b4",
+      "path": "src/pontius/convex_retreat_tolerances.py",
+      "raw_sha256": "36b2cff4af122f9ad919e168c69c9bb4d512d9e717e5eeb53cf593e1ec725517"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fb072dac014bd8edbaa9de5b4b8dbdb0bab420a3364878494237d0b5327a6330",
+      "git_blob": "345e56dd61e5ef7021ab7db4cf1813fb5e626be8",
+      "path": "src/pontius/cross_payoff_adjoint_result.py",
+      "raw_sha256": "673f3c73c0e1f2d725892dd46f009a94a4585c38290323560025099ebdadfdd5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ad868addb13f2174d3104980e6e839474c745dffd02aca32d604354175cce4e1",
+      "git_blob": "7798740e01f06bf56b3dc4aa2ec7bc9e4f193639",
+      "path": "src/pontius/cross_payoff_leaf_adjoint.py",
+      "raw_sha256": "58475dfb7e4b42e814602612758067a146cbef6f5291ee100ec0e35f97944271"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5ad4dfea9b7fe84d2ff010b5812a9a86d7bf19682094489297a29c797b49eba7",
+      "git_blob": "8e61e3bdb80c11c51bfd3d0b12d263af70e6abc9",
+      "path": "src/pontius/cuda_dll_bootstrap.py",
+      "raw_sha256": "66d6bcfaadbaf47f110854380c227163cf052414f494a510dd53a4ea2ef91bef"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "de1bd51fc31d91911f4d8d685cb377e5fe9a179c40a3d79705ad37ab692c4634",
+      "git_blob": "689e5cef9b6d30382d9bebed1bd53cd56d2536b5",
+      "path": "src/pontius/cupy_sparse_incidence.py",
+      "raw_sha256": "ef1671d1e4091b00a9051f5f9ba753546f783bebca41b17953fa36efa40ff098"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cfac1228e7601880527341b53ff7da13d35a8eb1fc5579134ef14cb47a071497",
+      "git_blob": "60c7339e742287c0119066ccc8888e967a9afac6",
+      "path": "src/pontius/deadline_owned_result.py",
+      "raw_sha256": "615872d1abc52adbeaaf3c6f6053e2d8f50c2cf4d6520390b68b08171786b8fa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "01191bc3bcff51951667a8457feb537b92fa4e188d2f8813806f7a5e5074ce15",
+      "git_blob": "b81a3e4c7ad84eca8263e0d5638e0544f55712ea",
+      "path": "src/pontius/decision_provider/__init__.py",
+      "raw_sha256": "d9b6443aee1141a7c58b43a2c0b1059853d8851ef8e3b22cbcb700ade868b580"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "388c2fdf2cfcfedecb50ece2678b0254eb528b73c02e50accc96a0b0ddb7dd49",
+      "git_blob": "f5795bc1d7f723a569b76732cf195b2ef9d69eaf",
+      "path": "src/pontius/decision_provider/codec.py",
+      "raw_sha256": "5910678eceb992069c2536c71703a54795b5515d8fadbaed1ee4b931d909a71b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "767284bc8559b01c8b685ae7ba77b82fb8d56c86f6bfeba59d5db8ca329553bf",
+      "git_blob": "6cce376e73594a6836d146cd53022fdb250a04f5",
+      "path": "src/pontius/decision_provider/model.py",
+      "raw_sha256": "db7ca04be001a5301a438cfe8b3a2b586f811ce331758511f6ec3f1a8f35b4d2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a42a00f01f53112dfa27c07b355d4ff2ced5098af2edc510de6ad40407d06097",
+      "git_blob": "c456a6953d32d1d28c4bef587c736b8971a69df4",
+      "path": "src/pontius/decision_provider/providers.py",
+      "raw_sha256": "dbb9e4c1a0108b9ce8ce6a43113c3c54fbcdfdea890517cba83707ac42ecf5de"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3d6c5ba90f03d66adf4cfa2bf0c0356b940cec55020fd27619ff12833b03b882",
+      "git_blob": "7b1f1eac2b53cca87cdec5e8f8a4ea9f50b63ebb",
+      "path": "src/pontius/decision_provider/selection.py",
+      "raw_sha256": "724cf33d6140f742204cf6d9ebbd85dce6d97456e654263b7ec41e2e5eb0c3ed"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c319600aa4361cc6eff3cc665dd1540c3360b21c1b714c2c4f715428e331d14b",
+      "git_blob": "94687f774bb413917ec25e8f22b84466a57fcc6d",
+      "path": "src/pontius/delta_certificate_contract.py",
+      "raw_sha256": "79c61774eb463542b0cc658ef5d81afff84119317fe66aaeb9d3e4efc34c2774"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b1033a2bebcac0c1f7067347afc806d5f7d9804a145191acab7bbc095aab8ed0",
+      "git_blob": "426599f26a258565dda28fdbfd10fa5f42fa6f4c",
+      "path": "src/pontius/dense_root_cross_payoff_control.py",
+      "raw_sha256": "5bd6218d0c32673293dd1f2045f5f241fc4e68608c58ba0d9e5ea3bb485da202"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2302e0a987cc0edc85e89d2829595f983e2c444435d3bdfde1bf5ef9463ed392",
+      "git_blob": "79b3dace52d34d6323c03ea9a5f619742320d6bf",
+      "path": "src/pontius/dependency_tape.py",
+      "raw_sha256": "da7a89870b59dc151c8a056ab32468ed3206471959ac3b26dffca0d733c06501"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8e2fb138d6ee21869aa6e2fdcf6883d7d5ea480a9216d2c7eea561ec0a0b7edf",
+      "git_blob": "1a58a3ec3aae7caccbccf790cb1220988b56b871",
+      "path": "src/pontius/dependency_tape_experiment.py",
+      "raw_sha256": "9da61dfb574f5ac95a22beafc5a875e49a3fd1c8666d3fc29436812100b726ec"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "78d5207365c02877e887ea164101772e654fae7e8f9da8cbdb5abd46f750bacc",
+      "git_blob": "b17b2300e0abb151471be902e2a44419c48b9e59",
+      "path": "src/pontius/depth_limited.py",
+      "raw_sha256": "53703d00249d4db876e6935edb7f5805364fdd1388b3f77d1bf76f0e7b0af778"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e2a0d2ca61ecfc711687dd8f99d21c7f3dbd514b43ec1d0f49f4cd7db18d799c",
+      "git_blob": "d8c7df48c122ad796c108a83ec3819d1f9c00fa3",
+      "path": "src/pontius/device_fold_resident_heterogeneous_leaf_contraction.py",
+      "raw_sha256": "299c7af1f45e2f24793143d136daaee4852733b0d719af58554db2d41bc9d639"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "652ed96ff2aafbc9e7f20c77f98a9337845ed026a485c80e52c11f30ffa7f665",
+      "git_blob": "25bd690690e88370f5058d0da1e10871a4a328e4",
+      "path": "src/pontius/device_fold_resident_heterogeneous_leaf_contraction_v2.py",
+      "raw_sha256": "64a4ff06522020163942fc75aa039d23489e33b4cf3c961f6f6d5ac6f2ede868"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c7e73a99910aa05f85c6d57930b53a92b3806bab879486af8f9071f7e6aaa562",
+      "git_blob": "286ce49594d75c8705313dd70b6543a527f194bd",
+      "path": "src/pontius/device_fold_resident_leaf_adjoint_cfr.py",
+      "raw_sha256": "349d43b1b4254cc071291daaee17432e4b5c921ef31b7e302df454bb7a235ca8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e03ee68f45063ecf863fe10f9fff8c3e6301b82dcda17a031153d417fb32bf3f",
+      "git_blob": "4f46b79358cc6797e61c3658e6ee510e0bba62dc",
+      "path": "src/pontius/device_fold_resident_leaf_adjoint_cfr_v2.py",
+      "raw_sha256": "e3653eaa39a10b6e172fd736ae10bd3ed310e1bbc01c5d8088301df2c1bc5321"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8f868204a127e7a4c20d4572815181371576e3b2800295a1e946a70e6c640cc6",
+      "git_blob": "7b5b19e327119c5f7c4f3cff76ad14d8befc12f3",
+      "path": "src/pontius/device_fold_selector_stable_affine_response.py",
+      "raw_sha256": "b8d1f0d240452c5e9e30e815fd1d8b4dcf610002048ec6bc33c4f535ffac7a6f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3f497c1fae657a9b3af87a86bca5409e64627bb56e909e4681df9d49bd725e9e",
+      "git_blob": "91554f58fe5e0455d8e1f31ed2545d3e7214580c",
+      "path": "src/pontius/device_fold_selector_stable_affine_response_v2.py",
+      "raw_sha256": "94459f08f41cd114c1b7cc7ce5033c50de8ff1fff8d55443dd409ce89e77e43e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "459440c94264a835d4b6041a154f3ea4ebee4d69d13b7286c2e81ebaf6a85d01",
+      "git_blob": "636edbb0bd235305616c40a08ffbb7b50f9a7366",
+      "path": "src/pontius/durable_evidence_journal.py",
+      "raw_sha256": "a9f815a41abc8d9977375e0c8e71f66f788dd8d811d016735cb08ffa06bf5c11"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0b27f642cb48f22c0ea573b91770273a51c00b4f2b0822a5e735838df6df7f60",
+      "git_blob": "5122fd5bd141df14925420ad775496f4d787e4b0",
+      "path": "src/pontius/eval_agreement.py",
+      "raw_sha256": "9187fd8d667776902962c943e1d4e282771f7120f519a9ed4f2e6724b4d3f008"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "568438fc754563aa985da609e3859deb28ad13bedf2ee300ed8f581eab7df4ef",
+      "git_blob": "993e6012c0c1e54e3254ff97f27f83573075f05e",
+      "path": "src/pontius/eval_bridge.py",
+      "raw_sha256": "b50470c539a689829f70063a2c97ab45bcc2ebfad3843ed9d4e531f00bd2d43f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ff4d212735d597b4713480b2ce0192a957915469e3a872758e037ee25ea7ede7",
+      "git_blob": "d5fb3b2a3c765febc9b8c5e630943133907434bc",
+      "path": "src/pontius/evaluation.py",
+      "raw_sha256": "c362fb1e294bb8bac722adf479df4d2f27ddcf8c26390c037ec88f858702cda8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "41baa69f9ac41bdf79fae223082917025c7c8c845ea4bc87b25a6280f2a8db3b",
+      "git_blob": "ef231729f0a28d58a9bc1886e10f2068515bf7e8",
+      "path": "src/pontius/evidence/__init__.py",
+      "raw_sha256": "00675cf902c91dc924937df777dabe18c689921d3f555de0def6c7826484c297"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e580b5ef8adf7b78dc5fccbeb390a7e519bd1c5d46aa9d8bfce934ef986f684c",
+      "git_blob": "130bcab3c3e2a25cbcebaf6cd1a02be1d3537c1b",
+      "path": "src/pontius/evidence/errors.py",
+      "raw_sha256": "b656e0a112baadfaa32784bd60c7e9dad1284a1aa8804f893d443db8d4c95267"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7a72e09b1b6ec137a82ed157b3f922cd5405157bc2d14b17c4543f21ee4b6944",
+      "git_blob": "150347ecd2095fe981e5bd07db14aaa7d6c35bdf",
+      "path": "src/pontius/evidence/manifest.py",
+      "raw_sha256": "4654e5d43f522c01b531d5b73748c1b0a6b4e3ab8587e4d39ef3fa30a3126b0e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6de7f616e393b324b2642333df89e2a24c6e1ceb71814e0758fe74ed7c8ae14f",
+      "git_blob": "d8f870001b6a7d2cf804160de4a21a7bc11a9990",
+      "path": "src/pontius/evidence/model.py",
+      "raw_sha256": "d7708948d7f09a8fd5f622d76b2de0bb0be5e0e9524a425a2b64879950ae4c3c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b8b2c6ceedaf31779cac4dc431736707cb05ddb7d4f3be1864a95d752203cd89",
+      "git_blob": "ac0d234d08a0fa1d1c27d978142c786559579bd5",
+      "path": "src/pontius/evidence_protocol.py",
+      "raw_sha256": "30b9e4cc29272d25d5ba374a3c433b9a63ee75d5a9efa98b6645091f81659efd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ec312ea50b0704dd8153d9eb81b046a63ee2eeccc56cc75bdd1aa8c996d7bbf3",
+      "git_blob": "b9351a25176cd2bf6b73cb42d897f8506babdb1a",
+      "path": "src/pontius/exact_collision_oracle.py",
+      "raw_sha256": "0bfea67c87f83cf628ccb9816b07204a71feace820c03606a9261e55b1b39d2b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "549cee1c01c8639dcf6f2c306dabe4cd1e9c93257135317751ab1511acbe7b21",
+      "git_blob": "4d8d94ea39441e20e6a3ce051bc49d12ed0e08e4",
+      "path": "src/pontius/exact_directional_face_oracle.py",
+      "raw_sha256": "eb2c2e06cfaa7794570819ccbdb4558c80c62a91bf40b7a56a9c8424bb5c6ccb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "253b018d42ab565996201cc827fc5f979fe6b49ba1c6c41e4dce1d2cd0e7abe5",
+      "git_blob": "c6d14c6601bcea04d37157ccb6e1f118bfa7a812",
+      "path": "src/pontius/exact_directional_face_oracle_seal.py",
+      "raw_sha256": "6e7ace7dff1785954905a2f87fde4ff8913559281de9a2a99e987fbb89d2fc3b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8b3ef93a78943d0ee1b28389576e71af7aca223d1cbdcb0682c6b83f0b109f92",
+      "git_blob": "55663cf5a081b1c75060150f14033255a17a6c01",
+      "path": "src/pontius/exact_oracle_assessment.py",
+      "raw_sha256": "efcafe79a316fe02bc1fc5af030d5cb66a21929d95e276f5374fa1fd4cd19f29"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4bc2319eadab7ad2153f6c398af9fef8a09ebff57ff1bec858bad0f50338ec0e",
+      "git_blob": "f5d336261e27c5b023c2a03292732d65bf48520f",
+      "path": "src/pontius/exact_selector_fan.py",
+      "raw_sha256": "03ddc731c1d866b728d24b999be92df89d203a14e4872da5c88a9298fa20deee"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7b3712855d00ad2fea45046efa8ab18e815336d037f68a5a353c73b03e826ed6",
+      "git_blob": "c0d6eb3ffe42ec76c64377c54c0809612fe9cd45",
+      "path": "src/pontius/exact_selector_window_oracle.py",
+      "raw_sha256": "5156d8155e017c44587f900a126ddcb67f13b701e643550ad668cee06d5e2e3f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "45c7873bd280ed1324ef28f2dcee829bb871ef7e5da238fda70237013359aef0",
+      "git_blob": "5dbaa95364ca25683a3b54cb92fb24eebf495c64",
+      "path": "src/pontius/exact_sequence_form_coefficient_oracle.py",
+      "raw_sha256": "8d70297ab80055c5c77bdeefb82ff6cde817f6c57876059783046669b3a6945a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "53ffaeff8d4648a06b8b749aaae5b4e0b96f2b1c6a8165d573888727f91b5a2d",
+      "git_blob": "a0e7991bb719b779afab611f2ad5f30e8a299568",
+      "path": "src/pontius/exact_tie_aware_affine_envelope.py",
+      "raw_sha256": "ee922a9cf15be88cc2566a8c0b45496dd0db6cb5856b738f52ecbaf7429c6695"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6541909e72ddab98161150c4e9036ffdd2726b71e5b50888e48060abdd81d76b",
+      "git_blob": "c46cd0e8a7f88b8cfe564ed23fda19cbfba63d8b",
+      "path": "src/pontius/execution.py",
+      "raw_sha256": "627149eb54caade36b785944a3306865d9c89edda150574b37d52a08535b5970"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "83157671e9a2671b9c775dcfed8fc5c3373ed339b2987eefb1621e30350cc252",
+      "git_blob": "57a30533ca4100a5b97e69a5803a5ecd2c9753d8",
+      "path": "src/pontius/experiment.py",
+      "raw_sha256": "c44754b7d691cf28397e4a3f0049603224063b35f434f7c9ce90ab7eea7d69b8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "839ea0e7c9c4c3137451276f5eab5e17e3b9dc288cfdfe09893750bef7d489b0",
+      "git_blob": "8ca5af40185123f2e2de7c72a3bfb7e2575663d5",
+      "path": "src/pontius/factor_tt_contraction.py",
+      "raw_sha256": "bcd3d01efc98ba8b6e61397944c72e863cdd791ae6c7dd7a3d9e1a53551cf867"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d26b418d1d850e7a92ac5e4573ab2c050c0e0dfc1bf7cad1db72ffd0ac52d951",
+      "git_blob": "cd247cc6d5a1e0fdb1b8f88cebe06bcaf54082e1",
+      "path": "src/pontius/factorized_belief.py",
+      "raw_sha256": "8e9826b8fff4d311d6a1bba09b699a100322a53dc8896e4ff02eae2a8e3ce9c1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "37fcbc48f964b4f6de73d4e80ccf1bf11212adf5cc26414b870fd743f5bc2346",
+      "git_blob": "65b0784ba7a9b28faa8e08bbdb81c973013122a6",
+      "path": "src/pontius/factorized_belief_audit.py",
+      "raw_sha256": "e41f1725ac6bc07615d4ab1c6852a93873ac65dffe288ac29d2981922fb5ba4d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1f779b2c357fa419f878ac5c35d1138671372c2a49dfd3ae25c32459499763f5",
+      "git_blob": "5f943c0eb0a2b3d84c4db86c3cdd627249b0addc",
+      "path": "src/pontius/factorized_tie_aware_affine.py",
+      "raw_sha256": "cb9d1cbf7cef390a7b8c2adfee0ef0fed416c77e781902e07a53fc912b378276"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "dd3989180ab2e0c5d2543cc9546529a70d4c9a403d32093b280e700a8bd858e6",
+      "git_blob": "3a242fbee4a9ef164677c691392096a8bdc54b0a",
+      "path": "src/pontius/factorized_tie_aware_affine_seal.py",
+      "raw_sha256": "ee503c296bde465369ef74d8f1d2517e5811ad3bd1c1948ed986a4921c1bc798"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d17efd84186aafd889e0c66588b0885db61d3508fca553478d668c11eb519979",
+      "git_blob": "376945907eb82fec0831204b27ac696f646e3c7b",
+      "path": "src/pontius/fixed_envelope_verifier.py",
+      "raw_sha256": "db8040b0a94cc9ffe95fb4b8854a1924525a63093464cb5523f897763a45a053"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d12a44fe660399fb6ed85b169bc8bff3018b5fe605d58f1cf2ffa471e413d375",
+      "git_blob": "8fcac14e78827e18faf7faa5ddc90d5843779f3e",
+      "path": "src/pontius/fresh_action_width_greedy.py",
+      "raw_sha256": "050bad76fd5fac2d3151d7500140acddcaffcf133979a0493733666413e1b26e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "945f5a2851dc9554d3171d68e5bf42d845f64da7fc9b073a2f8da5f8227a6ae0",
+      "git_blob": "f489abbf49613331f85f8f9e508b7bd8f3bfe3d5",
+      "path": "src/pontius/fresh_action_width_greedy_seal.py",
+      "raw_sha256": "44c9b5045eec6124919547acc13a15b920e7c57983e7105c3b4417c06a2c78ca"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "83d7acdf56380d7fdd7d7356033ad87aaf496c017f6ee5144080006579ddbaea",
+      "git_blob": "fb2c1e9ed4e361d7269494b688af39354e55856c",
+      "path": "src/pontius/fresh_action_width_nonreplay.py",
+      "raw_sha256": "b870feb17d6e344b130f7b30d8b776be5b40537e3e71b7a14b9b4d2bcbae3e92"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "847d335b7691592ba5ae98de339c40e5879ddf7ff6b445f7249a2c1c7dd6e28b",
+      "git_blob": "cf29fd205301acb621b82085dc6964ddb3cf9287",
+      "path": "src/pontius/fresh_action_width_nonreplay_greedy.py",
+      "raw_sha256": "80ba2426399eb3329d33c0d69d58bc71112bdcc5a2608be5a3e8b4b49bfc0c9c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "00e627c242dee45cb19859b1731d6075286809656e6804d72793ccd0d6dce01c",
+      "git_blob": "548e4f466e089249ddf7e3080d6c1b367c92085e",
+      "path": "src/pontius/fresh_action_width_nonreplay_greedy_result.py",
+      "raw_sha256": "d35fcdd3bf3173bf478619662da12d780ea0343b675946211107904a9f040b56"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c017088146e997a54318ced1062e62531578d05dbef0eebf404f4b8774962b4a",
+      "git_blob": "18d9bd78714cc514d36f00f00726bfa01dc36ba0",
+      "path": "src/pontius/fresh_action_width_nonreplay_greedy_result_seal.py",
+      "raw_sha256": "13bfafbb27fa26ec58784ff1744e66e75f6f5e3dc92228d8b04bf3d77768b807"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5eed62eb60f9271abb2e03474f702468bd9caa0b44569f23bcc1065cc4e8335d",
+      "git_blob": "f24a67b62882c2e8c6c72e4f81177e157051fce6",
+      "path": "src/pontius/fresh_action_width_nonreplay_greedy_seal.py",
+      "raw_sha256": "91f950d6b1c0133e1735fcc2996ec75ccd3c3ec980fa3e56dfaa5fe35042393a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8d6c16e1411f9d9d621dd38b9310ae6b098436923231d0f357b51aac34ac0a8d",
+      "git_blob": "776bc97600c40a2cf6c8412ac3fb7d67d7c91437",
+      "path": "src/pontius/fresh_action_width_nonreplay_qualification.py",
+      "raw_sha256": "c4979aa8b84ca30c80a3a4a01f4d345bd312dfef044d57243d723c71ac39cf5d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "978ffd4a7e964af09efaa04366f161438ad93e8bc1e47a2075f505af8a7bdccf",
+      "git_blob": "33808fe74ad35486488e7c378a76009c82535fbd",
+      "path": "src/pontius/fresh_action_width_nonreplay_qualification_result.py",
+      "raw_sha256": "bb3e0838b7c6e1e08941c18f32fe5bbcfa66aad7657fd1edbcf1a908fa42b352"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "29f7a922ff8bdef3170fbb8481b4f334c36e839e5ee02042b47bd6d0fd0b9808",
+      "git_blob": "68cf335ad4a19f888311aa3217d383b51309cc79",
+      "path": "src/pontius/fresh_action_width_nonreplay_qualification_result_seal.py",
+      "raw_sha256": "605b7d7ae3fab3efa0a81c4753b70215b310ce7e930952d8c79e99ce223199bd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "754a9fcea3ced515bf31c4c05f5b4fabc9eb9151e94f668e664ced70288433d1",
+      "git_blob": "30941a1cb7b644cfedfe9e2b6eb2a2b79474352d",
+      "path": "src/pontius/fresh_action_width_nonreplay_qualification_seal.py",
+      "raw_sha256": "5d6505be203358ed30e107ddf60071eccf89a8d6366a2faf703146d912167b94"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3a1d686f875694c60e16db2743f32377cd8088889a48da0a008a13a23fdc6e30",
+      "git_blob": "9f99dfa2d817ded6e894e9243cb347c21491bcb1",
+      "path": "src/pontius/fresh_action_width_nonreplay_seal.py",
+      "raw_sha256": "2dbe1314ae4922c87af127fb8f1c1d8b6473b7394a78384721ac9f883840a98c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "acf2090f77a01721b13809fb1e3d9aed3aa0cfdb6bf2a46bba967d640f17feb6",
+      "git_blob": "9a5ddc2430b502bf1d88b76dca7fc546a6e267c2",
+      "path": "src/pontius/fresh_action_width_nonreplay_teacher.py",
+      "raw_sha256": "62598e606be983b9fef60a32933bcbbb113ab75aca5aa326bb05d1b2d8b7071f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8d532a4bee4ab1cbc90d9b8120f7825a47425dd7eb4ee713016bd7acae2f311f",
+      "git_blob": "1902042064c1ccac53c29dfbc538cd5d18ed2bba",
+      "path": "src/pontius/fresh_action_width_nonreplay_teacher_result.py",
+      "raw_sha256": "5217e2264eb90050fdd836fc79db99de93015f9d9b1b8ca72ef6f83ddab5c558"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a1731cfad203e59d8764566f776a00902e352a05e6b76c70fa888201d8132421",
+      "git_blob": "ecd3fed7b289655209ff37211338b9d14d719064",
+      "path": "src/pontius/fresh_action_width_nonreplay_teacher_result_seal.py",
+      "raw_sha256": "2653e2256c76d8360fa8d59bc095e3eec7fe8d36e6e7cb5548cf394734865199"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "08aae892d32dcd4388a7dc0e0ef032cddd9894d22da45fbd520a7d8713eef596",
+      "git_blob": "bce766b9786d58b790898aa6e3be6e1b94bd050b",
+      "path": "src/pontius/fresh_action_width_nonreplay_teacher_seal.py",
+      "raw_sha256": "2b9310740f2550d262845816788783b2f9a29bb27dc65dc336e118edb0e2ed0f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d77bdc779425a44c9b987346c915c69fbbac367a2535cb968ded45d5194be174",
+      "git_blob": "663dd7b50fc8d6e15fad8af3524a576a340911ff",
+      "path": "src/pontius/fresh_action_width_qualification.py",
+      "raw_sha256": "95974fee5a3fe056828bdb899986235f7b482d9e3d36ec066c0d85e822cb4ca7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "caf6cbf0abd23d689a159f0eb8575eab31ff240684ee01f0207aad2a05d02d1a",
+      "git_blob": "9807d220bcc90eee6a76eb6e577ca225590e2f27",
+      "path": "src/pontius/fresh_action_width_qualification_result.py",
+      "raw_sha256": "9348231f46f83a8a3072f6e5ea7f33f76d446cbabdbd5feef4a3d800c3a16c6f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "72fdb1f6029dfcc71691d67f23ba678a11a093d1655b9f929f75bdc80cf73d86",
+      "git_blob": "4490997aaa458604b5203d7d2697ce58ff9a8218",
+      "path": "src/pontius/fresh_action_width_qualification_result_seal.py",
+      "raw_sha256": "08dcb80b6ae5cc84bd492226c2d7038d71f73d8a236e95338ddf5762e51ffd05"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0f31eaff8abcb6f910c063f843eae8b49fdda9a1dff8b8d110cb449ba846bb83",
+      "git_blob": "49743e6d4da50540946f7bec0f80725fd202141a",
+      "path": "src/pontius/fresh_action_width_qualification_seal.py",
+      "raw_sha256": "7ebd5e9b234b9c28339f2a49214889c3acfdb879c8cb529dd4c7b57c56d5aa76"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "81e24362e077eaf5d5a1dfc3d8c6edc6c40e669c3729aa5203d907de42e51017",
+      "git_blob": "900ded782d5aba397e5376630e60a04a91123f19",
+      "path": "src/pontius/fresh_action_width_structures.py",
+      "raw_sha256": "429f72fff02de515536db36a4754708e71cf93653ad6574026c1fe3c4de82acf"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b57c925efbed2de8721b08c9a6c4ca7bb6040c52d32fee18d06305cfa81daeec",
+      "git_blob": "47147f98b2dce6da9ae7f933a431e568c66809a2",
+      "path": "src/pontius/fresh_action_width_structures_seal.py",
+      "raw_sha256": "7c810d4bdd1eae509c50ae8ddd44fc221837241eeb186e5a67a86d79bb61ed29"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9be8d2903b0fb8968a644995610fd51bb45ee3ea44127217d74122f8ab1a8212",
+      "git_blob": "7aaa0a961267de12adeff3cea8cefad9897d5ced",
+      "path": "src/pontius/fresh_action_width_teacher.py",
+      "raw_sha256": "14250c3dbe504318640fc0ca35098c5c014e03eca23d3ea8fee4ec470705b8fd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "64245da2dbbcfe41781ccab4bb8f4b3a63981b235e912fc0b79ab658eecc6566",
+      "git_blob": "105f7a4842d8a3eb9905a8622b479cad0e4de5bd",
+      "path": "src/pontius/fresh_action_width_teacher_result.py",
+      "raw_sha256": "c845e3308211f6e454ac6a10188897fa9f318b8ba2c89fc95e9c7b9f0931f9c1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3da015e44d3885693d82664e45e53ae00909046c9d903b5ff8975c3ef4e7732f",
+      "git_blob": "8e4dcea4a09d38560571e2fde477c6f483212beb",
+      "path": "src/pontius/fresh_action_width_teacher_result_seal.py",
+      "raw_sha256": "1f985c587c6f446526374c0d6d45403bb689a1dd80f7aa6572a3281e17d23be5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "aa2fda3c50dd3568373c2bcd0dad457febe1bfbb905e417d6bb9e72eecfb30bb",
+      "git_blob": "a8c6cc2e840c1135f972c55e55adf6f28edcad3a",
+      "path": "src/pontius/fresh_action_width_teacher_seal.py",
+      "raw_sha256": "918ead2998871744b08b318bc9b4d65e414124bdf0ff0d921ca7e9dbf56a268a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "189752f17e01b50d4b1c609c54004e81371f314a089b709b541abf3f21b814fe",
+      "git_blob": "45b4d79fe31a466c1b18caec926ffaaea00d8833",
+      "path": "src/pontius/fresh_action_width_transfer_confirmation.py",
+      "raw_sha256": "ec24d1710598003e7e76ff9b1062829107e28ba1766e680bec2a1411b736e202"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a90b7e67f13e131f3c62b0196deae1a28950343f3cadf5824cc9e337c59338d7",
+      "git_blob": "d19b7fce9e5553d3d15fc8a2131b87f58825ccf8",
+      "path": "src/pontius/fresh_action_width_transfer_confirmation_result.py",
+      "raw_sha256": "c1a74d810cc82ec97d2f769e019a2afd5585351377192990ca37c3cb79de5bc6"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8fa46d303b68f7c42c361b5490818114125efe02838f65280597d81162f0099d",
+      "git_blob": "097dd20c78c817f36c9bc97e16b21adc04559871",
+      "path": "src/pontius/fresh_action_width_transfer_confirmation_result_seal.py",
+      "raw_sha256": "8f7725b4266ade14c1b2ae067b8302475911582ccca9199757260b51f84af544"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "664223cfb2df15ce40ec17208333b13fc9a47148ed36c7ce74be543b3eb80a58",
+      "git_blob": "0f7d8eb74289c881a401f61a12641a385a3ff41e",
+      "path": "src/pontius/fresh_action_width_transfer_confirmation_seal.py",
+      "raw_sha256": "06ba1396e3ce826249188d0279266907e716188e0bef07f88cea0fe8de39336c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1b2bbec929c4c0fc89427a7fc38069ae13841448bf35e4187e9ec7f398953ccf",
+      "git_blob": "0484b3941ca6dffb599c6945d809d43601afe132",
+      "path": "src/pontius/fresh_action_width_transfer_qualification.py",
+      "raw_sha256": "6233c8161084c0bab07f902c8d6033e8aa555d51ace552017ca97f53fe402bd5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0cf4b2d20328fe21de6cbbadaa3d03b296243b34909b0e2b42dd6df26ce3266a",
+      "git_blob": "6e484cb6235b6bf0df2af3d966ff8fbafa71a11f",
+      "path": "src/pontius/fresh_action_width_transfer_qualification_result.py",
+      "raw_sha256": "ed54b5676073ec019f3b544515f5a89c07b68eff5a7158b771a2d7914d83da55"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "410b861867e4089d6e879afc69d0330dceae5ae164ef6f7845cbe8a674d60ce9",
+      "git_blob": "07e6742d25fbf7c361f2512be6ed7599d15e6c74",
+      "path": "src/pontius/fresh_action_width_transfer_qualification_result_seal.py",
+      "raw_sha256": "a23559fb20e8e3ea6ff23ebfa20618022f3f7072cdc5e53f30b33eaaa0b08653"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "dcf1e3f1d6b93bf03043865b91de1b220cca1090ee45d4c064c204526d97b46b",
+      "git_blob": "9d6d6ff62f7c2b69c52ead4640e130f30e0712d1",
+      "path": "src/pontius/fresh_action_width_transfer_qualification_seal.py",
+      "raw_sha256": "0fd8a115705772b9a11fc5d3a77f0e0c613bbd966f94dc01cfa6066d22727711"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6a6a3a2b5fda7565fa841374f57ca96427abcb87ba1f34ec8c7e0bfeeccdb9e5",
+      "git_blob": "8673ce7340a84cb5a7ebf83baf07fa5c8f48d486",
+      "path": "src/pontius/fresh_action_width_transfer_structures.py",
+      "raw_sha256": "6704084f2bddfac2d58e3066b9844bc0fc633346bf3b00a7034ccc9b154e622f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cc24fba78ced95f24edd85086b37e366b5a0c8851de6077ad85792d4fdf7bde2",
+      "git_blob": "9f70be8fbef1d96c46edcaf2864698f512839bf8",
+      "path": "src/pontius/fresh_action_width_transfer_structures_seal.py",
+      "raw_sha256": "592287bb426ac17e16bb2bf7666016d8e4fafb616c12d6c283094abc4b8e0f69"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5c7055fed3d9ebb940e81e42e49d2074dd3c2e67961e03166be55e749c6023b3",
+      "git_blob": "bdb020a15111a91261fc784f6750d6ed28a2cc3f",
+      "path": "src/pontius/fresh_capacity_filling_qualification.py",
+      "raw_sha256": "800bf1ee8d50ef6a9da400a0b9557553bb10b80085815a0140dd84245ae1dd86"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5f0978e74774edb445a14683f58224b2f5319816675f3dd41c717c5468a4f7a9",
+      "git_blob": "9e5f46fe4fb532d00bd477c010ed8c1a79582f7c",
+      "path": "src/pontius/fresh_capacity_filling_structures.py",
+      "raw_sha256": "222f8ea8cfd3c7766440aebfc83010686c57d71da523819e9068e9d817d73bf5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b1bb1b6777a0f6fa7b0eb843e3111c672db143dbd10b5ac72251c5ee876042e0",
+      "git_blob": "8a8328408ef1af3f12bc5ed68e9ad46d69444975",
+      "path": "src/pontius/fresh_collision_repair_qualification.py",
+      "raw_sha256": "d4a67dd7f440b8d60007f8078710af53870c54cc68635ff25bcf1f7deba1c292"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9411d2b16ba52032615ba685e55e3addfb0e45aad78972379514956c87c26e07",
+      "git_blob": "188d65eab39962875f50c9e65ce911f76954d5c7",
+      "path": "src/pontius/fresh_collision_repair_structures.py",
+      "raw_sha256": "de686af754ff6c7ad21044234c486484287775b2622e47dace5ce1fd7ec54159"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f8e2b7dde078c4cec18618b9b885fb860a462f005da26d827a067c04362d959c",
+      "git_blob": "340f4edfe42a89017b3d59a27864008aa69cad17",
+      "path": "src/pontius/fresh_h32_strategy_transfer_audit.py",
+      "raw_sha256": "aafffcf191ff0b8b9262004efc48c61ded4d3c1506f60acfbd473d78f79271f2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b9659090b5b0e5e570103d4f7693a400cd9acb18c28e9da92d402dce5fa26992",
+      "git_blob": "ef462b4332ff92fdeba260f23f847a4c6e1ae0be",
+      "path": "src/pontius/full_width_belief.py",
+      "raw_sha256": "3052c92264f5d4cce080dc652c1cf7c6245aede6dc7a4670e2b31220a8b006c6"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "77e5981304f9b5e071960c504b465b9cdacea5c34c577748b4dadddd994ab545",
+      "git_blob": "99d12ac61a7b4f850e12729a0fb237a264fef398",
+      "path": "src/pontius/full_width_factor_tt_capacity.py",
+      "raw_sha256": "e55860b4a4e85e8003fe84d0bbae06fe78dcf5a4440778fb921610ea94b122bf"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "51161c61f256f18cd887e29a639209b4bf2f848bc1430e4b3736105ded80f45c",
+      "git_blob": "6490cfcf428c44e72f5611523e047881c4b19b33",
+      "path": "src/pontius/full_width_occupied_card_quotient_capacity.py",
+      "raw_sha256": "3d23f8a24e0dcdb39ec20007cf5acf70b53c4915b6a0a003b6d350f859eb2ddf"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ea9dd91c8b5f03bc616cbc8b6b31c40f33a1543a0fd2b03e32b8ce57b59bc1e6",
+      "git_blob": "e8a8e9ff21da927491aee775d5a49a3b8a4ee67b",
+      "path": "src/pontius/full_width_reference_policy.py",
+      "raw_sha256": "502d3631b9a66601f33de3db4e0f9a0742054b192403c2406c0f001d3b4ff7fe"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "039b8ad66b6d3fe44d03305f00a20b566f5b37286895b13afff6595cf7b554f2",
+      "git_blob": "a284231b809c6f25bcd4262378c64ca3691fec34",
+      "path": "src/pontius/full_width_river_capacity_preflight.py",
+      "raw_sha256": "37580cfd6042b12dc0a864b515d5f4e79e0e1733ca5471fa29d41b3d7ad46c90"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "df9beafc043847fe976d32eba266077c45b2544099fcf126f0ac0ec0b6d6c16d",
+      "git_blob": "a9c094995a260d20630e9ebd3b07b52bfcb47079",
+      "path": "src/pontius/full_width_river_capacity_preflight_v2.py",
+      "raw_sha256": "19f89f5124b703b01986c5478ddfbdd7a13c37e6dfc1550062963e51ba488821"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e659ae6ecb8156afc57f74d927ed5bd1decdb9d7457b5618d805884719895bc2",
+      "git_blob": "25c219d8bfe9b09b23ab7ed559a255498d31c518",
+      "path": "src/pontius/game.py",
+      "raw_sha256": "40a7ac22b6921241987db1237a506bd8cfb5a5f1027af61f7c594b4128bd2628"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2fe656a5a159e04443df56efd7b746f6dd280a8d24a63f5c340ba06480560528",
+      "git_blob": "3cb3d78062bc6d83dd8be03bfe973f7018fe0b84",
+      "path": "src/pontius/gpu_occupied_card_quotient.py",
+      "raw_sha256": "280c61c610562974c46b745436eaab8f7106d51d0c3975eed7a4cff23e3e9a61"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "45d5c1c16a2b252aec00fafd7f9a0761e2138b9884a0cda30b08c6d3362a88a8",
+      "git_blob": "0fe24fd6a14918e9d0d94d9133d66537806a634c",
+      "path": "src/pontius/gpu_quotient_staged_scaling.py",
+      "raw_sha256": "144b23ff92f5498624acd1e09f4b4d1d4565e5c80106e496fcc46b0bc4667750"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c4f5f85c7d4b567558f08c55ccfd4815a867c02a6eda3fc685fe3359b3204258",
+      "git_blob": "f3ad58e63076de7f993cd9c7bfc351d559f8d96e",
+      "path": "src/pontius/gpu_quotient_staged_scaling_result.py",
+      "raw_sha256": "7eec8450427aa69950c716db62b7d9c4e3f67c038857af94b7a04f15646b8b48"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fe63eb6ea98d94d648f922ebd3e7b676956380e92321ebcec10171f2c56770b9",
+      "git_blob": "9aa5f93e8c3182857780e7c9a0eaf9823d52ed2b",
+      "path": "src/pontius/gpu_quotient_staged_scaling_runner.py",
+      "raw_sha256": "8393dabd93a36d799f93a508d8d324baeaee0b21dcef1d14efd8bde17baa3898"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "484d0a034381892831dc86c63c98ca67dd68e7d8e1e4e972980f96134c83a49d",
+      "git_blob": "dd68799afef801fa43bc1fea2adeb9c2b9b6178b",
+      "path": "src/pontius/gpu_quotient_staged_scaling_v2_result.py",
+      "raw_sha256": "42db608c16de4f7ff163ad2c1094e6081e2dd74d1fc0d1a071a7268b25fb788d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d35d33764e1c838a027bd04f7674e9cb98d17d60a7429d9e88641cf656592ffe",
+      "git_blob": "950131f520607ce1840ad7bc45ec7a3c358596fc",
+      "path": "src/pontius/gpu_quotient_staged_scaling_v2_runner.py",
+      "raw_sha256": "61242d9d1939649648eb5bc9bcdac82d37ca4478f89044e002a004e277b5e6f0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d84885a30e4353396a4ed2c8197b1963c3a29a5e563b6e9df9d56749b6e6fcb6",
+      "git_blob": "6ac336896081afccb91abc4096828bde0dd7c3aa",
+      "path": "src/pontius/gpu_quotient_validation_seam.py",
+      "raw_sha256": "cbbd58c56d3fa9031594d6d034acb0a21a6ecc63d597583cf6098f2b0215258d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "180994746fdc5251885cc0bdc6e80f831afe7ca5776fa222ab5c424f7c56ab5b",
+      "git_blob": "8697b5648ef4c0c65f7eb0e9da85074a7585ff46",
+      "path": "src/pontius/h32_acceptance_semantics_replay.py",
+      "raw_sha256": "edadd8f66a28ea03223d696be0611d4ba0ca6cc1b3b3b50f2bcb0bb666acc404"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3c1b123b12f8448ce8057dd9cebbc8ccc5713bc95f93cfed86bb0921888a2ab7",
+      "git_blob": "d000c2a01f45eec7f958f81057c221bac125b8fc",
+      "path": "src/pontius/h32_action_conditioned_posterior_manifest.py",
+      "raw_sha256": "e30483bb9a72cbd57e3ad1ed8591ba39508a6542888a099996802fd7048c0db1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "dc4399aafba106fdf018bb3505e8ef91d4627f0692b710b984d257552548d32e",
+      "git_blob": "6ac10511c2889c0b2d5102cce59249e9ac078238",
+      "path": "src/pontius/h32_action_conditioned_widened_selector_trial.py",
+      "raw_sha256": "c3df7ed8712c80fd657df2ee51a560b1f251da6f783605e42dea704a9d5d63b7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9e8f809289169c0b21e5229c9337fa8909eec92688b2fdf15214a193e2a8c016",
+      "git_blob": "bb1b39aa4a18424af63d722b15dea1d0fa0e29dc",
+      "path": "src/pontius/h32_action_width_quality_audit.py",
+      "raw_sha256": "a7072bec66e9febe179f1f1e42cd29f2e5c5efa4ef9809935d3f91071494b728"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "08405aed615e39e7e07d105865d7a468c6a74237b3ef38571bf743f1e3a52739",
+      "git_blob": "8582e2b5337f385b849e5bc80a81005f90b304bd",
+      "path": "src/pontius/h32_action_width_quality_audit_v2.py",
+      "raw_sha256": "1978491f7439ef137705ec7feca468b75f971e23dd62301c966010d0d1f26666"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "831927828620c1e478233d9549b69ded0f4df88de3ffe7fe6ab96c3630149268",
+      "git_blob": "52447c24082b15d0b7d5e51631b54b8a68c71a27",
+      "path": "src/pontius/h32_affine_resident_cache_preflight.py",
+      "raw_sha256": "732dcd16721c2fb371a090ee7869aa728a8cb2ca4feed24d50b8649c27b28e0c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9492bbe5eac84997fe1303e914c4238449e205264eb1817f9af9286e952a1e21",
+      "git_blob": "f96e588d73b2994387ad216000fca632b3212b71",
+      "path": "src/pontius/h32_atomic_response_preflight.py",
+      "raw_sha256": "a378338025e43f4955084b3a3461bd762e8e2af8838fac340fb7757d45090efa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d006f2883912a3a63d3428d909ff0d0af5d94d089bf7cf8b3a1c5322b630d8dd",
+      "git_blob": "4b907d5c9a27f7f6e61c3e9167849035410c1cd0",
+      "path": "src/pontius/h32_atomic_street_scheduler_audit.py",
+      "raw_sha256": "8f3ff4a2bb7e072aa7b9a08a4843ac3061580b357c32fd9692ef325d4989a40c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a3ca4a36387c20e60cf4ff8747d47ba622aa4754d744e18d29fe66eb0ca30bb3",
+      "git_blob": "cc9894ddcecde304b879d7ed607c83e2eb6d65a9",
+      "path": "src/pontius/h32_candidate_availability_replay.py",
+      "raw_sha256": "bdb1b86db792d49e503915c399dbcc0cc3d03b3760acf8410d9ca2562de672ce"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cb89997354f14c5a180842f2cbff85779d800a5fa1384eb1f2f3bc394792d08f",
+      "git_blob": "c0a5ae203cd458c3b5fc7714edc2dc3b87378809",
+      "path": "src/pontius/h32_candidate_availability_replay_v2.py",
+      "raw_sha256": "bddca64e1cbfd21ae2f2647ff2dabafe3f1176ad70fac715d83d98531067a605"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "dc201d562f5d5fa326cf819265b8d26ffdef515920c37262457f3a10b59ec59f",
+      "git_blob": "df200017c180dd2e95de938e55f691c4d6971030",
+      "path": "src/pontius/h32_canonical_affine_cache_replay.py",
+      "raw_sha256": "86bcf7b582dbbb654f716bcd9889ea58c8c1a3e42dfa7f5c5e3e69345eac61dc"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cd6ab7ae35bc0c5be0370b6a085f6e909ded550dc7243b26df11207fa3cf0754",
+      "git_blob": "1c52019d6d2132fe6a5df5e51ac7f8edc502c095",
+      "path": "src/pontius/h32_continuation_depth_ledger.py",
+      "raw_sha256": "5c964ef32b600de5f43090c1e1edb29e3647bc5f4d125135260edbc8941676ed"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cd51ee83a99ed11658a32a4304e4d3e9e5a914e5d644af5e55721659ba363002",
+      "git_blob": "a18cdca6622946ef651d603a242955be00825cc7",
+      "path": "src/pontius/h32_continuation_direction_capacity.py",
+      "raw_sha256": "7ddb73e3ca47c272212d51e754bfa7aaafcf7ac9382643b1b1a639cfa621dca3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fa500f71453cd91eecc1a0b81575c9c109cc723c1de3d531cb41a0b66efd55d7",
+      "git_blob": "556f01efe832f340cd966f6a325087ed495c6df9",
+      "path": "src/pontius/h32_continuation_root_ledger.py",
+      "raw_sha256": "f0725de9ca9afc7b1b3694e493f8aa467a9327359fad17abf09046070d279ea5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3a69b3f3ef3c0bf523b0c9a93d53579875f5d6e9eb82a3690c6c7fec8f75686b",
+      "git_blob": "4a96a0bfa6ac2def9321c151069838e873336ad1",
+      "path": "src/pontius/h32_continuation_root_preflight.py",
+      "raw_sha256": "848982d18649eccf584ded7fe82799f8d8902baaf076307d7e52ba425c011b41"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "571a7c5464a73be60a171cc5b963ddc2d99ed9d143f396ba4fd7d338dfbf2561",
+      "git_blob": "e61c0ce88728680c790363aba3566028ae9a819a",
+      "path": "src/pontius/h32_continuation_root_strategy_trial.py",
+      "raw_sha256": "9e80bb7f87a0f13854dc3cb56e9e1ccd55507894088b066dcf31ee9268c7c8e8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e2f9166c980a59de1361be894caaa3cb131c13970536aee0f1d2735fb0dbd25c",
+      "git_blob": "139cd2e8748778df8b69cc8cbdc1cf090d1b3938",
+      "path": "src/pontius/h32_convex_replication_posterior_manifest.py",
+      "raw_sha256": "0d1bc116083de86a8a2437bf9eaca3816233a6f432fbee02fac0db46f3e74f6b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8fcaac86b8d1813d03a8f1b05da94d3f2a5aeda69441040f28f91fd3876cba70",
+      "git_blob": "01dd50b046092b81cbf4b91fbd822b33b7558bad",
+      "path": "src/pontius/h32_cross_payoff_adjoint_feasibility.py",
+      "raw_sha256": "6adceecd2b439378b5c00e377885eaaf254785f597288ce169c7f9fd1fb340d2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8072f9adc3aab77959b30f19246efe24e1b43f4dd4abbd36c118d600f576d168",
+      "git_blob": "47b4c06412ab4e189612e159825e549f599cad4b",
+      "path": "src/pontius/h32_current_decision_combined_ledger_replay.py",
+      "raw_sha256": "20383e0ee212589c67caf9657bfac09556a571bd04f973eaacb6455d33579ed4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5b6cf55ac3edd93b87449337effd4a41ee3f3563542d8cb1ec693923b8369124",
+      "git_blob": "53e9e9d40962f79d7ecf1ad48baf6c3c76ee929b",
+      "path": "src/pontius/h32_current_interpolation_audit.py",
+      "raw_sha256": "d1756cbe82b6e229a8090216d019381289f51f5f18ef2290dda1c2d735ff6789"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4f4f8cbf4726c78d2bee5fe417cbce320cb311ff214e75a51d65b32288e0a684",
+      "git_blob": "799856db368e198babd25c3ab37a254de030deff",
+      "path": "src/pontius/h32_decision_aligned_continuation_setup.py",
+      "raw_sha256": "ad53a43e9d8db2fe5f45c159c3d7d2899c47abc51cbf234c4db7464578c08e89"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4a3142385cfe0f0fdf880374b6580f6a42e2ab8e80f8910d7151f6981bcbe62c",
+      "git_blob": "650e6bde0c6ac6a34996cf4867c1ddd6612a66b7",
+      "path": "src/pontius/h32_decision_aligned_live_shadow_trial.py",
+      "raw_sha256": "6c3bf1ed050caf0a4f7b6e5249e2fe33b2ea3069a18f48cf0d05eeaaef627a77"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fddd5258642dabecb9e0b3c32e5077165fdc1418432381d0f1d196e9d85d7e1b",
+      "git_blob": "12e71c16bda8385f7ef07bf607c6f39bd17fbdee",
+      "path": "src/pontius/h32_decision_aligned_posterior_manifest.py",
+      "raw_sha256": "f5e5cd2c028811cb09dc9fd75fd03f8077b65a8c35e0c2ecf93ff0876f8d274e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "691fca5ecd605c6a9ece1103041de684f0de60419264ec6354867f7a9d47e83f",
+      "git_blob": "589b8a9b5aac15b358e30867063bd11aedd3a885",
+      "path": "src/pontius/h32_deep_horizon_correction_replay.py",
+      "raw_sha256": "b00f464c733b6eb3b163e8e8169eee2603c0069f098883fa8132635468508d0c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c6ef3e87472871015cf152e5658bc8b85d0b7c17826de3cd04ede901a3fc74a0",
+      "git_blob": "b08bf90bdacf628583726364293c2b5aec80d25e",
+      "path": "src/pontius/h32_deep_horizon_opportunity_audit.py",
+      "raw_sha256": "ab015f9fc6bb2a6e594587e381e19b66a40874d3aa8727ac2086f52b53f7d49e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d52db7613af0f0c9ebfb9b2040dd2fc249776e13a1c56d6c877e6da9cccf883b",
+      "git_blob": "b63d594ee3de3d755482e4ea5e527616a026085e",
+      "path": "src/pontius/h32_fresh_board_panel_cache_preflight.py",
+      "raw_sha256": "6dffdb09f105f0159c3216a6ae360111027840c68cbff59189ad6b4a43aac425"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7e72c18c22d6e8d337ed48eed12b547436708501d0f4e89e7093c1bbae960071",
+      "git_blob": "fc6cc32299d260850067251877000e794c5a3c99",
+      "path": "src/pontius/h32_fresh_causal_direction_screen.py",
+      "raw_sha256": "e6520a3542451d38da498934fab5383e03f86764e56a6cd8095dadc220052bd9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4c8dcd97775521a584fabe7d6047fb473776b9d4e661a97a118622a77e41185f",
+      "git_blob": "c7b6290d93242610b50b8d4fabfb378dc771d046",
+      "path": "src/pontius/h32_fresh_convex_retreat_replication.py",
+      "raw_sha256": "063db8b71ecea1cfe13895ad496f6d631897b64b837852273c70dae1c98105fd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "895b5123f6aedfa5e469ffbe6eecfea5bd8e97cc8b4defdf4e7ca58fea78cf20",
+      "git_blob": "40b330d1b1b7e2bbb1f720f0ce404d89d5eaa5fb",
+      "path": "src/pontius/h32_fresh_panel_action_width_warm_step_audit.py",
+      "raw_sha256": "77ee4b7c72e45ff2abfb3c59b75347d8b9ca5cd280cff8e79acf875cdacd557d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1215f47ddccfe0e4052a259f5103f7280f1bb6690d5d822714f1ee9146cfd1be",
+      "git_blob": "b5154264283fed9a1ff617185166705fa4e3907a",
+      "path": "src/pontius/h32_fresh_panel_action_width_warm_step_audit_v2.py",
+      "raw_sha256": "07e527c69708f99063adc1cd099a234460a33f44cc2fa47ddbae5e23c7cc6d68"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c40036e90b9eaf2ef40b7b21463f32c34720ca4524ef22e62d30f85060668150",
+      "git_blob": "cfba03c741615ccfb1f74051c0c2787baeca8017",
+      "path": "src/pontius/h32_fresh_panel_source_blueprint_audit.py",
+      "raw_sha256": "e53225cf8cdbc7d3a7012f59fb11f8169e41a41c4bc8b6bad5349be73f70dc0b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "34aa8b85a3e17055187772dcf9d37791ce6a88234c1b1d38fd5d26c9118e8fcf",
+      "git_blob": "0062a1a66bf5193e29facc3f96763d5f8c5a3933",
+      "path": "src/pontius/h32_fresh_panel_target_transfer_audit.py",
+      "raw_sha256": "23a3a777ca2730511d9a052a2de62d14a2a634296c347456d03024d77be6d9e7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "80b92cffe9239c4cbaffe7d2d09e90b797126fb847c3571f6f963e4dbcc6ad3f",
+      "git_blob": "f62926f8f105eb3415bdfa0245d7162b5b397e9c",
+      "path": "src/pontius/h32_fresh_panel_target_transfer_audit_v2.py",
+      "raw_sha256": "61cc7a9e600e087d30eb0aa03d102915a3dd00c57b6267a4a8a1bd5de2510a98"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "27b195e8eac2edbe6fcf87bb8ae6bbc57c47a32d4a2ee8a2870c28c7a2428300",
+      "git_blob": "abacfb672670aa7a1512a087b1749980c4669fe8",
+      "path": "src/pontius/h32_fresh_public_block_radius_audit.py",
+      "raw_sha256": "0279301f3cbe8c4a12ce4f53a960118a842b062b97809e908efbf3ca5f7d9d0d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "61a6bdd562ff180b3f4f06a9ec629bc9ee542d9b3acebad59d644a4129db8de8",
+      "git_blob": "9228ef9fd586206ec7f7468995dd11aa525b3bcb",
+      "path": "src/pontius/h32_fresh_public_block_value_audit.py",
+      "raw_sha256": "8ad177125ce34d4b000a26c1e055b5fd17d25c88e0bb84232d7b613ee825b047"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ddfd4e343c758023683bc3b813aefb6f2c49689e8ee24b5167a3f46ddd9a8d1e",
+      "git_blob": "67c6004dd74a1f3235d3e2b1c26302b1d5e59c0f",
+      "path": "src/pontius/h32_fresh_regret_vertex_opportunity_audit.py",
+      "raw_sha256": "af761c42ac6f0766ab49ad75713815784d7594593e47d22c9a66da5c07520269"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7f845fbccb6970ed303da79b53f64e0e1493816a67837efc12f8744f4a91ee88",
+      "git_blob": "f994b8d4605205cd19297907178baf3347f77442",
+      "path": "src/pontius/h32_fresh_selector_stable_affine_street_audit.py",
+      "raw_sha256": "2e435e835d7c2bc536deb06433a3f2e67bc5dd5e3b406d1ad81ea217a4391a5e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2258042bcdb460446726a460b1d353ac047a1168a2b4bb2d387c8180c8b3b9bd",
+      "git_blob": "a0fb717d2af69bf0a4a36251d029eaa379a4be19",
+      "path": "src/pontius/h32_fresh_selector_stable_affine_street_seat5_audit.py",
+      "raw_sha256": "9b69918ff4a367d6a37d0189e0223467cad5209ab8f3685e1fd29c91a90ca3f3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0c52901ae92f63642f464e070b48d28a47ddd3413bb91310a62ba0fb449dc3f2",
+      "git_blob": "e454e3e96e50c90afe30c3210a127350591acc5c",
+      "path": "src/pontius/h32_fresh_union_value_audit.py",
+      "raw_sha256": "12c7cba9deb1d6307c058120332c56f5a5446a9ca4045d0f34fbb01bb35a7fb4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fceb8b8105977fc7cdde9f41d837d58060392251e23fb7183f28bf87d9a7b270",
+      "git_blob": "afc518fcb57cc39f15d34e858638392460a0569c",
+      "path": "src/pontius/h32_fresh_union_value_audit_v2.py",
+      "raw_sha256": "a25f807c8ba40498fad97aa1cdfd6ca47da2e896b48a3ee53d5e604553c110b9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "40b648ec703a593974a26d748af65cfdbd42dade01e8238a09fa398d46cd3d2b",
+      "git_blob": "66a6e3a928ef897eb1d8d4f1acedf504cd89c76c",
+      "path": "src/pontius/h32_heldout_continuation_depth_value_trial.py",
+      "raw_sha256": "a3d8be9254963131677a745ac3a73efdd3aef9d2318e896b677c6f6d596f6d7e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a02900ec39aac7539cf1ea8ff21720555ee943b6dd2236dc1d307f1d77aea14b",
+      "git_blob": "05bf64ea970d576bee37db42ba505b3f88138216",
+      "path": "src/pontius/h32_heldout_continuation_posterior_manifest.py",
+      "raw_sha256": "a62c1c783f5e9d259621b93ff6d1873b0ea2864a2140b7523b7003463d3aeb5c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0d93f7734a23953de1fc32d6f562a276dc73de0d6fd60c1f3ff429556cefece2",
+      "git_blob": "852307ffb269c466ad7da819bda361a8ab6f0bad",
+      "path": "src/pontius/h32_latin_f_convex_retreat_confirmation.py",
+      "raw_sha256": "6e71089bcc668e94d64d9174b7b8cda74cef223a434ebc103d58f4f2dbdbacf8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8d777501d0b7bb64bd361a32d0dd24220c7d19cbd23ac33b12259a4c7b6d8337",
+      "git_blob": "3e730d9f50b1af08c4ea00cf844eae2bad8d7707",
+      "path": "src/pontius/h32_multi_size_resident_cache_preflight.py",
+      "raw_sha256": "1f66626378a3b233b1924141b88b159c8cdc9a55204f7a5b19a86f3101c93ec0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9460f527aba6389ae868274180a0fdaef1aa21ed36713767d01c14df0b99de9c",
+      "git_blob": "b44a15e102763591432f81809da3504a1a62b40d",
+      "path": "src/pontius/h32_one_round_convex_master.py",
+      "raw_sha256": "69f86e1f946ae65f52780400f969c6365df79ba0e0846de306f6b10613434fc8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ba850b56a710e124329eaa76eb0802e213bdf632ca5409bd69ad0a006dcdcd5c",
+      "git_blob": "29aa60b539846a6fbf6b340678236b1fe775d39d",
+      "path": "src/pontius/h32_one_seat_open_axis_preflight.py",
+      "raw_sha256": "3087b39d95f942c92b75f713cb5ecc2d6a9ff10ba0467477c7459643b3efd227"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ac8306b5aff4c564c99aa2129aeebe168ba19b6f7356b2dc9f0ea43e5c78a05b",
+      "git_blob": "a5be7525692e4e484768216e84897ab91589ffc1",
+      "path": "src/pontius/h32_one_seat_retreat_quality_trial.py",
+      "raw_sha256": "2dfda449fcf8061dd57c26a85b4c113995440118c82ecd2025997e30dccb9e81"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "78e58ab02d90bb9c9e6df4605e6278de1fa2ceeb3feb935c39a3f06dfea09eeb",
+      "git_blob": "9c8ddcd1a40a84359a108ed6c4e415203cd3f86a",
+      "path": "src/pontius/h32_one_seat_retreat_quality_trial_v2.py",
+      "raw_sha256": "ca207d64a3cb70d1767ffd2ade4649fb45c682ab9fc92227d013e38f60906979"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "16bf9d353dae317d3b03fd36662aa0034becb4869a23a580206dbed6fdf1ec62",
+      "git_blob": "3509cc5a2a4ce09ae43731adef66f0662250521a",
+      "path": "src/pontius/h32_policy_delta_verifier_audit.py",
+      "raw_sha256": "16a5e7cad3146a513715dec18376fd86da080c0e915fd07a1b2f79485d15ccfd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c3cf5075a8eac577254b12cbd38eeaf20f5faa1bc02643acff0dd29f96dc9020",
+      "git_blob": "7d1bc93ce785a301fbdec411a5161ce4939ccbf9",
+      "path": "src/pontius/h32_post_fold_closure_value_confirmation.py",
+      "raw_sha256": "2766f93d2c0a47226887e71de0f6366a0a94bab430617b6d72a5fcae50bf68b6"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f80df5b6f1e9795d690eaddb6dbb446b4ece2c204e4e686c9a2cc0849cc84ac2",
+      "git_blob": "85a426662a766e5f161af01b76a8bb6480a289e1",
+      "path": "src/pontius/h32_post_fold_current_decision_setup.py",
+      "raw_sha256": "9e21a6fabfdb728c0547dbe4cf0ab306c63e7d3c178c03da3d8873c456f5f01e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2e6185e1865a842aea01b2c3608d0cefa3c916d72b0dbc0e2584cdca30e977ff",
+      "git_blob": "b413ad7a6d74fd69b3cac0c728b389c2073461f7",
+      "path": "src/pontius/h32_post_fold_posterior_manifest.py",
+      "raw_sha256": "d5682a9233fe1015123702454250eab1bfc2e892734de0cd1602fd43f0b1e720"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e0982b97b3148cbfb4466f326d6c074cd9a49b61797128a746a358cd1ab5848c",
+      "git_blob": "43f52b556ee5ed4258973dc0f9bac4472fff4a48",
+      "path": "src/pontius/h32_pre_bet_action_width_capacity.py",
+      "raw_sha256": "db4cd478aaa95cee48fc50e6b75dbc36b1ed3bffe3d630f773c31f08904d2a1b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8aaa5518b6168774ff932c619fdf620968746ec488aa698eef48a0bc49d29fa6",
+      "git_blob": "52e5ecd260782d950c2b3cfc235f19b6a54f06ce",
+      "path": "src/pontius/h32_pre_bet_initial_row_cache_seed.py",
+      "raw_sha256": "caeff3e3225378039ee48b3ba676fa2e6af9363f914faf895a95709ff52f99aa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "83d6348021ca53f4cd810e3aa5291d266eb7a8be7e417534a83655c3033c5d84",
+      "git_blob": "0e86316652c5b828d4e1f06885a3ef10ea1e77eb",
+      "path": "src/pontius/h32_pre_bet_initial_row_gpu.py",
+      "raw_sha256": "9bf203622a75bdebd931d5124ae0f97d9f81cf01c854b948552941713b7ae26f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "870c9c0eda7ca850dcbee6bc0c1bc50e934910e3d18aac70df53c508ff5d932b",
+      "git_blob": "b8596015ba85cf949e4a5770f4b5afe3f2ff94f1",
+      "path": "src/pontius/h32_pre_bet_work_reduction_analysis.py",
+      "raw_sha256": "3f95cad0bd2f7d5b9ba1e0c69c00fd545853bd10e8e7f6704ef700f164252460"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3276c08c2db28c05f185c90bba637acbbb2612649bc3528de7c5c195d09be1aa",
+      "git_blob": "da590b364dd28b8a9a13c8c3a2bce41a0938973b",
+      "path": "src/pontius/h32_resident_cfr_audit.py",
+      "raw_sha256": "766899b6c4ed0798eb63bfc3ae07f46013f441b8d0af7d8dc1c6cf5be4c6c3f3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "34b0053020b7542b50374e9eab3f86f9fc58bc1ebac0d13b40b1d1532360d452",
+      "git_blob": "994ab63263fe8b0f3f67d62235f64cb6b307d963",
+      "path": "src/pontius/h32_resident_record_to_hand_fold_differential.py",
+      "raw_sha256": "26e17b0d78506d004e3d19d6c1958fa3bf37d694a5725a6be36fc9df2c63df0a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cd7d1babcf9f98661a68b62e66178e92935c1aeda5ed5e949f310f0de9eccdc3",
+      "git_blob": "aef0c32e2699932942c5f9ae6a1aab37a24fdbc1",
+      "path": "src/pontius/h32_resident_sparse_ncu_profile.py",
+      "raw_sha256": "18d3e21e6dd2fb05da979bb4f6c8357d4fcf41e7dc4acdfac1423d94f8ad7fed"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "65f919990550b50b86788cc559e521eb7b408bd080435c60935723ec03150f50",
+      "git_blob": "a8adb40aec867fa08a8d0e80789f954129b5562a",
+      "path": "src/pontius/h32_resident_sparse_ncu_profile_v2.py",
+      "raw_sha256": "acc6afdba1507d844ae1ee8d8744d2a1f9a7f02c39ba328544b7a04e87426629"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "257b6bb4497fa06ee51c521ccd084c576f3029e27c2686c28ffe8e2d98ab99f9",
+      "git_blob": "51a645cc9d6410ade2b0c6d13ef716b68236c400",
+      "path": "src/pontius/h32_resident_sparse_ncu_profile_v3.py",
+      "raw_sha256": "603b083d504f9027ac840eeb542957da561c630efe7f59a6f4f0ad43f2cb28e0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "94c6643446f8683d068137ec8ef6ce520c0ebb2f63a77bd384103b4dad3a4dcd",
+      "git_blob": "bd12369c5ee4c7b0909c5398486c5e3e57ca93ea",
+      "path": "src/pontius/h32_resident_sparse_ncu_workload.py",
+      "raw_sha256": "b3798ecd89287cbe4daf940b8268ecec935984ce92c70d157ec0ebb9d7513473"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1fb6a214dd043d3a0f5983afcbd5860eee159e29a7f7bae9db423ee71b6ae0df",
+      "git_blob": "4eda7ca90b3c778c69c97270ba435fa856aa6d8c",
+      "path": "src/pontius/h32_resident_verifier_audit.py",
+      "raw_sha256": "fa5997ba29c096cafaa7f5675e8e043e60c193ec0947ad3cefeb056bedc09555"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "05f4c9d11bae1c3d3b1ed6bdfc10a81e0663c332f7a9d943258900b1a81e0e61",
+      "git_blob": "f707b9be7afd978103752c964f93e226cbc4ca0d",
+      "path": "src/pontius/h32_response_latency_bridge_audit.py",
+      "raw_sha256": "b17fb1390675cb06e44f8011f66bdf89c6121b3b6f999d4d1f331faa766cd67a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "10c073422fb9a8f7baa421e6e1d21ea289e21cb8958935e61d5915dde4957bd1",
+      "git_blob": "b868dad68feb6508c5426b77b0e033ee763934cc",
+      "path": "src/pontius/h32_retained_affine_selector_cascade_direct_replay.py",
+      "raw_sha256": "6799bf677d1a7fae874bd264505f8b6d42d0a7ebba0390b2949730e8c1703fc1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "63214d1e5628a0b9e3cdca0361c396774d12e5732fd396a93e69dcfa3dd8f0c7",
+      "git_blob": "628511028849cf95dd97457b48d0d1c5ad7d6490",
+      "path": "src/pontius/h32_retained_affine_selector_cascade_replay.py",
+      "raw_sha256": "04062b4355d773ee7046995b05f03c927c8ecdae8edf5576819e642f8e948d0e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6f04eb8ff98f4cbbaaca9f0fbfc8265df2472b4f05a734325d35d466f2eb28ed",
+      "git_blob": "606b7b37c3d1c572baf6d6c98a02be8c8a0fd199",
+      "path": "src/pontius/h32_retained_affine_selector_cascade_replay_v2.py",
+      "raw_sha256": "36addb294ca4ecf748b2033cb2c836422d60570b3a532c40289a5b479ee21369"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0be5dd0561c55983e2ee004799d4c22c79d0c5a4a87cd05ea3113cbbf65b6c86",
+      "git_blob": "a200653495aa8cc876091fda001df6d0516a5d4b",
+      "path": "src/pontius/h32_retained_affine_selector_cascade_replay_v3.py",
+      "raw_sha256": "72e16a01bc1577a901868d6fbef31daac12dbf88db58b5711d512f5d76807701"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6a12fb84ef1e1e19baaa6641fa9d8cf80b13d2ba67f8582cb02e08db8535c8c7",
+      "git_blob": "001a3e4976ba1aa27dad2cc3b3a637427e61f65a",
+      "path": "src/pontius/h32_second_board_action_width_quality_audit.py",
+      "raw_sha256": "74b47ab4160746646f6c7788bfe1a8a15e27bfb72716b6b7f26ce6ebca85f559"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "88a97b30105045256a20b22052dbaf640872453f653f9641a604fa9a24836175",
+      "git_blob": "1b1a4a0994aedc962d7eaabdf4d05422e3e908dc",
+      "path": "src/pontius/h32_second_board_resident_cache_preflight.py",
+      "raw_sha256": "0b9275030c6fd2e7fd1c5c56dba79a5485a31d8ea46bcddac54c7ad75792ef40"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "16b1d3ecccc91bc7e79b2095918562d271bdb72b28e04e4c6258a76bf3b37eb3",
+      "git_blob": "70155b7adbbe6225eb9d28624734b6b29e06a4a3",
+      "path": "src/pontius/h32_selector_stable_affine_certificate_audit.py",
+      "raw_sha256": "2306d4b09e7c746fa41ac35f50c9badeaa246d8d9fb5b280f94573924d17644e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8113a35ae6b89dc2b0a3650fc062fd074b1e811fc240573400a4d55ec4eb8fe6",
+      "git_blob": "1b3d67e3f5bfca23dd9302e5e1e5bb16047d10bb",
+      "path": "src/pontius/h32_selector_stable_affine_certificate_audit_v2.py",
+      "raw_sha256": "294424fd9f461e76354b8793581f01979be61b388cca5d4d4dea47acabeac9d5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "70db7c30a28f91355451be842357b0ac3f8290d4dc2cd65264cf3e3a99f7a597",
+      "git_blob": "387817955c5fb39774b7e1d0e35e889592972ca5",
+      "path": "src/pontius/h32_shared_response_allocator_lifecycle_replay.py",
+      "raw_sha256": "d882212ac178aed83d6f01e26403cbffa841d24702e581cf818e49d088f1f083"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "98f33e63452850e69288286ccdf98b14364ce46e80c30c8e36f92018d075c2a4",
+      "git_blob": "160919bc1d81e34833600e21df2118349925d938",
+      "path": "src/pontius/h32_shared_response_residency_replay.py",
+      "raw_sha256": "d9d6232c30730652b1aee30bec658b02c2e5749de151b5b82246d83700020881"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "bbc7de84291b18ca4a19bd29f8c84fd08404d2b0f13d6be480b41a42f223d7ac",
+      "git_blob": "1a470d53cc4e0ccfd3399cc05068d2e046459587",
+      "path": "src/pontius/h32_tier_b_opponent_batch_differential.py",
+      "raw_sha256": "96d0de5d34d717f8245512e4cf7a7e672f3ec7c731724b5826a361661b29fb9e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "483344d7ce1dac371c991d6bed83b4741e3278e8637f0d584509648be2b32bd1",
+      "git_blob": "35e1d8260e9bd5e5b8704620e71ec61d2b675832",
+      "path": "src/pontius/h32_tier_b_opponent_batch_differential_v2.py",
+      "raw_sha256": "de7ae739f7187d3834d7e7972c7be2754d24052653c90a65b7211e6620ffd734"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2ddb8d75c1ae7d450b5d69ee401853439df81ef56a2b0b616533604ccc5da5b2",
+      "git_blob": "adbf0a71aeea9bbb39c64d48c7aeb0b4eebc2822",
+      "path": "src/pontius/h32_warm_candidate_stream_audit.py",
+      "raw_sha256": "2f00b5123439dc3a933728461a927d1997d731c62d265a867d049dcc78ee54a9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b1763663225ed831f4487d094aca3ebc6be9b3d964dbbc6cc6b73898c10da753",
+      "git_blob": "e30866d2095de4ad77749a7062d3ce2255ba0d46",
+      "path": "src/pontius/h32_warm_search_acceptance_audit.py",
+      "raw_sha256": "b0d48b0ca34e5153ea8317133bca96a32fd9ea57fcbe539e958fedddcae5870f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4fa7a252efb1e24973ac8a4c47ea76b43eb10f81513edb8b77617a79d86571ca",
+      "git_blob": "3eb6c56183014266ebd75deb81d52d3a8acb326d",
+      "path": "src/pontius/h4_sequence_form_open_axis_differential.py",
+      "raw_sha256": "f5ee2a888bfb6f2dfde9bda681961f78b0f7007c05b91a67435c2e9a5c44628e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ea2910979a9adb2085b15edc2da4480d187bc07d0421b2192d793ac3b1fd4f79",
+      "git_blob": "1a022f6c730f0c7c071ed5ad14872c6554b106f4",
+      "path": "src/pontius/h4_shifted_belief_dense_crosscheck.py",
+      "raw_sha256": "6d594734052fb6538151043d38cba0772e9d7828e048cac69dea78aa512596e5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1a1b7b3c76a051c4c6a87bce42fc685bee57999adfc3dffca8aaee0101655978",
+      "git_blob": "a6193540d96cd3e54369b46fce52da61abdd6876",
+      "path": "src/pontius/hand_scenario/__init__.py",
+      "raw_sha256": "83dc55c9674acb6829246b09476b9fc455513386ac7cf286c7c4f7695cc9727e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3b363452053d658e0a9461fd7392e1627e49e7289eb7881b014cd6b9921508ee",
+      "git_blob": "620874ea0e76cdccd7cc3a2ff3e6de4f8e929818",
+      "path": "src/pontius/hand_scenario/codec.py",
+      "raw_sha256": "ecf2a1fe52846dcdeb9c915669c8ee77148fa7607ac59715f54eca0bf9ecce6b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "325538f2a9b30c6b4f05e753b1e6596cdd386feac894240ce6effc97f842be71",
+      "git_blob": "52043ba5c67e7ae669c1c28f591e4715557e53e0",
+      "path": "src/pontius/heterogeneous_leaf_contraction.py",
+      "raw_sha256": "61031e03fcd938d943fd3b75de18d2af5753852ae694cf8644dcbf4bb8b8b070"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "714d3ed7a29af3a9205e53b097408c71b43040c0191fc763cae6c87dec887799",
+      "git_blob": "25c64168ae46c835efce95050ef52cc9ac3734a5",
+      "path": "src/pontius/holdem_cards.py",
+      "raw_sha256": "97d987e188faddae48d29e96d883f3e67c649a9f5dc95d806f1169d2c6f6ac65"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b9dcae07bf6d874e13ca26c437372f0dcf1e9b1a873194e88adb3901320ede40",
+      "git_blob": "0defb13caad0e8e11ef78b8aa85a83667147ac09",
+      "path": "src/pontius/immutable_blueprint.py",
+      "raw_sha256": "300a5caa70febc954a9e47aa31b88aec345fe9ee6410b78b4d40b4d34fa1aaf8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "02bf13864c21d27e6ce743cfb47964e51b21840d80a2ec78cad8b8df162d4fd9",
+      "git_blob": "7ca8c1f7eac373bc715a1e1dc1d8acd374b26ecf",
+      "path": "src/pontius/incremental_leaf_adjoint_response.py",
+      "raw_sha256": "12dbf0e59ba13cba70cbaa81c60fb8ac4cfc16312d9834782d76b750052627dd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4d9b5888fe71a8ef2442f371f59fc190356e0b392e8a374f8cb1b0fa3d9cb1bd",
+      "git_blob": "189d09b77caf67c9bdd2a9a6d64a1a595e1e7bb4",
+      "path": "src/pontius/incremental_policy_tt.py",
+      "raw_sha256": "13346e06933df48511e1ceed8f12894a13667d02ca866162d49dbd747a22e5f8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "95220933193fed0b3052b769737420299506e3f93ce27597396b0c1299952ac8",
+      "git_blob": "0619acb5f69f4e56bbc903341b73d2d0571f11f8",
+      "path": "src/pontius/kuhn.py",
+      "raw_sha256": "404cd07501ae715069d2c48b241bc6b904b2f9f843fbd26e3840b28a1132f272"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "473997841554888fd3ee82cbb9f0e45d7b82c050c7530b9ce86e3039e810c9ab",
+      "git_blob": "e522eec39dc96009f7fec0e765412f4cc0f54560",
+      "path": "src/pontius/leaf_adjoint_batch_width_audit.py",
+      "raw_sha256": "d41fab3383dd4f9d0fb65bc8acf3b7cbdbf7a06e06004e8e734b26036c74696f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "def6cbf73fdabaf0fdd08964c57e8152ce9dd660b0cf242d9220f299f0517277",
+      "git_blob": "faff180dcb4117dc6064739291b5c50a9d87d043",
+      "path": "src/pontius/leaf_adjoint_batch_width_audit_v2.py",
+      "raw_sha256": "478143cb1d0b2a6144c9dcc76faf3e8d922e74825363fcb7698047b66ca35967"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "269c0505dc428c79bf2d80bcaa65c64ec2a8b15f7571271bbfc4dc2ac55c6882",
+      "git_blob": "bac589280a73712764889f22caa1d6eae914b334",
+      "path": "src/pontius/leaf_adjoint_cfr.py",
+      "raw_sha256": "2a064b9c5ca92b79b5e2ca8a3e2c684c4125851643bcb42a9b0d495e1c0a9113"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a4bdad1dfd2d3ab257c197a6c611ffc41168fc7a3a3e028efdba844690af199b",
+      "git_blob": "7592afe5fa0ebc1ee6bd2ebae76bdd5736d98623",
+      "path": "src/pontius/leaf_adjoint_checkpoint_extension_audit.py",
+      "raw_sha256": "891891182e37a3ac6d53a90909503cbfa16c08f587041e17c116dcdecc724003"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "826e7c450b8c013669da3830f17a9c05817e54619549dc466ed14d8f953a18a3",
+      "git_blob": "d0769d4a52ae5fcc1b35a5994d89b6f8e3a7d17e",
+      "path": "src/pontius/leaf_adjoint_checkpoint_ladder_audit.py",
+      "raw_sha256": "4c24a7784057aa40a35f1743c81bf347f42ef22e9d3bedcfc8e096c60965da51"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "25e0599edd4a0082ff3d90a5b38fcacbeae1f14a9db566aabc74419a887f5f54",
+      "git_blob": "8c53328bc61a7ecd0604643deb6b24dd1ec9f4e2",
+      "path": "src/pontius/leaf_adjoint_checkpoint_ladder_audit_v2.py",
+      "raw_sha256": "5562abf4fad803a12a794c31e3e057b679546480a8f2cd8f23f65d0d931b01b3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cd925d9e25678c1cee33992c94b1517140fd471ecfe6a66d5736b65db3780031",
+      "git_blob": "01fb1499ee9b20ac2aa63a4c23d05638686b5f46",
+      "path": "src/pontius/leaf_adjoint_evaluation.py",
+      "raw_sha256": "325c9695bdef470098bc73491ecdb3ac03f1577d67e2fd6c66c96db2152d0b44"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "03fbe35292f333860a0c87c7580aec79f2c675c80daf50f5e162ec58fed751f0",
+      "git_blob": "aef065887a3483744e8bc3bf7cbc43c901853e15",
+      "path": "src/pontius/leaf_experiment.py",
+      "raw_sha256": "b9a08676370f7b9c360e64b5853d03d901e7fa3a83afcd647a779195e98fb9ba"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "34cb4567ac455d7135c4c7f6728a4c20ae55277e28e5a0f76836367c8100cd11",
+      "git_blob": "434746b8327c563bca3925d8804038417b4d6f9b",
+      "path": "src/pontius/leaf_matrix.py",
+      "raw_sha256": "7b98b99dfffb203d202c9ed7ac8625fc20522726c43ce39b58ec720cb41a9b52"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7f744bb8f3822e9b9911bd3eac3f40fa3b83f15738693932d626b0983275f6ec",
+      "git_blob": "bdd24034b56b6aa71e70277762698dc9fca5d1fb",
+      "path": "src/pontius/legal_action_abstraction.py",
+      "raw_sha256": "a382eec2284b93b6315eb1e2b2514bf9e904ca17ae24e6953a7ce53aec35490e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6402eaff40b921b74ca4beb312430db19e20a123963c326ad46b4d5a33c321b4",
+      "git_blob": "fd569a753284223df0106de5c744cca5a18d3ca9",
+      "path": "src/pontius/legal_decision_spine.py",
+      "raw_sha256": "3ba182108c83977684f294f5495ec06f2b64706f4d562a02d2c60fde9c785a55"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a0c20a29dc5da5af95f373b2617163bd53c24591256ef5342f30c20fb4bc08de",
+      "git_blob": "824f4938788769be4165dcad04926bf9f2ec22e8",
+      "path": "src/pontius/legal_decision_spine_v2.py",
+      "raw_sha256": "a480918d5c6e5d06e2076ef64f7cccf14b63f61162b7b9d24dd7cae35825fca9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "90cb589ab6e980b72f0f58c88104f87a57ba5be69dd42ceb8593097ec18b8f89",
+      "git_blob": "fc57703a80e377900814716dcce697b5128b25e5",
+      "path": "src/pontius/legal_h4_factorized_affine_confirmation.py",
+      "raw_sha256": "65875f914b75ca282f3c785daee71bb1c7ba39909ae1298c1353368739d0b573"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8d37e061f5c74d6e5df9b45280d666d616f1e8fd014f9a65edd331a659c62d7a",
+      "git_blob": "c016c08c4079df25e8fab46b150f1312fa2e1de2",
+      "path": "src/pontius/legal_h4_factorized_affine_confirmation_directions.py",
+      "raw_sha256": "6d1e2db628cfa698347268c80a6062a8a9367e93bdbd51c34695815366b3f9fa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a1d0fee8f9a840dd40db9f12a94521f384d9cf8091b331dd3a99aaeb9d13e337",
+      "git_blob": "caadcdfc9306d0b634945001b495c7cfd46c9e0c",
+      "path": "src/pontius/legal_h4_factorized_affine_confirmation_population.py",
+      "raw_sha256": "60f4050797810507d3bcf65aa73874580fc9b3ded987d8539789f0b379bc52c4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e89ff32d689d62c1506da9eb73c7f317467684ad2dd37a57787a915a088a825a",
+      "git_blob": "63fefea3108ffa3dc0902b300d5b12b35d840a1f",
+      "path": "src/pontius/legal_h4_factorized_affine_confirmation_population_seal.py",
+      "raw_sha256": "039db67fe035b124fed3b32481d2813de071c9dff6c11bb575d83be70aa5f4e0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "95f0b42dd5826e6cd8d39e05a5ec32bc1dea1ec47c54d7f42bb9fcccdd2091a7",
+      "git_blob": "873641b09a1412ae9033e76382a70472b93ab0da",
+      "path": "src/pontius/legal_h4_factorized_affine_confirmation_result.py",
+      "raw_sha256": "505b01eecfcd15c402bdd1a895d7e9ad5308f263690cc2e91f7b307b290044ad"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "808f0d55f1fc7d07a31c8ba9a200aca0cb62109fa8a450fbc23873a0a9c01b3d",
+      "git_blob": "a9f4eeff517c0773a5690e0c4c9b6ee6175d6708",
+      "path": "src/pontius/legal_h4_factorized_affine_confirmation_result_seal.py",
+      "raw_sha256": "df9a76d8344933244d679092f148f61975743173cbda548a7ed178dca7e1c74f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "31b7d367049f4d438a5a3b70b85c0dbaf226589bd8201daa18517a379916be09",
+      "git_blob": "393535d1fa375e957a2649e3fcc5d43af3ebd873",
+      "path": "src/pontius/legal_h4_selector_directions.py",
+      "raw_sha256": "0542639a491417be78415ee3019e864d256ff460adae5ae1ddc75f9e4dceaf88"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0fd01b37802cad454aecf2de5c220bb1915326e130586ac7b38f8c1cb4d6fad4",
+      "git_blob": "d490335a22632a12d45e00b1abf00dcbe698ec68",
+      "path": "src/pontius/legal_h4_selector_fixture.py",
+      "raw_sha256": "978777a66aa22fe6b460695b9c418194b0b780e76953998e33226c2f4245da95"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8f054fcbe11e6171ccc59c31ecad8d0b8983dddf93841ea7837b2114c6cc4d58",
+      "git_blob": "30c6f65c9ffd6bb928f371f708d6795755dfe28c",
+      "path": "src/pontius/legal_responder_raise_h4_coefficient_differential.py",
+      "raw_sha256": "e800aa343803c27744172404e1351e564e2817ce357c59bb602bbd6cb357caee"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c04e529ceb34ca05bcb74299ca9b2f4bd840dd88c4dca62332107d7a8ae1353a",
+      "git_blob": "f9459beef8250bf1dff9fb1117aa86c5ee8e6a31",
+      "path": "src/pontius/legal_responder_raise_h4_coefficient_result.py",
+      "raw_sha256": "4c67ce1e724e6196a1fff6d7d6312c7a117fd9ff5ea47c8e82d7a1f21e8e1547"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8d660d6dbb3db6fb0d3f83ef2fb345565192b21e204b2e05e680773783cbc863",
+      "git_blob": "0fe28073d983b04c761e22e88476bceee5274438",
+      "path": "src/pontius/legal_responder_raise_h4_coefficient_result_seal.py",
+      "raw_sha256": "53e597b3483efc6ba2bbc3ca4a5dace8a6422eebac6ba549bb43017dcc9f3113"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e3dc23d698a6d0a19aacbda16ffcfca49e8016e636727d09efb40f37d66c3d8b",
+      "git_blob": "0ad75ea47a919214ad59204133844935d21f2dba",
+      "path": "src/pontius/legal_responder_raise_h4_directional_face.py",
+      "raw_sha256": "c7196eb26081c136da37b6ef0098c9ad9813bc78205ab4ea2f6b491a93848c5f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "38cb29f0e8808736b94ce4408af75d69b63775a540b66e627d6a1cea809194b4",
+      "git_blob": "b72a28d947612dfa43dc2db80e08ae580a679de7",
+      "path": "src/pontius/legal_responder_raise_h4_directional_face_result.py",
+      "raw_sha256": "2bef9c0130b45010d34729abfb31a2cf634ed46cfbee9eeba90b4b76be251765"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "31c5426d659327e724750a16fb3d7d3e36be4bcd2c81821645a4aba05690923e",
+      "git_blob": "e9c4d77d6dc01b2e73f35d70c59295f84f0080ff",
+      "path": "src/pontius/legal_responder_raise_h4_directional_face_result_seal.py",
+      "raw_sha256": "79ed7bfc126325ca2d4a9468c79a7f9dc2a8d166a0eb7660a052465ee14fbcd4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "38ffef45faea6f68991eef74ec360f97475c3677ef97ebec6cabaf538f085f30",
+      "git_blob": "0ce1976ceb3b280bfea0c3182b160ef9b2f0d1fd",
+      "path": "src/pontius/legal_responder_raise_h4_factorized_affine.py",
+      "raw_sha256": "b2b14500aa52a25025c78d4dbcfe42378e0a74e69c3b9c1e9d5bd62c266159f0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fafe6da4306cc6fce9abd52a9ab62a022720ad8c8ef58fa4504a8d7965cc506e",
+      "git_blob": "278bc82f7ed85d88e18d04a22079b5935f111c1a",
+      "path": "src/pontius/legal_responder_raise_h4_factorized_affine_result.py",
+      "raw_sha256": "5c7d906ac6cfaa821a49dd5362367b0ea15813260cb6747c4b8a4cbb9c295984"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "82ed6b348664487fdc4d78a3bc39ce49dcee047c5cb99812138902e3801e0a7c",
+      "git_blob": "d142d897f9c9e3a056cc276c8f25091b46203c41",
+      "path": "src/pontius/legal_responder_raise_h4_factorized_affine_result_seal.py",
+      "raw_sha256": "e664e9a96d2694af69e4988cfe1a5980a211e8511743ba261bcd144530fdd322"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "317ccf2188260bf1fd2d06fc03071c0f9ebc45ac909c3c356e3e90d0a4b18538",
+      "git_blob": "b652a477df0562ba3786864c896c32ee1c56cf63",
+      "path": "src/pontius/legal_responder_raise_h4_row_growth.py",
+      "raw_sha256": "89f425d5bf5ddca7a1e2ef0eb343d0f34b1ce39cc9b7ee31a3fc4364905b9e58"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3a5a6aa4baf4a1ccb547f4763f28835da9afaeb2ffc49ffdafa05a00be41a659",
+      "git_blob": "0eb09521044e15096b0235b671e7f61b6b791b67",
+      "path": "src/pontius/legal_responder_raise_h4_row_growth_result.py",
+      "raw_sha256": "b300b5b5a022a698c7bce2c77a99212da272ecaa50e1964eac76a21c392add53"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a380a81db3045f6c1275fed53add94e7141e00e0209d59261b8c3afbbed7c44f",
+      "git_blob": "faf5400ef8865eb92fed895440bfc84d7852e37c",
+      "path": "src/pontius/legal_responder_raise_h4_row_growth_result_seal.py",
+      "raw_sha256": "7edb4892fe5ea6130180650927575dfcad86e86ad44336d081e152c94df4b3ac"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0e51f614785a135508b1bf6d433e1d8ae90fef32e22e2d517af7d2448da2e60c",
+      "git_blob": "9a057f9a423bf668322db5431e8f92b561af5bcc",
+      "path": "src/pontius/legal_responder_raise_h4_selector_fan_result.py",
+      "raw_sha256": "9ed770a532cb2a665dbe6b01c2385f66b763ab02d86750e9b44642a5df894d9a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2727936f8edc2790b96a175ee5d98b65c9ff0a8f1919b889cb3f2d08f354939b",
+      "git_blob": "24935fd0742568c53d6a510de1afe88542a68c97",
+      "path": "src/pontius/legal_responder_raise_h4_selector_fan_result_seal.py",
+      "raw_sha256": "34f02b4c9c80d56c6bd9ea2c78b9599f890110e5fafcea634d41a3e432b2383b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "960bc8cafc40bd18b6f95a1754d5da3a148ac3ad7e6ff79e64c3cf4ee2f073f8",
+      "git_blob": "73dc9c9e3e9c362bab262de5cffb5c09667bb980",
+      "path": "src/pontius/legal_responder_raise_h4_selector_window.py",
+      "raw_sha256": "9a252e13bc51b3f713a05c9b4444ad40c544797b5119c1d97d7bb85dd693f070"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "519d52697434cbc59cb900809bdf1c1ecb748de9086b2e97b4ece6548cbda12d",
+      "git_blob": "7c09f26dca0c081740f9a9f7a126627bae1969d1",
+      "path": "src/pontius/legal_responder_raise_h4_tie_aware_affine.py",
+      "raw_sha256": "99b7db5e7ee49d35769fb4f41a72ef251469df8439ac52a924b7edefcdf4f28d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a39ea8592585680f934185d95368a2ad3f43e806185a833f99b8b5c93ffcc024",
+      "git_blob": "ed6bb6c75c88f272f1295109625eb08968b5037c",
+      "path": "src/pontius/legal_responder_raise_h4_tie_aware_affine_result.py",
+      "raw_sha256": "045fd30a6d383c5a89f686943f31bb2fa424334d602710288fc5e082eb7bfc2c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4fb4413c42be490177b9c4f4f0813ad30e42f6a39d026a233f4d572edb8321e8",
+      "git_blob": "34c86d17d4daae0a1750dd9b46f68b0bf42deb14",
+      "path": "src/pontius/legal_responder_raise_h4_tie_aware_affine_result_seal.py",
+      "raw_sha256": "8323d46d9d35f73f2d56b9c73b16fe78baeed82f78ee7df8be43b897ad23fa1c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7adca52e4dc227407b43c8d6b0ff11ce16aa96d26a0c73365c90bc3fa56221f5",
+      "git_blob": "dc82aa748a195391143a09958e4e0dade827c45b",
+      "path": "src/pontius/legal_river_continuation.py",
+      "raw_sha256": "4c8f57f259415ece30b12add42243b65a30d3320924b469209e2d94a68064250"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "43e8eb9bbcb74bcd9b0c796f0344c13845c26c76ba2efb113244f941e412f6bc",
+      "git_blob": "ad39e23e3237777577f81881d7018d85e8fdc61a",
+      "path": "src/pontius/legal_river_exact_cubin_inspector_diagnostic.py",
+      "raw_sha256": "3e8067a445952e20a3258ffae9c08c6fa228f971be5b28b462de08fa52862a1c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "64c71f7e69b61100726f119f640c889b84b872a5b35ba69679d44f9c7d95cfc3",
+      "git_blob": "ad2b7314246da0e0fa87abb02a2d30f6f6b15bc7",
+      "path": "src/pontius/legal_river_exact_cubin_inspector_diagnostic_result.py",
+      "raw_sha256": "ec7308b8adb8bd398844b60a2a149198262e53cfe9bd8256ba424e47bf87093b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fd9d7fe8e3e4cb216ea7cddf785094bd625d5f9ca76975a43a259fcdbc541d20",
+      "git_blob": "98ef822e46e22975a4d7914c91c8a3c85fc89a43",
+      "path": "src/pontius/legal_river_exact_cubin_inspector_diagnostic_runner.py",
+      "raw_sha256": "6afdc6fbcda751ba0d0b6bd4aa7d7f89449dd9e84cf62e1cd634d3291db5ee7b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3e63a46cffaff19a2713bcc2e3480605c8d8b16a7c1fef54706828a8382dd956",
+      "git_blob": "1413f64d0aef3e6d733dbdbd972e0e58fd9744ff",
+      "path": "src/pontius/legal_river_exact_cubin_inspector_selection.py",
+      "raw_sha256": "3d6e75028361b9aa86b49ddd23a43a8391bb13db54aa908bd00a38868c0ccdcb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "80b4a23432e61059cc3b84229939514c6f2e72d720484d107dab49a6cb979a95",
+      "git_blob": "952855dcc5e94b2cdd5d982dee215507b09bab94",
+      "path": "src/pontius/legal_river_exact_cubin_inspector_selection_seal.py",
+      "raw_sha256": "583da3f2dae46a01e9d7b1b3301fd4b6c3d765e88c6894420a378f9850e2c413"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6162d87f718c2faf8d0657f4317711497a2a756ba96bbe505749497865b444d8",
+      "git_blob": "914e6671f493a64ccaefaa009147a07432b7c186",
+      "path": "src/pontius/legal_river_exact_cubin_zero_suffix_diagnostic.py",
+      "raw_sha256": "6cb0fa3c4486bf8abf24931adc5fd97c6e905c62051b9d13826732cdf4249a24"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "bdc9cda0cc3060fa90ab107decb656724d57e3893e7db05b8c52a4d3e3a64867",
+      "git_blob": "546208b3824651cdb8444922eece16a19bf3c40f",
+      "path": "src/pontius/legal_river_exact_cubin_zero_suffix_diagnostic_result.py",
+      "raw_sha256": "5faf0bbecbf1ff9c65b19327ff8700b757a5909c6fb22f6f07385b825d49357a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c5121944df34708d13b232bb70796a135a5401b26a1c5f036ab3e172dfa0f0da",
+      "git_blob": "f1cd85cf3bd301e8772d89de0366f8a737d2255d",
+      "path": "src/pontius/legal_river_exact_cubin_zero_suffix_diagnostic_runner.py",
+      "raw_sha256": "a6a980b30859aca63919102ce3268bef6a0fb1aee0b1bb42ca4b11d1486a9804"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e6d1c007b9b534148aa1fa638191457ca6abe2239a64564a45afca4acf49f027",
+      "git_blob": "cdf155358577b2855b26e4ed26ed8e6153772b93",
+      "path": "src/pontius/legal_river_quotient_base_provenance.py",
+      "raw_sha256": "1a048fbb5256526856e9f668d61f48a3fc77dc1601d8bd4c03cc645a316bd894"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6c3e64561d5c7d54ce6943b6bee3567541c04524ed46aaba855c31da910130e8",
+      "git_blob": "7d339b362c30a05b406825354d6337b5d8cc514e",
+      "path": "src/pontius/legal_river_quotient_bridge.py",
+      "raw_sha256": "606c46df54d14991639b514bb258a75b9fcc08cc0d7f49087539c7b7a5398936"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3c55f219f5d6ff707fc188f1759b91ceccf7ff12f95901becd447d647b5a49d5",
+      "git_blob": "ea9554a70ffe7ac0a728be6b3883feca208b3bf3",
+      "path": "src/pontius/legal_river_quotient_consumer_capacity.py",
+      "raw_sha256": "f2f6ddf9a5bd7945a69ea9f97e9c95093f35d3508f1a0a36c4d2ed841a327073"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1382a37cc990a7d93ca0b6a354be550326659b720092dbbbc6533a323bba3fe6",
+      "git_blob": "44e2649bbf31b472df518fdbcdb1ca8d659603be",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_tiles.py",
+      "raw_sha256": "03a7efb35243b8d13d495a7f80838170055096c8e9ae73d2cc723e3d29f1020d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "87f49311f1b529b0da569c9a31c747aa61955038674d2f16416e2e1984ae5d00",
+      "git_blob": "51c80db31f6fe03db304f616bed9fe1bdadad315",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight.py",
+      "raw_sha256": "652a4a37cd097a92829364f1ec6976a6f31a4092ab9fc3e0f97a992e2565c4aa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9221e9c6dd48fcfa3fffcee2f9b71e6f46d6e52526543dd1879411f1ef53379d",
+      "git_blob": "0d68becf9cab2bb9fd0a202be8f82771c0ff3a5a",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_result.py",
+      "raw_sha256": "740013c40430c56ef1357ea9566532c1239f31c540280445032d9e367d8a9d76"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "76d5e7a520a6378ddb8c09b94b62a17c2acc6bb3bf6ce27d3358c199828f9d9f",
+      "git_blob": "000ecac200826161d034c0b35b2276a44722b3f9",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_runner.py",
+      "raw_sha256": "9949e3a0b82f6409f137531a03d36e960e6f4b33be808b27da4e2e2278d901d1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "dc72254238ae622b6e71d9dc212e293a5399e2f462ab885afd218e3fe27d4fb2",
+      "git_blob": "26071ef4159d7eeb2a172044044ce3d146a53407",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v2_result.py",
+      "raw_sha256": "baaa4f9078fe580d53adf01f30d2dbc593df0c402072ea0157c892cc47c7f81e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d3daa14aa27c004afdbb54fc7b0d96c04efc0b04e0607eac997ddba86cd1b5fb",
+      "git_blob": "a10f6b4bfe4a2d9d9dddd3f5670b6c5e37863092",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v2_runner.py",
+      "raw_sha256": "cf232b8a84467bc5cd28911f45e75657a5fda220ed5e11ece84f2c054f4ad690"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "58d04a122706dc4edf68ab85d6e8cf7b897937221e2fe53f46329fdb9d7c9dc2",
+      "git_blob": "11b17ae55897eee198a67df738c733f9a947a0db",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v3_adapter.py",
+      "raw_sha256": "7df06c0904d65237a767fe887eac5b5f815c1cc0217ae8ec3a3cd6b946ea56b2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "253484ef1eb602b25bb98685b6018f8ce03c93f4fd5777fcd275268d500b74f7",
+      "git_blob": "a72331144476e67907a60032c22696720b90a147",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v3_result.py",
+      "raw_sha256": "930ee87167b55a351ebbbac556a8b541dfb4d34f7b597aa91e1d34a24f1d810b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f39cf540375427eeaa686132ac34022a9505e1e5c01a9b12ff43ef6d7686df3d",
+      "git_blob": "1a80afeeabada125ab1c237268dc9066eb984a76",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v3_runner.py",
+      "raw_sha256": "e56e0ebcd9614f74df667b03cde570b0cc86b5474684ba8eb5c0b81b0f58a4bc"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4eeaee4e1dcff686fc8e983e2c6c6306856a2b0eae0e456f1f80211a9baf764d",
+      "git_blob": "e4b7af6684456175743fd3a4cc8618b077bf6e3d",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v4_adapter.py",
+      "raw_sha256": "47bb1a33edde170fc83bfe79628f0a3640b3fec528356bd9bccf31b360a0faa8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8313893d713caf3e0c8207f08200733b10fc8328befc11b1d325481852aab13b",
+      "git_blob": "5769830f25d05cfadc4878f1b01826784c678bad",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v4_result.py",
+      "raw_sha256": "f1c1267a9d01bf2614f2af63675440d2074172c329fc56416a56f03922e12367"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c947cc02da619bff5b4e3a4029d975555472d4f5497843d6e6f9fe5aa9e2c5e4",
+      "git_blob": "211a402ea32cf46beefa6bf2e3389f36c6546548",
+      "path": "src/pontius/legal_river_quotient_cuda_compensated_work_preflight_v4_runner.py",
+      "raw_sha256": "9e8e4272b481a17dd4b0b40ce22ea2b53696b191660b709cfa54ffa09849e8ef"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "00fd0175f6f6743d1c9af59e11e41734da65b5700c651cfcd643d7177516cc51",
+      "git_blob": "ad8973d450bf3387b106d938b03c1636eeea40e6",
+      "path": "src/pontius/legal_river_quotient_cuda_consumer.py",
+      "raw_sha256": "012a3517a862ecd37a3099e8a3f4a84cb14e1419f83aa406f88d6429a2dae09c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a79b9641d69a2af59d2744ea248857d20a14a9c0b3b3ce7cf6750a018148d3f3",
+      "git_blob": "c6666acd00735e40bc917c96ac8b47281330d03c",
+      "path": "src/pontius/legal_river_quotient_cuda_shared_direct_device.py",
+      "raw_sha256": "1024cf00087f1cc64db48a4f360a282fe534de375493522dfff1aa6593d52508"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2297e60ef4c7ed810a731db529dac4b08aeb12145486a22ae075090f8abb7b17",
+      "git_blob": "c5f9d3e7247ca069137841d4441a73723694ddc5",
+      "path": "src/pontius/legal_river_quotient_cuda_shared_direct_device_result.py",
+      "raw_sha256": "1688e53ac7490033fc2fed9b7510f3e97804c71e20380658ccab41a367e0a652"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "55ea40bb1d6e5700a4b29f096f3f60f0430790e75fd6ffe4fea97275803ecb79",
+      "git_blob": "a121e3f2008ada8040c220958bd29fe1c8641da5",
+      "path": "src/pontius/legal_river_quotient_cuda_shared_direct_device_v2_result.py",
+      "raw_sha256": "d3b0fa8ddf8bf1fae5971bb7045bdab7af6c602049c167408d214ce7715d61d0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "070aaef4e47def0154dfaa5825ad06df545fe172352ec2be86825240816cd700",
+      "git_blob": "fd0689c46cffc7abfb6dd902fae9e4d7f16240d0",
+      "path": "src/pontius/legal_river_quotient_cuda_shared_direct_device_v3_result.py",
+      "raw_sha256": "89d9f2e893ef5e834f4e12f26a4e808d89831b8a62cda686dd9d948d11cb9c00"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c5799ccf61b2dc8e238bcffeba1a88ad8445b3c2f4011420f6e2667973afcae4",
+      "git_blob": "8db37c74f3342828dc41fde719cfba581241caa9",
+      "path": "src/pontius/legal_river_quotient_cuda_shared_direct_oracle.py",
+      "raw_sha256": "e676b4dc4af07f294303c525613d92f4f8f24bef7ac60ed047bd5c73c9a9029d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7ac72c9e939f5ef0422c36b99cdb1d7f2a0cee6724c0e79478e215af0065c8a5",
+      "git_blob": "e236ef451bf3b94555f6c4beec118b28b5f8930c",
+      "path": "src/pontius/legal_river_quotient_cuda_shared_direct_sample_plan.py",
+      "raw_sha256": "6508ce1eba710a05a236b848fabcc8d9783426b8d215841cf4c06d82e9f04280"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7af23ea839720059e6e5e5b4619b1b16dc973042249cc78c0336e35e72924ba9",
+      "git_blob": "0330109696e4f3b71139247c1108194bfd794bb6",
+      "path": "src/pontius/legal_river_quotient_exact_integer_operator.py",
+      "raw_sha256": "a373376d5a2a3b470013c4fb00a3146eee3971047558e25f63219e4107d65485"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b3dd92b43e50102fc363a844f2d3cfa6c26f17f54c6651bd5a5a15d8009709e7",
+      "git_blob": "224a027075d72031ad730ccc04af8cf992bc3e4e",
+      "path": "src/pontius/legal_river_quotient_fixed_width_actual45_fit_projection.py",
+      "raw_sha256": "83a6ee2b6fee9c2fb383d4324583ed2f667accf62dcd11b0defc9f2e4d108dfc"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b51207653fd2c3f3227787a2c1f43a2829056f8df2a7eddfa6a168b93758882e",
+      "git_blob": "4c589d7a3f04cc7b3e02310335fe33e12871d0d9",
+      "path": "src/pontius/legal_river_quotient_fixed_width_actual45_fit_projection_outcome.py",
+      "raw_sha256": "850ca2355305fff3e54c000e7472b7d51a54323dea6dd9798f0dd95fdb4227c3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "371f3ca2c98eb3bebd1b5e82f7e944da4f6a6cd6e4df4aae425c8f29f3f93d60",
+      "git_blob": "c901f23aea005a9999d193cb6eca0dbf53d7b382",
+      "path": "src/pontius/legal_river_quotient_fixed_width_actual45_fit_projection_result.py",
+      "raw_sha256": "24a63d9b60287c2a6fd0f62ed60ef3e6d0e3e9ca835dd17dc8bc09f22add2d7b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "122a10e2de166280761ae0425bb433be19109f8fbbb29984045d09058e814965",
+      "git_blob": "40cdfb61df99522822f4c99e0c306133551c4f26",
+      "path": "src/pontius/legal_river_quotient_fixed_width_device_preflight.py",
+      "raw_sha256": "5b448e3a7d6607cb9392505e35f4428b0bec460caedca3c881b52a81145e1df1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1b36ee8f5766606238d6066e74133eec7e2ab98ec3635f7c43907de00cf23219",
+      "git_blob": "10ccf24b5a465d1103d380069c1e59a74c30bb29",
+      "path": "src/pontius/legal_river_quotient_fixed_width_device_preflight_result.py",
+      "raw_sha256": "ade5bec92b4a4f63dcb062fd3332a990c952d011e2cb279f3f4338f9c6b8f8e0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5ea707b59727df6369b1678c42892efc376ac9731d2b782b670c3398b1380d49",
+      "git_blob": "e564673f843e390a924159defb3523a2fa90a94b",
+      "path": "src/pontius/legal_river_quotient_fixed_width_device_preflight_v2_outcome.py",
+      "raw_sha256": "1cce12a1949bbbae43b137c690f9e04281e1a39c4483ff35a8bef0d4bb463732"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d27323f161e2c6ede5ac43d1bd62c27c107a7760def22940fcfcc46675874dd9",
+      "git_blob": "79af35093302252cd175f5d533080c70074e05be",
+      "path": "src/pontius/legal_river_quotient_fixed_width_device_preflight_v2_result.py",
+      "raw_sha256": "d9e1a4a646788192c5354dbc1e0c6a3956121c7c18b640d9db4f9e747fd290f3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b7d05ea230e03b9ef2b7d64948a096491e3b4b7a4776bc64dab9176ae53e83a3",
+      "git_blob": "58e98acf8b729a54a7ba696d5ba1110e7b0c8c38",
+      "path": "src/pontius/legal_river_quotient_fixed_width_device_preflight_v3_outcome.py",
+      "raw_sha256": "943dd47b078379b9e3386524d6928505fa12eaeb28032befcc53f48a7c4491f7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1040b1852dcaab40a2f8da426262786395ce273cefbc0da1f2468012956f970a",
+      "git_blob": "8bbbd0bc47418687ff8ad66a0afe2794d183d32c",
+      "path": "src/pontius/legal_river_quotient_fixed_width_device_preflight_v3_result.py",
+      "raw_sha256": "5c5bcb33ade0b9c477de6f46a536e589d34c44b5c74f2cb84c7a8191c21adfc3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ad5f51b63cdbdca6db24c29e4cbde9dd47a30e3024b8a2b8a6d0ff35c7bdb932",
+      "git_blob": "0a5c8e80209998c5cfdb9809326b6a62787e4e5b",
+      "path": "src/pontius/legal_river_quotient_fixed_width_work_comparison.py",
+      "raw_sha256": "f4aaec75ffadaa1a13d540c356e829927612a2f693220ec66d403f9be9113e83"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d292dfbd64d91d26a91a3e962e67eda365793570604f43bee5cb64bab5a20cde",
+      "git_blob": "f1020e6791ec7552444d6ada6ac0686c1a5698c8",
+      "path": "src/pontius/legal_river_quotient_global_separation_topologies.py",
+      "raw_sha256": "11e6a6e24ac07c2db462c007433703deb4ccb56e4fb58caab02b01cdb209c55d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a2ddce0fcb45cd0e5c06355095f63557767af92dd36c113bcf157bdb00958805",
+      "git_blob": "5eed123c54d256f792e6c3494113ed96ea08a0dc",
+      "path": "src/pontius/legal_river_quotient_selective_certified_separation.py",
+      "raw_sha256": "998d504a5344fabc5e1987a4fdd75eced377bac441ffe101302368b6d7a1db97"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c111173fc53b42b1dc8a94a3edcb8fe3ec9d18f6dffdc937b0d1d062b83a347a",
+      "git_blob": "88265b26618c5d6a151876db4c1e755254327d9b",
+      "path": "src/pontius/legal_river_quotient_selective_certified_separation_result.py",
+      "raw_sha256": "57b4b3eb28b1f1e2bd337d541b381f538d905177bcac875be0f8a51204d96423"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "da0a13ddf54a7b0e3aa774637c52c2ff4988ce028f22f66a9f84d1b99b1d30f4",
+      "git_blob": "9460c0dbe5491231dd0633f7b935418e09e19bb1",
+      "path": "src/pontius/legal_river_quotient_shared_direct_artifact_capacity.py",
+      "raw_sha256": "764cf2b94f88c7d3095db9c622ce5b5492e1b0a361f57b0759349c4eb2cb1ba4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7131d287fe08123c1c49be5be3f8220170a083087741bcd1a67431ca707a139a",
+      "git_blob": "1dc4fac63f65a485dc7ff0d0ce68abdc67183e98",
+      "path": "src/pontius/legal_river_quotient_shared_direct_artifact_capacity_result.py",
+      "raw_sha256": "1b3c79a9ac78bc18c9758793456a29fee97da9b275140ec33fece3f0c6c1c376"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a4b1f651362a111e5759726d8d5c6e409d2158595a62a8277ef528f0822bfcaa",
+      "git_blob": "24fc98a2cb8dcdcae28d96a4a64a633e9009c233",
+      "path": "src/pontius/linear_program.py",
+      "raw_sha256": "6069dac31bb2915284319d0d5551d5773f4b4cac294d07c440f4b4d9ee4c83f8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "365fd9ee3ed2a518c72a02deb549447f36f96500187f6483ee35b3f72cc17eff",
+      "git_blob": "014af029a9f13f57dacf3efb984d81b2d9f75b4a",
+      "path": "src/pontius/linear_program_certificate.py",
+      "raw_sha256": "0ca8b0443eb8a0279247fad659694d88b723b15bf0b2d3e5f7c7ef2c2ddfa910"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3ec03cf95f89eccbde02af06184ed278dbee63ce9a81a50bdf907943f2faabf5",
+      "git_blob": "c364c8852077b03cb7f83bd1aa2004d45422c523",
+      "path": "src/pontius/literal_45_quotient_liveness.py",
+      "raw_sha256": "d1a4f3d759fc3d5a2c37277be5957ca7d4ea53621e6ca4178f06d8851ebef367"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "61bc6a87f4dc1d03570b198dcd5c65d629b1f2ba5786f28f620713f2248e253f",
+      "git_blob": "112da30c77bba715e366ce338fc8cb74e4aa7117",
+      "path": "src/pontius/literal_45_quotient_target.py",
+      "raw_sha256": "d684be8805a7a38f80fc7cd525996ce0cb902fee0af7a4b18bf7f519c430ffd8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "774992142f0b4124678b7e8b6509bc7794985ac5c82d1777f3098c1409db2b08",
+      "git_blob": "afc8f981ddc8614d16033af766c9a466385fcf5f",
+      "path": "src/pontius/literal_45_quotient_target_result.py",
+      "raw_sha256": "93932fc5c397b2afaa1903938519390f0e6de38e82e670df16ad88affc47593b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e2e24632c9315c63fbc7e6e44e7dbcd2241b322ddea7de6ca004efd499fa6b46",
+      "git_blob": "6d92fb76b418c6f6927b140e6a95f3e54b5c26a6",
+      "path": "src/pontius/literal_45_quotient_target_runner.py",
+      "raw_sha256": "2660ab0ef2e3fa6a915a764d455b6a38a879869907f6baef86aa45222817963d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3a924e903751245633615b63e0ccb142f7e9a45ed998a51847f0b766ea4d576a",
+      "git_blob": "e439922dd6a16b209358d8f6e5dd7e59b12ace88",
+      "path": "src/pontius/local_response_bridge.py",
+      "raw_sha256": "29384af18b3fd122173b5099f78040a35b949597883f20954193ff5dca6d6b9f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "babcf02ff76230d775d20891e9f96801812e885cf41dec0efbaeb4ed17ea2701",
+      "git_blob": "5b92a80e86b36a654efa69678d480bf6bb48c7c6",
+      "path": "src/pontius/matrix_game.py",
+      "raw_sha256": "f5179a4856c5280e205f4c25562c76e6ccf8e41395b874e17347130cf641cc04"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "384d06a22d89fb2100d5fe432dc57e7db33873acefc6bc6c849137a9e418da90",
+      "git_blob": "996d9bdd3d71f41339c3e09e420b8fb0082bdb4d",
+      "path": "src/pontius/maxmargin.py",
+      "raw_sha256": "cd4df74abc0717bf3349731a5d0874661de03640112665651cc4831ea41a4c84"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f8fe0c9085927406a017b60c73e371c1d1da99374d7d6c5192bd03b6a412fdd6",
+      "git_blob": "3e10a151986ffedc49ebb9ad5c1962bf7c5753a3",
+      "path": "src/pontius/multi_size_affine_cross_payoff.py",
+      "raw_sha256": "44fe8b8800c59ccdec375ba0307e7ca9cebd0e02c89e2f1db5d7b2269dc2aca7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1dbc9b5afe5cdeea3b86daa322512a0cfdec43d8705695b44db0e69c32e4cd3f",
+      "git_blob": "a1c27e1071d452d07bfc91b86eb35bf397915e35",
+      "path": "src/pontius/multi_size_affine_resident_leaf_adjoint_cfr.py",
+      "raw_sha256": "804e23dfa22bf1256f1fbfa5960e68b052643a42104081659f07cd81b1da4c9c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "205fed4df06e011c37344c63a5393cb86ac12bff6a7a11b2462fd8406993590d",
+      "git_blob": "1cea3b2013dc14a12853c8df3193db7e9740557f",
+      "path": "src/pontius/multi_size_affine_resident_leaf_adjoint_evaluation.py",
+      "raw_sha256": "306f7e1839a8a40e83fe0168bd9d51fa6c6aba2b832917b5deea309b1db047f6"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6c0014392fa8d4053896182f34813462bfad6c105bc40eeb022ec4e9c7cdddd6",
+      "git_blob": "29888a95f9766ee868ce63fa3c756e72a9b1aba4",
+      "path": "src/pontius/multi_size_continuation_public_tree_tensor.py",
+      "raw_sha256": "cc05b3701a628a2cbd606f371bc7880037931f13a3c26c8d5505df6f4ed2da2c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "502aca2a6283f617f9949c5f12fbac142bd0e1c29c371b9aaa0cf557362b2b49",
+      "git_blob": "b1e36eaa7f4dde10919b536e3b2798f2660f760f",
+      "path": "src/pontius/multi_size_leaf_adjoint.py",
+      "raw_sha256": "0fd23792661b81071e549fcf501c5e511338c1efb17163c5d3d62f4fb1af01dd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fa93940f1aa56ccdc27722595d0acca4e29b53398be385fc43012c4022e53e05",
+      "git_blob": "6036644baaebe1a2006197eb2dd426675d9def0c",
+      "path": "src/pontius/multi_size_leaf_adjoint_audit.py",
+      "raw_sha256": "b0b77a134c68ca17d20df523b27170596f53ed613f16a35ffc19a23f31a1fee7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a36ffae5b7856028a3cd182f820624694271de02b86b89b013b0dc770baec5af",
+      "git_blob": "347943e8334f24c6cadad5d0c116b1e0106a99dc",
+      "path": "src/pontius/multi_size_policy_bridge.py",
+      "raw_sha256": "87fd50d1b71550fa0876195dc5e6d8e207210801d10be3ec45e7630e31d5c476"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "19fa60afa03d7485eac85cc56fb4d19511f46403046750465fb9fe4c9edbc152",
+      "git_blob": "8043bbc97062210d30a0af05249df4fae7ffcf36",
+      "path": "src/pontius/multi_size_public_tree_tensor.py",
+      "raw_sha256": "fc145981f013a19db26d6d44d41a053e7e61a441db43ea404e7e52a427fbd39c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f2c7cb1075f8117555f8866797b626eef4621714e3e82030ab7f5abd7757de93",
+      "git_blob": "f8d7206d6277788e46f4cc40a8a82257a5f93b41",
+      "path": "src/pontius/multi_size_resident_leaf_adjoint_cfr.py",
+      "raw_sha256": "52f291a8c5278d2c03c9f3f9e85f3a77b9b254abdbd4260de3a1ca4a1663fa32"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e99bc7ab10cd31c28ba470a1cb63e6a5253bfe6b6d660dd04983aa5a760048ad",
+      "git_blob": "8ffd15ed83d2971a168a544d5e0e2e4da9c4d6ed",
+      "path": "src/pontius/multiway_river_calibration.py",
+      "raw_sha256": "18079ce15a5b515aeede14cc8503a582a625695ea33a16da76a998439ce3c743"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8c2efcf829a4e7fc812f80dff3ddd1e7074e56eb6b59f88eb1d6447259803b13",
+      "git_blob": "61d6467de1b53088f195dfd467dbe78d8e507333",
+      "path": "src/pontius/multiway_river_context.py",
+      "raw_sha256": "806a0238ea2f0f9148209e1e515b35a17ae2fb5731de0ec103317557f2b253aa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "11d997fed33da86bd0c219ac2880e3b3ab41b17a1d6de4a8e5af9747a2d1256a",
+      "git_blob": "c2ac8735be09723901dae06d3f47faec13cf8728",
+      "path": "src/pontius/multiway_search_experiment.py",
+      "raw_sha256": "23a645c24d75cd610ccaa11709c6cdf7258062f93181bc755f9c024f706f45fd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3ffeb917110b0ec091aa4620a0ac64ca790869889edf1db27dbd13c5436adbcf",
+      "git_blob": "d5841c66d7beaef22462b99df8aa484061beb89a",
+      "path": "src/pontius/multiway_source_tape_audit.py",
+      "raw_sha256": "9d55e56b01353c528ba7b2bc24b521eec012a02ab52336585f6867f9667c369a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d1e0d5ed2ce9629f7d7e740901322ab10a9e5bf2731b197fe2e32caf19a27ac8",
+      "git_blob": "eeff3553d72ec6ed438487c1608a4b9da1fd3aac",
+      "path": "src/pontius/native_simplex_audit_corpus.py",
+      "raw_sha256": "b65c301b9f0443b9f25da4da22fa7f8c15017cd63b4abe2670c5d98c32085918"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "33963908e7c57aa12a337419de78aa0769cd4a44f8cf6f4618c2e11b1c7566ff",
+      "git_blob": "94d7d699acbb3a5458e129c4eed7155d60eb3a38",
+      "path": "src/pontius/native_simplex_audit_reanalysis.py",
+      "raw_sha256": "0755546e6260708ffb4165ec50ebf4ff88c473354faeb7303e8b84e568fca1be"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "97ac4286213be515fb8f2e8ee6c895c9626d54bd7d6bbbd7f401dbb0395594e7",
+      "git_blob": "d94f2094d4f78a878e916061467ce93a81318527",
+      "path": "src/pontius/native_simplex_audit_reanalysis_seal.py",
+      "raw_sha256": "6d7c682e75613e4a43cb2c95ed060f6619a22676464311ba7a39ac7f4b5244da"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "59cfaaecd183c46aa1d88d9cdc6eed5bbd1041acbd384b818dfdb372e4df9eb0",
+      "git_blob": "68e0a9e8b8d4c5107dc1b8017e541342c102cca2",
+      "path": "src/pontius/native_simplex_audit_runner.py",
+      "raw_sha256": "cfb127960e3d501a156f14d22244ecd122874b74fefb668685f9a721503ade16"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fe709923c4781c91ac4390d48ff58596613181da6d39aa98bdf728eaca1b469a",
+      "git_blob": "122617c6c85e77e7b9c77a657b88137c4ff3f6e9",
+      "path": "src/pontius/native_simplex_audit_seal.py",
+      "raw_sha256": "a0305de4af43366f6e2ed2a1d5bcd4fafba01f94d5e7103201bcaa9385ff05e3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f45013d2810bdee666f6b0ce37078628e2b429636a09609ced98c91fe1f857a1",
+      "git_blob": "30171d3d83a222f44e76ce7082470294e7c2d5b6",
+      "path": "src/pontius/native_simplex_audit_structures.py",
+      "raw_sha256": "ea945d3ce76b38c893029884bcbda2280fc22ce66fdac30fdb09508929d39801"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "66b398e7ebba535f9c25728fd8b57a599310434cd41610e9107e37762ed98cdf",
+      "git_blob": "c4adbb0212fbaf144bcb51b14923028f69ea0eea",
+      "path": "src/pontius/no_limit_betting.py",
+      "raw_sha256": "9e2c45d575d28c759aea97c4f916a18584241cd84a6731e89bc609f32c2c7396"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9b64e72999b6708ee9fa1908ab46233c44d6021241e6ad284ee593ec32549709",
+      "git_blob": "9fd13fdad861591e399ada6201c0c20b7f562383",
+      "path": "src/pontius/occupied_card_quotient.py",
+      "raw_sha256": "1ed5c2fcae98a2809c7fea0952af47fa9cd0f9857692ec0ae4db1e1efb1ed2b3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "bda0c2c8cc46cf2a60922ffaa72f6778f7b768751d6bdea16f49a0bcb45d1b75",
+      "git_blob": "ce27e5d239b5da1b43f2620608e9a264abf4ab5a",
+      "path": "src/pontius/one_seat_convex_generation.py",
+      "raw_sha256": "a84126b66aad760dcda28ba4870cd4a5daba18ebe5377fef8b1efa53a04d9231"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0f7a896833c0163a79d8db342c436cd62e5369766973484f944703292c9392db",
+      "git_blob": "99b1607380cd98f28a41da2c95b9e7bd204d1f46",
+      "path": "src/pontius/one_seat_convex_keystone.py",
+      "raw_sha256": "fd77aa6d107bc4a27c40b83cfc51c7fbea93aec22a5f8a6d340a132a02c8c5c1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "789419874a521b2ff6b8af515db32b16f397aa07db910dfb5171184f5afe84be",
+      "git_blob": "379bfcc463372ab6665a98deb3719c98ab49adcc",
+      "path": "src/pontius/one_seat_row_growth_audit.py",
+      "raw_sha256": "f5c6f80bc46a6b8887f9241998207bbb8828fff136a6f1a389475b1aead349eb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e8d26af25bd57c97c46c1e95c8f650e95d01a8b51177143410c0633370c4b78a",
+      "git_blob": "aec7b9b891b043abb95da8e4021257f6be0e3655",
+      "path": "src/pontius/open_mode_audit.py",
+      "raw_sha256": "38e435303c023a8684ee309b7bec36321d4fa3df6ca9654699cb3b99adfcaf14"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3de81f41cf64e8d83a59a6331f48b179e5e58f9b629e806b0bfd57f528635aab",
+      "git_blob": "84536baa42dc51880f0c50dbdc41f6fbb73de1d2",
+      "path": "src/pontius/open_mode_cfr_bridge.py",
+      "raw_sha256": "0dad0a6ef2043b4016ebf41722c21d1806fd4f971cfc4710e3fa9ba2bde798cd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "40f9bcb776d6c908fd32ab33b30d9cbe2e392b03cd9ee0cc31f14ffc0b120b0c",
+      "git_blob": "5a03b7b6660f938339553b2c9178ccaf0daec1c0",
+      "path": "src/pontius/open_mode_factor_tt.py",
+      "raw_sha256": "fd8a032ff8cecbbceb83fbc53818046e614d058066d06e17274fb2d2b42d565e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d78429e45b19bedd4f5aafc78e2ff82283462d9c18e1fe1ff22003a2bb26e223",
+      "git_blob": "9703ce751d678d4789f82ee1ae18e1b526b50f0c",
+      "path": "src/pontius/open_mode_showdown.py",
+      "raw_sha256": "42703a0832553da9d36074ef0327fe59e002e63edd6b0dfed9d7aa7e4943a615"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "74dae4377feb67550db3f4c332f2349d492d1874abf04c5078ee645fcfb3b834",
+      "git_blob": "33ad7220f591171336fe4235d4cf907ca95af708",
+      "path": "src/pontius/opportunity_trace.py",
+      "raw_sha256": "7926772bd7137c8af9d9cba22e5bb3d731d6f41f6bff75c2dafb91bc4ea2941b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0af41544c12f53da52a6838dfe300521399fbb94ae959a0c8a23b28462235072",
+      "git_blob": "8533cc3c5483fd9a36f6d210ead0f190bf9b7ffb",
+      "path": "src/pontius/payoff_semantics.py",
+      "raw_sha256": "3ff618447d2546050076235be3a6d6aaf8702bccb6940a600d14b628ad712507"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "78eb79f55be34a6907aad89e0288f66c39a4fe384dc829a0efb616077bd50945",
+      "git_blob": "7ab5bbc7962abf1f785f7d34eaf1c0a18f9d52cf",
+      "path": "src/pontius/policy.py",
+      "raw_sha256": "1b8e744fce78f8bbfb8b78a2d7030b409292cf325c03d966d413ae959d3a07d9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cd786e98d5ddb86748a677153dd6e478c358a7e093ecd32ddddfef8d6de3b17c",
+      "git_blob": "2e4b38a862b45a294a624fac3ede68147cfe7ab4",
+      "path": "src/pontius/policy_delta_experiment.py",
+      "raw_sha256": "6761bfe853caf43ba9cfd78d4983da7fcc6667051e6b59a0c36b349712d68f68"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "1032100a20a6cc4653bc88bb7aa981d30e8601e20d96960cc2ad37df0417e748",
+      "git_blob": "bea5f2ce6983edf9ce3cca57321b5bee64515601",
+      "path": "src/pontius/pre_bet_initial_row_cache.py",
+      "raw_sha256": "919d17aea50d39a0e7dd96f214ff333a096a7c6738df1298282f90b6fc312f43"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "93def21163a94fcd10ff9ad243904345ffd532d2c5dee18639844e54286fec75",
+      "git_blob": "3df5506d7a69810026482810e1c8c462a8b4a68a",
+      "path": "src/pontius/pre_bet_initial_row_cache_v2.py",
+      "raw_sha256": "d67869b52a88acbcd3a7d12e05849c3ffd2242a21467632c17e26ea199369e4f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8e2df920149ee7d2a4556c418680c9f4e214c525116c09cce79844888aa10210",
+      "git_blob": "75c381fbcb7222db2db2e64339cafbdbee43fa91",
+      "path": "src/pontius/preparation_bank.py",
+      "raw_sha256": "4fb996a0988c74efecbe00574fd9c9d6601950e4cf74faea8d6d21d127f769ef"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5ec42de6ba097c3510493c5cac007d56165f2857ba3d29c6519a74ee27836e38",
+      "git_blob": "816238e73412eb33470a999eb7de7805decb44e3",
+      "path": "src/pontius/profiled_policy_tt.py",
+      "raw_sha256": "62df969388800785c5b930b1c431983d0d27654b046cb07fdaef26e08e83a68a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c1c8aa279f13e8cbaafb31d40bbd151b8c0c61d584e0d9a438bc66ae9c900978",
+      "git_blob": "b0cae07c2df655843e9a607efcf407bbebf3b1f7",
+      "path": "src/pontius/public_node_behavioral_axis.py",
+      "raw_sha256": "f1961c3d3c9974954b8c8e419f1e762bacd5b32866a889cfd5459849c1420319"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "43685d787689e790a1431908528caca8e5696cc99625748b03b4203f264ef4ba",
+      "git_blob": "abfea7c94e075469d183d168ce0fef73eef0dd7b",
+      "path": "src/pontius/public_node_open_axis.py",
+      "raw_sha256": "2e0a30827dc329847b9c81c24c085e32dece0584d0b7169c37c0a8c0f723acfb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d6ade695d68896df61e16c8a2c453ba620d23d3d3e03310ebc8921e1d693e7a8",
+      "git_blob": "12dea1a059eea299e1c1e0025b334572d1f137f5",
+      "path": "src/pontius/public_policy_tt.py",
+      "raw_sha256": "666d19285d06e1760c1e7d1550812679acd54d8d04b812c9c44aeee8c57bc4cc"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "21debb420500155a69ef5e0c10b8fd0f508cb5ffce283e3bc4ead941e17b0c25",
+      "git_blob": "020aad5e0fe1563bd7dcf895c4960a210744b9ae",
+      "path": "src/pontius/public_tree_tensor.py",
+      "raw_sha256": "e70275fc4b626ff4ad165c276c1f7bca585e3b92b05ccc3d5865aa0fa79583f5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "428800af1be2ee3c926d7494d7b608663e3ca9c9311355fa9462870eba2d24d9",
+      "git_blob": "3041071ae23e382c71a732f2069ab524905694a9",
+      "path": "src/pontius/public_tree_tensor_cfr.py",
+      "raw_sha256": "29f35e4d72374ff78347bbf4e8ab2914cf4b426c8ae00b3a3d7bc22fc783955a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6ebe9a5d846240d9a9db6435802404859fbecb21b70ad4d3d16c6896bb44e1c4",
+      "git_blob": "957228ad887741cade8151d47d6818ef50f8d938",
+      "path": "src/pontius/real_policy.py",
+      "raw_sha256": "21e2bdd1726962d1c28c46d9401edfe8113eb660851ec2a089943fbbfd884308"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d2122333a7cb143eb37e6f9d2d9a5c081a5e5bfdcc27278f3990037cd3fa9324",
+      "git_blob": "c97e27e8434ea2c58c87f7e79d0b5afee47420ca",
+      "path": "src/pontius/real_policy_representation_audit.py",
+      "raw_sha256": "584548f9de392cd6691db710b2b95b17c574e363369b7c802048bad660ed6351"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "41679c5ab09a3b0deb0c51f094e7ecc50867fc18ed760589d6d180d8db78211d",
+      "git_blob": "d1b57e4ab45abbdd9496880b43b3765de64276ec",
+      "path": "src/pontius/real_policy_representation_audit_v2.py",
+      "raw_sha256": "08d91f37e02c72ebcdab6fab2ec1f5b9ae57615693c4af0c2508d20ffcb31a31"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c889f0537c11a557af654eac8ef042ed6d81cf22622bf6e306f8d341608644a0",
+      "git_blob": "983ac1d36d5f1529cc373a1739bc2028ad5b4664",
+      "path": "src/pontius/real_policy_source.py",
+      "raw_sha256": "a9205af335c5f36300cdb4bbd63b946e609c115de14cfc7c878cddae8b7ae72b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "14eb6b9a233e1592e4815d7c7bba3611dde0e13e7a7707d62126f4ce51e2b863",
+      "git_blob": "03e94808658f0ba83f646c03b3c541620ba12465",
+      "path": "src/pontius/reduced_river_sizing_lp.py",
+      "raw_sha256": "3a3ed588e90b84cdbc8186829fc7dac57d9ec40603f29dd5ddc70549748bd346"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "21e9a62004b4ba6072d01a3562550d297032e6d51a913c6562e2b7137b3d1885",
+      "git_blob": "8ec88e747a2c940c15616a02573ddc2b12b21886",
+      "path": "src/pontius/reduced_river_sizing_oracle.py",
+      "raw_sha256": "3ea2dd0bff8b1ce2790138d466a1fcecb9c9e450ae4d73423215af71da8e3c84"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "069ae2e8241b4fc2e4bf2480ecb1dc4bbfbae1f690e885e8540708c2a5b768e0",
+      "git_blob": "a267e9f87ade66a1d32419ea94565d58dbbb4a19",
+      "path": "src/pontius/reference_hand_replay.py",
+      "raw_sha256": "d166535f3f2971728fc5b22725ad91651d071274a4238136b559bf0ea958af39"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "aa07bd6e88ce9173e321f915f9178641ccb6db4723ebb6dc9b853ba212547077",
+      "git_blob": "70431e95d672dc4c0716f6a26a952e46a14ca5a9",
+      "path": "src/pontius/reporting.py",
+      "raw_sha256": "9e341347310e256a658bc7e7c13994895faf794f17d48eece82cddbf8828ecb2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9c2060d9954e57b27e9d0c37ebe19c5eebc38c991f4404e63d843a1160549a00",
+      "git_blob": "3c6980128979c61c6908e188fcab5561daad6246",
+      "path": "src/pontius/resident_heterogeneous_leaf_contraction.py",
+      "raw_sha256": "d1680c43b74b6f3b70c2ca9b4cdd41bc96f478102eea18c3dfb07c9866d4f4db"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b236c08255217d2b04403966a16a7ee4a3cf1bdb7b7559a5f7b03bf83461b922",
+      "git_blob": "896dcd3cb2d6182bb919ca6052407765bddc8738",
+      "path": "src/pontius/resident_leaf_adjoint_cfr.py",
+      "raw_sha256": "3e36b11756922def22c57892374a9abc53afa57d3429800f2a266fcfcbe586d2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fd317dfce568a3f0e83431033e000485caf06f9883a626f9e80d22ac28cd43c9",
+      "git_blob": "b77ddd3023655dc7f0ea7debcd475d1f98d76d5e",
+      "path": "src/pontius/resident_leaf_adjoint_evaluation.py",
+      "raw_sha256": "45fc76a9bea2292926c7bff1079172a8abfc27b53cefa41bad24da836e58f470"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9e8c4fe2fa1a9424efc3ef0063a2938cf85ae7caf3784f1e7688aa4c9656dd50",
+      "git_blob": "f0d1408b3ab9541d12ff8f58bfd942559fdf77a5",
+      "path": "src/pontius/resident_record_to_hand_fold.py",
+      "raw_sha256": "6cf7428ad2c8d41a3495eab53a9ba245e9e1c30db681b8f3bd14ac642c357969"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e057a3ebb8398e0ea111893b78da18371ed727348632c41d21449bad9c88beaf",
+      "git_blob": "663e8c0a98b5f9922298225a49608ba7ea08b3b2",
+      "path": "src/pontius/resident_record_to_hand_fold_v2.py",
+      "raw_sha256": "e268385c3ba63934f30452ebbf448f68f217d4b5ace7aaf553f00ec5f95d5fa2"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8057e85a9481544c6a55c07df9874d7c66911850f47d48ba4688169e402f4d95",
+      "git_blob": "561c9024236c128bb9c88884c9bad130e180ceb0",
+      "path": "src/pontius/responder_raise_semantics_keystone.py",
+      "raw_sha256": "201b937d351d50e072d4f8f00268b3242855abd8f32c468b3d5870fad1682978"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d31f2ada5e681222b1dcb0caceb6bac9e33bb6e6b29aa950ba1cd53f3772456f",
+      "git_blob": "b06dc06a32fd8f413cdfe2adab2f6567454ab81e",
+      "path": "src/pontius/responder_raise_semantics_keystone_result.py",
+      "raw_sha256": "757c593081d78e7823cfa680b782385ddbb33badfe70d8ef907478c1ce8791b7"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "85f2b07c6f23551c26b19a0a0769ee02e5c3097e8e8e6cc5713cb230119c6c62",
+      "git_blob": "be15037819f3c8f14212f0475267d29bdbe8d90d",
+      "path": "src/pontius/responder_raise_semantics_keystone_result_seal.py",
+      "raw_sha256": "58a0fa199904d9cefba553e9788b95e55d23318b2913aa53653566193b9b416f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "df2693e123793cc13711b840f8587cd7868a969d2331ab48b11da1eae56cf8e9",
+      "git_blob": "fb403f3e5999daff6756aa43a6bc2cbd71d24b05",
+      "path": "src/pontius/retrospective_atomic_value_capture.py",
+      "raw_sha256": "34969cfddc498bb177c724f93ce410de206a30f94c4bdd0d106843167f201d72"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e45bbb55fd653149b57b9daea272883c356dd8d46f7afe496feac3671ce445c7",
+      "git_blob": "308279dddb7cad74a7af153fed45e2c92265bd71",
+      "path": "src/pontius/river.py",
+      "raw_sha256": "bc56fefc3c24d371a9dd57048aa8e644a3ca6a111b35fe3dc1d5168bdb9046cb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ae082c0dcdc54bd5b4ea5f53f0b101084e68cbc75aa1a567fd74731417a8dd09",
+      "git_blob": "8bf6728937d78abf96b2c507dee9f2c2652d4c2e",
+      "path": "src/pontius/river_cache.py",
+      "raw_sha256": "fa51fa84dc2d17f9551d776191464d4bcc77e25ae99cc24fbe67f69fbe08932e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "78506d77da6eda93e0e6af5834b7239f4d7fd0fd79bfcbb057448c28f4187f04",
+      "git_blob": "90dd406a51eb0baca1ad9100117a1bc74dd7c8fb",
+      "path": "src/pontius/river_context.py",
+      "raw_sha256": "468f4071fdd95f87c7212db0e141d7a7b1fa5c5da262df072075df7ea4cf4407"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "567cca8d00a5a88fc8b6cab7e425d3020efc971f6d35003f804e08007a3a88e2",
+      "git_blob": "a46410b12eb6849d4c329f0a36782a75a710cd19",
+      "path": "src/pontius/river_incremental.py",
+      "raw_sha256": "410bb101b6dfb784ff831da8edd59ef70afeb4195ef778e632afa74d495f5225"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ac06b2e2f4be16a87ca3e56e9c8aa3d3b4ff7417f4bc10ced8b3a6af8ad58ef3",
+      "git_blob": "48af584e79d03822505cd9bc3cb60298250a1019",
+      "path": "src/pontius/river_incremental_experiment.py",
+      "raw_sha256": "55ef0d057877eadaaa324fd647da48fa2bc0cd45e2650f19e43c8dd21b3137d6"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d1139b0d935a56ee3f56fad2b2e6e3807eba4443b2d0a3f6ff2ed231e03735a0",
+      "git_blob": "bede58b636942e69e5ffba12d94e67f339e06263",
+      "path": "src/pontius/river_multi_size.py",
+      "raw_sha256": "52975da3efaf838ee159a8ad4b9a601859e66797aa1853d944def2b3aebda7fa"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d406230096928dd3e98f14c5af0d6f1a2fe4b89177f9dce112868f50d8e31aa2",
+      "git_blob": "17bde34cc3f6f78887dcfa6579f4e87783ecae16",
+      "path": "src/pontius/river_multi_size_audit.py",
+      "raw_sha256": "98d77f6d8e2fa9de277378b55ce595f15f7c837a0db0730ef952b160f2584160"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ca74499a194df3de180dd2114628ca40c4de8bec62ca69b8c62e638c4843267c",
+      "git_blob": "29f795048d3318684e11229b33560a70e1bf4a57",
+      "path": "src/pontius/river_multi_size_experiment.py",
+      "raw_sha256": "fa42e4a1dce71f81bfaf92edef1e8814f500e5a08db21f2e9809e233589bc801"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b957ef89ec3a3371df99feeb3d871294de43620183b6b0e792bc6717d0d4c445",
+      "git_blob": "f52c8cce9370224d12c3dabdedfdabbb269c2338",
+      "path": "src/pontius/river_multiway.py",
+      "raw_sha256": "942e2b4bf2acc0c5937b378a2d7620c5f318060d1068c84430af17e13de414d5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "40bc4c39d9c8c901b0104318ad774bfa39a7bf696d7bcc6c97f4253f648619cf",
+      "git_blob": "1019fd57043a1ca2af930bef700e9f50795bd178",
+      "path": "src/pontius/river_multiway_multi_size.py",
+      "raw_sha256": "ef6a45c2011ef3508aad6fc119f38a32e5c5b73e35eb815006085d386bac64f4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "56f905fd860940090463fd3d93ac8c2d47b433893036ec5ac1fd30c0c4d1b327",
+      "git_blob": "3cafa91e07bf588e50273d4da710a985222a4010",
+      "path": "src/pontius/river_noop_full_replication.py",
+      "raw_sha256": "58ac6088b13f1a67f7ff3850a6433671a6defd3b7a882ec57db34d3466f5bdf9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c8c8c20033211d50ee5032c44d7374e2253f298fc4d210f401b158a88fd2e539",
+      "git_blob": "9f86cb56629e48bf4d88f33be33c3e0ec50dbe99",
+      "path": "src/pontius/river_opportunity.py",
+      "raw_sha256": "2de684cd9ab42d4bb260cc5f1e1a1968789f6c544ae69ecd2c9d0c322235a81d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "82ae10f1729647029519980878f5114d5acd0ee2f2ecd8b5832d9303d8280be1",
+      "git_blob": "3c2644da54402887d4f23472615cd16b1b3a5a30",
+      "path": "src/pontius/river_oracle.py",
+      "raw_sha256": "acd02c2f3788eb65932b9d2ff102dd98f362548717f0239be9f5997001bbbfad"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a0b25a9ebbca042472aa653a481776eaf44af3bf6d4c50f230e32fb6fbfdf28e",
+      "git_blob": "03d674295a9451c1291dfc0d805b995c8c2bb499",
+      "path": "src/pontius/river_range_reuse.py",
+      "raw_sha256": "a860a93d673851521c5e18f03aa7ac1e567b6817c51d97589d2603a655223e45"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8248839503faa7f4996aa60494aaf97ccabd68ca60c5d00394d9246d6b5ec46c",
+      "git_blob": "ede98d7cb34e081c6cb448b9205d8629365e89bd",
+      "path": "src/pontius/river_scheduler_holdout.py",
+      "raw_sha256": "d1d2d3c8cf00966c9c687fe397a2f808d4b34cd135016924caa2c4974bfcff2f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "af48f2c8b4794e5bec1a482b4ac56b319bf0f2e28ad9ccc1d9e0f6af22f2474d",
+      "git_blob": "9bf6132f11108d91f7096e1af91932eaddc852db",
+      "path": "src/pontius/river_scheduler_screen.py",
+      "raw_sha256": "46db29b7076657734fa8e010573bad039db08d8c184e446785f2da86a02d7e49"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "09e504b25bd7d7a1fe29bb247a9683f7995c5f145b0e9f09f218cfd31d0fede2",
+      "git_blob": "c520e417561c22788943d4504fc0b2e2a46f29a4",
+      "path": "src/pontius/river_selective.py",
+      "raw_sha256": "50e4a37dea2139445018852e1c13e68b15a335745b85b64c1cb7db0c9f46e7e0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0ca3c89a1ac507390b5332709aecaabc2ce89db2a146284032e36238aab38f30",
+      "git_blob": "954663de966cef570d4a0f10627051bd985102d5",
+      "path": "src/pontius/river_selective_analysis.py",
+      "raw_sha256": "aaae2e73c6dd0f631db19d6678182bbd97d743d8acb5fa02e02e505068255e32"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "bae12fb49d9648a29365f30cac337a86483a32abb2da03afdb8af047ab01184b",
+      "git_blob": "a5848cc21becac320f2749a6e5148b018611713d",
+      "path": "src/pontius/river_selective_experiment.py",
+      "raw_sha256": "a8c4580516d9e848a107e1d3783717a837fef109f7852f5de5ed7f47399bc85b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d02c9cf5834666acd59c1189fa0fe7f34f9277ceeda944317ee402299eec34be",
+      "git_blob": "2a4304bbaac9e1a98b62be0ee1a0cc056150c414",
+      "path": "src/pontius/river_selective_payoff_audit.py",
+      "raw_sha256": "d3e70d89f14f337e2e4d7c0d9239bbd22abed668eed9a5407fcf5ee643d0fc9d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "60e8c567264650e83469e90cef9c31d729d440c32abfcf8b96955c1f0e237ed8",
+      "git_blob": "59d79929c11c11f11bb6c10044e189dc3fad62ba",
+      "path": "src/pontius/river_selective_screen.py",
+      "raw_sha256": "97d7dc139d5e3a8f1261dd4fd16ebfb7f625229c7cf7be0358e013ef4995e39b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cf82d45e1bb4d3ecfd061404d1df2262b3ca9d52777e0a5c5b45b554d6c76442",
+      "git_blob": "86bac83737082b111f8e23671ec4ba28cc4e84b7",
+      "path": "src/pontius/river_shadow_probe.py",
+      "raw_sha256": "93856156f708264981e0fcc8589062c02319d5ea39b45336d55f47a0216f2eeb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c2b61f240e39a85feef02c915d6e48064915152d37f89a361fc5a922cb587382",
+      "git_blob": "34c5fc426d23382537dec527906aa179e4be3a63",
+      "path": "src/pontius/river_trace_analysis.py",
+      "raw_sha256": "6e94f7f033264392b81757dfa3e19cf77eda9cdda3d9ca89a03b6675da825b9a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "2814db2c8c9ec6587fadfaa2e7ab188f0521ea8fe518e67769897aec5bbadd06",
+      "git_blob": "e90cac28f3711711df59e454a76c6f5bc1864624",
+      "path": "src/pontius/river_trace_comparison.py",
+      "raw_sha256": "3043b9f162995c93d29d6ca1161e2bfd705e08ff1caf5db9da8be52d3942f7de"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "74b882b62e778e82536293e2e05b6b79ea7a1ed5f790e73e7e632d85096003f8",
+      "git_blob": "924564e7a85b6ab033ee7d7bdc0145409c7dce59",
+      "path": "src/pontius/runner_harness.py",
+      "raw_sha256": "461afa8eb5bd2a12103f068383375ed39a8f1283d44273296a23655b5a882095"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c5f0c6a01ac7f6877b84bc372d74a4cb0c0229905c6f94935f1fb4cf6eabd066",
+      "git_blob": "b1e6f4628f7a5e60c12a9768378b96290e891b92",
+      "path": "src/pontius/runner_harness_v2.py",
+      "raw_sha256": "f1e73c9b75b47271eec9d2efe082ab9670bafb47679b50e471745be84a17b117"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "44b9a68f0008423b257b31f128bead6c9b181ecf3b8acb4ae49306130f8f61fc",
+      "git_blob": "3a1b10451bfbbc9537bb950fc0e50c4b4ea48687",
+      "path": "src/pontius/safe_composition_experiment.py",
+      "raw_sha256": "3968d1fe84b11ced02f1ad4ebafaf64f688776831f1279a5b9a6aa9ca6431df1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b73299668a039fde309ce5cef2843846d088e60ecf692ddb1fd6caec60e11f15",
+      "git_blob": "a622459504a3ab187676a4ee0b8146da1bab3f55",
+      "path": "src/pontius/safe_composition_matrix.py",
+      "raw_sha256": "adb7014afb6929f2f06bd35f07e6fb475602de4c738b404e828ccbe4fefcea9e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "fd1bfa30611dedc974f4302060c3647763b29dd1a399fd610063279875b52092",
+      "git_blob": "303228f35a8318b47611fda80697f030d40443e2",
+      "path": "src/pontius/safe_oracle_experiment.py",
+      "raw_sha256": "33d401023453ca0528b73f2d33f6a93f2907e254dd854af11204562fd12951fe"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "38ce8ff0d590179ad5f5a3b883cc7b49f946b00018c26478b9847c4da75eda15",
+      "git_blob": "0a3987dfbed4e3ec1baedc7b015be74119e791ab",
+      "path": "src/pontius/safe_oracle_matrix.py",
+      "raw_sha256": "aa0050541f9486dc74efb94051cdf79f5a873fd0ab4a8494d956632be8f2a9b6"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "46d5555d4598a19c4e944399787cd6396f690dbb4f3d04ebb6a4d5f2104be253",
+      "git_blob": "3837c4dda740003ef2e9ed6b624a472e953c5907",
+      "path": "src/pontius/safe_resolving.py",
+      "raw_sha256": "4c5db8b195abee07793eb22f3fee9c8a3e5f037229b988ae20b40691f477bcd3"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "f2ec16d20aa211829e3794bbcc17e1538af74f2398464a2ad5cbfed2d76d5fcc",
+      "git_blob": "d2257e08ad5a25bdfffa22535d3bfcda04828ffa",
+      "path": "src/pontius/safe_solver_gap_experiment.py",
+      "raw_sha256": "74c3add6a23df31ed7ed5863872cc71959a54c2df5fd038fefd44b12c8c3b5f4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0eda26dbfaf42364cd3ddd79e40ee8362dd3930b21c16f7baedda3b1dd713ca5",
+      "git_blob": "39477f27ef10df92fa7b2f9e08a331f0ac2f8772",
+      "path": "src/pontius/safe_solver_gap_matrix.py",
+      "raw_sha256": "db14ce0124945c621258d36e47401cb69396fd6a15c5e6c700ead268adcd9032"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b1ebcb34e46a674c31da79da758b4cf6194de564d08faf9151806906cdee9446",
+      "git_blob": "23b4a531b219711effff55e0f19779429493f3a3",
+      "path": "src/pontius/seat_order_tt.py",
+      "raw_sha256": "6480ec66d80bcb6c22ad70098715935d5dd6d6ef76bef45a4a1f9106caf3c7f0"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b2c13a7383301b904ecceecf5de9797d136252a72c6af5340de565a38e9857c0",
+      "git_blob": "e1280d25440cdb8fa0a256a540359d7a49015040",
+      "path": "src/pontius/selection.py",
+      "raw_sha256": "4aaaedfcb8805e6a283d775abab82e9498783c282142c6bee2f2ac6b85efb2d9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "3f98e0284555dec7c28e1aef8a1d581d5dd21251bce7842b430e19194c6284f8",
+      "git_blob": "9df5022caaa409f861becbcc7b270e3c22cc9e2f",
+      "path": "src/pontius/selective_tree.py",
+      "raw_sha256": "c4d82e667a65088cc22e3ae7708c5d650044c9030a24b9e67ff3bf8de65be0dd"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "03aedee085a9e7d5ce9ed36cdcaa8e4e60d068c1ddcb774968a6105db222cd55",
+      "git_blob": "3643d7515df9b0c6a4e6c4a095297442a587237f",
+      "path": "src/pontius/selector_fan_controls.py",
+      "raw_sha256": "f8d24a6323eec4aeba0a7b72d0f47142dc61a62628a9aac4f6a6786cf253e975"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5b1cb76291957f83ae0f8784029518eb8bbad970b13566188cc1818d7ca23e87",
+      "git_blob": "7efcde5db7cc79ac1b8f2fe12142983f8968ea15",
+      "path": "src/pontius/selector_stable_affine_response.py",
+      "raw_sha256": "9e222242cc0c60d13b02935b48f4f5e5a2a4019492ff1a551cedf64a0b0d0168"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "197a3f25ae97a8f25f32d052fac7965797108074405beed7e9510e46e0e3783c",
+      "git_blob": "ed65b40e2b7eba79a961ee2773b1edd110b6ae93",
+      "path": "src/pontius/selector_window.py",
+      "raw_sha256": "81189f1e4d3639e44f87fe6234ec8ec3872451de53356ee137cb84bdb860aa4b"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d3a7cc17b21b189f64fc3059dd3d60f102dbbe45da49c076b4986e57fbc0f429",
+      "git_blob": "51a4758e053acc8504331cb58abb71cb548d22d1",
+      "path": "src/pontius/selector_window_v2.py",
+      "raw_sha256": "78af151aaaf6dfdc69ce7f2fba141a16fc76edfef4b43be4732380140b03f644"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "279c14c885c62ee3386ca6b9781893dc62052b4c76d3744154b389c150582753",
+      "git_blob": "39d4739f01d7ff7664e1a0466ad8c0eea283acba",
+      "path": "src/pontius/sequence_form_open_axis.py",
+      "raw_sha256": "131928a4fd8aeb12dd7d2ca03ebabc44e06af5ddf666d8ad900f07e0e1e5aaee"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "5ec29f8c17b47803f026d97aedcbb0467f8db4d68450acef851af6754dd5fa26",
+      "git_blob": "d8d65f6866390f632b160a5ce8af6ab2a4f76882",
+      "path": "src/pontius/shared_resident_response_context.py",
+      "raw_sha256": "90b4f6d2b11777c28106b0932f9793c8f0c6fc95e32cdb6d9d1630218cb41c6f"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d7deb23a694f3cf27b92578ac2fda251013f5d4993910ad30a4b8d3ccee115d5",
+      "git_blob": "bc11416b0671b0e428fa593a445212456c1acfdb",
+      "path": "src/pontius/showdown_value_rank_screen.py",
+      "raw_sha256": "3fe8873c4004f5350df17689a2f304fdd6dd554e8c0bf3d35e6780b7154efde1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b968108ba893c04a239a2bbce4f98504eb810d6a2c49938564cb1e086d64c919",
+      "git_blob": "6e02e955e7161794e8b60ddcc45fc397f6d0527e",
+      "path": "src/pontius/signed_clean_fringe_audit.py",
+      "raw_sha256": "76bbc62e5d5a7ca7bbb456901c74690c1fd772e79e0eed8c42af69a6be3dfddb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "72a1c51536f3093983f822a35381c98bb462a801f00151a3f496b097814b9cbb",
+      "git_blob": "0baf8adc91053607d3ed3649040ff7d91583488f",
+      "path": "src/pontius/signed_clean_fringe_tt.py",
+      "raw_sha256": "530009b351a09aa3ef7eddde3b4432bd1203d7f1336917e7db1965b5aae5fa6c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a377c445a469de68d2c1821633cd73346af34851a124bb424ad5498f7bd78d9c",
+      "git_blob": "19c067bbff23902c1eedb1770803e6788f2d3ca8",
+      "path": "src/pontius/sizing_power_diagnostic.py",
+      "raw_sha256": "007bce6f591da1c2d96173a52a36d70cefdef4fab9c6ccb8fc26bbdf945b2aff"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0a9cede162db1b12f083b759e3f852670b978de54482d7118f5abda5d7ea4a31",
+      "git_blob": "2d574d37da476bae14041af73f0c1dcbc7f8c201",
+      "path": "src/pontius/sparse_incidence_audit.py",
+      "raw_sha256": "d3ba518d2d7c625a8476e09288e6bd2c157775487f2452b4e58d87a129c592f8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "47a448091e35f50571d0e971b4753ec148ae8f649acf790f652e2f19d7eacbcd",
+      "git_blob": "c47a47769e35cce59209f802a3715841e7babf8d",
+      "path": "src/pontius/sparse_incidence_open_mode.py",
+      "raw_sha256": "34128e6b6861f9ae8f2c3c3ec8006759a47d67c34d473f1db90b9d7d53c4e8ae"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "719cc9b18f976747b7505cf422a1d375ef29ead251945e33bc97e52b64a7a5e2",
+      "git_blob": "4426d0024d3fac613801d03515b5050678175e9e",
+      "path": "src/pontius/sparse_open_mode_cfr.py",
+      "raw_sha256": "35834051b42d23779ddb3421a6bc42f096a23418d92fb81d32605f2c93c6f467"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "bc45a675f8a2e1c87f0bb09269f111b8974ba1d03e3ace44feae2457a161fac0",
+      "git_blob": "babc02b38a85dbd0cba1873ef9224e42e848f579",
+      "path": "src/pontius/sparse_open_mode_factor_tt.py",
+      "raw_sha256": "06f996eaeee7ea0264e7687f120bea2e4ca13d5974a6ec62e782e7fbd24a8385"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "aab518d53ce2a924ea8ff47a8ddbc5a73cdcca99162a6f596e9618bc35a9135e",
+      "git_blob": "23909996fb78afa1cb5f1ecca2e2635eee9c562f",
+      "path": "src/pontius/status_generation.py",
+      "raw_sha256": "62244a47bf2065148df989471b1c6cd7e16bfea96caec8e4d7317a3a2e48030c"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7d00872c174b973df01d52b07e1a8a6f952c517b7254ee0e092083562b5e779c",
+      "git_blob": "2702540bfc197b4a7dc0b6168c8bcdffc9487173",
+      "path": "src/pontius/street_deadline.py",
+      "raw_sha256": "8f803603e95013a4964aafedb941ed66426be5b4cf2fabdeb4a6f7a2f8abbf96"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "233fb32ad385fa2f6abaa35c120b995f82a45c7d610f792bc0b980504765d8ed",
+      "git_blob": "5c00ccea509df62de66514356b872047c6aaa321",
+      "path": "src/pontius/structured_showdown_automaton.py",
+      "raw_sha256": "1a7a142cd446cf36802f1ff19a0189c00229ca5c3f05d0d061374a73dc68f498"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "df565293294f9ab049c7c6da6059ccac95f8d47eff828d66bd8b07f9d252dca9",
+      "git_blob": "922bc3e309bf45c4f71ff267241415b154430d1d",
+      "path": "src/pontius/structured_showdown_automaton_audit.py",
+      "raw_sha256": "bce828c97435d72dfe2b0dfdc6c6abba7a954cf24477eba70c06f5f89bf8b1b4"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "71afbc078980b17d42eb3066e6c8584079021c2d80dd2742c94a64ce18dd5897",
+      "git_blob": "5fe7576ba3b73e867b093d4108fe11034d5046cf",
+      "path": "src/pontius/tensor_train.py",
+      "raw_sha256": "5e5bcedf5843768e3144608c9ebc9991542e9233690cb2e0d0aa336d77233337"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "e7d2f80a63c8c7766468851c727630e0bcb0863c1a33989bb1dba3efb859edf6",
+      "git_blob": "29b1c52ac6d2e383f3005b935a0570d0a1b5b1c5",
+      "path": "src/pontius/tensor_train_algebra.py",
+      "raw_sha256": "9710784dace23f441ee1d4cbba0e3cd69adb32b6eadb45f9cffa9f6ad2f4296d"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cf20c6b2d126de2a01f7931c33ab995be05f5c0a3a9de8929a272200f1ce229b",
+      "git_blob": "f732d7d93a95c54187e37ac26d982d140fa7a994",
+      "path": "src/pontius/terminal_tensor_evaluation.py",
+      "raw_sha256": "46094f1332254311a2e8d397428c16ea32d11c590999e4c9bd9fba85fdc5d148"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "598f6392fa26fc36b6c26d49121cf3956e22637db260f03d16e019f724f1bb07",
+      "git_blob": "8c43d1ab6c625f9bba388ee60f31568ea2f1309a",
+      "path": "src/pontius/tie_aware_affine_adapter.py",
+      "raw_sha256": "3982179667e185148560b8fb3f2e882f29e6ab185c7295be882beab3f0f364c5"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "6fc09cbefd09866da66239f37a4100f7448ce79f2c0e2693f9a28f7f9a936ea7",
+      "git_blob": "6af9315d39c400787cd92180d1694c2cb43b13dc",
+      "path": "src/pontius/tie_semantics_conformance.py",
+      "raw_sha256": "036f9e5928f94bf36e5ae88108d96ca1a7127eb3f7ac860c2abc88693e4eec49"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "cd60ddad3ab02ea33ff9f9b9858d85dd6da45bb1cf26d9b129a6ea2575808ae5",
+      "git_blob": "2248f474f02b0a20c9a0714897dddadadc733df7",
+      "path": "src/pontius/tie_semantics_conformance_v2.py",
+      "raw_sha256": "9740d26d1cca4cd6ff926115ff315ad6bd367848669cb6ee213e917250dd957e"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "0d0d07b1aa69b6ac5fdb7893ab118db8a42aa4c0f20134a2e32294dbfb63d2dc",
+      "git_blob": "0ae5050e6d2d0f7c5b58a738bcc8fd3ef74d87be",
+      "path": "src/pontius/unrounded_policy_tt.py",
+      "raw_sha256": "3e4c889c146ff2a474dc86cab646f751db98a8ba35ff355f14d8faefe6a3ada9"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "c6aacfc70a6adcf52fdb8b5c452a8e37c0131e142ae99aa2c5651262e8fdd933",
+      "git_blob": "c6d9f4733f0ba2f4f789b994abb7ada314d81d3d",
+      "path": "src/pontius/updates.py",
+      "raw_sha256": "76c08c39ebcda28c49e786099cc88236c33d71ea1d5e70dfff04ebb37aa7c704"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a62d453cf6e36d740b8bad263a7d0c0254a1409944ba2cd09a98d95cc844b6b5",
+      "git_blob": "c502c799cd9104683f87c5e3e05c25630809b4c8",
+      "path": "src/pontius/v0a/__init__.py",
+      "raw_sha256": "86d349c4b79f150a4439df8d63c8d20854572895aaf7960f27647e7b1f198a8a"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "a86a791815a934f6fe51d7fe25e2b01dbc2bed86ef49a0f1ece8c255bc37b72f",
+      "git_blob": "32cdc99e2e8e6c074dd925410c39330fa413af18",
+      "path": "src/pontius/v0a/clock.py",
+      "raw_sha256": "42bd18d36a6353dbbcc44df1113eafa40ee5581b3e2479761990ab5c21c074bb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "b4072df457c28b325eb7ec267eca65aeecc182b09ccd7d6a2009057285c276ca",
+      "git_blob": "3602989e3a3d5f36c9a0bd5d102797b8e349191d",
+      "path": "src/pontius/v0a/model.py",
+      "raw_sha256": "3936d0216cdfc1b79500aac22908edd5e724b8da341801fcbafefa7c27a58e18"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "8b9cdc5cccd01908ef4242f37cbcf6f968ea5004d53cbda37608158f89a872f5",
+      "git_blob": "89e1604ed443ff7d26fdb94e65150c0582c27ca9",
+      "path": "src/pontius/v0a/replay.py",
+      "raw_sha256": "ccd18b6540af9799a9feca9cd9884b4871fec7434012e911e37abdc0b1373a53"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "4ece20eb79dec3e7231a045ada1a1043075b7c63efcd09704f48d2fb3be005f3",
+      "git_blob": "57c028eb737e424eb9fc0534b9c238d3eee92569",
+      "path": "src/pontius/v0a/runtime.py",
+      "raw_sha256": "7855f01733c1f9fe24846b7296e304e50cabaeec9a51fb1c0e9a691d993d04e8"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "d8484245842c4a182c31b773cae0b7552bf5c2d4183f95efb4439f793718a165",
+      "git_blob": "8440aa0274b642af3e03326813989ff5b3333766",
+      "path": "src/pontius/v0a/trace.py",
+      "raw_sha256": "4358b82b77defeb8bae3a40ab46f1cdfef61d49189b836577040e3e1e22081a1"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "9756f64ae8a6f2f74dea6e3de231bc6946ac385994c51967804c9a52a9e4d3b5",
+      "git_blob": "c6792c6c000e6b489535f63c72443bf3a423bbb4",
+      "path": "src/pontius/width_four_sizing_power.py",
+      "raw_sha256": "700014af02b2128f60827c43e8f9f1648e097d967492295bef5b5fca151aaddb"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "7af47d8131fcbc24717cde105642a39022fbe1bccf5bce640b1d91b6797e1f04",
+      "git_blob": "9afcc57adcde801702f54846b5ec534bb9fa2601",
+      "path": "src/pontius/width_four_sizing_power_evaluation.py",
+      "raw_sha256": "e86b193356372c3b0dbae96c8b0e5d66cc3591f6a36e69d4faf9301cea92d773"
+    },
+    {
+      "exact": false,
+      "executed_sha256": "ada71a0353d1066297fbd3a018fc5d2df10b56d20be0ab4828ed4c32f2d013fd",
+      "git_blob": "bf5b92682631e7afa7a04aba67a732cffca46964",
+      "path": "src/pontius/windows_process_memory.py",
+      "raw_sha256": "bab5c4533b7ecedb52c26d64f88aecfef3ce58996a629afe10df4089fe29c6c6"
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "python": "3.14.6",
+  "rows": [
+    {
+      "n": 1,
+      "digest": "d6030b8d42e098b37ecf273dcf8ea3e5b168826bb77387d09c55d4586a1c4848",
+      "canonical_sha256": "d6030b8d42e098b37ecf273dcf8ea3e5b168826bb77387d09c55d4586a1c4848",
+      "construction": {
+        "median_ms": 0.000835,
+        "batch_means_ms": [
+          0.000985,
+          0.000865,
+          0.000835,
+          0.000825,
+          0.00083
+        ]
+      },
+      "digest_read": {
+        "median_ms": 5e-05,
+        "batch_means_ms": [
+          8.5e-05,
+          5e-05,
+          5e-05,
+          4.5e-05,
+          4.5e-05
+        ]
+      },
+      "legacy_hit": {
+        "median_ms": 0.012375,
+        "batch_means_ms": [
+          0.013745,
+          0.01249,
+          0.012345,
+          0.01226,
+          0.012375
+        ]
+      },
+      "prepared_hit": {
+        "median_ms": 0.029695,
+        "batch_means_ms": [
+          0.031315,
+          0.029695,
+          0.029355,
+          0.029615,
+          0.029895
+        ]
+      },
+      "provider_hit": {
+        "median_ms": 0.04913,
+        "batch_means_ms": [
+          0.06066,
+          0.04948,
+          0.04913,
+          0.04898,
+          0.048695
+        ]
+      },
+      "provider_construction": {
+        "median_ms": 0.03556666666666666,
+        "batch_means_ms": [
+          0.0427,
+          0.0369,
+          0.03556666666666666,
+          0.034633333333333335,
+          0.033966666666666666
+        ]
+      },
+      "prepared_construction": {
+        "median_ms": 0.030366666666666667,
+        "batch_means_ms": [
+          0.0328,
+          0.030366666666666667,
+          0.031933333333333334,
+          0.0295,
+          0.02913333333333333
+        ]
+      },
+      "legacy_miss": {
+        "median_ms": 0.012315,
+        "batch_means_ms": [
+          0.0133,
+          0.012315,
+          0.01239,
+          0.012165,
+          0.01215
+        ]
+      },
+      "construction_identity_traced_bytes": {
+        "current": 4086,
+        "peak": 6163
+      }
+    },
+    {
+      "n": 100,
+      "digest": "d09c927a469289c5e84c3299cecb7611e9d3ec6856c72f810df96f2037ef59d5",
+      "canonical_sha256": "d09c927a469289c5e84c3299cecb7611e9d3ec6856c72f810df96f2037ef59d5",
+      "construction": {
+        "median_ms": 0.017625,
+        "batch_means_ms": [
+          0.01801,
+          0.018075,
+          0.017625,
+          0.017595,
+          0.01758
+        ]
+      },
+      "digest_read": {
+        "median_ms": 5.5e-05,
+        "batch_means_ms": [
+          8e-05,
+          5.5e-05,
+          6.5e-05,
+          5e-05,
+          4.5e-05
+        ]
+      },
+      "legacy_hit": {
+        "median_ms": 0.02087,
+        "batch_means_ms": [
+          0.02213,
+          0.02069,
+          0.02074,
+          0.02105,
+          0.02087
+        ]
+      },
+      "prepared_hit": {
+        "median_ms": 0.030525,
+        "batch_means_ms": [
+          0.03195,
+          0.030525,
+          0.030065,
+          0.02975,
+          0.0308
+        ]
+      },
+      "provider_hit": {
+        "median_ms": 0.05787,
+        "batch_means_ms": [
+          0.060145,
+          0.057645,
+          0.05787,
+          0.05796,
+          0.057445
+        ]
+      },
+      "provider_construction": {
+        "median_ms": 2.3639,
+        "batch_means_ms": [
+          2.4286333333333334,
+          2.3639,
+          2.3630333333333335,
+          2.3610333333333333,
+          2.4089
+        ]
+      },
+      "prepared_construction": {
+        "median_ms": 2.3808,
+        "batch_means_ms": [
+          2.3752333333333335,
+          2.3980333333333337,
+          2.3808,
+          2.3725666666666667,
+          2.4229
+        ]
+      },
+      "legacy_miss": {
+        "median_ms": 0.020215,
+        "batch_means_ms": [
+          0.02103,
+          0.020335,
+          0.020215,
+          0.019905,
+          0.020095
+        ]
+      },
+      "construction_identity_traced_bytes": {
+        "current": 49697,
+        "peak": 66904
+      }
+    },
+    {
+      "n": 1326,
+      "digest": "315d0bc224851e5e2fa58ad1ced9e574c02e447024190fbc929c42b39937d852",
+      "canonical_sha256": "315d0bc224851e5e2fa58ad1ced9e574c02e447024190fbc929c42b39937d852",
+      "construction": {
+        "median_ms": 0.2167,
+        "batch_means_ms": [
+          0.218265,
+          0.2167,
+          0.222935,
+          0.2147,
+          0.21525
+        ]
+      },
+      "digest_read": {
+        "median_ms": 5.5e-05,
+        "batch_means_ms": [
+          8.5e-05,
+          5.5e-05,
+          6e-05,
+          5e-05,
+          4.5e-05
+        ]
+      },
+      "legacy_hit": {
+        "median_ms": 0.11861,
+        "batch_means_ms": [
+          0.12089,
+          0.11861,
+          0.123765,
+          0.115895,
+          0.116625
+        ]
+      },
+      "prepared_hit": {
+        "median_ms": 0.02933,
+        "batch_means_ms": [
+          0.03129,
+          0.029715,
+          0.02933,
+          0.029135,
+          0.02908
+        ]
+      },
+      "provider_hit": {
+        "median_ms": 0.157115,
+        "batch_means_ms": [
+          0.161295,
+          0.157115,
+          0.157715,
+          0.15688,
+          0.15708
+        ]
+      },
+      "provider_construction": {
+        "median_ms": 31.660533333333333,
+        "batch_means_ms": [
+          31.947666666666667,
+          31.826866666666668,
+          31.4995,
+          31.296833333333332,
+          31.660533333333333
+        ]
+      },
+      "prepared_construction": {
+        "median_ms": 31.846833333333333,
+        "batch_means_ms": [
+          31.759966666666667,
+          31.846833333333333,
+          33.734433333333335,
+          32.1781,
+          31.680333333333333
+        ]
+      },
+      "construction_identity_traced_bytes": {
+        "current": 618927,
+        "peak": 845114
+      }
+    }
+  ],
+  "assumptions": "Synthetic preflop CALL table; warm process; five batches; construction uses prebuilt entries except separate memory experiment. No tracemalloc during timings; no retained phase invocation."
+}

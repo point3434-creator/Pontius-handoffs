@@ -1,0 +1,17 @@
+.................F
+======================================================================
+FAIL: test_supervised_three_phase_subset_and_bound_input_failures (test_eval_completion_tool.CompletionPhaseTests.test_supervised_three_phase_subset_and_bound_input_failures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_eval_completion_tool.py", line 246, in test_supervised_three_phase_subset_and_bound_input_failures
+    solved, solve_dir, solve_result = phase(plan())
+                                      ~~~~~^^^^^^^^
+  File "D:\Pontius-worktrees\eval-runner-consolidation\tests\test_eval_completion_tool.py", line 238, in phase
+    self.assertEqual(entry['source_verified'], context['verified'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 18 tests in 9.952s
+
+FAILED (failures=1)
